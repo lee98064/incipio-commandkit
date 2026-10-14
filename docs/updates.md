@@ -91,6 +91,8 @@ python3 tools/release.py --private private/ota-signing.key \
 
 初次設定由 `tools/setup_github_updates.py --private private/ota-signing.key` 完成：私鑰透過 stdin 交給 GitHub CLI 加密成 repository secret `OTA_SIGNING_KEY_HEX`，不放入 argv、日誌、Git 或 Release。GitHub Pages 使用 workflow 模式。既有 signing secret 不會被默默輪替。
 
+`github-pages` environment 也必須允許 `v*` 類型為 tag 的部署規則，因為發布 Release 時 workflow 的 ref 是版本 tag。修復既有 Pages 設定可執行 `python3 tools/setup_github_updates.py --pages-only`；它不讀取私鑰或修改 signing secret，也不取代既有審核與保護規則。
+
 - PR 執行 native C／HTTP／儲存測試與瀏覽器 SHA 對照。
 - 發布 tag 後，再建置工具鏈、測試 MIPS 更新器與 Linux PID 1 路徑、產生簽章附件並建立 **草稿 pre-release**。
 - 人工發布 Release 後，另一個 workflow 驗證簽章，把兩種 `.ota` 與索引部署至 Pages。較舊版本不能覆蓋較新的索引。
