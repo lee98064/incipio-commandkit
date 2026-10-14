@@ -1,0 +1,14 @@
+{
+  "tiny_eb": {
+    "bytes": 608,
+    "sha256": "897e409ae52a202d8f93aab9315686538c675adf80ee24a0f45c269a33cd2a1d"
+  },
+  "tiny_gcc16": {
+    "bytes": 632,
+    "sha256": "60283435194b72e0c2dd61ffc0985f88d6478b26dc05be03eca629d2078f54c7"
+  },
+  "cpp_lean": {
+    "bytes": 274848,
+    "sha256": "85a4e1fb97533f9d5b09ef630811a8df5e47d53d51f5de6e4e9374ca7660fb96"
+  }
+}

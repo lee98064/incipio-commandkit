@@ -1,0 +1,22 @@
+# print_last_modified @ 0040ebc4
+0040ebc4  addiu sp,sp,-0x20
+0040ebc8  sw ra,0x1c(sp)
+0040ebcc  sw s0,0x18(sp)
+0040ebd0  lui gp,0x47
+0040ebd4  addiu gp,gp,0x2630
+0040ebd8  sw gp,0x10(sp)
+0040ebdc  lw t9,-0x79d8(gp)
+0040ebe0  lw a1,0x58(a0)
+0040ebe4  move s0,a0
+0040ebe8  lui a0,0x47
+0040ebec  jalr t9
+0040ebf0  _addiu a0,a0,-0x7ad5
+0040ebf4  lw gp,0x10(sp)
+0040ebf8  move a0,s0
+0040ebfc  lw ra,0x1c(sp)
+0040ec00  lw t9,-0x7a44(gp)
+0040ec04  lw s0,0x18(sp)
+0040ec08  lui a1,0x47
+0040ec0c  addiu a1,a1,-0x7ae4
+0040ec10  jr t9
+0040ec14  _addiu sp,sp,0x20

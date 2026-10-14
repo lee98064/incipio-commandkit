@@ -1,0 +1,9 @@
+address	name	bytes	status	file
+00400628	_init	140	ok	functions/00400628__init.c
+004006c0	entry	96	ok	functions/004006c0_entry.c
+00400720	FUN_00400720	264	ok	functions/00400720_FUN_00400720.c
+00400828	FUN_00400828	140	ok	functions/00400828_FUN_00400828.c
+004008c0	FUN_004008c0	1024	ok	functions/004008c0_FUN_004008c0.c
+00400cc0	main	64	ok	functions/00400cc0_main.c
+00400d00	FUN_00400d00	92	ok	functions/00400d00_FUN_00400d00.c
+00400df0	_fini	92	ok	functions/00400df0__fini.c

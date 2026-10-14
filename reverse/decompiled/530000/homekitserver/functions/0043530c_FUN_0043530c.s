@@ -1,0 +1,27 @@
+# FUN_0043530c @ 0043530c
+0043530c  addiu sp,sp,-0x28
+00435310  sw ra,0x24(sp)
+00435314  sw s1,0x20(sp)
+00435318  sw s0,0x1c(sp)
+0043531c  lui gp,0x62
+00435320  addiu gp,gp,-0x5cf0
+00435324  sw gp,0x10(sp)
+00435328  lui s1,0x60
+0043532c  lw s0,0xb98(s1)
+00435330  li v1,-0x1
+00435334  bne s0,v1,0x00435360
+00435338  _li v0,-0x2
+0043533c  lw t9,-0x6d84(gp)
+00435340  lui a0,0x5b
+00435344  addiu a0,a0,-0x17c8
+00435348  jalr t9
+0043534c  _li a1,0x1
+00435350  nor v1,zero,v0
+00435354  sw v0,0xb98(s1)
+00435358  clear v0
+0043535c  movz v0,s0,v1
+00435360  lw ra,0x24(sp)
+00435364  lw s1,0x20(sp)
+00435368  lw s0,0x1c(sp)
+0043536c  jr ra
+00435370  _addiu sp,sp,0x28

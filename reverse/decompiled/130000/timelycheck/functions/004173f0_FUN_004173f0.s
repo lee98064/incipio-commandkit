@@ -1,0 +1,24 @@
+# FUN_004173f0 @ 004173f0
+004173f0  lui gp,0x2
+004173f4  addiu gp,gp,-0x4390
+004173f8  addu gp,gp,t9
+004173fc  addiu sp,sp,-0x28
+00417400  sw ra,0x24(sp)
+00417404  sw s1,0x20(sp)
+00417408  sw s0,0x1c(sp)
+0041740c  sw gp,0x10(sp)
+00417410  lw s0,-0x7fe8(gp)
+00417414  li s1,-0x1
+00417418  b 0x00417428
+0041741c  _addiu s0,s0,-0x6000
+00417420  jalr t9
+00417424  _nop
+00417428  lw t9,0x0(s0)
+0041742c  nop
+00417430  bne t9,s1,0x00417420
+00417434  _addiu s0,s0,-0x4
+00417438  lw ra,0x24(sp)
+0041743c  lw s1,0x20(sp)
+00417440  lw s0,0x1c(sp)
+00417444  jr ra
+00417448  _addiu sp,sp,0x28

@@ -1,0 +1,45 @@
+# RunSystemCmd @ 00402868
+00402868  addiu sp,sp,-0x90
+0040286c  sw ra,0x8c(sp)
+00402870  sw s1,0x88(sp)
+00402874  sw s0,0x84(sp)
+00402878  lui gp,0x43
+0040287c  addiu gp,gp,0x3060
+00402880  sw gp,0x10(sp)
+00402884  lw t9,-0x7f4c(gp)
+00402888  addiu s0,sp,0x1c
+0040288c  sw a1,0x94(sp)
+00402890  sw a2,0x98(sp)
+00402894  sw a3,0x9c(sp)
+00402898  move s1,a0
+0040289c  clear a1
+004028a0  move a0,s0
+004028a4  jalr t9
+004028a8  _li a2,0x60
+004028ac  addiu v0,sp,0x94
+004028b0  sw v0,0x18(sp)
+004028b4  clear v1
+004028b8  lw a0,0x18(sp)
+004028bc  addiu v0,v1,0x1
+004028c0  addiu a1,a0,0x4
+004028c4  sw a1,0x18(sp)
+004028c8  lw a0,0x0(a0)
+004028cc  nop
+004028d0  lbu a1,0x0(a0)
+004028d4  nop
+004028d8  beq a1,zero,0x004028ec
+004028dc  _move v1,v0
+004028e0  sw a0,0x0(s0)
+004028e4  b 0x004028b8
+004028e8  _addiu s0,s0,0x4
+004028ec  sll v0,v0,0x2
+004028f0  addu v0,sp,v0
+004028f4  move a1,s1
+004028f8  addiu a0,sp,0x1c
+004028fc  jal 0x00402664
+00402900  _sw zero,0x1c(v0)
+00402904  lw ra,0x8c(sp)
+00402908  lw s1,0x88(sp)
+0040290c  lw s0,0x84(sp)
+00402910  jr ra
+00402914  _addiu sp,sp,0x90

@@ -1,0 +1,135 @@
+# HKCleanPairSetupInfo @ 004260e0
+004260e0  addiu sp,sp,-0x20
+004260e4  sw ra,0x1c(sp)
+004260e8  sw s0,0x18(sp)
+004260ec  lui gp,0x62
+004260f0  addiu gp,gp,-0x5cf0
+004260f4  sw gp,0x10(sp)
+004260f8  lw v0,0x0(a0)
+004260fc  nop
+00426100  beq v0,zero,0x004262e8
+00426104  _move s0,a0
+00426108  lbu v0,0x110(a1)
+0042610c  nop
+00426110  beq v0,zero,0x004262e8
+00426114  _lui v0,0x60
+00426118  li v1,0x1
+0042611c  sw v1,0xa50(v0)
+00426120  sb zero,0x110(a1)
+00426124  lw v0,0x0(a0)
+00426128  nop
+0042612c  lw a0,0x4(v0)
+00426130  nop
+00426134  beq a0,zero,0x00426150
+00426138  _nop
+0042613c  lw t9,-0x7aa4(gp)
+00426140  nop
+00426144  jalr t9
+00426148  _nop
+0042614c  lw gp,0x10(sp)
+00426150  lw v0,0x0(s0)
+00426154  nop
+00426158  lw a0,0xc(v0)
+0042615c  nop
+00426160  beq a0,zero,0x00426184
+00426164  _nop
+00426168  lw t9,-0x7aa4(gp)
+0042616c  nop
+00426170  jalr t9
+00426174  _nop
+00426178  lw gp,0x10(sp)
+0042617c  lw v0,0x0(s0)
+00426180  nop
+00426184  lw a0,0x14(v0)
+00426188  nop
+0042618c  beq a0,zero,0x004261a8
+00426190  _nop
+00426194  lw t9,-0x7aa4(gp)
+00426198  nop
+0042619c  jalr t9
+004261a0  _nop
+004261a4  lw gp,0x10(sp)
+004261a8  lw v0,0x0(s0)
+004261ac  nop
+004261b0  lw a0,0x1c(v0)
+004261b4  nop
+004261b8  beq a0,zero,0x004261dc
+004261bc  _nop
+004261c0  lw t9,-0x7aa4(gp)
+004261c4  nop
+004261c8  jalr t9
+004261cc  _nop
+004261d0  lw gp,0x10(sp)
+004261d4  lw v0,0x0(s0)
+004261d8  nop
+004261dc  lw v0,0x8(v0)
+004261e0  nop
+004261e4  lw a0,0x30(v0)
+004261e8  nop
+004261ec  beq a0,zero,0x00426208
+004261f0  _nop
+004261f4  lw t9,-0x7aa4(gp)
+004261f8  nop
+004261fc  jalr t9
+00426200  _nop
+00426204  lw gp,0x10(sp)
+00426208  lw v0,0x0(s0)
+0042620c  nop
+00426210  lw v0,0x8(v0)
+00426214  nop
+00426218  lw a0,0x28(v0)
+0042621c  nop
+00426220  beq a0,zero,0x0042623c
+00426224  _nop
+00426228  lw t9,-0x7aa4(gp)
+0042622c  nop
+00426230  jalr t9
+00426234  _nop
+00426238  lw gp,0x10(sp)
+0042623c  lw v0,0x0(s0)
+00426240  nop
+00426244  lw v0,0x8(v0)
+00426248  nop
+0042624c  lw a0,0x24(v0)
+00426250  nop
+00426254  beq a0,zero,0x00426270
+00426258  _nop
+0042625c  lw t9,-0x7aa4(gp)
+00426260  nop
+00426264  jalr t9
+00426268  _nop
+0042626c  lw gp,0x10(sp)
+00426270  lw v0,0x0(s0)
+00426274  nop
+00426278  lw v0,0x8(v0)
+0042627c  nop
+00426280  lw a0,0x48(v0)
+00426284  nop
+00426288  beq a0,zero,0x004262a4
+0042628c  _nop
+00426290  lw t9,-0x7aa4(gp)
+00426294  nop
+00426298  jalr t9
+0042629c  _nop
+004262a0  lw gp,0x10(sp)
+004262a4  lw v0,0x0(s0)
+004262a8  nop
+004262ac  lw a0,0x8(v0)
+004262b0  nop
+004262b4  beq a0,zero,0x004262d4
+004262b8  _nop
+004262bc  lw t9,-0x7aa4(gp)
+004262c0  nop
+004262c4  jalr t9
+004262c8  _nop
+004262cc  lw gp,0x10(sp)
+004262d0  nop
+004262d4  lw t9,-0x7aa4(gp)
+004262d8  lw a0,0x0(s0)
+004262dc  jalr t9
+004262e0  _nop
+004262e4  sw zero,0x0(s0)
+004262e8  lw ra,0x1c(sp)
+004262ec  lw s0,0x18(sp)
+004262f0  jr ra
+004262f4  _addiu sp,sp,0x20

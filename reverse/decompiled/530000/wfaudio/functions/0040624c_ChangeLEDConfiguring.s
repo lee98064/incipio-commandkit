@@ -1,0 +1,66 @@
+# ChangeLEDConfiguring @ 0040624c
+0040624c  addiu sp,sp,-0x58
+00406250  sw ra,0x54(sp)
+00406254  sw s1,0x50(sp)
+00406258  sw s0,0x4c(sp)
+0040625c  lui gp,0x43
+00406260  addiu gp,gp,-0x4c90
+00406264  sw gp,0x10(sp)
+00406268  lw t9,-0x7e28(gp)
+0040626c  move s1,a0
+00406270  li a1,0x1
+00406274  li a0,0x2
+00406278  jalr t9
+0040627c  _clear a2
+00406280  lw gp,0x10(sp)
+00406284  bgez v0,0x0040629c
+00406288  _move s0,v0
+0040628c  lui a0,0x41
+00406290  lw t9,-0x7e0c(gp)
+00406294  b 0x00406318
+00406298  _addiu a0,a0,0x11d0
+0040629c  lw t9,-0x7d90(gp)
+004062a0  addiu a2,sp,0x20
+004062a4  li v0,0x77
+004062a8  lui a1,0x41
+004062ac  move a0,a2
+004062b0  addiu a1,a1,0x540
+004062b4  sw a2,0x40(sp)
+004062b8  sb v0,0x18(sp)
+004062bc  jalr t9
+004062c0  _sw s1,0x1c(sp)
+004062c4  lw gp,0x10(sp)
+004062c8  addiu v0,sp,0x18
+004062cc  lw a2,0x40(sp)
+004062d0  lw t9,-0x7da0(gp)
+004062d4  sw v0,0x30(sp)
+004062d8  li v0,0x8
+004062dc  sh v0,0x34(sp)
+004062e0  move a0,s0
+004062e4  jalr t9
+004062e8  _ori a1,zero,0x89ff
+004062ec  lw gp,0x10(sp)
+004062f0  bgez v0,0x00406328
+004062f4  _lui a0,0x41
+004062f8  lw t9,-0x7e0c(gp)
+004062fc  nop
+00406300  jalr t9
+00406304  _addiu a0,a0,0x11e0
+00406308  lw gp,0x10(sp)
+0040630c  move a0,s0
+00406310  lw t9,-0x7fc4(gp)
+00406314  nop
+00406318  jalr t9
+0040631c  _nop
+00406320  b 0x0040633c
+00406324  _li v0,-0x1
+00406328  lw t9,-0x7fc4(gp)
+0040632c  nop
+00406330  jalr t9
+00406334  _move a0,s0
+00406338  clear v0
+0040633c  lw ra,0x54(sp)
+00406340  lw s1,0x50(sp)
+00406344  lw s0,0x4c(sp)
+00406348  jr ra
+0040634c  _addiu sp,sp,0x58

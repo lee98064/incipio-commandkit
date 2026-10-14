@@ -1,0 +1,22 @@
+# FUN_0041aee4 @ 0041aee4
+0041aee4  addiu sp,sp,-0x28
+0041aee8  sw ra,0x24(sp)
+0041aeec  sw s2,0x20(sp)
+0041aef0  sw s1,0x1c(sp)
+0041aef4  sw s0,0x18(sp)
+0041aef8  clear s0
+0041aefc  move s2,a0
+0041af00  li s1,0x10
+0041af04  move a1,s0
+0041af08  move a0,s2
+0041af0c  jal 0x0041ac24
+0041af10  _addiu s0,s0,0x1
+0041af14  bne s0,s1,0x0041af08
+0041af18  _move a1,s0
+0041af1c  lw ra,0x24(sp)
+0041af20  lw s2,0x20(sp)
+0041af24  lw s1,0x1c(sp)
+0041af28  lw s0,0x18(sp)
+0041af2c  clear v0
+0041af30  jr ra
+0041af34  _addiu sp,sp,0x28

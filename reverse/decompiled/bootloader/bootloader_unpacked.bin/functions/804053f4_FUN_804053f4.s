@@ -1,0 +1,21 @@
+# FUN_804053f4 @ 804053f4
+804053f4  addiu sp,sp,-0x20
+804053f8  sw ra,0x1c(sp)
+804053fc  sw s1,0x18(sp)
+80405400  sw s0,0x14(sp)
+80405404  andi s1,a0,0xff
+80405408  clear s0
+8040540c  addiu s0,s0,0x1
+80405410  move a0,s1
+80405414  clear a1
+80405418  lui a2,0x500
+8040541c  jal 0x80405338
+80405420  _li a3,0x1
+80405424  andi v0,v0,0x1
+80405428  bne v0,zero,0x8040540c
+8040542c  _move v0,s0
+80405430  lw ra,0x1c(sp)
+80405434  lw s1,0x18(sp)
+80405438  lw s0,0x14(sp)
+8040543c  jr ra
+80405440  _addiu sp,sp,0x20

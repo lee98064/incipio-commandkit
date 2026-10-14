@@ -1,0 +1,105 @@
+# FUN_004021d4 @ 004021d4
+004021d4  addiu sp,sp,-0x30
+004021d8  sw ra,0x2c(sp)
+004021dc  sw s3,0x28(sp)
+004021e0  sw s2,0x24(sp)
+004021e4  sw s1,0x20(sp)
+004021e8  sw s0,0x1c(sp)
+004021ec  lui gp,0x43
+004021f0  addiu gp,gp,-0x4be0
+004021f4  sw gp,0x10(sp)
+004021f8  lw t9,-0x7f98(gp)
+004021fc  addiu s0,a0,0x4
+00402200  move s1,a0
+00402204  jalr t9
+00402208  _move a0,s0
+0040220c  lw gp,0x10(sp)
+00402210  blez v0,0x00402224
+00402214  _lui a0,0x41
+00402218  lw t9,-0x7e8c(gp)
+0040221c  b 0x004022ac
+00402220  _addiu a0,a0,0xdc0
+00402224  lw s2,-0x7f08(gp)
+00402228  lw s3,-0x7ef4(gp)
+0040222c  lw t9,-0x7f9c(gp)
+00402230  sw v0,0x0(s2)
+00402234  sw zero,0x0(s3)
+00402238  jalr t9
+0040223c  _move a0,s1
+00402240  sltiu v0,v0,0x9
+00402244  lw gp,0x10(sp)
+00402248  bne v0,zero,0x004022d4
+0040224c  _li v0,0x2d
+00402250  lb v1,0x5(s1)
+00402254  nop
+00402258  bne v1,v0,0x004022d4
+0040225c  _li v0,0x76
+00402260  lb v1,0x6(s1)
+00402264  nop
+00402268  bne v1,v0,0x004022d4
+0040226c  _li v0,0x61
+00402270  lb v1,0x7(s1)
+00402274  nop
+00402278  bne v1,v0,0x004022d4
+0040227c  _nop
+00402280  lw t9,-0x7f98(gp)
+00402284  nop
+00402288  jalr t9
+0040228c  _addiu a0,s1,0x8
+00402290  slti v1,v0,0x5
+00402294  lw gp,0x10(sp)
+00402298  bne v1,zero,0x004022bc
+0040229c  _addiu v0,v0,0x1
+004022a0  lw t9,-0x7e8c(gp)
+004022a4  lui a0,0x41
+004022a8  addiu a0,a0,0xde8
+004022ac  jalr t9
+004022b0  _nop
+004022b4  b 0x00402354
+004022b8  _clear v1
+004022bc  lw t9,-0x7f98(gp)
+004022c0  sw v0,0x0(s3)
+004022c4  jalr t9
+004022c8  _move a0,s0
+004022cc  lw gp,0x10(sp)
+004022d0  sw v0,0x0(s2)
+004022d4  lw t9,-0x7f9c(gp)
+004022d8  nop
+004022dc  jalr t9
+004022e0  _move a0,s1
+004022e4  sltiu v0,v0,0x9
+004022e8  lw gp,0x10(sp)
+004022ec  bne v0,zero,0x00402350
+004022f0  _li v0,0x2d
+004022f4  lb v1,0x5(s1)
+004022f8  nop
+004022fc  bne v1,v0,0x00402354
+00402300  _li v1,0x1
+00402304  lw t9,-0x7f24(gp)
+00402308  lui a1,0x41
+0040230c  addiu a0,s1,0x6
+00402310  addiu a1,a1,0xe18
+00402314  jalr t9
+00402318  _li a2,0x3
+0040231c  lw gp,0x10(sp)
+00402320  bne v0,zero,0x00402350
+00402324  _li v1,0x5
+00402328  lw v0,-0x7ef4(gp)
+0040232c  lw t9,-0x7f98(gp)
+00402330  sw v1,0x0(v0)
+00402334  jalr t9
+00402338  _move a0,s0
+0040233c  lw gp,0x10(sp)
+00402340  li v1,0x1
+00402344  lw a0,-0x7f08(gp)
+00402348  b 0x00402354
+0040234c  _sw v0,0x0(a0)
+00402350  li v1,0x1
+00402354  lw ra,0x2c(sp)
+00402358  lw s3,0x28(sp)
+0040235c  lw s2,0x24(sp)
+00402360  lw s1,0x20(sp)
+00402364  lw s0,0x1c(sp)
+00402368  move v0,v1
+0040236c  jr ra
+00402370  _addiu sp,sp,0x30

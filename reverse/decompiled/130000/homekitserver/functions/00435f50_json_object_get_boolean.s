@@ -1,0 +1,92 @@
+# json_object_get_boolean @ 00435f50
+00435f50  lui gp,0x1e
+00435f54  addiu gp,gp,0x3530
+00435f58  addu gp,gp,t9
+00435f5c  addiu sp,sp,-0x28
+00435f60  sw ra,0x24(sp)
+00435f64  sw s8,0x20(sp)
+00435f68  sw s0,0x1c(sp)
+00435f6c  move s8,sp
+00435f70  sw gp,0x10(sp)
+00435f74  sw a0,0x28(s8)
+00435f78  lw v0,0x28(s8)
+00435f7c  nop
+00435f80  bne v0,zero,0x00435f94
+00435f84  _nop
+00435f88  clear s0
+00435f8c  b 0x0043609c
+00435f90  _nop
+00435f94  lw v0,0x28(s8)
+00435f98  nop
+00435f9c  lw v0,0x0(v0)
+00435fa0  li v1,0x2
+00435fa4  beq v0,v1,0x00436030
+00435fa8  _nop
+00435fac  sltiu v1,v0,0x3
+00435fb0  beq v1,zero,0x00435fcc
+00435fb4  _nop
+00435fb8  li v1,0x1
+00435fbc  beq v0,v1,0x00435fec
+00435fc0  _nop
+00435fc4  b 0x00436098
+00435fc8  _nop
+00435fcc  li v1,0x3
+00435fd0  beq v0,v1,0x00436000
+00435fd4  _nop
+00435fd8  li v1,0x6
+00435fdc  beq v0,v1,0x0043607c
+00435fe0  _nop
+00435fe4  b 0x00436098
+00435fe8  _nop
+00435fec  lw v0,0x28(s8)
+00435ff0  nop
+00435ff4  lw s0,0x18(v0)
+00435ff8  b 0x0043609c
+00435ffc  _nop
+00436000  lw v0,0x28(s8)
+00436004  nop
+00436008  lw a1,0x1c(v0)
+0043600c  lw a0,0x18(v0)
+00436010  clear s0
+00436014  move v0,a0
+00436018  or v0,v0,a1
+0043601c  beq v0,zero,0x0043609c
+00436020  _nop
+00436024  li s0,0x1
+00436028  b 0x0043609c
+0043602c  _nop
+00436030  lw v0,0x28(s8)
+00436034  nop
+00436038  lw v1,0x1c(v0)
+0043603c  lw v0,0x18(v0)
+00436040  clear s0
+00436044  lw t0,-0x7310(gp)
+00436048  move a1,v1
+0043604c  move a0,v0
+00436050  clear a3
+00436054  clear a2
+00436058  move t9,t0
+0043605c  jalr t9
+00436060  _nop
+00436064  lw gp,0x10(s8)
+00436068  beq v0,zero,0x0043609c
+0043606c  _nop
+00436070  li s0,0x1
+00436074  b 0x0043609c
+00436078  _nop
+0043607c  lw v0,0x28(s8)
+00436080  nop
+00436084  lw v0,0x1c(v0)
+00436088  nop
+0043608c  sltu s0,zero,v0
+00436090  b 0x0043609c
+00436094  _nop
+00436098  clear s0
+0043609c  move v0,s0
+004360a0  move sp,s8
+004360a4  lw ra,0x24(sp)
+004360a8  lw s8,0x20(sp)
+004360ac  lw s0,0x1c(sp)
+004360b0  addiu sp,sp,0x28
+004360b4  jr ra
+004360b8  _nop

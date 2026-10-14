@@ -1,0 +1,89 @@
+# req_format_write @ 00412160
+00412160  addiu sp,sp,-0x460
+00412164  sw ra,0x45c(sp)
+00412168  sw s4,0x458(sp)
+0041216c  sw s3,0x454(sp)
+00412170  sw s2,0x450(sp)
+00412174  sw s1,0x44c(sp)
+00412178  sw s0,0x448(sp)
+0041217c  lui gp,0x47
+00412180  addiu gp,gp,0x2630
+00412184  sw gp,0x10(sp)
+00412188  move s0,a0
+0041218c  sw a2,0x468(sp)
+00412190  beq a0,zero,0x00412298
+00412194  _sw a3,0x46c(sp)
+00412198  beq a1,zero,0x00412298
+0041219c  _addiu v0,sp,0x468
+004121a0  lw t9,-0x7b30(gp)
+004121a4  addiu s1,sp,0x1c
+004121a8  move a2,a1
+004121ac  move a3,v0
+004121b0  move a0,s1
+004121b4  li a1,0x428
+004121b8  jalr t9
+004121bc  _sw v0,0x18(sp)
+004121c0  lw gp,0x10(sp)
+004121c4  move a0,s1
+004121c8  lw t9,-0x7f1c(gp)
+004121cc  nop
+004121d0  jalr t9
+004121d4  _li s4,-0x1
+004121d8  lw gp,0x10(sp)
+004121dc  move s2,v0
+004121e0  move s3,v0
+004121e4  lw v0,-0x7a8c(gp)
+004121e8  nop
+004121ec  bne s0,v0,0x00412230
+004121f0  _nop
+004121f4  lw t9,-0x79d0(gp)
+004121f8  lw a0,-0x7a38(gp)
+004121fc  jalr t9
+00412200  _move a1,s1
+00412204  b 0x004122a0
+00412208  _move v0,s2
+0041220c  jal 0x004120d0
+00412210  _nop
+00412214  lw gp,0x10(sp)
+00412218  bne v0,s4,0x00412230
+0041221c  _nop
+00412220  lw v0,0x50(s0)
+00412224  li s2,0x2000
+00412228  b 0x0041224c
+0041222c  _subu s2,s2,v0
+00412230  lw v0,0x50(s0)
+00412234  lw v1,0x8cc(s0)
+00412238  addiu v0,v0,0xa
+0041223c  addu v0,v0,s3
+00412240  sltu v0,v1,v0
+00412244  bne v0,zero,0x0041220c
+00412248  _move a0,s0
+0041224c  lw v0,-0x7d04(gp)
+00412250  nop
+00412254  lw v1,0x0(v0)
+00412258  nop
+0041225c  addu v1,s2,v1
+00412260  blez s2,0x0041229c
+00412264  _sw v1,0x0(v0)
+00412268  lw a0,0x8d0(s0)
+0041226c  lw v0,0x50(s0)
+00412270  lw t9,-0x7ad4(gp)
+00412274  addiu a1,sp,0x1c
+00412278  addu a0,a0,v0
+0041227c  jalr t9
+00412280  _move a2,s2
+00412284  lw v0,0x50(s0)
+00412288  nop
+0041228c  addu v0,v0,s2
+00412290  b 0x0041229c
+00412294  _sw v0,0x50(s0)
+00412298  clear s2
+0041229c  move v0,s2
+004122a0  lw ra,0x45c(sp)
+004122a4  lw s4,0x458(sp)
+004122a8  lw s3,0x454(sp)
+004122ac  lw s2,0x450(sp)
+004122b0  lw s1,0x44c(sp)
+004122b4  lw s0,0x448(sp)
+004122b8  jr ra
+004122bc  _addiu sp,sp,0x460

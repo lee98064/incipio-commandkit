@@ -1,0 +1,66 @@
+# get_bank_info @ 004427e0
+004427e0  addiu sp,sp,-0x38
+004427e4  sw ra,0x34(sp)
+004427e8  sw s3,0x30(sp)
+004427ec  sw s2,0x2c(sp)
+004427f0  sw s1,0x28(sp)
+004427f4  sw s0,0x24(sp)
+004427f8  lui gp,0x47
+004427fc  addiu gp,gp,0x2630
+00442800  sw gp,0x10(sp)
+00442804  lw t9,-0x7d9c(gp)
+00442808  move s1,a0
+0044280c  move s3,a1
+00442810  lui a0,0x45
+00442814  lui a1,0x45
+00442818  addiu a0,a0,0x67f0
+0044281c  addiu a1,a1,0x7484
+00442820  jalr t9
+00442824  _move s2,a2
+00442828  lw gp,0x10(sp)
+0044282c  bne v0,zero,0x0044285c
+00442830  _move s0,v0
+00442834  lw v0,-0x7e40(gp)
+00442838  lw t9,-0x7c44(gp)
+0044283c  lui a1,0x45
+00442840  lw a0,0x0(v0)
+00442844  lui a2,0x45
+00442848  addiu a1,a1,-0x4454
+0044284c  jalr t9
+00442850  _addiu a2,a2,0x6800
+00442854  b 0x00442888
+00442858  _nop
+0044285c  lw t9,-0x7ab8(gp)
+00442860  addiu a0,sp,0x18
+00442864  li a1,0x2
+00442868  jalr t9
+0044286c  _move a2,v0
+00442870  lw gp,0x10(sp)
+00442874  nop
+00442878  lw t9,-0x7dd4(gp)
+0044287c  nop
+00442880  jalr t9
+00442884  _move a0,s0
+00442888  lb v0,0x18(sp)
+0044288c  nop
+00442890  addiu a0,v0,-0x31
+00442894  sltiu a0,a0,0x2
+00442898  beq a0,zero,0x004428ac
+0044289c  _addiu v1,v0,-0x30
+004428a0  li v0,0x1
+004428a4  bne v1,v0,0x004428b8
+004428a8  _nop
+004428ac  li v0,0x2
+004428b0  b 0x004428bc
+004428b4  _li v1,0x1
+004428b8  li v1,0x2
+004428bc  movz v0,v1,s1
+004428c0  sw v1,0x0(s3)
+004428c4  sw v0,0x0(s2)
+004428c8  lw ra,0x34(sp)
+004428cc  lw s3,0x30(sp)
+004428d0  lw s2,0x2c(sp)
+004428d4  lw s1,0x28(sp)
+004428d8  lw s0,0x24(sp)
+004428dc  jr ra
+004428e0  _addiu sp,sp,0x38

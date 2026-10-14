@@ -1,0 +1,23 @@
+# FUN_00444434 @ 00444434
+00444434  addiu sp,sp,-0x20
+00444438  sw ra,0x1c(sp)
+0044443c  sw s0,0x18(sp)
+00444440  lui gp,0x47
+00444444  addiu gp,gp,0x2630
+00444448  sw gp,0x10(sp)
+0044444c  lw t9,-0x7c04(gp)
+00444450  nop
+00444454  jalr t9
+00444458  _li a0,0x4
+0044445c  lw gp,0x10(sp)
+00444460  beq v0,zero,0x00444478
+00444464  _move s0,v0
+00444468  lw t9,-0x7d38(gp)
+0044446c  nop
+00444470  jalr t9
+00444474  _nop
+00444478  move v0,s0
+0044447c  lw ra,0x1c(sp)
+00444480  lw s0,0x18(sp)
+00444484  jr ra
+00444488  _addiu sp,sp,0x20

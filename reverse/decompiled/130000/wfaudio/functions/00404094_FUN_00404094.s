@@ -1,0 +1,20 @@
+# FUN_00404094 @ 00404094
+00404094  addiu sp,sp,-0x20
+00404098  sw ra,0x1c(sp)
+0040409c  sw s0,0x18(sp)
+004040a0  lui gp,0x43
+004040a4  addiu gp,gp,-0x4f70
+004040a8  sw gp,0x10(sp)
+004040ac  lw t9,-0x7e90(gp)
+004040b0  lui s0,0x40
+004040b4  addiu a1,s0,0x1b6c
+004040b8  jalr t9
+004040bc  _li a0,0x2
+004040c0  lw gp,0x10(sp)
+004040c4  addiu a1,s0,0x1b6c
+004040c8  lw ra,0x1c(sp)
+004040cc  lw t9,-0x7e90(gp)
+004040d0  lw s0,0x18(sp)
+004040d4  li a0,0xf
+004040d8  jr t9
+004040dc  _addiu sp,sp,0x20

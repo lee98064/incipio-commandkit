@@ -1,0 +1,42 @@
+# formWlanRedirect2 @ 0043377c
+0043377c  addiu sp,sp,-0x28
+00433780  sw ra,0x24(sp)
+00433784  sw s1,0x20(sp)
+00433788  sw s0,0x1c(sp)
+0043378c  lui gp,0x47
+00433790  addiu gp,gp,0x2630
+00433794  sw gp,0x10(sp)
+00433798  move s1,a0
+0043379c  beq a2,zero,0x004337e0
+004337a0  _move s0,a1
+004337a4  lw t9,-0x7ef4(gp)
+004337a8  nop
+004337ac  jalr t9
+004337b0  _move a0,a2
+004337b4  lw gp,0x10(sp)
+004337b8  lui a1,0x45
+004337bc  addiu a1,a1,0x5e80
+004337c0  lw v1,-0x7cf4(gp)
+004337c4  lw t9,-0x7e28(gp)
+004337c8  lw a0,-0x7da0(gp)
+004337cc  sw v0,0x0(v1)
+004337d0  jalr t9
+004337d4  _move a2,v0
+004337d8  lw gp,0x10(sp)
+004337dc  nop
+004337e0  lw v0,-0x7da4(gp)
+004337e4  beq s0,zero,0x0043380c
+004337e8  _sw zero,0x0(v0)
+004337ec  move a0,s1
+004337f0  move a1,s0
+004337f4  lw t9,-0x79b8(gp)
+004337f8  lw ra,0x24(sp)
+004337fc  lw s1,0x20(sp)
+00433800  lw s0,0x1c(sp)
+00433804  jr t9
+00433808  _addiu sp,sp,0x28
+0043380c  lw ra,0x24(sp)
+00433810  lw s1,0x20(sp)
+00433814  lw s0,0x1c(sp)
+00433818  jr ra
+0043381c  _addiu sp,sp,0x28

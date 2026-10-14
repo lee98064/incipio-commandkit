@@ -1,0 +1,1 @@
+# Local build uses pinned GCC and distribution GN; no Pigweed CIPD tools.

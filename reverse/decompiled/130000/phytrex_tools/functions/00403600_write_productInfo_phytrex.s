@@ -1,0 +1,96 @@
+# write_productInfo_phytrex @ 00403600
+00403600  addiu sp,sp,-0x38
+00403604  sw ra,0x34(sp)
+00403608  sw s8,0x30(sp)
+0040360c  move s8,sp
+00403610  lui gp,0x42
+00403614  addiu gp,gp,-0x21a0
+00403618  sw gp,0x10(sp)
+0040361c  sw a0,0x38(s8)
+00403620  sw a1,0x3c(s8)
+00403624  lw v0,0x3c(s8)
+00403628  nop
+0040362c  addiu v0,v0,0xc
+00403630  lw v0,0x0(v0)
+00403634  addiu v1,s8,0x1c
+00403638  move a0,v1
+0040363c  move a1,v0
+00403640  lw v0,-0x7f28(gp)
+00403644  nop
+00403648  move t9,v0
+0040364c  jalr t9
+00403650  _nop
+00403654  lw gp,0x10(s8)
+00403658  lui v0,0x40
+0040365c  addiu a0,v0,0x5a70
+00403660  li a1,0x2
+00403664  lw v0,-0x7fc4(gp)
+00403668  nop
+0040366c  move t9,v0
+00403670  jalr t9
+00403674  _nop
+00403678  lw gp,0x10(s8)
+0040367c  sw v0,0x18(s8)
+00403680  lw v0,0x18(s8)
+00403684  nop
+00403688  blez v0,0x00403744
+0040368c  _nop
+00403690  lw a0,0x18(s8)
+00403694  lui a1,0x1
+00403698  clear a2
+0040369c  lw v0,-0x7f64(gp)
+004036a0  nop
+004036a4  move t9,v0
+004036a8  jalr t9
+004036ac  _nop
+004036b0  lw gp,0x10(s8)
+004036b4  move v1,v0
+004036b8  li v0,-0x1
+004036bc  bne v1,v0,0x004036e4
+004036c0  _nop
+004036c4  lui v0,0x40
+004036c8  addiu a0,v0,0x5a80
+004036cc  lw v0,-0x7f50(gp)
+004036d0  nop
+004036d4  move t9,v0
+004036d8  jalr t9
+004036dc  _nop
+004036e0  lw gp,0x10(s8)
+004036e4  addiu v0,s8,0x1c
+004036e8  lw a0,0x18(s8)
+004036ec  move a1,v0
+004036f0  li a2,0x14
+004036f4  lw v0,-0x7f74(gp)
+004036f8  nop
+004036fc  move t9,v0
+00403700  jalr t9
+00403704  _nop
+00403708  lw gp,0x10(s8)
+0040370c  move v1,v0
+00403710  li v0,-0x1
+00403714  bne v1,v0,0x00403764
+00403718  _nop
+0040371c  lui v0,0x40
+00403720  addiu a0,v0,0x5aac
+00403724  lw v0,-0x7f50(gp)
+00403728  nop
+0040372c  move t9,v0
+00403730  jalr t9
+00403734  _nop
+00403738  lw gp,0x10(s8)
+0040373c  b 0x00403764
+00403740  _nop
+00403744  lui v0,0x40
+00403748  addiu a0,v0,0x5ad8
+0040374c  lw v0,-0x7f50(gp)
+00403750  nop
+00403754  move t9,v0
+00403758  jalr t9
+0040375c  _nop
+00403760  lw gp,0x10(s8)
+00403764  move sp,s8
+00403768  lw ra,0x34(sp)
+0040376c  lw s8,0x30(sp)
+00403770  addiu sp,sp,0x38
+00403774  jr ra
+00403778  _nop

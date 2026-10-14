@@ -1,0 +1,56 @@
+# Phytrex_HMSavePairList @ 00425a88
+00425a88  addiu sp,sp,-0x20
+00425a8c  sw ra,0x1c(sp)
+00425a90  sw s0,0x18(sp)
+00425a94  lui gp,0x62
+00425a98  addiu gp,gp,-0x5cf0
+00425a9c  sw gp,0x10(sp)
+00425aa0  lw t9,-0x63ec(gp)
+00425aa4  lui a0,0x61
+00425aa8  jalr t9
+00425aac  _addiu a0,a0,0x4c00
+00425ab0  lw gp,0x10(sp)
+00425ab4  lui a0,0x5b
+00425ab8  addiu a0,a0,-0x373c
+00425abc  lw t9,-0x5b74(gp)
+00425ac0  nop
+00425ac4  jalr t9
+00425ac8  _li a1,0x2
+00425acc  move s0,v0
+00425ad0  li v0,-0x1
+00425ad4  lw gp,0x10(sp)
+00425ad8  bne s0,v0,0x00425af4
+00425adc  _li a1,0x4d
+00425ae0  jal 0x00425904
+00425ae4  _li a0,0x1
+00425ae8  lw gp,0x10(sp)
+00425aec  b 0x00425b40
+00425af0  _li s0,-0x1a3e
+00425af4  lw t9,-0x64a4(gp)
+00425af8  move a0,s0
+00425afc  jalr t9
+00425b00  _clear a2
+00425b04  lw gp,0x10(sp)
+00425b08  lui a1,0x61
+00425b0c  move a0,s0
+00425b10  lw t9,-0x6bdc(gp)
+00425b14  addiu a1,a1,0x4c18
+00425b18  jalr t9
+00425b1c  _li a2,0xa10
+00425b20  lw gp,0x10(sp)
+00425b24  move a0,s0
+00425b28  lw t9,-0x6d0c(gp)
+00425b2c  nop
+00425b30  jalr t9
+00425b34  _clear s0
+00425b38  lw gp,0x10(sp)
+00425b3c  nop
+00425b40  lw t9,-0x77f4(gp)
+00425b44  lui a0,0x61
+00425b48  jalr t9
+00425b4c  _addiu a0,a0,0x4c00
+00425b50  move v0,s0
+00425b54  lw ra,0x1c(sp)
+00425b58  lw s0,0x18(sp)
+00425b5c  jr ra
+00425b60  _addiu sp,sp,0x20

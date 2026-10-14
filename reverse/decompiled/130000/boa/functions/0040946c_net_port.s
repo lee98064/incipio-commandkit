@@ -1,0 +1,36 @@
+# net_port @ 0040946c
+0040946c  addiu sp,sp,-0x50
+00409470  sw ra,0x4c(sp)
+00409474  sw s0,0x48(sp)
+00409478  lui gp,0x47
+0040947c  addiu gp,gp,0x2630
+00409480  sw gp,0x20(sp)
+00409484  lw t9,-0x7bc8(gp)
+00409488  li v0,0x20
+0040948c  sw v0,0x14(sp)
+00409490  addiu s0,sp,0x28
+00409494  li v0,0x2
+00409498  sw v0,0x18(sp)
+0040949c  sw s0,0x10(sp)
+004094a0  li a1,0x80
+004094a4  clear a2
+004094a8  jalr t9
+004094ac  _clear a3
+004094b0  lw gp,0x20(sp)
+004094b4  beq v0,zero,0x004094d8
+004094b8  _lui a0,0x45
+004094bc  lw v0,-0x7e40(gp)
+004094c0  lw t9,-0x7f4c(gp)
+004094c4  lw a1,0x0(v0)
+004094c8  jalr t9
+004094cc  _addiu a0,a0,-0x5b68
+004094d0  b 0x004094e8
+004094d4  _li v0,-0x1
+004094d8  lw t9,-0x7ef4(gp)
+004094dc  nop
+004094e0  jalr t9
+004094e4  _move a0,s0
+004094e8  lw ra,0x4c(sp)
+004094ec  lw s0,0x48(sp)
+004094f0  jr ra
+004094f4  _addiu sp,sp,0x50

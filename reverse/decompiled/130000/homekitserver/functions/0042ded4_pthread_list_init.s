@@ -1,0 +1,21 @@
+# pthread_list_init @ 0042ded4
+0042ded4  addiu sp,sp,-0x20
+0042ded8  sw ra,0x1c(sp)
+0042dedc  lui gp,0x62
+0042dee0  addiu gp,gp,-0x6b80
+0042dee4  sw gp,0x10(sp)
+0042dee8  lw t9,-0x5e4c(gp)
+0042deec  lui v0,0x61
+0042def0  lui v1,0x61
+0042def4  addiu v1,v1,0x4810
+0042def8  addiu v0,v0,0x47e8
+0042defc  lui a0,0x61
+0042df00  sw v1,0x2c(v0)
+0042df04  sw v1,0x28(v0)
+0042df08  addiu a0,a0,0x47d0
+0042df0c  jalr t9
+0042df10  _clear a1
+0042df14  lw ra,0x1c(sp)
+0042df18  clear v0
+0042df1c  jr ra
+0042df20  _addiu sp,sp,0x20

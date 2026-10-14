@@ -1,0 +1,48 @@
+# FUN_00444378 @ 00444378
+00444378  addiu sp,sp,-0x28
+0044437c  sw ra,0x24(sp)
+00444380  sw s0,0x20(sp)
+00444384  lui gp,0x47
+00444388  addiu gp,gp,0x2630
+0044438c  sw gp,0x10(sp)
+00444390  addiu a1,sp,0x18
+00444394  addiu a2,sp,0x1c
+00444398  sw a0,0x28(sp)
+0044439c  sw zero,0x18(sp)
+004443a0  jal 0x004427e0
+004443a4  _sw zero,0x1c(sp)
+004443a8  lw a1,0x28(sp)
+004443ac  lui s0,0x47
+004443b0  beq a1,zero,0x004443e0
+004443b4  _addiu s0,s0,-0x59f0
+004443b8  lw v0,0x1c(sp)
+004443bc  nop
+004443c0  addiu v0,v0,-0x1
+004443c4  sll v0,v0,0x2
+004443c8  addu v0,s0,v0
+004443cc  lw a0,0x0(v0)
+004443d0  jal 0x004437ec
+004443d4  _nop
+004443d8  b 0x004443e4
+004443dc  _move a1,v0
+004443e0  li a1,-0x10
+004443e4  lw v0,0x18(sp)
+004443e8  nop
+004443ec  addiu v0,v0,-0x1
+004443f0  sll v0,v0,0x2
+004443f4  addu s0,s0,v0
+004443f8  lw a0,0x0(s0)
+004443fc  jal 0x0044421c
+00444400  _nop
+00444404  lw gp,0x10(sp)
+00444408  bne v0,zero,0x00444420
+0044440c  _move s0,v0
+00444410  lw t9,-0x7c08(gp)
+00444414  li a0,0x514
+00444418  jalr t9
+0044441c  _addiu a1,sp,0x28
+00444420  move v0,s0
+00444424  lw ra,0x24(sp)
+00444428  lw s0,0x20(sp)
+0044442c  jr ra
+00444430  _addiu sp,sp,0x28

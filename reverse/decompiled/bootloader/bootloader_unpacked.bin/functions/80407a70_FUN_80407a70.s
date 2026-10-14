@@ -1,0 +1,15 @@
+# FUN_80407a70 @ 80407a70
+80407a70  lui v0,0x8041
+80407a74  lw v0,-0x24c(v0)
+80407a78  lui v1,0x8000
+80407a7c  ori v1,v1,0x2
+80407a80  sltu v1,v0,v1
+80407a84  beq v1,zero,0x80407a98
+80407a88  _li a0,-0x10
+80407a8c  lui v0,0x8000
+80407a90  jr ra
+80407a94  _ori v0,v0,0x2
+80407a98  addiu v1,v0,0x1
+80407a9c  xor a0,v0,a0
+80407aa0  jr ra
+80407aa4  _movn v0,v1,a0

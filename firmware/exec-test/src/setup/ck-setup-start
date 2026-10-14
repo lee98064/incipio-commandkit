@@ -1,0 +1,10 @@
+#!/bin/sh
+umask 077
+sleep 15
+status=$(/bin/ck-wificfg status 2>/dev/null) || exit 1
+case "$status" in
+*configured=1*) printf configured > /var/run/ck-setup-boot ;;
+*) printf unconfigured > /var/run/ck-setup-boot ;;
+esac
+# A single controller. Never restart failed MIB writes in a tight loop.
+exec /bin/ck-setupd --serve /etc/matter-diag.key

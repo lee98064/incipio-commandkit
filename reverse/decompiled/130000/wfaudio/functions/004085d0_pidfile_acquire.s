@@ -1,0 +1,36 @@
+# pidfile_acquire @ 004085d0
+004085d0  addiu sp,sp,-0x28
+004085d4  sw ra,0x24(sp)
+004085d8  sw s1,0x20(sp)
+004085dc  sw s0,0x1c(sp)
+004085e0  lui gp,0x43
+004085e4  addiu gp,gp,-0x4f70
+004085e8  sw gp,0x10(sp)
+004085ec  move s1,a0
+004085f0  beq a0,zero,0x00408644
+004085f4  _li s0,-0x1
+004085f8  lw t9,-0x7f90(gp)
+004085fc  li a1,0x101
+00408600  jalr t9
+00408604  _li a2,0x1a4
+00408608  lw gp,0x10(sp)
+0040860c  bgez v0,0x00408630
+00408610  _move s0,v0
+00408614  lw t9,-0x7dbc(gp)
+00408618  lui a0,0x41
+0040861c  addiu a0,a0,0x1438
+00408620  jalr t9
+00408624  _move a1,s1
+00408628  b 0x00408644
+0040862c  _nop
+00408630  lw t9,-0x7ef0(gp)
+00408634  move a0,v0
+00408638  li a1,0x1
+0040863c  jalr t9
+00408640  _clear a2
+00408644  move v0,s0
+00408648  lw ra,0x24(sp)
+0040864c  lw s1,0x20(sp)
+00408650  lw s0,0x1c(sp)
+00408654  jr ra
+00408658  _addiu sp,sp,0x28

@@ -1,0 +1,107 @@
+# FUN_00402dfc @ 00402dfc
+00402dfc  addiu sp,sp,-0x40
+00402e00  sw ra,0x3c(sp)
+00402e04  sw s1,0x38(sp)
+00402e08  sw s0,0x34(sp)
+00402e0c  lui gp,0x43
+00402e10  addiu gp,gp,0x3060
+00402e14  sw gp,0x20(sp)
+00402e18  lw t9,-0x7e94(gp)
+00402e1c  move s0,a0
+00402e20  lui a0,0x41
+00402e24  sw zero,0x28(sp)
+00402e28  sw zero,0x2c(sp)
+00402e2c  addiu a0,a0,0x7ad4
+00402e30  jalr t9
+00402e34  _move s1,a1
+00402e38  lw gp,0x20(sp)
+00402e3c  beq v0,zero,0x00402e5c
+00402e40  _li v0,0x1
+00402e44  lw t9,-0x7ec0(gp)
+00402e48  li a0,0x10e
+00402e4c  jalr t9
+00402e50  _addiu a1,sp,0x28
+00402e54  lw gp,0x20(sp)
+00402e58  li v0,0x1
+00402e5c  bne s0,v0,0x00402e88
+00402e60  _nop
+00402e64  beq s1,s0,0x00402e88
+00402e68  _li a0,0x8e
+00402e6c  lw t9,-0x7ec0(gp)
+00402e70  nop
+00402e74  jalr t9
+00402e78  _addiu a1,sp,0x2c
+00402e7c  lw gp,0x20(sp)
+00402e80  b 0x00402e8c
+00402e84  _nop
+00402e88  sw zero,0x2c(sp)
+00402e8c  lw v0,0x28(sp)
+00402e90  nop
+00402e94  bne v0,zero,0x00402ee0
+00402e98  _li v1,0x1
+00402e9c  lw v0,0x2c(sp)
+00402ea0  nop
+00402ea4  bne v0,zero,0x00402f38
+00402ea8  _lui a1,0x41
+00402eac  lui v0,0x41
+00402eb0  addiu v0,v0,0x7b04
+00402eb4  sw v0,0x10(sp)
+00402eb8  lui v0,0x42
+00402ebc  addiu v0,v0,-0x66c4
+00402ec0  lui a2,0x41
+00402ec4  lui a3,0x41
+00402ec8  lw t9,-0x7f84(gp)
+00402ecc  sw v0,0x14(sp)
+00402ed0  addiu a1,a1,0x7adc
+00402ed4  addiu a2,a2,0x7ae8
+00402ed8  b 0x00402f28
+00402edc  _addiu a3,a3,0x7af0
+00402ee0  bne v0,v1,0x00402f90
+00402ee4  _nop
+00402ee8  lw v1,0x2c(sp)
+00402eec  nop
+00402ef0  bne v1,v0,0x00402f90
+00402ef4  _lui v0,0x41
+00402ef8  addiu v0,v0,0x7b04
+00402efc  sw v0,0x10(sp)
+00402f00  lw t9,-0x7f84(gp)
+00402f04  lui v0,0x42
+00402f08  addiu v0,v0,-0x66c4
+00402f0c  lui a1,0x41
+00402f10  lui a2,0x41
+00402f14  lui a3,0x41
+00402f18  sw v0,0x14(sp)
+00402f1c  addiu a1,a1,0x7adc
+00402f20  addiu a2,a2,0x7b0c
+00402f24  addiu a3,a3,0x7b14
+00402f28  jalr t9
+00402f2c  _clear a0
+00402f30  b 0x00402f90
+00402f34  _nop
+00402f38  bne v0,v1,0x00402f90
+00402f3c  _lui v0,0x41
+00402f40  addiu v0,v0,0x7b0c
+00402f44  sw v0,0x10(sp)
+00402f48  lui v0,0x41
+00402f4c  addiu v0,v0,0x7b14
+00402f50  sw v0,0x14(sp)
+00402f54  lui v0,0x41
+00402f58  addiu v0,v0,0x7b04
+00402f5c  sw v0,0x18(sp)
+00402f60  lw t9,-0x7f84(gp)
+00402f64  lui v0,0x42
+00402f68  addiu v0,v0,-0x66c4
+00402f6c  lui a1,0x41
+00402f70  lui a2,0x41
+00402f74  lui a3,0x41
+00402f78  sw v0,0x1c(sp)
+00402f7c  addiu a1,a1,0x7adc
+00402f80  addiu a2,a2,0x7ae8
+00402f84  addiu a3,a3,0x7af0
+00402f88  jalr t9
+00402f8c  _clear a0
+00402f90  lw ra,0x3c(sp)
+00402f94  lw s1,0x38(sp)
+00402f98  lw s0,0x34(sp)
+00402f9c  jr ra
+00402fa0  _addiu sp,sp,0x40

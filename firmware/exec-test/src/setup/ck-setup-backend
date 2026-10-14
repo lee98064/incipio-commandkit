@@ -1,0 +1,47 @@
+#!/bin/sh
+# Fixed operations only. Credentials are a private RAM file, never argv.
+set -eu
+umask 077
+op=${1:-}
+case "$op" in ap|join|resume|commit) ;; *) exit 2 ;; esac
+if [ "$op" = commit ]; then exec /bin/ck-wificfg commit; fi
+/bin/killall wfaudio WACServer 2>/dev/null || true
+sleep 2
+/bin/killall -9 wfaudio WACServer 2>/dev/null || true
+if [ -f /var/run/ck-udhcpc.pid ]; then
+    pid=$(cat /var/run/ck-udhcpc.pid)
+    case "$pid" in ''|*[!0-9]*) ;; *)
+        # /proc/PID/comm is newer than the original 2.6.30 kernel.
+        # Name in /proc/PID/status exists on that kernel; use ash builtins.
+        if proc_name=$(
+            while read -r field value rest; do
+                if [ "$field" = Name: ]; then printf '%s' "$value"; break; fi
+            done 2>/dev/null < "/proc/$pid/status"
+        ) && [ "$proc_name" = udhcpc ]; then
+            kill "$pid" 2>/dev/null || true
+            sleep 1
+        fi
+        ;; esac
+fi
+rm -f /var/run/ck-wifi-bound
+if [ "$op" = ap ]; then
+    /bin/ck-wificfg ap /etc/ck-setup-ap.bin
+    /bin/sysconf init ap all
+    /bin/killall boa dnrd udhcpd 2>/dev/null || true
+    sleep 1
+    /bin/ifconfig br0 192.168.1.254 netmask 255.255.255.0 up
+    # Keep the original WPA authenticator. Pin DHCP's DNS to the captive
+    # portal, irrespective of DNS settings left by the previous home Wi-Fi.
+    /bin/udhcpd /etc/ck-udhcpd.conf
+    # Keep mDNS (5353); captive DNS owns port 53 only on the setup IP.
+    exit 0
+fi
+if [ "$op" = join ]; then
+    /bin/ck-wificfg station /var/run/ck-setup-request.bin
+    rm -f /var/run/ck-setup-request.bin
+    /bin/sysconf init ap all
+    /bin/killall boa dnrd udhcpd 2>/dev/null || true
+fi
+/bin/ifconfig br0 0.0.0.0 up
+/bin/udhcpc -f -i br0 -p /var/run/ck-udhcpc.pid -s /bin/ck-udhcpc >/dev/null 2>&1 &
+exit 0

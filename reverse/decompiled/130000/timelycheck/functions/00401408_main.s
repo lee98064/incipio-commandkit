@@ -1,0 +1,42 @@
+# main @ 00401408
+00401408  addiu sp,sp,-0x20
+0040140c  sw ra,0x1c(sp)
+00401410  lui gp,0x43
+00401414  addiu gp,gp,0x3060
+00401418  sw gp,0x10(sp)
+0040141c  lw t9,-0x7fb0(gp)
+00401420  nop
+00401424  jalr t9
+00401428  _nop
+0040142c  lw gp,0x10(sp)
+00401430  bne v0,zero,0x00401458
+00401434  _lui a1,0x40
+00401438  lw t9,-0x7ea8(gp)
+0040143c  lui a0,0x41
+00401440  jalr t9
+00401444  _addiu a0,a0,0x7870
+00401448  lw ra,0x1c(sp)
+0040144c  li v0,-0x1
+00401450  jr ra
+00401454  _addiu sp,sp,0x20
+00401458  lw t9,-0x7f08(gp)
+0040145c  addiu a1,a1,0x13e0
+00401460  jalr t9
+00401464  _li a0,0xe
+00401468  lw gp,0x10(sp)
+0040146c  nop
+00401470  lw t9,-0x7ed0(gp)
+00401474  nop
+00401478  jalr t9
+0040147c  _li a0,0x1
+00401480  lw gp,0x10(sp)
+00401484  nop
+00401488  lw t9,-0x7f60(gp)
+0040148c  nop
+00401490  jalr t9
+00401494  _nop
+00401498  lw gp,0x10(sp)
+0040149c  nop
+004014a0  lw t9,-0x7ebc(gp)
+004014a4  b 0x00401478
+004014a8  _nop

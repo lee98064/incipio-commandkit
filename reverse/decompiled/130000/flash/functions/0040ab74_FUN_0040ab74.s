@@ -1,0 +1,247 @@
+# FUN_0040ab74 @ 0040ab74
+0040ab74  addiu sp,sp,-0x1c0
+0040ab78  sw ra,0x1bc(sp)
+0040ab7c  sw s8,0x1b8(sp)
+0040ab80  sw s7,0x1b4(sp)
+0040ab84  sw s6,0x1b0(sp)
+0040ab88  sw s5,0x1ac(sp)
+0040ab8c  sw s4,0x1a8(sp)
+0040ab90  sw s3,0x1a4(sp)
+0040ab94  sw s2,0x1a0(sp)
+0040ab98  sw s1,0x19c(sp)
+0040ab9c  sw s0,0x198(sp)
+0040aba0  lui gp,0x43
+0040aba4  addiu gp,gp,-0x4be0
+0040aba8  sw gp,0x18(sp)
+0040abac  lw t9,-0x7fa4(gp)
+0040abb0  nop
+0040abb4  jalr t9
+0040abb8  _move s0,a0
+0040abbc  lw gp,0x18(sp)
+0040abc0  bne v0,zero,0x0040abd8
+0040abc4  _lui a1,0x41
+0040abc8  lui a0,0x41
+0040abcc  lw t9,-0x7e8c(gp)
+0040abd0  b 0x0040af14
+0040abd4  _addiu a0,a0,0x1144
+0040abd8  lw t9,-0x7f40(gp)
+0040abdc  addiu a1,a1,0x1b4c
+0040abe0  jalr t9
+0040abe4  _move a0,s0
+0040abe8  lw gp,0x18(sp)
+0040abec  bne v0,zero,0x0040ac04
+0040abf0  _move s1,v0
+0040abf4  lui a0,0x41
+0040abf8  lw t9,-0x7e5c(gp)
+0040abfc  b 0x0040adcc
+0040ac00  _addiu a0,a0,0x2414
+0040ac04  addiu v0,sp,0x50
+0040ac08  sw v0,0x20(sp)
+0040ac0c  sw v0,0x184(sp)
+0040ac10  addiu v0,sp,0x20
+0040ac14  sw zero,0x180(sp)
+0040ac18  clear s3
+0040ac1c  clear s4
+0040ac20  addiu s2,sp,0xb4
+0040ac24  addiu s0,sp,0x28
+0040ac28  li s8,0x22
+0040ac2c  lui s7,0x42
+0040ac30  lw s6,-0x7ec4(gp)
+0040ac34  lw s5,-0x7e68(gp)
+0040ac38  b 0x0040ae88
+0040ac3c  _sw v0,0x188(sp)
+0040ac40  bne v0,a0,0x0040acb8
+0040ac44  _addiu v1,v1,0x1
+0040ac48  addiu v1,v1,-0x1
+0040ac4c  slti v0,v1,0x2
+0040ac50  bne v0,zero,0x0040ae88
+0040ac54  _move a2,v1
+0040ac58  lw t9,-0x7e7c(gp)
+0040ac5c  sw v1,0x190(sp)
+0040ac60  sw a3,0x18c(sp)
+0040ac64  move a0,s0
+0040ac68  jalr t9
+0040ac6c  _move a1,s2
+0040ac70  lw v1,0x190(sp)
+0040ac74  lw gp,0x18(sp)
+0040ac78  lw a3,0x18c(sp)
+0040ac7c  addu v0,s0,v1
+0040ac80  addiu v1,v1,-0x1
+0040ac84  lb a0,-0x1(v0)
+0040ac88  li a1,0x20
+0040ac8c  bne a0,a1,0x0040aca0
+0040ac90  _addiu v0,v0,-0x1
+0040ac94  addiu v1,v1,-0x1
+0040ac98  bgez v1,0x0040ac84
+0040ac9c  _nop
+0040aca0  addu v1,v1,s0
+0040aca4  addiu a1,a3,0x1
+0040aca8  bne a1,zero,0x0040acdc
+0040acac  _sb zero,0x1(v1)
+0040acb0  b 0x0040ae88
+0040acb4  _nop
+0040acb8  addiu a3,a3,0x1
+0040acbc  lb v0,0x0(a3)
+0040acc0  nop
+0040acc4  beq v0,zero,0x0040ae88
+0040acc8  _li a2,0xa
+0040accc  bne v0,a2,0x0040ac40
+0040acd0  _li a0,0x3d
+0040acd4  b 0x0040ae88
+0040acd8  _nop
+0040acdc  move v0,a1
+0040ace0  clear a0
+0040ace4  lb v1,0x0(v0)
+0040ace8  nop
+0040acec  beq v1,zero,0x0040ad0c
+0040acf0  _addiu v0,v0,0x1
+0040acf4  li a3,0xa
+0040acf8  beq v1,a3,0x0040ad0c
+0040acfc  _li a2,0xd
+0040ad00  bne v1,a2,0x0040ace4
+0040ad04  _addiu a0,a0,0x1
+0040ad08  addiu a0,a0,-0x1
+0040ad0c  b 0x0040ad28
+0040ad10  _clear v0
+0040ad14  lb a2,0x0(a2)
+0040ad18  li a3,0x20
+0040ad1c  bne a2,a3,0x0040ad34
+0040ad20  _addiu a0,a0,-0x1
+0040ad24  addiu v0,v0,0x1
+0040ad28  addu a2,a1,v0
+0040ad2c  bgtz a0,0x0040ad14
+0040ad30  _move v1,a0
+0040ad34  addu a0,a1,v0
+0040ad38  lb a0,0x0(a0)
+0040ad3c  nop
+0040ad40  bne a0,s8,0x0040ad70
+0040ad44  _addu a0,v0,v1
+0040ad48  addiu a0,a0,-0x1
+0040ad4c  slt a2,v0,a0
+0040ad50  beq a2,zero,0x0040ad70
+0040ad54  _addu a2,a1,a0
+0040ad58  lb a2,0x0(a2)
+0040ad5c  nop
+0040ad60  bne a2,s8,0x0040ad70
+0040ad64  _nop
+0040ad68  addiu v0,v0,0x1
+0040ad6c  subu v1,a0,v0
+0040ad70  blez v1,0x0040ada4
+0040ad74  _move a2,v1
+0040ad78  lw t9,-0x7e7c(gp)
+0040ad7c  lw a0,0x184(sp)
+0040ad80  sw v1,0x190(sp)
+0040ad84  jalr t9
+0040ad88  _addu a1,a1,v0
+0040ad8c  lw v1,0x190(sp)
+0040ad90  lw v0,0x184(sp)
+0040ad94  nop
+0040ad98  addu v1,v0,v1
+0040ad9c  b 0x0040adac
+0040ada0  _sb zero,0x0(v1)
+0040ada4  beq v1,zero,0x0040ae88
+0040ada8  _nop
+0040adac  jal 0x00401c7c
+0040adb0  _move a0,s0
+0040adb4  li v1,-0x1
+0040adb8  lw gp,0x18(sp)
+0040adbc  bne v0,v1,0x0040addc
+0040adc0  _lui a0,0x41
+0040adc4  lw t9,-0x7e5c(gp)
+0040adc8  addiu a0,a0,0x242c
+0040adcc  jalr t9
+0040add0  _move a1,s0
+0040add4  b 0x0040af1c
+0040add8  _nop
+0040addc  lw v1,0x3600(s7)
+0040ade0  nop
+0040ade4  addiu a0,v1,-0x1
+0040ade8  sltiu a0,a0,0x2
+0040adec  beq a0,zero,0x0040ae10
+0040adf0  _addiu a0,v1,-0x3
+0040adf4  lw a0,-0x7f68(gp)
+0040adf8  lw a1,-0x7ed0(gp)
+0040adfc  xori v1,v1,0x1
+0040ae00  li s4,0x1
+0040ae04  movz a0,a1,v1
+0040ae08  b 0x0040ae48
+0040ae0c  _move v1,a0
+0040ae10  sltiu a0,a0,0x2
+0040ae14  beq a0,zero,0x0040ae34
+0040ae18  _move a3,s5
+0040ae1c  xori v1,v1,0x3
+0040ae20  move a2,s5
+0040ae24  movz a2,s6,v1
+0040ae28  move v1,a2
+0040ae2c  b 0x0040ae48
+0040ae30  _li s3,0x1
+0040ae34  xori v1,v1,0x5
+0040ae38  movz a3,s6,v1
+0040ae3c  li a0,0x1
+0040ae40  move v1,a3
+0040ae44  sw a0,0x180(sp)
+0040ae48  li a0,0x3c
+0040ae4c  mult v0,a0
+0040ae50  sw zero,0x3600(s7)
+0040ae54  move a0,s0
+0040ae58  mflo v0
+0040ae5c  addu v1,v1,v0
+0040ae60  li v0,0x1
+0040ae64  lw a3,0x2c(v1)
+0040ae68  lw a1,0x0(v1)
+0040ae6c  lw a2,0x24(v1)
+0040ae70  sw v0,0x10(sp)
+0040ae74  lw v0,0x188(sp)
+0040ae78  jal 0x00408f70
+0040ae7c  _sw v0,0x14(sp)
+0040ae80  lw gp,0x18(sp)
+0040ae84  nop
+0040ae88  lw t9,-0x7e74(gp)
+0040ae8c  move a0,s2
+0040ae90  li a1,0xc8
+0040ae94  jalr t9
+0040ae98  _move a2,s1
+0040ae9c  lw gp,0x18(sp)
+0040aea0  beq v0,zero,0x0040aeb0
+0040aea4  _clear v1
+0040aea8  b 0x0040acbc
+0040aeac  _move a3,s2
+0040aeb0  lw t9,-0x7f54(gp)
+0040aeb4  nop
+0040aeb8  jalr t9
+0040aebc  _move a0,s1
+0040aec0  lw gp,0x18(sp)
+0040aec4  beq s4,zero,0x0040aee0
+0040aec8  _nop
+0040aecc  lw t9,-0x7ed8(gp)
+0040aed0  nop
+0040aed4  jalr t9
+0040aed8  _li a0,0x1
+0040aedc  lw gp,0x18(sp)
+0040aee0  beq s3,zero,0x0040aefc
+0040aee4  _nop
+0040aee8  lw t9,-0x7ed8(gp)
+0040aeec  nop
+0040aef0  jalr t9
+0040aef4  _li a0,0x2
+0040aef8  lw gp,0x18(sp)
+0040aefc  lw v1,0x180(sp)
+0040af00  nop
+0040af04  beq v1,zero,0x0040af1c
+0040af08  _li a0,0x4
+0040af0c  lw t9,-0x7ed8(gp)
+0040af10  nop
+0040af14  jalr t9
+0040af18  _nop
+0040af1c  lw ra,0x1bc(sp)
+0040af20  lw s8,0x1b8(sp)
+0040af24  lw s7,0x1b4(sp)
+0040af28  lw s6,0x1b0(sp)
+0040af2c  lw s5,0x1ac(sp)
+0040af30  lw s4,0x1a8(sp)
+0040af34  lw s3,0x1a4(sp)
+0040af38  lw s2,0x1a0(sp)
+0040af3c  lw s1,0x19c(sp)
+0040af40  lw s0,0x198(sp)
+0040af44  jr ra
+0040af48  _addiu sp,sp,0x1c0

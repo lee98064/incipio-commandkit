@@ -1,0 +1,88 @@
+# FUN_0040820c @ 0040820c
+0040820c  addiu sp,sp,-0x138
+00408210  sw ra,0x134(sp)
+00408214  sw s3,0x130(sp)
+00408218  sw s2,0x12c(sp)
+0040821c  sw s1,0x128(sp)
+00408220  sw s0,0x124(sp)
+00408224  lui gp,0x43
+00408228  addiu gp,gp,-0x4c90
+0040822c  sw gp,0x18(sp)
+00408230  lw t9,-0x7f90(gp)
+00408234  move s2,a1
+00408238  move s0,a2
+0040823c  li a1,0x302
+00408240  li a2,0x3f
+00408244  jalr t9
+00408248  _move s3,a0
+0040824c  lw gp,0x18(sp)
+00408250  bgez v0,0x00408294
+00408254  _move s1,v0
+00408258  lw v0,-0x7f2c(gp)
+0040825c  lw t9,-0x7e64(gp)
+00408260  lui a1,0x41
+00408264  lw a0,0x0(v0)
+00408268  lui a2,0x41
+0040826c  li v0,0xb1
+00408270  lui a3,0x41
+00408274  sw v0,0x10(sp)
+00408278  sw s3,0x14(sp)
+0040827c  addiu a1,a1,0x134c
+00408280  addiu a2,a2,0x1308
+00408284  jalr t9
+00408288  _addiu a3,a3,0x17d4
+0040828c  b 0x0040834c
+00408290  _nop
+00408294  bne s0,zero,0x0040833c
+00408298  _addiu s0,sp,0x20
+0040829c  lw t9,-0x7d90(gp)
+004082a0  lui a1,0x41
+004082a4  addiu a1,a1,0x1384
+004082a8  jalr t9
+004082ac  _move a0,s0
+004082b0  lw gp,0x18(sp)
+004082b4  nop
+004082b8  lw t9,-0x7f88(gp)
+004082bc  nop
+004082c0  jalr t9
+004082c4  _move a0,s0
+004082c8  lw gp,0x18(sp)
+004082cc  move a2,v0
+004082d0  move a0,s1
+004082d4  lw t9,-0x7e60(gp)
+004082d8  nop
+004082dc  jalr t9
+004082e0  _move a1,s0
+004082e4  lw gp,0x18(sp)
+004082e8  lui a1,0x41
+004082ec  addiu a1,a1,0x1580
+004082f0  lw t9,-0x7f24(gp)
+004082f4  move a2,s2
+004082f8  jalr t9
+004082fc  _move a0,s0
+00408300  lw gp,0x18(sp)
+00408304  nop
+00408308  lw t9,-0x7f88(gp)
+0040830c  nop
+00408310  jalr t9
+00408314  _move a0,s0
+00408318  lw gp,0x18(sp)
+0040831c  move a1,s0
+00408320  move a2,v0
+00408324  lw t9,-0x7e60(gp)
+00408328  nop
+0040832c  jalr t9
+00408330  _move a0,s1
+00408334  lw gp,0x18(sp)
+00408338  nop
+0040833c  lw t9,-0x7fc4(gp)
+00408340  nop
+00408344  jalr t9
+00408348  _move a0,s1
+0040834c  lw ra,0x134(sp)
+00408350  lw s3,0x130(sp)
+00408354  lw s2,0x12c(sp)
+00408358  lw s1,0x128(sp)
+0040835c  lw s0,0x124(sp)
+00408360  jr ra
+00408364  _addiu sp,sp,0x138

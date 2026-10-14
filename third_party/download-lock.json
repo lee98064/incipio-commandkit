@@ -1,0 +1,27 @@
+{
+  "uClibc-ng-1.0.54.tar.xz": {
+    "url": "https://sources.buildroot.net/uclibc/uClibc-ng-1.0.54.tar.xz",
+    "sha256": "d1ecf65cc2217dd4118a4dafc1abf27c585b5cb578f3bd7991fc640b79643ff2",
+    "upstream_url": "https://downloads.uclibc-ng.org/releases/1.0.54/uClibc-ng-1.0.54.tar.xz"
+  },
+  "linux-2.6.30.9.tar.xz": {
+    "url": "https://cdn.kernel.org/pub/linux/kernel/v2.6/linux-2.6.30.9.tar.xz",
+    "sha256": "2563217ad0b85880acae42cab3e74043168eef776ed3e53b0a44f9bc3790e5ea"
+  },
+  "vmlinux-4.19.0-21-4kc-malta": {
+    "url": "https://archive.debian.org/debian/dists/buster/main/installer-mips/current/images/malta/netboot/vmlinux-4.19.0-21-4kc-malta",
+    "sha256": "3803357ef7821dbf691c901105fb9b2b00382abf67fce8a4be2a0d592267dc61"
+  },
+  "debian-malta-initrd.gz": {
+    "url": "https://archive.debian.org/debian/dists/buster/main/installer-mips/current/images/malta/netboot/initrd.gz",
+    "sha256": "a0b66748ad43868299cbbd37b4c750d0416d53eee79bb60681f3d7d01ed4a4c5"
+  },
+  "mii.ko": {
+    "sha256": "2b5649379e078c5405c431c370a2737e787325d8927d343e4303c864b8df4f00",
+    "source": "debian-malta-initrd.gz"
+  },
+  "pcnet32.ko": {
+    "sha256": "c07e3bdff4f5216a2f00a7c05e6468978d5f4a645f1e14153b508871ed86c383",
+    "source": "debian-malta-initrd.gz"
+  }
+}

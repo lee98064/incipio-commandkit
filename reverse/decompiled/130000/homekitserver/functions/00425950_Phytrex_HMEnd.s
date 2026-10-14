@@ -1,0 +1,8 @@
+# Phytrex_HMEnd @ 00425950
+00425950  lui gp,0x62
+00425954  addiu gp,gp,-0x6b80
+00425958  lw t9,-0x6834(gp)
+0042595c  lui a0,0x61
+00425960  addiu a0,a0,0x3d60
+00425964  jr t9
+00425968  _nop

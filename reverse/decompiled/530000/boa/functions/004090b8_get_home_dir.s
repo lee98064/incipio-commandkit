@@ -1,0 +1,77 @@
+# get_home_dir @ 004090b8
+004090b8  addiu sp,sp,-0x28
+004090bc  sw ra,0x24(sp)
+004090c0  sw s2,0x20(sp)
+004090c4  sw s1,0x1c(sp)
+004090c8  sw s0,0x18(sp)
+004090cc  lui gp,0x47
+004090d0  addiu gp,gp,0x2630
+004090d4  sw gp,0x10(sp)
+004090d8  beq a0,zero,0x004090f0
+004090dc  _move s0,a0
+004090e0  lb v0,0x0(a0)
+004090e4  nop
+004090e8  bne v0,zero,0x00409114
+004090ec  _lui a0,0x100
+004090f0  lw v0,-0x7e40(gp)
+004090f4  lw t9,-0x7f4c(gp)
+004090f8  lui a0,0x45
+004090fc  lw a1,0x0(v0)
+00409100  addiu a0,a0,-0x5db0
+00409104  jalr t9
+00409108  _clear s1
+0040910c  b 0x0040915c
+00409110  _li v0,0x2f
+00409114  lui s1,0x811c
+00409118  ori s1,s1,0x9dc5
+0040911c  ori a0,a0,0x193
+00409120  move v0,s0
+00409124  li v1,0x4
+00409128  lb a1,0x0(v0)
+0040912c  addiu v0,v0,0x1
+00409130  lb a2,0x0(v0)
+00409134  xor s1,s1,a1
+00409138  mult s1,a0
+0040913c  addiu a1,v1,-0x1
+00409140  beq a2,zero,0x00409158
+00409144  _mflo s1
+00409148  beq v1,zero,0x00409158
+0040914c  _sll v1,a1,0x10
+00409150  b 0x00409128
+00409154  _sra v1,v1,0x10
+00409158  li v0,0x2f
+0040915c  divu s1,v0
+00409160  bne v0,zero,0x0040916c
+00409164  _nop
+00409168  break 0x1c00
+0040916c  lui s2,0x47
+00409170  addiu a0,s2,-0x3944
+00409174  move a1,s0
+00409178  mfhi s1
+0040917c  jal 0x00408cc0
+00409180  _move a2,s1
+00409184  lw gp,0x10(sp)
+00409188  bne v0,zero,0x004091c0
+0040918c  _nop
+00409190  lw t9,-0x7e20(gp)
+00409194  nop
+00409198  jalr t9
+0040919c  _move a0,s0
+004091a0  beq v0,zero,0x004091cc
+004091a4  _addiu a0,s2,-0x3944
+004091a8  lw a3,0x14(v0)
+004091ac  move a1,s1
+004091b0  jal 0x00408e50
+004091b4  _move a2,s0
+004091b8  beq v0,zero,0x004091cc
+004091bc  _nop
+004091c0  lw v0,0x4(v0)
+004091c4  b 0x004091d0
+004091c8  _nop
+004091cc  clear v0
+004091d0  lw ra,0x24(sp)
+004091d4  lw s2,0x20(sp)
+004091d8  lw s1,0x1c(sp)
+004091dc  lw s0,0x18(sp)
+004091e0  jr ra
+004091e4  _addiu sp,sp,0x28

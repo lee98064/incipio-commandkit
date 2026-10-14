@@ -1,0 +1,790 @@
+# VSNScanF @ 004234cc
+004234cc  addiu sp,sp,-0x58
+004234d0  sw ra,0x54(sp)
+004234d4  sw s8,0x50(sp)
+004234d8  sw s7,0x4c(sp)
+004234dc  sw s6,0x48(sp)
+004234e0  sw s5,0x44(sp)
+004234e4  sw s4,0x40(sp)
+004234e8  sw s3,0x3c(sp)
+004234ec  sw s2,0x38(sp)
+004234f0  sw s1,0x34(sp)
+004234f4  sw s0,0x30(sp)
+004234f8  lui gp,0x62
+004234fc  addiu gp,gp,-0x5cf0
+00423500  sw gp,0x10(sp)
+00423504  li v0,-0x1
+00423508  bne a1,v0,0x00423530
+0042350c  _move s0,a0
+00423510  lw t9,-0x63c4(gp)
+00423514  sw a2,0x28(sp)
+00423518  jalr t9
+0042351c  _sw a3,0x2c(sp)
+00423520  lw gp,0x10(sp)
+00423524  lw a3,0x2c(sp)
+00423528  lw a2,0x28(sp)
+0042352c  move a1,v0
+00423530  lui t7,0x7fff
+00423534  addu a1,s0,a1
+00423538  ori t7,t7,0xffff
+0042353c  move t2,s0
+00423540  clear v0
+00423544  lw s4,-0x71dc(gp)
+00423548  li s2,0x25
+0042354c  li s8,0x23
+00423550  lw t5,-0x6f88(gp)
+00423554  b 0x00423564
+00423558  _li s1,0x6c
+0042355c  move a2,t1
+00423560  move t2,t0
+00423564  lbu v1,0x0(a2)
+00423568  lw t3,0x0(s4)
+0042356c  sll v1,v1,0x1
+00423570  addu v1,t3,v1
+00423574  lhu v1,0x0(v1)
+00423578  nop
+0042357c  andi v1,v1,0x20
+00423580  beq v1,zero,0x004235f0
+00423584  _nop
+00423588  addiu a2,a2,0x1
+0042358c  lbu v1,0x0(a2)
+00423590  nop
+00423594  sll v1,v1,0x1
+00423598  addu v1,t3,v1
+0042359c  lhu v1,0x0(v1)
+004235a0  nop
+004235a4  andi v1,v1,0x20
+004235a8  bne v1,zero,0x0042358c
+004235ac  _addiu a2,a2,0x1
+004235b0  addiu a2,a2,-0x1
+004235b4  b 0x004235c0
+004235b8  _sltu v1,t2,a1
+004235bc  sltu v1,t2,a1
+004235c0  beq v1,zero,0x004235f0
+004235c4  _nop
+004235c8  lbu v1,0x0(t2)
+004235cc  nop
+004235d0  sll v1,v1,0x1
+004235d4  addu v1,t3,v1
+004235d8  lhu v1,0x0(v1)
+004235dc  nop
+004235e0  andi v1,v1,0x20
+004235e4  bne v1,zero,0x004235bc
+004235e8  _addiu t2,t2,0x1
+004235ec  addiu t2,t2,-0x1
+004235f0  lbu v1,0x0(a2)
+004235f4  nop
+004235f8  beq v1,zero,0x004240f0
+004235fc  _nop
+00423600  beq v1,s2,0x00423628
+00423604  _sltu a0,t2,a1
+00423608  beq a0,zero,0x004240f0
+0042360c  _nop
+00423610  lbu a0,0x0(t2)
+00423614  nop
+00423618  bne a0,v1,0x004240f0
+0042361c  _addiu a2,a2,0x1
+00423620  b 0x00423564
+00423624  _addiu t2,t2,0x1
+00423628  addiu a2,a2,0x1
+0042362c  clear a0
+00423630  clear t6
+00423634  clear t4
+00423638  lbu t0,0x0(a2)
+0042363c  li v1,0x2a
+00423640  bne t0,v1,0x00423650
+00423644  _nop
+00423648  b 0x0042366c
+0042364c  _li t4,0x1
+00423650  bne t0,s8,0x00423660
+00423654  _li s5,0x26
+00423658  b 0x0042366c
+0042365c  _addiu t6,t6,0x1
+00423660  bne t0,s5,0x00423674
+00423664  _sll v1,t0,0x1
+00423668  li a0,0x1
+0042366c  b 0x00423638
+00423670  _addiu a2,a2,0x1
+00423674  addu v1,t3,v1
+00423678  lhu v1,0x0(v1)
+0042367c  nop
+00423680  andi v1,v1,0x8
+00423684  beq v1,zero,0x004236d0
+00423688  _li t1,0x2e
+0042368c  clear v1
+00423690  li t0,0xa
+00423694  mult v1,t0
+00423698  lbu t1,0x0(a2)
+0042369c  addiu a2,a2,0x1
+004236a0  lbu t0,0x0(a2)
+004236a4  addiu t1,t1,-0x30
+004236a8  sll t0,t0,0x1
+004236ac  addu t0,t3,t0
+004236b0  lhu t0,0x0(t0)
+004236b4  nop
+004236b8  andi t0,t0,0x8
+004236bc  mflo v1
+004236c0  bne t0,zero,0x00423690
+004236c4  _addu v1,t1,v1
+004236c8  b 0x004236ec
+004236cc  _nop
+004236d0  bne t0,t1,0x004236ec
+004236d4  _move v1,t7
+004236d8  lw v1,0x0(a3)
+004236dc  nop
+004236e0  bltz v1,0x004240f0
+004236e4  _addiu a2,a2,0x1
+004236e8  addiu a3,a3,0x4
+004236ec  lbu t1,0x0(a2)
+004236f0  nop
+004236f4  beq t1,s1,0x00423750
+004236f8  _sltiu t0,t1,0x6d
+004236fc  beq t0,zero,0x00423718
+00423700  _li t0,0x74
+00423704  li t0,0x68
+00423708  beq t1,t0,0x00423730
+0042370c  _li t0,0x6a
+00423710  b 0x00423720
+00423714  _nop
+00423718  beq t1,t0,0x00423770
+0042371c  _li t0,0x7a
+00423720  beq t1,t0,0x00423770
+00423724  _clear t0
+00423728  b 0x00423778
+0042372c  _nop
+00423730  addiu a2,a2,0x1
+00423734  lbu t8,0x0(a2)
+00423738  nop
+0042373c  bne t8,t1,0x00423780
+00423740  _li t0,0x68
+00423744  addiu a2,a2,0x1
+00423748  b 0x00423778
+0042374c  _li t0,0x48
+00423750  addiu a2,a2,0x1
+00423754  lbu t1,0x0(a2)
+00423758  nop
+0042375c  bne t1,s1,0x00423778
+00423760  _li t0,0x6c
+00423764  addiu a2,a2,0x1
+00423768  b 0x00423778
+0042376c  _li t0,0x4c
+00423770  move t0,t1
+00423774  addiu a2,a2,0x1
+00423778  lbu t8,0x0(a2)
+0042377c  nop
+00423780  beq t8,zero,0x004240f0
+00423784  _li s5,0x69
+00423788  beq t8,s5,0x00423868
+0042378c  _addiu t1,a2,0x1
+00423790  sltiu t9,t8,0x6a
+00423794  beq t9,zero,0x004237f0
+00423798  _li t9,0x62
+0042379c  beq t8,t9,0x00423870
+004237a0  _sltiu t9,t8,0x63
+004237a4  beq t9,zero,0x004237d0
+004237a8  _li t9,0x58
+004237ac  beq t8,t9,0x00423860
+004237b0  _nop
+004237b4  li t3,0x5b
+004237b8  beq t8,t3,0x00423adc
+004237bc  _nop
+004237c0  bne t8,s2,0x004240f0
+004237c4  _nop
+004237c8  b 0x00423c74
+004237cc  _nop
+004237d0  li a2,0x63
+004237d4  beq t8,a2,0x00423878
+004237d8  _nop
+004237dc  li a0,0x64
+004237e0  bne t8,a0,0x004240f0
+004237e4  _li a2,0xa
+004237e8  b 0x00423ce4
+004237ec  _sltu a0,t2,a1
+004237f0  li a2,0x70
+004237f4  beq t8,a2,0x0042384c
+004237f8  _sltiu a2,t8,0x71
+004237fc  beq a2,zero,0x00423820
+00423800  _nop
+00423804  li a0,0x6e
+00423808  beq t8,a0,0x00423cac
+0042380c  _li a0,0x6f
+00423810  bne t8,a0,0x004240f0
+00423814  _li a2,0x8
+00423818  b 0x00423ce4
+0042381c  _sltu a0,t2,a1
+00423820  li a2,0x75
+00423824  beq t8,a2,0x00423ce0
+00423828  _li a2,0xa
+0042382c  li a2,0x78
+00423830  beq t8,a2,0x00423ce0
+00423834  _li a2,0x10
+00423838  li a2,0x73
+0042383c  bne t8,a2,0x004240f0
+00423840  _nop
+00423844  b 0x00423928
+00423848  _nop
+0042384c  bne t0,zero,0x00423860
+00423850  _nop
+00423854  li a2,0x10
+00423858  b 0x00423ce0
+0042385c  _li t0,0x70
+00423860  b 0x00423ce0
+00423864  _li a2,0x10
+00423868  b 0x00423ce0
+0042386c  _clear a2
+00423870  b 0x00423ce0
+00423874  _li a2,0x2
+00423878  bne t0,zero,0x004240f0
+0042387c  _nop
+00423880  beq a0,zero,0x004238c8
+00423884  _xor a0,v1,t7
+00423888  subu a0,a1,t2
+0042388c  sltu a2,a0,v1
+00423890  bne t4,zero,0x004238e8
+00423894  _movn v1,a0,a2
+00423898  lw a0,0x0(a3)
+0042389c  nop
+004238a0  beq a0,zero,0x004238ac
+004238a4  _addiu a3,a3,0x4
+004238a8  sw t2,0x0(a0)
+004238ac  lw a0,0x0(a3)
+004238b0  nop
+004238b4  beq a0,zero,0x004238c0
+004238b8  _nop
+004238bc  sw v1,0x0(a0)
+004238c0  b 0x004240e0
+004238c4  _addu t2,t2,v1
+004238c8  li t8,0x1
+004238cc  movz v1,t8,a0
+004238d0  subu a0,a1,t2
+004238d4  slt a0,a0,v1
+004238d8  bne a0,zero,0x004240f0
+004238dc  _nop
+004238e0  beq t4,zero,0x004238f0
+004238e4  _nop
+004238e8  b 0x004240e8
+004238ec  _addu t2,t2,v1
+004238f0  lw a0,0x0(a3)
+004238f4  nop
+004238f8  bne a0,zero,0x00423918
+004238fc  _nop
+00423900  b 0x004240f0
+00423904  _nop
+00423908  lbu a2,0x0(t2)
+0042390c  addiu t2,t2,0x1
+00423910  sb a2,0x0(a0)
+00423914  addiu a0,a0,0x1
+00423918  bgtz v1,0x00423908
+0042391c  _addiu v1,v1,-0x1
+00423920  b 0x004240e4
+00423924  _addiu a3,a3,0x4
+00423928  beq t0,zero,0x0042393c
+0042392c  _sltu a2,t2,a1
+00423930  b 0x004240f0
+00423934  _nop
+00423938  sltu a2,t2,a1
+0042393c  beq a2,zero,0x0042396c
+00423940  _nop
+00423944  lbu a2,0x0(t2)
+00423948  nop
+0042394c  sll a2,a2,0x1
+00423950  addu a2,t3,a2
+00423954  lhu a2,0x0(a2)
+00423958  nop
+0042395c  andi a2,a2,0x20
+00423960  bne a2,zero,0x00423938
+00423964  _addiu t2,t2,0x1
+00423968  addiu t2,t2,-0x1
+0042396c  bne t6,zero,0x00423990
+00423970  _move t0,t2
+00423974  sltu a2,t2,a1
+00423978  beq a2,zero,0x004240f0
+0042397c  _nop
+00423980  lbu a2,0x0(t2)
+00423984  nop
+00423988  beq a2,zero,0x004240f0
+0042398c  _nop
+00423990  bne t4,zero,0x004239a4
+00423994  _nop
+00423998  b 0x004239e8
+0042399c  _nop
+004239a0  addiu t0,t0,0x1
+004239a4  sltu a0,t0,a1
+004239a8  beq a0,zero,0x0042355c
+004239ac  _nop
+004239b0  lbu a0,0x0(t0)
+004239b4  nop
+004239b8  sll a2,a0,0x1
+004239bc  beq a0,zero,0x0042355c
+004239c0  _addu a2,t3,a2
+004239c4  lhu a0,0x0(a2)
+004239c8  nop
+004239cc  andi a0,a0,0x20
+004239d0  bne a0,zero,0x00423560
+004239d4  _move a2,t1
+004239d8  bgtz v1,0x004239a0
+004239dc  _addiu v1,v1,-0x1
+004239e0  b 0x00423564
+004239e4  _move t2,t0
+004239e8  bne a0,zero,0x00423a00
+004239ec  _sltu a0,t0,a1
+004239f0  b 0x00423a64
+004239f4  _nop
+004239f8  addiu t0,t0,0x1
+004239fc  sltu a0,t0,a1
+00423a00  beq a0,zero,0x00423a38
+00423a04  _nop
+00423a08  lbu a0,0x0(t0)
+00423a0c  nop
+00423a10  sll a2,a0,0x1
+00423a14  beq a0,zero,0x00423a38
+00423a18  _addu a2,t3,a2
+00423a1c  lhu a0,0x0(a2)
+00423a20  nop
+00423a24  andi a0,a0,0x20
+00423a28  bne a0,zero,0x00423a38
+00423a2c  _nop
+00423a30  bgtz v1,0x004239f8
+00423a34  _addiu v1,v1,-0x1
+00423a38  lw v1,0x0(a3)
+00423a3c  nop
+00423a40  beq v1,zero,0x00423a4c
+00423a44  _addiu a3,a3,0x4
+00423a48  sw t2,0x0(v1)
+00423a4c  lw v1,0x0(a3)
+00423a50  nop
+00423a54  beq v1,zero,0x00423ad0
+00423a58  _subu t2,t0,t2
+00423a5c  b 0x00423ad0
+00423a60  _sw t2,0x0(v1)
+00423a64  lw a0,0x0(a3)
+00423a68  nop
+00423a6c  bne a0,zero,0x00423a8c
+00423a70  _sltu a2,t0,a1
+00423a74  b 0x004240f0
+00423a78  _nop
+00423a7c  sb a2,0x0(a0)
+00423a80  addiu a0,a0,0x1
+00423a84  addiu t0,t0,0x1
+00423a88  sltu a2,t0,a1
+00423a8c  beq a2,zero,0x00423acc
+00423a90  _nop
+00423a94  lbu a2,0x0(t0)
+00423a98  nop
+00423a9c  beq a2,zero,0x00423acc
+00423aa0  _sll t2,a2,0x1
+00423aa4  lw t3,0x0(s4)
+00423aa8  nop
+00423aac  addu t2,t3,t2
+00423ab0  lhu t2,0x0(t2)
+00423ab4  nop
+00423ab8  andi t2,t2,0x20
+00423abc  bne t2,zero,0x00423acc
+00423ac0  _nop
+00423ac4  bgtz v1,0x00423a7c
+00423ac8  _addiu v1,v1,-0x1
+00423acc  sb zero,0x0(a0)
+00423ad0  addiu a3,a3,0x4
+00423ad4  b 0x0042355c
+00423ad8  _addiu v0,v0,0x1
+00423adc  bne t0,zero,0x004240f0
+00423ae0  _addiu a2,a2,0x2
+00423ae4  lbu t8,0x0(t1)
+00423ae8  nop
+00423aec  xori t8,t8,0x5e
+00423af0  sltiu t8,t8,0x1
+00423af4  movn t1,a2,t8
+00423af8  lbu a2,0x0(t1)
+00423afc  addiu t3,t1,0x1
+00423b00  xori a2,a2,0x5d
+00423b04  b 0x00423b10
+00423b08  _movn t3,t1,a2
+00423b0c  move t3,a2
+00423b10  lbu t0,0x0(t3)
+00423b14  nop
+00423b18  beq t0,zero,0x004240f0
+00423b1c  _addiu a2,t3,0x1
+00423b20  li t9,0x5d
+00423b24  bne t0,t9,0x00423b0c
+00423b28  _nop
+00423b2c  bne t8,zero,0x00423b6c
+00423b30  _move t0,t2
+00423b34  b 0x00423bcc
+00423b38  _sltu t8,t0,a1
+00423b3c  sltu s3,t8,t3
+00423b40  beq s3,zero,0x00423b5c
+00423b44  _nop
+00423b48  lbu s3,0x0(t8)
+00423b4c  nop
+00423b50  bne s3,t9,0x00423b3c
+00423b54  _addiu t8,t8,0x1
+00423b58  addiu t8,t8,-0x1
+00423b5c  sltu t8,t8,t3
+00423b60  bne t8,zero,0x00423bec
+00423b64  _addiu v1,v1,-0x1
+00423b68  addiu t0,t0,0x1
+00423b6c  sltu t8,t0,a1
+00423b70  beq t8,zero,0x00423bec
+00423b74  _nop
+00423b78  lbu t9,0x0(t0)
+00423b7c  nop
+00423b80  beq t9,zero,0x00423bec
+00423b84  _nop
+00423b88  blez v1,0x00423bec
+00423b8c  _move t8,t1
+00423b90  b 0x00423b40
+00423b94  _sltu s3,t8,t3
+00423b98  sltu s3,t8,t3
+00423b9c  beq s3,zero,0x00423bb8
+00423ba0  _nop
+00423ba4  lbu s3,0x0(t8)
+00423ba8  nop
+00423bac  bne s3,t9,0x00423b98
+00423bb0  _addiu t8,t8,0x1
+00423bb4  addiu t8,t8,-0x1
+00423bb8  sltu t8,t8,t3
+00423bbc  beq t8,zero,0x00423bec
+00423bc0  _addiu v1,v1,-0x1
+00423bc4  addiu t0,t0,0x1
+00423bc8  sltu t8,t0,a1
+00423bcc  beq t8,zero,0x00423bec
+00423bd0  _nop
+00423bd4  lbu t9,0x0(t0)
+00423bd8  nop
+00423bdc  beq t9,zero,0x00423bec
+00423be0  _nop
+00423be4  bgtz v1,0x00423b98
+00423be8  _move t8,t1
+00423bec  bne t2,t0,0x00423bfc
+00423bf0  _nop
+00423bf4  beq t6,zero,0x004240f0
+00423bf8  _nop
+00423bfc  bne t4,zero,0x00423560
+00423c00  _nop
+00423c04  lw v1,0x0(a3)
+00423c08  beq a0,zero,0x00423c38
+00423c0c  _nop
+00423c10  beq v1,zero,0x00423c1c
+00423c14  _addiu a3,a3,0x4
+00423c18  sw t2,0x0(v1)
+00423c1c  lw v1,0x0(a3)
+00423c20  nop
+00423c24  beq v1,zero,0x00423c6c
+00423c28  _addiu a3,a3,0x4
+00423c2c  subu t2,t0,t2
+00423c30  b 0x00423c6c
+00423c34  _sw t2,0x0(v1)
+00423c38  bne v1,zero,0x00423c5c
+00423c3c  _sltu a0,t2,t0
+00423c40  b 0x004240f0
+00423c44  _nop
+00423c48  lbu a0,0x0(t2)
+00423c4c  addiu t2,t2,0x1
+00423c50  sb a0,0x0(v1)
+00423c54  addiu v1,v1,0x1
+00423c58  sltu a0,t2,t0
+00423c5c  bne a0,zero,0x00423c48
+00423c60  _nop
+00423c64  sb zero,0x0(v1)
+00423c68  addiu a3,a3,0x4
+00423c6c  b 0x00423560
+00423c70  _addiu v0,v0,0x1
+00423c74  bne t0,zero,0x004240f0
+00423c78  _nop
+00423c7c  bne v1,t7,0x004240f0
+00423c80  _nop
+00423c84  bne t4,zero,0x004240f0
+00423c88  _sltu v1,t2,a1
+00423c8c  beq v1,zero,0x004240f0
+00423c90  _nop
+00423c94  lbu v1,0x0(t2)
+00423c98  nop
+00423c9c  bne v1,s2,0x004240f0
+00423ca0  _addiu t2,t2,0x1
+00423ca4  b 0x00423564
+00423ca8  _move a2,t1
+00423cac  bne t0,zero,0x004240f0
+00423cb0  _nop
+00423cb4  bne v1,t7,0x004240f0
+00423cb8  _nop
+00423cbc  bne t4,zero,0x004240f0
+00423cc0  _nop
+00423cc4  lw v1,0x0(a3)
+00423cc8  nop
+00423ccc  beq v1,zero,0x004240f0
+00423cd0  _subu a0,t2,s0
+00423cd4  sw a0,0x0(v1)
+00423cd8  b 0x004240e8
+00423cdc  _addiu a3,a3,0x4
+00423ce0  sltu a0,t2,a1
+00423ce4  beq a0,zero,0x00423d18
+00423ce8  _move a0,t2
+00423cec  lbu a0,0x0(t2)
+00423cf0  nop
+00423cf4  sll a0,a0,0x1
+00423cf8  addu a0,t3,a0
+00423cfc  lhu a0,0x0(a0)
+00423d00  nop
+00423d04  andi a0,a0,0x20
+00423d08  bne a0,zero,0x00423ce0
+00423d0c  _addiu t2,t2,0x1
+00423d10  addiu t2,t2,-0x1
+00423d14  move a0,t2
+00423d18  subu t2,a1,t2
+00423d1c  slti t2,t2,0x2
+00423d20  bne t2,zero,0x00423d60
+00423d24  _clear s3
+00423d28  blez v1,0x00423d60
+00423d2c  _li t6,0x2d
+00423d30  lbu t2,0x0(a0)
+00423d34  nop
+00423d38  bne t2,t6,0x00423d50
+00423d3c  _li t6,0x2b
+00423d40  addiu a0,a0,0x1
+00423d44  addiu v1,v1,-0x1
+00423d48  b 0x00423d60
+00423d4c  _li s3,0x1
+00423d50  bne t2,t6,0x00423d60
+00423d54  _clear s3
+00423d58  addiu a0,a0,0x1
+00423d5c  addiu v1,v1,-0x1
+00423d60  bne a2,zero,0x00423e84
+00423d64  _li t2,0x10
+00423d68  subu a2,a1,a0
+00423d6c  slti t2,a2,0x3
+00423d70  bne t2,zero,0x00423e38
+00423d74  _li t2,0x2
+00423d78  slti a2,v1,0x2
+00423d7c  bne a2,zero,0x00423e40
+00423d80  _li t2,0x30
+00423d84  lbu a2,0x0(a0)
+00423d88  nop
+00423d8c  bne a2,t2,0x00423de8
+00423d90  _nop
+00423d94  lbu t2,0x1(a0)
+00423d98  lw t6,0x0(t5)
+00423d9c  sll t2,t2,0x1
+00423da0  addu t2,t6,t2
+00423da4  lh t6,0x0(t2)
+00423da8  li t2,0x78
+00423dac  bne t6,t2,0x00423de8
+00423db0  _li t2,0x30
+00423db4  lbu t6,0x2(a0)
+00423db8  nop
+00423dbc  sll t6,t6,0x1
+00423dc0  addu t6,t3,t6
+00423dc4  lhu t6,0x0(t6)
+00423dc8  nop
+00423dcc  andi t6,t6,0x10
+00423dd0  beq t6,zero,0x00423de4
+00423dd4  _addiu t2,a0,0x2
+00423dd8  addiu v1,v1,-0x2
+00423ddc  b 0x00423f44
+00423de0  _li a2,0x10
+00423de4  li t2,0x30
+00423de8  bne a2,t2,0x00423e48
+00423dec  _nop
+00423df0  lbu a2,0x1(a0)
+00423df4  lw t2,0x0(t5)
+00423df8  sll a2,a2,0x1
+00423dfc  addu a2,t2,a2
+00423e00  lh t2,0x0(a2)
+00423e04  li a2,0x62
+00423e08  bne t2,a2,0x00423e48
+00423e0c  _nop
+00423e10  lbu a2,0x2(a0)
+00423e14  nop
+00423e18  addiu a2,a2,-0x30
+00423e1c  andi a2,a2,0xff
+00423e20  sltiu a2,a2,0x2
+00423e24  beq a2,zero,0x00423e48
+00423e28  _addiu t2,a0,0x2
+00423e2c  addiu v1,v1,-0x2
+00423e30  b 0x00423f44
+00423e34  _li a2,0x2
+00423e38  bne a2,t2,0x00423f40
+00423e3c  _move t2,a0
+00423e40  blez v1,0x00423f40
+00423e44  _move t2,a0
+00423e48  lbu t2,0x0(a0)
+00423e4c  li a2,0x30
+00423e50  bne t2,a2,0x00423f40
+00423e54  _move t2,a0
+00423e58  lbu a2,0x1(a0)
+00423e5c  nop
+00423e60  sltiu t6,a2,0x30
+00423e64  bne t6,zero,0x00423f3c
+00423e68  _addiu t2,a0,0x1
+00423e6c  sltiu a2,a2,0x38
+00423e70  beq a2,zero,0x00423f3c
+00423e74  _nop
+00423e78  addiu v1,v1,-0x1
+00423e7c  b 0x00423f44
+00423e80  _li a2,0x8
+00423e84  bne a2,t2,0x00423ed4
+00423e88  _li t2,0x2
+00423e8c  subu t2,a1,a0
+00423e90  slti t2,t2,0x2
+00423e94  bne t2,zero,0x00423f44
+00423e98  _move t2,a0
+00423e9c  slti t2,v1,0x2
+00423ea0  bne t2,zero,0x00423f44
+00423ea4  _move t2,a0
+00423ea8  lbu t6,0x0(a0)
+00423eac  li t2,0x30
+00423eb0  bne t6,t2,0x00423f34
+00423eb4  _nop
+00423eb8  lbu t2,0x1(a0)
+00423ebc  lw t6,0x0(t5)
+00423ec0  sll t2,t2,0x1
+00423ec4  addu t2,t6,t2
+00423ec8  lh t6,0x0(t2)
+00423ecc  b 0x00423f20
+00423ed0  _li t2,0x78
+00423ed4  bne a2,t2,0x00423f44
+00423ed8  _move t2,a0
+00423edc  subu t2,a1,a0
+00423ee0  slti t2,t2,0x2
+00423ee4  bne t2,zero,0x00423f44
+00423ee8  _move t2,a0
+00423eec  slti t2,v1,0x2
+00423ef0  bne t2,zero,0x00423f44
+00423ef4  _move t2,a0
+00423ef8  lbu t6,0x0(a0)
+00423efc  li t2,0x30
+00423f00  bne t6,t2,0x00423f44
+00423f04  _move t2,a0
+00423f08  lbu t2,0x1(a0)
+00423f0c  lw t6,0x0(t5)
+00423f10  sll t2,t2,0x1
+00423f14  addu t2,t6,t2
+00423f18  lh t6,0x0(t2)
+00423f1c  li t2,0x62
+00423f20  bne t6,t2,0x00423f34
+00423f24  _nop
+00423f28  addiu v1,v1,-0x2
+00423f2c  b 0x00423f44
+00423f30  _addiu t2,a0,0x2
+00423f34  b 0x00423f44
+00423f38  _move t2,a0
+00423f3c  move t2,a0
+00423f40  li a2,0xa
+00423f44  lw s7,0x0(t5)
+00423f48  clear t9
+00423f4c  b 0x00423fe0
+00423f50  _clear t8
+00423f54  lbu t6,0x0(t2)
+00423f58  addiu v1,v1,-0x1
+00423f5c  sll t9,t6,0x1
+00423f60  addu t8,t3,t9
+00423f64  lhu t8,0x0(t8)
+00423f68  addu t9,s7,t9
+00423f6c  andi s6,t8,0x10
+00423f70  andi t8,t8,0x8
+00423f74  bne t8,zero,0x00423f90
+00423f78  _addiu t6,t6,-0x30
+00423f7c  beq s6,zero,0x00423ff8
+00423f80  _nop
+00423f84  lh t6,0x0(t9)
+00423f88  nop
+00423f8c  addiu t6,t6,-0x57
+00423f90  slt t8,t6,a2
+00423f94  beq t8,zero,0x00423ff8
+00423f98  _sra s6,t6,0x1f
+00423f9c  lw s5,0x1c(sp)
+00423fa0  addiu t2,t2,0x1
+00423fa4  multu s5,a2
+00423fa8  lw s5,0x18(sp)
+00423fac  mflo t9
+00423fb0  mfhi t8
+00423fb4  mult a2,s5
+00423fb8  mflo s5
+00423fbc  addu t8,s5,t8
+00423fc0  addu s5,t6,t9
+00423fc4  addu t8,s6,t8
+00423fc8  sltu t6,s5,t6
+00423fcc  addu t8,t6,t8
+00423fd0  sw t8,0x20(sp)
+00423fd4  sw s5,0x24(sp)
+00423fd8  lw t9,0x24(sp)
+00423fdc  lw t8,0x20(sp)
+00423fe0  sltu t6,t2,a1
+00423fe4  sw t9,0x1c(sp)
+00423fe8  beq t6,zero,0x00423ff8
+00423fec  _sw t8,0x18(sp)
+00423ff0  bgtz v1,0x00423f54
+00423ff4  _nop
+00423ff8  lw t6,0x18(sp)
+00423ffc  lw t3,0x1c(sp)
+00424000  beq t2,a0,0x004240f0
+00424004  _nop
+00424008  bne t4,zero,0x00423564
+0042400c  _move a2,t1
+00424010  beq s3,zero,0x00424028
+00424014  _nop
+00424018  subu t3,zero,t3
+0042401c  subu t6,zero,t6
+00424020  sltu v1,zero,t3
+00424024  subu t6,t6,v1
+00424028  lw v1,0x0(a3)
+0042402c  nop
+00424030  beq v1,zero,0x004240f0
+00424034  _li a0,0x6a
+00424038  beq t0,a0,0x004240d0
+0042403c  _slti a0,t0,0x6b
+00424040  beq a0,zero,0x00424084
+00424044  _li a0,0x70
+00424048  li a0,0x4c
+0042404c  beq t0,a0,0x004240d0
+00424050  _slti a0,t0,0x4d
+00424054  beq a0,zero,0x00424074
+00424058  _li a0,0x68
+0042405c  beq t0,zero,0x004240dc
+00424060  _li a0,0x48
+00424064  bne t0,a0,0x004240f0
+00424068  _nop
+0042406c  b 0x004240c0
+00424070  _sb t3,0x0(v1)
+00424074  bne t0,a0,0x004240f0
+00424078  _nop
+0042407c  b 0x004240c8
+00424080  _sh t3,0x0(v1)
+00424084  beq t0,a0,0x004240dc
+00424088  _slti a0,t0,0x71
+0042408c  beq a0,zero,0x004240a4
+00424090  _nop
+00424094  bne t0,s1,0x004240f0
+00424098  _nop
+0042409c  b 0x004240e0
+004240a0  _sw t3,0x0(v1)
+004240a4  li a0,0x74
+004240a8  beq t0,a0,0x004240dc
+004240ac  _li a0,0x7a
+004240b0  bne t0,a0,0x004240f0
+004240b4  _nop
+004240b8  b 0x004240e0
+004240bc  _sw t3,0x0(v1)
+004240c0  b 0x004240e4
+004240c4  _addiu a3,a3,0x4
+004240c8  b 0x004240e4
+004240cc  _addiu a3,a3,0x4
+004240d0  sw t3,0x4(v1)
+004240d4  b 0x004240e0
+004240d8  _sw t6,0x0(v1)
+004240dc  sw t3,0x0(v1)
+004240e0  addiu a3,a3,0x4
+004240e4  addiu v0,v0,0x1
+004240e8  b 0x00423564
+004240ec  _move a2,t1
+004240f0  lw ra,0x54(sp)
+004240f4  lw s8,0x50(sp)
+004240f8  lw s7,0x4c(sp)
+004240fc  lw s6,0x48(sp)
+00424100  lw s5,0x44(sp)
+00424104  lw s4,0x40(sp)
+00424108  lw s3,0x3c(sp)
+0042410c  lw s2,0x38(sp)
+00424110  lw s1,0x34(sp)
+00424114  lw s0,0x30(sp)
+00424118  jr ra
+0042411c  _addiu sp,sp,0x58

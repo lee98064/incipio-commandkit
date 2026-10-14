@@ -1,0 +1,83 @@
+# Identify_SwitchSetup @ 00432ea4
+00432ea4  addiu sp,sp,-0x28
+00432ea8  sw ra,0x24(sp)
+00432eac  sw s0,0x20(sp)
+00432eb0  lui gp,0x62
+00432eb4  addiu gp,gp,-0x5cf0
+00432eb8  sw gp,0x18(sp)
+00432ebc  sll a0,a0,0x18
+00432ec0  sra a0,a0,0x18
+00432ec4  beq a0,zero,0x00432f24
+00432ec8  _lui a1,0x5b
+00432ecc  li v1,0x1
+00432ed0  lw v0,-0x6b48(gp)
+00432ed4  lui a2,0x5b
+00432ed8  lw t9,-0x73b4(gp)
+00432edc  bne a0,v1,0x00432fb8
+00432ee0  _lui a3,0x5b
+00432ee4  lw a0,0x0(v0)
+00432ee8  lui a1,0x5b
+00432eec  li v0,0x372
+00432ef0  sw v0,0x10(sp)
+00432ef4  addiu a1,a1,-0x1b90
+00432ef8  addiu a2,a2,-0x1c1c
+00432efc  jalr t9
+00432f00  _addiu a3,a3,-0x1830
+00432f04  lw gp,0x18(sp)
+00432f08  nop
+00432f0c  lw t9,-0x66cc(gp)
+00432f10  nop
+00432f14  jalr t9
+00432f18  _nop
+00432f1c  b 0x00432fb0
+00432f20  _nop
+00432f24  lw v0,-0x6b48(gp)
+00432f28  lw t9,-0x73b4(gp)
+00432f2c  lw a0,0x0(v0)
+00432f30  lui a2,0x5b
+00432f34  li v0,0x378
+00432f38  lui a3,0x5b
+00432f3c  addiu a1,a1,-0x1b5c
+00432f40  addiu a2,a2,-0x1c1c
+00432f44  addiu a3,a3,-0x1830
+00432f48  jalr t9
+00432f4c  _sw v0,0x10(sp)
+00432f50  lw gp,0x18(sp)
+00432f54  lui a0,0x5b
+00432f58  lui a1,0x5d
+00432f5c  lw t9,-0x69b4(gp)
+00432f60  addiu a0,a0,-0x1bb4
+00432f64  jalr t9
+00432f68  _addiu a1,a1,-0x4350
+00432f6c  move s0,v0
+00432f70  lw gp,0x18(sp)
+00432f74  beq s0,zero,0x00432fdc
+00432f78  _li v0,0x1
+00432f7c  lw t9,-0x73b4(gp)
+00432f80  lui a1,0x5b
+00432f84  move a0,s0
+00432f88  addiu a1,a1,-0x1b9c
+00432f8c  li a2,0x6
+00432f90  jalr t9
+00432f94  _li a3,0x1
+00432f98  lw gp,0x18(sp)
+00432f9c  nop
+00432fa0  lw t9,-0x68d4(gp)
+00432fa4  nop
+00432fa8  jalr t9
+00432fac  _move a0,s0
+00432fb0  b 0x00432fdc
+00432fb4  _clear v0
+00432fb8  lw a0,0x0(v0)
+00432fbc  lui a1,0x5b
+00432fc0  li v0,0x388
+00432fc4  sw v0,0x10(sp)
+00432fc8  addiu a1,a1,-0x1b28
+00432fcc  addiu a2,a2,-0x1c1c
+00432fd0  jalr t9
+00432fd4  _addiu a3,a3,-0x1830
+00432fd8  li v0,-0x1
+00432fdc  lw ra,0x24(sp)
+00432fe0  lw s0,0x20(sp)
+00432fe4  jr ra
+00432fe8  _addiu sp,sp,0x28

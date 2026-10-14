@@ -1,0 +1,36 @@
+# strnicmpx @ 004230d8
+004230d8  lui gp,0x62
+004230dc  addiu gp,gp,-0x6b80
+004230e0  lw v0,-0x6f8c(gp)
+004230e4  nop
+004230e8  lw v1,0x0(v0)
+004230ec  b 0x0042313c
+004230f0  _nop
+004230f4  lbu a3,0x0(a0)
+004230f8  sll v0,v0,0x1
+004230fc  addu v0,v1,v0
+00423100  sll a3,a3,0x1
+00423104  addu a3,v1,a3
+00423108  lh v0,0x0(v0)
+0042310c  lh a3,0x0(a3)
+00423110  addiu a1,a1,-0x1
+00423114  slt t0,v0,a3
+00423118  slt a3,a3,v0
+0042311c  bne a3,zero,0x00423150
+00423120  _addiu a0,a0,0x1
+00423124  beq t0,zero,0x00423134
+00423128  _nop
+0042312c  jr ra
+00423130  _li v0,0x1
+00423134  beq v0,zero,0x00423158
+00423138  _addiu a2,a2,0x1
+0042313c  lbu v0,0x0(a2)
+00423140  bne a1,zero,0x004230f4
+00423144  _nop
+00423148  beq v0,zero,0x00423158
+0042314c  _nop
+00423150  jr ra
+00423154  _li v0,-0x1
+00423158  clear v0
+0042315c  jr ra
+00423160  _nop

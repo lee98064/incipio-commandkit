@@ -1,0 +1,10 @@
+#!/bin/sh
+# /var is the vendor RAM filesystem. No persistent state is changed here.
+sleep 15
+/bin/matter-diag --snapshot > /var/log/matter-platform.txt 2>/dev/null
+# The vendor may assign the br0 address after starting userspace.
+# One daemon, no growing log files, no shell command API.
+while :; do
+    /bin/matter-diag --serve br0 /etc/matter-diag.key
+    sleep 5
+done

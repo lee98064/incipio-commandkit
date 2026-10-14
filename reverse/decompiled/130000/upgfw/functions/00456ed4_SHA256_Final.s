@@ -1,0 +1,153 @@
+# SHA256_Final @ 00456ed4
+00456ed4  addiu sp,sp,-0x28
+00456ed8  sw ra,0x24(sp)
+00456edc  sw s2,0x20(sp)
+00456ee0  sw s1,0x1c(sp)
+00456ee4  sw s0,0x18(sp)
+00456ee8  lui gp,0x58
+00456eec  addiu gp,gp,0x5010
+00456ef0  sw gp,0x10(sp)
+00456ef4  move s0,a0
+00456ef8  addiu s2,a1,0x28
+00456efc  lw v0,0x68(a1)
+00456f00  nop
+00456f04  addu v1,s2,v0
+00456f08  li a0,-0x80
+00456f0c  sb a0,0x0(v1)
+00456f10  addiu v0,v0,0x1
+00456f14  sltiu v1,v0,0x39
+00456f18  bne v1,zero,0x00456f54
+00456f1c  _move s1,a1
+00456f20  addu a0,s2,v0
+00456f24  clear a1
+00456f28  li a2,0x40
+00456f2c  lw t9,-0x7764(gp)
+00456f30  nop
+00456f34  jalr t9
+00456f38  _subu a2,a2,v0
+00456f3c  move a0,s1
+00456f40  move a1,s2
+00456f44  jal 0x00454ad0
+00456f48  _li a2,0x1
+00456f4c  lw gp,0x10(sp)
+00456f50  clear v0
+00456f54  addu a0,s2,v0
+00456f58  clear a1
+00456f5c  li a2,0x38
+00456f60  lw t9,-0x7764(gp)
+00456f64  nop
+00456f68  jalr t9
+00456f6c  _subu a2,a2,v0
+00456f70  lbu v0,0x24(s1)
+00456f74  nop
+00456f78  sb v0,0x38(s2)
+00456f7c  lhu v0,0x24(s1)
+00456f80  nop
+00456f84  sb v0,0x39(s2)
+00456f88  lw v0,0x24(s1)
+00456f8c  nop
+00456f90  srl v0,v0,0x8
+00456f94  sb v0,0x3a(s2)
+00456f98  lw v0,0x24(s1)
+00456f9c  nop
+00456fa0  sb v0,0x3b(s2)
+00456fa4  lbu v0,0x20(s1)
+00456fa8  nop
+00456fac  sb v0,0x3c(s2)
+00456fb0  lhu v0,0x20(s1)
+00456fb4  nop
+00456fb8  sb v0,0x3d(s2)
+00456fbc  addiu v0,s2,0x3e
+00456fc0  lw v1,0x20(s1)
+00456fc4  nop
+00456fc8  srl v1,v1,0x8
+00456fcc  sb v1,0x0(v0)
+00456fd0  lw v1,0x20(s1)
+00456fd4  nop
+00456fd8  sb v1,0x1(v0)
+00456fdc  move a0,s1
+00456fe0  move a1,s2
+00456fe4  jal 0x00454ad0
+00456fe8  _li a2,0x1
+00456fec  lw gp,0x10(sp)
+00456ff0  sw zero,0x68(s1)
+00456ff4  move a0,s2
+00456ff8  clear a1
+00456ffc  lw t9,-0x7764(gp)
+00457000  nop
+00457004  jalr t9
+00457008  _li a2,0x40
+0045700c  lw v0,0x6c(s1)
+00457010  li v1,0x1c
+00457014  beq v0,v1,0x0045702c
+00457018  _li v1,0x20
+0045701c  bne v0,v1,0x004570ac
+00457020  _clear v1
+00457024  b 0x00457070
+00457028  _li a1,0x20
+0045702c  clear v1
+00457030  li a1,0x1c
+00457034  addu v0,s1,v1
+00457038  lw v0,0x0(v0)
+0045703c  nop
+00457040  srl a0,v0,0x18
+00457044  sb a0,0x0(s0)
+00457048  srl a0,v0,0x10
+0045704c  sb a0,0x1(s0)
+00457050  srl a0,v0,0x8
+00457054  sb a0,0x2(s0)
+00457058  sb v0,0x3(s0)
+0045705c  addiu v1,v1,0x4
+00457060  bne v1,a1,0x00457034
+00457064  _addiu s0,s0,0x4
+00457068  b 0x0045711c
+0045706c  _li v0,0x1
+00457070  addu v0,s1,v1
+00457074  lw v0,0x0(v0)
+00457078  nop
+0045707c  srl a0,v0,0x18
+00457080  sb a0,0x0(s0)
+00457084  srl a0,v0,0x10
+00457088  sb a0,0x1(s0)
+0045708c  srl a0,v0,0x8
+00457090  sb a0,0x2(s0)
+00457094  sb v0,0x3(s0)
+00457098  addiu v1,v1,0x4
+0045709c  bne v1,a1,0x00457070
+004570a0  _addiu s0,s0,0x4
+004570a4  b 0x0045711c
+004570a8  _li v0,0x1
+004570ac  sltiu v1,v0,0x21
+004570b0  bne v1,zero,0x004570c0
+004570b4  _nop
+004570b8  b 0x0045711c
+004570bc  _clear v0
+004570c0  sltiu v0,v0,0x4
+004570c4  bne v0,zero,0x0045711c
+004570c8  _li v0,0x1
+004570cc  move a0,s1
+004570d0  clear v1
+004570d4  lw v0,0x0(a0)
+004570d8  nop
+004570dc  srl a1,v0,0x18
+004570e0  sb a1,0x0(s0)
+004570e4  srl a1,v0,0x10
+004570e8  sb a1,0x1(s0)
+004570ec  srl a1,v0,0x8
+004570f0  sb a1,0x2(s0)
+004570f4  sb v0,0x3(s0)
+004570f8  addiu s0,s0,0x4
+004570fc  addiu v1,v1,0x1
+00457100  lw v0,0x6c(s1)
+00457104  nop
+00457108  srl v0,v0,0x2
+0045710c  sltu v0,v1,v0
+00457110  bne v0,zero,0x004570d4
+00457114  _addiu a0,a0,0x4
+00457118  li v0,0x1
+0045711c  lw ra,0x24(sp)
+00457120  lw s2,0x20(sp)
+00457124  lw s1,0x1c(sp)
+00457128  lw s0,0x18(sp)
+0045712c  jr ra
+00457130  _addiu sp,sp,0x28

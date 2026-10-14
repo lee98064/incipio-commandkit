@@ -1,0 +1,7 @@
+# FUN_80400498 @ 80400498
+80400498  lui t1,0x8040
+8040049c  addiu t1,t1,0x4ac
+804004a0  lui at,0xa000
+804004a4  or t1,t1,at
+804004a8  jr t1
+804004ac  _mfc0 t0,Status

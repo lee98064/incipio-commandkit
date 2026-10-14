@@ -1,0 +1,100 @@
+function	from	string_address	string
+main	00400d8c	004050c4	%s:Backup partition fail! 
+main	00400f5c	00405100	-wsetupcode
+main	00400fd8	0040510c	  setup code's length is not 8 and format is xxx-xx-xxx 
+main	0040103c	00405148	  setup code write failed
+main	0040107c	00405164	-rsetupcode
+main	004010c8	00405170	  setup code read failed
+FUN_00401110	00401214	00405190	dump %s %p-%p len:%u flag:%u 
+FUN_00401110	00401330	004051b4	%p:%08X(%010u) %02X 
+FUN_00401110	0040138c	004051cc	%02X %s 
+FUN_00401110	00401460	004051d8	%02X:
+FUN_00401110	004014b4	004051e0	%02X-
+FUN_00401110	004014f0	004051e8	%02X 
+FUN_0040164c	0040175c	004051f8	/dev/mtdblock0
+FUN_0040164c	00401818	00405238	/dev/mtdblock5
+FUN_0040164c	004018b0	00405238	/dev/mtdblock5
+FUN_0040164c	00401a6c	004052c4	def2backup
+FUN_0040164c	00401a98	004052d0	cur2backup
+FUN_0040164c	00401c94	0040532c	Partition2Backup %s:Write to backup partition successful. 
+FUN_00401ce8	00401df8	004051f8	/dev/mtdblock0
+FUN_00401ce8	00401eb4	00405238	/dev/mtdblock5
+FUN_00401ce8	00401f4c	00405238	/dev/mtdblock5
+FUN_00401ce8	00402038	004053ec	backup2def
+FUN_00401ce8	00402064	004053f8	backup2cur
+FUN_00401ce8	00402330	0040547c	Backup2Partition %s:Write partition successful. 
+FUN_00402384	00402470	004051f8	/dev/mtdblock0
+FUN_00402384	00402528	00405238	/dev/mtdblock5
+FUN_00402384	004025c0	00405238	/dev/mtdblock5
+FUN_00402384	00402920	00405594	Damage-partition:Broken %s setting partition successful. 
+backup_partitin	004029c4	004055d8	hw2backup
+backup_partitin	00402a1c	004052c4	def2backup
+backup_partitin	00402a74	004052d0	cur2backup
+backup_partitin	00402acc	004055fc	backup2hw
+backup_partitin	00402b24	004053ec	backup2def
+backup_partitin	00402b7c	004053f8	backup2cur
+backup_partitin	00402c90	00405624	Backup partition tools for backup MIB value. 
+backup_partitin	00402cb0	00405654	phytrex_tools -bp: usage: phytrex_tools -bp [-h2b|-d2b|-c2b|-b2h|-b2d|-b2c]
+backup_partitin	00402cd0	004056a0	          -h2b:Backup HW MIB value.
+backup_partitin	00402cf0	004056c4	          -d2b:Backup Default MIB value.
+backup_partitin	00402d10	004056f0	          -c2b:Backup Current MIB value.
+backup_partitin	00402d30	0040571c	          -b2h:Restore HW MIB value from backup partition.
+backup_partitin	00402d50	00405758	          -b2d:Restore Default MIB value from backup partition.
+backup_partitin	00402d70	00405798	          -b2c:Restore Current MIB value from backup partition.
+one_time_init	00402e6c	00405800	gigadevice_chk  chk `flash get HW_WLAN0_WLAN_ADDR`
+one_time_init	00402e98	00405834	/proc/OTP
+one_time_init	00402f18	00405844	killall -9 WACServer 2> /dev/null
+one_time_init	00402f38	00405868	killall -9 homekitserver 2> /dev/null
+one_time_init	00402f58	00405890	killall -9 wfaudio 2> /dev/null
+one_time_init	00402fbc	004058c4	OTP Check pass!
+writeProductInfo_handler	004030d0	004058f0	argv[2] error.
+writeProductInfo_handler	00403110	00405900	PARCE
+writeProductInfo_handler	00403174	00405908	PHYTREX
+writeProductInfo_handler	004031d8	00405910	INCIPIO
+write_productInfo_parce	004032ec	00405920	hardwareInfo
+write_productInfo_parce	00403318	00405930	signature fail
+write_productInfo_parce	004033e4	00405940	[METER] write production info:
+write_productInfo_parce	0040340c	00405960	              signature : [%s]  
+write_productInfo_parce	0040343c	00405984	              Serial NUM : [%s]  
+write_productInfo_parce	0040346c	004059a8	              Write perimt : [%s]  
+write_productInfo_parce	00403490	004059cc	/dev/mtdblock5
+write_productInfo_parce	004034d0	004059dc	argv 3, 4, 5 error.
+write_productInfo_parce	00403530	004059f0	write production to flash lseek fail......
+write_productInfo_parce	00403588	00405a1c	write production to flash fail.......
+write_productInfo_parce	004035b0	00405a44	write production to flash open fail......
+write_productInfo_phytrex	0040365c	00405a70	/dev/mtdblock5
+write_productInfo_phytrex	004036c8	00405a80	write production to flash lseek fail......
+write_productInfo_phytrex	00403720	00405aac	write production to flash write fail.......
+write_productInfo_phytrex	00403748	00405ad8	write production to flash open fail......
+write_productInfo_incipio	0040381c	00405b10	AccessoryInfo
+write_productInfo_incipio	00403848	00405b20	signature fail
+write_productInfo_incipio	004038dc	00405b30	[METER] write production info:
+write_productInfo_incipio	00403904	00405b50	              signature : [%s]  
+write_productInfo_incipio	00403934	00405b74	              Serial NUM : [%s]  
+write_productInfo_incipio	00403958	00405b98	/dev/mtdblock5
+write_productInfo_incipio	00403998	00405ba8	argv 3, 4 error.
+write_productInfo_incipio	004039f8	00405bbc	write production to flash lseek fail......
+write_productInfo_incipio	00403a50	00405be8	write production to flash fail.......
+write_productInfo_incipio	00403a78	00405c10	write production to flash open fail......
+productInfoDel_handler	00403b10	00405c40	argv[2] error.
+productInfoDel_handler	00403b50	00405c50	WDATA
+productInfoDel_handler	00403bb4	00405c58	HWINFO
+productInfoDel_handler	00403c00	00405c60	InfoDel argv error
+FUN_00403c40	00403c68	00405c80	/dev/mtdblock5
+FUN_00403c40	00403cfc	00405c90	Initial hksettinginfo to flash fail.......
+FUN_00403c40	00403d1c	00405cbc	Initial hksettinginfo done
+FUN_00403c40	00403d44	00405cd8	open initFd fail
+wPartionDataDel	00403dec	00405c80	/dev/mtdblock5
+wPartionDataDel	00403e70	00405cec	clean parce write key
+wPartionDataDel	00403e90	00405d04	echo 1 > /var/cleanWriteablePartition
+wPartionDataDel	00403eb8	00405d2c	open keyFd fail
+hwInfoDel	00403f6c	00405d40	/dev/mtdblock5
+FUN_00404030	00404060	00415e10	ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=
+FUN_00404448	004049bc	00415e10	ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=
+writeHomeKitSetupCode	00404ac0	00405d58	/dev/mtdblock2
+writeHomeKitSetupCode	00404b64	00405d68	write fail........
+writeHomeKitSetupCode	00404b8c	00405d7c	[HOMEKIT] Store setup code to flash success
+writeHomeKitSetupCode	00404bc8	00405da8	open fail........
+readHomeKitSetupCode	00404c84	00405d58	/dev/mtdblock2
+readHomeKitSetupCode	00404d34	00405dbc	open MTD device %s fail... 
+readHomeKitSetupCode	00404d3c	00405d58	/dev/mtdblock2

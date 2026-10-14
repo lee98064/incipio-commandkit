@@ -1,0 +1,36 @@
+# FUN_00401328 @ 00401328
+00401328  lui gp,0x3
+0040132c  addiu gp,gp,-0x5f08
+00401330  addu gp,gp,t9
+00401334  addiu sp,sp,-0x20
+00401338  sw ra,0x1c(sp)
+0040133c  sw gp,0x10(sp)
+00401340  lw v0,-0x7e6c(gp)
+00401344  nop
+00401348  beq v0,zero,0x00401370
+0040134c  _nop
+00401350  lw a0,-0x7fdc(gp)
+00401354  lw a1,-0x7fe8(gp)
+00401358  lw t9,-0x7e6c(gp)
+0040135c  addiu a0,a0,0x33b0
+00401360  jalr t9
+00401364  _addiu a1,a1,0x35e8
+00401368  lw gp,0x10(sp)
+0040136c  nop
+00401370  lw a0,-0x7fe8(gp)
+00401374  nop
+00401378  lw v0,0x33c4(a0)
+0040137c  nop
+00401380  beq v0,zero,0x004013a4
+00401384  _nop
+00401388  lw t9,-0x7fb4(gp)
+0040138c  nop
+00401390  beq t9,zero,0x004013a4
+00401394  _addiu a0,a0,0x33c4
+00401398  lw ra,0x1c(sp)
+0040139c  jr t9
+004013a0  _addiu sp,sp,0x20
+004013a4  lw ra,0x1c(sp)
+004013a8  nop
+004013ac  jr ra
+004013b0  _addiu sp,sp,0x20

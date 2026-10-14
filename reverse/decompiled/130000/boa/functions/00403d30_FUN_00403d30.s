@@ -1,0 +1,24 @@
+# FUN_00403d30 @ 00403d30
+00403d30  beq a0,zero,0x00403d84
+00403d34  _clear v0
+00403d38  lb v0,0x0(a0)
+00403d3c  nop
+00403d40  bne v0,zero,0x00403d50
+00403d44  _li a1,0x2f
+00403d48  jr ra
+00403d4c  _clear v0
+00403d50  lb v1,0x1(a0)
+00403d54  nop
+00403d58  beq v1,zero,0x00403d6c
+00403d5c  _addiu a0,a0,0x1
+00403d60  bne v1,a1,0x00403d50
+00403d64  _addu v0,v0,v1
+00403d68  subu v0,v0,v1
+00403d6c  li v1,0x11
+00403d70  divu v0,v1
+00403d74  bne v1,zero,0x00403d80
+00403d78  _nop
+00403d7c  break 0x1c00
+00403d80  mfhi v0
+00403d84  jr ra
+00403d88  _nop

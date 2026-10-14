@@ -1,0 +1,23 @@
+# FUN_004229a8 @ 004229a8
+004229a8  addiu sp,sp,-0x28
+004229ac  sw ra,0x24(sp)
+004229b0  sw s0,0x20(sp)
+004229b4  addiu a2,sp,0x18
+004229b8  move s0,a0
+004229bc  lui a0,0x45
+004229c0  addiu a0,a0,-0x401c
+004229c4  li a1,0x839
+004229c8  move a3,a2
+004229cc  sw zero,0x18(sp)
+004229d0  jal 0x0042286c
+004229d4  _sll s0,s0,0x2
+004229d8  lw v1,0x18(sp)
+004229dc  addiu s0,s0,0x1
+004229e0  li v0,0x1
+004229e4  sllv v0,v0,s0
+004229e8  lw ra,0x24(sp)
+004229ec  lw s0,0x20(sp)
+004229f0  and v0,v0,v1
+004229f4  sltu v0,zero,v0
+004229f8  jr ra
+004229fc  _addiu sp,sp,0x28

@@ -1,0 +1,5 @@
+# dump_mime @ 004093cc
+004093cc  lui a0,0x47
+004093d0  addiu a0,a0,-0x3a00
+004093d4  j 0x00409308
+004093d8  _nop

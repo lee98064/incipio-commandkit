@@ -1,0 +1,153 @@
+function	from	string_address	string
+FUN_00410d30	00410d50	00532370	Stop socket and version check from cloud
+main	00410eb8	0053239c	Incipiofw
+main	00410eec	005323ac	[UPGFW] fwpath:%s 
+main	00410f08	005323c0	---upgrade from usb---
+main	00410f24	005323d8	/var/tmp/usb/sda/fw.bin.rsa
+main	00410f3c	005323f4	---upgrade ok---
+main	00410f6c	00532408	reboot
+main	00411008	00532410	 ====================================
+main	00411014	00532438	download over %d 
+main	00411070	0053244c	---upgrade firmware from download file---
+main	004110d8	005323f4	---upgrade ok---
+main	00411108	00532408	reboot
+main	0041111c	00532478	---upgrade fail---
+main	00411124	0053248c	---fw verify fail---
+FUN_00411150	00411194	005324a4	/var/info.html
+FUN_00411150	004111f8	005324b4	FileName=%s 
+FUN_00411150	00411254	005324c4	Open information file error, %s 
+FUN_00411278	00411338	005324e8	New version=%s 
+FUN_00411278	004113c8	005324c4	Open information file error, %s 
+FUN_004113f0	00411438	005324f8	http://
+FUN_004113f0	0041145c	00532500	https://
+FUN_004113f0	0041149c	0053250c	%99[^:]://%99[^:]:%i/%199[^ ]
+FUN_004113f0	004114cc	0053252c	%99[^:]://%99[^/]/%199[^ ]
+FUN_00411520	004115a8	00532548	SSL_flag:%d 
+FUN_00411520	004115bc	00532558	webhost:%s 
+FUN_00411520	004115d8	00532564	hostfile:%s 
+FUN_00411520	00411604	00532574	portnumber:%d  
+FUN_00411520	004119a0	005325c0	GET /%s HTTP/1.1 Accept: */* Accept-Language: zh-cn User-Agent: Mozilla/4.0 (compatible; MSIE 5.01; Windows NT 5.0) Host: %s:%d Connection: Close  
+FUN_00411520	00411a7c	0053265c	%d bytes send OK! 
+FUN_00411520	00411ab8	00532670	logfile=%s 
+FUN_00411520	00411b00	0053267c	Create file error! %s 
+FUN_00411520	00411b28	00532694	 The following is the response header:
+FUN_00411520	00411c3c	005326bc	 SSL shutdown!(%d) 
+FUN_00411520	00411da0	005326d0	 SSL Free!
+https_download_fw	00411f00	005326dc	[download]
+https_download_fw	00411f2c	00532548	SSL_flag:%d 
+https_download_fw	00411f38	00532558	webhost:%s 
+https_download_fw	00411f54	00532564	hostfile:%s 
+https_download_fw	00411f80	00532574	portnumber:%d  
+https_download_fw	00411fdc	005326e8	getaddrinfo: %s 
+https_download_fw	00412048	0053270c	 %s: %s 
+https_download_fw	00412138	00532718	[GetFWINFO] create socket IP:[%s] 
+https_download_fw	00412334	005325c0	GET /%s HTTP/1.1 Accept: */* Accept-Language: zh-cn User-Agent: Mozilla/4.0 (compatible; MSIE 5.01; Windows NT 5.0) Host: %s:%d Connection: Close  
+https_download_fw	0041234c	0053273c	request:[%s]
+https_download_fw	004123e0	0053265c	%d bytes send OK! 
+https_download_fw	0041248c	00532774	Download select timeout
+https_download_fw	00412534	0053278c	http_header:[%s] 
+https_download_fw	00412548	005327a0	Content-Length: 
+https_download_fw	004125cc	005327b4	download_len :%d 
+https_download_fw	00412610	005327c8	memory alloc error
+https_download_fw	00412620	005327dc	Can't get Content-Length end in http header
+https_download_fw	0041262c	00532808	Can't get Content-Length in http header
+https_download_fw	004127a8	0053274c	Download select error
+https_download_fw	00412870	00532764	errno(%d)=%s 
+https_download_fw	00412900	00532830	header_len = %d, content_len = %d 
+https_download_fw	0041295c	00532854	download_len = %d 
+https_download_fw	00412a9c	00532694	 The following is the response header:
+set_upgrade_size	00412b34	00532868	set_upgrade_size=[%d] 
+set_download_size	00412b70	00532880	set_download_size=[%d] 
+FUN_00412b88	00412bc8	00532898	/var/fwProgress
+FUN_00412b88	00412c24	005328a8	%s %d %d
+update_result	00412d00	00532898	/var/fwProgress
+update_result	00412d60	005328a8	%s %d %d
+increase_progress	00412e9c	00532898	/var/fwProgress
+increase_progress	00412f88	005328a8	%s %d %d
+increase_progress	0041305c	005328a8	%s %d %d
+progress_init	004130d4	005328b4	T %d 
+progress_init	004130f0	005328bc	D %d 
+progress_init	0041310c	005328c4	U %d  
+progress_init	00413138	005328cc	totalProgress != subprogress
+progress_init	00413154	005328ec	progressName null
+progress_init	00413170	00532898	/var/fwProgress
+progress_init	004131c8	005328a8	%s %d %d
+FUN_004132b0	004132f4	00532900	Failed to create key BIO
+FUN_004132b0	00413344	0053291c	Failed to create RSA
+FUN_004133cc	004134cc	0053293c	The signature doesn't match the firmware hash code.
+FUN_004133cc	004134e4	00532970	The signature check successfully.
+FUN_00413510	00413570	00532a6c	-----BEGIN PUBLIC KEY----- MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDEfQaDf1W49oIv5Rh1LRiwyosx HAqbv+qeJKk9oZO2FUBAv88E6cXTUYtlkg0BUr5H6ecthgpuzsoSOj07HwMefxTI PcWLL0XP5Ch5HGiyYTPjutGJgbBmTslnt2s4yWrOzOskUrWv71bd9AdHXwmarAiY PQypQJ42EPv/Sv1nKwIDAQAB -----END PUBLIC KEY----- 
+FUN_00413510	004135bc	0053299c	memcmp SIGN_HEADER(%s) fail! 
+FUN_00413510	004135d4	005329bc	can't get  SIGN_HEADER!
+FUN_00413510	0041360c	005329d4	Public Decrypt failed
+FUN_00413510	00413690	005329f4	get DVER_HEADER (%s)startAddr (%d), burnAddr (%d), len (%d) 
+FUN_00413510	00413708	00532a34	memcmp DVER_HEADER(%s) fail! 
+FUN_00413510	00413724	00532a54	can't get DVER_HEADER!
+Upload	00413864	00532ba0	COMPHS
+Upload	00413884	00532ba8	COMPDS
+Upload	004138a4	00532bb0	COMPCS
+Upload	004138c8	00532bb0	COMPCS
+Upload	00413934	00532bb8	%d:Invalid file format!
+Upload	00413964	00532bd0	Image len exceed max size 0x%x ! len=0x%x
+Upload	004139dc	00532bfc	Image checksum mismatched! len=0x%x, checksum=0x%x
+Upload	00413a28	00532c30	Image checksum mismatched! len=0x%x
+Upload	00413a54	00532c54	Upload successfully (size = %d bytes)! Firmware update in progress.
+Upload	00413adc	00532c98	Update successfully!
+FUN_00413bcc	00413c04	00532cb0	/dev/mtdblock0
+FUN_00413c98	00413cfc	00532cc0	Open file failed! 
+FUN_00413c98	00413db0	00532cd4	no sys signature at !
+UploadFromUsb	00413f18	00532cec	/var/tmp/usb/sda/%s
+UploadFromUsb	00413f34	00532d00	USB Upload,File Path:%s 
+UploadFromUsb	00413f5c	00532d1c	Error! Firmware is not exist in path! 
+UploadFromUsb	00413f88	00532d44	Open image file  failed! 
+UploadFromUsb	00413fa8	00532d60	  <read image from usb storage device>
+UploadFromUsb	00413ff8	00532d88	reallco failed ! 
+UploadFromUsb	00414044	00532d9c	file read error! 
+UploadFromUsb	0041405c	00532db0	file read error!
+UploadFromUsb	00414068	00532dc4	errmsg: %s 
+FUN_00414188	004141c0	00532cb0	/dev/mtdblock0
+FUN_0041426c	004142c0	00532dd0	flash write apmib failed
+FUN_00414460	004144d4	00532ba0	COMPHS
+FUN_00414460	004144fc	00532ba8	COMPDS
+FUN_00414460	00414510	00532bb0	COMPCS
+FUN_00414460	0041458c	00532dec	malloc for expFile error!!
+FUN_00414b00	00414b20	00532e84	upgrade: killing tasks...
+FUN_00414c60	00414ca8	00532ec0	/var/readMibData
+FUN_00414c60	00414cac	00532ea0	flash get DUALBANK_ENABLED > %s
+FUN_00414c60	00414cd8	00532ec0	/var/readMibData
+FUN_00414c60	00414d24	00532ed4	DUALBANK_ENABLED=
+FUN_00414d78	00414db0	00532ee8	/proc/bootbank
+FUN_00414d78	00414de8	00532ef8	Read /proc/bootbank failed! 
+FirmwareUpgrade	00414fdc	00532ba0	COMPHS
+FirmwareUpgrade	00414ff8	00532ba8	COMPDS
+FirmwareUpgrade	0041501c	00532bb0	COMPCS
+FirmwareUpgrade	00415080	00532bb8	%d:Invalid file format!
+FirmwareUpgrade	00415098	00532c98	Update successfully!
+FirmwareUpgrade	004150c4	00532bb8	%d:Invalid file format!
+FirmwareUpgrade	004150f4	00532f18	Image len exceed max size 0x%x ! len=0x%x</b><br>
+FirmwareUpgrade	00415170	00532f4c	Image checksum mismatched! len=0x%x, checksum=0x%x</b><br>
+FirmwareUpgrade	004151d0	00532f88	Image checksum mismatched! len=0x%x</b><br>
+FirmwareUpgrade	00415268	00532cb0	/dev/mtdblock0
+FirmwareUpgrade	004152a0	00532fb4	File open failed!
+FirmwareUpgrade	0041534c	00532fc8	fwLen=[ %d ] perWrite=[ %d ]  
+FirmwareUpgrade	00415408	00532fe8	write over, totalwrite=[ %d ] 
+FUN_004154f4	00415520	00533080	/octet-stream 
+FUN_004154f4	00415538	00533098	/x-ns-proxy-autoconfig 
+FUN_004154f4	00415558	005330bc	/macbinary 
+FUN_004154f4	00415578	005330d4	/x-macbinary 
+FUN_004154f4	00415598	00533008	filename=
+FUN_004156a4	00415870	00533100	s23_clnt.c
+FUN_004156a4	00415af0	00533100	s23_clnt.c
+FUN_004156a4	00415ba0	00533100	s23_clnt.c
+FUN_004156a4	00415e10	00533100	s23_clnt.c
+FUN_004156a4	00415f5c	00533100	s23_clnt.c
+FUN_004156a4	00415fb8	00533100	s23_clnt.c
+FUN_004156a4	00416030	00533100	s23_clnt.c
+FUN_004156a4	00416250	00533100	s23_clnt.c
+FUN_004156a4	0041635c	00533100	s23_clnt.c
+FUN_004156a4	0041652c	00533100	s23_clnt.c
+FUN_004156a4	0041654c	00533100	s23_clnt.c
+FUN_004156a4	00416564	0053310c	s->version <= TLS_MAX_VERSION
+FUN_004156a4	0041663c	00533100	s23_clnt.c
+FUN_004156a4	0041674c	00533100	s23_clnt.c
+FUN_004156a4	004167bc	00533100	s23_clnt.c

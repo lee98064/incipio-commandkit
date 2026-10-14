@@ -1,0 +1,56 @@
+# getPid @ 004138f4
+004138f4  addiu sp,sp,-0x128
+004138f8  sw ra,0x124(sp)
+004138fc  sw s1,0x120(sp)
+00413900  sw s0,0x11c(sp)
+00413904  lui gp,0x47
+00413908  addiu gp,gp,0x2630
+0041390c  sw gp,0x10(sp)
+00413910  lw t9,-0x7e8c(gp)
+00413914  addiu a1,sp,0x80
+00413918  jalr t9
+0041391c  _move s0,a0
+00413920  lw gp,0x10(sp)
+00413924  bltz v0,0x004139b8
+00413928  _li v1,-0x1
+0041392c  lw t9,-0x7d9c(gp)
+00413930  lui a1,0x45
+00413934  move a0,s0
+00413938  jalr t9
+0041393c  _addiu a1,a1,0x7484
+00413940  lw gp,0x10(sp)
+00413944  bne v0,zero,0x0041396c
+00413948  _move s0,v0
+0041394c  lw v0,-0x7e40(gp)
+00413950  lw t9,-0x7f4c(gp)
+00413954  lui a0,0x45
+00413958  lw a1,0x0(v0)
+0041395c  jalr t9
+00413960  _addiu a0,a0,-0x3770
+00413964  b 0x004139b8
+00413968  _li v1,-0x1
+0041396c  lw t9,-0x7ab8(gp)
+00413970  addiu s1,sp,0x18
+00413974  li a1,0x64
+00413978  move a2,v0
+0041397c  jalr t9
+00413980  _move a0,s1
+00413984  lw gp,0x10(sp)
+00413988  nop
+0041398c  lw t9,-0x7dd4(gp)
+00413990  nop
+00413994  jalr t9
+00413998  _move a0,s0
+0041399c  lw gp,0x10(sp)
+004139a0  nop
+004139a4  lw t9,-0x7ef4(gp)
+004139a8  nop
+004139ac  jalr t9
+004139b0  _move a0,s1
+004139b4  move v1,v0
+004139b8  lw ra,0x124(sp)
+004139bc  lw s1,0x120(sp)
+004139c0  lw s0,0x11c(sp)
+004139c4  move v0,v1
+004139c8  jr ra
+004139cc  _addiu sp,sp,0x128

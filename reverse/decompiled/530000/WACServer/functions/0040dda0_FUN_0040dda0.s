@@ -1,0 +1,29 @@
+# FUN_0040dda0 @ 0040dda0
+0040dda0  clear v0
+0040dda4  li a3,0xa
+0040dda8  lw v1,0x4(a1)
+0040ddac  lw a2,0x4(a0)
+0040ddb0  lw t0,0x0(a1)
+0040ddb4  lw t1,0x0(a0)
+0040ddb8  addu v1,a2,v1
+0040ddbc  sltu a2,v1,a2
+0040ddc0  addu t0,t1,t0
+0040ddc4  addu a2,a2,t0
+0040ddc8  sw a2,0x0(a0)
+0040ddcc  sw v1,0x4(a0)
+0040ddd0  lw a2,0xc(a0)
+0040ddd4  lw v1,0xc(a1)
+0040ddd8  lw t0,0x8(a1)
+0040dddc  lw t1,0x8(a0)
+0040dde0  addu v1,a2,v1
+0040dde4  sltu a2,v1,a2
+0040dde8  addu t0,t1,t0
+0040ddec  addu a2,a2,t0
+0040ddf0  addiu v0,v0,0x2
+0040ddf4  sw a2,0x8(a0)
+0040ddf8  sw v1,0xc(a0)
+0040ddfc  addiu a1,a1,0x10
+0040de00  bne v0,a3,0x0040dda8
+0040de04  _addiu a0,a0,0x10
+0040de08  jr ra
+0040de0c  _nop

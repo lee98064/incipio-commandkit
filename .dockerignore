@@ -1,0 +1,9 @@
+**/deps
+**/toolchains
+**/artifacts
+**/evidence
+private
+**/private
+**/__pycache__
+reverse/decompiled
+reverse/symbols

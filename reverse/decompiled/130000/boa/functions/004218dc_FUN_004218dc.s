@@ -1,0 +1,58 @@
+# FUN_004218dc @ 004218dc
+004218dc  addiu sp,sp,-0x38
+004218e0  sw ra,0x34(sp)
+004218e4  sw s5,0x30(sp)
+004218e8  sw s4,0x2c(sp)
+004218ec  sw s3,0x28(sp)
+004218f0  sw s2,0x24(sp)
+004218f4  sw s1,0x20(sp)
+004218f8  sw s0,0x1c(sp)
+004218fc  lui gp,0x47
+00421900  addiu gp,gp,0x2630
+00421904  sw gp,0x10(sp)
+00421908  move s1,a1
+0042190c  move s5,a0
+00421910  sb zero,0x0(a1)
+00421914  addiu s2,a2,-0x1
+00421918  clear s0
+0042191c  li s4,-0x1
+00421920  li s3,0xa
+00421924  lw t9,-0x7a18(gp)
+00421928  addu a1,s1,s0
+0042192c  move a0,s5
+00421930  li a2,0x1
+00421934  jalr t9
+00421938  _clear a3
+0042193c  lw gp,0x10(sp)
+00421940  bne v0,s4,0x00421960
+00421944  _addiu s2,s2,-0x1
+00421948  lw t9,-0x7af4(gp)
+0042194c  lui a0,0x45
+00421950  jalr t9
+00421954  _addiu a0,a0,0x998
+00421958  b 0x00421998
+0042195c  _li s0,-0x1
+00421960  beq v0,zero,0x00421998
+00421964  _nop
+00421968  addu s0,s0,v0
+0042196c  addu v0,s1,s0
+00421970  lb v0,-0x1(v0)
+00421974  nop
+00421978  beq v0,s3,0x00421988
+0042197c  _nop
+00421980  bne s2,zero,0x00421924
+00421984  _nop
+00421988  addu s1,s1,s0
+0042198c  slti v0,s0,0x2
+00421990  sb zero,0x0(s1)
+00421994  movn s0,zero,v0
+00421998  move v0,s0
+0042199c  lw ra,0x34(sp)
+004219a0  lw s5,0x30(sp)
+004219a4  lw s4,0x2c(sp)
+004219a8  lw s3,0x28(sp)
+004219ac  lw s2,0x24(sp)
+004219b0  lw s1,0x20(sp)
+004219b4  lw s0,0x1c(sp)
+004219b8  jr ra
+004219bc  _addiu sp,sp,0x38

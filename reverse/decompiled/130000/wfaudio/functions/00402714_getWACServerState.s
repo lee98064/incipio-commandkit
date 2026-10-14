@@ -1,0 +1,95 @@
+# getWACServerState @ 00402714
+00402714  addiu sp,sp,-0xb0
+00402718  sw ra,0xac(sp)
+0040271c  sw s1,0xa8(sp)
+00402720  sw s0,0xa4(sp)
+00402724  lui gp,0x43
+00402728  addiu gp,gp,-0x4f70
+0040272c  sw gp,0x10(sp)
+00402730  lw t9,-0x7ee8(gp)
+00402734  li v0,-0x1
+00402738  addiu s1,sp,0x1c
+0040273c  clear a1
+00402740  li a2,0x80
+00402744  move a0,s1
+00402748  jalr t9
+0040274c  _sw v0,0x18(sp)
+00402750  lw gp,0x10(sp)
+00402754  nop
+00402758  lw t9,-0x7f64(gp)
+0040275c  lw a0,-0x7e58(gp)
+00402760  jalr t9
+00402764  _nop
+00402768  lw gp,0x10(sp)
+0040276c  lui v0,0x42
+00402770  lw s0,0x33e0(v0)
+00402774  lw t9,-0x7f18(gp)
+00402778  lw a0,-0x7e58(gp)
+0040277c  jalr t9
+00402780  _nop
+00402784  lw gp,0x10(sp)
+00402788  beq s0,zero,0x00402874
+0040278c  _lui s0,0x41
+00402790  lw t9,-0x7f58(gp)
+00402794  addiu a0,s0,0x1e8
+00402798  jalr t9
+0040279c  _li a1,0x4
+004027a0  lw gp,0x10(sp)
+004027a4  bne v0,zero,0x00402874
+004027a8  _lui a1,0x41
+004027ac  lw t9,-0x7ee0(gp)
+004027b0  addiu a0,s0,0x1e8
+004027b4  jalr t9
+004027b8  _addiu a1,a1,0x1d04
+004027bc  lw gp,0x10(sp)
+004027c0  beq v0,zero,0x00402874
+004027c4  _move s0,v0
+004027c8  lw t9,-0x7f80(gp)
+004027cc  nop
+004027d0  jalr t9
+004027d4  _move a0,v0
+004027d8  lw gp,0x10(sp)
+004027dc  move a0,v0
+004027e0  lw t9,-0x7e88(gp)
+004027e4  nop
+004027e8  jalr t9
+004027ec  _li a1,0x2
+004027f0  lw gp,0x10(sp)
+004027f4  bne v0,zero,0x00402864
+004027f8  _move a0,s1
+004027fc  lw t9,-0x7df4(gp)
+00402800  li a1,0x80
+00402804  jalr t9
+00402808  _move a2,s0
+0040280c  lw gp,0x10(sp)
+00402810  beq v0,zero,0x00402834
+00402814  _lui a1,0x41
+00402818  lw t9,-0x7ec4(gp)
+0040281c  move a0,s1
+00402820  addiu a1,a1,0x1514
+00402824  jalr t9
+00402828  _addiu a2,sp,0x18
+0040282c  lw gp,0x10(sp)
+00402830  nop
+00402834  lw t9,-0x7f80(gp)
+00402838  nop
+0040283c  jalr t9
+00402840  _move a0,s0
+00402844  lw gp,0x10(sp)
+00402848  move a0,v0
+0040284c  lw t9,-0x7e88(gp)
+00402850  nop
+00402854  jalr t9
+00402858  _li a1,0x8
+0040285c  lw gp,0x10(sp)
+00402860  nop
+00402864  lw t9,-0x7ef8(gp)
+00402868  nop
+0040286c  jalr t9
+00402870  _move a0,s0
+00402874  lw v0,0x18(sp)
+00402878  lw ra,0xac(sp)
+0040287c  lw s1,0xa8(sp)
+00402880  lw s0,0xa4(sp)
+00402884  jr ra
+00402888  _addiu sp,sp,0xb0

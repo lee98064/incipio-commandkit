@@ -1,0 +1,13 @@
+# FUN_0043853c @ 0043853c
+0043853c  addiu sp,sp,-0x8
+00438540  sw s8,0x4(sp)
+00438544  move s8,sp
+00438548  sw a0,0x8(s8)
+0043854c  lw v0,0x8(s8)
+00438550  nop
+00438554  lw v0,0x1c(v0)
+00438558  move sp,s8
+0043855c  lw s8,0x4(sp)
+00438560  addiu sp,sp,0x8
+00438564  jr ra
+00438568  _nop

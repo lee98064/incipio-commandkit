@@ -1,0 +1,29 @@
+# FUN_80403698 @ 80403698
+80403698  lui v0,0x8041
+8040369c  lw a2,-0x2d0(v0)
+804036a0  lui v0,0x8041
+804036a4  lw t0,-0x2fc(v0)
+804036a8  lui v0,0x8041
+804036ac  lw a3,-0x2ec(v0)
+804036b0  lui v0,0x8041
+804036b4  lw v0,-0x2cc(v0)
+804036b8  j 0x804036ec
+804036bc  _clear t1
+804036c0  lw a0,0x0(v1)
+804036c4  nop
+804036c8  andi a0,a0,0x1
+804036cc  beq a0,zero,0x804036e0
+804036d0  _addiu v0,v0,0x1
+804036d4  lui v0,0x8041
+804036d8  jr ra
+804036dc  _sw a1,-0x2cc(v0)
+804036e0  bne a3,v0,0x804036f4
+804036e4  _addiu v1,v1,0x4
+804036e8  move v0,t1
+804036ec  sll v1,v0,0x2
+804036f0  addu v1,t0,v1
+804036f4  bne a2,v0,0x804036c0
+804036f8  _move a1,v0
+804036fc  lui v0,0x8041
+80403700  jr ra
+80403704  _sw a1,-0x2cc(v0)

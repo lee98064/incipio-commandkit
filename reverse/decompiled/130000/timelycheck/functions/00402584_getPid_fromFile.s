@@ -1,0 +1,43 @@
+# getPid_fromFile @ 00402584
+00402584  addiu sp,sp,-0x30
+00402588  sw ra,0x2c(sp)
+0040258c  sw s1,0x28(sp)
+00402590  sw s0,0x24(sp)
+00402594  lui gp,0x43
+00402598  addiu gp,gp,0x3060
+0040259c  sw gp,0x10(sp)
+004025a0  lw t9,-0x7f48(gp)
+004025a4  li v0,-0x1
+004025a8  lui a1,0x42
+004025ac  sw v0,0x18(sp)
+004025b0  addiu a1,a1,-0x780c
+004025b4  jalr t9
+004025b8  _move s1,a0
+004025bc  lw gp,0x10(sp)
+004025c0  bne v0,zero,0x004025e4
+004025c4  _move s0,v0
+004025c8  lw t9,-0x7e70(gp)
+004025cc  lui a0,0x41
+004025d0  addiu a0,a0,0x7a04
+004025d4  jalr t9
+004025d8  _move a1,s1
+004025dc  b 0x00402618
+004025e0  _li v0,-0x1
+004025e4  lw t9,-0x7e8c(gp)
+004025e8  lui a1,0x41
+004025ec  addiu a1,a1,0x7aa4
+004025f0  move a0,v0
+004025f4  jalr t9
+004025f8  _addiu a2,sp,0x18
+004025fc  lw gp,0x10(sp)
+00402600  nop
+00402604  lw t9,-0x7f54(gp)
+00402608  nop
+0040260c  jalr t9
+00402610  _move a0,s0
+00402614  lw v0,0x18(sp)
+00402618  lw ra,0x2c(sp)
+0040261c  lw s1,0x28(sp)
+00402620  lw s0,0x24(sp)
+00402624  jr ra
+00402628  _addiu sp,sp,0x30

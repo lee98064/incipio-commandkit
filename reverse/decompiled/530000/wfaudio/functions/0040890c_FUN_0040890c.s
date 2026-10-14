@@ -1,0 +1,26 @@
+# FUN_0040890c @ 0040890c
+0040890c  addiu sp,sp,-0x30
+00408910  sw ra,0x2c(sp)
+00408914  sw s1,0x28(sp)
+00408918  sw s0,0x24(sp)
+0040891c  lui gp,0x43
+00408920  addiu gp,gp,-0x4c90
+00408924  sw gp,0x10(sp)
+00408928  lw t9,-0x7e94(gp)
+0040892c  move s1,a0
+00408930  move s0,a2
+00408934  move a0,a3
+00408938  sw a3,0x18(sp)
+0040893c  jalr t9
+00408940  _li a2,0x10
+00408944  lw gp,0x10(sp)
+00408948  lw a3,0x18(sp)
+0040894c  move a0,s1
+00408950  move a1,s0
+00408954  lw t9,-0x7da0(gp)
+00408958  lw ra,0x2c(sp)
+0040895c  lw s1,0x28(sp)
+00408960  lw s0,0x24(sp)
+00408964  move a2,a3
+00408968  jr t9
+0040896c  _addiu sp,sp,0x30

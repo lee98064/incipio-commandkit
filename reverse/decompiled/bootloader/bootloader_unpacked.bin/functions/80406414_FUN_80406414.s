@@ -1,0 +1,17 @@
+# FUN_80406414 @ 80406414
+80406414  addiu sp,sp,-0x18
+80406418  sw ra,0x14(sp)
+8040641c  jal 0x804063f0
+80406420  _nop
+80406424  mtc0 zero,XContext
+80406428  nop
+8040642c  li t0,0x2
+80406430  mtc0 t0,XContext
+80406434  nop
+80406438  nop
+8040643c  mtc0 zero,XContext
+80406440  nop
+80406444  lw ra,0x14(sp)
+80406448  nop
+8040644c  jr ra
+80406450  _addiu sp,sp,0x18

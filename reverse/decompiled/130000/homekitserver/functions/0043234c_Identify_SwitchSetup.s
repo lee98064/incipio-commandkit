@@ -1,0 +1,80 @@
+# Identify_SwitchSetup @ 0043234c
+0043234c  addiu sp,sp,-0x28
+00432350  sw ra,0x24(sp)
+00432354  sw s0,0x20(sp)
+00432358  lui gp,0x62
+0043235c  addiu gp,gp,-0x6b80
+00432360  sw gp,0x18(sp)
+00432364  sll a0,a0,0x18
+00432368  sra a0,a0,0x18
+0043236c  beq a0,zero,0x004323c8
+00432370  _lui a2,0x5b
+00432374  li v1,0x1
+00432378  lw v0,-0x6b54(gp)
+0043237c  lw t9,-0x73b4(gp)
+00432380  bne a0,v1,0x00432454
+00432384  _lui a3,0x5b
+00432388  lw a0,0x0(v0)
+0043238c  lui a1,0x5b
+00432390  li v0,0x41c
+00432394  sw v0,0x10(sp)
+00432398  addiu a1,a1,-0x2b88
+0043239c  addiu a2,a2,-0x2b54
+004323a0  jalr t9
+004323a4  _addiu a3,a3,-0x26c0
+004323a8  lw gp,0x18(sp)
+004323ac  nop
+004323b0  lw t9,-0x66d4(gp)
+004323b4  nop
+004323b8  jalr t9
+004323bc  _nop
+004323c0  b 0x0043244c
+004323c4  _nop
+004323c8  lw v0,-0x6b54(gp)
+004323cc  lw t9,-0x73b4(gp)
+004323d0  lw a0,0x0(v0)
+004323d4  lui a3,0x5b
+004323d8  li v0,0x422
+004323dc  lui a1,0x5b
+004323e0  addiu a2,a2,-0x2b54
+004323e4  addiu a3,a3,-0x26c0
+004323e8  addiu a1,a1,-0x2aec
+004323ec  jalr t9
+004323f0  _sw v0,0x10(sp)
+004323f4  lw gp,0x18(sp)
+004323f8  lui a0,0x5b
+004323fc  lui a1,0x5d
+00432400  lw t9,-0x69c0(gp)
+00432404  addiu a0,a0,-0x2bac
+00432408  jalr t9
+0043240c  _addiu a1,a1,-0x51f0
+00432410  lw gp,0x18(sp)
+00432414  lui a1,0x5b
+00432418  move a0,v0
+0043241c  lw t9,-0x73b4(gp)
+00432420  addiu a1,a1,-0x2b94
+00432424  clear a2
+00432428  li a3,0x1
+0043242c  jalr t9
+00432430  _move s0,v0
+00432434  lw gp,0x18(sp)
+00432438  nop
+0043243c  lw t9,-0x68e0(gp)
+00432440  nop
+00432444  jalr t9
+00432448  _move a0,s0
+0043244c  b 0x00432478
+00432450  _clear v0
+00432454  lw a0,0x0(v0)
+00432458  lui a1,0x5b
+0043245c  li v0,0x42b
+00432460  sw v0,0x10(sp)
+00432464  addiu a1,a1,-0x2ab8
+00432468  addiu a2,a2,-0x2b54
+0043246c  jalr t9
+00432470  _addiu a3,a3,-0x26c0
+00432474  li v0,-0x1
+00432478  lw ra,0x24(sp)
+0043247c  lw s0,0x20(sp)
+00432480  jr ra
+00432484  _addiu sp,sp,0x28

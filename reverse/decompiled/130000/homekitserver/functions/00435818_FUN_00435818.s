@@ -1,0 +1,38 @@
+# FUN_00435818 @ 00435818
+00435818  lui gp,0x1e
+0043581c  addiu gp,gp,0x3c68
+00435820  addu gp,gp,t9
+00435824  addiu sp,sp,-0x20
+00435828  sw ra,0x1c(sp)
+0043582c  sw s8,0x18(sp)
+00435830  move s8,sp
+00435834  sw gp,0x10(sp)
+00435838  sw a0,0x20(s8)
+0043583c  lw v0,0x20(s8)
+00435840  nop
+00435844  lw v0,0x0(v0)
+00435848  nop
+0043584c  move a0,v0
+00435850  lw v0,-0x7aa4(gp)
+00435854  nop
+00435858  move t9,v0
+0043585c  jalr t9
+00435860  _nop
+00435864  lw gp,0x10(s8)
+00435868  lw v0,0x20(s8)
+0043586c  nop
+00435870  lw v0,0x4(v0)
+00435874  nop
+00435878  move a0,v0
+0043587c  lw v0,-0x7dec(gp)
+00435880  nop
+00435884  move t9,v0
+00435888  jalr t9
+0043588c  _nop
+00435890  lw gp,0x10(s8)
+00435894  move sp,s8
+00435898  lw ra,0x1c(sp)
+0043589c  lw s8,0x18(sp)
+004358a0  addiu sp,sp,0x20
+004358a4  jr ra
+004358a8  _nop

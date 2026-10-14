@@ -1,0 +1,42 @@
+# bt_saveTorrentfile @ 00421090
+00421090  addiu sp,sp,-0x30
+00421094  sw ra,0x2c(sp)
+00421098  sw s1,0x28(sp)
+0042109c  sw s0,0x24(sp)
+004210a0  lui gp,0x47
+004210a4  addiu gp,gp,0x2630
+004210a8  sw gp,0x10(sp)
+004210ac  lw t9,-0x7d9c(gp)
+004210b0  move s1,a1
+004210b4  lui a1,0x45
+004210b8  sw a2,0x18(sp)
+004210bc  jalr t9
+004210c0  _addiu a1,a1,0x1ff0
+004210c4  lw gp,0x10(sp)
+004210c8  lw a2,0x18(sp)
+004210cc  bne v0,zero,0x004210ec
+004210d0  _move s0,v0
+004210d4  lw t9,-0x7af4(gp)
+004210d8  lui a0,0x45
+004210dc  jalr t9
+004210e0  _addiu a0,a0,0x96c
+004210e4  b 0x00421120
+004210e8  _li v0,-0x1
+004210ec  lw t9,-0x7e98(gp)
+004210f0  move a1,a2
+004210f4  move a0,s1
+004210f8  li a2,0x1
+004210fc  jalr t9
+00421100  _move a3,v0
+00421104  lw gp,0x10(sp)
+00421108  nop
+0042110c  lw t9,-0x7dd4(gp)
+00421110  nop
+00421114  jalr t9
+00421118  _move a0,s0
+0042111c  clear v0
+00421120  lw ra,0x2c(sp)
+00421124  lw s1,0x28(sp)
+00421128  lw s0,0x24(sp)
+0042112c  jr ra
+00421130  _addiu sp,sp,0x30

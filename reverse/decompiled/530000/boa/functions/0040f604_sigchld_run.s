@@ -1,0 +1,50 @@
+# sigchld_run @ 0040f604
+0040f604  addiu sp,sp,-0x40
+0040f608  sw ra,0x3c(sp)
+0040f60c  sw s3,0x38(sp)
+0040f610  sw s2,0x34(sp)
+0040f614  sw s1,0x30(sp)
+0040f618  sw s0,0x2c(sp)
+0040f61c  lui gp,0x47
+0040f620  addiu gp,gp,0x2630
+0040f624  sw gp,0x10(sp)
+0040f628  lw v0,-0x7c74(gp)
+0040f62c  lui s3,0x45
+0040f630  addiu s3,s3,-0x4578
+0040f634  sw zero,0x0(v0)
+0040f638  lw s1,-0x7dc8(gp)
+0040f63c  lw s0,-0x7e40(gp)
+0040f640  b 0x0040f68c
+0040f644  _addiu s2,sp,0x18
+0040f648  lw v0,0x0(s1)
+0040f64c  nop
+0040f650  beq v0,zero,0x0040f68c
+0040f654  _nop
+0040f658  lw t9,-0x7de4(gp)
+0040f65c  lw a0,-0x7ac8(gp)
+0040f660  jalr t9
+0040f664  _sw a2,0x20(sp)
+0040f668  lw gp,0x10(sp)
+0040f66c  lw a0,0x0(s0)
+0040f670  lw a3,0x18(sp)
+0040f674  lw t9,-0x7c44(gp)
+0040f678  lw a2,0x20(sp)
+0040f67c  jalr t9
+0040f680  _move a1,s3
+0040f684  lw gp,0x10(sp)
+0040f688  nop
+0040f68c  lw t9,-0x79e8(gp)
+0040f690  li a2,0x1
+0040f694  move a1,s2
+0040f698  jalr t9
+0040f69c  _li a0,-0x1
+0040f6a0  lw gp,0x10(sp)
+0040f6a4  bgtz v0,0x0040f648
+0040f6a8  _move a2,v0
+0040f6ac  lw ra,0x3c(sp)
+0040f6b0  lw s3,0x38(sp)
+0040f6b4  lw s2,0x34(sp)
+0040f6b8  lw s1,0x30(sp)
+0040f6bc  lw s0,0x2c(sp)
+0040f6c0  jr ra
+0040f6c4  _addiu sp,sp,0x40

@@ -1,0 +1,20 @@
+# FUN_80407b20 @ 80407b20
+80407b20  lui v0,0xb800
+80407b24  ori v1,v0,0x40
+80407b28  lw a1,0x0(v1)
+80407b2c  li a0,-0x8
+80407b30  and a0,a1,a0
+80407b34  ori a0,a0,0x6
+80407b38  sw a0,0x0(v1)
+80407b3c  ori a0,v0,0x3500
+80407b40  lw a1,0x0(a0)
+80407b44  li v1,-0x21
+80407b48  and a1,a1,v1
+80407b4c  sw a1,0x0(a0)
+80407b50  ori v0,v0,0x3508
+80407b54  lw a0,0x0(v0)
+80407b58  nop
+80407b5c  and v1,a0,v1
+80407b60  sw v1,0x0(v0)
+80407b64  jr ra
+80407b68  _nop

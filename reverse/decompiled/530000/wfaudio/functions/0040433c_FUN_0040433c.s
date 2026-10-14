@@ -1,0 +1,20 @@
+# FUN_0040433c @ 0040433c
+0040433c  addiu sp,sp,-0x20
+00404340  sw ra,0x1c(sp)
+00404344  sw s0,0x18(sp)
+00404348  lui gp,0x43
+0040434c  addiu gp,gp,-0x4c90
+00404350  sw gp,0x10(sp)
+00404354  lw t9,-0x7e88(gp)
+00404358  lui s0,0x40
+0040435c  addiu a1,s0,0x1bdc
+00404360  jalr t9
+00404364  _li a0,0x2
+00404368  lw gp,0x10(sp)
+0040436c  addiu a1,s0,0x1bdc
+00404370  lw ra,0x1c(sp)
+00404374  lw t9,-0x7e88(gp)
+00404378  lw s0,0x18(sp)
+0040437c  li a0,0xf
+00404380  jr t9
+00404384  _addiu sp,sp,0x20

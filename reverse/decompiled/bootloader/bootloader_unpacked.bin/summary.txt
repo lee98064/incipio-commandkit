@@ -1,0 +1,6 @@
+program=bootloader_unpacked.bin
+language=MIPS:BE:32:default
+compiler=default
+image_base=00000000
+attempted=193
+succeeded=193

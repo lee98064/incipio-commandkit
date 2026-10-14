@@ -1,0 +1,29 @@
+# FUN_80407b6c @ 80407b6c
+80407b6c  lui v0,0xb800
+80407b70  ori v1,v0,0x200c
+80407b74  lui a1,0x300
+80407b78  sw a1,0x0(v1)
+80407b7c  ori a2,v0,0x2008
+80407b80  lui a3,0xc700
+80407b84  sw a3,0x0(a2)
+80407b88  ori a2,v0,0x2004
+80407b8c  sw zero,0x0(a2)
+80407b90  lui a3,0x1b4e
+80407b94  ori a3,a3,0x81b5
+80407b98  multu a0,a3
+80407b9c  mfhi a0
+80407ba0  srl a0,a0,0x10
+80407ba4  addiu a0,a0,-0x1
+80407ba8  lui a3,0xa100
+80407bac  sw a0,0x0(a3)
+80407bb0  lui a3,0x8300
+80407bb4  sw a3,0x0(v1)
+80407bb8  sll a3,a0,0x18
+80407bbc  ori v0,v0,0x2000
+80407bc0  sw a3,0x0(v0)
+80407bc4  srl a0,a0,0x8
+80407bc8  sll a0,a0,0x18
+80407bcc  sw a0,0x0(a2)
+80407bd0  sw a1,0x0(v1)
+80407bd4  jr ra
+80407bd8  _nop

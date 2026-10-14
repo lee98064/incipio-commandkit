@@ -1,0 +1,45 @@
+# FUN_004067ec @ 004067ec
+004067ec  addiu sp,sp,-0x28
+004067f0  sw ra,0x24(sp)
+004067f4  sw s2,0x20(sp)
+004067f8  sw s1,0x1c(sp)
+004067fc  sw s0,0x18(sp)
+00406800  lui gp,0x47
+00406804  addiu gp,gp,0x2630
+00406808  sw gp,0x10(sp)
+0040680c  lw v0,-0x7a3c(gp)
+00406810  nop
+00406814  lw v0,0x0(v0)
+00406818  nop
+0040681c  andi v0,v0,0x100
+00406820  beq v0,zero,0x00406840
+00406824  _move s1,a0
+00406828  lw t9,-0x7a08(gp)
+0040682c  lui a0,0x45
+00406830  addiu a0,a0,-0x6494
+00406834  jalr t9
+00406838  _move a1,s1
+0040683c  lw gp,0x10(sp)
+00406840  lui s2,0x47
+00406844  lui s0,0x47
+00406848  addiu s2,s2,-0x7d20
+0040684c  b 0x00406870
+00406850  _addiu s0,s0,-0x7fa0
+00406854  lw a1,0x0(s0)
+00406858  jalr t9
+0040685c  _nop
+00406860  lw gp,0x10(sp)
+00406864  beq v0,zero,0x00406884
+00406868  _move v0,s0
+0040686c  addiu s0,s0,0x10
+00406870  lw t9,-0x7d3c(gp)
+00406874  bne s0,s2,0x00406854
+00406878  _move a0,s1
+0040687c  clear s0
+00406880  move v0,s0
+00406884  lw ra,0x24(sp)
+00406888  lw s2,0x20(sp)
+0040688c  lw s1,0x1c(sp)
+00406890  lw s0,0x18(sp)
+00406894  jr ra
+00406898  _addiu sp,sp,0x28

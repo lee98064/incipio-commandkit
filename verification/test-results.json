@@ -1,0 +1,175 @@
+{
+  "status": "pass",
+  "date": "2026-10-14",
+  "timezone": "Asia/Taipei",
+  "physical_SPI_access": false,
+  "public_firmware_physical_boot_RF": "pending",
+  "tests": {
+    "identity": {
+      "status": "pass",
+      "binary_sha256": "5079446bc4697bb81092d171717fe6402cffba0971c77538ac8075400d0fb937",
+      "checks": [
+        "different MACs produce different PIN/manual/QR/salt/discriminator/AP names",
+        "same MAC and key produce identical data after fresh container reboot",
+        "actual rendered QR independently decoded by Apple Vision",
+        "both QR payload and 11 digit manual match pinned official Matter SDK",
+        "open AP has no password/security and per-device SSID",
+        "generated credentials mode 0600, missing interface/key fail without shared fallback"
+      ],
+      "environment": "actual MIPS ELF in qemu-user; simulated container MACs; no outlet or Flash access"
+    },
+    "portal": {
+      "status": "pass",
+      "checks": [
+        "mobile page and per-boot CSRF",
+        "initial page shows SDK manual code and exact device Matter QR SVG before Wi-Fi submit",
+        "captive HTTP probe redirect",
+        "unauthenticated setup rejected",
+        "HMAC state and replay rejection",
+        "DNS A synthesis and AAAA NODATA",
+        "CSRF/origin/SSID/password/control-byte validation",
+        "scan start/poll/cached results and open network metadata",
+        "null origin with valid token and MIME charset accepted; evil origins and duplicate headers rejected",
+        "same-origin local JavaScript and textContent for network labels",
+        "Wi-Fi submission confirmation retains same manual code and QR",
+        "duplicate guard and fixture transition"
+      ],
+      "binary_sha256": "5b5dee66061b2860906bfec429eefd089b5196f6ad14473815838fb3fb5ac954",
+      "environment": "actual MIPS ELF under qemu-user; fixture backend; no RF/Flash"
+    },
+    "commissioning": {
+      "status": "pass",
+      "environment": "MIPS Malta/24Kc Linux 4.19 VM, 64 MiB RAM, 8 MiB daemon AS; simulated serial MCU",
+      "binary_sha256": "5079446bc4697bb81092d171717fe6402cffba0971c77538ac8075400d0fb937",
+      "original_hardware_test": false,
+      "full_commissioning": true,
+      "checks": [
+        "cold boot sends OFF and awaits MCU confirmation",
+        "full development commissioning, default attestation verifier",
+        "10 encrypted On/Off/Toggle commands including duplicates confirmed through kernel TTY",
+        "unsolicited physical-button frame reflected in Matter attribute",
+        "MCU timeout returns failure; subsequent command recovers",
+        "Identify command accepted by integrated LED delegate"
+      ],
+      "limitation": "Simulated MCU confirmations; actual outlet switching, Wi-Fi, Apple/HA and power-on behavior remain unverified"
+    },
+    "vendor_mib": {
+      "security_readback": [
+        [
+          "0",
+          "1"
+        ],
+        [
+          "4",
+          "0"
+        ],
+        [
+          "0",
+          "1"
+        ],
+        [
+          "0",
+          "1"
+        ]
+      ],
+      "status": "pass",
+      "backend": "new helper calling the unmodified vendor libapmib/libc in full-system MIPS Linux 4.19",
+      "helper_sha256": "350402de512d6e124346f24a39695b0fdb2b3b4ea06ec0c5bbaf1e852f0ab2dd"
+    },
+    "exec_vm": {
+      "status": "pass",
+      "environment": "QEMU Malta / 24Kc / Linux 4.19 / 64 MiB; not RTL8196E hardware",
+      "checks": [
+        "all three original samples print expected tokens and exit 0 in full MIPS VM",
+        "SIGILL captured with PC, cause and original instruction",
+        "output flood capped and drained",
+        "timeout captured without losing diagnostic service",
+        "modified sample hash rejected; restored original executes again",
+        "diagnostic authentication, bad proof and replay rejection",
+        "bounded report includes every test result without the key",
+        "shipping diagnostic client downloads report and ZIP from full MIPS VM",
+        "test-specific Wi-Fi page and scan request work in MIPS VM"
+      ],
+      "report_bytes": 43438,
+      "hardware_access": false,
+      "services": {
+        "exec-test-runner": "7433da986fa5ab813a11e04f9e3f5fe5babb736eb76bc3e689f4a1153c76e823",
+        "exec-diag": "b9e64135afb90d77f5038f70d9a888c9c0af72f0d4bf5c1f33ab9df0b9d06a7d",
+        "ck-setupd": "eed41cbdd055676430d1507c23e3845b31343a28b45ca9e995cd41e895f022b8"
+      }
+    },
+    "dummy_flashrom": {
+      "status": "pass",
+      "backend": "flashrom v1.8.0 dummy, emulated 8 MiB Macronix SPI",
+      "checks": [
+        "actual layout/include write",
+        "independent full readback equals target",
+        "all protected bytes unchanged",
+        "actual region restore equals original"
+      ],
+      "write_range": [
+        1245184,
+        3932160
+      ],
+      "physical_device_access": false,
+      "limitation": "dummy erase/program model is not GD25Q64 hardware or electrical validation"
+    },
+    "deployment": {
+      "status": "pass",
+      "cases": 11,
+      "environment": "synthetic complete flash + actual release rootfs; no hardware"
+    },
+    "crypto_vectors": {
+      "status": "pass",
+      "environment": "newly rebuilt matter-diag in qemu-mips"
+    },
+    "relay_engine": {
+      "status": "pass",
+      "checks": 559,
+      "commands": 100,
+      "environment": "native unit test of current C++ source"
+    },
+    "independent_build": {
+      "status": "pass",
+      "dockerfile": "Dockerfile",
+      "cached_third_party_versions_locked": true,
+      "historical_project_sources_used": false,
+      "sdk_binary_sha256": "5079446bc4697bb81092d171717fe6402cffba0971c77538ac8075400d0fb937",
+      "note": "rebuilt using independent copies of pinned dependency/compiler caches; not a fresh full GCC toolchain rebuild"
+    },
+    "reverse_reproduction": {
+      "status": "pass",
+      "steps": [
+        "firmware carving",
+        "rootfs extraction",
+        "ELF imports and symbols",
+        "boot/checksum inspection",
+        "table extraction"
+      ],
+      "fresh_ghidra_decompilation": false,
+      "input_unchanged": true,
+      "physical_device_access": false
+    },
+    "wifi_scan": {
+      "status": "pass",
+      "checks": [
+        "BE 172-byte records",
+        "duplicate/signal/security classification",
+        "UTF-8 and JSON escaping",
+        "all generic setup AP suffixes omitted",
+        "hidden/invalid/5GHz/ad-hoc records omitted",
+        "malformed buffers fail closed",
+        "empty and 64-network bounds"
+      ],
+      "binary_sha256": "e9f77c51d6424501c8703351b8f23f181fb471ed652256f386ef623746975721",
+      "environment": "actual MIPS ELF, qemu-user, synthetic site-survey buffers",
+      "hardware_RF_scan": false
+    },
+    "exact_original_credential_scan": {
+      "status": "pass",
+      "scope": "public source and every decompressed rootfs regular file",
+      "original_diag_device_keys_pin_salt_ssid_password_checked": true,
+      "private_values_disclosed": false
+    }
+  }
+}

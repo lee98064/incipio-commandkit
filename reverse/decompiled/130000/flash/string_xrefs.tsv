@@ -1,0 +1,499 @@
+function	from	string_address	string
+FUN_004013e8	00401458	00410d20	HW_%s 
+FUN_004014b0	00401660	00410d30	COMPHS
+FUN_004014b0	004016a4	00410d40	/dev/mtdblock0
+FUN_004014b0	00401740	00410d50	Write flash compress setting[%u] failed![%s-%u] 
+FUN_004014b0	00401748	00410d84	flash.c
+FUN_004017c0	004017f8	00410d40	/dev/mtdblock0
+FUN_0040188c	00401904	00410d8c	offset error-[%s-%u] 
+FUN_0040188c	00401908	00410d84	flash.c
+FUN_0040188c	00401950	00410d30	COMPHS
+FUN_004021d4	00402220	00410dc0	invalid wlan interface index number!
+FUN_004021d4	004022a8	00410de8	invalid virtual wlan interface index number!
+FUN_00402374	004023f8	00410d20	HW_%s 
+FUN_004024b4	0040252c	00410e1c	Allocate buffer failed!
+FUN_004024b4	00402538	00410d40	/dev/mtdblock0
+FUN_004024b4	0040255c	00410e34	create file failed!
+FUN_004024b4	00402584	00410e48	%s%02d
+FUN_004024b4	00402898	00410e54	Read hw setting header failed!
+FUN_004024b4	00402928	00410e74	write hs header failed!
+FUN_004024b4	00402958	00410e8c	write hs MIB failed!
+FUN_004024b4	00402984	00410ea4	write hs checksum failed!
+FUN_004024b4	004029b8	00410d40	/dev/mtdblock0
+FUN_004024b4	004029f0	00410ec0	Metering-Outlet
+FUN_004024b4	00402a0c	00410ed0	Realtek
+FUN_004024b4	00402a60	00410ed8	RTK 11n AP VAP%d
+FUN_004024b4	00402ab8	00410eec	%s%02X%02X
+FUN_004024b4	00402abc	00410ec0	Metering-Outlet
+FUN_004024b4	00402b34	00410ef8	0000000000
+FUN_004024b4	00402b70	00410f04	RTK 11n AP RPT%d
+FUN_004024b4	00402b88	00410f04	RTK 11n AP RPT%d
+FUN_004024b4	00402d24	00410f18	rule_%d
+FUN_004024b4	00402de8	00410f20	admin
+FUN_004024b4	0040304c	00410f3c	host.dyndns.org
+FUN_004024b4	0040314c	00410f6c	wlan0
+FUN_004024b4	00403184	00410f80	wlan0-va1
+FUN_004024b4	004031a0	00410f8c	wlan0-va2
+FUN_004024b4	004031bc	00410f98	wlan0-va3
+FUN_004024b4	004031d8	00410fa4	wlan1
+FUN_004024b4	004031f4	00410fac	wlan1-va0
+FUN_004024b4	00403210	00410fb8	wlan1-va1
+FUN_004024b4	0040322c	00410fc4	wlan1-va2
+FUN_004024b4	00403248	00410fd0	wlan1-va3
+FUN_004024b4	00403300	00410eec	%s%02X%02X
+FUN_004024b4	00403304	00410ec0	Metering-Outlet
+FUN_004024b4	004033fc	00410e48	%s%02d
+FUN_004024b4	004034a4	00410e48	%s%02d
+FUN_004024b4	0040356c	00410fe8	write ds header failed!
+FUN_004024b4	0040359c	00411000	write ds MIB failed!
+FUN_004024b4	004035c4	00411018	write ds checksum failed!
+FUN_004024b4	00403610	00410d40	/dev/mtdblock0
+FUN_004024b4	00403640	00410e48	%s%02d
+FUN_004024b4	0040369c	00410e48	%s%02d
+FUN_004024b4	00403734	00411038	write cs header failed!
+FUN_004024b4	00403764	00411050	write cs MIB failed!
+FUN_004024b4	0040378c	00411068	write cs checksum failed!
+FUN_004024b4	004037f4	00411084	read hs header failed!
+FUN_004024b4	00403820	0041109c	read hs MIB failed!
+FUN_004024b4	0040388c	004110b0	read ds header failed!
+FUN_004024b4	004038b8	004110c8	read ds MIB failed!
+FUN_004024b4	00403924	004110dc	read cs header failed!
+FUN_004024b4	0040394c	004110f4	read cs MIB failed!
+FUN_004024b4	00403a44	00411108	hs Checksum error!
+FUN_004024b4	00403a50	0041111c	ds Checksum error!
+FUN_004024b4	00403a5c	00411130	cs Checksum error!
+FUN_00403a60	00403acc	00411144	Initialize AP MIB failed!
+FUN_00403a60	00403c38	00411160	open file %s error! 
+FUN_00403a60	00403c60	00411178	name "%s" 
+FUN_00403a60	00403cb0	00411184	-mschap 
+FUN_00403a60	00403cdc	00411190	-mschap-v2 
+FUN_00403a60	00403d4c	00411160	open file %s error! 
+FUN_00403a60	00403d64	004111a0	################################################# 
+FUN_00403a60	00403d9c	004111d4	"%s" * "%s" 
+FUN_00403a60	00403de4	00411160	open file %s error! 
+FUN_00403a60	00403df4	004111a0	################################################# 
+FUN_00403a60	00403e08	004111d4	"%s" * "%s" 
+FUN_00403f1c	00403f98	004111e4	Write WPA config file error!
+FUN_00403fe0	00404034	00411144	Initialize AP MIB failed!
+FUN_00403fe0	00404064	00411204	Create WPA config file error!
+FUN_00403fe0	00404090	00411224	encryption = %d 
+FUN_00403fe0	004040d4	00411238	ssid = "%s" 
+FUN_00403fe0	00404118	00411248	enable1x = %d 
+FUN_00403fe0	00404158	00411258	enableMacAuth = %d 
+FUN_00403fe0	004041bc	0041126c	supportNonWpaClient = %d 
+FUN_00403fe0	00404200	00411288	wepKey = %d 
+FUN_00403fe0	00404280	00411298	wepGroupKey = "%02x%02x%02x%02x%02x" 
+FUN_00403fe0	00404308	004112c0	wepGroupKey = "%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x" 
+FUN_00403fe0	00404324	00411308	wepGroupKey = "" 
+FUN_00403fe0	0040436c	0041131c	authentication = %d 
+FUN_00403fe0	004043ac	00411334	unicastCipher = %d 
+FUN_00403fe0	004043ec	00411348	wpa2UnicastCipher = %d 
+FUN_00403fe0	0040442c	00411360	enablePreAuth = %d 
+FUN_00403fe0	00404478	00411374	usePassphrase = 1 
+FUN_00403fe0	00404480	00411388	usePassphrase = 0 
+FUN_00403fe0	004044c8	0041139c	psk = "%s" 
+FUN_00403fe0	00404508	004113a8	groupRekeyTime = %d 
+FUN_00403fe0	00404548	004113c0	rsReAuthTO = %d 
+FUN_00403fe0	00404588	004113d4	rsPort = %d 
+FUN_00403fe0	004045e0	004113e4	rsIP = %s 
+FUN_00403fe0	00404620	004113f0	rsPassword = "%s" 
+FUN_00403fe0	00404660	00411404	rsMaxReq = %d 
+FUN_00403fe0	004046a0	00411414	rsAWhile = %d 
+FUN_00403fe0	004046e0	00411424	accountRsEnabled = %d 
+FUN_00403fe0	00404720	0041143c	accountRsPort = %d 
+FUN_00403fe0	00404778	00411450	accountRsIP = %s 
+FUN_00403fe0	004047b8	00411464	accountRsPassword = "%s" 
+FUN_00403fe0	004047f8	00411480	accountRsUpdateEnabled = %d 
+FUN_00403fe0	00404838	004114a0	accountRsUpdateTime = %d 
+FUN_00403fe0	00404878	004114bc	accountRsMaxReq = %d 
+FUN_00403fe0	004048b8	004114d4	accountRsAWhile = %d 
+FUN_00403fe0	00404908	00411224	encryption = %d 
+FUN_00403fe0	00404924	004114ec	ssid = "REALTEK" 
+FUN_00403fe0	00404934	00411500	enable1x = 1 
+FUN_00403fe0	00404944	00411510	enableMacAuth = 0 
+FUN_00403fe0	00404954	00411524	supportNonWpaClient = 0 
+FUN_00403fe0	00404964	00411540	wepKey = 0 
+FUN_00403fe0	00404974	00411308	wepGroupKey = "" 
+FUN_00403fe0	00404984	0041154c	authentication = 2 
+FUN_00403fe0	004049b8	00411334	unicastCipher = %d 
+FUN_00403fe0	004049e4	00411348	wpa2UnicastCipher = %d 
+FUN_00403fe0	00404a00	00411560	enablePreAuth = 0 
+FUN_00403fe0	00404a40	00411374	usePassphrase = 1 
+FUN_00403fe0	00404a48	00411388	usePassphrase = 0 
+FUN_00403fe0	00404a98	0041139c	psk = "%s" 
+FUN_00403fe0	00404aac	00411574	groupRekeyTime = 0 
+FUN_00403fe0	00404abc	00411588	rsPort = 1812 
+FUN_00403fe0	00404acc	00411598	rsIP = 192.168.1.1 
+FUN_00403fe0	00404adc	004115ac	rsPassword = "" 
+FUN_00403fe0	00404aec	004115c0	rsMaxReq = 3 
+FUN_00403fe0	00404afc	004115d0	rsAWhile = 10 
+FUN_00403fe0	00404b0c	004115e0	accountRsEnabled = 0 
+FUN_00403fe0	00404b1c	004115f8	accountRsPort = 1813 
+FUN_00403fe0	00404b2c	00411610	accountRsIP = 192.168.1.1 
+FUN_00403fe0	00404b3c	0041162c	accountRsPassword = "" 
+FUN_00403fe0	00404b4c	00411644	accountRsUpdateEnabled = 0 
+FUN_00403fe0	00404b5c	00411660	accountRsUpdateTime = 1000 
+FUN_00403fe0	00404b6c	0041167c	accountRsMaxReq = 3 
+FUN_00403fe0	00404b7c	00411694	accountRsAWhile = 1 
+FUN_00404ce0	00404d54	004116ac	socket() fail
+FUN_00404ce0	00404d9c	004116bc	Interface %s open failed! 
+FUN_00404ce0	00404df0	004116d8	MIB buffer allocation failed!
+FUN_00404ce0	00404e24	00411144	Initialize AP MIB failed!
+FUN_00404ce0	00404e30	004116f8	ifconfig %s down
+FUN_00404ce0	00404e90	0041170c	ifconfig %s-wds%d down
+FUN_00404ce0	00404ec4	00411724	wlanapp.sh kill %s
+FUN_00404ce0	00404f08	00411738	wlan%d
+FUN_00404ce0	00404f64	00411740	Root Interface %s open failed! 
+FUN_00404ce0	00404fb4	00411760	RF type is NULL!
+FUN_00404ce0	00405040	00411774	Get WLAN MIB failed!
+FUN_00404ce0	0040505c	0041178c	WLAN MIB version mismatch!
+FUN_00404ce0	004051b8	004117c0	Fail to get MAC address of VAP%d! 
+FUN_00404ce0	00405248	00411738	wlan%d
+FUN_00404ce0	004052dc	004117e4	ifconfig %s hw ether %02x%02x%02x%02x%02x%02x
+FUN_00404ce0	00405570	00411814	Init wireless[%d] profile... 
+FUN_00404ce0	00405f4c	00411834	ifconfig %s-wds%d hw ether %02x%02x%02x%02x%02x%02x
+FUN_00404ce0	004068a8	00411868	invalid ENCRYPT value!
+FUN_00404ce0	004069a0	00411880	invalid WPA_CIPHER_SUITE value!
+FUN_00404ce0	00406a1c	004118a0	invalid WPA2_CIPHER_SUITE value!
+FUN_00404ce0	00406a54	004117a8	Set WLAN MIB failed!
+FUN_00406adc	00406b48	004118c4	   Get sock fail!
+FUN_00406adc	00406bb4	004118d8	  Interface %s not found
+FUN_00406adc	00406be0	004118f4	  SIOCGIFFLAGS
+FUN_00406adc	00406c00	00411904	  Interface %s is down
+FUN_00406adc	00406c24	0041191c	  Interface %s is not ARPable
+FUN_00406adc	00406c5c	0041193c	  socket
+FUN_00406adc	00406c94	00411948	  WARNING: interface %s is ignored
+FUN_00406adc	00406d7c	00411974	  bind
+FUN_00406adc	00406dac	0041197c	  getsockname
+FUN_00406adc	00406dcc	0041198c	  Interface "%s" is not ARPable (no ll address)
+FUN_00406adc	00406ea8	004119c0	%s(%d): wrong he.sll_halen(%d) or wrong peerMacAddr[%02x:%02x:%02x:%02x:%02x:%02x]! 
+FUN_00406adc	00406eac	0041339c	send_ppp_msg
+FUN_00406adc	00406ee8	00411a1c	User request
+FUN_00406adc	00406f78	00411a2c	    c = %d
+FUN_00406adc	00406f8c	00411a3c	    send_arp Fail!
+FUN_00407004	00407120	00411a54	Create Socket Failed!
+FUN_00407004	004071f4	00411a6c	    l2tp sendto is failed: c = %d
+FUN_00407248	004072cc	00411ac4	/proc/version
+FUN_00407248	004072f0	00411ad4	Read /proc/version failed!
+FUN_00407248	0040732c	00411af0	#[0-9][0-9]* \(.*\)$
+FUN_00407248	00407408	00411b08	%s %s %s %d:%d:%d %s %s
+FUN_00407248	004074c8	00411b20	set Time Error for tm!
+FUN_00407248	00407500	00411b38	set system Time Error
+FUN_00407248	00407534	00411a90	Initialize AP MIB failed in setSystemTime_flash!
+FUN_00407248	00407610	00411b50	make Time Error! 
+FUN_00407248	0040764c	00411b64	set system Time Error 
+FUN_00407248	00407664	00411b7c	echo done > /var/system/set_time
+FUN_00407688	00407738	00411144	Initialize AP MIB failed!
+FUN_00407688	0040774c	00410f6c	wlan0
+FUN_00407688	00407e84	00411ba0	Generated PIN = %s 
+FUN_00407688	00407ec8	00411bb4	stat() error [%s]! 
+FUN_00407688	00407f0c	00411bc8	malloc() error [%d]! 
+FUN_00407688	00407f58	00411be0	mode = %d 
+FUN_00407688	00407fd0	00411bec	upnp = %d 
+FUN_00407688	00408068	00411bf8	config_method = %d 
+FUN_00407688	004080d0	00411c0c	wlan0_wsc_disabled = %d 
+FUN_00407688	0040813c	00411c28	auth_type = %d 
+FUN_00407688	004081a8	00411c38	encrypt_type = %d 
+FUN_00407688	00408280	00411c4c	mixedmode = %d 
+FUN_00407688	004082f0	00410f6c	wlan0
+FUN_00407688	00408314	00410fa4	wlan1
+FUN_00407688	00408354	00411c5c	connection_type = %d 
+FUN_00407688	004083bc	00411c74	manual_config = %d 
+FUN_00407688	00408444	00411c88	WEP mismatched between WPS and host system
+FUN_00407688	00408468	00411cb4	WEP encrypt length error
+FUN_00407688	004084a8	00411cd0	wep_transmit_key = %d 
+FUN_00407688	00408548	00411ce8	network_key = %s 
+FUN_00407688	004085e0	00411cfc	wep_key2 = %s 
+FUN_00407688	00408674	00411d0c	wep_key3 = %s 
+FUN_00407688	00408708	00411d1c	wep_key4 = %s 
+FUN_00407688	0040873c	00411ce8	network_key = %s 
+FUN_00407688	004087d4	00411cfc	wep_key2 = %s 
+FUN_00407688	00408868	00411d0c	wep_key3 = %s 
+FUN_00407688	004088fc	00411d1c	wep_key4 = %s 
+FUN_00407688	00408918	00411ce8	network_key = %s 
+FUN_00407688	0040897c	00411238	ssid = "%s" 
+FUN_00407688	004089e8	00411d2c	pin_code = %s 
+FUN_00407688	00408a6c	00411d3c	rf_band = %d 
+FUN_00407688	00408ad0	00411d4c	device_name = "%s" 
+FUN_00407688	00408b44	00411d60	config_by_ext_reg = %d 
+FUN_00407688	00408bdc	00411d78	open() error [%s]! 
+FUN_00407688	00408c24	00411d8c	read() error [%s]! 
+FUN_00407688	00408c40	00411da0	uuid =
+FUN_00407688	00408cdc	00411d78	open() error [%s]! 
+FUN_00408db8	00408de0	00411dc4	Usage: flash cmd
+FUN_00408db8	00408dec	00411dd8	option:
+FUN_00408db8	00408e2c	00411de8	      default -- write all flash parameters from hard code.
+FUN_00408db8	00408e44	00411e24	      get [wlan interface-index] mib-name -- get a specific mib from flash
+FUN_00408db8	00408e5c	00411e70	          memory.
+FUN_00408db8	00408e74	00411e84	      set [wlan interface-index] mib-name mib-value -- set a specific mib into
+FUN_00408db8	00408e8c	00411ed4	          flash memory.
+FUN_00408db8	00408ea4	00411eec	      all -- dump all flash parameters.
+FUN_00408db8	00408ebc	00411f14	      gethw hw-mib-name -- get a specific mib from flash
+FUN_00408db8	00408ed4	00411e70	          memory.
+FUN_00408db8	00408eec	00411f50	      sethw hw-mib-name mib-value -- set a specific mib into
+FUN_00408db8	00408f04	00411ed4	          flash memory.
+FUN_00408db8	00408f1c	00411f90	      allhw -- dump all hw flash parameters.
+FUN_00408db8	00408f34	00411fc0	      reset -- reset current setting to default.
+FUN_00408db8	00408f4c	00411ff4	      set_mib -- get mib from flash and set to wlan interface.
+FUN_00408f70	00409254	00412070	invalid channel number
+FUN_00408f70	00409410	00412110	delall
+FUN_00408f70	00409538	00412118	Get port filter entry number error!
+FUN_00408f70	00409584	00412110	delall
+FUN_00408f70	004096d8	00412110	delall
+FUN_00408f70	00409838	00412110	delall
+FUN_00408f70	0040988c	0041213c	http://
+FUN_00408f70	0040999c	00412110	delall
+FUN_00408f70	00409b4c	00412144	Get trigger-port entry number error!
+FUN_00408f70	00409b98	0041216c	Get trigger-port table entry error!
+FUN_00408f70	00409ba8	00412110	delall
+FUN_00408f70	00409c90	00412190	invalid MAC address!
+FUN_00408f70	00409d5c	004121a8	Get QoS entry number error!
+FUN_00408f70	00409da8	00412110	delall
+FUN_00408f70	00409e20	004121c8	Get WLAN_SCHEDULE entry number error!
+FUN_00408f70	00409e50	004121f0	Element number must be 1-10!
+FUN_00408f70	00409f34	00412210	cmd not support! try  flash set [MIB] mod [index(1-%d)] [Enable(0/1)] [day(0-7)] [formTime(min,0-1440)] [toTime(min,0-1440)] 
+FUN_00408f70	00409fe0	00412034	invalid internet address!
+FUN_00408f70	0040a068	00412290	Get DHCP resvd IP entry number error!
+FUN_00408f70	0040a0b4	00412110	delall
+FUN_00408f70	0040a1f4	004122b8	Get VLAN config entry number error!
+FUN_00408f70	0040a244	00412110	delall
+FUN_00408f70	0040a364	004120b0	Get port forwarding entry number error!
+FUN_00408f70	0040a3b0	00412110	delall
+FUN_00408f70	0040a44c	00412308	Mesh Acl Addr invalid value!
+FUN_00408f70	0040a4b4	004122dc	Mesh Acl Addr input argument is not enough!
+FUN_00408f70	0040a4ec	00412328	Mesh Acl Addr get port forwarding entry number error!
+FUN_00408f70	0040a514	00412360	Mesh Acl Addr element number is too large!
+FUN_00408f70	0040a548	0041238c	Mesh Acl Addr get table entry error!
+FUN_00408f70	0040a558	00412110	delall
+FUN_00408f70	0040a684	004123b4	Get wds number error!
+FUN_00408f70	0040a6d0	004120f8	Get table entry error!
+FUN_00408f70	0040a6e0	00412110	delall
+FUN_00408f70	0040a730	004123cc	PROFILE_TBL1
+FUN_00408f70	0040a8c4	004123cc	PROFILE_TBL1
+FUN_00408f70	0040a900	0041208c	input argument is not enough!
+FUN_00408f70	0040a91c	004123cc	PROFILE_TBL1
+FUN_00408f70	0040a96c	004120d8	Element number is too large!
+FUN_00408f70	0040a980	004123cc	PROFILE_TBL1
+FUN_00408f70	0040a9b0	00412110	delall
+FUN_00408f70	0040a9cc	004123cc	PROFILE_TBL1
+FUN_00408f70	0040aa48	00412050	invalid value!
+FUN_00408f70	0040aa7c	004123dc	string value too long!
+FUN_00408f70	0040aa8c	00412060	invalid mib!
+FUN_00408f70	0040aae4	004123f4	set MIB failed!
+FUN_00408f70	0040aafc	00412404	setMIB end...
+FUN_0040ab74	0040abd4	00411144	Initialize AP MIB failed!
+FUN_0040ab74	0040ac00	00412414	read file [%s] failed! 
+FUN_0040ab74	0040adc8	0041242c	invalid param [%s]! 
+FUN_0040af4c	0040b104	00412060	invalid mib!
+FUN_0040af4c	0040b134	00412480	Get MIB failed!
+FUN_0040af4c	0040b47c	00412070	invalid channel number
+FUN_0040af4c	0040b55c	00412490	%02x%02x%02x%02x%02x%02x,%s,%s
+FUN_0040af4c	0040b5d8	00410f6c	wlan0
+FUN_0040af4c	0040b644	004124b0	%s,%d,%d,%d,%d,%d,%d
+FUN_0040af4c	0040b6bc	004124c8	%d,%d,%d,%d
+FUN_0040af4c	0040b728	004124d4	%s, %d, %d, %d, %d
+FUN_0040af4c	0040b7ec	004124e8	%s, %d
+FUN_0040af4c	0040b860	004124f0	%02x:%02x:%02x:%02x:%02x:%02x
+FUN_0040af4c	0040b878	0041213c	http://
+FUN_0040af4c	0040b944	00412518	%d, %d, %d, %d, %d, %d
+FUN_0040af4c	0040ba44	00412530	%d, %02x%02x%02x%02x%02x%02x, %d, %s, %s, %d, %d, %s, %s
+FUN_0040af4c	0040bb1c	0041256c	%02x%02x%02x%02x%02x%02x,%u
+FUN_0040af4c	0040bb6c	00412588	%s,enc=%d,auth=%d
+FUN_0040af4c	0040bca4	0041259c	,id=%d,key1=%02x%02x%02x%02x%02x,key2=%02x%02x%02x%02x%02x,key3=%02x%02x%02x%02x%02x,key4=%02x%02x%02x%02x%02x
+FUN_0040af4c	0040be58	0041260c	,id=%d,key1=%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x,key2=%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x,key3=%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x,key4=%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x
+FUN_0040af4c	0040be98	004126fc	,wpa_cipher=%d,psk=%s
+FUN_0040af4c	0040befc	00412714	%s%d="%s" 
+FUN_0040af4c	0040bf04	00412720	%s%d=%s 
+FUN_0040af4c	0040bf30	0041272c	%s="%s" 
+FUN_0040af4c	0040bf38	00412738	%s=%s 
+FUN_0040af4c	0040bf7c	00412714	%s%d="%s" 
+FUN_0040af4c	0040bf84	00412720	%s%d=%s 
+FUN_0040af4c	0040bfb4	0041272c	%s="%s" 
+FUN_0040af4c	0040bfbc	00412738	%s=%s 
+FUN_0040bff8	0040c058	00411144	Initialize AP MIB failed!
+FUN_0040bff8	0040c27c	00412740	WLAN%d_VAP%d_
+FUN_0040bff8	0040c298	00412750	WLAN%d_
+FUN_0040c378	0040c3d8	00411144	Initialize AP MIB failed!
+FUN_0040c378	0040c610	00412740	WLAN%d_VAP%d_
+FUN_0040c378	0040c62c	00412750	WLAN%d_
+main	0040cb7c	00412778	WLAN0_SSID
+main	0040cb9c	00412784	WLAN0_WSC_SSID
+main	0040cbbc	00412794	WLAN0_VAP0_SSID
+main	0040cbdc	004127a4	WLAN0_VAP1_SSID
+main	0040cbfc	004127b4	WLAN0_VAP2_SSID
+main	0040cc1c	004127c4	WLAN0_VAP3_SSID
+main	0040cc3c	004127d4	WLAN0_VAP4_SSID
+main	0040cc5c	004127e4	REPEATER_SSID1
+main	0040cc84	004127f4	REPEATER_SSID2
+main	0040cc9c	00412804	NTP_TIMEZONE
+main	0040cd88	00412814	virtual_flash_init
+main	0040cdd8	0041282c	default
+main	0040cdf0	00412834	default-sw
+main	0040ce20	00412840	reset
+main	0040ce40	00410d40	/dev/mtdblock0
+main	0040ce98	00412848	Default configuration invalid!
+main	0040cf8c	00410e48	%s%02d
+main	0040d024	00410e48	%s%02d
+main	0040d078	00410e48	%s%02d
+main	0040d0c4	00410e48	%s%02d
+main	0040d174	00411038	write cs header failed!
+main	0040d1bc	00411050	write cs MIB failed!
+main	0040d260	00412868	hostapd
+main	0040d29c	00411144	Initialize AP MIB failed!
+main	0040d2bc	00412870	/etc/hostapd.conf
+main	0040d2e0	00412884	Create hostapd config file error!
+main	0040d2f0	004128a8	interface=wlan0 
+main	0040d31c	004128bc	logger_syslog=-1 
+main	0040d350	004128d0	logger_stdout=-1 
+main	0040d384	004128e4	logger_syslog_level=2 
+main	0040d3b8	004128fc	logger_stdout_level=2 
+main	0040d3ec	00412914	dump_file=/tmp/hostapd.dump 
+main	0040d420	00412934	ctrl_interface=/var/run/hostapd 
+main	0040d454	00412958	ctrl_interface_group=0 
+main	0040d4ac	00412970	ssid=%s 
+main	0040d504	0041297c	hw_mode=b 
+main	0040d50c	00412988	hw_mode=g 
+main	0040d550	00412994	ieee80211n=1 
+main	0040d564	004129a4	%sht_capab=
+main	0040d5d4	004129b8	[40+]
+main	0040d5e4	004129c0	[40-]
+main	0040d624	004129c8	%s %s
+main	0040d62c	004129d0	[SHORT-GI-40]
+main	0040d658	004129e0	[SHORT-GI-20]
+main	0040d698	004129c8	%s %s
+main	0040d69c	004129f0	[MAX-AMSDU-7935]
+main	0040d6b8	00412a04	ieee80211n=0
+main	0040d730	00412a14	channel=%d 
+main	0040d77c	00412a20	beacon_int=%d 
+main	0040d7f0	00412a30	dtim_period=%d 
+main	0040d80c	00412a40	dtim_period=2 
+main	0040d834	00412a50	max_num_sta=255 
+main	0040d894	00412a64	rts_threshold=%d 
+main	0040d8ac	00412a78	rts_threshold=2347 
+main	0040d904	00412a8c	fragm_threshold=%d 
+main	0040d920	00412aa0	fragm_threshold=2346 
+main	0040d968	00412ab8	preamble=%d 
+main	0040d9d8	00412ac8	macaddr_acl=1 
+main	0040da04	00412ad8	/etc/hostapd.accept
+main	0040da9c	00412aec	%c%c:%c%c:%c%c:%c%c:%c%c:%c%c 
+main	0040db08	00412b0c	macaddr_acl=0 
+main	0040db34	00412b1c	/etc/hostapd.deny
+main	0040dbcc	00412aec	%c%c:%c%c:%c%c:%c%c:%c%c:%c%c 
+main	0040dc40	00412b30	#macaddr_acl=0 
+main	0040dc98	00412b40	auth_algs=2 
+main	0040dcfc	00412b50	%swep_key0=%s 
+main	0040dd44	00412b60	%swep_key1=%s 
+main	0040dd8c	00412b70	%swep_key2=%s 
+main	0040dddc	00412b50	%swep_key0=%s 
+main	0040de24	00412b60	%swep_key1=%s 
+main	0040de6c	00412b70	%swep_key2=%s 
+main	0040debc	00412b80	%swep_key3=%s 
+main	0040ded0	00412b90	auth_algs=1 
+main	0040deec	00412ba0	%swpa=%d 
+main	0040df3c	00412bac	%swpa_passphrase=%s 
+main	0040df84	00412bc4	%swpa_key_mgmt=WPA-EAP 
+main	0040dfd0	00412bdc	%sauth_server_addr=%u.%u.%u.%u 
+main	0040e008	00412bfc	%sauth_server_port=%d 
+main	0040e050	00412c14	%sauth_server_shared_secret=%s 
+main	0040e06c	00412c34	%sauth_server_shared_secret= 
+main	0040e078	00412c54	%swpa_key_mgmt=WPA-PSK 
+main	0040e0bc	00412c6c	%swpa_pairwise=
+main	0040e0f0	00412c7c	%sTKIP 
+main	0040e108	00412c84	%sTKIP CCMP 
+main	0040e110	00412c94	%sCCMP 
+main	0040e158	00412c9c	%srsn_pairwise=
+main	0040e18c	00412c7c	%sTKIP 
+main	0040e1a8	00412c84	%sTKIP CCMP 
+main	0040e1b4	00412c94	%sCCMP 
+main	0040e1f0	00412cac	%swpa_group_rekey=%d 
+main	0040e210	00412cc4	%swpa_ptk_rekey=%d 
+main	0040e24c	00412cd8	%srsn_preauth=%d 
+main	0040e26c	00412cec	wpa=0 
+main	0040e2b4	00412cf4	ignore_broadcast_ssid=%d 
+main	0040e300	00412d10	wme_enabled=%d 
+main	0040e34c	00412d20	ap_max_inactivity=%d 
+main	0040e39c	00412d38	ieee8021x=%d 
+main	0040e3e8	00412bdc	%sauth_server_addr=%u.%u.%u.%u 
+main	0040e420	00412bfc	%sauth_server_port=%d 
+main	0040e468	00412c14	%sauth_server_shared_secret=%s 
+main	0040e480	00412c34	%sauth_server_shared_secret= 
+main	0040e4f4	00412d48	%sacct_server_addr=%u.%u.%u.%u 
+main	0040e530	00412d68	%sacct_server_port=%d 
+main	0040e570	00412d80	%sradius_retry_primary_interval=%d 
+main	0040e5a8	00412da4	%sradius_acct_interim_interval=%d 
+main	0040e5f8	00412dc8	iapp_interface=br0 
+main	0040e6e0	00412de4	Read web header failed!
+main	0040e6e8	00412dfc	Can't open file %s 
+main	0040e738	00412e10	Read web header failed %s! 
+main	0040e778	00412e34	Invalid web image! Expect %s 
+main	0040e7bc	00412e54	Allocate buffer failed %d! 
+main	0040e838	00412e70	Read web image failed!
+main	0040e894	00412e88	flashweb.bz2
+main	0040e8d4	00412e98	Create output file error %s! 
+main	0040e918	00412eb8	write file error %s! 
+main	0040e99c	00412ed0	%sXXXXXX
+main	0040e9d0	00412edc	bunzip2 -c %s > %s
+main	0040ea58	00412ef0	Stat file error %s! 
+main	0040ea80	00412f08	Invalid decompress file size %ld! 
+main	0040eae8	00412f2c	Allocate buffer failed %ld! 
+main	0040eb24	00412dfc	Can't open file %s 
+main	0040eb7c	00412f4c	Read file error %ld! 
+main	0040ed2c	00412f68	Create directory %s failed! 
+main	0040ed3c	00412e98	Create output file error %s! 
+main	0040eda0	00412f88	Write file error %s, len=%d! 
+main	0040ee38	00412fa8	Usage: %s web prefix 
+main	0040ee40	00412fc0	test-hwconf
+main	0040ee9c	00412fcc	test-dsconf
+main	0040eef8	00412fd8	test-csconf
+main	0040ef78	00412fe4	default-fc
+main	0040f040	00410f6c	wlan0
+main	0040f20c	00413018	Miss arguments [wlan_interface config_filename]!
+main	0040f214	0041304c	-param_file
+main	0040f26c	00412ff4	Miss wlan_interface argument!
+main	0040f380	00410dc0	invalid wlan interface index number!
+main	0040f3a4	00413058	Miss arguments [wlan_interface param_file]!
+main	0040f3ac	00413084	tblchk
+main	0040f3e0	0041308c	wapi-check
+main	0040f400	00413098	set_mib
+main	0040f450	00412ff4	Miss wlan_interface argument!
+main	0040f4d0	00410de8	invalid virtual wlan interface index number!
+main	0040f574	00410dc0	invalid wlan interface index number!
+main	0040f59c	004130a0	Miss arguments [wlan_interface]!
+main	0040f5a4	004130c4	gen-pppoe
+main	0040f5e0	00413104	gen-pptp
+main	0040f630	004130d0	Miss arguments [option-file pap-file chap-file]!
+main	0040f638	00413110	clearppp
+main	0040f67c	0041311c	clearl2tp
+main	0040f6e4	00413128	settime
+main	0040f710	00413130	upd-wsc-conf
+main	0040f744	00413140	gen-pin
+main	0040f774	00411738	wlan%d
+main	0040f7a4	00413148	gethw
+main	0040f8b8	00413150	sethw
+main	0040f934	00410dc0	invalid wlan interface index number!
+main	0040fa60	00413160	DEF_MACAC_ADDR
+main	0040fac0	00412110	delall
+main	0040fb40	00413170	DEF_VLANCONFIG_TBL
+main	0040fba0	00412110	delall
+main	0040fc40	00412110	delall
+main	0040fcc0	0041318c	DEF_PORTFW_TBL
+main	0040fd20	00412110	delall
+main	0040fd60	0041319c	DEF_PORTFILTER_TBL
+main	0040fdc0	00412110	delall
+main	0040fe00	004131b0	DEF_IPFILTER_TBL
+main	0040fe60	00412110	delall
+main	0040fea0	004131c4	DEF_MACFILTER_TBL
+main	0040ff00	00412110	delall
+main	0040ff40	004131d8	DEF_URLFILTER_TBL
+main	0040ffa0	00412110	delall
+main	0040ffe0	004131ec	DEF_TRIGGERPORT_TBL
+main	00410048	00412110	delall
+main	004100a8	00411144	Initialize AP MIB failed!
+main	0041020c	00413200	QOS_RULE_TBL
+main	0041022c	00413210	DHCPRSVDIP_TBL
+main	0041026c	004123cc	PROFILE_TBL1
+main	0041028c	00413220	PROFILE_TBL2
+main	004103e4	00413230	Initialize AP HW MIB failed!
+main	0041053c	00411144	Initialize AP MIB failed!
+main	00410604	00412750	WLAN%d_
+main	004106dc	00413250	Web image invalid!

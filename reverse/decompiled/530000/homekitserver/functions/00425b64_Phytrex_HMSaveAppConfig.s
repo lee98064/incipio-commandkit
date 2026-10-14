@@ -1,0 +1,59 @@
+# Phytrex_HMSaveAppConfig @ 00425b64
+00425b64  addiu sp,sp,-0x28
+00425b68  sw ra,0x24(sp)
+00425b6c  sw s1,0x20(sp)
+00425b70  sw s0,0x1c(sp)
+00425b74  lui gp,0x62
+00425b78  addiu gp,gp,-0x5cf0
+00425b7c  sw gp,0x10(sp)
+00425b80  lw t9,-0x63ec(gp)
+00425b84  move s1,a0
+00425b88  lui a0,0x61
+00425b8c  jalr t9
+00425b90  _addiu a0,a0,0x4c00
+00425b94  lw gp,0x10(sp)
+00425b98  lui a0,0x5b
+00425b9c  addiu a0,a0,-0x373c
+00425ba0  lw t9,-0x5b74(gp)
+00425ba4  nop
+00425ba8  jalr t9
+00425bac  _li a1,0x2
+00425bb0  move s0,v0
+00425bb4  li v0,-0x1
+00425bb8  lw gp,0x10(sp)
+00425bbc  bne s0,v0,0x00425bd8
+00425bc0  _li a1,0xc
+00425bc4  jal 0x00425904
+00425bc8  _li a0,0x1
+00425bcc  lw gp,0x10(sp)
+00425bd0  b 0x00425c24
+00425bd4  _li s0,-0x1a3e
+00425bd8  lw t9,-0x64a4(gp)
+00425bdc  move a0,s0
+00425be0  jalr t9
+00425be4  _clear a2
+00425be8  lw gp,0x10(sp)
+00425bec  move a0,s0
+00425bf0  move a1,s1
+00425bf4  lw t9,-0x6bdc(gp)
+00425bf8  nop
+00425bfc  jalr t9
+00425c00  _li a2,0x41
+00425c04  lw gp,0x10(sp)
+00425c08  move a0,s0
+00425c0c  lw t9,-0x6d0c(gp)
+00425c10  nop
+00425c14  jalr t9
+00425c18  _clear s0
+00425c1c  lw gp,0x10(sp)
+00425c20  nop
+00425c24  lw t9,-0x77f4(gp)
+00425c28  lui a0,0x61
+00425c2c  jalr t9
+00425c30  _addiu a0,a0,0x4c00
+00425c34  move v0,s0
+00425c38  lw ra,0x24(sp)
+00425c3c  lw s1,0x20(sp)
+00425c40  lw s0,0x1c(sp)
+00425c44  jr ra
+00425c48  _addiu sp,sp,0x28

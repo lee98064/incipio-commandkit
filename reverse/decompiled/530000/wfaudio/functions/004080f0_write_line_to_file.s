@@ -1,0 +1,72 @@
+# write_line_to_file @ 004080f0
+004080f0  addiu sp,sp,-0x230
+004080f4  sw ra,0x22c(sp)
+004080f8  sw s2,0x228(sp)
+004080fc  sw s1,0x224(sp)
+00408100  sw s0,0x220(sp)
+00408104  lui gp,0x43
+00408108  addiu gp,gp,-0x4c90
+0040810c  sw gp,0x18(sp)
+00408110  li v0,0x1
+00408114  move s2,a2
+00408118  bne a1,v0,0x0040812c
+0040811c  _move s1,a0
+00408120  lw t9,-0x7f90(gp)
+00408124  b 0x00408140
+00408128  _li a1,0x302
+0040812c  li v0,0x2
+00408130  bne a1,v0,0x00408190
+00408134  _clear s0
+00408138  lw t9,-0x7f90(gp)
+0040813c  li a1,0xa
+00408140  jalr t9
+00408144  _nop
+00408148  lw gp,0x18(sp)
+0040814c  bgez v0,0x00408190
+00408150  _move s0,v0
+00408154  lw v0,-0x7f2c(gp)
+00408158  lw t9,-0x7e64(gp)
+0040815c  lui a1,0x41
+00408160  lw a0,0x0(v0)
+00408164  lui a2,0x41
+00408168  li v0,0xfe
+0040816c  lui a3,0x41
+00408170  sw v0,0x10(sp)
+00408174  sw s1,0x14(sp)
+00408178  addiu a1,a1,0x154c
+0040817c  addiu a2,a2,0x1308
+00408180  jalr t9
+00408184  _addiu a3,a3,0x17c0
+00408188  b 0x004081f4
+0040818c  _clear v0
+00408190  lw t9,-0x7d90(gp)
+00408194  addiu s1,sp,0x20
+00408198  move a1,s2
+0040819c  jalr t9
+004081a0  _move a0,s1
+004081a4  lw gp,0x18(sp)
+004081a8  nop
+004081ac  lw t9,-0x7f88(gp)
+004081b0  nop
+004081b4  jalr t9
+004081b8  _move a0,s1
+004081bc  lw gp,0x18(sp)
+004081c0  move a1,s1
+004081c4  move a2,v0
+004081c8  lw t9,-0x7e60(gp)
+004081cc  nop
+004081d0  jalr t9
+004081d4  _move a0,s0
+004081d8  lw gp,0x18(sp)
+004081dc  nop
+004081e0  lw t9,-0x7fc4(gp)
+004081e4  nop
+004081e8  jalr t9
+004081ec  _move a0,s0
+004081f0  li v0,0x1
+004081f4  lw ra,0x22c(sp)
+004081f8  lw s2,0x228(sp)
+004081fc  lw s1,0x224(sp)
+00408200  lw s0,0x220(sp)
+00408204  jr ra
+00408208  _addiu sp,sp,0x230

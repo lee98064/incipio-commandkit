@@ -1,0 +1,26 @@
+# gcm_decrypt @ 0041b214
+0041b214  addiu sp,sp,-0x30
+0041b218  sw ra,0x2c(sp)
+0041b21c  sw s2,0x28(sp)
+0041b220  sw s1,0x24(sp)
+0041b224  sw s0,0x20(sp)
+0041b228  move s1,a1
+0041b22c  move s0,a2
+0041b230  move s2,a0
+0041b234  move a1,a2
+0041b238  move a0,s1
+0041b23c  move a2,a3
+0041b240  jal 0x0041af14
+0041b244  _sw a3,0x18(sp)
+0041b248  lw a3,0x18(sp)
+0041b24c  move a0,s2
+0041b250  move a1,s1
+0041b254  jal 0x0041a8f8
+0041b258  _move a2,s0
+0041b25c  lw ra,0x2c(sp)
+0041b260  lw s2,0x28(sp)
+0041b264  lw s1,0x24(sp)
+0041b268  lw s0,0x20(sp)
+0041b26c  clear v0
+0041b270  jr ra
+0041b274  _addiu sp,sp,0x30

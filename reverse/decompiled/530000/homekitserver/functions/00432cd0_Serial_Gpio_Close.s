@@ -1,0 +1,22 @@
+# Serial_Gpio_Close @ 00432cd0
+00432cd0  addiu sp,sp,-0x28
+00432cd4  sw ra,0x24(sp)
+00432cd8  lui gp,0x62
+00432cdc  addiu gp,gp,-0x5cf0
+00432ce0  sw gp,0x18(sp)
+00432ce4  lw v0,-0x6b48(gp)
+00432ce8  lw t9,-0x73b4(gp)
+00432cec  lui a1,0x5b
+00432cf0  lw a0,0x0(v0)
+00432cf4  lui a2,0x5b
+00432cf8  li v0,0x353
+00432cfc  lui a3,0x5b
+00432d00  sw v0,0x10(sp)
+00432d04  addiu a1,a1,-0x1c4c
+00432d08  addiu a2,a2,-0x1c1c
+00432d0c  jalr t9
+00432d10  _addiu a3,a3,-0x1818
+00432d14  lw ra,0x24(sp)
+00432d18  li v0,-0x1
+00432d1c  jr ra
+00432d20  _addiu sp,sp,0x28

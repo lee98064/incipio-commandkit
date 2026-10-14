@@ -1,0 +1,27 @@
+# FUN_0042d474 @ 0042d474
+0042d474  addiu sp,sp,-0x148
+0042d478  sw ra,0x144(sp)
+0042d47c  sw s2,0x140(sp)
+0042d480  sw s1,0x13c(sp)
+0042d484  sw s0,0x138(sp)
+0042d488  addiu s0,sp,0x18
+0042d48c  move s2,a1
+0042d490  move a1,a0
+0042d494  move a0,s0
+0042d498  move s1,a2
+0042d49c  jal 0x0042d000
+0042d4a0  _sw a1,0x130(sp)
+0042d4a4  lw a1,0x130(sp)
+0042d4a8  move a2,s2
+0042d4ac  jal 0x0042d380
+0042d4b0  _move a0,s0
+0042d4b4  move a1,s0
+0042d4b8  jal 0x0042cee8
+0042d4bc  _move a0,s1
+0042d4c0  move v0,s1
+0042d4c4  lw ra,0x144(sp)
+0042d4c8  lw s2,0x140(sp)
+0042d4cc  lw s1,0x13c(sp)
+0042d4d0  lw s0,0x138(sp)
+0042d4d4  jr ra
+0042d4d8  _addiu sp,sp,0x148

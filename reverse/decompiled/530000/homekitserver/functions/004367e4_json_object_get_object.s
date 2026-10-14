@@ -1,0 +1,29 @@
+# json_object_get_object @ 004367e4
+004367e4  addiu sp,sp,-0x8
+004367e8  sw s8,0x4(sp)
+004367ec  move s8,sp
+004367f0  sw a0,0x8(s8)
+004367f4  lw v0,0x8(s8)
+004367f8  nop
+004367fc  bne v0,zero,0x00436810
+00436800  _nop
+00436804  clear v0
+00436808  b 0x00436840
+0043680c  _nop
+00436810  lw v0,0x8(s8)
+00436814  nop
+00436818  lw v1,0x0(v0)
+0043681c  li v0,0x4
+00436820  bne v1,v0,0x0043683c
+00436824  _nop
+00436828  lw v0,0x8(s8)
+0043682c  nop
+00436830  lw v0,0x18(v0)
+00436834  b 0x00436840
+00436838  _nop
+0043683c  clear v0
+00436840  move sp,s8
+00436844  lw s8,0x4(sp)
+00436848  addiu sp,sp,0x8
+0043684c  jr ra
+00436850  _nop

@@ -1,0 +1,125 @@
+# FUN_80402b88 @ 80402b88
+80402b88  addiu sp,sp,-0x40
+80402b8c  sw ra,0x3c(sp)
+80402b90  sw s2,0x38(sp)
+80402b94  sw s1,0x34(sp)
+80402b98  sw s0,0x30(sp)
+80402b9c  move s2,a0
+80402ba0  move s1,a1
+80402ba4  jal 0x804029e0
+80402ba8  _clear a1
+80402bac  move s0,v0
+80402bb0  sltiu v0,v0,0x100
+80402bb4  beq v0,zero,0x80402d60
+80402bb8  _li v0,-0x1
+80402bbc  sltiu v0,s1,0x4
+80402bc0  beq v0,zero,0x80402d60
+80402bc4  _li v0,-0x1
+80402bc8  lbu v1,0x5(s2)
+80402bcc  lbu a0,0x1(s2)
+80402bd0  lbu v0,0x0(s2)
+80402bd4  nop
+80402bd8  xor a0,a0,v0
+80402bdc  lbu v0,0x2(s2)
+80402be0  nop
+80402be4  xor a0,a0,v0
+80402be8  lbu v0,0x3(s2)
+80402bec  nop
+80402bf0  xor a0,a0,v0
+80402bf4  lbu v0,0x4(s2)
+80402bf8  nop
+80402bfc  xor v0,a0,v0
+80402c00  xor v0,v0,s0
+80402c04  andi v0,v0,0xff
+80402c08  bne v1,v0,0x80402d60
+80402c0c  _li v0,-0x1
+80402c10  addiu a0,sp,0x10
+80402c14  clear a1
+80402c18  jal 0x80406a30
+80402c1c  _li a2,0x20
+80402c20  lbu v0,0x0(s2)
+80402c24  nop
+80402c28  sb v0,0x17(sp)
+80402c2c  lbu v0,0x1(s2)
+80402c30  lbu v1,0x2(s2)
+80402c34  sll v0,v0,0x8
+80402c38  or v0,v0,v1
+80402c3c  sh v0,0x10(sp)
+80402c40  lbu a2,0x3(s2)
+80402c44  lbu a1,0x4(s2)
+80402c48  lui v0,0xbb80
+80402c4c  ori v0,v0,0x4418
+80402c50  lw a0,0x0(v0)
+80402c54  lui v1,0x4
+80402c58  or v1,a0,v1
+80402c5c  sw v1,0x0(v0)
+80402c60  move a0,v0
+80402c64  lui v1,0x8
+80402c68  lw v0,0x0(a0)
+80402c6c  nop
+80402c70  and v0,v0,v1
+80402c74  beq v0,zero,0x80402c68
+80402c78  _nop
+80402c7c  lui v1,0xbb80
+80402c80  ori v1,v1,0x4d00
+80402c84  lw v0,0x0(v1)
+80402c88  nop
+80402c8c  andi v0,v0,0x1
+80402c90  bne v0,zero,0x80402c84
+80402c94  _sll v0,a2,0x8
+80402c98  or v0,a1,v0
+80402c9c  sh v0,0x12(sp)
+80402ca0  li v0,-0x3f01
+80402ca4  lw v1,0x14(sp)
+80402ca8  nop
+80402cac  and v1,v1,v0
+80402cb0  ori v1,v1,0x700
+80402cb4  lui v0,0x2
+80402cb8  or v1,v1,v0
+80402cbc  lui v0,0x4
+80402cc0  or v1,v1,v0
+80402cc4  lui v0,0x18
+80402cc8  or v1,v1,v0
+80402ccc  lui v0,0xfe7f
+80402cd0  ori v0,v0,0xffff
+80402cd4  and v1,v1,v0
+80402cd8  lui v0,0x200
+80402cdc  or v0,v1,v0
+80402ce0  sw v0,0x14(sp)
+80402ce4  addiu v1,sp,0x10
+80402ce8  lw a1,0x0(v1)
+80402cec  lui v0,0xbb80
+80402cf0  ori a0,v0,0x4d20
+80402cf4  sw a1,0x0(a0)
+80402cf8  lw a0,0x4(v1)
+80402cfc  ori v1,v0,0x4d24
+80402d00  sw a0,0x0(v1)
+80402d04  sll a0,s0,0x2
+80402d08  or a0,a0,s1
+80402d0c  sll a0,a0,0x5
+80402d10  lui v1,0xbb00
+80402d14  addu a0,a0,v1
+80402d18  ori v1,v0,0x4d08
+80402d1c  sw a0,0x0(v1)
+80402d20  ori v0,v0,0x4d00
+80402d24  li v1,0x9
+80402d28  sw v1,0x0(v0)
+80402d2c  move v1,v0
+80402d30  lw v0,0x0(v1)
+80402d34  nop
+80402d38  andi v0,v0,0x1
+80402d3c  bne v0,zero,0x80402d30
+80402d40  _lui v0,0xbb80
+80402d44  ori v0,v0,0x4418
+80402d48  lw a0,0x0(v0)
+80402d4c  lui v1,0xfffb
+80402d50  ori v1,v1,0xffff
+80402d54  and v1,a0,v1
+80402d58  sw v1,0x0(v0)
+80402d5c  clear v0
+80402d60  lw ra,0x3c(sp)
+80402d64  lw s2,0x38(sp)
+80402d68  lw s1,0x34(sp)
+80402d6c  lw s0,0x30(sp)
+80402d70  jr ra
+80402d74  _addiu sp,sp,0x40

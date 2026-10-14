@@ -1,0 +1,59 @@
+# FUN_004170ec @ 004170ec
+004170ec  addiu sp,sp,-0x60
+004170f0  sw ra,0x5c(sp)
+004170f4  sw s2,0x58(sp)
+004170f8  sw s1,0x54(sp)
+004170fc  sw s0,0x50(sp)
+00417100  lui gp,0x43
+00417104  addiu gp,gp,0x3060
+00417108  sw gp,0x10(sp)
+0041710c  lw t9,-0x7e9c(gp)
+00417110  lui a0,0x41
+00417114  addiu a2,sp,0x18
+00417118  li a1,0x2
+0041711c  jalr t9
+00417120  _addiu a0,a0,0x7e5c
+00417124  lw gp,0x10(sp)
+00417128  lw a0,0x18(sp)
+0041712c  addiu s0,sp,0x34
+00417130  lw t9,-0x7f58(gp)
+00417134  move s2,s0
+00417138  jalr t9
+0041713c  _li s1,0x3
+00417140  lw gp,0x10(sp)
+00417144  move a1,v0
+00417148  lw t9,-0x7e58(gp)
+0041714c  nop
+00417150  jalr t9
+00417154  _addiu a0,sp,0x1c
+00417158  lw gp,0x10(sp)
+0041715c  move a1,s0
+00417160  sw zero,0x4(s0)
+00417164  lw t9,-0x7ec0(gp)
+00417168  sw zero,0x8(s0)
+0041716c  sw zero,0xc(s0)
+00417170  sw zero,0x10(s0)
+00417174  sw zero,0x14(s0)
+00417178  sw zero,0x34(sp)
+0041717c  li a0,0xc9
+00417180  jalr t9
+00417184  _clear s0
+00417188  lw a1,0x18(sp)
+0041718c  move a0,s2
+00417190  addiu s0,s0,0x1
+00417194  jal 0x00416f08
+00417198  _move a2,a1
+0041719c  lw gp,0x10(sp)
+004171a0  nop
+004171a4  lw t9,-0x7ebc(gp)
+004171a8  nop
+004171ac  jalr t9
+004171b0  _li a0,0x1
+004171b4  bne s0,s1,0x00417188
+004171b8  _nop
+004171bc  lw ra,0x5c(sp)
+004171c0  lw s2,0x58(sp)
+004171c4  lw s1,0x54(sp)
+004171c8  lw s0,0x50(sp)
+004171cc  jr ra
+004171d0  _addiu sp,sp,0x60

@@ -1,0 +1,9 @@
+# FUN_80406390 @ 80406390
+80406390  mfc0 v1,Status
+80406394  lui v0,0x40
+80406398  or v1,v1,v0
+8040639c  xor v0,v1,v0
+804063a0  ori v0,v0,0xfc00
+804063a4  mtc0 v0,Status
+804063a8  jr ra
+804063ac  _nop

@@ -1,0 +1,432 @@
+function	from	string_address	string
+main	0041b3a0	005ab060	/tmp/net/wac_state.txt
+main	0041b3cc	005ab078	Check WAC is still processing?......
+main	0041b3d8	005ab060	/tmp/net/wac_state.txt
+main	0041b4b4	005ab0a0	WAC is processing, need to wait
+main	0041b4b8	005ab0c0	WAC is ready, but not processing
+main	0041b4dc	005ab0e4	Check WAC is still processing?......No WAC alive
+main	0041b540	005ab118	WAC is configured(%d)... 
+main	0041b548	005ab134	WAC is not configured(%d)... 
+main	0041b5fc	005ab158	%.2x:%.2x:%.2x:%.2x:%.2x:%.2x
+main	0041b664	005ab178	/dev/null
+main	0041b69c	005ab184	can't open /dev/null
+main	0041b6d8	005ab19c	can't dup2 /dev/null to STDIN_FILENO
+main	0041b77c	005ab1c4	f:cij
+main	0041b7e4	005ab1cc	Fork here 
+main	0041b810	005ab1d8	fork/getpid
+main	0041b834	005ab1e4	child success %d.  
+main	0041b854	005ab1f8	Homekit Server starting... %d, %d . 
+main	0041b874	005ab220	Binary build date: %s @ %s 
+main	0041b878	005ab23c	Nov 18 2015
+main	0041b880	005ab248	17:10:08
+main	0041b8b8	005ab254	/var/run/homekitserver.pid
+main	0041b940	005ab270	/tmp/homekit.script
+main	0041b958	005ab284	#!/bin/sh 
+main	0041b978	005ab290	kill -2 %d 
+main	0041b9a8	005ab29c	homekitserver -c 
+main	0041b9d8	005ab2b0	reboot 
+main	0041ba5c	005ab2b8	/tmp/homekitclean.script
+main	0041ba64	005ab284	#!/bin/sh 
+main	0041ba94	005ab2d4	kill -HUP %d 
+main	0041baf0	005ab2e4	do_fork exit %d.   
+main	0041bb50	005ab284	#!/bin/sh 
+main	0041bb8c	005ab2f8	unable to create socket
+main	0041bbe4	005ab310	setsockopt
+main	0041bd9c	005ab31c	unable to bind
+main	0041bddc	005ab32c	unable to listen
+main	0041bf08	005ab340	Homekit Server stop...  . 
+build_needs_escape	0041bf5c	005ab35c	ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_.!~*'():@&=+$,/?
+FUN_0041c270	0041c2a4	005ab3b0	 FILE %s FUNCTION %s LINE %d: caught SIGALRM with pthread id 
+FUN_0041c270	0041c2a8	005ab3f0	/home/vendor/rtl819x_v3464_homekit/users/phytrex-homekit/lib_homekitserver/signals.c
+FUN_0041c270	0041c2b0	005ab540	_handle_sigalrm
+FUN_0041c2c4	0041c310	005ab448	 FILE %s FUNCTION %s LINE %d: caught SIGINT with pthread id 
+FUN_0041c2c4	0041c314	005ab3f0	/home/vendor/rtl819x_v3464_homekit/users/phytrex-homekit/lib_homekitserver/signals.c
+FUN_0041c2c4	0041c31c	005ab550	_handle_sigint
+FUN_0041c3ac	0041c3f8	005ab4b8	 FILE %s FUNCTION %s LINE %d: caught SIGBUS with pthread id 
+FUN_0041c3ac	0041c3fc	005ab3f0	/home/vendor/rtl819x_v3464_homekit/users/phytrex-homekit/lib_homekitserver/signals.c
+FUN_0041c3ac	0041c404	005ab570	_handle_sigbus
+FUN_0041c4e0	0041c530	005ab590	application/hap+json
+FUN_0041c6d0	0041c720	005ab5a8	application/pairing+tlv8
+FUN_0041c964	0041c9b8	005ab590	application/hap+json
+FUN_0041c964	0041c9f4	005ab590	application/hap+json
+FUN_0041c964	0041cab8	005ab590	application/hap+json
+FUN_0041c964	0041caf0	005ab590	application/hap+json
+FUN_0041c964	0041cb4c	005ab590	application/hap+json
+FUN_0041c964	0041cb98	005ab590	application/hap+json
+FUN_0041d2e8	0041d360	005ab5d0	accessories
+FUN_0041d2e8	0041d400	005ab5e0	services
+FUN_0041d2e8	0041d4d4	005ab5f0	characteristics
+FUN_0041d2e8	0041d6f8	005ab608	float
+FUN_0041d2e8	0041d940	005ab61c	perms
+FUN_0041d2e8	0041da04	005ab624	minValue
+FUN_0041d2e8	0041da44	005ab624	minValue
+FUN_0041d2e8	0041dadc	005ab630	maxValue
+FUN_0041d2e8	0041db6c	005ab63c	minStep
+FUN_0041d2e8	0041dbc4	005ab644	precision
+FUN_0041d2e8	0041dc04	005ab650	maxLen
+FUN_0041d2e8	0041dc44	005ab658	description
+FUN_0041dd50	0041ddcc	005ab5f0	characteristics
+FUN_0041dd50	0041de64	005ab5f0	characteristics
+FUN_0041dd50	0041e470	005ab66c	Write a characteristic that is not existed
+FUN_0041dd50	0041e48c	005ab698	developerMessage
+FUN_0041dd50	0041e4c0	005ab6ac	errorCode
+FUN_0041dd50	0041e4cc	005ab6b8	response
+FUN_0041e850	0041e8e4	005ab6c4	/pair-setup
+FUN_0041e850	0041e930	005ab5a8	application/pairing+tlv8
+FUN_0041e850	0041e968	005ab6d0	/pair-verify
+FUN_0041e850	0041ea54	005ab6e0	/accessories
+FUN_0041e850	0041ea78	005ab6f0	[discovery]
+FUN_0041e850	0041eac4	005ab6fc	Read Data base Error
+FUN_0041e850	0041eae0	005ab714	/characteristics
+FUN_0041e850	0041eb18	005ab714	/characteristics
+FUN_0041e850	0041f00c	005ab5f0	characteristics
+FUN_0041e850	0041f0a8	005ab72c	Read characteristic Error
+FUN_0041e850	0041f17c	005ab74c	Write characteristic Error
+FUN_0041e850	0041f1b8	005ab74c	Write characteristic Error
+FUN_0041e850	0041f1c4	005ab780	/pairings
+FUN_0041e850	0041f1e8	005ab78c	[HTTP Header] Get kPAIRINGS
+FUN_0041e850	0041f4c8	005ab7a8	Add Pairing Error
+FUN_0041e850	0041f6c4	005ab7bc	Remove Pairing Error
+FUN_0041e850	0041f93c	005ab7bc	Remove Pairing Error
+FUN_0041e850	0041f9c4	005ab7d4	/identify
+FUN_0041e850	0041fa30	005ab5a8	application/pairing+tlv8
+FUN_0041e850	0041fa54	005ab7e0	{"status":-70401}
+FUN_0041e850	0041fa60	005ab590	application/hap+json
+FUN_0041e850	0041fa8c	005ab768	Unsupport HTTP method
+HKSocketReadHTTPBody	00420dc0	005ab8d0	Content-Type
+HKSocketReadHTTPBody	00420dec	005ab8e0	application/phytrex-ota
+HKSocketReadHTTPHeader	00421120	005ab8d0	Content-Type
+HKSocketReadHTTPHeader	00421150	005ab8e0	application/phytrex-ota
+FUN_00421594	00421618	005ab948	HTTP/1.1
+FUN_00421594	00421624	005ab978	Content-Type:
+FUN_00421594	00421634	005ab988	Content-Length:
+FUN_00421594	0042164c	005ab958	%s %s? %s %s%s %s%s%s %d%s
+CreateEVENTRespondMessageNoCopy	004217d4	005ab998	%a, %d %b %Y %H:%M:%S %Z
+CreateEVENTRespondMessageNoCopy	00421824	005ab978	Content-Type:
+CreateEVENTRespondMessageNoCopy	00421834	005ab988	Content-Length:
+CreateEVENTRespondMessageNoCopy	0042185c	005ab9b4	%s %d %s%s%s %s%s%s %d%s
+CreateEVENTRespondMessageNoCopy	00421864	005ab9d0	EVENT/1.0
+CreateHTTPRespondMessageNoCopy	004219b0	005ab998	%a, %d %b %Y %H:%M:%S %Z
+CreateHTTPRespondMessageNoCopy	00421a28	005ab9dc	%s %3d %s%sDate: %s%s
+CreateHTTPRespondMessageNoCopy	00421a2c	005ab948	HTTP/1.1
+CreateHTTPRespondMessageNoCopy	00421a74	005ab978	Content-Type:
+CreateHTTPRespondMessageNoCopy	00421a84	005ab988	Content-Length:
+CreateHTTPRespondMessageNoCopy	00421ac0	005ab9b4	%s %d %s%s%s %s%s%s %d%s
+CreateHTTPRespondMessageNoCopy	00421ac4	005ab948	HTTP/1.1
+CreateSimpleHTTPMessageNoCopy	00421ba8	005ab978	Content-Type:
+CreateSimpleHTTPMessageNoCopy	00421bb8	005ab988	Content-Length:
+CreateSimpleHTTPMessageNoCopy	00421bd8	005ab9f4	%s %s %s%s%s %s%s%s %d%s
+CreateSimpleHTTPMessageNoCopy	00421bdc	005ab948	HTTP/1.1
+FUN_00421c3c	00421cc4	005ab978	Content-Type:
+FUN_00421c3c	00421cd4	005ab988	Content-Length:
+FUN_00421c3c	00421cf0	005ab9b4	%s %d %s%s%s %s%s%s %d%s
+FUN_00421c3c	00421cf4	005ab948	HTTP/1.1
+HTTPHeaderParse	004224dc	005aba10	Connection
+HTTPHeaderParse	0042251c	005aba1c	HTTP/1.0
+HTTPHeaderParse	0042252c	005aba28	close
+HTTPHeaderParse	00422550	005aba30	Content-Length
+FUN_004229ec	00422c28	005ab8d0	Content-Type
+FUN_004229ec	00422c68	005ab8e0	application/phytrex-ota
+FUN_00423164	0042326c	005aba48	%c%c:%c%c:%c%c:%c%c:%c%c:%c%c
+FUN_00424338	004243f8	005aba70	%02X:
+FUN_00424438	004244d4	005aba78	%02X 
+Phytrex_HMReadPairList	00424dd0	005aba80	/dev/mtdblock2
+Phytrex_HMAddPairKey	004250cc	005aba90	[Add Pair] ControllerName=[%s] 
+Phytrex_HMInitFlash	00425200	005aba80	/dev/mtdblock2
+Phytrex_HMSavePairList	00425374	005aba80	/dev/mtdblock2
+Phytrex_HMSaveAppConfig	00425458	005aba80	/dev/mtdblock2
+Phytrex_HMGetAppConfig	0042554c	005aba80	/dev/mtdblock2
+FUN_004255ec	00425630	005aba80	/dev/mtdblock2
+Phytrex_HMCreatPairList	00425704	005aba80	/dev/mtdblock2
+Phytrex_HMCreatPairList	004257c4	005aba80	/dev/mtdblock2
+FUN_00425d78	00425fe4	005abee8	Pair-Verify-Encrypt-Salt
+FUN_00425d78	00425fec	005abee8	Pair-Verify-Encrypt-Salt
+FUN_00425d78	00426010	005abf80	Pair-Verify-Encrypt-Info
+FUN_00425d78	00426024	005abee8	Pair-Verify-Encrypt-Salt
+FUN_00425d78	0042602c	005abf80	Pair-Verify-Encrypt-Info
+FUN_00425d78	00426144	005ac03c	PV-Msg02
+FUN_00425d78	00426228	005ab5a8	application/pairing+tlv8
+FUN_00426388	00426504	005ac048	PV-Msg03
+HKPairVerifyEngine	0042698c	005abf44	Control-Salt
+HKPairVerifyEngine	00426998	005abf44	Control-Salt
+HKPairVerifyEngine	004269bc	005abffc	Control-Read-Encryption-Key
+HKPairVerifyEngine	004269c8	005abf44	Control-Salt
+HKPairVerifyEngine	004269d4	005abffc	Control-Read-Encryption-Key
+HKPairVerifyEngine	00426a20	005abf44	Control-Salt
+HKPairVerifyEngine	00426a28	005abf44	Control-Salt
+HKPairVerifyEngine	00426a4c	005abfdc	Control-Write-Encryption-Key
+HKPairVerifyEngine	00426a58	005abf44	Control-Salt
+HKPairVerifyEngine	00426a64	005abfdc	Control-Write-Encryption-Key
+HKPairVerifyEngine	00426a90	005ab5a8	application/pairing+tlv8
+FUN_00426bd0	00426dd8	005abebc	Pair-Setup-Encrypt-Salt
+FUN_00426bd0	00426de0	005abebc	Pair-Setup-Encrypt-Salt
+FUN_00426bd0	00426e00	005abf54	Pair-Setup-Encrypt-Info
+FUN_00426bd0	00426e24	005abebc	Pair-Setup-Encrypt-Salt
+FUN_00426bd0	00426e30	005abf54	Pair-Setup-Encrypt-Info
+FUN_00426bd0	00426e4c	005abed4	MFi-Pair-Setup-Salt
+FUN_00426bd0	00426e54	005abed4	MFi-Pair-Setup-Salt
+FUN_00426bd0	00426e74	005abf6c	MFi-Pair-Setup-Info
+FUN_00426bd0	00426e90	005abed4	MFi-Pair-Setup-Salt
+FUN_00426bd0	00426ea0	005abf6c	MFi-Pair-Setup-Info
+FUN_00426bd0	0042707c	005ac018	PS-Msg04
+FUN_00426bd0	00427278	005ab5a8	application/pairing+tlv8
+FUN_00427400	004275a4	005abebc	Pair-Setup-Encrypt-Salt
+FUN_00427400	004275ac	005abebc	Pair-Setup-Encrypt-Salt
+FUN_00427400	004275cc	005abf54	Pair-Setup-Encrypt-Info
+FUN_00427400	004275ec	005abebc	Pair-Setup-Encrypt-Salt
+FUN_00427400	00427608	005abf54	Pair-Setup-Encrypt-Info
+FUN_00427400	00427628	005ac024	PS-Msg05
+FUN_00427400	004277d0	005abf04	Pair-Setup-Controller-Sign-Salt
+FUN_00427400	004277dc	005abf04	Pair-Setup-Controller-Sign-Salt
+FUN_00427400	004277fc	005abf9c	Pair-Setup-Controller-Sign-Info
+FUN_00427400	0042781c	005abf04	Pair-Setup-Controller-Sign-Salt
+FUN_00427400	00427834	005abf9c	Pair-Setup-Controller-Sign-Info
+FUN_00427998	00427abc	005abf24	Pair-Setup-Accessory-Sign-Salt
+FUN_00427998	00427ac8	005abf24	Pair-Setup-Accessory-Sign-Salt
+FUN_00427998	00427aec	005abfbc	Pair-Setup-Accessory-Sign-Info
+FUN_00427998	00427b04	005abfbc	Pair-Setup-Accessory-Sign-Info
+FUN_00427998	00427b18	005abf24	Pair-Setup-Accessory-Sign-Salt
+FUN_00427998	00427d2c	005abebc	Pair-Setup-Encrypt-Salt
+FUN_00427998	00427d34	005abebc	Pair-Setup-Encrypt-Salt
+FUN_00427998	00427d5c	005abf54	Pair-Setup-Encrypt-Info
+FUN_00427998	00427d60	005abf54	Pair-Setup-Encrypt-Info
+FUN_00427998	00427d80	005abf54	Pair-Setup-Encrypt-Info
+FUN_00427998	00427d94	005abebc	Pair-Setup-Encrypt-Salt
+FUN_00427998	00427dd0	005ac030	PS-Msg06
+FUN_00427998	00427e98	005ab5a8	application/pairing+tlv8
+HKPairSetupEngine	00428314	005abeb0	Pair-Setup
+HKPairSetupEngine	00428344	005abeb0	Pair-Setup
+HKPairSetupEngine	00428380	005abeb0	Pair-Setup
+HKPairSetupEngine	004286dc	005ab5a8	application/pairing+tlv8
+FUN_00428c44	00428e5c	005ac1f0	### MFi auth register 0x%02X failed after %d tries: %d 
+MFiAuthCopyCertificate	00428f3c	005ac228	/dev/mfi_cp
+MFiAuthCopyCertificate	00428ff8	005ac234	MFi auth copy certificate done: %d bytes 
+MFiAuthCopyCertificate	00429034	005ac260	### MFi auth copy certificate failed: %d 
+MFiAuthCreateSignature	00429110	005ac228	/dev/mfi_cp
+MFiAuthCreateSignature	004292b0	005ac28c	MFi auth created signature:%p, len=%d 
+MFiAuthCreateSignature	004292d8	005ac2b4	### MFi auth create signature failed: %d 
+mdnsPhytrex_HomekitRemove	0042df98	005ac670	Load libdns_so error. 
+mdnsPhytrex_HomekitRemove	0042dfbc	005ac688	TXTRecordDeallocate
+mdnsPhytrex_HomekitRemove	0042e024	005ac69c	DNSServiceRefDeallocate
+mdnsPhytrex_HomekitUpdate	0042e0f8	005ac670	Load libdns_so error. 
+mdnsPhytrex_HomekitUpdate	0042e11c	005ac6b4	TXTRecordSetValue
+mdnsPhytrex_HomekitUpdate	0042e19c	005ac6c8	DNSServiceUpdateRecord
+mdnsPhytrex_HomekitUpdate	0042e1d0	005ac6e0	TXTRecordGetLength
+mdnsPhytrex_HomekitUpdate	0042e214	005ac6f4	dlsym error: %s 
+mdnsPhytrex_HomekitUpdate	0042e240	005ac708	TXTRecordGetBytesPtr
+mdnsPhytrex_HomekitUpdate	0042e29c	005ac6f4	dlsym error: %s 
+mdnsPhytrex_HomekitRegist	0042e42c	005ab158	%.2x:%.2x:%.2x:%.2x:%.2x:%.2x
+mdnsPhytrex_HomekitRegist	0042e44c	005ac720	Get MAC Address: %s 
+mdnsPhytrex_HomekitRegist	0042e490	005ac670	Load libdns_so error. 
+mdnsPhytrex_HomekitRegist	0042e4b4	005ac738	DNSServiceRegister
+mdnsPhytrex_HomekitRegist	0042e4f8	005ac6f4	dlsym error: %s 
+mdnsPhytrex_HomekitRegist	0042e524	005ac74c	TXTRecordCreate
+mdnsPhytrex_HomekitRegist	0042e56c	005ac6f4	dlsym error: %s 
+mdnsPhytrex_HomekitRegist	0042e598	005ac6b4	TXTRecordSetValue
+mdnsPhytrex_HomekitRegist	0042e6f8	005ac6e0	TXTRecordGetLength
+mdnsPhytrex_HomekitRegist	0042e73c	005ac6f4	dlsym error: %s 
+mdnsPhytrex_HomekitRegist	0042e768	005ac708	TXTRecordGetBytesPtr
+mdnsPhytrex_HomekitRegist	0042e7ac	005ac6f4	dlsym error: %s 
+mdnsPhytrex_HomekitRegist	0042e7e0	005ac784	_hap._tcp
+mdnsPhytrex_HomekitRegist	0042e7ec	005ac790	local
+mdnsPhytrex_HomekitRegist	0042e860	005ac798	Error: %s,%s,%d,%d 
+mdnsPhytrex_HomekitRegist	0042e864	005ac7ac	/home/vendor/rtl819x_v3464_homekit/users/phytrex-homekit/lib_homekitserver/mdns_phytrexHomekit.c
+mdnsPhytrex_HomekitRegist	0042e86c	005ac860	mdnsPhytrex_HomekitRegist
+FUN_0042e8ac	0042e8dc	005ac810	hostname > /tmp/net/jc_hostname.txt
+FUN_0042e8ac	0042e8f0	005ac834	/tmp/net/jc_hostname.txt
+FUN_0042e8ac	0042e96c	005ac850	JHOSTNAME=%s
+FUN_0042f424	0042f5a4	005ac8d0	 FILE %s FUNCTION %s LINE %d: Setup code is illegal %2x%2x%2x%2x%2x%2x%2x%2x%2x%2x 
+FUN_0042f424	0042f5a8	005ac924	/home/vendor/rtl819x_v3464_homekit/users/phytrex-homekit/homekitsetupcode.c
+FUN_0042f424	0042f5b0	005ac9a0	checkSetupCodeisLegal
+FUN_0042f5c8	0042f674	005ffc11	BCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=
+FUN_0042f76c	0042f7a4	005aba80	/dev/mtdblock2
+FUN_0042f76c	0042f808	005ac970	open MTD device %s fail... 
+FUN_0042f76c	0042f810	005aba80	/dev/mtdblock2
+Get_product_info	0042f934	005ac9c0	/dev/mtdblock5
+Get_product_info	0042f998	005ac9d0	 FILE %s FUNCTION %s LINE %d: locate production to flash by lseek fail......  
+Get_product_info	0042f99c	005aca20	/home/vendor/rtl819x_v3464_homekit/users/phytrex-homekit/customize/Incipio_Socket_Meter/homekitdatasave.c
+Get_product_info	0042f9a4	005acda0	Get_product_info
+Get_product_info	0042f9f0	005aca8c	 FILE %s FUNCTION %s LINE %d: read production from flash fail.......  
+Get_product_info	0042f9f4	005aca20	/home/vendor/rtl819x_v3464_homekit/users/phytrex-homekit/customize/Incipio_Socket_Meter/homekitdatasave.c
+Get_product_info	0042f9fc	005acda0	Get_product_info
+Get_product_info	0042fa14	005acad4	[METER DEBUG] Read Product Info :
+Get_product_info	0042fa28	005acaf8	              Serial NUM : [%s]  
+Get_product_info	0042fa3c	005acb1c	AccessoryInfo
+Get_product_info	0042fa68	005acb2c	signature fail
+Get_product_info	0042fa80	005acb3c	HKMO-0000001
+Get_product_info	0042fac0	005acb4c	 FILE %s FUNCTION %s LINE %d: read production from flash open fail......  
+Get_product_info	0042fac4	005aca20	/home/vendor/rtl819x_v3464_homekit/users/phytrex-homekit/customize/Incipio_Socket_Meter/homekitdatasave.c
+Get_product_info	0042facc	005acda0	Get_product_info
+FUN_0042fb24	0042fb58	005ac9c0	/dev/mtdblock5
+FUN_0042fb24	0042fbb0	005acb98	 FILE %s FUNCTION %s LINE %d: locate hksettinginfo to flash by lseek fail......  
+FUN_0042fb24	0042fbb4	005aca20	/home/vendor/rtl819x_v3464_homekit/users/phytrex-homekit/customize/Incipio_Socket_Meter/homekitdatasave.c
+FUN_0042fb24	0042fbbc	005acdb4	Get_hksettinginfo
+FUN_0042fb24	0042fc0c	005acbec	 FILE %s FUNCTION %s LINE %d: read hksettinginfo from flash fail.......  
+FUN_0042fb24	0042fc10	005aca20	/home/vendor/rtl819x_v3464_homekit/users/phytrex-homekit/customize/Incipio_Socket_Meter/homekitdatasave.c
+FUN_0042fb24	0042fc18	005acdb4	Get_hksettinginfo
+FUN_0042fb24	0042fc40	005acc38	 FILE %s FUNCTION %s LINE %d:   Get hksetting info : 
+FUN_0042fb24	0042fc44	005aca20	/home/vendor/rtl819x_v3464_homekit/users/phytrex-homekit/customize/Incipio_Socket_Meter/homekitdatasave.c
+FUN_0042fb24	0042fc48	005acdb4	Get_hksettinginfo
+FUN_0042fb24	0042fc74	005acc70	 FILE %s FUNCTION %s LINE %d:   brightness value : %d 
+FUN_0042fb24	0042fc78	005aca20	/home/vendor/rtl819x_v3464_homekit/users/phytrex-homekit/customize/Incipio_Socket_Meter/homekitdatasave.c
+FUN_0042fb24	0042fc80	005acdb4	Get_hksettinginfo
+FUN_0042fb24	0042fca4	005acca8	 FILE %s FUNCTION %s LINE %d: read hksettinginfo from flash open fail......  
+FUN_0042fb24	0042fca8	005aca20	/home/vendor/rtl819x_v3464_homekit/users/phytrex-homekit/customize/Incipio_Socket_Meter/homekitdatasave.c
+FUN_0042fb24	0042fcac	005acdb4	Get_hksettinginfo
+FUN_0042fcfc	0042fd20	005ac9c0	/dev/mtdblock5
+FUN_0042fcfc	0042fd78	005acb98	 FILE %s FUNCTION %s LINE %d: locate hksettinginfo to flash by lseek fail......  
+FUN_0042fcfc	0042fd7c	005aca20	/home/vendor/rtl819x_v3464_homekit/users/phytrex-homekit/customize/Incipio_Socket_Meter/homekitdatasave.c
+FUN_0042fcfc	0042fd84	005acdc8	Store_hksettinginfo
+FUN_0042fcfc	0042fdcc	005accf8	 FILE %s FUNCTION %s LINE %d: write hksettinginfo to flash fail.......  
+FUN_0042fcfc	0042fde8	005acd44	 FILE %s FUNCTION %s LINE %d: write hksettinginfo to flash open fail......  
+FUN_0042fcfc	0042fdf4	005aca20	/home/vendor/rtl819x_v3464_homekit/users/phytrex-homekit/customize/Incipio_Socket_Meter/homekitdatasave.c
+FUN_0042fcfc	0042fdfc	005acdc8	Store_hksettinginfo
+FUN_0042fe30	0042fe6c	005acde0	10206
+FUN_0042fe30	0042fe90	005acde8	***orifwVer:[%s] 
+FUN_0042fe30	0042fee0	005acdfc	ver_x = %d, ver_rem = %d 
+FUN_0042fe30	0042ff20	005ace18	ver_y = %d, ver_rem = %d 
+FUN_0042fe30	0042ff44	005ace34	ver_z = %d, ver_rem = %d 
+FUN_00430164	004301d0	005ace50	http://
+FUN_00430164	004301fc	005ace58	https://
+FUN_00430380	00430440	005ace64	webhost: [%s] 
+FUN_00430380	0043046c	005ace74	portnumber:%d  
+FUN_00430380	004304c8	005ace84	getaddrinfo: %s 
+FUN_00430380	00430538	005acea8	 %s: %s 
+FUN_00430380	00430628	005acec8	[GetFWINFO] create socket IP:[%s] 
+FUN_00430888	00430940	005acf14	http://dev.ncpo.cc
+FUN_00430888	00430968	005acf28	GET %s HTTP/1.1
+ Accept: */*
+ Accept-Language: zh-cn
+ User-Agent: Mozilla/4.0 (compatible; MSIE 5.01; Windows NT 5.0)
+ Host: %s:%d
+ Connection: Close
+ 
+ 
+FUN_00430888	00430984	005acfc4	[GetFWINFO] Send HTTP Request:
+FUN_00430888	00430a30	005acfe4	[GetFWINFO] send http fail...
+FUN_00430888	00430a3c	005ad004	%d bytes send OK! 
+FUN_00430888	00430b04	005ad018	select error
+FUN_00430ca0	00430cd0	005ad028	/homekit/getlastfwinfo/?guid=034fghijsdernck98674d32hjk&product=smartsocketwithmeter
+FUN_00430ca0	00430d04	005ad080	[GetFWINFO]Send fw info API done RES = [%s]  
+FUN_00430ca0	00430d18	005ad0b0	information
+FUN_00430ca0	00430d48	005ad0bc	"fwver":"
+FUN_00430ca0	00430da4	005ad0cc	update_url":"
+FUN_00430ca0	00430df8	005ad0e0	[GetFWINFO] Get FW info from HTTP API : ver:[%s] URL:[%s] 
+FUN_00430ca0	00430e1c	005ad11c	400 Bad Request
+FUN_00430f84	00431014	005ad12c	/var/fwProgress
+FUN_00430f84	00431030	005ad12c	/var/fwProgress
+FUN_00430f84	00431090	005ad13c	%s %d %d
+FUN_00430f84	00431150	005ad148	download fw fail
+FUN_00430f84	0043116c	005ad15c	verify fw fail
+FUN_00430f84	00431188	005ad16c	upgrade fw fail
+FUN_00430f84	004311f0	005ad17c	Progress:[%d] Result:[%d] 
+HKSetupDNSServiceName	0043183c	005ad33c	 flash get MFI_WAC_DEVICE_NAME > /var/wacNameInfo
+HKSetupDNSServiceName	00431874	005ad370	/var/wacNameInfo
+HKSetupDNSServiceName	004318d4	005ad384	MFI_WAC_DEVICE_NAME="
+HKSetupDNSServiceName	0043194c	005ad39c	rm -f /var/wacNameInfo
+HKSetupFirmwareVersion	004319a4	005acde0	10206
+HKCharacteristicInit	00431a28	005ad400	273-49-151
+HKWriteCharacteristicValue	00431d4c	005ad3b4	Set Firmware start!!!
+HKWriteCharacteristicValue	00431d64	005ad3cc	upgfw %s&
+HKWriteCharacteristicValue	00431d90	005ad3d8	Create thread for OTA progress=>%d!  
+FUN_00431fb0	00431fe4	005ad440	0123456789abcdef
+Identify_LEDSetup	004322a8	005ad454	/proc/wlan0/gpio_ctrl
+Identify_LEDSetup	004322c4	005ad46c	set %d %d
+Identify_LEDSetup	004322ec	005ad454	/proc/wlan0/gpio_ctrl
+Identify_LEDSetup	00432308	005ad46c	set %d %d
+Identify_SwitchSetup	00432398	005ad478	 FILE %s FUNCTION %s LINE %d: identify LED blink  
+Identify_SwitchSetup	0043239c	005ad4ac	/home/vendor/rtl819x_v3464_homekit/users/phytrex-homekit/customize/Incipio_Socket_Meter/Socket_Meter.c
+Identify_SwitchSetup	004323a4	005ad940	Identify_SwitchSetup
+Identify_SwitchSetup	004323e0	005ad4ac	/home/vendor/rtl819x_v3464_homekit/users/phytrex-homekit/customize/Incipio_Socket_Meter/Socket_Meter.c
+Identify_SwitchSetup	004323e4	005ad940	Identify_SwitchSetup
+Identify_SwitchSetup	004323e8	005ad514	 FILE %s FUNCTION %s LINE %d: identify LED Off  
+Identify_SwitchSetup	00432404	005ad454	/proc/wlan0/gpio_ctrl
+Identify_SwitchSetup	00432420	005ad46c	set %d %d
+Identify_SwitchSetup	00432464	005ad548	 FILE %s FUNCTION %s LINE %d: bad request  
+Identify_SwitchSetup	00432468	005ad4ac	/home/vendor/rtl819x_v3464_homekit/users/phytrex-homekit/customize/Incipio_Socket_Meter/Socket_Meter.c
+Identify_SwitchSetup	00432470	005ad940	Identify_SwitchSetup
+Serial_Gpio_Close	004324c0	005ad574	 FILE %s FUNCTION %s LINE %d: Do serial close  
+Serial_Gpio_Close	004324c4	005ad4ac	/home/vendor/rtl819x_v3464_homekit/users/phytrex-homekit/customize/Incipio_Socket_Meter/Socket_Meter.c
+Serial_Gpio_Close	004324c8	005ad958	Serial_Gpio_Close
+Serial_Gpio_Write	004326a4	005ad5a4	relay_switchstate = %d 
+FUN_004326d4	004326fc	005ad5bc	Receive in status: %d 
+FUN_004326d4	00432738	005ad5d4	%s:%d 
+FUN_00432754	0043282c	005ad018	select error
+FUN_00432754	0043289c	005ad5dc	Receieve non data  
+Get_Power_value	00432a38	005ad5f0	Power value = %f 
+Get_Irms_value	00432be8	005ad604	Irms value = %f 
+Get_Vrms_value	00432d98	005ad618	Vrms value = %f 
+Get_Relay_State	00432ea0	005ad5a4	relay_switchstate = %d 
+Relay_SwitchSetup	00432f24	005ad62c	Switch on 
+Relay_SwitchSetup	00432f6c	005ad638	Switch off 
+Relay_SwitchSetup	00432fac	005ad644	Every fail 
+FUN_00432fcc	00432ff0	005ad928	/dev/ttyACM0
+FUN_00432fcc	004330b0	005ad650	Serial Port open
+FUN_00432fcc	00433158	005ad664	Unable to open /dev/ttyUSB0
+FUN_00433178	004331a4	005ad928	/dev/ttyACM0
+FUN_00433178	004331d0	005ad698	open ttyUSB0 .....
+FUN_00433178	004331e4	005ad6ac	/dev/ttyS1
+FUN_00433178	00433210	005ad6b8	open ttyS1 .....
+FUN_00433178	00433220	005ad6cc	/dev/ttyS2
+FUN_00433178	0043324c	005ad680	Can't Open Serial Port
+FUN_00433178	00433260	005ad6d8	open ttyS2 .....
+FUN_00433178	004332a0	005ad6ec	fcntl failed!
+FUN_00433178	004332c4	005ad6fc	fcntl=%d 
+FUN_00433178	00433308	005ad708	standard input is not a terminal device
+FUN_00433178	00433310	005ad730	isatty success!
+FUN_00433178	00433324	005ad740	fd-open=%d 
+FUN_0043334c	004333ac	005ad74c	SetupSerial 1
+FUN_0043334c	004335d8	005ad75c	com set error
+FUN_0043334c	004335f8	005ad76c	set done!
+Serial_Gpio_Open	00433674	005ad454	/proc/wlan0/gpio_ctrl
+Serial_Gpio_Open	00433688	005ad778	config %d w
+Serial_Gpio_Open	004336c4	005ad454	/proc/wlan0/gpio_ctrl
+Serial_Gpio_Open	004336d8	005ad784	config %d r
+Serial_Gpio_Open	00433718	005ad790	USB to UART Enable... 
+Serial_Gpio_Open	00433744	005ad7a8	open_port error 
+Serial_Gpio_Open	0043377c	005ad7bc	set_opt error 
+Serial_Gpio_Open	004337a0	005ad7cc	serialport fd=%d 
+Serial_Gpio_Open	004337b4	005acde0	10206
+Serial_Gpio_Open	004337bc	005ad7e0	FW Version is %s 
+Serial_Gpio_Read	0043386c	005ad454	/proc/wlan0/gpio_ctrl
+Serial_Gpio_Read	00433908	005ad7f4	 FILE %s FUNCTION %s LINE %d: gpio re-config...  
+Serial_Gpio_Read	0043390c	005ad4ac	/home/vendor/rtl819x_v3464_homekit/users/phytrex-homekit/customize/Incipio_Socket_Meter/Socket_Meter.c
+Serial_Gpio_Read	00433914	005ad96c	Serial_Gpio_Read
+Serial_Gpio_Read	00433924	005ad828	GPIO6 1
+Serial_Gpio_Read	00433954	005ad830	GPIO6 0
+FUN_004339e8	00433a30	005ad838	Starting SerialPortThread thread 
+FUN_004339e8	00433a8c	005ad85c	  cmdlen=%d  
+FUN_004339e8	00433b1c	005ad874	write to serial port=%d 
+FUN_004339e8	00433b68	005ad890	nread=%d 
+FUN_004339e8	00433c50	005ad89c	modify nread=%d 
+FUN_004339e8	00433d38	005ad8b0	CKOK %2X  
+FUN_004339e8	00433d88	005ad8bc	HandShakeResponse size=%d 
+FUN_004339e8	00433dfc	005ad8d8	CKERROR %2X  
+FUN_004341e4	00434240	005ad99c	/mqphytrexread
+shared_ServerWriteDetach	004342c4	005ad9ac	/mqphytrexwrite
+FUN_0043453c	00434574	005ad99c	/mqphytrexread
+shared_ServerReadInit	004345f4	005ad99c	/mqphytrexread
+FUN_0043462c	00434664	005ad9ac	/mqphytrexwrite
+shared_ServerWriteInit	004346e4	005ad9ac	/mqphytrexwrite
+FUN_00434720	00434b00	005ad9d0	0123456789abcdefABCDEF
+FUN_00434720	00434b28	005ad9d0	0123456789abcdefABCDEF
+FUN_00434720	00434b38	005ada08	\u00%c%c
+FUN_00435df4	00435e78	005ada64	false
+FUN_004376e0	00437738	005adbfc	Unknown error, invalid json_tokener_error value passed to json_tokener_error_desc()
+json_tokener_parse_ex	0043a734	005ad9d0	0123456789abcdefABCDEF
+json_tokener_parse_ex	0043bfd0	005adaa0	false
+json_tokener_parse_ex	0043c024	005adaa0	false
+json_tokener_parse_ex	0043c040	005adaa0	false
+json_tokener_parse_ex	0043c088	005adaa0	false
+json_tokener_parse_ex	0043c498	005ad9c0	0123456789.+-eE
+FUN_0043db50	0043dbf0	005adf80	json_object_from_file: error reading file %s: %s 
+FUN_0043db50	0043dc74	005adfb4	json_object_from_file: printbuf_new failed 
+FUN_0043db50	0043dd80	005adf80	json_object_from_file: error reading file %s: %s 
+json_object_to_file_ext	0043de78	005adfe0	json_object_to_file: object is null 
+json_object_to_file_ext	0043df20	005ae008	json_object_to_file: error opening file %s: %s 
+json_object_to_file_ext	0043e098	005ae038	json_object_to_file: error writing file %s: %s 
+FUN_0043e204	0043e230	005ae06c	 -01234567890123456789012345
+FUN_0043e204	0043e2b8	005ae094	 01234567890123456789012345
+FUN_0043e7d8	0043e834	005ae0e4	json_type_to_name: type %d is out of range [0,%d] 
+lh_table_new	0043eb04	005ae130	lh_table_new: calloc failed 
+lh_table_new	0043eba4	005ae130	lh_table_new: calloc failed 

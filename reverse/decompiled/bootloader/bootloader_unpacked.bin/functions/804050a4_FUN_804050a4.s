@@ -1,0 +1,25 @@
+# FUN_804050a4 @ 804050a4
+804050a4  addiu sp,sp,-0x18
+804050a8  sw ra,0x14(sp)
+804050ac  sw s0,0x10(sp)
+804050b0  andi s0,a0,0xff
+804050b4  move a0,s0
+804050b8  clear a1
+804050bc  jal 0x80404ff4
+804050c0  _clear a2
+804050c4  move a0,s0
+804050c8  clear a1
+804050cc  jal 0x80405050
+804050d0  _clear a2
+804050d4  move a0,s0
+804050d8  clear a1
+804050dc  jal 0x80404ff4
+804050e0  _clear a2
+804050e4  move a0,s0
+804050e8  clear a1
+804050ec  jal 0x80405050
+804050f0  _clear a2
+804050f4  lw ra,0x14(sp)
+804050f8  lw s0,0x10(sp)
+804050fc  jr ra
+80405100  _addiu sp,sp,0x18

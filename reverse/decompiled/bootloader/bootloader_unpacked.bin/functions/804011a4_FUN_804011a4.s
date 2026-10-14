@@ -1,0 +1,18 @@
+# FUN_804011a4 @ 804011a4
+804011a4  addiu sp,sp,-0x18
+804011a8  sw ra,0x14(sp)
+804011ac  lui v0,0x8041
+804011b0  lw v0,-0x106c(v0)
+804011b4  nop
+804011b8  beq v0,zero,0x804011d8
+804011bc  _lui v0,0x8041
+804011c0  lui a0,0x8041
+804011c4  lw a1,-0x11ac(v0)
+804011c8  lui v0,0x8041
+804011cc  lw a2,-0x119c(v0)
+804011d0  jal 0x804077a4
+804011d4  _addiu a0,a0,-0x2db8
+804011d8  lw ra,0x14(sp)
+804011dc  nop
+804011e0  jr ra
+804011e4  _addiu sp,sp,0x18

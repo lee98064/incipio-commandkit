@@ -1,0 +1,27 @@
+# FUN_0040c0b4 @ 0040c0b4
+0040c0b4  addiu sp,sp,-0x148
+0040c0b8  sw ra,0x144(sp)
+0040c0bc  sw s2,0x140(sp)
+0040c0c0  sw s1,0x13c(sp)
+0040c0c4  sw s0,0x138(sp)
+0040c0c8  addiu s0,sp,0x18
+0040c0cc  move s2,a1
+0040c0d0  move a1,a0
+0040c0d4  move a0,s0
+0040c0d8  move s1,a2
+0040c0dc  jal 0x0040bc40
+0040c0e0  _sw a1,0x130(sp)
+0040c0e4  lw a1,0x130(sp)
+0040c0e8  move a2,s2
+0040c0ec  jal 0x0040bfc0
+0040c0f0  _move a0,s0
+0040c0f4  move a1,s0
+0040c0f8  jal 0x0040bb28
+0040c0fc  _move a0,s1
+0040c100  move v0,s1
+0040c104  lw ra,0x144(sp)
+0040c108  lw s2,0x140(sp)
+0040c10c  lw s1,0x13c(sp)
+0040c110  lw s0,0x138(sp)
+0040c114  jr ra
+0040c118  _addiu sp,sp,0x148

@@ -1,0 +1,105 @@
+# writeProductInfo_handler @ 00403090
+00403090  addiu sp,sp,-0x20
+00403094  sw ra,0x1c(sp)
+00403098  sw s8,0x18(sp)
+0040309c  move s8,sp
+004030a0  lui gp,0x42
+004030a4  addiu gp,gp,-0x21a0
+004030a8  sw gp,0x10(sp)
+004030ac  sw a0,0x20(s8)
+004030b0  lw v0,0x20(s8)
+004030b4  nop
+004030b8  addiu v0,v0,0x8
+004030bc  lw v0,0x0(v0)
+004030c0  nop
+004030c4  bne v0,zero,0x004030f4
+004030c8  _nop
+004030cc  lui v0,0x40
+004030d0  addiu a0,v0,0x58f0
+004030d4  lw v0,-0x7f50(gp)
+004030d8  nop
+004030dc  move t9,v0
+004030e0  jalr t9
+004030e4  _nop
+004030e8  lw gp,0x10(s8)
+004030ec  b 0x00403218
+004030f0  _nop
+004030f4  lw v0,0x20(s8)
+004030f8  nop
+004030fc  addiu v0,v0,0x8
+00403100  lw v0,0x0(v0)
+00403104  nop
+00403108  move a0,v0
+0040310c  lui v0,0x40
+00403110  addiu a1,v0,0x5900
+00403114  lw v0,-0x7fa4(gp)
+00403118  nop
+0040311c  move t9,v0
+00403120  jalr t9
+00403124  _nop
+00403128  lw gp,0x10(s8)
+0040312c  bne v0,zero,0x00403158
+00403130  _nop
+00403134  lw a0,0x20(s8)
+00403138  lw v0,-0x7f34(gp)
+0040313c  nop
+00403140  move t9,v0
+00403144  jalr t9
+00403148  _nop
+0040314c  lw gp,0x10(s8)
+00403150  b 0x00403218
+00403154  _nop
+00403158  lw v0,0x20(s8)
+0040315c  nop
+00403160  addiu v0,v0,0x8
+00403164  lw v0,0x0(v0)
+00403168  nop
+0040316c  move a0,v0
+00403170  lui v0,0x40
+00403174  addiu a1,v0,0x5908
+00403178  lw v0,-0x7fa4(gp)
+0040317c  nop
+00403180  move t9,v0
+00403184  jalr t9
+00403188  _nop
+0040318c  lw gp,0x10(s8)
+00403190  bne v0,zero,0x004031bc
+00403194  _nop
+00403198  lw a0,0x20(s8)
+0040319c  lw v0,-0x7f6c(gp)
+004031a0  nop
+004031a4  move t9,v0
+004031a8  jalr t9
+004031ac  _nop
+004031b0  lw gp,0x10(s8)
+004031b4  b 0x00403218
+004031b8  _nop
+004031bc  lw v0,0x20(s8)
+004031c0  nop
+004031c4  addiu v0,v0,0x8
+004031c8  lw v0,0x0(v0)
+004031cc  nop
+004031d0  move a0,v0
+004031d4  lui v0,0x40
+004031d8  addiu a1,v0,0x5910
+004031dc  lw v0,-0x7fa4(gp)
+004031e0  nop
+004031e4  move t9,v0
+004031e8  jalr t9
+004031ec  _nop
+004031f0  lw gp,0x10(s8)
+004031f4  bne v0,zero,0x00403218
+004031f8  _nop
+004031fc  lw a0,0x20(s8)
+00403200  lw v0,-0x7f88(gp)
+00403204  nop
+00403208  move t9,v0
+0040320c  jalr t9
+00403210  _nop
+00403214  lw gp,0x10(s8)
+00403218  move sp,s8
+0040321c  lw ra,0x1c(sp)
+00403220  lw s8,0x18(sp)
+00403224  addiu sp,sp,0x20
+00403228  jr ra
+0040322c  _nop

@@ -1,0 +1,81 @@
+# FUN_00402374 @ 00402374
+00402374  addiu sp,sp,-0x40
+00402378  sw ra,0x3c(sp)
+0040237c  sw s7,0x38(sp)
+00402380  sw s6,0x34(sp)
+00402384  sw s5,0x30(sp)
+00402388  sw s4,0x2c(sp)
+0040238c  sw s3,0x28(sp)
+00402390  sw s2,0x24(sp)
+00402394  sw s1,0x20(sp)
+00402398  sw s0,0x1c(sp)
+0040239c  lui gp,0x43
+004023a0  addiu gp,gp,-0x4be0
+004023a4  sw gp,0x10(sp)
+004023a8  lui s1,0x42
+004023ac  lui s7,0x41
+004023b0  lui s6,0x41
+004023b4  sw zero,0x3600(s1)
+004023b8  addiu s7,s7,0xdb0
+004023bc  addiu s6,s6,0xd20
+004023c0  li s5,0x3
+004023c4  lw s3,-0x7ed0(gp)
+004023c8  lw s2,-0x7f68(gp)
+004023cc  b 0x00402470
+004023d0  _li s4,0x5
+004023d4  sltiu v1,v1,0x2
+004023d8  beq v1,zero,0x0040241c
+004023dc  _xori s0,v0,0x1
+004023e0  move v0,s2
+004023e4  movz v0,s3,s0
+004023e8  b 0x00402400
+004023ec  _move s0,v0
+004023f0  addiu a1,a1,0x4
+004023f4  jalr t9
+004023f8  _move a0,s6
+004023fc  lw gp,0x10(sp)
+00402400  lw v0,0x0(s0)
+00402404  move a1,s0
+00402408  lw t9,-0x7e5c(gp)
+0040240c  bne v0,zero,0x004023f0
+00402410  _addiu s0,s0,0x3c
+00402414  b 0x00402470
+00402418  _nop
+0040241c  beq v0,s5,0x00402430
+00402420  _nop
+00402424  lw s0,-0x7e68(gp)
+00402428  bne v0,s4,0x00402434
+0040242c  _nop
+00402430  lw s0,-0x7ec4(gp)
+00402434  addiu v0,v0,-0x3
+00402438  sltiu v0,v0,0x2
+0040243c  beq v0,zero,0x00402458
+00402440  _nop
+00402444  lw t9,-0x7e5c(gp)
+00402448  move a0,s7
+0040244c  jalr t9
+00402450  _nop
+00402454  lw gp,0x10(sp)
+00402458  lw v0,0x0(s0)
+0040245c  move a0,s0
+00402460  lw t9,-0x7e8c(gp)
+00402464  addiu s0,s0,0x3c
+00402468  bne v0,zero,0x0040244c
+0040246c  _addiu a0,a0,0x4
+00402470  lw v1,0x3600(s1)
+00402474  nop
+00402478  addiu v0,v1,0x1
+0040247c  sltiu a0,v1,0x7
+00402480  bne a0,zero,0x004023d4
+00402484  _sw v0,0x3600(s1)
+00402488  lw ra,0x3c(sp)
+0040248c  lw s7,0x38(sp)
+00402490  lw s6,0x34(sp)
+00402494  lw s5,0x30(sp)
+00402498  lw s4,0x2c(sp)
+0040249c  lw s3,0x28(sp)
+004024a0  lw s2,0x24(sp)
+004024a4  lw s1,0x20(sp)
+004024a8  lw s0,0x1c(sp)
+004024ac  jr ra
+004024b0  _addiu sp,sp,0x40

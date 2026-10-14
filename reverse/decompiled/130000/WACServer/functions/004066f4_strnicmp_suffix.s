@@ -1,0 +1,37 @@
+# strnicmp_suffix @ 004066f4
+004066f4  addiu sp,sp,-0x30
+004066f8  sw ra,0x2c(sp)
+004066fc  sw s1,0x28(sp)
+00406700  sw s0,0x24(sp)
+00406704  lui gp,0x44
+00406708  addiu gp,gp,-0x4fc0
+0040670c  sw gp,0x10(sp)
+00406710  lw t9,-0x7e0c(gp)
+00406714  sw a2,0x18(sp)
+00406718  jalr t9
+0040671c  _move s0,a0
+00406720  lw gp,0x10(sp)
+00406724  lw a2,0x18(sp)
+00406728  move s1,v0
+0040672c  lw t9,-0x7f74(gp)
+00406730  nop
+00406734  jalr t9
+00406738  _move a0,a2
+0040673c  sltu v1,s1,v0
+00406740  lw gp,0x10(sp)
+00406744  lw a2,0x18(sp)
+00406748  beq v1,zero,0x00406768
+0040674c  _move a1,v0
+00406750  lw ra,0x2c(sp)
+00406754  lw s1,0x28(sp)
+00406758  lw s0,0x24(sp)
+0040675c  li v0,-0x1
+00406760  jr ra
+00406764  _addiu sp,sp,0x30
+00406768  subu a0,s1,v0
+0040676c  addu a0,s0,a0
+00406770  lw ra,0x2c(sp)
+00406774  lw s1,0x28(sp)
+00406778  lw s0,0x24(sp)
+0040677c  j 0x00406668
+00406780  _addiu sp,sp,0x30

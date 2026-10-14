@@ -1,0 +1,21 @@
+# FUN_8040311c @ 8040311c
+8040311c  addiu sp,sp,-0x20
+80403120  sw ra,0x1c(sp)
+80403124  sw s0,0x18(sp)
+80403128  move s0,a1
+8040312c  move a0,a1
+80403130  clear a1
+80403134  jal 0x80402d78
+80403138  _addiu a2,sp,0x10
+8040313c  lw a2,0x10(sp)
+80403140  nop
+80403144  ori a2,a2,0x200
+80403148  sw a2,0x10(sp)
+8040314c  move a0,s0
+80403150  jal 0x80402a40
+80403154  _clear a1
+80403158  clear v0
+8040315c  lw ra,0x1c(sp)
+80403160  lw s0,0x18(sp)
+80403164  jr ra
+80403168  _addiu sp,sp,0x20

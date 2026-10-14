@@ -1,0 +1,107 @@
+# Serial_Gpio_Read @ 00433154
+00433154  addiu sp,sp,-0x38
+00433158  sw ra,0x34(sp)
+0043315c  sw s0,0x30(sp)
+00433160  lui gp,0x62
+00433164  addiu gp,gp,-0x5cf0
+00433168  sw gp,0x18(sp)
+0043316c  lw t9,-0x69b4(gp)
+00433170  lui a0,0x5b
+00433174  lui a1,0x5b
+00433178  sw zero,0x20(sp)
+0043317c  sw zero,0x24(sp)
+00433180  sw zero,0x28(sp)
+00433184  sh zero,0x2c(sp)
+00433188  sb zero,0x2e(sp)
+0043318c  addiu a0,a0,-0x1bb4
+00433190  jalr t9
+00433194  _addiu a1,a1,0x2988
+00433198  lw gp,0x18(sp)
+0043319c  beq v0,zero,0x00433264
+004331a0  _move s0,v0
+004331a4  lw t9,-0x75f4(gp)
+004331a8  move a0,v0
+004331ac  clear a1
+004331b0  jalr t9
+004331b4  _clear a2
+004331b8  lw gp,0x18(sp)
+004331bc  addiu a0,sp,0x20
+004331c0  li a1,0x1
+004331c4  lw t9,-0x691c(gp)
+004331c8  li a2,0xf
+004331cc  jalr t9
+004331d0  _move a3,s0
+004331d4  lw gp,0x18(sp)
+004331d8  nop
+004331dc  lw t9,-0x68d4(gp)
+004331e0  bne v0,zero,0x0043323c
+004331e4  _nop
+004331e8  jalr t9
+004331ec  _move a0,s0
+004331f0  jal 0x00432cd0
+004331f4  _nop
+004331f8  jal 0x00432fec
+004331fc  _nop
+00433200  lw gp,0x18(sp)
+00433204  lui a1,0x5b
+00433208  lui a2,0x5b
+0043320c  lw v0,-0x6b48(gp)
+00433210  lw t9,-0x73b4(gp)
+00433214  lui a3,0x5b
+00433218  lw a0,0x0(v0)
+0043321c  li v0,0x31d
+00433220  sw v0,0x10(sp)
+00433224  addiu a1,a1,-0x1ad0
+00433228  addiu a2,a2,-0x1c1c
+0043322c  jalr t9
+00433230  _addiu a3,a3,-0x1804
+00433234  b 0x004332ec
+00433238  _li v0,0x1
+0043323c  jalr t9
+00433240  _move a0,s0
+00433244  lb a0,0x26(sp)
+00433248  li v1,0x31
+0043324c  bne a0,v1,0x0043325c
+00433250  _lui v0,0x61
+00433254  b 0x00433264
+00433258  _sb zero,0x5f22(v0)
+0043325c  li v1,0x1
+00433260  sb v1,0x5f22(v0)
+00433264  lui v0,0x61
+00433268  lw v0,0x5f24(v0)
+0043326c  li v1,0x1
+00433270  bne v0,v1,0x004332c8
+00433274  _lui v1,0x61
+00433278  lw a0,0x5f28(v1)
+0043327c  nop
+00433280  sltiu a1,a0,0x2
+00433284  beq a1,zero,0x00433294
+00433288  _addiu a0,a0,0x1
+0043328c  b 0x004332e8
+00433290  _sw a0,0x5f28(v1)
+00433294  lui v1,0x61
+00433298  lw v1,0x5f2c(v1)
+0043329c  nop
+004332a0  beq v1,zero,0x004332b4
+004332a4  _li a0,0x1
+004332a8  bne v1,v0,0x004332c0
+004332ac  _lui v0,0x61
+004332b0  clear a0
+004332b4  jal 0x00432e0c
+004332b8  _nop
+004332bc  lui v0,0x61
+004332c0  b 0x004332e8
+004332c4  _sw zero,0x5f28(v0)
+004332c8  bne v0,zero,0x004332e8
+004332cc  _lui v0,0x61
+004332d0  lw v0,0x5f2c(v0)
+004332d4  nop
+004332d8  bne v0,zero,0x004332ec
+004332dc  _clear v0
+004332e0  jal 0x00432e0c
+004332e4  _li a0,0x1
+004332e8  clear v0
+004332ec  lw ra,0x34(sp)
+004332f0  lw s0,0x30(sp)
+004332f4  jr ra
+004332f8  _addiu sp,sp,0x38

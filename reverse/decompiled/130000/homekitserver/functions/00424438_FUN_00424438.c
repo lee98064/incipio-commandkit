@@ -1,0 +1,32 @@
+/* FUN_00424438 @ 00424438 */
+
+int FUN_00424438(int param_1,uint param_2)
+
+{
+  int iVar1;
+  int iVar2;
+  undefined1 *puVar3;
+  int iVar4;
+  uint uVar5;
+  
+  if ((param_1 == 0) || (param_2 == 0)) {
+    iVar1 = 0;
+  }
+  else {
+    iVar1 = (*(code *)PTR_malloc_006132d8)(param_2 * 3 + 1);
+    if (iVar1 != 0) {
+      uVar5 = 0;
+      iVar4 = iVar1;
+      while( true ) {
+        puVar3 = (undefined1 *)(param_1 + uVar5);
+        if (param_2 <= uVar5) break;
+        uVar5 = uVar5 + 1;
+        iVar2 = (*(code *)PTR_sprintf_00611f90)(iVar4,"%02X ",*puVar3);
+        iVar4 = iVar4 + iVar2;
+      }
+      *(undefined1 *)(iVar4 + 1) = 0;
+    }
+  }
+  return iVar1;
+}
+

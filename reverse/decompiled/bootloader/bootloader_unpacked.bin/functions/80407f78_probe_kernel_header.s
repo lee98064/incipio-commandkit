@@ -1,0 +1,45 @@
+# probe_kernel_header @ 80407f78
+80407f78  addiu sp,sp,-0x20
+80407f7c  sw ra,0x1c(sp)
+80407f80  sw s0,0x18(sp)
+80407f84  sw zero,0x10(sp)
+80407f88  sw zero,0x14(sp)
+80407f8c  clear v1
+80407f90  clear v0
+80407f94  lui a2,0xb800
+80407f98  addu a0,a0,a2
+80407f9c  li t0,0x10
+80407fa0  addu v1,a0,v1
+80407fa4  lhu a3,0x0(v1)
+80407fa8  addu v1,a1,v0
+80407fac  sh a3,0x0(v1)
+80407fb0  addiu v0,v0,0x2
+80407fb4  bne v0,t0,0x80407fa0
+80407fb8  _move v1,v0
+80407fbc  lui v0,0x8041
+80407fc0  lw v0,-0x2bc8(v0)
+80407fc4  nop
+80407fc8  sw v0,0x10(sp)
+80407fcc  lui v0,0x8041
+80407fd0  lw v0,-0x2bc0(v0)
+80407fd4  nop
+80407fd8  sw v0,0x14(sp)
+80407fdc  move s0,a1
+80407fe0  move a0,a1
+80407fe4  addiu a1,sp,0x10
+80407fe8  jal 0x80406a80
+80407fec  _li a2,0x4
+80407ff0  bne v0,zero,0x80408000
+80407ff4  _move a0,s0
+80407ff8  j 0x80408018
+80407ffc  _li v0,0x1
+80408000  addiu a1,sp,0x14
+80408004  jal 0x80406a80
+80408008  _li a2,0x4
+8040800c  li v1,0x2
+80408010  movn v1,zero,v0
+80408014  move v0,v1
+80408018  lw ra,0x1c(sp)
+8040801c  lw s0,0x18(sp)
+80408020  jr ra
+80408024  _addiu sp,sp,0x20

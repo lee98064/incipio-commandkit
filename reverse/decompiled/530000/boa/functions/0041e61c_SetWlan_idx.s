@@ -1,0 +1,105 @@
+# SetWlan_idx @ 0041e61c
+0041e61c  addiu sp,sp,-0x30
+0041e620  sw ra,0x2c(sp)
+0041e624  sw s3,0x28(sp)
+0041e628  sw s2,0x24(sp)
+0041e62c  sw s1,0x20(sp)
+0041e630  sw s0,0x1c(sp)
+0041e634  lui gp,0x47
+0041e638  addiu gp,gp,0x2630
+0041e63c  sw gp,0x10(sp)
+0041e640  lw t9,-0x7ef4(gp)
+0041e644  addiu s0,a0,0x4
+0041e648  move s1,a0
+0041e64c  jalr t9
+0041e650  _move a0,s0
+0041e654  lw gp,0x10(sp)
+0041e658  blez v0,0x0041e66c
+0041e65c  _lui a0,0x45
+0041e660  lw t9,-0x7af4(gp)
+0041e664  b 0x0041e6f4
+0041e668  _addiu a0,a0,0x174
+0041e66c  lw s2,-0x7cf4(gp)
+0041e670  lw s3,-0x7c80(gp)
+0041e674  lw t9,-0x7f1c(gp)
+0041e678  sw v0,0x0(s2)
+0041e67c  sw zero,0x0(s3)
+0041e680  jalr t9
+0041e684  _move a0,s1
+0041e688  sltiu v0,v0,0x9
+0041e68c  lw gp,0x10(sp)
+0041e690  bne v0,zero,0x0041e71c
+0041e694  _li v0,0x2d
+0041e698  lb v1,0x5(s1)
+0041e69c  nop
+0041e6a0  bne v1,v0,0x0041e71c
+0041e6a4  _li v0,0x76
+0041e6a8  lb v1,0x6(s1)
+0041e6ac  nop
+0041e6b0  bne v1,v0,0x0041e71c
+0041e6b4  _li v0,0x61
+0041e6b8  lb v1,0x7(s1)
+0041e6bc  nop
+0041e6c0  bne v1,v0,0x0041e71c
+0041e6c4  _nop
+0041e6c8  lw t9,-0x7ef4(gp)
+0041e6cc  nop
+0041e6d0  jalr t9
+0041e6d4  _addiu a0,s1,0x8
+0041e6d8  slti v1,v0,0x5
+0041e6dc  lw gp,0x10(sp)
+0041e6e0  bne v1,zero,0x0041e704
+0041e6e4  _addiu v0,v0,0x1
+0041e6e8  lw t9,-0x7af4(gp)
+0041e6ec  lui a0,0x45
+0041e6f0  addiu a0,a0,0x19c
+0041e6f4  jalr t9
+0041e6f8  _nop
+0041e6fc  b 0x0041e79c
+0041e700  _clear v1
+0041e704  lw t9,-0x7ef4(gp)
+0041e708  sw v0,0x0(s3)
+0041e70c  jalr t9
+0041e710  _move a0,s0
+0041e714  lw gp,0x10(sp)
+0041e718  sw v0,0x0(s2)
+0041e71c  lw t9,-0x7f1c(gp)
+0041e720  nop
+0041e724  jalr t9
+0041e728  _move a0,s1
+0041e72c  sltiu v0,v0,0x9
+0041e730  lw gp,0x10(sp)
+0041e734  bne v0,zero,0x0041e798
+0041e738  _li v0,0x2d
+0041e73c  lb v1,0x5(s1)
+0041e740  nop
+0041e744  bne v1,v0,0x0041e79c
+0041e748  _li v1,0x1
+0041e74c  lw t9,-0x7d60(gp)
+0041e750  lui a1,0x45
+0041e754  addiu a0,s1,0x6
+0041e758  addiu a1,a1,0x1cc
+0041e75c  jalr t9
+0041e760  _li a2,0x3
+0041e764  lw gp,0x10(sp)
+0041e768  bne v0,zero,0x0041e798
+0041e76c  _li v1,0x5
+0041e770  lw v0,-0x7c80(gp)
+0041e774  lw t9,-0x7ef4(gp)
+0041e778  sw v1,0x0(v0)
+0041e77c  jalr t9
+0041e780  _move a0,s0
+0041e784  lw gp,0x10(sp)
+0041e788  li v1,0x1
+0041e78c  lw a0,-0x7cf4(gp)
+0041e790  b 0x0041e79c
+0041e794  _sw v0,0x0(a0)
+0041e798  li v1,0x1
+0041e79c  lw ra,0x2c(sp)
+0041e7a0  lw s3,0x28(sp)
+0041e7a4  lw s2,0x24(sp)
+0041e7a8  lw s1,0x20(sp)
+0041e7ac  lw s0,0x1c(sp)
+0041e7b0  move v0,v1
+0041e7b4  jr ra
+0041e7b8  _addiu sp,sp,0x30

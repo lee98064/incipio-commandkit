@@ -1,0 +1,40 @@
+# Serial_Gpio_Close @ 00432488
+00432488  addiu sp,sp,-0x28
+0043248c  sw ra,0x24(sp)
+00432490  sw s0,0x20(sp)
+00432494  lui gp,0x62
+00432498  addiu gp,gp,-0x6b80
+0043249c  sw gp,0x18(sp)
+004324a0  lw v0,-0x6b54(gp)
+004324a4  lw t9,-0x73b4(gp)
+004324a8  lui a1,0x5b
+004324ac  lw a0,0x0(v0)
+004324b0  lui a2,0x5b
+004324b4  li v0,0x3f5
+004324b8  lui a3,0x5b
+004324bc  sw v0,0x10(sp)
+004324c0  addiu a1,a1,-0x2a8c
+004324c4  addiu a2,a2,-0x2b54
+004324c8  addiu a3,a3,-0x26a8
+004324cc  jalr t9
+004324d0  _lui s0,0x61
+004324d4  lw a0,0x505c(s0)
+004324d8  li v1,-0x1
+004324dc  lw gp,0x18(sp)
+004324e0  beq a0,v1,0x00432514
+004324e4  _li v0,-0x1
+004324e8  lw t9,-0x6fa0(gp)
+004324ec  lw a2,-0x76a8(gp)
+004324f0  jalr t9
+004324f4  _li a1,0x540e
+004324f8  lw gp,0x18(sp)
+004324fc  lw a0,0x505c(s0)
+00432500  lw t9,-0x6d14(gp)
+00432504  nop
+00432508  jalr t9
+0043250c  _nop
+00432510  clear v0
+00432514  lw ra,0x24(sp)
+00432518  lw s0,0x20(sp)
+0043251c  jr ra
+00432520  _addiu sp,sp,0x28

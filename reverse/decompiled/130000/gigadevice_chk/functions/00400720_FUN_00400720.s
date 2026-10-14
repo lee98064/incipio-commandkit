@@ -1,0 +1,67 @@
+# FUN_00400720 @ 00400720
+00400720  lui gp,0x2
+00400724  addiu gp,gp,-0x7850
+00400728  addu gp,gp,t9
+0040072c  addiu sp,sp,-0x28
+00400730  sw ra,0x24(sp)
+00400734  sw s2,0x20(sp)
+00400738  sw s1,0x1c(sp)
+0040073c  sw s0,0x18(sp)
+00400740  sw gp,0x10(sp)
+00400744  lw v0,-0x7fe8(gp)
+00400748  nop
+0040074c  lbu v0,0xf50(v0)
+00400750  nop
+00400754  bne v0,zero,0x00400810
+00400758  _nop
+0040075c  lw v0,-0x7fa0(gp)
+00400760  nop
+00400764  beq v0,zero,0x00400788
+00400768  _nop
+0040076c  lw v0,-0x7fe4(gp)
+00400770  lw t9,-0x7fa0(gp)
+00400774  lw a0,0x0(v0)
+00400778  jalr t9
+0040077c  _nop
+00400780  lw gp,0x10(sp)
+00400784  nop
+00400788  lw s1,-0x7fe8(gp)
+0040078c  lw s2,-0x7fe0(gp)
+00400790  lw s0,-0x7fe8(gp)
+00400794  addiu s1,s1,0xeac
+00400798  subu s2,s2,s1
+0040079c  sra s2,s2,0x2
+004007a0  b 0x004007bc
+004007a4  _addiu s2,s2,-0x1
+004007a8  lw t9,0x0(a0)
+004007ac  nop
+004007b0  jalr t9
+004007b4  _sw v1,0xf54(s0)
+004007b8  lw gp,0x10(sp)
+004007bc  lw v0,0xf54(s0)
+004007c0  nop
+004007c4  addiu v1,v0,0x1
+004007c8  sll a0,v1,0x2
+004007cc  sltu v0,v0,s2
+004007d0  bne v0,zero,0x004007a8
+004007d4  _addu a0,a0,s1
+004007d8  lw v0,-0x7fa8(gp)
+004007dc  nop
+004007e0  beq v0,zero,0x00400804
+004007e4  _nop
+004007e8  lw a0,-0x7fdc(gp)
+004007ec  lw t9,-0x7fa8(gp)
+004007f0  nop
+004007f4  jalr t9
+004007f8  _addiu a0,a0,0xea0
+004007fc  lw gp,0x10(sp)
+00400800  nop
+00400804  lw v0,-0x7fe8(gp)
+00400808  li v1,0x1
+0040080c  sb v1,0xf50(v0)
+00400810  lw ra,0x24(sp)
+00400814  lw s2,0x20(sp)
+00400818  lw s1,0x1c(sp)
+0040081c  lw s0,0x18(sp)
+00400820  jr ra
+00400824  _addiu sp,sp,0x28

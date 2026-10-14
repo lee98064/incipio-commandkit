@@ -1,0 +1,40 @@
+/* if_readlist_proc @ 00406a38 */
+
+int if_readlist_proc(char *param_1,undefined4 param_2)
+
+{
+  int iVar1;
+  int iVar2;
+  undefined1 *puVar3;
+  int iVar4;
+  code *pcVar5;
+  undefined1 auStack_248 [16];
+  undefined1 auStack_238 [16];
+  undefined1 auStack_228 [516];
+  
+  iVar1 = (*(code *)PTR_fopen_004231b0)("/proc/net/dev",&DAT_00411d04);
+  iVar4 = 0;
+  if (iVar1 != 0) {
+    (*(code *)PTR_fgets_0042329c)(auStack_228,0x200,iVar1);
+    (*(code *)PTR_fgets_0042329c)(auStack_228,0x200,iVar1);
+    iVar4 = 0;
+    while (iVar2 = (*(code *)PTR_fgets_0042329c)(auStack_228,0x200,iVar1), iVar2 != 0) {
+      FUN_00405e00(auStack_248,auStack_228);
+      iVar2 = (*(code *)PTR_strstr_00423210)(auStack_248,param_2);
+      if (iVar2 != 0) {
+        puVar3 = auStack_248;
+        pcVar5 = (code *)PTR_strcpy_004232f4;
+        if (*param_1 != '\0') {
+          (*(code *)PTR_sprintf_00423164)(auStack_238," %s",auStack_248);
+          puVar3 = auStack_238;
+          pcVar5 = (code *)PTR_strcat_00423220;
+        }
+        iVar4 = iVar4 + 1;
+        (*pcVar5)(param_1,puVar3);
+      }
+    }
+    (*(code *)PTR_fclose_00423198)(iVar1);
+  }
+  return iVar4;
+}
+

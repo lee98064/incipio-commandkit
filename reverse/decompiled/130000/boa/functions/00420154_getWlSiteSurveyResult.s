@@ -1,0 +1,62 @@
+# getWlSiteSurveyResult @ 00420154
+00420154  addiu sp,sp,-0x48
+00420158  sw ra,0x44(sp)
+0042015c  sw s2,0x40(sp)
+00420160  sw s1,0x3c(sp)
+00420164  sw s0,0x38(sp)
+00420168  lui gp,0x47
+0042016c  addiu gp,gp,0x2630
+00420170  sw gp,0x10(sp)
+00420174  lw t9,-0x7b5c(gp)
+00420178  move s1,a0
+0042017c  move s2,a1
+00420180  li a0,0x2
+00420184  li a1,0x1
+00420188  jalr t9
+0042018c  _clear a2
+00420190  move s0,v0
+00420194  li v1,-0x1
+00420198  beq s0,v1,0x00420230
+0042019c  _li v0,-0x1
+004201a0  move a0,s0
+004201a4  move a1,s1
+004201a8  ori a2,zero,0x8b01
+004201ac  jal 0x0041fba4
+004201b0  _addiu a3,sp,0x18
+004201b4  lw gp,0x10(sp)
+004201b8  bgez v0,0x004201cc
+004201bc  _nop
+004201c0  lw t9,-0x7f9c(gp)
+004201c4  b 0x00420214
+004201c8  _nop
+004201cc  lbu v0,0x0(s2)
+004201d0  nop
+004201d4  bne v0,zero,0x004201e4
+004201d8  _sw s2,0x28(sp)
+004201dc  b 0x004201e8
+004201e0  _li v0,0x2b04
+004201e4  li v0,0x1
+004201e8  move a1,s1
+004201ec  move a0,s0
+004201f0  ori a2,zero,0x8b34
+004201f4  addiu a3,sp,0x18
+004201f8  jal 0x0041fba4
+004201fc  _sh v0,0x2c(sp)
+00420200  lw gp,0x10(sp)
+00420204  nop
+00420208  lw t9,-0x7f9c(gp)
+0042020c  bgez v0,0x00420224
+00420210  _nop
+00420214  jalr t9
+00420218  _move a0,s0
+0042021c  b 0x00420230
+00420220  _li v0,-0x1
+00420224  jalr t9
+00420228  _move a0,s0
+0042022c  clear v0
+00420230  lw ra,0x44(sp)
+00420234  lw s2,0x40(sp)
+00420238  lw s1,0x3c(sp)
+0042023c  lw s0,0x38(sp)
+00420240  jr ra
+00420244  _addiu sp,sp,0x48

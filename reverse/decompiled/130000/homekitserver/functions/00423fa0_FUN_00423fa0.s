@@ -1,0 +1,94 @@
+# FUN_00423fa0 @ 00423fa0
+00423fa0  addiu sp,sp,-0x38
+00423fa4  sw ra,0x34(sp)
+00423fa8  sw s3,0x30(sp)
+00423fac  sw s2,0x2c(sp)
+00423fb0  sw s1,0x28(sp)
+00423fb4  sw s0,0x24(sp)
+00423fb8  lui gp,0x62
+00423fbc  addiu gp,gp,-0x6b80
+00423fc0  sw gp,0x10(sp)
+00423fc4  li v1,-0x1
+00423fc8  move v0,a1
+00423fcc  bne a1,v1,0x00423ff0
+00423fd0  _move s0,a0
+00423fd4  lw t9,-0x63cc(gp)
+00423fd8  sw a2,0x18(sp)
+00423fdc  jalr t9
+00423fe0  _sw a3,0x1c(sp)
+00423fe4  lw gp,0x10(sp)
+00423fe8  lw a3,0x1c(sp)
+00423fec  lw a2,0x18(sp)
+00423ff0  addu v0,s0,v0
+00423ff4  lw t7,-0x71dc(gp)
+00423ff8  lw t6,-0x6f8c(gp)
+00423ffc  li t5,0x1
+00424000  li t4,0x3a
+00424004  li t3,0x2d
+00424008  b 0x004240d4
+0042400c  _li t2,0x20
+00424010  lb a1,0x0(s0)
+00424014  addiu s0,s0,0x1
+00424018  andi t0,a1,0xff
+0042401c  sll t0,t0,0x1
+00424020  addu t1,t9,t0
+00424024  lhu t1,0x0(t1)
+00424028  nop
+0042402c  andi s2,t1,0x10
+00424030  andi t1,t1,0x8
+00424034  beq t1,zero,0x00424048
+00424038  _addiu s3,a1,-0x30
+0042403c  addu a0,s3,s1
+00424040  b 0x00424090
+00424044  _addiu v1,v1,0x1
+00424048  addu t0,t8,t0
+0042404c  beq s2,zero,0x00424068
+00424050  _sll t1,a0,0x4
+00424054  lh a0,0x0(t0)
+00424058  addiu v1,v1,0x1
+0042405c  addiu a0,a0,-0x57
+00424060  b 0x00424090
+00424064  _addu a0,a0,t1
+00424068  bne v1,zero,0x004240ac
+0042406c  _nop
+00424070  beq a1,t4,0x00424098
+00424074  _nop
+00424078  beq a1,t3,0x00424098
+0042407c  _nop
+00424080  beq a1,t2,0x0042409c
+00424084  _sltu a1,s0,v0
+00424088  b 0x004240f8
+0042408c  _li v0,-0x1a56
+00424090  bne v1,t5,0x004240ac
+00424094  _nop
+00424098  sltu a1,s0,v0
+0042409c  bne a1,zero,0x00424010
+004240a0  _sll s1,a0,0x4
+004240a4  beq v1,zero,0x004240f4
+004240a8  _nop
+004240ac  sltiu v1,a0,0x100
+004240b0  bne v1,zero,0x004240c0
+004240b4  _nop
+004240b8  b 0x004240f8
+004240bc  _li v0,-0x1a36
+004240c0  beq a3,zero,0x004240d0
+004240c4  _nop
+004240c8  sb a0,0x0(a3)
+004240cc  addiu a3,a3,0x1
+004240d0  addiu a2,a2,-0x1
+004240d4  bne a2,zero,0x004240e4
+004240d8  _clear a0
+004240dc  b 0x004240f8
+004240e0  _clear v0
+004240e4  lw t9,0x0(t7)
+004240e8  lw t8,0x0(t6)
+004240ec  b 0x00424098
+004240f0  _clear v1
+004240f4  li v0,-0x1a56
+004240f8  lw ra,0x34(sp)
+004240fc  lw s3,0x30(sp)
+00424100  lw s2,0x2c(sp)
+00424104  lw s1,0x28(sp)
+00424108  lw s0,0x24(sp)
+0042410c  jr ra
+00424110  _addiu sp,sp,0x38

@@ -1,0 +1,69 @@
+# check_host @ 004103c0
+004103c0  addiu sp,sp,-0x28
+004103c4  sw ra,0x24(sp)
+004103c8  sw s1,0x20(sp)
+004103cc  sw s0,0x1c(sp)
+004103d0  lui gp,0x47
+004103d4  addiu gp,gp,0x2630
+004103d8  sw gp,0x10(sp)
+004103dc  beq a0,zero,0x004104b8
+004103e0  _move s1,a0
+004103e4  lw v1,-0x7a70(gp)
+004103e8  lb v0,0x0(a0)
+004103ec  lw s0,0x0(v1)
+004103f0  sll v0,v0,0x1
+004103f4  addu v0,s0,v0
+004103f8  lhu v0,0x0(v0)
+004103fc  nop
+00410400  andi v0,v0,0x800
+00410404  beq v0,zero,0x004104bc
+00410408  _li v0,-0x1
+0041040c  lw t9,-0x7f1c(gp)
+00410410  nop
+00410414  jalr t9
+00410418  _nop
+0041041c  sltiu v0,v0,0x40
+00410420  beq v0,zero,0x004104b8
+00410424  _li v0,0x1
+00410428  clear a0
+0041042c  li a2,0x2d
+00410430  b 0x00410480
+00410434  _li a1,0x2e
+00410438  lhu a3,0x0(a3)
+0041043c  nop
+00410440  andi a3,a3,0x800
+00410444  bne a3,zero,0x0041046c
+00410448  _nop
+0041044c  beq v1,a2,0x0041046c
+00410450  _nop
+00410454  bne v1,a1,0x004104b8
+00410458  _nop
+0041045c  beq a0,zero,0x004104b8
+00410460  _nop
+00410464  b 0x00410470
+00410468  _clear a0
+0041046c  li a0,0x1
+00410470  addiu v0,v0,0x1
+00410474  sll v0,v0,0x10
+00410478  sra v0,v0,0x10
+0041047c  move s1,t0
+00410480  lb v1,0x1(s1)
+00410484  addiu t0,s1,0x1
+00410488  sll a3,v1,0x1
+0041048c  bne v1,zero,0x00410438
+00410490  _addu a3,s0,a3
+00410494  lb v1,0x0(s1)
+00410498  nop
+0041049c  sll v1,v1,0x1
+004104a0  addu s0,s0,v1
+004104a4  lhu v1,0x0(s0)
+004104a8  nop
+004104ac  andi v1,v1,0x800
+004104b0  bne v1,zero,0x004104bc
+004104b4  _nop
+004104b8  li v0,-0x1
+004104bc  lw ra,0x24(sp)
+004104c0  lw s1,0x20(sp)
+004104c4  lw s0,0x1c(sp)
+004104c8  jr ra
+004104cc  _addiu sp,sp,0x28

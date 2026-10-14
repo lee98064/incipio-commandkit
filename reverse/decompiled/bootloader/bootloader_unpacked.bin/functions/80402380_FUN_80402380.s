@@ -1,0 +1,51 @@
+# FUN_80402380 @ 80402380
+80402380  addiu sp,sp,-0x28
+80402384  sw ra,0x24(sp)
+80402388  sw s1,0x20(sp)
+8040238c  sw s0,0x1c(sp)
+80402390  andi a1,a1,0xffff
+80402394  lhu s1,0x3a(sp)
+80402398  lui s0,0x8041
+8040239c  addiu s0,s0,-0x1044
+804023a0  lwl v0,0x0(a2)
+804023a4  nop
+804023a8  lwr v0,0x3(a2)
+804023ac  nop
+804023b0  swl v0,0x0(s0)
+804023b4  swr v0,0x3(s0)
+804023b8  lbu v0,0x4(a2)
+804023bc  nop
+804023c0  sb v0,0x4(s0)
+804023c4  lbu v0,0x5(a2)
+804023c8  nop
+804023cc  sb v0,0x5(s0)
+804023d0  addiu v0,s0,0x6
+804023d4  lui v1,0x8041
+804023d8  lw a0,-0x1710(v1)
+804023dc  nop
+804023e0  swl a0,0x0(v0)
+804023e4  swr a0,0x3(v0)
+804023e8  addiu v1,v1,-0x1710
+804023ec  lbu a0,0x4(v1)
+804023f0  nop
+804023f4  sb a0,0x4(v0)
+804023f8  lbu v1,0x5(v1)
+804023fc  nop
+80402400  sb v1,0x5(v0)
+80402404  sh a1,0x10(sp)
+80402408  addiu v0,s0,0xc
+8040240c  srl v1,a1,0x8
+80402410  sb v1,0x0(v0)
+80402414  sb a1,0x1(v0)
+80402418  addiu a0,s0,0xe
+8040241c  move a1,a3
+80402420  jal 0x80406a54
+80402424  _move a2,s1
+80402428  move a0,s0
+8040242c  jal 0x80403e2c
+80402430  _addiu a1,s1,0xe
+80402434  lw ra,0x24(sp)
+80402438  lw s1,0x20(sp)
+8040243c  lw s0,0x1c(sp)
+80402440  jr ra
+80402444  _addiu sp,sp,0x28

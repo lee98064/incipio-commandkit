@@ -1,0 +1,102 @@
+# strnstr_suffix @ 004241a4
+004241a4  addiu sp,sp,-0x38
+004241a8  sw ra,0x34(sp)
+004241ac  sw s4,0x30(sp)
+004241b0  sw s3,0x2c(sp)
+004241b4  sw s2,0x28(sp)
+004241b8  sw s1,0x24(sp)
+004241bc  sw s0,0x20(sp)
+004241c0  lui gp,0x62
+004241c4  addiu gp,gp,-0x6b80
+004241c8  sw gp,0x10(sp)
+004241cc  lw t9,-0x63cc(gp)
+004241d0  sw a2,0x1c(sp)
+004241d4  move s2,a0
+004241d8  sw a1,0x18(sp)
+004241dc  jalr t9
+004241e0  _move a0,a2
+004241e4  lw gp,0x10(sp)
+004241e8  lw a1,0x18(sp)
+004241ec  move a0,s2
+004241f0  lw t9,-0x75bc(gp)
+004241f4  nop
+004241f8  jalr t9
+004241fc  _move s4,v0
+00424200  lw gp,0x10(sp)
+00424204  addiu a0,v0,0x1
+00424208  li a1,0x1
+0042420c  lw t9,-0x5a68(gp)
+00424210  nop
+00424214  jalr t9
+00424218  _move s3,v0
+0042421c  lw gp,0x10(sp)
+00424220  addiu a0,s4,0x1
+00424224  li a1,0x1
+00424228  lw t9,-0x5a68(gp)
+0042422c  nop
+00424230  jalr t9
+00424234  _move s0,v0
+00424238  lw gp,0x10(sp)
+0042423c  move s1,v0
+00424240  lw a2,0x1c(sp)
+00424244  lw v1,-0x6f8c(gp)
+00424248  b 0x00424270
+0042424c  _clear v0
+00424250  lb a0,0x0(a3)
+00424254  lw a3,0x0(v1)
+00424258  addiu v0,v0,0x1
+0042425c  sll a0,a0,0x1
+00424260  addu a0,a3,a0
+00424264  lh a0,0x0(a0)
+00424268  nop
+0042426c  sb a0,0x0(a1)
+00424270  sltu a0,v0,s3
+00424274  addu a3,s2,v0
+00424278  bne a0,zero,0x00424250
+0042427c  _addu a1,s0,v0
+00424280  lw v1,-0x6f8c(gp)
+00424284  b 0x004242ac
+00424288  _clear v0
+0042428c  lb a0,0x0(a3)
+00424290  lw a3,0x0(v1)
+00424294  addiu v0,v0,0x1
+00424298  sll a0,a0,0x1
+0042429c  addu a0,a3,a0
+004242a0  lh a0,0x0(a0)
+004242a4  nop
+004242a8  sb a0,0x0(a1)
+004242ac  sltu a0,v0,s4
+004242b0  addu a3,a2,v0
+004242b4  bne a0,zero,0x0042428c
+004242b8  _addu a1,s1,v0
+004242bc  sltu s3,s3,s4
+004242c0  bne s3,zero,0x004242ec
+004242c4  _clear v0
+004242c8  lw t9,-0x786c(gp)
+004242cc  move a0,s0
+004242d0  jalr t9
+004242d4  _move a1,s1
+004242d8  lw gp,0x10(sp)
+004242dc  beq v0,zero,0x004242ec
+004242e0  _nop
+004242e4  subu v0,v0,s0
+004242e8  addu v0,s2,v0
+004242ec  lw t9,-0x7aa4(gp)
+004242f0  sw v0,0x18(sp)
+004242f4  jalr t9
+004242f8  _move a0,s0
+004242fc  lw gp,0x10(sp)
+00424300  nop
+00424304  lw t9,-0x7aa4(gp)
+00424308  nop
+0042430c  jalr t9
+00424310  _move a0,s1
+00424314  lw v0,0x18(sp)
+00424318  lw ra,0x34(sp)
+0042431c  lw s4,0x30(sp)
+00424320  lw s3,0x2c(sp)
+00424324  lw s2,0x28(sp)
+00424328  lw s1,0x24(sp)
+0042432c  lw s0,0x20(sp)
+00424330  jr ra
+00424334  _addiu sp,sp,0x38

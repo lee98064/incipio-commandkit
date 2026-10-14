@@ -1,0 +1,47 @@
+# FUN_004245dc @ 004245dc
+004245dc  addiu sp,sp,-0x20
+004245e0  sw ra,0x1c(sp)
+004245e4  sw s0,0x18(sp)
+004245e8  lui gp,0x62
+004245ec  addiu gp,gp,-0x6b80
+004245f0  sw gp,0x10(sp)
+004245f4  lw t9,-0x63cc(gp)
+004245f8  nop
+004245fc  jalr t9
+00424600  _move s0,a0
+00424604  addiu a0,v0,0x1
+00424608  lw gp,0x10(sp)
+0042460c  b 0x00424618
+00424610  _move v0,s0
+00424614  addu a0,a0,a1
+00424618  lb v1,0x0(v0)
+0042461c  addiu v0,v0,0x1
+00424620  xori a1,v1,0x2e
+00424624  bne v1,zero,0x00424614
+00424628  _sltiu a1,a1,0x1
+0042462c  lw t9,-0x61a8(gp)
+00424630  nop
+00424634  jalr t9
+00424638  _addiu s0,s0,0x1
+0042463c  move v1,v0
+00424640  li a1,0x2e
+00424644  b 0x00424670
+00424648  _li a2,0x2f
+0042464c  bne a0,a1,0x00424664
+00424650  _nop
+00424654  sb a2,0x0(v1)
+00424658  sb a1,0x1(v1)
+0042465c  b 0x0042466c
+00424660  _addiu v1,v1,0x2
+00424664  sb a0,0x0(v1)
+00424668  move v1,a3
+0042466c  addiu s0,s0,0x1
+00424670  lb a0,-0x1(s0)
+00424674  nop
+00424678  bne a0,zero,0x0042464c
+0042467c  _addiu a3,v1,0x1
+00424680  sb zero,0x0(v1)
+00424684  lw ra,0x1c(sp)
+00424688  lw s0,0x18(sp)
+0042468c  jr ra
+00424690  _addiu sp,sp,0x20

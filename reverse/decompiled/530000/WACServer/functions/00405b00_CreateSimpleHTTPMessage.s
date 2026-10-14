@@ -1,0 +1,86 @@
+# CreateSimpleHTTPMessage @ 00405b00
+00405b00  addiu sp,sp,-0x50
+00405b04  sw ra,0x4c(sp)
+00405b08  sw s3,0x48(sp)
+00405b0c  sw s2,0x44(sp)
+00405b10  sw s1,0x40(sp)
+00405b14  sw s0,0x3c(sp)
+00405b18  lui gp,0x44
+00405b1c  addiu gp,gp,-0x4fc0
+00405b20  sw gp,0x30(sp)
+00405b24  move s3,a0
+00405b28  move s2,a1
+00405b2c  move s0,a2
+00405b30  beq a0,zero,0x00405c34
+00405b34  _move s1,a3
+00405b38  beq a1,zero,0x00405c38
+00405b3c  _li v0,-0x1a31
+00405b40  beq a2,zero,0x00405c38
+00405b44  _nop
+00405b48  lw t9,-0x7dc0(gp)
+00405b4c  nop
+00405b50  jalr t9
+00405b54  _li a0,0x800
+00405b58  move a0,v0
+00405b5c  lw gp,0x30(sp)
+00405b60  sw v0,0x0(s1)
+00405b64  beq a0,zero,0x00405c38
+00405b68  _li v0,-0x1a48
+00405b6c  lui v1,0x42
+00405b70  addiu v1,v1,-0x2a14
+00405b74  sw v1,0x10(sp)
+00405b78  lui v1,0x42
+00405b7c  addiu v1,v1,-0x29e8
+00405b80  sw v1,0x18(sp)
+00405b84  lui v1,0x42
+00405b88  addiu v1,v1,-0x29d8
+00405b8c  lw t9,-0x7efc(gp)
+00405b90  sw v1,0x24(sp)
+00405b94  lui v0,0x42
+00405b98  lui v1,0x42
+00405b9c  addiu v1,v1,-0x2a10
+00405ba0  addiu v0,v0,-0x29ec
+00405ba4  lui a1,0x42
+00405ba8  lui a2,0x42
+00405bac  lui a3,0x42
+00405bb0  addiu a1,a1,-0x2a08
+00405bb4  addiu a2,a2,-0x2a24
+00405bb8  addiu a3,a3,-0x2a18
+00405bbc  sw v1,0x2c(sp)
+00405bc0  sw s3,0x1c(sp)
+00405bc4  sw v0,0x20(sp)
+00405bc8  sw v0,0x14(sp)
+00405bcc  jalr t9
+00405bd0  _sw s0,0x28(sp)
+00405bd4  lw gp,0x30(sp)
+00405bd8  lw a0,0x0(s1)
+00405bdc  lw t9,-0x7f74(gp)
+00405be0  nop
+00405be4  jalr t9
+00405be8  _nop
+00405bec  lw v1,0x60(sp)
+00405bf0  lw gp,0x30(sp)
+00405bf4  addu v0,v0,s0
+00405bf8  sw v0,0x0(v1)
+00405bfc  lw s1,0x0(s1)
+00405c00  lw t9,-0x7f74(gp)
+00405c04  nop
+00405c08  jalr t9
+00405c0c  _move a0,s1
+00405c10  lw gp,0x30(sp)
+00405c14  addu a0,s1,v0
+00405c18  move a1,s2
+00405c1c  lw t9,-0x7d98(gp)
+00405c20  nop
+00405c24  jalr t9
+00405c28  _move a2,s0
+00405c2c  b 0x00405c38
+00405c30  _clear v0
+00405c34  li v0,-0x1a31
+00405c38  lw ra,0x4c(sp)
+00405c3c  lw s3,0x48(sp)
+00405c40  lw s2,0x44(sp)
+00405c44  lw s1,0x40(sp)
+00405c48  lw s0,0x3c(sp)
+00405c4c  jr ra
+00405c50  _addiu sp,sp,0x50

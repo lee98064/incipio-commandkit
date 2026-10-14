@@ -1,0 +1,53 @@
+# FUN_00430944 @ 00430944
+00430944  addiu sp,sp,-0x20
+00430948  sw ra,0x1c(sp)
+0043094c  sw s0,0x18(sp)
+00430950  lui gp,0x62
+00430954  addiu gp,gp,-0x5cf0
+00430958  sw gp,0x10(sp)
+0043095c  lui v0,0x61
+00430960  lw a0,0x5938(v0)
+00430964  nop
+00430968  beq a0,zero,0x00430984
+0043096c  _lui s0,0x61
+00430970  lw t9,-0x77d0(gp)
+00430974  nop
+00430978  jalr t9
+0043097c  _nop
+00430980  lw gp,0x10(sp)
+00430984  lw a0,0x593c(s0)
+00430988  nop
+0043098c  blez a0,0x004309b0
+00430990  _nop
+00430994  lw t9,-0x6d0c(gp)
+00430998  nop
+0043099c  jalr t9
+004309a0  _nop
+004309a4  lw gp,0x10(sp)
+004309a8  li v0,-0x1
+004309ac  sw v0,0x593c(s0)
+004309b0  lui s0,0x61
+004309b4  lw a0,0x5938(s0)
+004309b8  nop
+004309bc  beq a0,zero,0x004309dc
+004309c0  _nop
+004309c4  lw t9,-0x6458(gp)
+004309c8  nop
+004309cc  jalr t9
+004309d0  _nop
+004309d4  lw gp,0x10(sp)
+004309d8  sw zero,0x5938(s0)
+004309dc  lui s0,0x61
+004309e0  lw a0,0x5940(s0)
+004309e4  nop
+004309e8  beq a0,zero,0x00430a04
+004309ec  _nop
+004309f0  lw t9,-0x7ddc(gp)
+004309f4  nop
+004309f8  jalr t9
+004309fc  _nop
+00430a00  sw zero,0x5940(s0)
+00430a04  lw ra,0x1c(sp)
+00430a08  lw s0,0x18(sp)
+00430a0c  jr ra
+00430a10  _addiu sp,sp,0x20

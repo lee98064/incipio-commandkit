@@ -1,0 +1,94 @@
+# FUN_00438808 @ 00438808
+00438808  lui gp,0x1e
+0043880c  addiu gp,gp,0x1b08
+00438810  addu gp,gp,t9
+00438814  addiu sp,sp,-0x20
+00438818  sw ra,0x1c(sp)
+0043881c  sw s8,0x18(sp)
+00438820  move s8,sp
+00438824  sw gp,0x10(sp)
+00438828  sw a0,0x20(s8)
+0043882c  sw a1,0x24(s8)
+00438830  lw v0,0x20(s8)
+00438834  nop
+00438838  lw v1,0x28(v0)
+0043883c  lw v0,0x24(s8)
+00438840  nop
+00438844  sll v0,v0,0x2
+00438848  sll a0,v0,0x2
+0043884c  addu v0,v0,a0
+00438850  addu v0,v1,v0
+00438854  sw zero,0x0(v0)
+00438858  lw v0,0x20(s8)
+0043885c  nop
+00438860  lw v1,0x28(v0)
+00438864  lw v0,0x24(s8)
+00438868  nop
+0043886c  sll v0,v0,0x2
+00438870  sll a0,v0,0x2
+00438874  addu v0,v0,a0
+00438878  addu v0,v1,v0
+0043887c  li v1,0x1
+00438880  sw v1,0x4(v0)
+00438884  lw v0,0x20(s8)
+00438888  nop
+0043888c  lw v1,0x28(v0)
+00438890  lw v0,0x24(s8)
+00438894  nop
+00438898  sll v0,v0,0x2
+0043889c  sll a0,v0,0x2
+004388a0  addu v0,v0,a0
+004388a4  addu v0,v1,v0
+004388a8  lw v0,0xc(v0)
+004388ac  nop
+004388b0  move a0,v0
+004388b4  lw v0,-0x7dec(gp)
+004388b8  nop
+004388bc  move t9,v0
+004388c0  jalr t9
+004388c4  _nop
+004388c8  lw gp,0x10(s8)
+004388cc  lw v0,0x20(s8)
+004388d0  nop
+004388d4  lw v1,0x28(v0)
+004388d8  lw v0,0x24(s8)
+004388dc  nop
+004388e0  sll v0,v0,0x2
+004388e4  sll a0,v0,0x2
+004388e8  addu v0,v0,a0
+004388ec  addu v0,v1,v0
+004388f0  sw zero,0xc(v0)
+004388f4  lw v0,0x20(s8)
+004388f8  nop
+004388fc  lw v1,0x28(v0)
+00438900  lw v0,0x24(s8)
+00438904  nop
+00438908  sll v0,v0,0x2
+0043890c  sll a0,v0,0x2
+00438910  addu v0,v0,a0
+00438914  addu v0,v1,v0
+00438918  lw v0,0x10(v0)
+0043891c  nop
+00438920  move a0,v0
+00438924  lw v0,-0x7aa4(gp)
+00438928  nop
+0043892c  move t9,v0
+00438930  jalr t9
+00438934  _nop
+00438938  lw gp,0x10(s8)
+0043893c  lw v0,0x20(s8)
+00438940  nop
+00438944  lw v1,0x28(v0)
+00438948  lw v0,0x24(s8)
+0043894c  nop
+00438950  sll v0,v0,0x2
+00438954  sll a0,v0,0x2
+00438958  addu v0,v0,a0
+0043895c  addu v0,v1,v0
+00438960  sw zero,0x10(v0)
+00438964  move sp,s8
+00438968  lw ra,0x1c(sp)
+0043896c  lw s8,0x18(sp)
+00438970  addiu sp,sp,0x20
+00438974  jr ra
+00438978  _nop

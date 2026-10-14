@@ -1,0 +1,36 @@
+# _init @ 00401134
+00401134  lui gp,0x3
+00401138  addiu gp,gp,-0x5ce4
+0040113c  addu gp,gp,t9
+00401140  addiu sp,sp,-0x20
+00401144  sw gp,0x10(sp)
+00401148  sw ra,0x1c(sp)
+0040114c  sw gp,0x18(sp)
+00401150  bal 0x00401158
+00401154  _nop
+00401158  lui gp,0x3
+0040115c  addiu gp,gp,-0x5d08
+00401160  addu gp,gp,ra
+00401164  lw t9,-0x7fd8(gp)
+00401168  nop
+0040116c  addiu t9,t9,0x1328
+00401170  bal 0x00401328
+00401174  _nop
+00401178  lw gp,0x10(sp)
+0040117c  nop
+00401180  bal 0x00401188
+00401184  _nop
+00401188  lui gp,0x3
+0040118c  addiu gp,gp,-0x5d38
+00401190  addu gp,gp,ra
+00401194  lw t9,-0x7fdc(gp)
+00401198  nop
+0040119c  addiu t9,t9,0x780
+004011a0  bal 0x00410780
+004011a4  _nop
+004011a8  lw gp,0x10(sp)
+004011ac  nop
+004011b0  lw ra,0x1c(sp)
+004011b4  nop
+004011b8  jr ra
+004011bc  _addiu sp,sp,0x20

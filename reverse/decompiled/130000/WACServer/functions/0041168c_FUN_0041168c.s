@@ -1,0 +1,266 @@
+# FUN_0041168c @ 0041168c
+0041168c  addiu sp,sp,-0x48
+00411690  sw ra,0x44(sp)
+00411694  sw s8,0x40(sp)
+00411698  sw s7,0x3c(sp)
+0041169c  sw s6,0x38(sp)
+004116a0  sw s5,0x34(sp)
+004116a4  sw s4,0x30(sp)
+004116a8  sw s3,0x2c(sp)
+004116ac  sw s2,0x28(sp)
+004116b0  sw s1,0x24(sp)
+004116b4  sw s0,0x20(sp)
+004116b8  lui gp,0x44
+004116bc  addiu gp,gp,-0x4fc0
+004116c0  sw gp,0x10(sp)
+004116c4  lw s5,0x58(sp)
+004116c8  move s0,a0
+004116cc  move s1,a1
+004116d0  lbu v0,0xf2(s5)
+004116d4  move s4,a2
+004116d8  bne v0,zero,0x004116ec
+004116dc  _move s2,a3
+004116e0  clear s3
+004116e4  b 0x00411740
+004116e8  _clear v1
+004116ec  addu a0,a3,v0
+004116f0  b 0x00411718
+004116f4  _clear v1
+004116f8  lbu a2,0x0(s0)
+004116fc  lbu a1,0x0(a0)
+00411700  addiu s0,s0,0x1
+00411704  addiu v1,v1,0x1
+00411708  xor a1,a2,a1
+0041170c  sb a1,0x0(s1)
+00411710  addiu a0,a0,0x1
+00411714  addiu s1,s1,0x1
+00411718  addu s3,v1,v0
+0041171c  slti a2,s3,0x10
+00411720  beq a2,zero,0x00411738
+00411724  _slt a1,v1,s4
+00411728  bne a1,zero,0x004116f8
+0041172c  _nop
+00411730  b 0x00411744
+00411734  _subu v0,s4,v1
+00411738  xori v0,s3,0x10
+0041173c  movz s3,zero,v0
+00411740  subu v0,s4,v1
+00411744  sra v0,v0,0x4
+00411748  beq v0,zero,0x00411a6c
+0041174c  _slt v0,v1,s4
+00411750  andi v0,s0,0x3
+00411754  bne v0,zero,0x004119c8
+00411758  _lui s8,0x42
+0041175c  andi v0,s1,0x3
+00411760  bne v0,zero,0x004119cc
+00411764  _lui s7,0x42
+00411768  andi v0,s2,0x3
+0041176c  beq v0,zero,0x0041181c
+00411770  _addiu s7,s7,-0x2760
+00411774  b 0x004119cc
+00411778  _lui s7,0x42
+0041177c  beq s3,zero,0x004117a4
+00411780  _lui a0,0x42
+00411784  lw t9,-0x7f80(gp)
+00411788  addiu a0,a0,-0x27d0
+0041178c  move a1,s8
+00411790  move a3,s7
+00411794  jalr t9
+00411798  _li a2,0x31c
+0041179c  lw gp,0x10(sp)
+004117a0  nop
+004117a4  lw t9,-0x7fbc(gp)
+004117a8  move a0,s2
+004117ac  move a1,s2
+004117b0  jalr t9
+004117b4  _move a2,s5
+004117b8  lw gp,0x10(sp)
+004117bc  bne v0,zero,0x00411a7c
+004117c0  _move v1,s6
+004117c4  lw v0,0x0(s0)
+004117c8  lw a0,0x0(s2)
+004117cc  nop
+004117d0  xor v0,a0,v0
+004117d4  sw v0,0x0(s1)
+004117d8  lw v0,0x4(s0)
+004117dc  lw a0,0x4(s2)
+004117e0  nop
+004117e4  xor v0,a0,v0
+004117e8  sw v0,0x4(s1)
+004117ec  lw v0,0x8(s0)
+004117f0  lw a0,0x8(s2)
+004117f4  nop
+004117f8  xor v0,a0,v0
+004117fc  sw v0,0x8(s1)
+00411800  lw v0,0xc(s0)
+00411804  lw a0,0xc(s2)
+00411808  addiu s0,s0,0x10
+0041180c  xor v0,a0,v0
+00411810  sw v0,0xc(s1)
+00411814  b 0x00411820
+00411818  _addiu s1,s1,0x10
+0041181c  addiu s8,s8,-0x27c4
+00411820  addiu s6,v1,0x10
+00411824  slt v0,s4,s6
+00411828  beq v0,zero,0x0041177c
+0041182c  _slt v0,v1,s4
+00411830  b 0x00411a6c
+00411834  _nop
+00411838  beq s3,zero,0x00411860
+0041183c  _lui a0,0x42
+00411840  lw t9,-0x7f80(gp)
+00411844  addiu a0,a0,-0x27d0
+00411848  move a1,s8
+0041184c  move a3,s7
+00411850  jalr t9
+00411854  _li a2,0x32b
+00411858  lw gp,0x10(sp)
+0041185c  nop
+00411860  lw t9,-0x7fbc(gp)
+00411864  move a0,s2
+00411868  move a1,s2
+0041186c  jalr t9
+00411870  _move a2,s5
+00411874  lw gp,0x10(sp)
+00411878  bne v0,zero,0x00411a7c
+0041187c  _move v1,s6
+00411880  lbu v0,0x0(s0)
+00411884  lbu a0,0x0(s2)
+00411888  nop
+0041188c  xor v0,a0,v0
+00411890  sb v0,0x0(s1)
+00411894  lbu v0,0x1(s0)
+00411898  lbu a0,0x1(s2)
+0041189c  nop
+004118a0  xor v0,a0,v0
+004118a4  sb v0,0x1(s1)
+004118a8  lbu v0,0x2(s0)
+004118ac  lbu a0,0x2(s2)
+004118b0  nop
+004118b4  xor v0,a0,v0
+004118b8  sb v0,0x2(s1)
+004118bc  lbu v0,0x3(s0)
+004118c0  lbu a0,0x3(s2)
+004118c4  nop
+004118c8  xor v0,a0,v0
+004118cc  sb v0,0x3(s1)
+004118d0  lbu v0,0x4(s0)
+004118d4  lbu a0,0x4(s2)
+004118d8  nop
+004118dc  xor v0,a0,v0
+004118e0  sb v0,0x4(s1)
+004118e4  lbu v0,0x5(s0)
+004118e8  lbu a0,0x5(s2)
+004118ec  nop
+004118f0  xor v0,a0,v0
+004118f4  sb v0,0x5(s1)
+004118f8  lbu v0,0x6(s0)
+004118fc  lbu a0,0x6(s2)
+00411900  nop
+00411904  xor v0,a0,v0
+00411908  sb v0,0x6(s1)
+0041190c  lbu v0,0x7(s0)
+00411910  lbu a0,0x7(s2)
+00411914  nop
+00411918  xor v0,a0,v0
+0041191c  sb v0,0x7(s1)
+00411920  lbu v0,0x8(s0)
+00411924  lbu a0,0x8(s2)
+00411928  nop
+0041192c  xor v0,a0,v0
+00411930  sb v0,0x8(s1)
+00411934  lbu v0,0x9(s0)
+00411938  lbu a0,0x9(s2)
+0041193c  nop
+00411940  xor v0,a0,v0
+00411944  sb v0,0x9(s1)
+00411948  lbu v0,0xa(s0)
+0041194c  lbu a0,0xa(s2)
+00411950  nop
+00411954  xor v0,a0,v0
+00411958  sb v0,0xa(s1)
+0041195c  lbu v0,0xb(s0)
+00411960  lbu a0,0xb(s2)
+00411964  nop
+00411968  xor v0,a0,v0
+0041196c  sb v0,0xb(s1)
+00411970  lbu v0,0xc(s0)
+00411974  lbu a0,0xc(s2)
+00411978  nop
+0041197c  xor v0,a0,v0
+00411980  sb v0,0xc(s1)
+00411984  lbu v0,0xd(s0)
+00411988  lbu a0,0xd(s2)
+0041198c  nop
+00411990  xor v0,a0,v0
+00411994  sb v0,0xd(s1)
+00411998  lbu v0,0xe(s0)
+0041199c  lbu a0,0xe(s2)
+004119a0  nop
+004119a4  xor v0,a0,v0
+004119a8  sb v0,0xe(s1)
+004119ac  lbu v0,0xf(s0)
+004119b0  lbu a0,0xf(s2)
+004119b4  addiu s0,s0,0x10
+004119b8  xor v0,a0,v0
+004119bc  sb v0,0xf(s1)
+004119c0  b 0x004119d4
+004119c4  _addiu s1,s1,0x10
+004119c8  lui s7,0x42
+004119cc  addiu s8,s8,-0x27c4
+004119d0  addiu s7,s7,-0x2760
+004119d4  addiu s6,v1,0x10
+004119d8  slt v0,s4,s6
+004119dc  beq v0,zero,0x00411838
+004119e0  _slt v0,v1,s4
+004119e4  b 0x00411a6c
+004119e8  _nop
+004119ec  beq s3,zero,0x004119fc
+004119f0  _move a0,s2
+004119f4  b 0x00411a54
+004119f8  _addu v0,s2,s3
+004119fc  lw t9,-0x7fbc(gp)
+00411a00  sw v1,0x18(sp)
+00411a04  move a1,s2
+00411a08  jalr t9
+00411a0c  _move a2,s5
+00411a10  lw gp,0x10(sp)
+00411a14  lw v1,0x18(sp)
+00411a18  beq v0,zero,0x004119f4
+00411a1c  _nop
+00411a20  b 0x00411a80
+00411a24  _li v0,0x1
+00411a28  lbu a2,0x0(s0)
+00411a2c  lbu a1,0x0(v0)
+00411a30  addiu v1,v1,0x1
+00411a34  slt a0,v1,s4
+00411a38  xor a1,a2,a1
+00411a3c  sb a1,0x0(s1)
+00411a40  addiu s3,s3,0x1
+00411a44  addiu s1,s1,0x1
+00411a48  addiu s0,s0,0x1
+00411a4c  beq a0,zero,0x00411a60
+00411a50  _addiu v0,v0,0x1
+00411a54  slti a0,s3,0x10
+00411a58  bne a0,zero,0x00411a28
+00411a5c  _nop
+00411a60  xori v0,s3,0x10
+00411a64  movz s3,zero,v0
+00411a68  slt v0,v1,s4
+00411a6c  bne v0,zero,0x004119ec
+00411a70  _clear v0
+00411a74  b 0x00411a80
+00411a78  _sb s3,0xf2(s5)
+00411a7c  li v0,0x1
+00411a80  lw ra,0x44(sp)
+00411a84  lw s8,0x40(sp)
+00411a88  lw s7,0x3c(sp)
+00411a8c  lw s6,0x38(sp)
+00411a90  lw s5,0x34(sp)
+00411a94  lw s4,0x30(sp)
+00411a98  lw s3,0x2c(sp)
+00411a9c  lw s2,0x28(sp)
+00411aa0  lw s1,0x24(sp)
+00411aa4  lw s0,0x20(sp)
+00411aa8  jr ra
+00411aac  _addiu sp,sp,0x48

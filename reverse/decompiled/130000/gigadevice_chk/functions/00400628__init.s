@@ -1,0 +1,36 @@
+# _init @ 00400628
+00400628  lui gp,0x2
+0040062c  addiu gp,gp,-0x7758
+00400630  addu gp,gp,t9
+00400634  addiu sp,sp,-0x20
+00400638  sw gp,0x10(sp)
+0040063c  sw ra,0x1c(sp)
+00400640  sw gp,0x18(sp)
+00400644  bal 0x0040064c
+00400648  _nop
+0040064c  lui gp,0x2
+00400650  addiu gp,gp,-0x777c
+00400654  addu gp,gp,ra
+00400658  lw t9,-0x7fdc(gp)
+0040065c  nop
+00400660  addiu t9,t9,0x828
+00400664  bal 0x00400828
+00400668  _nop
+0040066c  lw gp,0x10(sp)
+00400670  nop
+00400674  bal 0x0040067c
+00400678  _nop
+0040067c  lui gp,0x2
+00400680  addiu gp,gp,-0x77ac
+00400684  addu gp,gp,ra
+00400688  lw t9,-0x7fdc(gp)
+0040068c  nop
+00400690  addiu t9,t9,0xd00
+00400694  bal 0x00400d00
+00400698  _nop
+0040069c  lw gp,0x10(sp)
+004006a0  nop
+004006a4  lw ra,0x1c(sp)
+004006a8  nop
+004006ac  jr ra
+004006b0  _addiu sp,sp,0x20

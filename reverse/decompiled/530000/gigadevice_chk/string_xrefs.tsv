@@ -1,0 +1,4 @@
+function	from	string_address	string
+FUN_004008c0	00400900	00400e50	/proc/OTP
+FUN_004008c0	00400938	00400e5c	/proc open error
+FUN_004008c0	00400c48	00400e8c	write error

@@ -1,0 +1,7 @@
+#!/bin/sh
+umask 077
+sleep 15
+while :; do
+    /bin/exec-diag --serve br0 /etc/matter-diag.key
+    sleep 5
+done

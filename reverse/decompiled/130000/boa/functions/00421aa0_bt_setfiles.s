@@ -1,0 +1,69 @@
+# bt_setfiles @ 00421aa0
+00421aa0  addiu sp,sp,-0x330
+00421aa4  sw ra,0x32c(sp)
+00421aa8  sw s2,0x328(sp)
+00421aac  sw s1,0x324(sp)
+00421ab0  sw s0,0x320(sp)
+00421ab4  lui gp,0x47
+00421ab8  addiu gp,gp,0x2630
+00421abc  sw gp,0x10(sp)
+00421ac0  move s2,a2
+00421ac4  sw a0,0x318(sp)
+00421ac8  jal 0x00421134
+00421acc  _sw a1,0x31c(sp)
+00421ad0  lw gp,0x10(sp)
+00421ad4  lw a1,0x31c(sp)
+00421ad8  lw a0,0x318(sp)
+00421adc  lw t9,-0x7e28(gp)
+00421ae0  move a3,a1
+00421ae4  addiu s1,sp,0x18
+00421ae8  lui a1,0x45
+00421aec  move a2,a0
+00421af0  addiu a1,a1,0x9c4
+00421af4  move a0,s1
+00421af8  jalr t9
+00421afc  _move s0,v0
+00421b00  lw gp,0x10(sp)
+00421b04  move a1,s2
+00421b08  move a0,s1
+00421b0c  lw t9,-0x7c68(gp)
+00421b10  nop
+00421b14  jalr t9
+00421b18  _addiu s2,sp,0x118
+00421b1c  lw gp,0x10(sp)
+00421b20  nop
+00421b24  lw t9,-0x7f1c(gp)
+00421b28  nop
+00421b2c  jalr t9
+00421b30  _move a0,s1
+00421b34  lw gp,0x10(sp)
+00421b38  move a1,s1
+00421b3c  move a2,v0
+00421b40  lw t9,-0x7c34(gp)
+00421b44  nop
+00421b48  jalr t9
+00421b4c  _move a0,s0
+00421b50  lw gp,0x10(sp)
+00421b54  lui a1,0x45
+00421b58  addiu a1,a1,-0x671c
+00421b5c  lw t9,-0x7c34(gp)
+00421b60  move a0,s0
+00421b64  jalr t9
+00421b68  _li a2,0x2
+00421b6c  move a0,s0
+00421b70  move a1,s2
+00421b74  jal 0x004218dc
+00421b78  _li a2,0x200
+00421b7c  lw gp,0x10(sp)
+00421b80  bgtz v0,0x00421b70
+00421b84  _move a0,s0
+00421b88  lw t9,-0x7f9c(gp)
+00421b8c  nop
+00421b90  jalr t9
+00421b94  _move a0,s0
+00421b98  lw ra,0x32c(sp)
+00421b9c  lw s2,0x328(sp)
+00421ba0  lw s1,0x324(sp)
+00421ba4  lw s0,0x320(sp)
+00421ba8  jr ra
+00421bac  _addiu sp,sp,0x330

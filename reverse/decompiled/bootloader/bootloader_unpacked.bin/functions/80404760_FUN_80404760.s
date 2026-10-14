@@ -1,0 +1,171 @@
+# FUN_80404760 @ 80404760
+80404760  addiu sp,sp,-0x40
+80404764  sw ra,0x3c(sp)
+80404768  sw s2,0x38(sp)
+8040476c  sw s1,0x34(sp)
+80404770  sw s0,0x30(sp)
+80404774  move s2,a0
+80404778  bne a1,zero,0x80404794
+8040477c  _move s0,a1
+80404780  lui a0,0x8041
+80404784  jal 0x804077a4
+80404788  _addiu a0,a0,-0x284c
+8040478c  j 0x8040478c
+80404790  _nop
+80404794  jal 0x80404600
+80404798  _nop
+8040479c  beq v0,zero,0x804047d0
+804047a0  _move s1,v0
+804047a4  li v0,-0x2
+804047a8  jal 0x80404620
+804047ac  _and a0,s1,v0
+804047b0  li a0,0x4
+804047b4  move a1,s2
+804047b8  jal 0x80404230
+804047bc  _addiu a2,sp,0x10
+804047c0  jal 0x80404620
+804047c4  _move a0,s1
+804047c8  j 0x804047e0
+804047cc  _nop
+804047d0  li a0,0x4
+804047d4  move a1,s2
+804047d8  jal 0x80404230
+804047dc  _addiu a2,sp,0x10
+804047e0  lw v0,0x10(sp)
+804047e4  nop
+804047e8  andi v0,v0,0x1
+804047ec  bne v0,zero,0x804049f0
+804047f0  _li v0,0x11
+804047f4  addiu s1,sp,0x10
+804047f8  move a0,s1
+804047fc  clear a1
+80404800  jal 0x80406a30
+80404804  _li a2,0x20
+80404808  lw v1,0x20(s0)
+8040480c  nop
+80404810  srl v0,v1,0x1e
+80404814  andi v0,v0,0x1
+80404818  li a0,-0x2
+8040481c  lw a2,0x10(sp)
+80404820  nop
+80404824  and a2,a2,a0
+80404828  or a2,a2,v0
+8040482c  lhu v0,0xa(s0)
+80404830  nop
+80404834  andi v0,v0,0xfff
+80404838  sll v0,v0,0x1
+8040483c  li a0,-0x1fff
+80404840  and a2,a2,a0
+80404844  or a2,a2,v0
+80404848  lhu a0,0x2(s0)
+8040484c  nop
+80404850  srl a3,a0,0x3
+80404854  lhu v0,0x0(s0)
+80404858  nop
+8040485c  sll v0,v0,0xd
+80404860  or a3,a3,v0
+80404864  lui v0,0x1fff
+80404868  ori v0,v0,0xffff
+8040486c  and a3,a3,v0
+80404870  lui a1,0xfff
+80404874  ori a1,a1,0xffff
+80404878  and a1,a3,a1
+8040487c  lui a3,0xe000
+80404880  lw t0,0x14(sp)
+80404884  nop
+80404888  and a3,t0,a3
+8040488c  or a3,a3,a1
+80404890  sll a0,a0,0x10
+80404894  lhu a1,0x4(s0)
+80404898  nop
+8040489c  or a0,a0,a1
+804048a0  lui a1,0x7
+804048a4  ori a1,a1,0xffff
+804048a8  and a1,a0,a1
+804048ac  sll a1,a1,0xd
+804048b0  andi a0,a2,0x1fff
+804048b4  or a0,a0,a1
+804048b8  sw a0,0x10(sp)
+804048bc  lw a0,0xc(s0)
+804048c0  nop
+804048c4  srl a1,a0,0x2
+804048c8  andi a1,a1,0x1f
+804048cc  li a2,-0x20
+804048d0  lw t0,0x18(sp)
+804048d4  nop
+804048d8  and a2,t0,a2
+804048dc  or a2,a2,a1
+804048e0  sll a0,a0,0x1e
+804048e4  lui a1,0x3fff
+804048e8  ori a1,a1,0xffff
+804048ec  and a3,a3,a1
+804048f0  or a3,a3,a0
+804048f4  lbu a0,0x13(s0)
+804048f8  nop
+804048fc  andi a0,a0,0x7f
+80404900  sll a0,a0,0x5
+80404904  li a1,-0xfe1
+80404908  and a2,a2,a1
+8040490c  or a2,a2,a0
+80404910  lbu a0,0x17(s0)
+80404914  nop
+80404918  andi a0,a0,0x7f
+8040491c  sll a0,a0,0xc
+80404920  lui a1,0xfff8
+80404924  ori a1,a1,0xfff
+80404928  and a2,a2,a1
+8040492c  or a2,a2,a0
+80404930  lbu a0,0x1b(s0)
+80404934  nop
+80404938  andi a0,a0,0x7f
+8040493c  sll a0,a0,0x13
+80404940  lui a1,0xfc07
+80404944  ori a1,a1,0xffff
+80404948  and a1,a2,a1
+8040494c  or a1,a1,a0
+80404950  srl v1,v1,0x1f
+80404954  sll a2,v1,0x1d
+80404958  lui v1,0xdfff
+8040495c  ori v1,v1,0xffff
+80404960  and v1,a3,v1
+80404964  or v1,v1,a2
+80404968  sw v1,0x14(sp)
+8040496c  lbu v1,0x9(s0)
+80404970  nop
+80404974  subu v1,zero,v1
+80404978  andi v1,v1,0x7
+8040497c  sll v1,v1,0x1a
+80404980  lui a0,0xe3ff
+80404984  ori a0,a0,0xffff
+80404988  and a0,a1,a0
+8040498c  or a0,a0,v1
+80404990  lw v1,0x1c(s0)
+80404994  nop
+80404998  srl a2,v1,0x3
+8040499c  andi a2,a2,0xfff
+804049a0  li a1,-0x1000
+804049a4  lw a3,0x1c(sp)
+804049a8  nop
+804049ac  and a1,a3,a1
+804049b0  or a1,a1,a2
+804049b4  sw a1,0x1c(sp)
+804049b8  sll v1,v1,0x1d
+804049bc  and v0,a0,v0
+804049c0  or v0,v0,v1
+804049c4  sw v0,0x18(sp)
+804049c8  li a0,0x4
+804049cc  move a1,s2
+804049d0  jal 0x804044a8
+804049d4  _move a2,s1
+804049d8  beq v0,zero,0x804049f0
+804049dc  _lui a0,0x8041
+804049e0  jal 0x804077a4
+804049e4  _addiu a0,a0,-0x284c
+804049e8  j 0x804049e8
+804049ec  _nop
+804049f0  lw ra,0x3c(sp)
+804049f4  lw s2,0x38(sp)
+804049f8  lw s1,0x34(sp)
+804049fc  lw s0,0x30(sp)
+80404a00  jr ra
+80404a04  _addiu sp,sp,0x40

@@ -1,0 +1,36 @@
+# FUN_004360d0 @ 004360d0
+004360d0  lui gp,0x1e
+004360d4  addiu gp,gp,0x4240
+004360d8  addu gp,gp,t9
+004360dc  addiu sp,sp,-0x20
+004360e0  sw ra,0x1c(sp)
+004360e4  sw s8,0x18(sp)
+004360e8  move s8,sp
+004360ec  sw gp,0x10(sp)
+004360f0  sw a0,0x20(s8)
+004360f4  sw a1,0x24(s8)
+004360f8  sw a2,0x28(s8)
+004360fc  lw v0,0x28(s8)
+00436100  nop
+00436104  andi v0,v0,0x2
+00436108  beq v0,zero,0x00436144
+0043610c  _nop
+00436110  lw v0,0x24(s8)
+00436114  nop
+00436118  sll v0,v0,0x1
+0043611c  lw a0,0x20(s8)
+00436120  li a1,-0x1
+00436124  li a2,0x20
+00436128  move a3,v0
+0043612c  lw v0,-0x750c(gp)
+00436130  nop
+00436134  move t9,v0
+00436138  jalr t9
+0043613c  _nop
+00436140  lw gp,0x10(s8)
+00436144  move sp,s8
+00436148  lw ra,0x1c(sp)
+0043614c  lw s8,0x18(sp)
+00436150  addiu sp,sp,0x20
+00436154  jr ra
+00436158  _nop

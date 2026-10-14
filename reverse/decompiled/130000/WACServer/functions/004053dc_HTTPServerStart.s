@@ -1,0 +1,31 @@
+# HTTPServerStart @ 004053dc
+004053dc  addiu sp,sp,-0x20
+004053e0  sw ra,0x1c(sp)
+004053e4  sw s0,0x18(sp)
+004053e8  lui gp,0x44
+004053ec  addiu gp,gp,-0x4fc0
+004053f0  sw gp,0x10(sp)
+004053f4  move s0,a0
+004053f8  beq a0,zero,0x0040543c
+004053fc  _li v0,-0x1a31
+00405400  lw t9,-0x7d64(gp)
+00405404  lui a2,0x40
+00405408  addiu a2,a2,0x5454
+0040540c  addiu a0,a0,0x34
+00405410  clear a1
+00405414  jalr t9
+00405418  _move a3,s0
+0040541c  lw gp,0x10(sp)
+00405420  beq v0,zero,0x00405444
+00405424  _nop
+00405428  lw t9,-0x7da0(gp)
+0040542c  lui a0,0x42
+00405430  jalr t9
+00405434  _addiu a0,a0,-0x2ca4
+00405438  li v0,-0x1a50
+0040543c  li v1,0x4
+00405440  sw v1,0x8(s0)
+00405444  lw ra,0x1c(sp)
+00405448  lw s0,0x18(sp)
+0040544c  jr ra
+00405450  _addiu sp,sp,0x20

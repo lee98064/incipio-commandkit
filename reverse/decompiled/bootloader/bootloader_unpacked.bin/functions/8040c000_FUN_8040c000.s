@@ -1,0 +1,25 @@
+# FUN_8040c000 @ 8040c000
+8040c000  addiu sp,sp,-0x20
+8040c004  sw ra,0x1c(sp)
+8040c008  sw s2,0x18(sp)
+8040c00c  sw s1,0x14(sp)
+8040c010  sw s0,0x10(sp)
+8040c014  lui s2,0xb800
+8040c018  ori s0,s2,0x1040
+8040c01c  lui v0,0x3fff
+8040c020  ori v0,v0,0xffff
+8040c024  sw v0,0x0(s0)
+8040c028  jal 0x80407318
+8040c02c  _li a0,0x3e8
+8040c030  lw v0,0x0(s0)
+8040c034  lui s1,0x8000
+8040c038  or v0,v0,s1
+8040c03c  sw v0,0x0(s0)
+8040c040  jal 0x80407318
+8040c044  _li a0,0x3e8
+8040c048  lw v0,0x0(s0)
+8040c04c  nop
+8040c050  or s1,v0,s1
+8040c054  sw s1,0x0(s0)
+8040c058  ori s2,s2,0x3000
+8040c05c  sw zero,0x0(s2)

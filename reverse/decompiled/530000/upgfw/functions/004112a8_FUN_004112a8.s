@@ -1,0 +1,95 @@
+# FUN_004112a8 @ 004112a8
+004112a8  addiu sp,sp,-0x228
+004112ac  sw ra,0x224(sp)
+004112b0  sw s2,0x220(sp)
+004112b4  sw s1,0x21c(sp)
+004112b8  sw s0,0x218(sp)
+004112bc  lui gp,0x58
+004112c0  addiu gp,gp,0x5140
+004112c4  sw gp,0x10(sp)
+004112c8  lw t9,-0x7764(gp)
+004112cc  move s0,a0
+004112d0  li a2,0x100
+004112d4  addiu a0,sp,0x18
+004112d8  move s2,a1
+004112dc  jalr t9
+004112e0  _clear a1
+004112e4  lw gp,0x10(sp)
+004112e8  addiu s1,sp,0x118
+004112ec  move a0,s1
+004112f0  lw t9,-0x7764(gp)
+004112f4  clear a1
+004112f8  jalr t9
+004112fc  _li a2,0x100
+00411300  lw gp,0x10(sp)
+00411304  lui a1,0x53
+00411308  move a0,s0
+0041130c  lw t9,-0x71e4(gp)
+00411310  nop
+00411314  jalr t9
+00411318  _addiu a1,a1,0x492c
+0041131c  lw gp,0x10(sp)
+00411320  beq v0,zero,0x004113b8
+00411324  _move s0,v0
+00411328  lw t9,-0x74ec(gp)
+0041132c  move a2,v0
+00411330  move a0,s1
+00411334  jalr t9
+00411338  _li a1,0x100
+0041133c  lw gp,0x10(sp)
+00411340  lui a1,0x55
+00411344  move a0,s1
+00411348  lw t9,-0x7324(gp)
+0041134c  nop
+00411350  jalr t9
+00411354  _addiu a1,a1,0x3e90
+00411358  lw gp,0x10(sp)
+0041135c  lui a0,0x53
+00411360  move a1,v0
+00411364  lw t9,-0x7dc8(gp)
+00411368  addiu a0,a0,0x25e8
+0041136c  jalr t9
+00411370  _move s1,v0
+00411374  lw gp,0x10(sp)
+00411378  nop
+0041137c  lw t9,-0x7154(gp)
+00411380  nop
+00411384  jalr t9
+00411388  _move a0,s0
+0041138c  lw gp,0x10(sp)
+00411390  nop
+00411394  lw t9,-0x7cfc(gp)
+00411398  nop
+0041139c  jalr t9
+004113a0  _move a0,s1
+004113a4  slt s2,s2,v0
+004113a8  li v1,0x2
+004113ac  li v0,0x199
+004113b0  b 0x00411408
+004113b4  _movn v0,v1,s2
+004113b8  lw t9,-0x6868(gp)
+004113bc  lw v0,-0x72fc(gp)
+004113c0  nop
+004113c4  lw s0,0x0(v0)
+004113c8  jalr t9
+004113cc  _nop
+004113d0  lw gp,0x10(sp)
+004113d4  lw a0,0x0(v0)
+004113d8  lw t9,-0x7d94(gp)
+004113dc  nop
+004113e0  jalr t9
+004113e4  _nop
+004113e8  lw gp,0x10(sp)
+004113ec  lui a1,0x53
+004113f0  move a0,s0
+004113f4  lw t9,-0x785c(gp)
+004113f8  addiu a1,a1,0x25c4
+004113fc  jalr t9
+00411400  _move a2,v0
+00411404  li v0,0x19a
+00411408  lw ra,0x224(sp)
+0041140c  lw s2,0x220(sp)
+00411410  lw s1,0x21c(sp)
+00411414  lw s0,0x218(sp)
+00411418  jr ra
+0041141c  _addiu sp,sp,0x228

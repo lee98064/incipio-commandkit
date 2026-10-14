@@ -1,0 +1,35 @@
+# FUN_00437900 @ 00437900
+00437900  lui gp,0x1e
+00437904  addiu gp,gp,0x2a10
+00437908  addu gp,gp,t9
+0043790c  addiu sp,sp,-0x20
+00437910  sw ra,0x1c(sp)
+00437914  sw s8,0x18(sp)
+00437918  move s8,sp
+0043791c  sw gp,0x10(sp)
+00437920  sw a0,0x20(s8)
+00437924  lw v0,0x20(s8)
+00437928  nop
+0043792c  lw v0,0x18(v0)
+00437930  nop
+00437934  move a0,v0
+00437938  lw v0,-0x7aa4(gp)
+0043793c  nop
+00437940  move t9,v0
+00437944  jalr t9
+00437948  _nop
+0043794c  lw gp,0x10(s8)
+00437950  lw a0,0x20(s8)
+00437954  lw v0,-0x7fcc(gp)
+00437958  nop
+0043795c  addiu v0,v0,0x5b3c
+00437960  move t9,v0
+00437964  jalr t9
+00437968  _nop
+0043796c  lw gp,0x10(s8)
+00437970  move sp,s8
+00437974  lw ra,0x1c(sp)
+00437978  lw s8,0x18(sp)
+0043797c  addiu sp,sp,0x20
+00437980  jr ra
+00437984  _nop

@@ -1,0 +1,81 @@
+# req_write_escape_http @ 004059e0
+004059e0  addiu sp,sp,-0x20
+004059e4  sw ra,0x1c(sp)
+004059e8  sw s0,0x18(sp)
+004059ec  lui gp,0x47
+004059f0  addiu gp,gp,0x2630
+004059f4  sw gp,0x10(sp)
+004059f8  lw v0,0x50(a0)
+004059fc  move s0,a0
+00405a00  lw a0,0x8d0(a0)
+00405a04  li v1,0x2000
+00405a08  subu v1,v1,v0
+00405a0c  li t1,0x25
+00405a10  addu v0,a0,v0
+00405a14  lw a3,-0x7c6c(gp)
+00405a18  b 0x00405ab0
+00405a1c  _li t0,0x1
+00405a20  bltz a0,0x00405a44
+00405a24  _srl a1,a0,0x5
+00405a28  sll a1,a1,0x2
+00405a2c  addu a1,a3,a1
+00405a30  lw a1,0x0(a1)
+00405a34  sllv a2,t0,a0
+00405a38  and a1,a2,a1
+00405a3c  beq a1,zero,0x00405aa0
+00405a40  _nop
+00405a44  andi a0,a0,0xff
+00405a48  srl a1,a0,0x4
+00405a4c  slti t3,a1,0xa
+00405a50  sb t1,0x0(v0)
+00405a54  addiu a2,a1,0x30
+00405a58  bne t3,zero,0x00405a6c
+00405a5c  _addiu v0,v0,0x1
+00405a60  addiu a1,a1,0x57
+00405a64  sll a2,a1,0x18
+00405a68  sra a2,a2,0x18
+00405a6c  andi a0,a0,0xf
+00405a70  slti t3,a0,0xa
+00405a74  sb a2,0x0(v0)
+00405a78  addiu a1,a0,0x30
+00405a7c  bne t3,zero,0x00405a90
+00405a80  _addiu a2,v0,0x1
+00405a84  addiu a0,a0,0x57
+00405a88  sll a1,a0,0x18
+00405a8c  sra a1,a1,0x18
+00405a90  sb a1,0x1(v0)
+00405a94  addiu v1,v1,-0x3
+00405a98  b 0x00405aac
+00405a9c  _addiu v0,a2,0x1
+00405aa0  sb a0,0x0(v0)
+00405aa4  addiu v1,v1,-0x1
+00405aa8  addiu v0,v0,0x1
+00405aac  move a1,t2
+00405ab0  lb a0,0x0(a1)
+00405ab4  nop
+00405ab8  beq a0,zero,0x00405acc
+00405abc  _addiu t2,a1,0x1
+00405ac0  slti a2,v1,0x3
+00405ac4  beq a2,zero,0x00405a20
+00405ac8  _nop
+00405acc  lw v1,0x8d0(s0)
+00405ad0  nop
+00405ad4  subu v0,v0,v1
+00405ad8  sw v0,0x50(s0)
+00405adc  lb v1,0x0(a1)
+00405ae0  nop
+00405ae4  beq v1,zero,0x00405b10
+00405ae8  _nop
+00405aec  lw v0,-0x7e40(gp)
+00405af0  lw t9,-0x7f4c(gp)
+00405af4  lui a0,0x45
+00405af8  lw a1,0x0(v0)
+00405afc  jalr t9
+00405b00  _addiu a0,a0,-0x67b4
+00405b04  li v0,0xc
+00405b08  sw v0,0x0(s0)
+00405b0c  li v0,-0x1
+00405b10  lw ra,0x1c(sp)
+00405b14  lw s0,0x18(sp)
+00405b18  jr ra
+00405b1c  _addiu sp,sp,0x20

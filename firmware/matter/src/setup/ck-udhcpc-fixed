@@ -1,0 +1,25 @@
+#!/bin/sh
+# DHCP callback: bounded local state and numeric network values only.
+set -eu
+umask 077
+[ "${interface:-}" = br0 ] || exit 2
+case "${1:-}" in
+deconfig)
+    rm -f /var/run/ck-wifi-bound
+    /bin/ifconfig br0 0.0.0.0
+    ;;
+bound|renew)
+    case "${ip:-}" in ''|*[!0-9.]*|0.0.0.0|192.168.1.254) exit 2 ;; esac
+    case "${subnet:-255.255.255.0}" in *[!0-9.]*) exit 2 ;; esac
+    case "${router:-}" in *[!0-9.\ ]*) exit 2 ;; esac
+    case "${dns:-}" in *[!0-9.\ ]*) exit 2 ;; esac
+    /bin/ifconfig br0 "$ip" netmask "${subnet:-255.255.255.0}" up
+    /bin/route del default dev br0 2>/dev/null || true
+    for gateway in ${router:-}; do /bin/route add default gw "$gateway" dev br0; break; done
+    : > /var/resolv.conf
+    for server in ${dns:-}; do printf 'nameserver %s\n' "$server" >> /var/resolv.conf; done
+    # Original BusyBox has no mv; publish atomically using fixed RAM paths.
+    /bin/ck-lease "$ip"
+    ;;
+*) exit 2 ;;
+esac

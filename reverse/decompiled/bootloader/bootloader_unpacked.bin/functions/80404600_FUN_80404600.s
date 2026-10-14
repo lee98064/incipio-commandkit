@@ -1,0 +1,9 @@
+# FUN_80404600 @ 80404600
+80404600  addiu sp,sp,-0x8
+80404604  mfc0 v0,Status
+80404608  sw v0,0x0(sp)
+8040460c  nop
+80404610  nop
+80404614  lw v0,0x0(sp)
+80404618  jr ra
+8040461c  _addiu sp,sp,0x8

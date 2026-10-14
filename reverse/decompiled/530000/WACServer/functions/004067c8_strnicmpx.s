@@ -1,0 +1,36 @@
+# strnicmpx @ 004067c8
+004067c8  lui gp,0x44
+004067cc  addiu gp,gp,-0x4fc0
+004067d0  lw v0,-0x7fa4(gp)
+004067d4  nop
+004067d8  lw v1,0x0(v0)
+004067dc  b 0x0040682c
+004067e0  _nop
+004067e4  lbu a3,0x0(a0)
+004067e8  sll v0,v0,0x1
+004067ec  addu v0,v1,v0
+004067f0  sll a3,a3,0x1
+004067f4  addu a3,v1,a3
+004067f8  lh v0,0x0(v0)
+004067fc  lh a3,0x0(a3)
+00406800  addiu a1,a1,-0x1
+00406804  slt t0,v0,a3
+00406808  slt a3,a3,v0
+0040680c  bne a3,zero,0x00406840
+00406810  _addiu a0,a0,0x1
+00406814  beq t0,zero,0x00406824
+00406818  _nop
+0040681c  jr ra
+00406820  _li v0,0x1
+00406824  beq v0,zero,0x00406848
+00406828  _addiu a2,a2,0x1
+0040682c  lbu v0,0x0(a2)
+00406830  bne a1,zero,0x004067e4
+00406834  _nop
+00406838  beq v0,zero,0x00406848
+0040683c  _nop
+00406840  jr ra
+00406844  _li v0,-0x1
+00406848  clear v0
+0040684c  jr ra
+00406850  _nop

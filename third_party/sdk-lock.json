@@ -1,0 +1,25 @@
+{
+  "sdk": "connectedhomeip",
+  "tag": "v1.6.1.0",
+  "commit": "3bcdd56ba54fb88b2afb4bfef575014671df7aa7",
+  "url": "https://github.com/project-chip/connectedhomeip.git",
+  "toolchain_builder_commit": "227df8b99103f9c59f6570babf892978e293082f",
+  "gcc": "14.3.0",
+  "musl": "1.2.6",
+  "binutils": "2.44",
+  "target": "mips-linux-uclibc",
+  "abi": "big-endian o32 soft-float MIPS-I",
+  "submodules": {
+    "third_party/mbedtls/repo": "6a58fa8122c9bb8ee1644733d21b5677c93f1169",
+    "third_party/nlassert/repo": "c5892c5ae43830f939ed660ff8ac5f1b91d336d3",
+    "third_party/nlio/repo": "0e725502c2b17bb0a0c22ddd4bcaee9090c8fb5c",
+    "third_party/pigweed/repo": "8bc35d07baf8000f8db57674a23c5e06f7516d79",
+    "third_party/nanopb/repo": "98bf4db69897b53434f3d0ba72e0a3ab1a902824",
+    "third_party/uriparser/repo": "04d8b8df5e0c6bf6c06e472540c015943a613bd2",
+    "third_party/jsoncpp/repo": "8519b8381f3c741ad1421f88237b1deda0b11412"
+  },
+  "flashrom_commit": "90b6b4376c7480a223e7bb5642e7116315ac6d09",
+  "bootstrap_target": "mips-linux-musl",
+  "uclibc_ng": "1.0.54",
+  "runtime": "static, linuxthreads, emulated TLS; no target LL/SC"
+}

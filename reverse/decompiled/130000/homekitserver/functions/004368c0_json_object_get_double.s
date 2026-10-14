@@ -1,0 +1,102 @@
+# json_object_get_double @ 004368c0
+004368c0  lui gp,0x1e
+004368c4  addiu gp,gp,0x2bc0
+004368c8  addu gp,gp,t9
+004368cc  addiu sp,sp,-0x28
+004368d0  sw ra,0x24(sp)
+004368d4  sw s8,0x20(sp)
+004368d8  move s8,sp
+004368dc  sw gp,0x10(sp)
+004368e0  sw a0,0x28(s8)
+004368e4  lw v0,0x28(s8)
+004368e8  nop
+004368ec  bne v0,zero,0x00436904
+004368f0  _nop
+004368f4  clear v1
+004368f8  clear v0
+004368fc  b 0x00436a3c
+00436900  _nop
+00436904  lw v0,0x28(s8)
+00436908  nop
+0043690c  lw v0,0x0(v0)
+00436910  li v1,0x2
+00436914  beq v0,v1,0x0043695c
+00436918  _nop
+0043691c  sltiu v1,v0,0x3
+00436920  beq v1,zero,0x0043693c
+00436924  _nop
+00436928  li v1,0x1
+0043692c  beq v0,v1,0x004369a8
+00436930  _nop
+00436934  b 0x00436a34
+00436938  _nop
+0043693c  li v1,0x3
+00436940  beq v0,v1,0x00436974
+00436944  _nop
+00436948  li v1,0x6
+0043694c  beq v0,v1,0x004369d4
+00436950  _nop
+00436954  b 0x00436a34
+00436958  _nop
+0043695c  lw v0,0x28(s8)
+00436960  nop
+00436964  lw v1,0x1c(v0)
+00436968  lw v0,0x18(v0)
+0043696c  b 0x00436a3c
+00436970  _nop
+00436974  lw v0,0x28(s8)
+00436978  nop
+0043697c  lw v1,0x1c(v0)
+00436980  lw v0,0x18(v0)
+00436984  lw a2,-0x586c(gp)
+00436988  move a1,v1
+0043698c  move a0,v0
+00436990  move t9,a2
+00436994  jalr t9
+00436998  _nop
+0043699c  lw gp,0x10(s8)
+004369a0  b 0x00436a3c
+004369a4  _nop
+004369a8  lw v0,0x28(s8)
+004369ac  nop
+004369b0  lw v1,0x18(v0)
+004369b4  lw v0,-0x6b78(gp)
+004369b8  move a0,v1
+004369bc  move t9,v0
+004369c0  jalr t9
+004369c4  _nop
+004369c8  lw gp,0x10(s8)
+004369cc  b 0x00436a3c
+004369d0  _nop
+004369d4  lw v0,0x28(s8)
+004369d8  nop
+004369dc  lw v0,0x18(v0)
+004369e0  nop
+004369e4  move a0,v0
+004369e8  lw v0,-0x7fd0(gp)
+004369ec  nop
+004369f0  addiu a1,v0,-0x2588
+004369f4  addiu v0,s8,0x18
+004369f8  move a2,v0
+004369fc  lw v0,-0x6ea4(gp)
+00436a00  nop
+00436a04  move t9,v0
+00436a08  jalr t9
+00436a0c  _nop
+00436a10  lw gp,0x10(s8)
+00436a14  move v1,v0
+00436a18  li v0,0x1
+00436a1c  bne v1,v0,0x00436a34
+00436a20  _nop
+00436a24  lw v1,0x1c(s8)
+00436a28  lw v0,0x18(s8)
+00436a2c  b 0x00436a3c
+00436a30  _nop
+00436a34  clear v1
+00436a38  clear v0
+00436a3c  move sp,s8
+00436a40  lw ra,0x24(sp)
+00436a44  lw s8,0x20(sp)
+00436a48  addiu sp,sp,0x28
+00436a4c  jr ra
+00436a50  _nop

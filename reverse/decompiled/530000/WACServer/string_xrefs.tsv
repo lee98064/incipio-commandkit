@@ -1,0 +1,129 @@
+function	from	string_address	string
+FUN_00402014	00402058	0041cb24	[WAC-Server: getDeviceInfo]=============  begin =====   
+FUN_00402014	00402088	0041cb60	/tmp/net/wac_device_info.txt
+FUN_00402014	004020a4	0041cb80	[WAC-Server: getDeviceInfo]============= wait for device info file ready, sleep (1) sec!
+FUN_00402014	00402144	0041cb60	/tmp/net/wac_device_info.txt
+FUN_00402014	00402194	0041cbdc	%s %s 
+FUN_00402014	004021f8	0041cbe8	%02X:%02X:%02X:%02X:%02X:%02X
+FUN_00402014	00402250	0041cc10	/tmp/net/asink_name
+FUN_00402014	00402264	0041cc10	/tmp/net/asink_name
+FUN_00402014	00402324	0041cc24	model
+FUN_00402014	0040234c	0041cc2c	manufacturer
+FUN_00402014	00402388	0041cc3c	firmwareRevision
+FUN_00402014	004023b4	0041cc50	hardwareRevision
+FUN_00402014	004023e0	0041cc64	serialNumber
+FUN_00402014	0040240c	0041cc74	isUnconfigured
+FUN_00402014	0040244c	0041cc84	supportsAirPlay
+FUN_00402014	00402488	0041cc94	supportsAirPrint
+FUN_00402014	004024c8	0041cca8	supports2_4GHzWiFi
+FUN_00402014	00402508	0041ccbc	supports5GHzWiFi
+FUN_00402014	00402548	0041ccd0	supportsWakeOnWireless
+FUN_00402014	00402588	0041cce8	supportsHKAccessoryProtocol
+FUN_00402014	0040265c	0041cd04	eaBundleSeedID
+FUN_00402014	00402690	0041cd14	numEAProtocols
+FUN_00402014	004026d0	0041cd24	unknown title=%s, content=%s  
+FUN_00402014	004027b4	0041cd44	[WAC-Server: mac here... =%02X:%02X:%02X:%02X:%02X:%02X  
+FUN_00402014	004028ac	0041cd80	[WAC-Server: getDeviceInfo]=============  end =====   
+FUN_004028e0	00402918	0041cdb8	/tmp/net/wac_state.txt
+FUN_004028e0	00402960	0041cdd4	[WAC-Server : updateWACState] %d  
+FUN_004028e0	004029dc	0041cdb8	/tmp/net/wac_state.txt
+FUN_004028e0	004029f8	0041cdfc	[WAC-Server : updateWACState] can not open file : %s  
+main	00402a34	0041ce34	[WAC-Server]============= WAC main() ===== start here!! WAC_DEVICE_INFO_FILE= [%s]   
+main	00402a3c	0041cb60	/tmp/net/wac_device_info.txt
+main	00402a64	0041ce8c	[WAC-Server]============= WAC main() ===== call server start !! 
+main	00402aa8	0041ced0	[WAC-Server] retry start WAC server before sleep 1 sec! 
+main	00402b48	0041cf0c	[WAC-Server]============= WAC main() ===== stop!  
+FUN_00402b64	00402ba4	0041cf40	[WACCallbackFunc]: should stop !! 
+PlatformSWAPStop	00402c80	0041cfb0	echo 1 > %s;
+PlatformSWAPStop	00402c84	0041cfc0	/tmp/net/wac_notify_stop_swap.txt
+PlatformSWAPStart	00402cfc	0041cfe4	[WAC-Server] PlatformSWAPStart : inIELen=[%d]  
+PlatformSWAPStart	00402d1c	0041d014	/tmp/net/apple_ie.txt
+PlatformSWAPStart	00402d5c	0041d014	/tmp/net/apple_ie.txt
+PlatformSWAPStart	00402d68	0041d02c	[WAC-Server] PlatformSWAPStart open file : %s  
+PlatformSWAPStart	00402df4	0041d064	[WAC-Server] PlatformSWAPStart can not open file : %s  
+PlatformSWAPStart	00402dfc	0041d014	/tmp/net/apple_ie.txt
+PlatformSWAPStart	00402e10	0041d09c	[WAC-Server] inIE is NULL 
+PlatformSWAPStart	00402e30	0041d0b8	ls /var/tmp/net
+PlatformApplyAirPlayPlayPassword	00402e8c	0041d0c8	[WAC]PlatformApplyAirPlayPlayPassword : begin --
+PlatformApplyAirPlayPlayPassword	00402ea4	0041d0fc	/tmp/net/wac_password_info.txt
+PlatformApplyAirPlayPlayPassword	00402ef0	0041d11c	[WAC]PASS=[%s]  
+PlatformApplyAirPlayPlayPassword	00402f30	0041d130	[WAC]PlatformApplyAirPlayPlayPassword : end --
+PlatformApplyName	00402f98	0041d160	/tmp/net/wac_applyName_info.txt
+PlatformApplyName	00402fe4	0041d180	[WAC]NAME=[%s]  
+PlatformJoinDestinationWiFiNetwork	00403068	0041d194	/tmp/net/wac_wifi_ssid_info.txt
+PlatformJoinDestinationWiFiNetwork	004030b4	0041d1b4	[WAC]inSSID=[%s] 
+PlatformJoinDestinationWiFiNetwork	004030f4	0041d1c8	/tmp/net/wac_wifi_pass_info.txt
+PlatformJoinDestinationWiFiNetwork	0040312c	0041d1e8	[WAC]inWiFiPSK=[%s] 
+PlatformJoinDestinationWiFiNetwork	00403170	0041d200	/tmp/net/wac_wifi_pass_len_info.txt
+PlatformJoinDestinationWiFiNetwork	004031a8	0041d224	[WAC]inWiFiPSKLen=[%d]  
+PlatformJoinDestinationWiFiNetwork	004031e4	0041d240	/tmp/net/wac_wifi_info_ready.txt
+PlatformJoinDestinationWiFiNetwork	00403240	0041d268	/var/run/WAC_JOIN_DONE
+PlatformJoinDestinationWiFiNetwork	00403280	0041d280	[WAC]WAC Join fail
+PlatformJoinDestinationWiFiNetwork	004032b0	0041d294	[WAC]WAC Join ok
+FUN_0040349c	004036d0	0041d2a8	### MFi auth register 0x%02X failed after %d tries: %d 
+PlatformMFiAuthCopyCertificate	004037b0	0041d2e0	/dev/mfi_cp
+PlatformMFiAuthCopyCertificate	0040386c	0041d2ec	MFi auth copy certificate done: %d bytes 
+PlatformMFiAuthCopyCertificate	004038a8	0041d318	### MFi auth copy certificate failed: %d 
+PlatformMFiAuthCreateSignature	00403984	0041d2e0	/dev/mfi_cp
+PlatformMFiAuthCreateSignature	00403b24	0041d344	MFi auth created signature:%p, len=%d 
+PlatformMFiAuthCreateSignature	00403b4c	0041d36c	### MFi auth create signature failed: %d 
+FUN_00403d3c	00404170	0041d3a0	echo %s >> /var/eaProtocols
+FUN_00403d3c	00404194	0041d3bc	echo %s >> /var/eaBundleID
+FUN_00404288	00404468	0041d3d8	WACPreConfigListener
+FUN_00404288	0040452c	0041d3f0	/auth-setup
+FUN_00404288	004045c4	0041d3fc	application/octet-stream
+FUN_00404288	00404698	0041d418	/config
+FUN_00404288	00404970	0041d420	application/x-tlv8
+FUN_00404288	00404c34	0041d3d8	WACPreConfigListener
+FUN_00404288	00404cc0	0041d434	/configured
+WACServerStart	00404f50	0041d440	 ###################################
+WACServerStart	00404f64	0041d468	# WAC SERVER v%d.%d 
+WACServerStart	00404f8c	0041d480	# BUILD DATE: %s, %s 
+WACServerStart	00404f90	0041d498	Aug 17 2016
+WACServerStart	00404f98	0041d4a4	17:47:33
+WACServerStart	00404fb0	0041d4b0	################################### 
+WACServerStart	00405008	0041d4d8	%s, %d create thread fail 
+WACServerStart	0040500c	0041d520	WACServerStart
+RegisterWACBonjourService	00405124	0041d530	%d.%d
+RegisterWACBonjourService	0040518c	0041d538	deviceid
+RegisterWACBonjourService	00405220	0041d54c	features
+RegisterWACBonjourService	00405264	0041d558	srcvers
+RegisterWACBonjourService	00405300	0041d560	_mfi-config._tcp
+RegisterWACBonjourService	00405314	0041d574	local
+HTTPServerStart	00405594	0041d57c	pthread_create perror
+FUN_004055b4	0040565c	0041d594	accept perror
+HTTPServerCreate	004058e0	0041d5a4	setsockopt - SO_BINDTODEVICE
+HTTPServerCreate	00405920	0041d5c4	Bind perror
+HTTPServerCreate	00405990	0041d5c4	Bind perror
+CreateSimpleHTTPOKMessage	00405ab8	0041d5d0	%s %s %s%s
+CreateSimpleHTTPOKMessage	00405abc	0041d5dc	HTTP/1.1
+CreateSimpleHTTPMessage	00405b80	0041d618	Content-Type:
+CreateSimpleHTTPMessage	00405b90	0041d628	Content-Length:
+CreateSimpleHTTPMessage	00405bb0	0041d5f8	%s %s %s%s%s %s%s%s %d%s
+CreateSimpleHTTPMessage	00405bb4	0041d5dc	HTTP/1.1
+FUN_00406044	00406300	0041d638	Connection
+FUN_00406044	00406340	0041d644	HTTP/1.0
+FUN_00406044	00406350	0041d650	close
+FUN_00406044	00406374	0041d658	Content-Length
+DataToHexStringWithColons	004077fc	0041d678	%02X:
+FUN_0040783c	004078d8	0041d680	%02X 
+MFiSAP_Exchange	0040d940	0041da4c	AES-KEY
+MFiSAP_Exchange	0040d9c4	0041da54	AES-IV
+FUN_0041181c	00411918	0041da80	b_pos == 0
+FUN_0041181c	0041191c	0041da8c	/home/vendor/rtl819x_v3464_homekit/users/mfi_wac/WACServer-1.14/External/GladmanAES/aes_modes.c
+FUN_0041181c	00411920	0041daf0	aes_ofb_crypt
+FUN_0041181c	004119d4	0041da80	b_pos == 0
+FUN_0041181c	004119d8	0041da8c	/home/vendor/rtl819x_v3464_homekit/users/mfi_wac/WACServer-1.14/External/GladmanAES/aes_modes.c
+FUN_0041181c	004119dc	0041daf0	aes_ofb_crypt
+FUN_00411c40	00411d48	0041da80	b_pos == 0
+FUN_00411c40	00411d4c	0041da8c	/home/vendor/rtl819x_v3464_homekit/users/mfi_wac/WACServer-1.14/External/GladmanAES/aes_modes.c
+FUN_00411c40	00411d50	0041db00	aes_cfb_decrypt
+FUN_00411c40	00411e4c	0041da80	b_pos == 0
+FUN_00411c40	00411e50	0041da8c	/home/vendor/rtl819x_v3464_homekit/users/mfi_wac/WACServer-1.14/External/GladmanAES/aes_modes.c
+FUN_00411c40	00411e54	0041db00	aes_cfb_decrypt
+FUN_004121a8	004122b4	0041da80	b_pos == 0
+FUN_004121a8	004122b8	0041da8c	/home/vendor/rtl819x_v3464_homekit/users/mfi_wac/WACServer-1.14/External/GladmanAES/aes_modes.c
+FUN_004121a8	004122bc	0041db10	aes_cfb_encrypt
+FUN_004121a8	004123b8	0041da80	b_pos == 0
+FUN_004121a8	004123bc	0041da8c	/home/vendor/rtl819x_v3464_homekit/users/mfi_wac/WACServer-1.14/External/GladmanAES/aes_modes.c
+FUN_004121a8	004123c8	0041db10	aes_cfb_encrypt

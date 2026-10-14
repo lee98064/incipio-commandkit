@@ -1,0 +1,24 @@
+# FUN_00434484 @ 00434484
+00434484  addiu sp,sp,-0x20
+00434488  sw ra,0x1c(sp)
+0043448c  lui gp,0x62
+00434490  addiu gp,gp,-0x6b80
+00434494  sw gp,0x10(sp)
+00434498  lui v0,0x60
+0043449c  lw v0,-0x2f8(v0)
+004344a0  move v1,a0
+004344a4  li a0,-0x1
+004344a8  beq v0,a0,0x004344cc
+004344ac  _move a2,a1
+004344b0  lw t9,-0x790c(gp)
+004344b4  move a1,v1
+004344b8  move a0,v0
+004344bc  jalr t9
+004344c0  _clear a3
+004344c4  beq v0,zero,0x004344d0
+004344c8  _clear v1
+004344cc  li v1,-0x1
+004344d0  lw ra,0x1c(sp)
+004344d4  move v0,v1
+004344d8  jr ra
+004344dc  _addiu sp,sp,0x20

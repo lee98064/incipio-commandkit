@@ -1,0 +1,95 @@
+# FUN_00433de4 @ 00433de4
+00433de4  addiu sp,sp,-0x50
+00433de8  sw ra,0x4c(sp)
+00433dec  sw s5,0x48(sp)
+00433df0  sw s4,0x44(sp)
+00433df4  sw s3,0x40(sp)
+00433df8  sw s2,0x3c(sp)
+00433dfc  sw s1,0x38(sp)
+00433e00  sw s0,0x34(sp)
+00433e04  lui gp,0x47
+00433e08  addiu gp,gp,0x2630
+00433e0c  sw gp,0x10(sp)
+00433e10  lui s5,0x45
+00433e14  sw a1,0x54(sp)
+00433e18  move s2,a0
+00433e1c  addiu s5,s5,0x2c18
+00433e20  clear s1
+00433e24  addiu s0,sp,0x18
+00433e28  addiu s3,sp,0x54
+00433e2c  li s4,0x4
+00433e30  lw t9,-0x7e28(gp)
+00433e34  move a3,s1
+00433e38  move a1,s5
+00433e3c  move a2,s2
+00433e40  move a0,s0
+00433e44  sw zero,0x18(sp)
+00433e48  sw zero,0x1c(sp)
+00433e4c  sw zero,0x20(sp)
+00433e50  sw zero,0x24(sp)
+00433e54  jalr t9
+00433e58  _sw zero,0x28(sp)
+00433e5c  lw gp,0x10(sp)
+00433e60  move a0,s0
+00433e64  lw t9,-0x7ac0(gp)
+00433e68  nop
+00433e6c  jalr t9
+00433e70  _addiu s1,s1,0x1
+00433e74  lw gp,0x10(sp)
+00433e78  li a0,0x10e
+00433e7c  lw t9,-0x7c08(gp)
+00433e80  nop
+00433e84  jalr t9
+00433e88  _move a1,s3
+00433e8c  lw gp,0x10(sp)
+00433e90  bne s1,s4,0x00433e30
+00433e94  _move a2,s2
+00433e98  lw t9,-0x7e28(gp)
+00433e9c  lui a1,0x45
+00433ea0  addiu a1,a1,-0x28a8
+00433ea4  move a0,s0
+00433ea8  sw zero,0x18(sp)
+00433eac  sw zero,0x1c(sp)
+00433eb0  sw zero,0x20(sp)
+00433eb4  sw zero,0x24(sp)
+00433eb8  jalr t9
+00433ebc  _sw zero,0x28(sp)
+00433ec0  lw gp,0x10(sp)
+00433ec4  nop
+00433ec8  lw t9,-0x7ac0(gp)
+00433ecc  nop
+00433ed0  jalr t9
+00433ed4  _move a0,s0
+00433ed8  lw gp,0x10(sp)
+00433edc  move a1,s3
+00433ee0  lw t9,-0x7c08(gp)
+00433ee4  nop
+00433ee8  jalr t9
+00433eec  _li a0,0x10e
+00433ef0  lw gp,0x10(sp)
+00433ef4  lui a1,0x45
+00433ef8  move a2,s2
+00433efc  lw t9,-0x7e28(gp)
+00433f00  addiu a1,a1,0x5e80
+00433f04  move a0,s0
+00433f08  sw zero,0x18(sp)
+00433f0c  sw zero,0x1c(sp)
+00433f10  sw zero,0x20(sp)
+00433f14  sw zero,0x24(sp)
+00433f18  jalr t9
+00433f1c  _sw zero,0x28(sp)
+00433f20  lw gp,0x10(sp)
+00433f24  nop
+00433f28  lw t9,-0x7ac0(gp)
+00433f2c  nop
+00433f30  jalr t9
+00433f34  _move a0,s0
+00433f38  lw ra,0x4c(sp)
+00433f3c  lw s5,0x48(sp)
+00433f40  lw s4,0x44(sp)
+00433f44  lw s3,0x40(sp)
+00433f48  lw s2,0x3c(sp)
+00433f4c  lw s1,0x38(sp)
+00433f50  lw s0,0x34(sp)
+00433f54  jr ra
+00433f58  _addiu sp,sp,0x50

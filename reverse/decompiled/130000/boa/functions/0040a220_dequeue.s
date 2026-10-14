@@ -1,0 +1,25 @@
+# dequeue @ 0040a220
+0040a220  lw v0,0x0(a0)
+0040a224  nop
+0040a228  bne v0,a1,0x0040a23c
+0040a22c  _nop
+0040a230  lw v0,0x327c(a1)
+0040a234  nop
+0040a238  sw v0,0x0(a0)
+0040a23c  lw v0,0x3280(a1)
+0040a240  nop
+0040a244  beq v0,zero,0x0040a258
+0040a248  _nop
+0040a24c  lw v1,0x327c(a1)
+0040a250  nop
+0040a254  sw v1,0x327c(v0)
+0040a258  lw v0,0x327c(a1)
+0040a25c  nop
+0040a260  beq v0,zero,0x0040a274
+0040a264  _nop
+0040a268  lw v1,0x3280(a1)
+0040a26c  nop
+0040a270  sw v1,0x3280(v0)
+0040a274  sw zero,0x3280(a1)
+0040a278  jr ra
+0040a27c  _sw zero,0x327c(a1)

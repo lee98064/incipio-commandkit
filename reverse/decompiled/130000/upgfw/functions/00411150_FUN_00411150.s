@@ -1,0 +1,75 @@
+# FUN_00411150 @ 00411150
+00411150  addiu sp,sp,-0x128
+00411154  sw ra,0x124(sp)
+00411158  sw s1,0x120(sp)
+0041115c  sw s0,0x11c(sp)
+00411160  lui gp,0x58
+00411164  addiu gp,gp,0x5010
+00411168  sw gp,0x10(sp)
+0041116c  lw t9,-0x7764(gp)
+00411170  addiu s0,sp,0x18
+00411174  move a0,s0
+00411178  clear a1
+0041117c  jalr t9
+00411180  _li a2,0x100
+00411184  lw gp,0x10(sp)
+00411188  lui a0,0x53
+0041118c  lui a1,0x53
+00411190  lw t9,-0x71e4(gp)
+00411194  addiu a0,a0,0x24a4
+00411198  jalr t9
+0041119c  _addiu a1,a1,0x47fc
+004111a0  lw gp,0x10(sp)
+004111a4  beq v0,zero,0x00411214
+004111a8  _move a2,v0
+004111ac  lw t9,-0x74ec(gp)
+004111b0  move a0,s0
+004111b4  jalr t9
+004111b8  _li a1,0x100
+004111bc  lw gp,0x10(sp)
+004111c0  lui s1,0x55
+004111c4  addiu s1,s1,0x3d60
+004111c8  lw t9,-0x7324(gp)
+004111cc  move a0,s0
+004111d0  jalr t9
+004111d4  _move a1,s1
+004111d8  lw gp,0x10(sp)
+004111dc  move a1,s1
+004111e0  lw t9,-0x7324(gp)
+004111e4  nop
+004111e8  jalr t9
+004111ec  _clear a0
+004111f0  lw gp,0x10(sp)
+004111f4  lui a0,0x53
+004111f8  addiu a0,a0,0x24b4
+004111fc  lw t9,-0x7dc8(gp)
+00411200  nop
+00411204  jalr t9
+00411208  _move a1,v0
+0041120c  b 0x00411264
+00411210  _li v0,0x1
+00411214  lw t9,-0x686c(gp)
+00411218  lw v0,-0x72fc(gp)
+0041121c  nop
+00411220  lw s0,0x0(v0)
+00411224  jalr t9
+00411228  _nop
+0041122c  lw gp,0x10(sp)
+00411230  lw a0,0x0(v0)
+00411234  lw t9,-0x7d94(gp)
+00411238  nop
+0041123c  jalr t9
+00411240  _nop
+00411244  lw gp,0x10(sp)
+00411248  lui a1,0x53
+0041124c  move a0,s0
+00411250  lw t9,-0x785c(gp)
+00411254  addiu a1,a1,0x24c4
+00411258  jalr t9
+0041125c  _move a2,v0
+00411260  clear v0
+00411264  lw ra,0x124(sp)
+00411268  lw s1,0x120(sp)
+0041126c  lw s0,0x11c(sp)
+00411270  jr ra
+00411274  _addiu sp,sp,0x128

@@ -1,0 +1,685 @@
+function	from	string_address	string
+FUN_00401bdc	00401c40	0040ff50	 FILE %s FUNCTION %s LINE %d: wfaudio My pid=%d, sig=%d  
+FUN_00401bdc	00401c44	0040ff8c	wfaudio.c
+FUN_00401bdc	00401c4c	00410f44	signal_handler
+FUN_00401bdc	00401c78	0040ff98	 FILE %s FUNCTION %s LINE %d: Aborted by signal SIGINT...  
+FUN_00401bdc	00401c94	0040ff8c	wfaudio.c
+FUN_00401bdc	00401c98	00410f44	signal_handler
+FUN_00401bdc	00401c9c	0040ffd4	 FILE %s FUNCTION %s LINE %d: Aborted by signal SIGTERM...  
+FUN_00401bdc	00401d08	00410014	 FILE %s FUNCTION %s LINE %d: Aborted by signal SIGABRT...  
+FUN_00401bdc	00401d10	0040ff8c	wfaudio.c
+FUN_00401bdc	00401d18	00410f44	signal_handler
+FUN_00401d38	00401d48	00410054	/var/run/avahi-autoipd.br0.pid
+FUN_00401d54	00401dd0	00410074	hostname '%s'
+FUN_00401e0c	00401e2c	00410084	killall -9 udhcpd 2> /dev/null
+FUN_00401e0c	00401e44	004100a4	rm -f /var/run/udhcpd.pid 2> /dev/null
+FUN_00401e0c	00401e58	004100cc	rm -f /var/lib/misc/udhcpd-br0.leases
+FUN_00401e64	00401e98	004100f4	[%s:%d] AVAHI process already exist!!!!!!!!!!!!!!!!!!!!! 
+FUN_00401e64	00401e9c	00410f54	start_avahi_daemon
+FUN_00401e64	00401eb8	00410130	avahi-autoipd -r br0
+FUN_00401e64	00401ec0	00410148	[%s:%d]--------------------start avahi first time---------------------------- 
+FUN_00401e64	00401ec4	00410f54	start_avahi_daemon
+FUN_00401e64	00401ed8	00410198	avahi-autoipd -t /etc/avahi-autoipd.action --debug --no-drop-root br0
+FUN_00401eec	00401f54	004101e0	/tmp/net/wac_wifi_info_ready.txt
+FUN_00401eec	00401f98	00410204	 FILE %s FUNCTION %s LINE %d: --- file ready : %s ---   
+FUN_00401eec	00401f9c	0040ff8c	wfaudio.c
+FUN_00401eec	00401fa0	00410f0c	getWACWifiInfo
+FUN_00401eec	00401fb8	00410240	/tmp/net/wac_applyName_info.txt
+FUN_00401eec	00401fe4	00410240	/tmp/net/wac_applyName_info.txt
+FUN_00401eec	00402008	00410260	 FILE %s FUNCTION %s LINE %d: --- read : %s ---   
+FUN_00401eec	0040200c	0040ff8c	wfaudio.c
+FUN_00401eec	00402010	00410f0c	getWACWifiInfo
+FUN_00401eec	00402058	00410294	 FILE %s FUNCTION %s LINE %d: => get NAME=[%s]  
+FUN_00401eec	0040205c	0040ff8c	wfaudio.c
+FUN_00401eec	00402064	00410f0c	getWACWifiInfo
+FUN_00401eec	004020bc	00410240	/tmp/net/wac_applyName_info.txt
+FUN_00401eec	004020d0	004102c8	/tmp/net/wac_password_info.txt
+FUN_00401eec	004020f8	004102c8	/tmp/net/wac_password_info.txt
+FUN_00401eec	00402128	004102c8	/tmp/net/wac_password_info.txt
+FUN_00401eec	0040212c	00410260	 FILE %s FUNCTION %s LINE %d: --- read : %s ---   
+FUN_00401eec	00402130	0040ff8c	wfaudio.c
+FUN_00401eec	00402134	00410f0c	getWACWifiInfo
+FUN_00401eec	00402174	0040ff8c	wfaudio.c
+FUN_00401eec	00402178	00410f0c	getWACWifiInfo
+FUN_00401eec	0040217c	004102e8	 FILE %s FUNCTION %s LINE %d: => get PASS=[%s]   
+FUN_00401eec	004021d4	004102c8	/tmp/net/wac_password_info.txt
+FUN_00402204	00402244	00410ef0	thread_RT_WAC_Wifi_Connect
+FUN_00402204	00402248	0041031c	 FILE %s FUNCTION %s LINE %d: [thread_RT_WAC_Wifi_Connect]: begin  
+FUN_00402204	0040224c	0040ff8c	wfaudio.c
+FUN_00402204	004022d0	004101e0	/tmp/net/wac_wifi_info_ready.txt
+FUN_00402204	004022e4	00410360	thread_RT_WAC_Wifi_Connect--- read : %s  fail!! try! count=%d  
+FUN_00402204	004022ec	004101e0	/tmp/net/wac_wifi_info_ready.txt
+FUN_00402204	00402330	004103a0	/tmp/net/wac_wifi_pass_len_info.txt
+FUN_00402204	00402354	004103a0	/tmp/net/wac_wifi_pass_len_info.txt
+FUN_00402204	00402384	004103a0	/tmp/net/wac_wifi_pass_len_info.txt
+FUN_00402204	00402390	004103c4	 FILE %s FUNCTION %s LINE %d: thread_RT_WAC_Wifi_Connect--- read : %s ---   
+FUN_00402204	00402394	0040ff8c	wfaudio.c
+FUN_00402204	0040239c	00410ef0	thread_RT_WAC_Wifi_Connect
+FUN_00402204	004023f8	00410414	=> get WifiPSKLen=[%d]  
+FUN_00402204	00402428	004103a0	/tmp/net/wac_wifi_pass_len_info.txt
+FUN_00402204	0040243c	00410430	/tmp/net/wac_wifi_ssid_info.txt
+FUN_00402204	00402458	00410430	/tmp/net/wac_wifi_ssid_info.txt
+FUN_00402204	00402494	00410450	=> get SSID=[%s]  
+FUN_00402204	004024d4	00410430	/tmp/net/wac_wifi_ssid_info.txt
+FUN_00402204	004024f4	00410464	/tmp/net/wac_wifi_pass_info.txt
+FUN_00402204	00402510	00410464	/tmp/net/wac_wifi_pass_info.txt
+FUN_00402204	00402540	00410464	/tmp/net/wac_wifi_pass_info.txt
+FUN_00402204	0040254c	004103c4	 FILE %s FUNCTION %s LINE %d: thread_RT_WAC_Wifi_Connect--- read : %s ---   
+FUN_00402204	00402550	0040ff8c	wfaudio.c
+FUN_00402204	00402558	00410ef0	thread_RT_WAC_Wifi_Connect
+FUN_00402204	00402588	00410484	=> get WIFI-PASS=[%s]  
+FUN_00402204	004025c8	00410464	/tmp/net/wac_wifi_pass_info.txt
+FUN_00402204	004025e0	004101e0	/tmp/net/wac_wifi_info_ready.txt
+FUN_00402204	00402614	0041049c	wlan0-vxd
+getWACServerState	00402804	004104a8	/tmp/net/wac_state.txt
+getWACServerState	00402820	004104a8	/tmp/net/wac_state.txt
+FUN_004028fc	0040297c	004104c0	AirPlayFlowControl::stopWACServer() : state=WAC_SERVER_STATE_CONFIG_RECEVIED, m_WACMonitorThreadRunning=true, so do not stop!!
+FUN_004028fc	004029c0	00410540	wlan0
+FUN_004028fc	00402a20	00410548	killall WACServer 2> /dev/null
+FUN_004028fc	00402a80	004104a8	/tmp/net/wac_state.txt
+FUN_004028fc	00402a98	004101e0	/tmp/net/wac_wifi_info_ready.txt
+FUN_004028fc	00402ab0	00410430	/tmp/net/wac_wifi_ssid_info.txt
+FUN_004028fc	00402ac8	004103a0	/tmp/net/wac_wifi_pass_len_info.txt
+FUN_004028fc	00402ae0	00410464	/tmp/net/wac_wifi_pass_info.txt
+FUN_004028fc	00402af8	00410240	/tmp/net/wac_applyName_info.txt
+FUN_004028fc	00402b10	004102c8	/tmp/net/wac_password_info.txt
+FUN_004028fc	00402b28	00410568	/tmp/net/wac_notify_stop_swap.txt
+FUN_004028fc	00402b44	0041058c	/usr/local/etc/dvdplayer/wac_wifi_info.txt
+FUN_00402b50	00402c7c	00410540	wlan0
+FUN_00402b50	00402ce0	004105b8	/tmp/net/wac_device_info.txt
+FUN_00402b50	00402d28	004105dc	mac %02X:%02X:%02X:%02X:%02X:%02X 
+FUN_00402b50	00402d88	00410600	name %s 
+FUN_00402b50	00402da8	00410600	name %s 
+FUN_00402b50	00402dc4	0041060c	model Device1,1 
+FUN_00402b50	00402de0	00410620	manufacturer Apple 
+FUN_00402b50	00402dfc	00410634	firmwareRevision FW.1.1.1.1.1 
+FUN_00402b50	00402e18	00410654	hardwareRevision HW.2.2.2.2.2 
+FUN_00402b50	00402e34	00410674	serialNumber SER.1.1.1.1.1 
+FUN_00402b50	00402e60	00410690	isUnconfigured %d 
+FUN_00402b50	00402e74	004106a4	supportsAirPlay 0 
+FUN_00402b50	00402e90	004106b8	supportsAirPrint 0 
+FUN_00402b50	00402eac	004106cc	supports2_4GHzWiFi 1 
+FUN_00402b50	00402ed0	004106e4	supports5GHzWiFi %d 
+FUN_00402b50	00402ee4	004106fc	supportsWakeOnWireless 0 
+FUN_00402b50	00402f00	00410718	supportsHKAccessoryProtocol 1 
+FUN_00402b50	00402f44	00410738	eaProtocols 
+FUN_00402b50	00402fbc	00410748	numEAProtocols 
+FUN_00402b50	00403024	00410758	eaBundleSeedID 
+Reset_to_AP	004031d8	00410540	wlan0
+Reset_to_AP	00403270	0041076c	%s%02X%02X
+Reset_to_AP	00403288	00410778	WAC_Config
+Reset_to_AP	00403308	0041049c	wlan0-vxd
+Reset_to_AP	004033fc	0041076c	%s%02X%02X
+Reset_to_AP	0040347c	00410784	iwpriv wlan0 set_mib func_off=0
+Reset_to_AP	004034ac	004107a4	rm -rf %s
+Reset_to_AP	004034b0	004107b0	/var/run/WAC_JOIN_DONE
+FUN_004034f4	004035b0	004107c8	 FILE %s FUNCTION %s LINE %d: : WAC Server timeout! should not start WACServer, just start SoftAP is oK!   
+FUN_004034f4	004035b4	0040ff8c	wfaudio.c
+FUN_004034f4	004035b8	00410f1c	startWACServer
+FUN_004034f4	00403600	00410f1c	startWACServer
+FUN_004034f4	00403604	00410834	 FILE %s FUNCTION %s LINE %d: DeleteWlanIE  
+FUN_004034f4	00403608	0040ff8c	wfaudio.c
+FUN_004034f4	00403634	00410540	wlan0
+FUN_004034f4	004036c8	00410540	wlan0
+FUN_004034f4	00403758	00410864	/tmp/net/apple_ie.txt
+FUN_004034f4	00403770	004104a8	/tmp/net/wac_state.txt
+FUN_004034f4	00403790	0041087c	WACServer &
+FUN_00403884	004038ac	00410540	wlan0
+FUN_00403884	00403918	00410f2c	RestoreToUnConfigured
+FUN_00403884	0040391c	00410834	 FILE %s FUNCTION %s LINE %d: DeleteWlanIE  
+FUN_00403884	00403920	0040ff8c	wfaudio.c
+FUN_00403884	0040394c	00410540	wlan0
+FUN_00403884	00403a08	0041049c	wlan0-vxd
+FUN_00403884	00403a44	00410888	rm -f /tmp/net/airplay_name 2> /dev/null
+FUN_00403884	00403a5c	004108b4	rm -f /tmp/net/airplay_password 2> /dev/null
+FUN_00403884	00403a74	00410548	killall WACServer 2> /dev/null
+FUN_00403884	00403a8c	004104a8	/tmp/net/wac_state.txt
+FUN_00403884	00403aa4	004101e0	/tmp/net/wac_wifi_info_ready.txt
+FUN_00403884	00403abc	00410430	/tmp/net/wac_wifi_ssid_info.txt
+FUN_00403884	00403ad4	004103a0	/tmp/net/wac_wifi_pass_len_info.txt
+FUN_00403884	00403aec	00410464	/tmp/net/wac_wifi_pass_info.txt
+FUN_00403884	00403b04	00410240	/tmp/net/wac_applyName_info.txt
+FUN_00403884	00403b1c	004102c8	/tmp/net/wac_password_info.txt
+FUN_00403884	00403b34	00410568	/tmp/net/wac_notify_stop_swap.txt
+FUN_00403884	00403b4c	0041058c	/usr/local/etc/dvdplayer/wac_wifi_info.txt
+FUN_00403b80	00403cb0	004108e4	--thread_RT_WACServer_monitor : program_status == 1 stop
+FUN_00403b80	00403cc8	00410920	/var/system/start_init
+FUN_00403b80	00403d00	00410938	--thread_RT_WACServer_monitor : get stop thread running. 0 
+FUN_00403b80	00403d40	00410864	/tmp/net/apple_ie.txt
+FUN_00403b80	00403d54	00410974	--thread_RT_WACServer_monitor : WAC Server timeout(%d) or in received state timeout (%d) stop!  
+FUN_00403b80	00403d98	00410864	/tmp/net/apple_ie.txt
+FUN_00403b80	00403e08	004109d8	--thread_RT_WACServer_monitor : set IE=[%s] to wifi driver and start softAP here!  
+FUN_00403b80	00403e3c	00410540	wlan0
+FUN_00403b80	00403e90	00410a2c	--thread_RT_WACServer_monitor : read IE for wifi driver is NULL.
+FUN_00403b80	00403ee8	00410a70	--thread_RT_WACServer_monitor : can not open file!!
+FUN_00403b80	00403f08	00410864	/tmp/net/apple_ie.txt
+FUN_00403b80	00403f4c	00410bb0	-thread_RT_WACServer_monitor- WAC_SERVER_STATE_ERROR -- 
+FUN_00403b80	00403ff8	00410aa4	-thread_RT_WACServer_monitor-  wifi connect fail! restart WAC Serve and oounter!! 
+FUN_00403b80	00404050	00410568	/tmp/net/wac_notify_stop_swap.txt
+FUN_00403b80	00404074	00410568	/tmp/net/wac_notify_stop_swap.txt
+FUN_00403b80	0040408c	00410af8	-thread_RT_WACServer_monitor- send event to connect wifi !-- 
+FUN_00403b80	004040f8	00410540	wlan0
+FUN_00403b80	0040412c	00410b38	iwpriv wlan0 set_mib func_off=1
+FUN_00403b80	00404144	00410b58	-thread_RT_WACServer_monitor- WAC_SERVER_STATE_CONFIG_COMPLETE -- : set configured!!
+FUN_00403b80	00404254	00410864	/tmp/net/apple_ie.txt
+FUN_00403b80	00404278	00410bec	--thread_RT_WACServer_monitor : end of thread, restart SoftAP ! 
+FUN_00403b80	004042ac	00410540	wlan0
+main	004044fc	00410c30	 FILE %s FUNCTION %s LINE %d: wfaudio pid=%d  
+main	00404500	0040ff8c	wfaudio.c
+main	00404524	00410c60	/var/run/wfaudiosink-pid
+main	00404544	00410c7c	 FILE %s FUNCTION %s LINE %d: pidfile_acquire fail!!!   
+main	00404548	0040ff8c	wfaudio.c
+main	00404610	00410cb8	/var/log/wfaudio.log
+main	00404640	00410cd0	%d, Log Started:
+main	00404694	00410540	wlan0
+main	004046d0	00410540	wlan0
+main	004046f8	00410540	wlan0
+main	00404710	0041049c	wlan0-vxd
+main	004047a4	00410920	/var/system/start_init
+main	00404920	0041049c	wlan0-vxd
+main	004049a4	0041049c	wlan0-vxd
+main	00404ad4	00410ce4	 FILE %s FUNCTION %s LINE %d: Get IP address is %s  
+main	00404ad8	0040ff8c	wfaudio.c
+main	00404b68	00410d1c	[%s:%d] start avahi!!! 
+main	00404c34	00410d34	 FILE %s FUNCTION %s LINE %d: WiFi Client CANNOT connect, RESET to AP State  
+main	00404c38	0040ff8c	wfaudio.c
+main	00404c90	00410d84	/etc/udhcpc/udhcpc-br0.pid
+main	00404cac	00410da0	%d Start DHCP Client 
+main	00404cc4	00410db8	ifconfig br0 0.0.0.0
+main	00404d18	00410dd0	echo 1 > %s
+main	00404d1c	004107b0	/var/run/WAC_JOIN_DONE
+main	00404d58	00410ddc	WAC Join and IP GET
+main	00404d94	00410df0	%d WACServerCurrentState NOT STOPPED=%d 
+main	00404dcc	00410540	wlan0
+main	00404e04	0041049c	wlan0-vxd
+main	00404ea0	00410540	wlan0
+main	00404fa0	00410e1c	[%s:%d] 
+main	00404fcc	00410540	wlan0
+main	00405004	00410e28	Finish Update to WLAN0
+main	004050ec	00410e40	killall mdnsd
+main	0040511c	00410e50	killall -2 homekitserver
+main	00405134	00410e6c	homekitserver
+main	004051b8	00410540	wlan0
+main	00405314	00410e7c	 FILE %s FUNCTION %s LINE %d:  
+main	00405318	0040ff8c	wfaudio.c
+main	00405468	00410d84	/etc/udhcpc/udhcpc-br0.pid
+main	00405484	00410da0	%d Start DHCP Client 
+main	0040549c	00410db8	ifconfig br0 0.0.0.0
+main	004054f0	00410888	rm -f /tmp/net/airplay_name 2> /dev/null
+main	00405504	004108b4	rm -f /tmp/net/airplay_password 2> /dev/null
+main	00405544	00410e9c	/tmp/net/airplay_name
+main	004055a0	00410eb4	/tmp/net/airplay_password
+main	004057c0	00410ed0	Exit wfaudio
+StartThreadForWFAudioNetlink	00405870	00410f70	%s:%s:Create RTSPSinkThread Thread Fail! 
+StartThreadForWFAudioNetlink	00405874	00410f9c	wfaudio_nl_user.c
+StartThreadForWFAudioNetlink	0040587c	00411190	StartThreadForWFAudioNetlink
+FUN_004058ac	004058ec	00410fb0	WFD  Send NL Msg Err, Null Socket_fd
+FUN_004058ac	004059ac	00410fd8	WFD Send NL Msg Err (%d) 
+FUN_004059ec	00405a2c	00410ff4	Gpio state=%d 
+FUN_004059ec	00405a4c	00411004	source ./tmp/homekitclean.script
+FUN_004059ec	00405a64	00411028	phytrex_tools -dwpi  WDATA
+FUN_004059ec	00405a7c	00411044	[METER] Reset WRITEABLE data
+FUN_004059ec	00405a94	00410540	wlan0
+FUN_004059ec	00405b78	00411094	WACServer is running just clean m_WACServerCounter
+FUN_004059ec	00405b88	004110c8	WAC  is in progress, do nothing
+FUN_004059ec	00405b98	00410540	wlan0
+FUN_004059ec	00405c10	00410540	wlan0
+FUN_004059ec	00405cd0	0041049c	wlan0-vxd
+FUN_004059ec	00405d14	00410888	rm -f /tmp/net/airplay_name 2> /dev/null
+FUN_004059ec	00405d2c	004108b4	rm -f /tmp/net/airplay_password 2> /dev/null
+FUN_004059ec	00405d44	00411064	flash default-sw
+FUN_004059ec	00405d5c	00411078	Reset to default...
+FUN_004059ec	00405d68	0041108c	reboot
+FUN_004059ec	00405d8c	004110e8	WFAudio User: Rcv Unknown NL Msg(%d) 
+FUN_00405dac	00405df0	00411110	(WFD) Open NL Err (%d) 
+FUN_00405dac	00405e60	00411128	(WFD) Bind NL Err (%d) 
+FUN_00405e90	00405efc	0041116c	/var/run/wfaudio-nl.pid
+FUN_00405e90	0040603c	00411148	<<  WFAudio User Rcv NL Err(%d)>>  
+FUN_004061b8	00406224	004111b0	Max=%ld, Avail=%ld,TN=%016llX 
+ChangeLEDConfiguring	00406298	004111d0	socket() error!
+ChangeLEDConfiguring	004062b0	00410540	wlan0
+ChangeLEDConfiguring	00406304	004111e0	ioctl failed
+FUN_00406350	00406400	004111f0	SIOCGIFFLAGS result of %s=%x 
+FUN_004065b0	004066a0	00411210	Not HEX
+DeleteWlanIE	0040674c	004111d0	socket() error!
+DeleteWlanIE	004067f8	004111e0	ioctl failed
+InsertWlanIE	004068b0	004111d0	socket() error!
+InsertWlanIE	0040695c	004111e0	ioctl failed
+find_pid_by_name	00406a18	00411218	Cannot open /proc
+find_pid_by_name	00406a70	00411230	/proc/%s/status
+find_pid_by_name	00406ae8	00411240	%*s %s
+if_readlist_proc	00406d30	00411248	/proc/net/dev
+getPid_fromFile	0040721c	00411258	can not open:%s 
+DoCmd	004073cc	00411274	open %s
+DoCmd	0040744c	00411284	/sbin:/bin:/usr/sbin:/usr/bin
+killDaemonByPidFile	00407614	004112a4	%s : input file name is null! 
+killDaemonByPidFile	0040761c	00411770	killDaemonByPidFile
+WriteLog2File	00407770	004112d0	%b/%d/%Y %T
+WriteLog2File	00407790	004112dc	%s--%s 
+WriteLog2File	004077ec	004112e4	 FILE %s FUNCTION %s LINE %d: %s 
+WriteLog2File	004077f0	00411308	utility.c
+WriteLog2File	004077f8	00411784	WriteLog2File
+WriteLog2File	00407808	00410cb8	/var/log/wfaudio.log
+WriteLog2File	00407840	00411314	Logfile size too large, clean old log data
+WriteLog2File	00407870	00410cb8	/var/log/wfaudio.log
+WriteLog2File	00407884	00410cb8	/var/log/wfaudio.log
+WriteLog2File	004078a8	00411340	Log Start:
+FUN_00407938	004079a4	0041134c	 FILE %s FUNCTION %s LINE %d: Create %s file error!  
+FUN_00407938	004079a8	00411308	utility.c
+FUN_00407938	004079b0	00411794	WACCreate_bound_script
+FUN_00407938	004079c8	00411384	#!/bin/sh 
+FUN_00407938	00407a14	00411390	if [ "$router" ];then
+FUN_00407938	00407a64	004113a8	sysconf conn dhcp $interface wac a=$ip M=$subnet r=$router d=$dns
+FUN_00407938	00407b04	004113f4	if [ "$serverid" ];then
+FUN_00407938	00407b54	0041140c	sysconf conn dhcp $interface wac a=$ip M=$subnet s=$serverid d=$dns
+FUN_00407938	00407bf4	00411450	sysconf conn dhcp wac $interface a=$ip M=$subnet d=$dns
+FUN_00407d14	00407d80	0041134c	 FILE %s FUNCTION %s LINE %d: Create %s file error!  
+FUN_00407d14	00407d84	00411308	utility.c
+FUN_00407d14	00407d8c	004117ac	Create_bound_script
+FUN_00407d14	00407da4	00411384	#!/bin/sh 
+FUN_00407d14	00407df0	00411390	if [ "$router" ];then
+FUN_00407d14	00407e40	0041148c	sysconf conn dhcp $interface p2p a=$ip M=$subnet r=$router d=$dns
+FUN_00407d14	00407ee0	004113f4	if [ "$serverid" ];then
+FUN_00407d14	00407f30	004114d0	sysconf conn dhcp $interface p2p a=$ip M=$subnet s=$serverid d=$dns
+FUN_00407d14	00407fd0	00411514	sysconf conn dhcp p2p $interface a=$ip M=$subnet d=$dns
+write_line_to_file	00408178	0041154c	 FILE %s FUNCTION %s LINE %d: Create %s error!  
+write_line_to_file	0040817c	00411308	utility.c
+write_line_to_file	00408184	004117c0	write_line_to_file
+FUN_0040820c	0040827c	0041134c	 FILE %s FUNCTION %s LINE %d: Create %s file error!  
+FUN_0040820c	00408280	00411308	utility.c
+FUN_0040820c	00408288	004117d4	Create_script
+FUN_0040820c	004082a4	00411384	#!/bin/sh 
+FUN_0040820c	004082ec	00411580	echo "Enter Deconfig Script Since DONOT Get IP address for  %s" 
+SetWlan_idx	004083b4	004115c4	invalid wlan interface index number!
+SetWlan_idx	0040843c	004115ec	invalid virtual wlan interface index number!
+set_lan_dhcpc	00408564	00411620	killall -9 udhcpc 2> /dev/null
+set_lan_dhcpc	00408580	00411640	rm -f /etc/udhcpc/udhcpc-br0.pid 2> /dev/null
+set_lan_dhcpc	0040859c	00411670	/usr/share/udhcpc/br0.bound
+set_lan_dhcpc	004085b8	0041168c	/usr/share/udhcpc/%s.sh
+set_lan_dhcpc	004085d4	004116a4	/usr/share/udhcpc/%s.deconfig
+set_lan_dhcpc	004085f0	004116c4	/etc/udhcpc/udhcpc-%s.pid
+set_lan_dhcpc	004086e4	004116e0	ifconfig %s 0.0.0.0
+set_lan_dhcpc	00408758	004116f4	udhcpc -i %s -p %s -s %s -h  '%s' &
+pidfile_acquire	004088cc	00411718	Unable to open pidfile %s 
+Check_Wlan_isConnected	00408aac	00411734	/proc/%s/sta_info
+Check_Wlan_isConnected	00408b0c	00411748	active
+Check_Wlan_isConnected	00408b24	00411750	%*[^:]:%[^)]
+Check_Wlan_isConnected	00408b78	00411760	hwaddr
+FUN_004091fc	00409240	00411de0	/etc/udhcpc/
+FUN_004091fc	00409298	00411800	Cannot open /etc/udhcpc
+FUN_004091fc	004092fc	00411de0	/etc/udhcpc/
+FUN_004091fc	00409368	00411818	udhcpc-
+FUN_004093ac	004093dc	00411820	/proc/hw_nat
+FUN_004093ac	004093fc	00411820	/proc/hw_nat
+FUN_004093ac	00409410	00411820	/proc/hw_nat
+FUN_004093ac	00409424	00411820	/proc/hw_nat
+FUN_004093ac	0040943c	00411820	/proc/hw_nat
+FUN_004093ac	00409450	00411820	/proc/hw_nat
+FUN_004093ac	0040946c	00411844	/proc/sw_nat
+FUN_004093ac	00409490	00411844	/proc/sw_nat
+FUN_004093ac	0040951c	00411844	/proc/sw_nat
+FUN_004093ac	00409554	00411854	killall
+FUN_004093ac	0040955c	00411860	miniigd
+FUN_004093ac	00409580	00411868	/var/run/miniupnpd.pid
+FUN_004093ac	0040959c	00411868	/var/run/miniupnpd.pid
+FUN_004093ac	004095c0	00411854	killall
+FUN_004093ac	004095c8	00411880	routed
+FUN_004093ac	004095ec	00411888	/var/run/routed.pid
+FUN_004093ac	00409608	00411888	/var/run/routed.pid
+FUN_004093ac	00409634	004118a4	/etc/ppp/first
+FUN_004093ac	00409658	004118b4	/etc/ppp/firstpptp
+FUN_004093ac	0040967c	004118c8	/etc/ppp/firstl2tp
+FUN_004093ac	004096a0	004118dc	/etc/ppp/firstdemand
+FUN_004093ac	004096c4	00411854	killall
+FUN_004093ac	004096c8	004118f4	timelycheck
+FUN_004093ac	004096e4	00411854	killall
+FUN_004093ac	00409708	00411854	killall
+FUN_004093ac	00409710	00411904	ntp_inet
+FUN_004093ac	0040972c	00411854	killall
+FUN_004093ac	00409734	00411910	ddns.sh
+FUN_004093ac	00409750	00411854	killall
+FUN_004093ac	00409758	00411918	syslogd
+FUN_004093ac	00409774	00411854	killall
+FUN_004093ac	0040977c	00411920	klogd
+FUN_004093ac	00409798	00411854	killall
+FUN_004093ac	004097a0	00411928	mini_upnpd
+FUN_004093ac	004097bc	00411854	killall
+FUN_004093ac	004097c4	00411934	reload
+FUN_004093ac	004097ec	0041193c	/var/run/l2tpd.pid
+FUN_004093ac	00409808	0041193c	/var/run/l2tpd.pid
+FUN_004093ac	0040986c	0041193c	/var/run/l2tpd.pid
+FUN_004093ac	00409888	004116c4	/etc/udhcpc/udhcpc-%s.pid
+FUN_004093ac	004098e0	00411950	/var/run/dnrd.pid
+FUN_004093ac	004098fc	00411950	/var/run/dnrd.pid
+FUN_004093ac	0040996c	00411950	/var/run/dnrd.pid
+FUN_004093ac	00409984	00411964	/var/run/igmp_pid
+FUN_004093ac	004099a0	00411964	/var/run/igmp_pid
+FUN_004093ac	00409a10	00411964	/var/run/igmp_pid
+FUN_004093ac	00409a2c	00411978	/proc/br_mCastFastFwd
+FUN_004093ac	00409a54	00411994	/var/run/lld2d-br0.pid
+FUN_004093ac	00409a70	00411994	/var/run/lld2d-br0.pid
+FUN_004093ac	00409ae0	00411994	/var/run/lld2d-br0.pid
+FUN_004093ac	00409af8	004119ac	/var/run/udhcpd.pid
+FUN_004093ac	00409b14	004119ac	/var/run/udhcpd.pid
+FUN_004093ac	00409b60	004119ac	/var/run/udhcpd.pid
+FUN_00409b7c	00409c18	004119c0	/var/wlsch.conf%d
+FUN_00409b7c	00409cf8	004119d4	%d,%d,%d,%d 
+FUN_00409b7c	00409d2c	004119c0	/var/wlsch.conf%d
+FUN_00409b7c	00409da0	004119e4	reload -k %s &
+FUN_00409b7c	00409da8	004119f4	/var/wlsch.conf
+FUN_00409b7c	00409dd4	004119e4	reload -k %s &
+FUN_00409b7c	00409ddc	004119f4	/var/wlsch.conf
+FUN_00409e48	00409ef0	00411a04	%s %s %s %s
+FUN_00409e48	00409f14	00411a10	%s %s %s
+FUN_00409e48	00409f60	00411a10	%s %s %s
+FUN_00409e48	00409f88	00411a1c	%s %s
+FUN_00409e48	00409fc4	00411a1c	%s %s
+FUN_00409e48	00409ff4	00411a24	/proc/gpio
+FUN_00409e48	0040a01c	00411a34	start
+FUN_0040a03c	0040a14c	00411a3c	rm /var/log/log_split >/dev/null 2>&1
+FUN_0040a03c	0040a168	00411a64	echo %d > /var/log/log_split
+FUN_0040a03c	0040a1d4	00411a84	syslog will use %dKB for log(%d rotate, 1 original, %dKB for each) 
+FUN_0040a03c	0040a23c	00411918	syslogd
+FUN_0040a03c	0040a264	00411a3c	rm /var/log/log_split >/dev/null 2>&1
+FUN_0040a03c	0040a270	00411a64	echo %d > /var/log/log_split
+FUN_0040a03c	0040a2e0	00411a84	syslog will use %dKB for log(%d rotate, 1 original, %dKB for each) 
+FUN_0040a03c	0040a334	00411918	syslogd
+FUN_0040a03c	0040a35c	00411920	klogd
+setinit	0040a3fc	00411ad8	/var/reinit
+setinit	0040a41c	00411ad8	/var/reinit
+setinit	0040a444	00411ae4	/var/tmp_wan_check
+setinit	0040a460	00411ae4	/var/tmp_wan_check
+setinit	0040a478	00411af8	/var/tmp_wan_dhcp_info
+setinit	0040a494	00411af8	/var/tmp_wan_dhcp_info
+setinit	0040a4ac	00411b10	/var/ppp/manual_connect_now
+setinit	0040a4c8	00411b10	/var/ppp/manual_connect_now
+setinit	0040a4e0	00411b2c	Init Start...
+setinit	0040a4f8	00411b3c	echo 1 > /var/system/wfaudio_start_init
+setinit	0040a5b0	00411b64	/var/sys_op
+setinit	0040a5d8	00411b64	/var/sys_op
+setinit	0040a5fc	00411b64	/var/sys_op
+setinit	0040a66c	00411b78	/proc/br_igmpProxy
+setinit	0040a6cc	00411a10	%s %s %s
+setinit	0040a784	00411ba4	 wlan%d
+setinit	0040a8c0	00411820	/proc/hw_nat
+setinit	0040a8dc	00411820	/proc/hw_nat
+setinit	0040a8fc	00411820	/proc/hw_nat
+setinit	0040a910	00411820	/proc/hw_nat
+setinit	0040a928	00411820	/proc/hw_nat
+setinit	0040a93c	00411820	/proc/hw_nat
+setinit	0040a958	00411844	/proc/sw_nat
+setinit	0040a990	00411844	/proc/sw_nat
+setinit	0040a9a4	00411844	/proc/sw_nat
+setinit	0040aa30	00411844	/proc/sw_nat
+setinit	0040aa8c	00411bb8	/var/system/last_wan
+setinit	0040aadc	00410540	wlan0
+setinit	0040ab84	0041049c	wlan0-vxd
+setinit	0040abd0	0041049c	wlan0-vxd
+setinit	0040ac9c	00411bd0	ifconfig
+setinit	0040acc8	00411be4	iwpriv
+setinit	0040acd4	00411bec	radio_off
+setinit	0040ad3c	00411bf8	%s-vxd
+setinit	0040ad74	00411bd0	ifconfig
+setinit	0040ad94	00411bd0	ifconfig
+setinit	0040adb4	00411bd0	ifconfig
+setinit	0040ade4	00411c00	flash
+setinit	0040adec	00411c08	set_mib
+setinit	0040ae10	00411c10	[%s %d]init %s failed! 
+setinit	0040ae14	00411ee8	setinit
+setinit	0040ae68	00411c28	mc2u_disable=1
+setinit	0040ae68	00411c38	mc2u_disable=0
+setinit	0040ae70	00411be4	iwpriv
+setinit	0040ae78	00411c08	set_mib
+setinit	0040aedc	00411c48	/proc/br_wlanblock
+setinit	0040aefc	00411c48	/proc/br_wlanblock
+setinit	0040afac	00411bd0	ifconfig
+setinit	0040afc8	00411c00	flash
+setinit	0040afcc	00411c08	set_mib
+setinit	0040b008	00411bd0	ifconfig
+setinit	0040b098	00411bd0	ifconfig
+setinit	0040b09c	00411bd0	ifconfig
+setinit	0040b0c4	00411c00	flash
+setinit	0040b0c8	00411c08	set_mib
+setinit	0040b134	00411bd0	ifconfig
+setinit	0040b160	00411c00	flash
+setinit	0040b164	00411c08	set_mib
+setinit	0040b1d8	00411620	killall -9 udhcpc 2> /dev/null
+setinit	0040b1f0	00411640	rm -f /etc/udhcpc/udhcpc-br0.pid 2> /dev/null
+setinit	0040b268	00411c5c	/bin/lld2d
+setinit	0040b284	00411c68	lld2d
+setinit	0040b310	00411c70	/proc/custom_Passthru
+setinit	0040b340	00411c88	brctl
+setinit	0040b344	00411c90	delif
+setinit	0040b34c	00411c98	peth0
+setinit	0040b36c	00411bd0	ifconfig
+setinit	0040b370	00411c98	peth0
+setinit	0040b380	00411c88	brctl
+setinit	0040b384	00411ca0	addif
+setinit	0040b38c	00411c98	peth0
+setinit	0040b3ac	00411bd0	ifconfig
+setinit	0040b3b0	00411c98	peth0
+setinit	0040b458	00411cac	/proc/custom_Passthru_wlan
+setinit	0040b484	00411cac	/proc/custom_Passthru_wlan
+setinit	0040b4cc	00411c88	brctl
+setinit	0040b4d0	00411c90	delif
+setinit	0040b4d8	00411cc8	pwlan0
+setinit	0040b4f8	00411bd0	ifconfig
+setinit	0040b4fc	00411cc8	pwlan0
+setinit	0040b50c	00411c88	brctl
+setinit	0040b510	00411ca0	addif
+setinit	0040b518	00411cc8	pwlan0
+setinit	0040b538	00411bd0	ifconfig
+setinit	0040b53c	00411cc8	pwlan0
+setinit	0040b56c	00411cd0	/proc/br_igmpVersion
+setinit	0040b598	00411ce8	/proc/br_igmpsnoop
+setinit	0040b5b8	00411cfc	/proc/br_igmpquery
+setinit	0040b5d8	00411d10	/proc/br_mldsnoop
+setinit	0040b5f8	00411d24	/proc/br_mldquery
+setinit	0040b610	00411d38	fwd &
+setinit	0040b630	00411d40	/proc/sys/net/ipv4/conf/eth1/arp_ignore
+setinit	0040b654	00411d68	/proc/sys/net/ipv4/rt_cache_rebuild_count
+setinit	0040b66c	00411d9c	timelycheck &
+setinit	0040b684	00411dac	rm -f  /var/system/wfaudio_start_init 2> /dev/null
+FUN_0040b6c0	0040b960	00411ef0	netmask
+FUN_0040b6c0	0040b970	00411bd0	ifconfig
+FUN_0040b6c0	0040b994	00411f0c	default
+FUN_0040b6c0	0040b9d0	00411ef8	route
+FUN_0040b6c0	0040ba20	00411f1c	nameserver %s 
+FUN_0040b6c0	0040ba28	00411f2c	/var/resolv.conf
+FUN_0040b6c0	0040ba3c	00411f2c	/var/resolv.conf
+setbridge	0040badc	00411f40	Init bridge interface...
+setbridge	0040bba0	00411f5c	/var/system/br_iface
+setbridge	0040bbd0	00411f5c	/var/system/br_iface
+setbridge	0040bd10	00411c88	brctl
+setbridge	0040bd14	00411c90	delif
+setbridge	0040bd30	00410540	wlan0
+setbridge	0040bd50	00411f94	wlan0-va1
+setbridge	0040bd70	00411bd0	ifconfig
+setbridge	0040bd90	00411bd0	ifconfig
+setbridge	0040bddc	00411c88	brctl
+setbridge	0040bde0	00411c90	delif
+setbridge	0040bee4	00411bd0	ifconfig
+setbridge	0040bf24	00411c88	brctl
+setbridge	0040bf28	00411c90	delif
+setbridge	0040bf68	00411fa0	/bin/pathsel
+setbridge	0040bf84	00410540	wlan0
+setbridge	0040bfec	00411fb0	wlan-msh
+setbridge	0040bff0	00411bd0	ifconfig
+setbridge	0040c01c	00411fb0	wlan-msh
+setbridge	0040c024	00411c88	brctl
+setbridge	0040c028	00411c90	delif
+setbridge	0040c08c	00411c88	brctl
+setbridge	0040c090	00411c90	delif
+setbridge	0040c0b4	00410540	wlan0
+setbridge	0040c0bc	00411c88	brctl
+setbridge	0040c0c0	00411c90	delif
+setbridge	0040c0e4	00411fc4	/tmp/bridge_init
+setbridge	0040c108	00411fd8	delbr
+setbridge	0040c110	00411c88	brctl
+setbridge	0040c130	00411c88	brctl
+setbridge	0040c16c	00411fd8	delbr
+setbridge	0040c174	00411c88	brctl
+setbridge	0040c194	00411c88	brctl
+setbridge	0040c1f8	00411fe8	setfd
+setbridge	0040c204	00411c88	brctl
+setbridge	0040c230	00411fe8	setfd
+setbridge	0040c240	00411c88	brctl
+setbridge	0040c25c	00411c88	brctl
+setbridge	0040c2ac	00411ff4	/proc/rtk_vlan_support
+setbridge	0040c2c0	00411ff4	/proc/rtk_vlan_support
+setbridge	0040c33c	0041200c	/proc/%s/mib_vlan
+setbridge	0040c484	00412020	echo "1 %d %d %d %d %d %d" > %s
+setbridge	0040c4a8	00412040	echo "0 %d %d %d %d %d %d" > %s
+setbridge	0040c4f4	00411f5c	/var/system/br_iface
+setbridge	0040c510	00411f5c	/var/system/br_iface
+setbridge	0040c634	00411c88	brctl
+setbridge	0040c638	00411ca0	addif
+setbridge	0040c654	00411bd0	ifconfig
+setbridge	0040ca28	00411c88	brctl
+setbridge	0040ca30	00411ca0	addif
+setbridge	0040ca4c	00411c88	brctl
+setbridge	0040ca50	00411ca0	addif
+setbridge	0040ca74	00411bd0	ifconfig
+setbridge	0040cae4	00411bd0	ifconfig
+setbridge	0040cba8	00411c88	brctl
+setbridge	0040cbb0	00411ca0	addif
+setbridge	0040cbd0	00411bd0	ifconfig
+setbridge	0040cc50	00412068	%s-wds%d
+setbridge	0040cc84	00411f5c	/var/system/br_iface
+setbridge	0040ccec	00412074	%02x%02x%02x%02x%02x%02x
+setbridge	0040cd1c	00412094	ether
+setbridge	0040cd28	00411bd0	ifconfig
+setbridge	0040cd50	00411fc4	/tmp/bridge_init
+setbridge	0040cd74	00411bd0	ifconfig
+setbridge	0040cd9c	00411fc4	/tmp/bridge_init
+setbridge	0040cec8	00411bd0	ifconfig
+setbridge	0040ced0	00411ef0	netmask
+setbridge	0040cf5c	00411ef8	route
+setbridge	0040cf6c	00411ef0	netmask
+setbridge	0040cf8c	00411ef8	route
+setbridge	0040cf9c	00411ef0	netmask
+setbridge	0040cfe4	00411ef8	route
+setbridge	0040cfe8	00411f0c	default
+setbridge	0040d01c	00411f0c	default
+setbridge	0040d034	00411ef8	route
+setbridge	0040d064	004120a0	wait for bridge initialization...
+setbridge	0040d0d8	00411bd0	ifconfig
+set_lan_dhcpd	0040d20c	004120c4	interface %s 
+set_lan_dhcpd	0040d228	004120d4	/var/udhcpd.conf
+set_lan_dhcpd	0040d274	004120e8	start %s 
+set_lan_dhcpd	0040d290	004120d4	/var/udhcpd.conf
+set_lan_dhcpd	0040d2dc	004120f4	end %s 
+set_lan_dhcpd	0040d2f8	004120d4	/var/udhcpd.conf
+set_lan_dhcpd	0040d344	004120fc	opt subnet %s 
+set_lan_dhcpd	0040d35c	004120d4	/var/udhcpd.conf
+set_lan_dhcpd	0040d3d0	0041210c	set MIB_DHCP_LEASE_TIME error
+set_lan_dhcpd	0040d408	0041212c	opt lease %d 
+set_lan_dhcpd	0040d428	004120d4	/var/udhcpd.conf
+set_lan_dhcpd	0040d4c4	0041213c	opt router %s 
+set_lan_dhcpd	0040d4fc	0041213c	opt router %s 
+set_lan_dhcpd	0040d518	004120d4	/var/udhcpd.conf
+set_lan_dhcpd	0040d560	0041214c	opt dns %s 
+set_lan_dhcpd	0040d574	004120d4	/var/udhcpd.conf
+set_lan_dhcpd	0040d63c	0041214c	opt dns %s 
+set_lan_dhcpd	0040d658	004120d4	/var/udhcpd.conf
+set_lan_dhcpd	0040d6b8	0041214c	opt dns %s 
+set_lan_dhcpd	0040d6d4	004120d4	/var/udhcpd.conf
+set_lan_dhcpd	0040d734	0041214c	opt dns %s 
+set_lan_dhcpd	0040d750	004120d4	/var/udhcpd.conf
+set_lan_dhcpd	0040d85c	0041214c	opt dns %s 
+set_lan_dhcpd	0040d878	004120d4	/var/udhcpd.conf
+set_lan_dhcpd	0040d8dc	00412158	opt domain %s 
+set_lan_dhcpd	0040d8f4	004120d4	/var/udhcpd.conf
+set_lan_dhcpd	0040d9dc	00412168	static_lease %02x%02x%02x%02x%02x%02x %s 
+set_lan_dhcpd	0040d9f4	004120d4	/var/udhcpd.conf
+set_lan_dhcpd	0040dac4	00411ef0	netmask
+set_lan_dhcpd	0040dae4	00411bd0	ifconfig
+set_lan_dhcpd	0040db00	00412194	udhcpd %s 
+set_lan_dhcpd	0040db04	004120d4	/var/udhcpd.conf
+setWlan_Applications	0040de14	004121b0	/var/run/iwcontrol.pid
+setWlan_Applications	0040de30	004121b0	/var/run/iwcontrol.pid
+setWlan_Applications	0040dea4	004121b0	/var/run/iwcontrol.pid
+setWlan_Applications	0040df60	004121c8	/var/run/auth-%s.pid
+setWlan_Applications	0040e00c	004121e0	/var/run/auth-%s-vxd.pid
+setWlan_Applications	0040e0d8	004121fc	/var/run/wscd-%s.pid
+setWlan_Applications	0040e19c	00411a24	/proc/gpio
+setWlan_Applications	0040e1d8	00412214	/var/run/wscd-wlan0.pid
+setWlan_Applications	0040e1f0	00412214	/var/run/wscd-wlan0.pid
+setWlan_Applications	0040e254	00412214	/var/run/wscd-wlan0.pid
+setWlan_Applications	0040e25c	0041222c	/var/run/wscd-wlan1.pid
+setWlan_Applications	0040e274	0041222c	/var/run/wscd-wlan1.pid
+setWlan_Applications	0040e2d8	0041222c	/var/run/wscd-wlan1.pid
+setWlan_Applications	0040e2e0	00412244	/var/run/wscd-wlan0-wlan1.pid
+setWlan_Applications	0040e2f4	00412244	/var/run/wscd-wlan0-wlan1.pid
+setWlan_Applications	0040e348	00412244	/var/run/wscd-wlan0-wlan1.pid
+setWlan_Applications	0040e3c4	0041226c	/var/run/iapp.pid
+setWlan_Applications	0040e3e0	0041226c	/var/run/iapp.pid
+setWlan_Applications	0040e454	0041226c	/var/run/iapp.pid
+setWlan_Applications	0040e46c	00412280	rm -f /var/*.fifo
+setWlan_Applications	0040e4a4	00412294	Init Wlan application...
+setWlan_Applications	0040e4bc	00410540	wlan0
+setWlan_Applications	0040e7f4	004122b0	/var/wpa-wds-%s.conf
+setWlan_Applications	0040e81c	00411c00	flash
+setWlan_Applications	0040e874	004121c8	/var/run/auth-%s.pid
+setWlan_Applications	0040e9ac	004122d8	/var/wpa-%s-msh0.conf
+setWlan_Applications	0040e9dc	00411c00	flash
+setWlan_Applications	0040ea34	004121c8	/var/run/auth-%s.pid
+setWlan_Applications	0040eabc	004122f0	/var/wpa-%s.conf
+setWlan_Applications	0040eae8	00411c00	flash
+setWlan_Applications	0040eb34	00412304	client-infra
+setWlan_Applications	0040eb40	00412314	client-adhoc
+setWlan_Applications	0040eefc	00410540	wlan0
+setWlan_Applications	0040ef20	00412324	wlan1
+setWlan_Applications	0040f02c	0041232c	iapp %s %s
+setWlan_Applications	0040f06c	00412338	/var/restart_iapp
+setWlan_Applications	0040f088	00412338	/var/restart_iapp
+setWlan_Applications	0040f0a4	00412338	/var/restart_iapp
+setWlan_Applications	0040f0cc	0041234c	/bin/wscd
+setWlan_Applications	0040f1a8	00410540	wlan0
+setWlan_Applications	0040f1bc	00412324	wlan1
+setWlan_Applications	0040f2b8	00410540	wlan0
+setWlan_Applications	0040f350	00412358	/var/wps/simplecfgservice.xml
+setWlan_Applications	0040f36c	00412378	/var/wps
+setWlan_Applications	0040f38c	00412378	/var/wps
+setWlan_Applications	0040f3b0	00412388	mkdir
+setWlan_Applications	0040f3b4	00412378	/var/wps
+setWlan_Applications	0040f3d8	00412390	cp /etc/simplecfg*.xml /var/wps
+setWlan_Applications	0040f3f4	004123b0	-mode
+setWlan_Applications	0040f410	004123b8	-start
+setWlan_Applications	0040f454	004123c0	239.255.255.250
+setWlan_Applications	0040f458	00411ef0	netmask
+setWlan_Applications	0040f45c	004123d0	255.255.255.255
+setWlan_Applications	0040f464	00411ef8	route
+setWlan_Applications	0040f46c	004123d0	255.255.255.255
+setWlan_Applications	0040f470	00411ef0	netmask
+setWlan_Applications	0040f474	004123c0	239.255.255.250
+setWlan_Applications	0040f49c	004123c0	239.255.255.250
+setWlan_Applications	0040f4a0	00411ef0	netmask
+setWlan_Applications	0040f4a4	004123d0	255.255.255.255
+setWlan_Applications	0040f4b0	00411ef8	route
+setWlan_Applications	0040f4e4	004123e0	/var/wsc-%s.conf
+setWlan_Applications	0040f4fc	00412404	/etc/wscd.conf
+setWlan_Applications	0040f500	00411c00	flash
+setWlan_Applications	0040f504	004123f4	upd-wsc-conf
+setWlan_Applications	0040f598	00412420	/var/wscd-%s.fifo
+setWlan_Applications	0040f5c4	00412434	/var/wps_start_pbc
+setWlan_Applications	0040f5e8	00412448	-start_pbc
+setWlan_Applications	0040f5f0	00412434	/var/wps_start_pbc
+setWlan_Applications	0040f608	00412454	/var/wps_start_pin
+setWlan_Applications	0040f620	004123b8	-start
+setWlan_Applications	0040f628	00412454	/var/wps_start_pin
+setWlan_Applications	0040f640	00412468	/var/wps_local_pin
+setWlan_Applications	0040f654	00412468	/var/wps_local_pin
+setWlan_Applications	0040f6e0	0041247c	-local_pin
+setWlan_Applications	0040f6f0	00412468	/var/wps_local_pin
+setWlan_Applications	0040f708	00412488	/var/wps_peer_pin
+setWlan_Applications	0040f720	00412488	/var/wps_peer_pin
+setWlan_Applications	0040f7a4	0041249c	-peer_pin
+setWlan_Applications	0040f7b0	0041249c	-peer_pin
+setWlan_Applications	0040f7b4	00412488	/var/wps_peer_pin
+setWlan_Applications	0040f7e4	004124a8	-daemon
+setWlan_Applications	0040f7ec	004124a8	-daemon
+setWlan_Applications	0040f884	004124b0	iwcontrol %s %s
+setWlan_Applications	0040f8a0	004124c0	iwcontrol %s
+get_ssid_name	0040f954	004124d0	Metering-Outlet
+get_wac_name	0040f97c	004124d0	Metering-Outlet

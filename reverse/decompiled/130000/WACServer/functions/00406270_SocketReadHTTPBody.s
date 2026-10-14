@@ -1,0 +1,73 @@
+# SocketReadHTTPBody @ 00406270
+00406270  addiu sp,sp,-0xb8
+00406274  sw ra,0xb4(sp)
+00406278  sw s3,0xb0(sp)
+0040627c  sw s2,0xac(sp)
+00406280  sw s1,0xa8(sp)
+00406284  sw s0,0xa4(sp)
+00406288  lui gp,0x44
+0040628c  addiu gp,gp,-0x4fc0
+00406290  sw gp,0x18(sp)
+00406294  move s0,a1
+00406298  move s1,a0
+0040629c  beq a1,zero,0x00406374
+004062a0  _li v0,-0x1a31
+004062a4  addiu v0,sp,0x20
+004062a8  addiu v1,sp,0xa0
+004062ac  sw zero,0x0(v0)
+004062b0  addiu v0,v0,0x4
+004062b4  bne v0,v1,0x004062ac
+004062b8  _addiu s3,sp,0x20
+004062bc  srl v0,s1,0x5
+004062c0  sll v0,v0,0x2
+004062c4  addu v0,s3,v0
+004062c8  lw a0,0x0(v0)
+004062cc  li v1,0x1
+004062d0  sllv v1,v1,s1
+004062d4  or v1,a0,v1
+004062d8  sw v1,0x0(v0)
+004062dc  b 0x00406334
+004062e0  _addiu s2,s1,0x1
+004062e4  jalr t9
+004062e8  _sw zero,0x10(sp)
+004062ec  lw gp,0x18(sp)
+004062f0  nop
+004062f4  lw t9,-0x7e6c(gp)
+004062f8  blez v0,0x00406370
+004062fc  _move a0,s1
+00406300  lw v0,0x808(s0)
+00406304  lw a1,0x804(s0)
+00406308  lw a2,0x87c(s0)
+0040630c  addu a1,a1,v0
+00406310  jalr t9
+00406314  _subu a2,a2,v0
+00406318  lw gp,0x18(sp)
+0040631c  bltz v0,0x00406370
+00406320  _nop
+00406324  lw v1,0x808(s0)
+00406328  nop
+0040632c  addu v0,v1,v0
+00406330  sw v0,0x808(s0)
+00406334  lw v1,0x878(s0)
+00406338  lw t9,-0x7ddc(gp)
+0040633c  move a0,s2
+00406340  move a1,s3
+00406344  clear a2
+00406348  lw v0,0x808(s0)
+0040634c  bne v1,zero,0x004062e4
+00406350  _clear a3
+00406354  lw v1,0x87c(s0)
+00406358  nop
+0040635c  sltu v0,v0,v1
+00406360  bne v0,zero,0x004062e4
+00406364  _nop
+00406368  b 0x00406374
+0040636c  _nop
+00406370  li v0,-0x1a52
+00406374  lw ra,0xb4(sp)
+00406378  lw s3,0xb0(sp)
+0040637c  lw s2,0xac(sp)
+00406380  lw s1,0xa8(sp)
+00406384  lw s0,0xa4(sp)
+00406388  jr ra
+0040638c  _addiu sp,sp,0xb8

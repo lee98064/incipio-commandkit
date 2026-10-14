@@ -1,0 +1,105 @@
+# SetWlan_idx @ 00408368
+00408368  addiu sp,sp,-0x30
+0040836c  sw ra,0x2c(sp)
+00408370  sw s3,0x28(sp)
+00408374  sw s2,0x24(sp)
+00408378  sw s1,0x20(sp)
+0040837c  sw s0,0x1c(sp)
+00408380  lui gp,0x43
+00408384  addiu gp,gp,-0x4c90
+00408388  sw gp,0x10(sp)
+0040838c  lw t9,-0x7f78(gp)
+00408390  addiu s0,a0,0x4
+00408394  move s1,a0
+00408398  jalr t9
+0040839c  _move a0,s0
+004083a0  lw gp,0x10(sp)
+004083a4  blez v0,0x004083b8
+004083a8  _lui a0,0x41
+004083ac  lw t9,-0x7e0c(gp)
+004083b0  b 0x00408440
+004083b4  _addiu a0,a0,0x15c4
+004083b8  lw s2,-0x7e84(gp)
+004083bc  lw s3,-0x7e70(gp)
+004083c0  lw t9,-0x7f88(gp)
+004083c4  sw v0,0x0(s2)
+004083c8  sw zero,0x0(s3)
+004083cc  jalr t9
+004083d0  _move a0,s1
+004083d4  sltiu v0,v0,0x9
+004083d8  lw gp,0x10(sp)
+004083dc  bne v0,zero,0x00408468
+004083e0  _li v0,0x2d
+004083e4  lb v1,0x5(s1)
+004083e8  nop
+004083ec  bne v1,v0,0x00408468
+004083f0  _li v0,0x76
+004083f4  lb v1,0x6(s1)
+004083f8  nop
+004083fc  bne v1,v0,0x00408468
+00408400  _li v0,0x61
+00408404  lb v1,0x7(s1)
+00408408  nop
+0040840c  bne v1,v0,0x00408468
+00408410  _nop
+00408414  lw t9,-0x7f78(gp)
+00408418  nop
+0040841c  jalr t9
+00408420  _addiu a0,s1,0x8
+00408424  slti v1,v0,0x5
+00408428  lw gp,0x10(sp)
+0040842c  bne v1,zero,0x00408450
+00408430  _addiu v0,v0,0x1
+00408434  lw t9,-0x7e0c(gp)
+00408438  lui a0,0x41
+0040843c  addiu a0,a0,0x15ec
+00408440  jalr t9
+00408444  _nop
+00408448  b 0x004084e8
+0040844c  _clear v1
+00408450  lw t9,-0x7f78(gp)
+00408454  sw v0,0x0(s3)
+00408458  jalr t9
+0040845c  _move a0,s0
+00408460  lw gp,0x10(sp)
+00408464  sw v0,0x0(s2)
+00408468  lw t9,-0x7f88(gp)
+0040846c  nop
+00408470  jalr t9
+00408474  _move a0,s1
+00408478  sltiu v0,v0,0x9
+0040847c  lw gp,0x10(sp)
+00408480  bne v0,zero,0x004084e4
+00408484  _li v0,0x2d
+00408488  lb v1,0x5(s1)
+0040848c  nop
+00408490  bne v1,v0,0x004084e8
+00408494  _li v1,0x1
+00408498  lw t9,-0x7eac(gp)
+0040849c  lui a1,0x41
+004084a0  addiu a0,s1,0x6
+004084a4  addiu a1,a1,0x161c
+004084a8  jalr t9
+004084ac  _li a2,0x3
+004084b0  lw gp,0x10(sp)
+004084b4  bne v0,zero,0x004084e4
+004084b8  _li v1,0x5
+004084bc  lw v0,-0x7e70(gp)
+004084c0  lw t9,-0x7f78(gp)
+004084c4  sw v1,0x0(v0)
+004084c8  jalr t9
+004084cc  _move a0,s0
+004084d0  lw gp,0x10(sp)
+004084d4  li v1,0x1
+004084d8  lw a0,-0x7e84(gp)
+004084dc  b 0x004084e8
+004084e0  _sw v0,0x0(a0)
+004084e4  li v1,0x1
+004084e8  lw ra,0x2c(sp)
+004084ec  lw s3,0x28(sp)
+004084f0  lw s2,0x24(sp)
+004084f4  lw s1,0x20(sp)
+004084f8  lw s0,0x1c(sp)
+004084fc  move v0,v1
+00408500  jr ra
+00408504  _addiu sp,sp,0x30

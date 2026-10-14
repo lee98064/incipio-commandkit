@@ -1,0 +1,26 @@
+# FUN_80400d40 @ 80400d40
+80400d40  addiu sp,sp,-0x28
+80400d44  sw ra,0x24(sp)
+80400d48  sw s3,0x20(sp)
+80400d4c  sw s2,0x1c(sp)
+80400d50  sw s1,0x18(sp)
+80400d54  sw s0,0x14(sp)
+80400d58  move s1,a0
+80400d5c  move s3,a1
+80400d60  clear s0
+80400d64  li s2,0x20
+80400d68  andi v0,s1,0x1
+80400d6c  beq v0,zero,0x80400d7c
+80400d70  _move a0,s0
+80400d74  jal 0x80400cc4
+80400d78  _move a1,s3
+80400d7c  addiu s0,s0,0x1
+80400d80  bne s0,s2,0x80400d68
+80400d84  _sra s1,s1,0x1
+80400d88  lw ra,0x24(sp)
+80400d8c  lw s3,0x20(sp)
+80400d90  lw s2,0x1c(sp)
+80400d94  lw s1,0x18(sp)
+80400d98  lw s0,0x14(sp)
+80400d9c  jr ra
+80400da0  _addiu sp,sp,0x28

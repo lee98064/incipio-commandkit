@@ -1,0 +1,67 @@
+# FUN_00401220 @ 00401220
+00401220  lui gp,0x3
+00401224  addiu gp,gp,-0x5dd0
+00401228  addu gp,gp,t9
+0040122c  addiu sp,sp,-0x28
+00401230  sw ra,0x24(sp)
+00401234  sw s2,0x20(sp)
+00401238  sw s1,0x1c(sp)
+0040123c  sw s0,0x18(sp)
+00401240  sw gp,0x10(sp)
+00401244  lw v0,-0x7fe8(gp)
+00401248  nop
+0040124c  lbu v0,0x3610(v0)
+00401250  nop
+00401254  bne v0,zero,0x00401310
+00401258  _nop
+0040125c  lw v0,-0x7e90(gp)
+00401260  nop
+00401264  beq v0,zero,0x00401288
+00401268  _nop
+0040126c  lw v0,-0x7fe4(gp)
+00401270  lw t9,-0x7e90(gp)
+00401274  lw a0,0x0(v0)
+00401278  jalr t9
+0040127c  _nop
+00401280  lw gp,0x10(sp)
+00401284  nop
+00401288  lw s1,-0x7fe8(gp)
+0040128c  lw s2,-0x7fe0(gp)
+00401290  lw s0,-0x7fe8(gp)
+00401294  addiu s1,s1,0x33ec
+00401298  subu s2,s2,s1
+0040129c  sra s2,s2,0x2
+004012a0  b 0x004012bc
+004012a4  _addiu s2,s2,-0x1
+004012a8  lw t9,0x0(a0)
+004012ac  nop
+004012b0  jalr t9
+004012b4  _sw v1,0x3614(s0)
+004012b8  lw gp,0x10(sp)
+004012bc  lw v0,0x3614(s0)
+004012c0  nop
+004012c4  addiu v1,v0,0x1
+004012c8  sll a0,v1,0x2
+004012cc  sltu v0,v0,s2
+004012d0  bne v0,zero,0x004012a8
+004012d4  _addu a0,a0,s1
+004012d8  lw v0,-0x7ee4(gp)
+004012dc  nop
+004012e0  beq v0,zero,0x00401304
+004012e4  _nop
+004012e8  lw a0,-0x7fdc(gp)
+004012ec  lw t9,-0x7ee4(gp)
+004012f0  nop
+004012f4  jalr t9
+004012f8  _addiu a0,a0,0x33e0
+004012fc  lw gp,0x10(sp)
+00401300  nop
+00401304  lw v0,-0x7fe8(gp)
+00401308  li v1,0x1
+0040130c  sb v1,0x3610(v0)
+00401310  lw ra,0x24(sp)
+00401314  lw s2,0x20(sp)
+00401318  lw s1,0x1c(sp)
+0040131c  lw s0,0x18(sp)
+00401320  jr ra
+00401324  _addiu sp,sp,0x28

@@ -1,0 +1,48 @@
+# boa_atoi @ 00410730
+00410730  addiu sp,sp,-0x30
+00410734  sw ra,0x2c(sp)
+00410738  sw s1,0x28(sp)
+0041073c  sw s0,0x24(sp)
+00410740  lui gp,0x47
+00410744  addiu gp,gp,0x2630
+00410748  sw gp,0x10(sp)
+0041074c  lw v1,-0x7a70(gp)
+00410750  lb v0,0x0(a0)
+00410754  lw v1,0x0(v1)
+00410758  sll v0,v0,0x1
+0041075c  addu v0,v1,v0
+00410760  lhu v0,0x0(v0)
+00410764  nop
+00410768  andi v0,v0,0x8
+0041076c  beq v0,zero,0x004107d0
+00410770  _move s1,a0
+00410774  lw t9,-0x7ef4(gp)
+00410778  nop
+0041077c  jalr t9
+00410780  _nop
+00410784  bltz v0,0x004107d0
+00410788  _move s0,v0
+0041078c  jal 0x00410288
+00410790  _move a0,v0
+00410794  lw gp,0x10(sp)
+00410798  move a0,s1
+0041079c  lw t9,-0x7f1c(gp)
+004107a0  nop
+004107a4  jalr t9
+004107a8  _sw v0,0x18(sp)
+004107ac  lw gp,0x10(sp)
+004107b0  lw a1,0x18(sp)
+004107b4  move a0,s1
+004107b8  lw t9,-0x7d60(gp)
+004107bc  nop
+004107c0  jalr t9
+004107c4  _move a2,v0
+004107c8  beq v0,zero,0x004107d8
+004107cc  _move v0,s0
+004107d0  li s0,-0x1
+004107d4  move v0,s0
+004107d8  lw ra,0x2c(sp)
+004107dc  lw s1,0x28(sp)
+004107e0  lw s0,0x24(sp)
+004107e4  jr ra
+004107e8  _addiu sp,sp,0x30

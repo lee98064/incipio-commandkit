@@ -1,0 +1,40 @@
+# timestamp @ 00448ab0
+00448ab0  addiu sp,sp,-0x28
+00448ab4  sw ra,0x24(sp)
+00448ab8  sw s0,0x20(sp)
+00448abc  lui gp,0x47
+00448ac0  addiu gp,gp,0x2630
+00448ac4  sw gp,0x10(sp)
+00448ac8  lw s0,-0x7e40(gp)
+00448acc  lw t9,-0x7c44(gp)
+00448ad0  lui a2,0x45
+00448ad4  lw a0,0x0(s0)
+00448ad8  lui a1,0x45
+00448adc  addiu a2,a2,0x7af4
+00448ae0  jalr t9
+00448ae4  _addiu a1,a1,0x7adc
+00448ae8  lw gp,0x10(sp)
+00448aec  lw a1,0x0(s0)
+00448af0  lui a0,0x45
+00448af4  lw t9,-0x7f4c(gp)
+00448af8  nop
+00448afc  jalr t9
+00448b00  _addiu a0,a0,0x7b04
+00448b04  lw gp,0x10(sp)
+00448b08  lw a0,0x0(s0)
+00448b0c  lw t9,-0x7aa8(gp)
+00448b10  nop
+00448b14  jalr t9
+00448b18  _sw a0,0x18(sp)
+00448b1c  lw gp,0x10(sp)
+00448b20  lw a0,0x18(sp)
+00448b24  lw ra,0x24(sp)
+00448b28  lw v1,-0x7e70(gp)
+00448b2c  lw t9,-0x7c44(gp)
+00448b30  lw s0,0x20(sp)
+00448b34  lw a3,0x0(v1)
+00448b38  lui a1,0x45
+00448b3c  addiu a1,a1,0x7b30
+00448b40  move a2,v0
+00448b44  jr t9
+00448b48  _addiu sp,sp,0x28

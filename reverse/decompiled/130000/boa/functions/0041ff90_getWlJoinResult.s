@@ -1,0 +1,56 @@
+# getWlJoinResult @ 0041ff90
+0041ff90  addiu sp,sp,-0x50
+0041ff94  sw ra,0x4c(sp)
+0041ff98  sw s3,0x48(sp)
+0041ff9c  sw s2,0x44(sp)
+0041ffa0  sw s1,0x40(sp)
+0041ffa4  sw s0,0x3c(sp)
+0041ffa8  lui gp,0x47
+0041ffac  addiu gp,gp,0x2630
+0041ffb0  sw gp,0x10(sp)
+0041ffb4  lw t9,-0x7b5c(gp)
+0041ffb8  move s2,a0
+0041ffbc  clear a2
+0041ffc0  li a0,0x2
+0041ffc4  move s3,a1
+0041ffc8  jalr t9
+0041ffcc  _li a1,0x1
+0041ffd0  addiu s1,sp,0x18
+0041ffd4  move a0,v0
+0041ffd8  move a1,s2
+0041ffdc  ori a2,zero,0x8b01
+0041ffe0  move a3,s1
+0041ffe4  jal 0x0041fba4
+0041ffe8  _move s0,v0
+0041ffec  lw gp,0x10(sp)
+0041fff0  bgez v0,0x00420004
+0041fff4  _move a1,s2
+0041fff8  lw t9,-0x7f9c(gp)
+0041fffc  b 0x00420034
+00420000  _nop
+00420004  li v0,0x1
+00420008  move a3,s1
+0042000c  move a0,s0
+00420010  ori a2,zero,0x8b36
+00420014  sw s3,0x28(sp)
+00420018  jal 0x0041fba4
+0042001c  _sh v0,0x2c(sp)
+00420020  lw gp,0x10(sp)
+00420024  nop
+00420028  lw t9,-0x7f9c(gp)
+0042002c  bgez v0,0x00420044
+00420030  _nop
+00420034  jalr t9
+00420038  _move a0,s0
+0042003c  b 0x00420050
+00420040  _li v0,-0x1
+00420044  jalr t9
+00420048  _move a0,s0
+0042004c  clear v0
+00420050  lw ra,0x4c(sp)
+00420054  lw s3,0x48(sp)
+00420058  lw s2,0x44(sp)
+0042005c  lw s1,0x40(sp)
+00420060  lw s0,0x3c(sp)
+00420064  jr ra
+00420068  _addiu sp,sp,0x50

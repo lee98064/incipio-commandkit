@@ -1,0 +1,144 @@
+function	from	string_address	string
+FUN_80400c8c	80400cac	8040d1c4	cp0_cause=%X, cp0_epc=%X, ra=%X
+FUN_80400c8c	80400cb8	8040d1e4	Undefined Exception happen.
+FUN_80400cc4	80400d24	8040d200	cp0_cause=%X, cp0_epc=%X
+FUN_80400cc4	80400d2c	8040d21c	you got irq=%X 
+FUN_804011a4	804011d4	8040d248	Boot state error,%d,%d 
+FUN_804011e8	80401234	8040d260	 reboot....... 
+FUN_804014ac	80401520	8040d270	 **TFTP # 
+FUN_804014ac	804015a8	8040d27c	 *TFTP Client Download Success! File Size = %X Bytes 
+FUN_804014ac	804015b0	8040d2b4	.Success! %s
+FUN_804014ac	804015bc	8040d2c4	<RealTek>
+FUN_804015f8	8040164c	8040d2d0	 File Start: %x,length=%x 
+FUN_804015f8	8040175c	8040d2ec	 **TFTP GET File %s,Size %X Byte 
+FUN_8040188c	80401938	8040d310	 **TFTP Client Upload, File Name: %s 
+FUN_8040188c	80401950	8040d338	nfjrom
+FUN_8040188c	80401974	8040d340	boot.img
+FUN_804019e8	80401a40	8040d3c0	checksum Ok ! 
+FUN_804019e8	80401a4c	8040d40c	burn Addr =0x%x! srcAddr=0x%x len =0x%x  
+FUN_804019e8	80401a70	8040d464	 Flash Write Successed! %s
+FUN_804019e8	80401a7c	8040d2c4	<RealTek>
+FUN_804019e8	80401a88	8040d448	burn_offset = %x ! 
+FUN_804019e8	80401bd0	8040d4f4	Linux kernel
+FUN_804019e8	80401bd8	8040d34c	 %s upgrade. 
+FUN_804019e8	80401dac	8040d39c	%s imgage checksum error at %X! 
+FUN_804019e8	80401e34	8040d39c	%s imgage checksum error at %X! 
+FUN_804019e8	80401e4c	8040d3c0	checksum Ok ! 
+FUN_804019e8	80401e78	8040d3d0	it's special wrt image need add 4 byte to burnlen =%8x! 
+FUN_804019e8	80401e88	8040d40c	burn Addr =0x%x! srcAddr=0x%x len =0x%x  
+FUN_804019e8	80401ed4	8040d448	burn_offset = %x ! 
+FUN_804019e8	80401f78	8040d448	burn_offset = %x ! 
+FUN_804019e8	8040202c	8040d464	 Flash Write Successed! %s
+FUN_804019e8	80402030	8040d2c4	<RealTek>
+FUN_804019e8	80402050	8040d480	 Flash Write Failed! %s
+FUN_804019e8	8040205c	8040d2c4	<RealTek>
+FUN_804020e0	80402174	8040d498	TFTP # 
+FUN_804020e0	80402220	8040d4a0	 **TFTP Client Upload File Size = %X Bytes at %X 
+FUN_804020e0	8040228c	8040d4d4	 Success! %s
+FUN_804020e0	80402298	8040d2c4	<RealTek>
+FUN_804020e0	80402314	8040d4e4	Jump to 0x%x 
+FUN_804027cc	80402800	8040d58c	 Switch core initialization failed! 
+FUN_804027cc	8040285c	8040d5b4	 Switch nic initialization failed! 
+FUN_804027cc	804028d0	8040d5d8	Creating intif fails:%d 
+FUN_804027cc	80402904	8040d5f4	Creating vlan fails:%d 
+FUN_80403268	80403378	8040d790	P0phymode=%02x, %s phy 
+FUN_80403268	80403388	8040d7a8	embedded
+FUN_80403708	804037cc	8040d7b4	 Assertion fail at file
+FUN_80403708	80403880	8040d7b4	 Assertion fail at file
+FUN_80403708	804038f8	8040d7b4	 Assertion fail at file
+FUN_80403708	80403948	8040d7b4	 Assertion fail at file
+FUN_80403708	804039a4	8040d7b4	 Assertion fail at file
+FUN_80403708	80403a20	8040d7b4	 Assertion fail at file
+FUN_80403e2c	80403e84	8040d7cc	Tx Desc full! 
+FUN_80403e2c	80403ef4	8040d7b4	 Assertion fail at file
+FUN_80404230	8040427c	8040d7b4	 Assertion fail at file
+FUN_80404344	80404390	8040d7b4	 Assertion fail at file
+FUN_80404344	8040449c	8040d7b4	 Assertion fail at file
+FUN_804044a8	804044f4	8040d7b4	 Assertion fail at file
+FUN_80404650	80404678	8040d7b4	 Assertion fail at file
+FUN_80404650	80404754	8040d7b4	 Assertion fail at file
+FUN_80404760	80404788	8040d7b4	 Assertion fail at file
+FUN_80404760	804049e4	8040d7b4	 Assertion fail at file
+FUN_80405e90	80405f64	8040d830	@ chip__no chip__id mfr___id dev___id cap___id size_sft dev_size chipSize 
+FUN_80405e90	80405f90	8040d87c	@ %7xh %7xh %7xh %7xh %7xh %7xh %7xh %7xh 
+FUN_80405e90	80405fac	8040d8a8	@ blk_size blk__cnt sec_size sec__cnt pageSize page_cnt chip_clk chipName 
+FUN_80405e90	80405ff0	8040d8f4	@ %7xh %7xh %7xh %7xh %7xh %7xh %7xh %s 
+FUN_80405e90	80406018	8040d924	@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 
+FUN_8040604c	80406104	8040d978	UNKNOWN
+FUN_8040604c	804061e4	8040d98c	MX25L3205D
+FUN_8040604c	80406278	8040d98c	MX25L3205D
+FUN_80406480	804064e4	8040da84	Reboot Result from Watchdog Timeout! 
+FUN_80406480	80406504	8040daac	 ---RealTek(RTL8196E)at %s %s [%s](%dMHz) 
+FUN_80406480	80406520	8040daf0	16bit
+FUN_80406604	804066e0	8040daf8	 Allocation Failed!
+FUN_804066ec	80406704	8040d7b4	 Assertion fail at file
+FUN_804066ec	80406728	8040d7b4	 Assertion fail at file
+FUN_80407480	80407610	8040db0c	0123456789ABCDEF
+FUN_804077dc	80407818	8040db20	 [Addr]   .0 .1 .2 .3 .4 .5 .6 .7 .8 .9 .A .B .C .D .E .F 
+FUN_804077dc	80407854	8040db5c	%08X: 
+publish_boot_bank	80407d10	8040db80	return_addr = %x ,boot bank=%d, bank_mark=0x%x... 
+FUN_80407d48	80407d60	8040dbb4	 ---Ethernet init Okay! 
+jump_to_kernel	80407e9c	8040dbd0	Jump to image start=0x%x... 
+FUN_80407ee8	80407f30	8040dbf0	 ---Escape booting by user 
+validate_rootfs	804081e0	8040dc14	no rootfs signature at %X! 
+validate_rootfs	80408280	8040dc30	rootfs checksum error at %X! 
+validate_kernel_image	804083a8	8040dc50	no sys signature at %X! 
+check_image_header	80408508	8040dc6c	%s  return_addr:%x bank_offset:%x 
+check_image_header	80408510	8040a7b0	check_image_header
+select_boot_bank	8040878c	8040dc90	bootbank is %d, bankmark %X 
+FUN_804089c0	80408a44	8040dcb0	VID=%x, PID=%x  
+FUN_804089c0	80408a50	8040dcc4	 !!!  Read VID PID fail !!!  
+FUN_80408b04	80408bd4	8040dce4	PCIE_P%d ->  Cannot LinkUP 
+FUN_80408b04	80408c50	8040dd00	Find Port=%x Device:Vender ID=%x 
+FUN_80408c7c	80408d54	8040dd24	Do MDIO_RESET 
+FUN_80408f70	80408f9c	8040dd34	hinit
+FUN_804090d0	80409100	8040dd3c	Fail, ISR=%x bit %d is not 1 
+FUN_80409158	80409178	8040dd5c	----------------- COMMAND MODE HELP ------------------ 
+FUN_80409158	80409194	8040e2c4	HELP (?)        : Print this help message
+FUN_80409158	80409194	8040e2f4	DB <Address> <Len>
+FUN_804091d4	80409218	8040dd98	AutoBurning=%d 
+FUN_8040950c	8040962c	8040dda8	i=%d phyid=%d gray_code=%x 
+FUN_8040970c	80409734	8040ddf4	Usage: sleep <0~2>   
+FUN_8040970c	80409740	8040de0c	sleep <0>:CPU sleep + DRAM Normal mode  
+FUN_8040970c	8040974c	8040de38	sleep <1>:CPU sleep + DRAM Power down   
+FUN_8040970c	80409758	8040de64	sleep <2>:CPU sleep + DRAM Self refresh   
+FUN_8040970c	80409764	8040de90	sleep <3>:Only DRAM Power down   
+FUN_8040970c	80409770	8040deb4	sleep <4>:CPUSleep + Self Refresh in IMEM   
+FUN_8040970c	804097e4	8040defc	 DRAM :Auto Power Down mode 
+FUN_8040970c	80409810	8040df1c	 DRAM : Self Refresh mode 
+FUN_8040970c	80409868	8040df38	 DRAM :Only Power Down mode! 
+FUN_8040970c	80409894	8040df58	 CPUSleep + Self Refresh in IMEM! 
+FUN_8040970c	804098b0	8040df7c	 Error Input,should be 0~3 
+FUN_8040970c	804098c8	8040df98	CPU Enter Sleep... 
+FUN_804098f8	8040996c	8040dfdc	PHYID=0x%x ,regID=0x%x, Find PHY Chip! UID=0x%x 
+FUN_80409998	804099e8	8040e010	PHYID=0x%x, regID=0x%x ,Find PHY Chip! UID=0x%x 
+FUN_80409a10	80409a38	8040e044	Parameters not enough! 
+FUN_80409a10	80409a84	8040e05c	Write PhyID=0x%x Reg=%02d data=0x%x 
+FUN_80409ac0	80409ae8	8040e044	Parameters not enough! 
+FUN_80409ac0	80409b2c	8040e084	PhyID=0x%02x Reg=%02d Data =0x%04x 
+FUN_80409b6c	80409b90	8040e0ac	Set TFTP Load Addr 0x%x 
+FUN_80409bac	80409be0	8040e044	Parameters not enough! 
+FUN_80409bac	80409c60	8040e0c8	%dth data(%x %x) error 
+FUN_80409bac	80409c90	8040e0e0	No error found 
+FUN_80409e80	80409ea8	8040e0f0	Wrong argument number! 
+FUN_80409e80	80409eec	8040e0f0	Wrong argument number! 
+FUN_80409e80	80409f6c	8040e10c	%08X: %08X %08X %08X %08X 
+FUN_80409ff8	8040a064	8040e128	Write 0x%x Bytes to SPI flash#%d, offset 0x%x<0x%x>, 
+FUN_80409ff8	8040a080	8040e160	(Y)es, (N)o->
+FUN_80409ff8	8040a0c0	8040e170	Abort! 
+FUN_8040a0e4	8040a154	8040e178	Write 0x%x Bytes to SPI flash#%d, offset 0x%x<0x%x>, from RAM 0x%x to 0x%x 
+FUN_8040a0e4	8040a170	8040e160	(Y)es, (N)o->
+FUN_8040a0e4	8040a1b0	8040e170	Abort! 
+FUN_8040a1cc	8040a22c	8040e1c4	Flash read from %X to %X with %X bytes ? 
+FUN_8040a1cc	8040a248	8040e1f0	(Y)es , (N)o ? --> 
+FUN_8040a1cc	8040a27c	8040e204	Flash Read Successed! 
+FUN_8040a1cc	8040a290	8040e21c	Flash Read Failed! 
+FUN_8040a1cc	8040a2a0	8040e170	Abort! 
+FUN_8040a2bc	8040a2dc	8040e0f0	Wrong argument number! 
+FUN_8040a33c	8040a380	8040e230	 Target Address=%d.%d.%d.%d 
+FUN_8040a33c	8040a45c	8040e250	Now your Target IP is %d.%d.%d.%d 
+FUN_8040a478	8040a4a4	8040e274	 Invalid Address(HEX) value. 
+FUN_8040a478	8040a4bc	8040e294	---Jump to address=%X 
+FUN_8040a594	8040a5e8	8040e2ac	Unknown command ! 
+FUN_8040a594	8040a5f4	8040d2c4	<RealTek>
+FUN_8040a594	8040a6b0	8040e2ac	Unknown command ! 

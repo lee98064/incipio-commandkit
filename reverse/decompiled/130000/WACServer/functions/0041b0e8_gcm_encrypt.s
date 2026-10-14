@@ -1,0 +1,21 @@
+# gcm_encrypt @ 0041b0e8
+0041b0e8  addiu sp,sp,-0x28
+0041b0ec  sw ra,0x24(sp)
+0041b0f0  sw s2,0x20(sp)
+0041b0f4  sw s1,0x1c(sp)
+0041b0f8  sw s0,0x18(sp)
+0041b0fc  move s0,a3
+0041b100  move s1,a2
+0041b104  jal 0x0041a768
+0041b108  _move s2,a0
+0041b10c  move a0,s2
+0041b110  move a1,s1
+0041b114  jal 0x0041ad84
+0041b118  _move a2,s0
+0041b11c  lw ra,0x24(sp)
+0041b120  lw s2,0x20(sp)
+0041b124  lw s1,0x1c(sp)
+0041b128  lw s0,0x18(sp)
+0041b12c  clear v0
+0041b130  jr ra
+0041b134  _addiu sp,sp,0x28

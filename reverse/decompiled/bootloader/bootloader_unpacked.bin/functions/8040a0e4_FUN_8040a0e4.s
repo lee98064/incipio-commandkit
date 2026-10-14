@@ -1,0 +1,59 @@
+# FUN_8040a0e4 @ 8040a0e4
+8040a0e4  addiu sp,sp,-0x30
+8040a0e8  sw ra,0x2c(sp)
+8040a0ec  sw s2,0x28(sp)
+8040a0f0  sw s1,0x24(sp)
+8040a0f4  sw s0,0x20(sp)
+8040a0f8  move s0,a1
+8040a0fc  lw a0,0x0(a1)
+8040a100  clear a1
+8040a104  jal 0x80406c50
+8040a108  _li a2,0x10
+8040a10c  move s1,v0
+8040a110  lw a0,0x4(s0)
+8040a114  clear a1
+8040a118  jal 0x80406c50
+8040a11c  _li a2,0x10
+8040a120  move s2,v0
+8040a124  lw a0,0x8(s0)
+8040a128  clear a1
+8040a12c  jal 0x80406c50
+8040a130  _li a2,0x10
+8040a134  move s0,v0
+8040a138  lui v0,0xbd00
+8040a13c  addu v0,s1,v0
+8040a140  sw v0,0x10(sp)
+8040a144  sw s2,0x14(sp)
+8040a148  addu v0,s0,s2
+8040a14c  sw v0,0x18(sp)
+8040a150  lui a0,0x8041
+8040a154  addiu a0,a0,-0x1e88
+8040a158  move a1,s0
+8040a15c  li a2,0x1
+8040a160  jal 0x804077a4
+8040a164  _move a3,s1
+8040a168  lui a0,0x8041
+8040a16c  jal 0x804077a4
+8040a170  _addiu a0,a0,-0x1ea0
+8040a174  jal 0x80409fa4
+8040a178  _nop
+8040a17c  beq v0,zero,0x8040a1a8
+8040a180  _nop
+8040a184  jal 0x80404be8
+8040a188  _nop
+8040a18c  clear a0
+8040a190  move a1,s1
+8040a194  move a2,s2
+8040a198  jal 0x80404b40
+8040a19c  _move a3,s0
+8040a1a0  j 0x8040a1b4
+8040a1a4  _nop
+8040a1a8  lui a0,0x8041
+8040a1ac  jal 0x804077a4
+8040a1b0  _addiu a0,a0,-0x1e90
+8040a1b4  lw ra,0x2c(sp)
+8040a1b8  lw s2,0x28(sp)
+8040a1bc  lw s1,0x24(sp)
+8040a1c0  lw s0,0x20(sp)
+8040a1c4  jr ra
+8040a1c8  _addiu sp,sp,0x30

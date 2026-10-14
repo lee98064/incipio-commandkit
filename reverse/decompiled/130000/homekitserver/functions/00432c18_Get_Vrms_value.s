@@ -1,0 +1,109 @@
+# Get_Vrms_value @ 00432c18
+00432c18  addiu sp,sp,-0x38
+00432c1c  sw ra,0x34(sp)
+00432c20  sw s1,0x30(sp)
+00432c24  sw s0,0x2c(sp)
+00432c28  lui gp,0x62
+00432c2c  addiu gp,gp,-0x6b80
+00432c30  sw gp,0x10(sp)
+00432c34  lui v0,0x61
+00432c38  lw t9,-0x6be8(gp)
+00432c3c  lw a0,0x505c(v0)
+00432c40  lui s0,0x60
+00432c44  li v1,0x1
+00432c48  lui v0,0x61
+00432c4c  addiu a1,s0,-0x338
+00432c50  sw v1,0x504c(v0)
+00432c54  li a2,0xe
+00432c58  jalr t9
+00432c5c  _addiu s1,sp,0x18
+00432c60  addiu a2,s0,-0x338
+00432c64  move a0,s1
+00432c68  li a1,0xa
+00432c6c  jal 0x00432754
+00432c70  _li a3,0xe
+00432c74  lw gp,0x10(sp)
+00432c78  blez v0,0x00432da8
+00432c7c  _clear s0
+00432c80  lw t9,-0x7664(gp)
+00432c84  move a2,v0
+00432c88  move a0,s1
+00432c8c  jalr t9
+00432c90  _li a1,0xff
+00432c94  lw gp,0x10(sp)
+00432c98  lbu a0,0x2(v0)
+00432c9c  lw t9,-0x6c68(gp)
+00432ca0  nop
+00432ca4  jalr t9
+00432ca8  _move s0,v0
+00432cac  lw gp,0x10(sp)
+00432cb0  lui v1,0x5b
+00432cb4  lw a1,-0x2668(v1)
+00432cb8  lw t9,-0x78b8(gp)
+00432cbc  nop
+00432cc0  jalr t9
+00432cc4  _move a0,v0
+00432cc8  lw gp,0x10(sp)
+00432ccc  nop
+00432cd0  lw t9,-0x7550(gp)
+00432cd4  nop
+00432cd8  jalr t9
+00432cdc  _move a0,v0
+00432ce0  lw gp,0x10(sp)
+00432ce4  lbu a0,0x1(s0)
+00432ce8  move s1,v1
+00432cec  lw t9,-0x6c68(gp)
+00432cf0  nop
+00432cf4  jalr t9
+00432cf8  _move s0,v0
+00432cfc  lw gp,0x10(sp)
+00432d00  nop
+00432d04  lw t9,-0x7550(gp)
+00432d08  nop
+00432d0c  jalr t9
+00432d10  _move a0,v0
+00432d14  lw gp,0x10(sp)
+00432d18  lui a0,0x5b
+00432d1c  lw a3,-0x266c(a0)
+00432d20  lw t9,-0x6c2c(gp)
+00432d24  lw a2,-0x2670(a0)
+00432d28  move a1,v1
+00432d2c  jalr t9
+00432d30  _move a0,v0
+00432d34  lw gp,0x10(sp)
+00432d38  move a3,v1
+00432d3c  move a2,v0
+00432d40  lw t9,-0x6ccc(gp)
+00432d44  move a1,s1
+00432d48  jalr t9
+00432d4c  _move a0,s0
+00432d50  lw gp,0x10(sp)
+00432d54  move a1,v1
+00432d58  lw t9,-0x59e8(gp)
+00432d5c  nop
+00432d60  jalr t9
+00432d64  _move a0,v0
+00432d68  lw gp,0x10(sp)
+00432d6c  move s0,v0
+00432d70  lw t9,-0x7550(gp)
+00432d74  lw v0,-0x67e8(gp)
+00432d78  nop
+00432d7c  lw s1,0x0(v0)
+00432d80  jalr t9
+00432d84  _move a0,s0
+00432d88  lw gp,0x10(sp)
+00432d8c  lui a1,0x5b
+00432d90  move a0,s1
+00432d94  lw t9,-0x73b4(gp)
+00432d98  addiu a1,a1,-0x29e8
+00432d9c  move a3,v1
+00432da0  jalr t9
+00432da4  _move a2,v0
+00432da8  lui v0,0x61
+00432dac  sw zero,0x504c(v0)
+00432db0  lw ra,0x34(sp)
+00432db4  move v0,s0
+00432db8  lw s1,0x30(sp)
+00432dbc  lw s0,0x2c(sp)
+00432dc0  jr ra
+00432dc4  _addiu sp,sp,0x38

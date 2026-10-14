@@ -1,0 +1,94 @@
+# HKSetupDNSServiceName @ 00432100
+00432100  addiu sp,sp,-0x130
+00432104  sw ra,0x12c(sp)
+00432108  sw s2,0x128(sp)
+0043210c  sw s1,0x124(sp)
+00432110  sw s0,0x120(sp)
+00432114  lui gp,0x62
+00432118  addiu gp,gp,-0x5cf0
+0043211c  sw gp,0x10(sp)
+00432120  lw t9,-0x7eac(gp)
+00432124  addiu s0,sp,0x18
+00432128  lui a1,0x5b
+0043212c  addiu a1,a1,-0x1dac
+00432130  move s2,a0
+00432134  jalr t9
+00432138  _move a0,s0
+0043213c  lw gp,0x10(sp)
+00432140  nop
+00432144  lw t9,-0x5bfc(gp)
+00432148  nop
+0043214c  jalr t9
+00432150  _move a0,s0
+00432154  lw gp,0x10(sp)
+00432158  lui a0,0x5b
+0043215c  lui a1,0x5b
+00432160  lw t9,-0x69b4(gp)
+00432164  addiu a0,a0,-0x1d78
+00432168  jalr t9
+0043216c  _addiu a1,a1,0x2988
+00432170  lw gp,0x10(sp)
+00432174  beq v0,zero,0x00432230
+00432178  _move s1,v0
+0043217c  lw t9,-0x7244(gp)
+00432180  move a0,s0
+00432184  clear a1
+00432188  jalr t9
+0043218c  _li a2,0x100
+00432190  lw gp,0x10(sp)
+00432194  move a0,s0
+00432198  li a1,0x100
+0043219c  lw t9,-0x691c(gp)
+004321a0  li a2,0x1
+004321a4  jalr t9
+004321a8  _move a3,s1
+004321ac  lw gp,0x10(sp)
+004321b0  lui a1,0x5b
+004321b4  move a0,s0
+004321b8  lw t9,-0x786c(gp)
+004321bc  nop
+004321c0  jalr t9
+004321c4  _addiu a1,a1,-0x1d64
+004321c8  lw gp,0x10(sp)
+004321cc  beq v0,zero,0x00432218
+004321d0  _addiu a3,v0,0x15
+004321d4  lw t9,-0x7b28(gp)
+004321d8  move a0,a3
+004321dc  li a1,0x22
+004321e0  jalr t9
+004321e4  _sw a3,0x118(sp)
+004321e8  lw gp,0x10(sp)
+004321ec  lw a3,0x118(sp)
+004321f0  lui a0,0x61
+004321f4  lw t9,-0x64ec(gp)
+004321f8  subu v0,v0,a3
+004321fc  lui a2,0x5e
+00432200  addiu a0,a0,0x5eb0
+00432204  addiu a1,v0,0x1
+00432208  jalr t9
+0043220c  _addiu a2,a2,-0x6110
+00432210  lw gp,0x10(sp)
+00432214  nop
+00432218  lw t9,-0x68d4(gp)
+0043221c  nop
+00432220  jalr t9
+00432224  _move a0,s1
+00432228  lw gp,0x10(sp)
+0043222c  nop
+00432230  lw t9,-0x5bfc(gp)
+00432234  lui a0,0x5b
+00432238  jalr t9
+0043223c  _addiu a0,a0,-0x1d4c
+00432240  lw gp,0x10(sp)
+00432244  lui a1,0x61
+00432248  move a0,s2
+0043224c  lw t9,-0x7eac(gp)
+00432250  nop
+00432254  jalr t9
+00432258  _addiu a1,a1,0x5eb0
+0043225c  lw ra,0x12c(sp)
+00432260  lw s2,0x128(sp)
+00432264  lw s1,0x124(sp)
+00432268  lw s0,0x120(sp)
+0043226c  jr ra
+00432270  _addiu sp,sp,0x130

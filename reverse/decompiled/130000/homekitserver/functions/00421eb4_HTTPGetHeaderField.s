@@ -1,0 +1,191 @@
+# HTTPGetHeaderField @ 00421eb4
+00421eb4  addiu sp,sp,-0x50
+00421eb8  sw ra,0x4c(sp)
+00421ebc  sw s8,0x48(sp)
+00421ec0  sw s7,0x44(sp)
+00421ec4  sw s6,0x40(sp)
+00421ec8  sw s5,0x3c(sp)
+00421ecc  sw s4,0x38(sp)
+00421ed0  sw s3,0x34(sp)
+00421ed4  sw s2,0x30(sp)
+00421ed8  sw s1,0x2c(sp)
+00421edc  sw s0,0x28(sp)
+00421ee0  lui gp,0x62
+00421ee4  addiu gp,gp,-0x6b80
+00421ee8  sw gp,0x10(sp)
+00421eec  li v1,-0x1
+00421ef0  move v0,a1
+00421ef4  move s0,a2
+00421ef8  move s6,a3
+00421efc  lw s7,0x60(sp)
+00421f00  lw s8,0x64(sp)
+00421f04  bne a1,v1,0x00421f20
+00421f08  _move s3,a0
+00421f0c  lw t9,-0x63cc(gp)
+00421f10  nop
+00421f14  jalr t9
+00421f18  _nop
+00421f1c  lw gp,0x10(sp)
+00421f20  addu s5,s3,v0
+00421f24  beq s0,zero,0x00421f44
+00421f28  _clear s4
+00421f2c  lw t9,-0x63cc(gp)
+00421f30  nop
+00421f34  jalr t9
+00421f38  _move a0,s0
+00421f3c  lw gp,0x10(sp)
+00421f40  move s4,v0
+00421f44  li t0,0xd
+00421f48  li a3,0xa
+00421f4c  b 0x00421f58
+00421f50  _li v1,0x3a
+00421f54  move s3,s1
+00421f58  move s2,s3
+00421f5c  sltu v0,s2,s5
+00421f60  beq v0,zero,0x0042213c
+00421f64  _li v0,-0x1a47
+00421f68  lb v0,0x0(s2)
+00421f6c  nop
+00421f70  beq v0,t0,0x0042216c
+00421f74  _addiu s1,s2,0x1
+00421f78  bne v0,a3,0x00421f5c
+00421f7c  _addiu s2,s2,0x1
+00421f80  addiu s2,s2,-0x1
+00421f84  b 0x0042216c
+00421f88  _addiu s1,s2,0x1
+00421f8c  lb v0,0x0(s1)
+00421f90  nop
+00421f94  xori v0,v0,0xa
+00421f98  sltiu v0,v0,0x1
+00421f9c  addu s1,s1,v0
+00421fa0  bne s0,zero,0x00421fd8
+00421fa4  _move v0,s3
+00421fa8  b 0x00421fb4
+00421fac  _sltu a0,v0,s2
+00421fb0  sltu a0,v0,s2
+00421fb4  beq a0,zero,0x00421f54
+00421fb8  _nop
+00421fbc  lb a0,0x0(v0)
+00421fc0  nop
+00421fc4  bne a0,v1,0x00421fb0
+00421fc8  _addiu v0,v0,0x1
+00421fcc  addiu v0,v0,-0x1
+00421fd0  b 0x004221a4
+00421fd4  _subu s4,v0,s3
+00421fd8  subu v0,s2,s3
+00421fdc  sltu v0,s4,v0
+00421fe0  beq v0,zero,0x00421f54
+00421fe4  _addu v0,s3,s4
+00421fe8  lb v0,0x0(v0)
+00421fec  nop
+00421ff0  bne v0,v1,0x00421f54
+00421ff4  _move a0,s3
+00421ff8  lw t9,-0x77c8(gp)
+00421ffc  sw v1,0x20(sp)
+00422000  sw a3,0x1c(sp)
+00422004  sw t0,0x18(sp)
+00422008  move a1,s0
+0042200c  jalr t9
+00422010  _move a2,s4
+00422014  lw gp,0x10(sp)
+00422018  lw v1,0x20(sp)
+0042201c  lw a3,0x1c(sp)
+00422020  lw t0,0x18(sp)
+00422024  bne v0,zero,0x00421f54
+00422028  _addiu v0,s4,0x1
+0042202c  addu v0,s3,v0
+00422030  li a1,0x20
+00422034  b 0x00422040
+00422038  _li a0,0x9
+0042203c  addiu v0,v0,0x1
+00422040  sltu v1,v0,s2
+00422044  bne v1,zero,0x0042205c
+00422048  _li a3,0x20
+0042204c  li a2,0x9
+00422050  li a1,0xd
+00422054  b 0x004220c8
+00422058  _li a0,0xa
+0042205c  lb v1,0x0(v0)
+00422060  nop
+00422064  beq v1,a1,0x0042203c
+00422068  _nop
+0042206c  beq v1,a0,0x00422040
+00422070  _addiu v0,v0,0x1
+00422074  addiu v0,v0,-0x1
+00422078  b 0x0042204c
+0042207c  _li a3,0x20
+00422080  addiu s2,s1,0x1
+00422084  sltu v1,s2,s5
+00422088  beq v1,zero,0x004220c8
+0042208c  _move s1,s2
+00422090  lb v1,0x0(s2)
+00422094  nop
+00422098  beq v1,a1,0x00422188
+0042209c  _addiu s1,s2,0x1
+004220a0  bne v1,a0,0x00422084
+004220a4  _addiu s2,s2,0x1
+004220a8  addiu s2,s2,-0x1
+004220ac  b 0x00422188
+004220b0  _addiu s1,s2,0x1
+004220b4  lb v1,0x0(s1)
+004220b8  nop
+004220bc  xori v1,v1,0xa
+004220c0  sltiu v1,v1,0x1
+004220c4  addu s1,s1,v1
+004220c8  sltu v1,s1,s5
+004220cc  beq v1,zero,0x004220ec
+004220d0  _nop
+004220d4  lb v1,0x0(s1)
+004220d8  nop
+004220dc  beq v1,a3,0x00422080
+004220e0  _nop
+004220e4  beq v1,a2,0x00422080
+004220e8  _nop
+004220ec  beq s6,zero,0x004220f8
+004220f0  _nop
+004220f4  sw s3,0x0(s6)
+004220f8  beq s7,zero,0x00422104
+004220fc  _nop
+00422100  sw s4,0x0(s7)
+00422104  beq s8,zero,0x00422110
+00422108  _nop
+0042210c  sw v0,0x0(s8)
+00422110  lw v1,0x68(sp)
+00422114  nop
+00422118  beq v1,zero,0x00422124
+0042211c  _subu s2,s2,v0
+00422120  sw s2,0x0(v1)
+00422124  lw v1,0x6c(sp)
+00422128  nop
+0042212c  beq v1,zero,0x0042213c
+00422130  _clear v0
+00422134  sw s1,0x0(v1)
+00422138  clear v0
+0042213c  lw ra,0x4c(sp)
+00422140  lw s8,0x48(sp)
+00422144  lw s7,0x44(sp)
+00422148  lw s6,0x40(sp)
+0042214c  lw s5,0x3c(sp)
+00422150  lw s4,0x38(sp)
+00422154  lw s3,0x34(sp)
+00422158  lw s2,0x30(sp)
+0042215c  lw s1,0x2c(sp)
+00422160  lw s0,0x28(sp)
+00422164  jr ra
+00422168  _addiu sp,sp,0x50
+0042216c  xori v0,v0,0xd
+00422170  movn s1,s2,v0
+00422174  sltu v0,s1,s5
+00422178  beq v0,zero,0x00421fa0
+0042217c  _nop
+00422180  b 0x00421f8c
+00422184  _nop
+00422188  xori v1,v1,0xd
+0042218c  movn s1,s2,v1
+00422190  sltu v1,s1,s5
+00422194  bne v1,zero,0x004220b4
+00422198  _nop
+0042219c  b 0x004220cc
+004221a0  _nop
+004221a4  b 0x0042202c
+004221a8  _addiu v0,s4,0x1

@@ -1,0 +1,9 @@
+# FUN_004317a0 @ 004317a0
+004317a0  lui gp,0x62
+004317a4  addiu gp,gp,-0x5cf0
+004317a8  lui v0,0x61
+004317ac  lw a0,0x5e50(v0)
+004317b0  lw t9,-0x7620(gp)
+004317b4  nop
+004317b8  jr t9
+004317bc  _nop

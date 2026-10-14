@@ -1,0 +1,15 @@
+# FUN_00422970 @ 00422970
+00422970  addiu sp,sp,-0x28
+00422974  sw ra,0x24(sp)
+00422978  addiu a2,sp,0x18
+0042297c  sw a0,0x18(sp)
+00422980  lui a0,0x45
+00422984  addiu a0,a0,-0x401c
+00422988  li a1,0x836
+0042298c  jal 0x0042286c
+00422990  _move a3,a2
+00422994  lw v0,0x18(sp)
+00422998  lw ra,0x24(sp)
+0042299c  sltiu v0,v0,0x1
+004229a0  jr ra
+004229a4  _addiu sp,sp,0x28

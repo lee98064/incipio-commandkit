@@ -1,0 +1,104 @@
+# SHA256_Update @ 004572ac
+004572ac  addiu sp,sp,-0x30
+004572b0  sw ra,0x2c(sp)
+004572b4  sw s4,0x28(sp)
+004572b8  sw s3,0x24(sp)
+004572bc  sw s2,0x20(sp)
+004572c0  sw s1,0x1c(sp)
+004572c4  sw s0,0x18(sp)
+004572c8  lui gp,0x58
+004572cc  addiu gp,gp,0x5010
+004572d0  sw gp,0x10(sp)
+004572d4  move s1,a0
+004572d8  beq a2,zero,0x00457424
+004572dc  _move s2,a2
+004572e0  lw v1,0x20(a0)
+004572e4  sll v0,a2,0x3
+004572e8  addu v0,v0,v1
+004572ec  sltu v1,v0,v1
+004572f0  beq v1,zero,0x0045730c
+004572f4  _srl v1,s2,0x1d
+004572f8  lw v1,0x24(a0)
+004572fc  nop
+00457300  addiu v1,v1,0x1
+00457304  sw v1,0x24(a0)
+00457308  srl v1,s2,0x1d
+0045730c  lw a0,0x24(s1)
+00457310  nop
+00457314  addu v1,a0,v1
+00457318  sw v1,0x24(s1)
+0045731c  sw v0,0x20(s1)
+00457320  lw a0,0x68(s1)
+00457324  nop
+00457328  beq a0,zero,0x004573d8
+0045732c  _move s3,a1
+00457330  sltiu v0,s2,0x40
+00457334  beq v0,zero,0x0045734c
+00457338  _addiu s0,s1,0x28
+0045733c  addu v0,s2,a0
+00457340  sltiu v0,v0,0x40
+00457344  bne v0,zero,0x004573b0
+00457348  _nop
+0045734c  li s4,0x40
+00457350  subu s4,s4,a0
+00457354  addu a0,s0,a0
+00457358  move a1,s3
+0045735c  lw t9,-0x6978(gp)
+00457360  nop
+00457364  jalr t9
+00457368  _move a2,s4
+0045736c  move a0,s1
+00457370  move a1,s0
+00457374  jal 0x00454ad0
+00457378  _li a2,0x1
+0045737c  lw gp,0x10(sp)
+00457380  addu s3,s3,s4
+00457384  subu s2,s2,s4
+00457388  sw zero,0x68(s1)
+0045738c  move a0,s0
+00457390  clear a1
+00457394  lw t9,-0x7764(gp)
+00457398  nop
+0045739c  jalr t9
+004573a0  _li a2,0x40
+004573a4  lw gp,0x10(sp)
+004573a8  b 0x004573dc
+004573ac  _srl s0,s2,0x6
+004573b0  addu a0,s0,a0
+004573b4  lw t9,-0x6978(gp)
+004573b8  nop
+004573bc  jalr t9
+004573c0  _move a2,s2
+004573c4  lw v0,0x68(s1)
+004573c8  nop
+004573cc  addu s2,v0,s2
+004573d0  b 0x00457424
+004573d4  _sw s2,0x68(s1)
+004573d8  srl s0,s2,0x6
+004573dc  beq s0,zero,0x00457400
+004573e0  _move a0,s1
+004573e4  move a1,s3
+004573e8  jal 0x00454ad0
+004573ec  _move a2,s0
+004573f0  lw gp,0x10(sp)
+004573f4  sll s0,s0,0x6
+004573f8  addu s3,s3,s0
+004573fc  subu s2,s2,s0
+00457400  beq s2,zero,0x00457428
+00457404  _li v0,0x1
+00457408  sw s2,0x68(s1)
+0045740c  addiu a0,s1,0x28
+00457410  move a1,s3
+00457414  lw t9,-0x6978(gp)
+00457418  nop
+0045741c  jalr t9
+00457420  _move a2,s2
+00457424  li v0,0x1
+00457428  lw ra,0x2c(sp)
+0045742c  lw s4,0x28(sp)
+00457430  lw s3,0x24(sp)
+00457434  lw s2,0x20(sp)
+00457438  lw s1,0x1c(sp)
+0045743c  lw s0,0x18(sp)
+00457440  jr ra
+00457444  _addiu sp,sp,0x30

@@ -1,0 +1,55 @@
+# Identify_LEDSetup @ 00432274
+00432274  addiu sp,sp,-0x20
+00432278  sw ra,0x1c(sp)
+0043227c  sw s0,0x18(sp)
+00432280  lui gp,0x62
+00432284  addiu gp,gp,-0x6b80
+00432288  sw gp,0x10(sp)
+0043228c  sll a0,a0,0x18
+00432290  sra a0,a0,0x18
+00432294  li v0,0x1
+00432298  bne a0,v0,0x004322d8
+0043229c  _lui a1,0x5d
+004322a0  lw t9,-0x69c0(gp)
+004322a4  lui a0,0x5b
+004322a8  addiu a0,a0,-0x2bac
+004322ac  jalr t9
+004322b0  _addiu a1,a1,-0x51f0
+004322b4  lw gp,0x10(sp)
+004322b8  lui a1,0x5b
+004322bc  move s0,v0
+004322c0  lw t9,-0x73b4(gp)
+004322c4  addiu a1,a1,-0x2b94
+004322c8  move a0,v0
+004322cc  clear a2
+004322d0  b 0x00432318
+004322d4  _clear a3
+004322d8  bne a0,zero,0x0043233c
+004322dc  _li v0,-0x1
+004322e0  lw t9,-0x69c0(gp)
+004322e4  lui a0,0x5b
+004322e8  lui a1,0x5d
+004322ec  addiu a0,a0,-0x2bac
+004322f0  jalr t9
+004322f4  _addiu a1,a1,-0x51f0
+004322f8  lw gp,0x10(sp)
+004322fc  lui a1,0x5b
+00432300  move s0,v0
+00432304  lw t9,-0x73b4(gp)
+00432308  addiu a1,a1,-0x2b94
+0043230c  move a0,v0
+00432310  clear a2
+00432314  li a3,0x1
+00432318  jalr t9
+0043231c  _nop
+00432320  lw gp,0x10(sp)
+00432324  nop
+00432328  lw t9,-0x68e0(gp)
+0043232c  nop
+00432330  jalr t9
+00432334  _move a0,s0
+00432338  clear v0
+0043233c  lw ra,0x1c(sp)
+00432340  lw s0,0x18(sp)
+00432344  jr ra
+00432348  _addiu sp,sp,0x20

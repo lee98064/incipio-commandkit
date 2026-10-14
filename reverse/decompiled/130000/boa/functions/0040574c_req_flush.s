@@ -1,0 +1,61 @@
+# req_flush @ 0040574c
+0040574c  addiu sp,sp,-0x20
+00405750  sw ra,0x1c(sp)
+00405754  sw s0,0x18(sp)
+00405758  lui gp,0x47
+0040575c  addiu gp,gp,0x2630
+00405760  sw gp,0x10(sp)
+00405764  move s0,a0
+00405768  lw a0,0x0(a0)
+0040576c  lw a2,0x50(s0)
+00405770  lw v1,0x4c(s0)
+00405774  sltiu a0,a0,0xb
+00405778  beq a0,zero,0x0040582c
+0040577c  _li v0,-0x2
+00405780  subu a2,a2,v1
+00405784  beq a2,zero,0x00405810
+00405788  _nop
+0040578c  lw a1,0x8d0(s0)
+00405790  lw t9,-0x7c34(gp)
+00405794  lw a0,0xb4(s0)
+00405798  jalr t9
+0040579c  _addu a1,a1,v1
+004057a0  lw gp,0x10(sp)
+004057a4  bgez v0,0x004057fc
+004057a8  _nop
+004057ac  lw t9,-0x7ecc(gp)
+004057b0  nop
+004057b4  jalr t9
+004057b8  _nop
+004057bc  lw a0,0x0(v0)
+004057c0  li v1,0xb
+004057c4  lw gp,0x10(sp)
+004057c8  beq a0,v1,0x0040582c
+004057cc  _li v0,-0x1
+004057d0  lw t9,-0x7aec(gp)
+004057d4  lui a0,0x45
+004057d8  sw zero,0x50(s0)
+004057dc  sw zero,0x4c(s0)
+004057e0  jalr t9
+004057e4  _addiu a0,a0,-0x6808
+004057e8  li v0,0xc
+004057ec  sw v0,0x0(s0)
+004057f0  sw zero,0x50(s0)
+004057f4  b 0x0040582c
+004057f8  _li v0,-0x2
+004057fc  lw v1,0x4c(s0)
+00405800  nop
+00405804  addu v0,v1,v0
+00405808  sw v0,0x4c(s0)
+0040580c  lw v1,0x4c(s0)
+00405810  lw v0,0x50(s0)
+00405814  nop
+00405818  bne v1,v0,0x0040582c
+0040581c  _nop
+00405820  sw zero,0x50(s0)
+00405824  sw zero,0x4c(s0)
+00405828  lw v0,0x50(s0)
+0040582c  lw ra,0x1c(sp)
+00405830  lw s0,0x18(sp)
+00405834  jr ra
+00405838  _addiu sp,sp,0x20

@@ -1,0 +1,60 @@
+# get_mime_type @ 0040921c
+0040921c  addiu sp,sp,-0x28
+00409220  sw ra,0x24(sp)
+00409224  lui gp,0x47
+00409228  addiu gp,gp,0x2630
+0040922c  sw gp,0x10(sp)
+00409230  bne a0,zero,0x00409250
+00409234  _nop
+00409238  lw v0,-0x7e40(gp)
+0040923c  lui a0,0x45
+00409240  lw t9,-0x7f4c(gp)
+00409244  lw a1,0x0(v0)
+00409248  b 0x00409274
+0040924c  _addiu a0,a0,-0x5bc8
+00409250  lb v0,0x0(a0)
+00409254  nop
+00409258  bne v0,zero,0x00409288
+0040925c  _nop
+00409260  lw v0,-0x7e40(gp)
+00409264  lw t9,-0x7f4c(gp)
+00409268  lui a0,0x45
+0040926c  lw a1,0x0(v0)
+00409270  addiu a0,a0,-0x5b98
+00409274  jalr t9
+00409278  _nop
+0040927c  lw gp,0x10(sp)
+00409280  b 0x004092ec
+00409284  _nop
+00409288  lw t9,-0x7c0c(gp)
+0040928c  nop
+00409290  jalr t9
+00409294  _li a1,0x2e
+00409298  lw gp,0x10(sp)
+0040929c  beq v0,zero,0x004092ec
+004092a0  _nop
+004092a4  lb v1,0x1(v0)
+004092a8  nop
+004092ac  beq v1,zero,0x004092ec
+004092b0  _addiu a1,v0,0x1
+004092b4  move a0,a1
+004092b8  jal 0x00408c10
+004092bc  _sw a1,0x18(sp)
+004092c0  lw a1,0x18(sp)
+004092c4  lui a0,0x47
+004092c8  addiu a0,a0,-0x3a00
+004092cc  jal 0x00408cc0
+004092d0  _move a2,v0
+004092d4  lw gp,0x10(sp)
+004092d8  beq v0,zero,0x004092ec
+004092dc  _nop
+004092e0  lw v0,0x4(v0)
+004092e4  b 0x004092f8
+004092e8  _nop
+004092ec  lw v0,-0x79e4(gp)
+004092f0  nop
+004092f4  lw v0,0x0(v0)
+004092f8  lw ra,0x24(sp)
+004092fc  nop
+00409300  jr ra
+00409304  _addiu sp,sp,0x28

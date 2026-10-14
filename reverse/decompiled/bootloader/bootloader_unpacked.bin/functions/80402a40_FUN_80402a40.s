@@ -1,0 +1,18 @@
+# FUN_80402a40 @ 80402a40
+80402a40  sll a0,a0,0x18
+80402a44  lui v0,0x8000
+80402a48  or a0,a0,v0
+80402a4c  sll a1,a1,0x10
+80402a50  or a0,a0,a1
+80402a54  or a0,a0,a2
+80402a58  lui v0,0xbb80
+80402a5c  ori v0,v0,0x4004
+80402a60  sw a0,0x0(v0)
+80402a64  lui v1,0xbb80
+80402a68  ori v1,v1,0x4008
+80402a6c  lw v0,0x0(v1)
+80402a70  nop
+80402a74  bltz v0,0x80402a6c
+80402a78  _clear v0
+80402a7c  jr ra
+80402a80  _nop

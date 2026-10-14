@@ -1,0 +1,12 @@
+# FUN_0040f560 @ 0040f560
+0040f560  lui gp,0x47
+0040f564  addiu gp,gp,0x2630
+0040f568  lw v0,-0x7c84(gp)
+0040f56c  nop
+0040f570  lw v1,0x0(v0)
+0040f574  nop
+0040f578  bne v1,zero,0x0040f584
+0040f57c  _li v1,0x1
+0040f580  sw v1,0x0(v0)
+0040f584  jr ra
+0040f588  _nop

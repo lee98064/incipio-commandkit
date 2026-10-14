@@ -1,0 +1,57 @@
+# json_object_new_object @ 00436704
+00436704  lui gp,0x1e
+00436708  addiu gp,gp,0x3c0c
+0043670c  addu gp,gp,t9
+00436710  addiu sp,sp,-0x28
+00436714  sw ra,0x24(sp)
+00436718  sw s8,0x20(sp)
+0043671c  move s8,sp
+00436720  sw gp,0x10(sp)
+00436724  li a0,0x4
+00436728  lw v0,-0x7fcc(gp)
+0043672c  nop
+00436730  addiu v0,v0,0x5bc0
+00436734  move t9,v0
+00436738  jalr t9
+0043673c  _nop
+00436740  lw gp,0x10(s8)
+00436744  sw v0,0x18(s8)
+00436748  lw v0,0x18(s8)
+0043674c  nop
+00436750  bne v0,zero,0x00436764
+00436754  _nop
+00436758  clear v0
+0043675c  b 0x004367cc
+00436760  _nop
+00436764  lw v0,0x18(s8)
+00436768  lw v1,-0x7fcc(gp)
+0043676c  nop
+00436770  addiu v1,v1,0x667c
+00436774  sw v1,0x4(v0)
+00436778  lw v0,0x18(s8)
+0043677c  lw v1,-0x7fcc(gp)
+00436780  nop
+00436784  addiu v1,v1,0x615c
+00436788  sw v1,0x8(v0)
+0043678c  li a0,0x10
+00436790  clear a1
+00436794  lw v0,-0x7fcc(gp)
+00436798  nop
+0043679c  addiu a2,v0,0x65e8
+004367a0  lw v0,-0x73a4(gp)
+004367a4  nop
+004367a8  move t9,v0
+004367ac  jalr t9
+004367b0  _nop
+004367b4  lw gp,0x10(s8)
+004367b8  move v1,v0
+004367bc  lw v0,0x18(s8)
+004367c0  nop
+004367c4  sw v1,0x18(v0)
+004367c8  lw v0,0x18(s8)
+004367cc  move sp,s8
+004367d0  lw ra,0x24(sp)
+004367d4  lw s8,0x20(sp)
+004367d8  addiu sp,sp,0x28
+004367dc  jr ra
+004367e0  _nop

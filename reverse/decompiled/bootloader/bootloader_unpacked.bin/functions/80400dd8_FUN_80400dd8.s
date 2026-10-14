@@ -1,0 +1,58 @@
+# FUN_80400dd8 @ 80400dd8
+80400dd8  lui v0,0x8041
+80400ddc  lui v1,0xc0a8
+80400de0  ori v1,v1,0x106
+80400de4  sw v1,0x50(v0)
+80400de8  addiu v0,v0,0x50
+80400dec  lui v1,0xc0a2
+80400df0  ori v1,v1,0x174
+80400df4  sw v1,0xc(v0)
+80400df8  lui a0,0x8041
+80400dfc  addiu v1,a0,-0x1710
+80400e00  lbu a1,0x5(v1)
+80400e04  nop
+80400e08  sb a1,0x9(v0)
+80400e0c  lbu a1,0x4(v1)
+80400e10  nop
+80400e14  sb a1,0x8(v0)
+80400e18  lbu a1,0x3(v1)
+80400e1c  nop
+80400e20  sb a1,0x7(v0)
+80400e24  lbu a1,0x2(v1)
+80400e28  nop
+80400e2c  sb a1,0x6(v0)
+80400e30  lbu v1,0x1(v1)
+80400e34  nop
+80400e38  sb v1,0x5(v0)
+80400e3c  lbu v1,-0x1710(a0)
+80400e40  nop
+80400e44  sb v1,0x4(v0)
+80400e48  lui v0,0x8041
+80400e4c  sw zero,-0x11ac(v0)
+80400e50  lui v0,0x8041
+80400e54  lui v1,0x8041
+80400e58  addiu v1,v1,0x74
+80400e5c  sw v1,-0x11b8(v0)
+80400e60  addiu v0,v0,-0x11b8
+80400e64  sw zero,0x4(v0)
+80400e68  lui v0,0x8041
+80400e6c  sh zero,-0x11bc(v0)
+80400e70  lui v0,0x8041
+80400e74  sb zero,-0x1064(v0)
+80400e78  lui v0,0x8041
+80400e7c  sw zero,-0x1060(v0)
+80400e80  lui v0,0x8041
+80400e84  lw v1,-0x1a28(v0)
+80400e88  lui v0,0x8041
+80400e8c  sw v1,-0x11c0(v0)
+80400e90  lui v0,0x8041
+80400e94  sw zero,-0x11a0(v0)
+80400e98  lui v0,0x8041
+80400e9c  sw zero,-0x11a8(v0)
+80400ea0  li v1,0x832
+80400ea4  lui v0,0x8041
+80400ea8  sh v1,-0x11b0(v0)
+80400eac  li v1,0x1
+80400eb0  lui v0,0x8041
+80400eb4  jr ra
+80400eb8  _sw v1,-0x106c(v0)

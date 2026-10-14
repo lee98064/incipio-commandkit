@@ -1,0 +1,45 @@
+# CreateSimpleHTTPOKMessage @ 00405a50
+00405a50  addiu sp,sp,-0x30
+00405a54  sw ra,0x2c(sp)
+00405a58  sw s1,0x28(sp)
+00405a5c  sw s0,0x24(sp)
+00405a60  lui gp,0x44
+00405a64  addiu gp,gp,-0x4fc0
+00405a68  sw gp,0x18(sp)
+00405a6c  lw t9,-0x7dc0(gp)
+00405a70  move s0,a0
+00405a74  li a0,0xc8
+00405a78  jalr t9
+00405a7c  _move s1,a1
+00405a80  move a0,v0
+00405a84  lw gp,0x18(sp)
+00405a88  sw v0,0x0(s0)
+00405a8c  beq a0,zero,0x00405aec
+00405a90  _li v0,-0x1a48
+00405a94  lui v0,0x42
+00405a98  addiu v0,v0,-0x2a14
+00405a9c  lw t9,-0x7efc(gp)
+00405aa0  sw v0,0x10(sp)
+00405aa4  lui v0,0x42
+00405aa8  addiu v0,v0,-0x2a10
+00405aac  lui a1,0x42
+00405ab0  lui a2,0x42
+00405ab4  lui a3,0x42
+00405ab8  addiu a1,a1,-0x2a30
+00405abc  addiu a2,a2,-0x2a24
+00405ac0  addiu a3,a3,-0x2a18
+00405ac4  jalr t9
+00405ac8  _sw v0,0x14(sp)
+00405acc  lw gp,0x18(sp)
+00405ad0  lw a0,0x0(s0)
+00405ad4  lw t9,-0x7f74(gp)
+00405ad8  nop
+00405adc  jalr t9
+00405ae0  _nop
+00405ae4  sw v0,0x0(s1)
+00405ae8  clear v0
+00405aec  lw ra,0x2c(sp)
+00405af0  lw s1,0x28(sp)
+00405af4  lw s0,0x24(sp)
+00405af8  jr ra
+00405afc  _addiu sp,sp,0x30

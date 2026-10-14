@@ -1,0 +1,39 @@
+# gcm_init_and_key @ 0041b760
+0041b760  addiu sp,sp,-0x28
+0041b764  sw ra,0x24(sp)
+0041b768  sw s2,0x20(sp)
+0041b76c  sw s1,0x1c(sp)
+0041b770  sw s0,0x18(sp)
+0041b774  lui gp,0x44
+0041b778  addiu gp,gp,-0x4fc0
+0041b77c  sw gp,0x10(sp)
+0041b780  lw t9,-0x7f58(gp)
+0041b784  addiu s0,a2,0x1040
+0041b788  addiu s2,a2,0x1050
+0041b78c  sw zero,0x1040(a2)
+0041b790  move s1,a2
+0041b794  sw zero,0x4(s0)
+0041b798  move a2,s2
+0041b79c  sw zero,0x8(s0)
+0041b7a0  jalr t9
+0041b7a4  _sw zero,0xc(s0)
+0041b7a8  lw gp,0x10(sp)
+0041b7ac  move a2,s2
+0041b7b0  move a0,s0
+0041b7b4  lw t9,-0x7fbc(gp)
+0041b7b8  nop
+0041b7bc  jalr t9
+0041b7c0  _move a1,s0
+0041b7c4  lw gp,0x10(sp)
+0041b7c8  move a0,s0
+0041b7cc  lw t9,-0x7ebc(gp)
+0041b7d0  nop
+0041b7d4  jalr t9
+0041b7d8  _move a1,s1
+0041b7dc  lw ra,0x24(sp)
+0041b7e0  lw s2,0x20(sp)
+0041b7e4  lw s1,0x1c(sp)
+0041b7e8  lw s0,0x18(sp)
+0041b7ec  clear v0
+0041b7f0  jr ra
+0041b7f4  _addiu sp,sp,0x28

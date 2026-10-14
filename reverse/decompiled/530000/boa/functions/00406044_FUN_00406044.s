@@ -1,0 +1,35 @@
+# FUN_00406044 @ 00406044
+00406044  addiu sp,sp,-0x28
+00406048  sw ra,0x24(sp)
+0040604c  sw s2,0x20(sp)
+00406050  sw s1,0x1c(sp)
+00406054  sw s0,0x18(sp)
+00406058  lui gp,0x47
+0040605c  addiu gp,gp,0x2630
+00406060  sw gp,0x10(sp)
+00406064  lw v0,-0x7a3c(gp)
+00406068  move s1,a0
+0040606c  move s0,a1
+00406070  lw v0,0x0(v0)
+00406074  nop
+00406078  andi v0,v0,0x100
+0040607c  beq v0,zero,0x004060a4
+00406080  _move s2,a2
+00406084  lw t9,-0x7a08(gp)
+00406088  lw a3,0x0(a2)
+0040608c  lui a0,0x45
+00406090  addiu a0,a0,-0x65dc
+00406094  move a1,s1
+00406098  jalr t9
+0040609c  _move a2,s0
+004060a0  lw gp,0x10(sp)
+004060a4  lw a2,0x0(s2)
+004060a8  move a0,s1
+004060ac  move a1,s0
+004060b0  lw t9,-0x7e9c(gp)
+004060b4  lw ra,0x24(sp)
+004060b8  lw s2,0x20(sp)
+004060bc  lw s1,0x1c(sp)
+004060c0  lw s0,0x18(sp)
+004060c4  jr t9
+004060c8  _addiu sp,sp,0x28

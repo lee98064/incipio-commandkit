@@ -1,0 +1,5 @@
+# dump_passwd @ 004093dc
+004093dc  lui a0,0x47
+004093e0  addiu a0,a0,-0x3944
+004093e4  j 0x00409308
+004093e8  _nop

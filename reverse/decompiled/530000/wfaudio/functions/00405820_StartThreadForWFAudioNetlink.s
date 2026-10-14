@@ -1,0 +1,36 @@
+# StartThreadForWFAudioNetlink @ 00405820
+00405820  addiu sp,sp,-0x28
+00405824  sw ra,0x24(sp)
+00405828  lui gp,0x43
+0040582c  addiu gp,gp,-0x4c90
+00405830  sw gp,0x10(sp)
+00405834  lw t9,-0x7db8(gp)
+00405838  lui a2,0x40
+0040583c  addiu a2,a2,0x5e90
+00405840  addiu a0,sp,0x18
+00405844  clear a1
+00405848  jalr t9
+0040584c  _clear a3
+00405850  lw gp,0x10(sp)
+00405854  beq v0,zero,0x00405888
+00405858  _lui a1,0x41
+0040585c  lw v0,-0x7f2c(gp)
+00405860  lw t9,-0x7e64(gp)
+00405864  lw a0,0x0(v0)
+00405868  lui a2,0x41
+0040586c  lui a3,0x41
+00405870  addiu a1,a1,0xf70
+00405874  addiu a2,a2,0xf9c
+00405878  jalr t9
+0040587c  _addiu a3,a3,0x1190
+00405880  b 0x0040589c
+00405884  _clear v0
+00405888  lw t9,-0x7e34(gp)
+0040588c  lw a0,0x18(sp)
+00405890  jalr t9
+00405894  _nop
+00405898  li v0,0x1
+0040589c  lw ra,0x24(sp)
+004058a0  nop
+004058a4  jr ra
+004058a8  _addiu sp,sp,0x28

@@ -1,0 +1,54 @@
+# pthread_list_GetControllerName @ 0042e460
+0042e460  addiu sp,sp,-0x30
+0042e464  sw ra,0x2c(sp)
+0042e468  sw s1,0x28(sp)
+0042e46c  sw s0,0x24(sp)
+0042e470  lui gp,0x62
+0042e474  addiu gp,gp,-0x5cf0
+0042e478  sw gp,0x10(sp)
+0042e47c  move s1,a0
+0042e480  beq a1,zero,0x0042e51c
+0042e484  _li s0,-0x1
+0042e488  lw t9,-0x63ec(gp)
+0042e48c  lui a0,0x61
+0042e490  sw a1,0x18(sp)
+0042e494  jalr t9
+0042e498  _addiu a0,a0,0x5670
+0042e49c  lui v0,0x61
+0042e4a0  lw v1,0x5688(v0)
+0042e4a4  addiu v0,v0,0x5688
+0042e4a8  lw gp,0x10(sp)
+0042e4ac  lw a1,0x18(sp)
+0042e4b0  beq v1,v0,0x0042e508
+0042e4b4  _nop
+0042e4b8  lw v0,0x28(v0)
+0042e4bc  lui a0,0x61
+0042e4c0  lw v1,0x0(v0)
+0042e4c4  b 0x0042e500
+0042e4c8  _addiu a0,a0,0x56b0
+0042e4cc  lw a2,-0x28(v0)
+0042e4d0  nop
+0042e4d4  bne a2,s1,0x0042e4f8
+0042e4d8  _li a2,0x24
+0042e4dc  lw t9,-0x5c9c(gp)
+0042e4e0  move a0,a1
+0042e4e4  jalr t9
+0042e4e8  _addiu a1,v0,-0x24
+0042e4ec  lw gp,0x10(sp)
+0042e4f0  b 0x0042e50c
+0042e4f4  _clear s0
+0042e4f8  move v0,v1
+0042e4fc  lw v1,0x0(v1)
+0042e500  bne v0,a0,0x0042e4cc
+0042e504  _nop
+0042e508  li s0,-0x1
+0042e50c  lw t9,-0x77f4(gp)
+0042e510  lui a0,0x61
+0042e514  jalr t9
+0042e518  _addiu a0,a0,0x5670
+0042e51c  move v0,s0
+0042e520  lw ra,0x2c(sp)
+0042e524  lw s1,0x28(sp)
+0042e528  lw s0,0x24(sp)
+0042e52c  jr ra
+0042e530  _addiu sp,sp,0x30

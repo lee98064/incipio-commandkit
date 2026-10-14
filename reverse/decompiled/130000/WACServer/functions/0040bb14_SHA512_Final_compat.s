@@ -1,0 +1,115 @@
+# SHA512_Final_compat @ 0040bb14
+0040bb14  addiu sp,sp,-0x28
+0040bb18  sw ra,0x24(sp)
+0040bb1c  sw s1,0x20(sp)
+0040bb20  sw s0,0x1c(sp)
+0040bb24  lui gp,0x44
+0040bb28  addiu gp,gp,-0x4fc0
+0040bb2c  sw gp,0x10(sp)
+0040bb30  lw v0,0x48(a1)
+0040bb34  li a2,0x8
+0040bb38  move s0,a1
+0040bb3c  multu v0,a2
+0040bb40  lw a1,0x4(a1)
+0040bb44  lw t1,0x0(s0)
+0040bb48  move s1,a0
+0040bb4c  addiu v1,v0,0x1
+0040bb50  sltiu t0,v1,0x71
+0040bb54  addu v0,s0,v0
+0040bb58  mflo a3
+0040bb5c  addu a0,a1,a3
+0040bb60  sltu a1,a0,a1
+0040bb64  mfhi a2
+0040bb68  sw a0,0x4(s0)
+0040bb6c  addu a2,t1,a2
+0040bb70  addu a2,a1,a2
+0040bb74  li a0,-0x80
+0040bb78  sw a2,0x0(s0)
+0040bb7c  sb a0,0x4c(v0)
+0040bb80  beq t0,zero,0x0040bb98
+0040bb84  _sw v1,0x48(s0)
+0040bb88  b 0x0040bbcc
+0040bb8c  _nop
+0040bb90  sb zero,0x4c(v0)
+0040bb94  sw a0,0x48(s0)
+0040bb98  lw v0,0x48(s0)
+0040bb9c  nop
+0040bba0  sltiu v1,v0,0x80
+0040bba4  addiu a0,v0,0x1
+0040bba8  bne v1,zero,0x0040bb90
+0040bbac  _addu v0,s0,v0
+0040bbb0  move a0,s0
+0040bbb4  jal 0x0040859c
+0040bbb8  _addiu a1,s0,0x4c
+0040bbbc  b 0x0040bbcc
+0040bbc0  _sw zero,0x48(s0)
+0040bbc4  sb zero,0x4c(v0)
+0040bbc8  sw a0,0x48(s0)
+0040bbcc  lw v0,0x48(s0)
+0040bbd0  nop
+0040bbd4  sltiu v1,v0,0x78
+0040bbd8  addiu a0,v0,0x1
+0040bbdc  bne v1,zero,0x0040bbc4
+0040bbe0  _addu v0,s0,v0
+0040bbe4  lw v1,0x0(s0)
+0040bbe8  lw v0,0x4(s0)
+0040bbec  move a0,s0
+0040bbf0  srl t2,v1,0x18
+0040bbf4  srl a1,v0,0x8
+0040bbf8  srl t1,v1,0x10
+0040bbfc  srl t0,v1,0x8
+0040bc00  srl a3,v0,0x18
+0040bc04  srl a2,v0,0x10
+0040bc08  sb v1,0xc7(s0)
+0040bc0c  sb a1,0xca(s0)
+0040bc10  sb v0,0xcb(s0)
+0040bc14  sb t2,0xc4(s0)
+0040bc18  sb t1,0xc5(s0)
+0040bc1c  sb t0,0xc6(s0)
+0040bc20  sb a3,0xc8(s0)
+0040bc24  sb a2,0xc9(s0)
+0040bc28  jal 0x0040859c
+0040bc2c  _addiu a1,s0,0x4c
+0040bc30  lw gp,0x10(sp)
+0040bc34  move v0,s0
+0040bc38  clear v1
+0040bc3c  li a0,0x8
+0040bc40  lbu a1,0x8(v0)
+0040bc44  addiu v1,v1,0x1
+0040bc48  sb a1,0x0(s1)
+0040bc4c  lhu a1,0x8(v0)
+0040bc50  nop
+0040bc54  sb a1,0x1(s1)
+0040bc58  lw a1,0x8(v0)
+0040bc5c  nop
+0040bc60  srl a1,a1,0x8
+0040bc64  sb a1,0x2(s1)
+0040bc68  lw a1,0x8(v0)
+0040bc6c  nop
+0040bc70  sb a1,0x3(s1)
+0040bc74  lbu a1,0xc(v0)
+0040bc78  nop
+0040bc7c  sb a1,0x4(s1)
+0040bc80  lhu a1,0xc(v0)
+0040bc84  nop
+0040bc88  sb a1,0x5(s1)
+0040bc8c  lw a1,0xc(v0)
+0040bc90  nop
+0040bc94  srl a1,a1,0x8
+0040bc98  sb a1,0x6(s1)
+0040bc9c  lw a1,0xc(v0)
+0040bca0  addiu v0,v0,0x8
+0040bca4  sb a1,0x7(s1)
+0040bca8  bne v1,a0,0x0040bc40
+0040bcac  _addiu s1,s1,0x8
+0040bcb0  lw t9,-0x7eb0(gp)
+0040bcb4  move a0,s0
+0040bcb8  clear a1
+0040bcbc  jalr t9
+0040bcc0  _li a2,0xd0
+0040bcc4  lw ra,0x24(sp)
+0040bcc8  lw s1,0x20(sp)
+0040bccc  lw s0,0x1c(sp)
+0040bcd0  clear v0
+0040bcd4  jr ra
+0040bcd8  _addiu sp,sp,0x28

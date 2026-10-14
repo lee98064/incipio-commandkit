@@ -1,0 +1,24 @@
+# Device material and local build output must never enter the public repository.
+private/
+**/private/
+diagnostics/
+**/diagnostics/
+.local/
+backups/
+sessions/
+artifacts/
+**/artifacts/
+**/evidence/
+**/toolchains/
+**/deps/
+**/.venv/
+**/.sdk-venv/
+__pycache__/
+**/__pycache__/
+*.pyc
+.DS_Store
+*.key
+*.pseudo
+*.cpio
+*.sqsh
+# Supplied small executable samples are deliberately included in samples/.

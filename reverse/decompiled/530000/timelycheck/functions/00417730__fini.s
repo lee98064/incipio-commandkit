@@ -1,0 +1,24 @@
+# _fini @ 00417730
+00417730  lui gp,0x2
+00417734  addiu gp,gp,-0x46d0
+00417738  addu gp,gp,t9
+0041773c  addiu sp,sp,-0x20
+00417740  sw gp,0x10(sp)
+00417744  sw ra,0x1c(sp)
+00417748  sw gp,0x18(sp)
+0041774c  bal 0x00417754
+00417750  _nop
+00417754  lui gp,0x2
+00417758  addiu gp,gp,-0x46f4
+0041775c  addu gp,gp,ra
+00417760  lw t9,-0x7fd8(gp)
+00417764  nop
+00417768  addiu t9,t9,0x1240
+0041776c  bal 0x00401240
+00417770  _nop
+00417774  lw gp,0x10(sp)
+00417778  nop
+0041777c  lw ra,0x1c(sp)
+00417780  nop
+00417784  jr ra
+00417788  _addiu sp,sp,0x20

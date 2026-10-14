@@ -1,0 +1,36 @@
+# Phytrex_HMRemoveAllPairKey @ 004250bc
+004250bc  addiu sp,sp,-0x28
+004250c0  sw ra,0x24(sp)
+004250c4  sw s1,0x20(sp)
+004250c8  sw s0,0x1c(sp)
+004250cc  lui gp,0x62
+004250d0  addiu gp,gp,-0x5cf0
+004250d4  sw gp,0x10(sp)
+004250d8  lw t9,-0x63ec(gp)
+004250dc  lui a0,0x61
+004250e0  jalr t9
+004250e4  _addiu a0,a0,0x4c00
+004250e8  lw gp,0x10(sp)
+004250ec  lui s0,0x61
+004250f0  lui s1,0x61
+004250f4  addiu s0,s0,0x4c18
+004250f8  addiu s1,s1,0x5628
+004250fc  lw t9,-0x7244(gp)
+00425100  move a0,s0
+00425104  clear a1
+00425108  li a2,0xa1
+0042510c  jalr t9
+00425110  _addiu s0,s0,0xa1
+00425114  lw gp,0x10(sp)
+00425118  bne s0,s1,0x004250fc
+0042511c  _lui a0,0x61
+00425120  lw t9,-0x77f4(gp)
+00425124  nop
+00425128  jalr t9
+0042512c  _addiu a0,a0,0x4c00
+00425130  lw ra,0x24(sp)
+00425134  lw s1,0x20(sp)
+00425138  lw s0,0x1c(sp)
+0042513c  clear v0
+00425140  jr ra
+00425144  _addiu sp,sp,0x28

@@ -1,0 +1,24 @@
+# FUN_00405130 @ 00405130
+00405130  lui gp,0x2
+00405134  addiu gp,gp,-0x6ee0
+00405138  addu gp,gp,t9
+0040513c  addiu sp,sp,-0x28
+00405140  sw ra,0x24(sp)
+00405144  sw s1,0x20(sp)
+00405148  sw s0,0x1c(sp)
+0040514c  sw gp,0x10(sp)
+00405150  lw s0,-0x7fe8(gp)
+00405154  li s1,-0x1
+00405158  b 0x00405168
+0040515c  _addiu s0,s0,0x61d4
+00405160  jalr t9
+00405164  _nop
+00405168  lw t9,0x0(s0)
+0040516c  nop
+00405170  bne t9,s1,0x00405160
+00405174  _addiu s0,s0,-0x4
+00405178  lw ra,0x24(sp)
+0040517c  lw s1,0x20(sp)
+00405180  lw s0,0x1c(sp)
+00405184  jr ra
+00405188  _addiu sp,sp,0x28

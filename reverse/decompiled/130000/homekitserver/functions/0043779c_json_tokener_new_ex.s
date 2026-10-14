@@ -1,0 +1,84 @@
+# json_tokener_new_ex @ 0043779c
+0043779c  lui gp,0x1e
+004377a0  addiu gp,gp,0x1ce4
+004377a4  addu gp,gp,t9
+004377a8  addiu sp,sp,-0x28
+004377ac  sw ra,0x24(sp)
+004377b0  sw s8,0x20(sp)
+004377b4  move s8,sp
+004377b8  sw gp,0x10(sp)
+004377bc  sw a0,0x28(s8)
+004377c0  li a0,0x1
+004377c4  li a1,0x30
+004377c8  lw v0,-0x5a68(gp)
+004377cc  nop
+004377d0  move t9,v0
+004377d4  jalr t9
+004377d8  _nop
+004377dc  lw gp,0x10(s8)
+004377e0  sw v0,0x18(s8)
+004377e4  lw v0,0x18(s8)
+004377e8  nop
+004377ec  bne v0,zero,0x00437800
+004377f0  _nop
+004377f4  clear v0
+004377f8  b 0x004378d0
+004377fc  _nop
+00437800  lw v0,0x28(s8)
+00437804  nop
+00437808  move a0,v0
+0043780c  li a1,0x14
+00437810  lw v0,-0x5a68(gp)
+00437814  nop
+00437818  move t9,v0
+0043781c  jalr t9
+00437820  _nop
+00437824  lw gp,0x10(s8)
+00437828  move v1,v0
+0043782c  lw v0,0x18(s8)
+00437830  nop
+00437834  sw v1,0x28(v0)
+00437838  lw v0,0x18(s8)
+0043783c  nop
+00437840  lw v0,0x28(v0)
+00437844  nop
+00437848  bne v0,zero,0x00437878
+0043784c  _nop
+00437850  lw a0,0x18(s8)
+00437854  lw v0,-0x7aa4(gp)
+00437858  nop
+0043785c  move t9,v0
+00437860  jalr t9
+00437864  _nop
+00437868  lw gp,0x10(s8)
+0043786c  clear v0
+00437870  b 0x004378d0
+00437874  _nop
+00437878  lw v0,-0x685c(gp)
+0043787c  nop
+00437880  move t9,v0
+00437884  jalr t9
+00437888  _nop
+0043788c  lw gp,0x10(s8)
+00437890  move v1,v0
+00437894  lw v0,0x18(s8)
+00437898  nop
+0043789c  sw v1,0x4(v0)
+004378a0  lw v0,0x18(s8)
+004378a4  lw v1,0x28(s8)
+004378a8  nop
+004378ac  sw v1,0x8(v0)
+004378b0  lw a0,0x18(s8)
+004378b4  lw v0,-0x5814(gp)
+004378b8  nop
+004378bc  move t9,v0
+004378c0  jalr t9
+004378c4  _nop
+004378c8  lw gp,0x10(s8)
+004378cc  lw v0,0x18(s8)
+004378d0  move sp,s8
+004378d4  lw ra,0x24(sp)
+004378d8  lw s8,0x20(sp)
+004378dc  addiu sp,sp,0x28
+004378e0  jr ra
+004378e4  _nop

@@ -1,0 +1,1453 @@
+function	from	string_address	string
+main	00401444	00417870	Initialize AP MIB failed !
+FUN_004015b8	0040160c	0041788c	/proc/net/route
+FUN_004015b8	00401624	0041788c	/proc/net/route
+FUN_004015b8	0040162c	0041789c	Open %s file error. 
+FUN_004015b8	0040174c	004178b4	%16s %128s %128s %X %d %d %d %128s %d %d %d
+FUN_004017a4	0040187c	0041789c	Open %s file error. 
+FUN_00401978	004019a4	004178e4	/var/run/webs.pid
+FUN_00401978	00401a34	004178f8	reinit boa 
+FUN_00401978	00401a4c	00417904	killall -9 boa > /dev/null
+FUN_00401978	00401a64	00417920	rm -rf /var/run/webs.pid
+find_pid_by_name	00401b14	00417940	Cannot open /proc
+find_pid_by_name	00401b60	00417958	/proc/%s/status
+find_pid_by_name	00401bd8	00417968	%*s %s
+Create_script	00401d2c	00417970	Create %s file error! 
+Create_script	00401d50	00417988	#!/bin/sh 
+Create_script	00401d98	00417994	echo "Enter Deconfig Script From BOA Since DONOT Get IP address for  %s" 
+write_line_to_file	00401e88	004179e0	Create %s error! 
+if_readlist_proc	00401f60	004179f4	/proc/net/dev
+getPid_fromFile	004025d0	00417a04	can not open:%s 
+DoCmd	00402734	00417a20	open %s
+DoCmd	004027b4	00417a30	/sbin:/bin:/usr/sbin:/usr/bin
+killDaemonByPidFile	00402944	00417a50	%s : input file name is null! 
+killDaemonByPidFile	0040294c	00417a80	killDaemonByPidFile
+FUN_00402c4c	00402d74	00417ab0	Un-support wan type for init
+FUN_00402dfc	00402e2c	00417ad4	wlan0
+FUN_00402dfc	00402eb4	00417b04	-daemon
+FUN_00402dfc	00402ed0	00417adc	mini_upnpd
+FUN_00402dfc	00402edc	00417af0	/tmp/wscd_config
+FUN_00402dfc	00402efc	00417b04	-daemon
+FUN_00402dfc	00402f1c	00417adc	mini_upnpd
+FUN_00402dfc	00402f24	00417b14	/tmp/igd_config
+FUN_00402dfc	00402f50	00417b14	/tmp/igd_config
+FUN_00402dfc	00402f5c	00417b04	-daemon
+FUN_00402dfc	00402f7c	00417adc	mini_upnpd
+FUN_00402dfc	00402f84	00417af0	/tmp/wscd_config
+FUN_004031dc	00403220	004184a0	/etc/udhcpc/
+FUN_004031dc	00403278	00417b28	Cannot open /etc/udhcpc
+FUN_004031dc	004032dc	004184a0	/etc/udhcpc/
+FUN_004031dc	00403348	00417b40	udhcpc-
+FUN_0040338c	004033b8	00417b48	/proc/hw_nat
+FUN_0040338c	004033e0	00417b48	/proc/hw_nat
+FUN_0040338c	004033f4	00417b48	/proc/hw_nat
+FUN_0040338c	00403408	00417b48	/proc/hw_nat
+FUN_0040338c	00403420	00417b48	/proc/hw_nat
+FUN_0040338c	00403434	00417b48	/proc/hw_nat
+FUN_0040338c	00403450	00417b64	/proc/sw_nat
+FUN_0040338c	00403480	00417b64	/proc/sw_nat
+FUN_0040338c	00403494	00417b64	/proc/sw_nat
+FUN_0040338c	00403520	00417b64	/proc/sw_nat
+FUN_0040338c	00403558	00417b74	killall
+FUN_0040338c	00403560	00417b80	miniigd
+FUN_0040338c	00403584	00417b88	/var/run/miniupnpd.pid
+FUN_0040338c	004035a0	00417b88	/var/run/miniupnpd.pid
+FUN_0040338c	004035c4	00417b74	killall
+FUN_0040338c	004035cc	00417ba0	routed
+FUN_0040338c	004035f0	00417ba8	/var/run/routed.pid
+FUN_0040338c	0040360c	00417ba8	/var/run/routed.pid
+FUN_0040338c	00403638	00417bc4	/etc/ppp/first
+FUN_0040338c	0040365c	00417bd4	/etc/ppp/firstpptp
+FUN_0040338c	00403680	00417be8	/etc/ppp/firstl2tp
+FUN_0040338c	004036a4	00417bfc	/etc/ppp/firstdemand
+FUN_0040338c	004036c8	00417b74	killall
+FUN_0040338c	004036cc	00417c14	timelycheck
+FUN_0040338c	004036e8	00417b74	killall
+FUN_0040338c	00403724	00417b74	killall
+FUN_0040338c	0040372c	00417c24	ntp_inet
+FUN_0040338c	00403748	00417b74	killall
+FUN_0040338c	00403750	00417c30	ddns.sh
+FUN_0040338c	0040376c	00417b74	killall
+FUN_0040338c	00403774	00417c38	syslogd
+FUN_0040338c	00403790	00417b74	killall
+FUN_0040338c	00403798	00417c40	klogd
+FUN_0040338c	004037b4	00417b74	killall
+FUN_0040338c	004037bc	00417adc	mini_upnpd
+FUN_0040338c	004037d8	00417b74	killall
+FUN_0040338c	004037e0	00417c48	reload
+FUN_0040338c	00403808	00417c50	/var/run/l2tpd.pid
+FUN_0040338c	00403824	00417c50	/var/run/l2tpd.pid
+FUN_0040338c	00403888	00417c50	/var/run/l2tpd.pid
+FUN_0040338c	004038a4	00417c64	/etc/udhcpc/udhcpc-%s.pid
+FUN_0040338c	004038fc	00417c80	/var/run/dnrd.pid
+FUN_0040338c	00403918	00417c80	/var/run/dnrd.pid
+FUN_0040338c	00403988	00417c80	/var/run/dnrd.pid
+FUN_0040338c	004039a0	00417c94	/var/run/igmp_pid
+FUN_0040338c	004039bc	00417c94	/var/run/igmp_pid
+FUN_0040338c	00403a2c	00417c94	/var/run/igmp_pid
+FUN_0040338c	00403a48	00417ca8	/proc/br_mCastFastFwd
+FUN_0040338c	00403a70	00417cc4	/var/run/lld2d-br0.pid
+FUN_0040338c	00403a8c	00417cc4	/var/run/lld2d-br0.pid
+FUN_0040338c	00403afc	00417cc4	/var/run/lld2d-br0.pid
+FUN_0040338c	00403b14	00417cdc	/var/run/udhcpd.pid
+FUN_0040338c	00403b30	00417cdc	/var/run/udhcpd.pid
+FUN_0040338c	00403bd8	00417cdc	/var/run/udhcpd.pid
+FUN_00403bf4	00403c90	00417cf4	/var/wlsch.conf%d
+FUN_00403bf4	00403d70	00417d08	%d,%d,%d,%d 
+FUN_00403bf4	00403da4	00417cf4	/var/wlsch.conf%d
+FUN_00403bf4	00403e18	00417d18	reload -k %s &
+FUN_00403bf4	00403e20	00417d28	/var/wlsch.conf
+FUN_00403bf4	00403e4c	00417d18	reload -k %s &
+FUN_00403bf4	00403e54	00417d28	/var/wlsch.conf
+FUN_00403ec0	00403f68	00417d38	%s %s %s %s
+FUN_00403ec0	00403f8c	00417d44	%s %s %s
+FUN_00403ec0	00403fd8	00417d44	%s %s %s
+FUN_00403ec0	0040406c	00417d50	/proc/gpio
+FUN_00403ec0	00404098	00417d60	start
+FUN_00403ec0	004040b8	00417d68	rm -f  /var/system/start_init 2> /dev/null
+FUN_004040d0	004041e0	00417d94	rm /var/log/log_split >/dev/null 2>&1
+FUN_004040d0	004041fc	00417dbc	echo %d > /var/log/log_split
+FUN_004040d0	00404268	00417ddc	syslog will use %dKB for log(%d rotate, 1 original, %dKB for each) 
+FUN_004040d0	004042d0	00417c38	syslogd
+FUN_004040d0	004042f8	00417d94	rm /var/log/log_split >/dev/null 2>&1
+FUN_004040d0	00404304	00417dbc	echo %d > /var/log/log_split
+FUN_004040d0	00404374	00417ddc	syslog will use %dKB for log(%d rotate, 1 original, %dKB for each) 
+FUN_004040d0	004043c8	00417c38	syslogd
+FUN_004040d0	004043f0	00417c40	klogd
+FUN_0040441c	00404494	00417e30	MIB Version update
+FUN_0040441c	004044d8	00417e44	flash
+FUN_0040441c	004044f4	0042a9d8	USER_DEF_WACNAME
+FUN_0040441c	004044fc	0042a958	MFI_WAC_DEVICE_NAME
+FUN_0040441c	00404550	00417e44	flash
+FUN_0040441c	00404574	0042a034	MIB_VER
+FUN_004045bc	00404654	00417e50	wlan_app
+FUN_004045bc	00404680	00417e5c	ifconfig
+FUN_004045bc	004046a8	00417e78	/var/system/set_time
+FUN_004045bc	004046c4	00417e44	flash
+FUN_004045bc	004046c8	00417e90	settime
+FUN_004045bc	004046ec	00417e98	/var/reinit
+FUN_004045bc	00404718	00417e98	/var/reinit
+FUN_004045bc	00404740	00417ea4	echo 1 > /var/system/start_init
+FUN_004045bc	00404758	00417ec4	/var/tmp_wan_check
+FUN_004045bc	00404774	00417ec4	/var/tmp_wan_check
+FUN_004045bc	0040478c	00417ed8	/var/tmp_wan_dhcp_info
+FUN_004045bc	004047a8	00417ed8	/var/tmp_wan_dhcp_info
+FUN_004045bc	004047c0	00417ef0	/var/ppp/manual_connect_now
+FUN_004045bc	004047dc	00417ef0	/var/ppp/manual_connect_now
+FUN_004045bc	004047f4	00417f0c	Init Start...
+FUN_004045bc	0040485c	00417f1c	hostname '%s'
+FUN_004045bc	00404938	00417f2c	/var/sys_op
+FUN_004045bc	00404960	00417f2c	/var/sys_op
+FUN_004045bc	00404984	00417f2c	/var/sys_op
+FUN_004045bc	00404b18	00417f44	/proc/br_igmpProxy
+FUN_004045bc	00404b74	00417d44	%s %s %s
+FUN_004045bc	00404c2c	00417f70	 wlan%d
+FUN_004045bc	00404d6c	00417f8c	bridge
+FUN_004045bc	00404da8	00417e50	wlan_app
+FUN_004045bc	00404e28	00417b48	/proc/hw_nat
+FUN_004045bc	00404e44	00417b48	/proc/hw_nat
+FUN_004045bc	00404e64	00417b48	/proc/hw_nat
+FUN_004045bc	00404e78	00417b48	/proc/hw_nat
+FUN_004045bc	00404e90	00417b48	/proc/hw_nat
+FUN_004045bc	00404ea4	00417b48	/proc/hw_nat
+FUN_004045bc	00404ec0	00417b64	/proc/sw_nat
+FUN_004045bc	00404ef8	00417b64	/proc/sw_nat
+FUN_004045bc	00404f0c	00417b64	/proc/sw_nat
+FUN_004045bc	00404f98	00417b64	/proc/sw_nat
+FUN_004045bc	00405044	00417ad4	wlan0
+FUN_004045bc	004050ec	00417f94	wlan0-vxd
+FUN_004045bc	00405138	00417f94	wlan0-vxd
+FUN_004045bc	004051f4	00417fa4	ether
+FUN_004045bc	00405210	00417e5c	ifconfig
+FUN_004045bc	004052ec	00417fa4	ether
+FUN_004045bc	00405308	00417e5c	ifconfig
+FUN_004045bc	0040542c	00417fa4	ether
+FUN_004045bc	00405448	00417e5c	ifconfig
+FUN_004045bc	00405488	00417fa4	ether
+FUN_004045bc	004054ac	00417e5c	ifconfig
+FUN_004045bc	004054b4	00417ad4	wlan0
+FUN_004045bc	004054c4	00417fa4	ether
+FUN_004045bc	004054e8	00417e5c	ifconfig
+FUN_004045bc	004054ec	00417fac	wlan1
+FUN_004045bc	004055c8	00417e5c	ifconfig
+FUN_004045bc	004055f4	00417fb4	iwpriv
+FUN_004045bc	00405600	00417fbc	radio_off
+FUN_004045bc	00405668	00417fc8	%s-vxd
+FUN_004045bc	004056a0	00417e5c	ifconfig
+FUN_004045bc	004056a4	00417fd0	0.0.0.0
+FUN_004045bc	004056c0	00417e5c	ifconfig
+FUN_004045bc	004056e0	00417e5c	ifconfig
+FUN_004045bc	00405710	00417e44	flash
+FUN_004045bc	00405718	00417fd8	set_mib
+FUN_004045bc	0040573c	00417fe0	[%s %d]init %s failed! 
+FUN_004045bc	00405740	004185b0	setinit
+FUN_004045bc	00405794	00417ff8	mc2u_disable=1
+FUN_004045bc	00405794	00418008	mc2u_disable=0
+FUN_004045bc	0040579c	00417fb4	iwpriv
+FUN_004045bc	004057a4	00417fd8	set_mib
+FUN_004045bc	00405808	00418018	/proc/br_wlanblock
+FUN_004045bc	00405828	00418018	/proc/br_wlanblock
+FUN_004045bc	004058d8	00417e5c	ifconfig
+FUN_004045bc	004058f4	00417e44	flash
+FUN_004045bc	004058f8	00417fd8	set_mib
+FUN_004045bc	00405934	00417e5c	ifconfig
+FUN_004045bc	004059c4	00417e5c	ifconfig
+FUN_004045bc	004059c8	00417e5c	ifconfig
+FUN_004045bc	004059f0	00417e44	flash
+FUN_004045bc	004059f4	00417fd8	set_mib
+FUN_004045bc	00405a60	00417e5c	ifconfig
+FUN_004045bc	00405a8c	00417e44	flash
+FUN_004045bc	00405a90	00417fd8	set_mib
+FUN_004045bc	00405c20	0041802c	netmask
+FUN_004045bc	00405c3c	00417e5c	ifconfig
+FUN_004045bc	00405c70	00418034	route
+FUN_004045bc	00405ccc	00418034	route
+FUN_004045bc	00405cf8	00417f70	 wlan%d
+FUN_004045bc	00405d98	00418050	iptables
+FUN_004045bc	00405dc8	00418050	iptables
+FUN_004045bc	00405e04	00418050	iptables
+FUN_004045bc	00405e0c	0041806c	INPUT
+FUN_004045bc	00405e14	00418078	ACCEPT
+FUN_004045bc	00405e38	00418080	/var/eth1_ip
+FUN_004045bc	00405e64	00418090	/var/ntp_run
+FUN_004045bc	00405e98	00417e5c	ifconfig
+FUN_004045bc	00405eb8	00417e5c	ifconfig
+FUN_004045bc	00405f44	004180a4	keep_rsnie=1
+FUN_004045bc	00405f5c	00417fb4	iwpriv
+FUN_004045bc	00405f64	00417fd8	set_mib
+FUN_004045bc	00405f8c	004180b4	/proc/fast_nat
+FUN_004045bc	00405fb8	004180c4	/proc/fast_pptp
+FUN_004045bc	00406000	004180d4	/proc/pptp_conn_ck
+FUN_004045bc	00406014	004180d4	/proc/pptp_conn_ck
+FUN_004045bc	00406018	004180c4	/proc/fast_pptp
+FUN_004045bc	004060e4	004180e8	Invalid wan type:wan_dhcp_mode=%d 
+FUN_004045bc	00406128	00417e5c	ifconfig
+FUN_004045bc	00406154	00418118	renice -20 2
+FUN_004045bc	0040616c	00418128	renice -20 3
+FUN_004045bc	00406194	004178e4	/var/run/webs.pid
+FUN_004045bc	004061b0	004178e4	/var/run/webs.pid
+FUN_004045bc	004061f4	00418138	renice
+FUN_004045bc	004062bc	00418144	ifconfig br0 0.0.0.0
+FUN_004045bc	004062f4	0041815c	/bin/lld2d
+FUN_004045bc	00406310	00418168	lld2d
+FUN_004045bc	00406338	00418170	/bin/snmpd
+FUN_004045bc	00406354	0041817c	snmpd.sh
+FUN_004045bc	00406358	00418188	restart
+FUN_004045bc	0040637c	00418190	/bin/nmsd
+FUN_004045bc	00406448	004181a4	/proc/custom_Passthru
+FUN_004045bc	00406478	004181bc	brctl
+FUN_004045bc	0040647c	004181c4	delif
+FUN_004045bc	00406484	004181cc	peth0
+FUN_004045bc	004064a4	00417e5c	ifconfig
+FUN_004045bc	004064a8	004181cc	peth0
+FUN_004045bc	004064b8	004181bc	brctl
+FUN_004045bc	004064bc	004181d4	addif
+FUN_004045bc	004064c4	004181cc	peth0
+FUN_004045bc	004064e4	00417e5c	ifconfig
+FUN_004045bc	004064e8	004181cc	peth0
+FUN_004045bc	00406590	004181dc	/proc/custom_Passthru_wlan
+FUN_004045bc	004065bc	004181dc	/proc/custom_Passthru_wlan
+FUN_004045bc	00406604	004181bc	brctl
+FUN_004045bc	00406608	004181c4	delif
+FUN_004045bc	00406610	004181f8	pwlan0
+FUN_004045bc	00406630	00417e5c	ifconfig
+FUN_004045bc	00406634	004181f8	pwlan0
+FUN_004045bc	00406644	004181bc	brctl
+FUN_004045bc	00406648	004181d4	addif
+FUN_004045bc	00406650	004181f8	pwlan0
+FUN_004045bc	00406670	00417e5c	ifconfig
+FUN_004045bc	00406674	004181f8	pwlan0
+FUN_004045bc	0040669c	00418200	/proc/br_igmpVersion
+FUN_004045bc	004066c0	00418218	/proc/br_igmpsnoop
+FUN_004045bc	004066dc	0041822c	/proc/br_igmpquery
+FUN_004045bc	004066fc	00418240	/proc/br_mldsnoop
+FUN_004045bc	0040671c	00418254	/proc/br_mldquery
+FUN_004045bc	00406778	00418268	echo "/sbin/hotplug" > /proc/sys/kernel/hotplug
+FUN_004045bc	00406790	00418298	mount -t sysfs none /sys           >/dev/null 2>&1
+FUN_004045bc	004067a8	004182cc	mount -t usbfs none /proc/bus/usb  >/dev/null 2>&1
+FUN_004045bc	004067c0	00418300	mount -t tmpfs none /dev           >/dev/null 2>&1
+FUN_004045bc	004067d8	00418334	mdev -s                            >/dev/null 2>&1
+FUN_004045bc	004067f0	00418368	echo "remove" > /var/usb3g.stat
+FUN_004045bc	00406808	00418388	mnet -d &
+FUN_004045bc	00406820	00417d68	rm -f  /var/system/start_init 2> /dev/null
+FUN_004045bc	00406838	00418394	/var/system/mdnsd_started
+FUN_004045bc	00406854	004183b0	mdnsd
+FUN_004045bc	0040686c	004183b8	echo 1 > /var/system/mdnsd_started
+FUN_004045bc	00406884	004183dc	fwd &
+FUN_004045bc	004068a0	004183e4	/proc/sys/net/ipv4/conf/eth1/arp_ignore
+FUN_004045bc	004068d4	0041840c	/proc/sys/net/ipv4/rt_cache_rebuild_count
+FUN_004045bc	004068ec	00418440	timelycheck &
+FUN_004045bc	00406904	00418450	/var/run/rtk_eventd.pid
+FUN_004045bc	00406920	00418468	killall rtk_eventd > /dev/null 2>&1
+FUN_004045bc	00406938	0041848c	rtk_eventd
+FUN_00406970	00406c10	0041802c	netmask
+FUN_00406970	00406c20	00417e5c	ifconfig
+FUN_00406970	00406c80	00418034	route
+FUN_00406970	00406cd0	004185c0	nameserver %s 
+FUN_00406d44	00406d98	004185d0	/usr/share/udhcpc/%s.sh
+FUN_00406d44	00406db8	004185e8	/usr/share/udhcpc/%s.deconfig
+FUN_00406d44	00406dd8	00417c64	/etc/udhcpc/udhcpc-%s.pid
+FUN_00406d44	00406ef8	00418608	udhcpc -i %s -p %s -s %s &
+set_lan_dhcpd	00407038	00418624	interface %s 
+set_lan_dhcpd	00407054	00418634	/var/udhcpd.conf
+set_lan_dhcpd	004070a0	00418648	start %s 
+set_lan_dhcpd	004070bc	00418634	/var/udhcpd.conf
+set_lan_dhcpd	00407108	00418654	end %s 
+set_lan_dhcpd	00407124	00418634	/var/udhcpd.conf
+set_lan_dhcpd	00407170	0041865c	opt subnet %s 
+set_lan_dhcpd	00407188	00418634	/var/udhcpd.conf
+set_lan_dhcpd	004071fc	0041866c	set MIB_DHCP_LEASE_TIME error
+set_lan_dhcpd	00407234	0041868c	opt lease %ld 
+set_lan_dhcpd	00407254	00418634	/var/udhcpd.conf
+set_lan_dhcpd	004072f0	0041869c	opt router %s 
+set_lan_dhcpd	00407328	0041869c	opt router %s 
+set_lan_dhcpd	00407344	00418634	/var/udhcpd.conf
+set_lan_dhcpd	0040738c	004186ac	opt dns %s 
+set_lan_dhcpd	004073a0	00418634	/var/udhcpd.conf
+set_lan_dhcpd	00407468	004186ac	opt dns %s 
+set_lan_dhcpd	00407484	00418634	/var/udhcpd.conf
+set_lan_dhcpd	004074e4	004186ac	opt dns %s 
+set_lan_dhcpd	00407500	00418634	/var/udhcpd.conf
+set_lan_dhcpd	00407560	004186ac	opt dns %s 
+set_lan_dhcpd	0040757c	00418634	/var/udhcpd.conf
+set_lan_dhcpd	00407688	004186ac	opt dns %s 
+set_lan_dhcpd	004076a4	00418634	/var/udhcpd.conf
+set_lan_dhcpd	00407708	004186b8	opt domain %s 
+set_lan_dhcpd	00407720	00418634	/var/udhcpd.conf
+set_lan_dhcpd	00407808	004186c8	static_lease %02x%02x%02x%02x%02x%02x %s 
+set_lan_dhcpd	00407820	00418634	/var/udhcpd.conf
+set_lan_dhcpd	004078f0	0041802c	netmask
+set_lan_dhcpd	00407910	00417e5c	ifconfig
+set_lan_dhcpd	0040792c	004186f4	udhcpd %s 
+set_lan_dhcpd	00407930	00418634	/var/udhcpd.conf
+SetWlan_idx	004079d0	00418700	invalid wlan interface index number!
+SetWlan_idx	00407a58	00418728	invalid virtual wlan interface index number!
+setbridge	00407b6c	00418758	Init bridge interface...
+setbridge	00407c30	00418774	/var/system/br_iface
+setbridge	00407c60	00418774	/var/system/br_iface
+setbridge	00407d60	00418790	wlan0-va0
+setbridge	00407d80	0041879c	wlan0-va2
+setbridge	00407da0	004181bc	brctl
+setbridge	00407da4	004181c4	delif
+setbridge	00407dc0	00417ad4	wlan0
+setbridge	00407de0	004187ac	wlan0-va1
+setbridge	00407e00	00417e5c	ifconfig
+setbridge	00407e20	00417e5c	ifconfig
+setbridge	00407e6c	004181bc	brctl
+setbridge	00407e70	004181c4	delif
+setbridge	00407f74	00417e5c	ifconfig
+setbridge	00407fb4	004181bc	brctl
+setbridge	00407fb8	004181c4	delif
+setbridge	00407ff8	004187b8	/bin/pathsel
+setbridge	0040800c	00417ad4	wlan0
+setbridge	00408074	004187c8	wlan-msh
+setbridge	00408078	00417e5c	ifconfig
+setbridge	004080a4	004187c8	wlan-msh
+setbridge	004080ac	004181bc	brctl
+setbridge	004080b0	004181c4	delif
+setbridge	00408114	004181bc	brctl
+setbridge	00408118	004181c4	delif
+setbridge	0040813c	00417ad4	wlan0
+setbridge	00408144	004181bc	brctl
+setbridge	00408148	004181c4	delif
+setbridge	0040816c	004187d4	/tmp/bridge_init
+setbridge	00408190	004187e8	delbr
+setbridge	00408198	004181bc	brctl
+setbridge	004081b8	004181bc	brctl
+setbridge	004081f4	004187e8	delbr
+setbridge	004081fc	004181bc	brctl
+setbridge	0040821c	004181bc	brctl
+setbridge	00408280	004187f8	setfd
+setbridge	0040828c	004181bc	brctl
+setbridge	004082b8	004187f8	setfd
+setbridge	004082c8	004181bc	brctl
+setbridge	004082e4	004181bc	brctl
+setbridge	00408334	00418804	/proc/rtk_vlan_support
+setbridge	00408348	00418804	/proc/rtk_vlan_support
+setbridge	004083c4	0041881c	/proc/%s/mib_vlan
+setbridge	0040850c	00418830	echo "1 %d %d %d %d %d %d" > %s
+setbridge	00408530	00418850	echo "0 %d %d %d %d %d %d" > %s
+setbridge	0040857c	00418774	/var/system/br_iface
+setbridge	00408598	00418774	/var/system/br_iface
+setbridge	004086b8	004181bc	brctl
+setbridge	004086bc	004181d4	addif
+setbridge	004086d8	00417e5c	ifconfig
+setbridge	004086f0	00417fd0	0.0.0.0
+setbridge	00408a48	00418790	wlan0-va0
+setbridge	00408a68	0041879c	wlan0-va2
+setbridge	00408a90	004181bc	brctl
+setbridge	00408a98	004181d4	addif
+setbridge	00408ab4	004181bc	brctl
+setbridge	00408ab8	004181d4	addif
+setbridge	00408adc	00417e5c	ifconfig
+setbridge	00408ae8	00417fd0	0.0.0.0
+setbridge	00408b4c	00417e5c	ifconfig
+setbridge	00408c04	004181bc	brctl
+setbridge	00408c0c	004181d4	addif
+setbridge	00408c2c	00417e5c	ifconfig
+setbridge	00408c44	00417fd0	0.0.0.0
+setbridge	00408cac	00418878	%s-wds%d
+setbridge	00408ce8	00418774	/var/system/br_iface
+setbridge	00408dbc	00417e5c	ifconfig
+setbridge	00408dc4	00417fa4	ether
+setbridge	00408de4	004187d4	/tmp/bridge_init
+setbridge	00408df0	00417e5c	ifconfig
+setbridge	00408e00	00417fd0	0.0.0.0
+setbridge	00408e20	004187d4	/tmp/bridge_init
+setbridge	00408f4c	00417e5c	ifconfig
+setbridge	00408f54	0041802c	netmask
+setbridge	00408fe0	00418034	route
+setbridge	00408ff0	0041802c	netmask
+setbridge	00409010	00418034	route
+setbridge	00409020	0041802c	netmask
+setbridge	00409040	00417fd0	0.0.0.0
+setbridge	00409068	00418034	route
+setbridge	004090b8	00418034	route
+setbridge	004090e8	00418884	wait for bridge initialization...
+setbridge	00409154	00417e5c	ifconfig
+FUN_0040919c	00409258	00418624	interface %s 
+FUN_0040919c	00409274	00418634	/var/udhcpd.conf
+FUN_0040919c	004092c0	00418648	start %s 
+FUN_0040919c	004092dc	00418634	/var/udhcpd.conf
+FUN_0040919c	00409328	00418654	end %s 
+FUN_0040919c	00409344	00418634	/var/udhcpd.conf
+FUN_0040919c	00409390	0041865c	opt subnet %s 
+FUN_0040919c	004093a8	00418634	/var/udhcpd.conf
+FUN_0040919c	004093fc	004188a8	===%s(%d), read MIB_DHCP_LEASE_TIME is %d 
+FUN_0040919c	00409400	004188f0	start_lan_dhcpd
+FUN_0040919c	0040943c	0041866c	set MIB_DHCP_LEASE_TIME error
+FUN_0040919c	00409474	0041868c	opt lease %ld 
+FUN_0040919c	0040949c	00418634	/var/udhcpd.conf
+FUN_0040919c	004094e8	0041869c	opt router %s 
+FUN_0040919c	00409504	00418634	/var/udhcpd.conf
+FUN_0040919c	00409524	004186ac	opt dns %s 
+FUN_0040919c	0040953c	00418634	/var/udhcpd.conf
+FUN_0040919c	004095a0	004186b8	opt domain %s 
+FUN_0040919c	004095b0	00418634	/var/udhcpd.conf
+FUN_0040919c	00409684	0041802c	netmask
+FUN_0040919c	00409688	00417e5c	ifconfig
+FUN_0040919c	004096a8	004188d4	udhcpd
+FUN_0040919c	004096ac	00418634	/var/udhcpd.conf
+setWlan_Applications	0040998c	00418900	/var/run/iwcontrol.pid
+setWlan_Applications	004099a8	00418900	/var/run/iwcontrol.pid
+setWlan_Applications	00409a1c	00418900	/var/run/iwcontrol.pid
+setWlan_Applications	00409ad8	00418918	/var/run/auth-%s.pid
+setWlan_Applications	00409b84	00418930	/var/run/auth-%s-vxd.pid
+setWlan_Applications	00409c50	0041894c	/var/run/wscd-%s.pid
+setWlan_Applications	00409d14	00417d50	/proc/gpio
+setWlan_Applications	00409d50	00418964	/var/run/wscd-wlan0.pid
+setWlan_Applications	00409d68	00418964	/var/run/wscd-wlan0.pid
+setWlan_Applications	00409dcc	00418964	/var/run/wscd-wlan0.pid
+setWlan_Applications	00409dd4	0041897c	/var/run/wscd-wlan1.pid
+setWlan_Applications	00409dec	0041897c	/var/run/wscd-wlan1.pid
+setWlan_Applications	00409e50	0041897c	/var/run/wscd-wlan1.pid
+setWlan_Applications	00409e58	00418994	/var/run/wscd-wlan0-wlan1.pid
+setWlan_Applications	00409e6c	00418994	/var/run/wscd-wlan0-wlan1.pid
+setWlan_Applications	00409ec0	00418994	/var/run/wscd-wlan0-wlan1.pid
+setWlan_Applications	00409f3c	004189bc	/var/run/iapp.pid
+setWlan_Applications	00409f58	004189bc	/var/run/iapp.pid
+setWlan_Applications	00409fcc	004189bc	/var/run/iapp.pid
+setWlan_Applications	00409fe4	004189d0	rm -f /var/*.fifo
+setWlan_Applications	0040a01c	004189e4	Init Wlan application...
+setWlan_Applications	0040a034	00417ad4	wlan0
+setWlan_Applications	0040a328	00418a00	/var/wpa-wds-%s.conf
+setWlan_Applications	0040a35c	00417e44	flash
+setWlan_Applications	0040a3b8	00418918	/var/run/auth-%s.pid
+setWlan_Applications	0040a4b0	00418a28	/var/wpa-%s.conf
+setWlan_Applications	0040a4e4	00417e44	flash
+setWlan_Applications	0040a530	00418a3c	client-infra
+setWlan_Applications	0040a53c	00418a4c	client-adhoc
+setWlan_Applications	0040a8f0	00417ad4	wlan0
+setWlan_Applications	0040a914	00417fac	wlan1
+setWlan_Applications	0040aa20	00418a5c	iapp %s %s
+setWlan_Applications	0040aa60	00418a68	/var/restart_iapp
+setWlan_Applications	0040aa7c	00418a68	/var/restart_iapp
+setWlan_Applications	0040aa98	00418a68	/var/restart_iapp
+setWlan_Applications	0040aac0	00418a7c	/bin/wscd
+setWlan_Applications	0040ab9c	00417ad4	wlan0
+setWlan_Applications	0040abb0	00417fac	wlan1
+setWlan_Applications	0040acac	00417ad4	wlan0
+setWlan_Applications	0040ad48	00418a88	/var/wps/simplecfgservice.xml
+setWlan_Applications	0040ad64	00418aa8	/var/wps
+setWlan_Applications	0040ad84	00418aa8	/var/wps
+setWlan_Applications	0040ada8	00418ab8	mkdir
+setWlan_Applications	0040adac	00418aa8	/var/wps
+setWlan_Applications	0040add0	00418ac0	cp /etc/simplecfg*.xml /var/wps
+setWlan_Applications	0040adec	00418ae0	-mode
+setWlan_Applications	0040ae08	00418ae8	-start
+setWlan_Applications	0040ae4c	00418af0	239.255.255.250
+setWlan_Applications	0040ae50	0041802c	netmask
+setWlan_Applications	0040ae54	00418b00	255.255.255.255
+setWlan_Applications	0040ae5c	00418034	route
+setWlan_Applications	0040ae64	00418b00	255.255.255.255
+setWlan_Applications	0040ae68	0041802c	netmask
+setWlan_Applications	0040ae6c	00418af0	239.255.255.250
+setWlan_Applications	0040ae94	00418af0	239.255.255.250
+setWlan_Applications	0040ae98	0041802c	netmask
+setWlan_Applications	0040ae9c	00418b00	255.255.255.255
+setWlan_Applications	0040aea8	00418034	route
+setWlan_Applications	0040aedc	00418b10	/var/wsc-%s.conf
+setWlan_Applications	0040aef4	00418b34	/etc/wscd.conf
+setWlan_Applications	0040aef8	00417e44	flash
+setWlan_Applications	0040aefc	00418b24	upd-wsc-conf
+setWlan_Applications	0040af90	00418b50	/var/wscd-%s.fifo
+setWlan_Applications	0040afbc	00418b64	/var/wps_start_pbc
+setWlan_Applications	0040afe0	00418b78	-start_pbc
+setWlan_Applications	0040afe8	00418b64	/var/wps_start_pbc
+setWlan_Applications	0040b000	00418b84	/var/wps_start_pin
+setWlan_Applications	0040b018	00418ae8	-start
+setWlan_Applications	0040b020	00418b84	/var/wps_start_pin
+setWlan_Applications	0040b038	00418b98	/var/wps_local_pin
+setWlan_Applications	0040b04c	00418b98	/var/wps_local_pin
+setWlan_Applications	0040b0d8	00418bac	-local_pin
+setWlan_Applications	0040b0e8	00418b98	/var/wps_local_pin
+setWlan_Applications	0040b100	00418bb8	/var/wps_peer_pin
+setWlan_Applications	0040b118	00418bb8	/var/wps_peer_pin
+setWlan_Applications	0040b19c	00418bcc	-peer_pin
+setWlan_Applications	0040b1a8	00418bcc	-peer_pin
+setWlan_Applications	0040b1ac	00418bb8	/var/wps_peer_pin
+setWlan_Applications	0040b1dc	00417b04	-daemon
+setWlan_Applications	0040b1e4	00417b04	-daemon
+setWlan_Applications	0040b27c	00418bd8	iwcontrol %s %s
+setWlan_Applications	0040b298	00418be8	iwcontrol %s
+FUN_0040b310	0040b440	00418bf8	%d:%d
+FUN_0040b310	0040b49c	0042af6c	--dport
+FUN_0040b310	0040b4a0	00418c00	80:80
+FUN_0040b310	0040b4c0	0042ae70	iptables
+FUN_0040b310	0040b4c8	0042ae88	INPUT
+FUN_0040b310	0040b52c	0042ae70	iptables
+FUN_0040b310	0040b534	0042aea0	PREROUTING
+FUN_0040b310	0040b560	0042af6c	--dport
+FUN_0040b310	0040b598	0042aeb8	ACCEPT
+FUN_0040b310	0040b5c4	0042af6c	--dport
+FUN_0040b310	0040b5d0	0042ae70	iptables
+FUN_0040b310	0040b5d8	0042ae98	FORWARD
+FUN_0040b310	0040b634	0042ae70	iptables
+FUN_0040b310	0040b63c	0042aea0	PREROUTING
+FUN_0040b310	0040b670	0042af6c	--dport
+FUN_0040b310	0040b6bc	0042aeb8	ACCEPT
+FUN_0040b310	0040b6d0	0042af6c	--dport
+FUN_0040b310	0040b6dc	0042ae70	iptables
+FUN_0040b310	0040b6e4	0042ae98	FORWARD
+FUN_0040b310	0040b750	0042ae70	iptables
+FUN_0040b310	0040b758	0042aea0	PREROUTING
+FUN_0040b310	0040b788	0042af6c	--dport
+FUN_0040b310	0040b7d4	0042ae70	iptables
+FUN_0040b310	0040b7dc	0042ae98	FORWARD
+FUN_0040b310	0040b7e0	0042aeb8	ACCEPT
+FUN_0040b310	0040b7e4	0042aeb8	ACCEPT
+FUN_0040b310	0040b804	0042af6c	--dport
+FUN_0040b310	0040b850	0042aea0	PREROUTING
+FUN_0040b310	0040b854	0042ae70	iptables
+FUN_0040b310	0040b878	0042af6c	--dport
+FUN_0040b310	0040b8c0	0042aeb8	ACCEPT
+FUN_0040b310	0040b8d4	0042af6c	--dport
+FUN_0040b310	0040b8e0	0042ae70	iptables
+FUN_0040b310	0040b8e8	0042ae98	FORWARD
+FUN_0040b310	0040b984	0042ae70	iptables
+FUN_0040b310	0040b98c	0042aea0	PREROUTING
+FUN_0040b310	0040b9f0	0042aeb8	ACCEPT
+FUN_0040b310	0040ba08	0042ae70	iptables
+FUN_0040b310	0040ba10	0042ae98	FORWARD
+FUN_0040b310	0040ba80	00418c14	/proc/nat_l2tp
+FUN_0040b310	0040bb14	0042ae70	iptables
+FUN_0040b310	0040bb24	0042aea0	PREROUTING
+FUN_0040b310	0040bba8	0042aea0	PREROUTING
+FUN_0040b310	0040bbb4	0042ae70	iptables
+FUN_0040b310	0040bbdc	0042af6c	--dport
+FUN_0040b310	0040bc14	0042ae70	iptables
+FUN_0040b310	0040bc1c	0042ae98	FORWARD
+FUN_0040b310	0040bc28	0042aeb8	ACCEPT
+FUN_0040b310	0040bc34	0042aeb8	ACCEPT
+FUN_0040b310	0040bc40	0042af6c	--dport
+FUN_0040b310	0040bc64	0042aeb8	ACCEPT
+FUN_0040b310	0040bc88	0042ae70	iptables
+FUN_0040b310	0040bc90	0042ae98	FORWARD
+FUN_0040bd04	0040bdd8	00418bf8	%d:%d
+FUN_0040bd04	0040be00	0042ae70	iptables
+FUN_0040bd04	0040be34	0042af6c	--dport
+FUN_0040bd04	0040be48	0042ae98	FORWARD
+FUN_0040bd04	0040bea4	0042af6c	--dport
+FUN_0040bd04	0040bea8	00418c30	53:53
+FUN_0040bd04	0040beb8	0042ae88	INPUT
+FUN_0040bd04	0040beec	0042af6c	--dport
+FUN_0040bd04	0040befc	0042ae98	FORWARD
+FUN_0040bd04	0040bf38	0042ae98	FORWARD
+FUN_0040bd04	0040bf5c	0042af6c	--dport
+FUN_0040bd04	0040bf80	0042ae98	FORWARD
+FUN_0040bd04	0040bf90	0042af6c	--dport
+FUN_0040bd04	0040bfe8	0042af6c	--dport
+FUN_0040bd04	0040bfec	00418c30	53:53
+FUN_0040bd04	0040c000	0042ae88	INPUT
+FUN_0040c060	0040c19c	0042ae98	FORWARD
+FUN_0040c060	0040c1a4	0042ae70	iptables
+FUN_0040c060	0040c1cc	0042ae98	FORWARD
+FUN_0040c060	0040c1d8	0042ae70	iptables
+FUN_0040c060	0040c214	0042af6c	--dport
+FUN_0040c060	0040c230	00418c30	53:53
+FUN_0040c060	0040c244	0042ae88	INPUT
+FUN_0040c060	0040c24c	0042ae70	iptables
+FUN_0040c060	0040c288	0042ae98	FORWARD
+FUN_0040c060	0040c290	0042ae70	iptables
+FUN_0040c060	0040c2c8	0042ae98	FORWARD
+FUN_0040c060	0040c2d0	0042ae70	iptables
+FUN_0040c060	0040c314	0042af6c	--dport
+FUN_0040c060	0040c328	00418c30	53:53
+FUN_0040c060	0040c33c	0042ae88	INPUT
+FUN_0040c060	0040c344	0042ae70	iptables
+FUN_0040c3a0	0040c4b0	0042ae70	iptables
+FUN_0040c3a0	0040c4b8	0042ae98	FORWARD
+FUN_0040c3a0	0040c4c0	0042af48	--mac-source
+FUN_0040c3a0	0040c4fc	0042ae88	INPUT
+FUN_0040c3a0	0040c504	0042ae70	iptables
+FUN_0040c3a0	0040c510	0042af48	--mac-source
+FUN_0040c3a0	0040c570	00418c3c	rtk_cmd igmp_delete %02X:%02X:%02X:%02X:%02X:%02X
+FUN_0040c5f8	0040c7c8	00418c70	echo " 2 %X %X %ld %d %d %d %d %d %d %d %d %d" >  /proc/enable_dos
+FUN_0040c5f8	0040c7fc	00418cb4	echo " 0 %X %X %ld %d %d %d %d %d %d %d %d %d" >  /proc/enable_dos
+set_QoS	0040c968	0042ae70	iptables
+set_QoS	0040c970	0042af38	mangle
+set_QoS	0040c990	0042ae70	iptables
+set_QoS	0040c998	0042af38	mangle
+set_QoS	0040c9ac	0042af38	mangle
+set_QoS	0040c9b8	0042ae70	iptables
+set_QoS	0040ca9c	00418d00	No wan ip currently!
+set_QoS	0040cb5c	00418d1c	qdisc
+set_QoS	0040cb88	00418d1c	qdisc
+set_QoS	0040cbb8	00418d1c	qdisc
+set_QoS	0040cc2c	00418d1c	qdisc
+set_QoS	0040cc98	00418d34	/proc/qos
+set_QoS	0040cd50	0041902c	handle
+set_QoS	0040cd5c	00419038	default
+set_QoS	0040cdc4	00419014	qdisc
+set_QoS	0040cdf8	00418d48	%dkbit
+set_QoS	0040ce20	00419054	classid
+set_QoS	0040ce58	0041906c	quantum
+set_QoS	0040ce68	00419044	class
+set_QoS	0040ce7c	0041904c	parent
+set_QoS	0040ceac	00419054	classid
+set_QoS	0040cec8	00418d60	1kbit
+set_QoS	0040cf10	0041906c	quantum
+set_QoS	0040cf1c	00419044	class
+set_QoS	0040cf30	0041904c	parent
+set_QoS	0040cf6c	0041902c	handle
+set_QoS	0040cf80	00419080	perturb
+set_QoS	0040cf98	0041904c	parent
+set_QoS	0040cfac	00419014	qdisc
+set_QoS	0040cff0	00419038	default
+set_QoS	0040d02c	0041902c	handle
+set_QoS	0040d04c	00419014	qdisc
+set_QoS	0040d07c	00418d48	%dkbit
+set_QoS	0040d0a4	00419054	classid
+set_QoS	0040d0d4	0041906c	quantum
+set_QoS	0040d0e4	00419044	class
+set_QoS	0040d0f8	0041904c	parent
+set_QoS	0040d11c	00419054	classid
+set_QoS	0040d138	00418d60	1kbit
+set_QoS	0040d178	0041906c	quantum
+set_QoS	0040d184	00419044	class
+set_QoS	0040d1b4	0041904c	parent
+set_QoS	0040d1d0	0041902c	handle
+set_QoS	0040d208	00419080	perturb
+set_QoS	0040d210	0041904c	parent
+set_QoS	0040d224	00419014	qdisc
+set_QoS	0040d24c	00419038	default
+set_QoS	0040d2b0	00419014	qdisc
+set_QoS	0040d2b4	0041902c	handle
+set_QoS	0040d2bc	0041902c	handle
+set_QoS	0040d308	00418d48	%dkbit
+set_QoS	0040d36c	00419044	class
+set_QoS	0040d384	0041906c	quantum
+set_QoS	0040d398	0041906c	quantum
+set_QoS	0040d3b0	0041904c	parent
+set_QoS	0040d3b4	00419054	classid
+set_QoS	0040d3d4	00418d60	1kbit
+set_QoS	0040d420	00419044	class
+set_QoS	0040d438	0041906c	quantum
+set_QoS	0040d450	0041904c	parent
+set_QoS	0040d454	00419054	classid
+set_QoS	0040d49c	00419080	perturb
+set_QoS	0040d4b8	0041902c	handle
+set_QoS	0040d4c8	0041904c	parent
+set_QoS	0040d4d4	00419014	qdisc
+set_QoS	0040d594	00418d9c	Disable
+set_QoS	0040d5cc	00418da4	-m layer7 --l7proto 
+set_QoS	0040d67c	00418dbc	%s-%s
+set_QoS	0040d688	0042aea0	PREROUTING
+set_QoS	0040d6a0	0042af38	mangle
+set_QoS	0040d6b8	0042b028	iprange
+set_QoS	0040d6c4	0042b030	--src-range
+set_QoS	0040d6f8	0042b048	--set-mark
+set_QoS	0040d718	00418dc4	%s %s %s %s %s %s %s %s %s %s %s %s %s %s
+set_QoS	0040d71c	0042ae70	iptables
+set_QoS	0040d7a0	00418df0	%02x:%02x:%02x:%02x:%02x:%02x
+set_QoS	0040d7ac	0042af38	mangle
+set_QoS	0040d7b8	0042b048	--set-mark
+set_QoS	0040d7c8	0042aea0	PREROUTING
+set_QoS	0040d80c	0042af48	--mac-source
+set_QoS	0040d838	0042aea0	PREROUTING
+set_QoS	0040d840	0042af38	mangle
+set_QoS	0040d854	0042b048	--set-mark
+set_QoS	0040d85c	00418dc4	%s %s %s %s %s %s %s %s %s %s %s %s %s %s
+set_QoS	0040d860	0042ae70	iptables
+set_QoS	0040d888	0042aea0	PREROUTING
+set_QoS	0040d890	0042af38	mangle
+set_QoS	0040d89c	0042b048	--set-mark
+set_QoS	0040d8a8	0042ae70	iptables
+set_QoS	0040d910	00418e18	%ldkbit
+set_QoS	0040d934	00418d48	%dkbit
+set_QoS	0040d9d8	0041904c	parent
+set_QoS	0040d9dc	00419054	classid
+set_QoS	0040d9f0	0041906c	quantum
+set_QoS	0040da0c	00418d60	1kbit
+set_QoS	0040da40	0041904c	parent
+set_QoS	0040da44	00419054	classid
+set_QoS	0040da54	0041906c	quantum
+set_QoS	0040da5c	00419044	class
+set_QoS	0040da88	00419080	perturb
+set_QoS	0040dac4	00419014	qdisc
+set_QoS	0040dac8	0041902c	handle
+set_QoS	0040dad4	0041902c	handle
+set_QoS	0040dae0	0041904c	parent
+set_QoS	0040db40	0041902c	handle
+set_QoS	0040db4c	00419088	filter
+set_QoS	0040db60	0041904c	parent
+set_QoS	0040db64	00419054	classid
+set_QoS	0040dbac	00418e18	%ldkbit
+set_QoS	0040dbc8	00418d48	%dkbit
+set_QoS	0040dc68	00418d60	1kbit
+set_QoS	0040dcbc	00419044	class
+set_QoS	0040dccc	0041904c	parent
+set_QoS	0040dcd0	00419054	classid
+set_QoS	0040dcd8	0041906c	quantum
+set_QoS	0040dd08	00419080	perturb
+set_QoS	0040dd30	00419014	qdisc
+set_QoS	0040dd38	0041902c	handle
+set_QoS	0040dd4c	0041902c	handle
+set_QoS	0040dd5c	0041904c	parent
+set_QoS	0040ddb4	0041902c	handle
+set_QoS	0040ddc8	0041904c	parent
+set_QoS	0040ddcc	00419054	classid
+set_QoS	0040ddd8	00419088	filter
+set_QoS	0040dec0	00418dbc	%s-%s
+set_QoS	0040decc	0042aeac	POSTROUTING
+set_QoS	0040dee4	0042af38	mangle
+set_QoS	0040defc	0042b028	iprange
+set_QoS	0040df08	0042b03c	--dst-range
+set_QoS	0040df54	0042b048	--set-mark
+set_QoS	0040df5c	00418dc4	%s %s %s %s %s %s %s %s %s %s %s %s %s %s
+set_QoS	0040df60	0042ae70	iptables
+set_QoS	0040dfdc	00418df0	%02x:%02x:%02x:%02x:%02x:%02x
+set_QoS	0040dfe8	0042af38	mangle
+set_QoS	0040dff4	0042b048	--set-mark
+set_QoS	0040e004	0042aeac	POSTROUTING
+set_QoS	0040e048	0042af58	--mac-destination
+set_QoS	0040e074	0042aeac	POSTROUTING
+set_QoS	0040e07c	0042af38	mangle
+set_QoS	0040e090	0042b048	--set-mark
+set_QoS	0040e098	00418dc4	%s %s %s %s %s %s %s %s %s %s %s %s %s %s
+set_QoS	0040e09c	0042ae70	iptables
+set_QoS	0040e0c4	0042aeac	POSTROUTING
+set_QoS	0040e0cc	0042af38	mangle
+set_QoS	0040e0d8	0042b048	--set-mark
+set_QoS	0040e0e4	0042ae70	iptables
+set_QoS	0040e144	00418e18	%ldkbit
+set_QoS	0040e170	00418d48	%dkbit
+set_QoS	0040e21c	0041904c	parent
+set_QoS	0040e220	00419054	classid
+set_QoS	0040e234	0041906c	quantum
+set_QoS	0040e244	00418d60	1kbit
+set_QoS	0040e28c	0041904c	parent
+set_QoS	0040e290	00419054	classid
+set_QoS	0040e2a0	0041906c	quantum
+set_QoS	0040e2a8	00419044	class
+set_QoS	0040e2dc	00419080	perturb
+set_QoS	0040e314	00419014	qdisc
+set_QoS	0040e31c	0041902c	handle
+set_QoS	0040e330	0041902c	handle
+set_QoS	0040e33c	0041904c	parent
+set_QoS	0040e3ac	0041902c	handle
+set_QoS	0040e3b8	0041904c	parent
+set_QoS	0040e3bc	00419054	classid
+set_QoS	0040e3c8	00419088	filter
+FUN_0040e43c	0040e51c	00418e50	http://
+FUN_0040e43c	0040e5ac	00418e5c	/proc/filter_table
+FUN_0040e43c	0040e5b8	00418e70	white
+FUN_0040e43c	0040e5c0	00418e5c	/proc/filter_table
+FUN_0040e43c	0040e5c8	00418e78	black
+FUN_0040e43c	0040e5ec	00418e80	add:0%c3 3 %s
+FUN_0040e43c	0040e610	00418e5c	/proc/filter_table
+FUN_0040e64c	0040e6a0	00418e90	/proc/sys/net/ipv4/ip_forward
+FUN_0040e64c	0040e6e8	004180b4	/proc/fast_nat
+FUN_0040e64c	0040e714	0042ae70	iptables
+FUN_0040e64c	0040e748	0042ae70	iptables
+FUN_0040e64c	0040e74c	0042aeac	POSTROUTING
+FUN_0040e64c	0040e778	0042ae70	iptables
+FUN_0040e64c	0040e77c	0042aea0	PREROUTING
+FUN_0040e64c	0040e7a4	0042ae70	iptables
+FUN_0040e64c	0040e7a8	0042af38	mangle
+FUN_0040e64c	0040e7c8	0042ae70	iptables
+FUN_0040e64c	0040e7cc	0042ae88	INPUT
+FUN_0040e64c	0040e7ec	0042ae70	iptables
+FUN_0040e64c	0040e7f0	0042ae90	OUTPUT
+FUN_0040e64c	0040e810	0042ae70	iptables
+FUN_0040e64c	0040e814	0042ae98	FORWARD
+FUN_0040e64c	0040e834	0042aeb8	ACCEPT
+FUN_0040e64c	0040e83c	0042ae90	OUTPUT
+FUN_0040e64c	0040e844	0042ae70	iptables
+FUN_0040e64c	0040e870	0042ae88	INPUT
+FUN_0040e64c	0040e878	0042ae70	iptables
+FUN_0040e64c	0040e898	0042aeb8	ACCEPT
+FUN_0040e64c	0040e89c	0042aeb8	ACCEPT
+FUN_0040e64c	0040e8a4	0042ae70	iptables
+FUN_0040e64c	0040e8ac	0042ae88	INPUT
+FUN_0040e64c	0040e8e4	0042ae70	iptables
+FUN_0040e64c	0040e8f0	0042ae98	FORWARD
+FUN_0040e64c	0040e8fc	0042ae70	iptables
+FUN_0040e64c	0040e904	0042ae98	FORWARD
+FUN_0040e64c	0040e924	00418eb0	/bin/routed
+FUN_0040e64c	0040e940	00417b48	/proc/hw_nat
+FUN_0040e64c	0040e994	0042ae70	iptables
+FUN_0040e64c	0040e99c	0042ae88	INPUT
+FUN_0040e64c	0040e9a0	0042aeb8	ACCEPT
+FUN_0040e64c	0040e9b8	0042ae70	iptables
+FUN_0040e64c	0040e9c4	0042aeb8	ACCEPT
+FUN_0040e64c	0040e9c8	0042ae98	FORWARD
+FUN_0040e64c	0040e9ec	004180b4	/proc/fast_nat
+FUN_0040e64c	0040ea50	00418ebc	flush
+FUN_0040e64c	0040ea54	00418e5c	/proc/filter_table
+FUN_0040e64c	0040ea78	00418e5c	/proc/filter_table
+FUN_0040e64c	0040ead0	00418e5c	/proc/filter_table
+FUN_0040e64c	0040ead8	00418ebc	flush
+FUN_0040e64c	0040eb04	00417b64	/proc/sw_nat
+FUN_0040e64c	0040ec78	0042af6c	--dport
+FUN_0040e64c	0040ecbc	0042ae70	iptables
+FUN_0040e64c	0040ecc8	0042ae98	FORWARD
+FUN_0040e64c	0040ed20	0042ae70	iptables
+FUN_0040e64c	0040ed28	0042ae98	FORWARD
+FUN_0040e64c	0040ed34	0042af74	--sport
+FUN_0040e64c	0040ed40	0042aeb8	ACCEPT
+FUN_0040e64c	0040ed70	0042af6c	--dport
+FUN_0040e64c	0040ed7c	0042aeb8	ACCEPT
+FUN_0040e64c	0040ed84	0042ae70	iptables
+FUN_0040e64c	0040ed8c	0042ae98	FORWARD
+FUN_0040e64c	0040ede0	0042af6c	--dport
+FUN_0040e64c	0040ee24	0042ae70	iptables
+FUN_0040e64c	0040ee2c	0042ae98	FORWARD
+FUN_0040e64c	0040ee98	0042ae70	iptables
+FUN_0040e64c	0040eea0	0042ae98	FORWARD
+FUN_0040e64c	0040eeac	0042af6c	--dport
+FUN_0040e64c	0040eeb8	0042aeb8	ACCEPT
+FUN_0040e64c	0040eee0	0042ae70	iptables
+FUN_0040e64c	0040eee8	0042ae98	FORWARD
+FUN_0040e64c	0040eef0	0042af74	--sport
+FUN_0040e64c	0040ef00	0042aeb8	ACCEPT
+FUN_0040e64c	0040ef28	0042aeb8	ACCEPT
+FUN_0040e64c	0040ef30	0042ae70	iptables
+FUN_0040e64c	0040ef38	0042ae98	FORWARD
+FUN_0040e64c	0040ef60	00418edc	--destination
+FUN_0040e64c	0040efbc	00418eec	224.0.0.0/4
+FUN_0040e64c	0040efc4	0042ae70	iptables
+FUN_0040e64c	0040efcc	0042ae98	FORWARD
+FUN_0040e64c	0040efe0	0042aeb8	ACCEPT
+FUN_0040e64c	0040f010	0042afd8	RELATED,ESTABLISHED
+FUN_0040e64c	0040f014	0042afd8	RELATED,ESTABLISHED
+FUN_0040e64c	0040f018	0042afb8	state
+FUN_0040e64c	0040f01c	0042afc0	--state
+FUN_0040e64c	0040f020	0042afc0	--state
+FUN_0040e64c	0040f024	0042afb8	state
+FUN_0040e64c	0040f028	0042ae88	INPUT
+FUN_0040e64c	0040f030	0042ae70	iptables
+FUN_0040e64c	0040f040	0042aeb8	ACCEPT
+FUN_0040e64c	0040f060	0042aff4	--tcp-flags
+FUN_0040e64c	0040f06c	0042b000	SYN,RST
+FUN_0040e64c	0040f090	0042b020	TCPMSS
+FUN_0040e64c	0040f0ac	0042ae70	iptables
+FUN_0040e64c	0040f0b0	0042ae98	FORWARD
+FUN_0040e64c	0040f0b4	0042b00c	--clamp-mss-to-pmtu
+FUN_0040e64c	0040f0dc	0042afec	INVALID
+FUN_0040e64c	0040f0e8	0042afb8	state
+FUN_0040e64c	0040f0ec	0042afc0	--state
+FUN_0040e64c	0040f0f4	0042ae70	iptables
+FUN_0040e64c	0040f0fc	0042ae98	FORWARD
+FUN_0040e64c	0040f134	0042aeb8	ACCEPT
+FUN_0040e64c	0040f140	0042ae70	iptables
+FUN_0040e64c	0040f14c	0042ae98	FORWARD
+FUN_0040e64c	0040f180	0042afb8	state
+FUN_0040e64c	0040f184	0042afc0	--state
+FUN_0040e64c	0040f188	0042afd8	RELATED,ESTABLISHED
+FUN_0040e64c	0040f190	0042aeb8	ACCEPT
+FUN_0040e64c	0040f19c	0042ae70	iptables
+FUN_0040e64c	0040f1a0	0042ae98	FORWARD
+FUN_0040e64c	0040f1d0	00418ef8	/tmp/firewall_igd
+FUN_0040e64c	0040f228	0042aeac	POSTROUTING
+FUN_0040e64c	0040f260	0042aeac	POSTROUTING
+FUN_0040e64c	0040f2a0	0042aed4	MASQUERADE
+FUN_0040e64c	0040f2a8	0042ae70	iptables
+setFirewallIptablesRules	0040f364	00418f0c	Init Firewall Rules....
+setFirewallIptablesRules	0040f4d4	00418d00	No wan ip currently!
+setFirewallIptablesRules	0040f5a0	0042af6c	--dport
+setFirewallIptablesRules	0040f5a4	00418c00	80:80
+setFirewallIptablesRules	0040f5cc	0042af6c	--dport
+setFirewallIptablesRules	0040f5d0	00418c00	80:80
+setFirewallIptablesRules	0040f5e4	0042aeb8	ACCEPT
+setFirewallIptablesRules	0040f5e8	0042ae70	iptables
+setFirewallIptablesRules	0040f5f0	0042ae88	INPUT
+setFirewallIptablesRules	0040f624	0042af6c	--dport
+setFirewallIptablesRules	0040f630	00418f24	1900:1900
+setFirewallIptablesRules	0040f688	0042ae88	INPUT
+setFirewallIptablesRules	0040f68c	0042ae70	iptables
+setFirewallIptablesRules	0040f770	0042ae70	iptables
+setFirewallIptablesRules	0040f778	0042ae88	INPUT
+setFirewallIptablesRules	0040f790	0042aeb8	ACCEPT
+setFirewallIptablesRules	0040f7bc	0042af74	--sport
+setFirewallIptablesRules	0040f7dc	0042aeb8	ACCEPT
+setFirewallIptablesRules	0040f7e8	0042ae70	iptables
+setFirewallIptablesRules	0040f7f4	0042ae88	INPUT
+setFirewallIptablesRules	0040f81c	0042af74	--sport
+setFirewallIptablesRules	0040f84c	0042aeb8	ACCEPT
+setFirewallIptablesRules	0040f870	0042ae70	iptables
+setFirewallIptablesRules	0040f878	0042ae88	INPUT
+setFirewallIptablesRules	0040f8fc	0042af6c	--dport
+setFirewallIptablesRules	0040f90c	0042ae70	iptables
+setFirewallIptablesRules	0040f914	0042ae98	FORWARD
+setFirewallIptablesRules	0040f960	0042af6c	--dport
+setFirewallIptablesRules	0040f968	0042aeb8	ACCEPT
+setFirewallIptablesRules	0040f974	0042ae70	iptables
+setFirewallIptablesRules	0040f97c	0042ae98	FORWARD
+setFirewallIptablesRules	0040f9cc	0042af6c	--dport
+setFirewallIptablesRules	0040fa00	0042aeb8	ACCEPT
+setFirewallIptablesRules	0040fa20	0042ae70	iptables
+setFirewallIptablesRules	0040fa28	0042ae88	INPUT
+setFirewallIptablesRules	0040fa6c	00418f38	No ip currently!
+setFirewallIptablesRules	0040fa98	00418f4c	No MASK currently!
+setFirewallIptablesRules	0040fba0	00417fd0	0.0.0.0
+setFirewallIptablesRules	0040fc5c	0042aea0	PREROUTING
+setFirewallIptablesRules	0040fc68	0042ae70	iptables
+setFirewallIptablesRules	0040fca0	0042af6c	--dport
+setFirewallIptablesRules	0040fcb0	00418c00	80:80
+setFirewallIptablesRules	0040fce0	0042ae88	INPUT
+setFirewallIptablesRules	0040fcf0	0042ae70	iptables
+setFirewallIptablesRules	0040fd3c	0042ae98	FORWARD
+setFirewallIptablesRules	0040fd44	0042ae70	iptables
+setFirewallIptablesRules	0040fd4c	0042aeb8	ACCEPT
+setFirewallIptablesRules	0040fdc0	0042ae70	iptables
+setFirewallIptablesRules	0040fdc8	0042aeac	POSTROUTING
+setFirewallIptablesRules	0040fe64	0042af90	--icmp-type
+setFirewallIptablesRules	0040fe68	0042af9c	echo-request
+setFirewallIptablesRules	0040fe90	0042af90	--icmp-type
+setFirewallIptablesRules	0040fe94	0042af9c	echo-request
+setFirewallIptablesRules	0040fea8	0042aeb8	ACCEPT
+setFirewallIptablesRules	0040feac	0042ae70	iptables
+setFirewallIptablesRules	0040feb4	0042ae88	INPUT
+setFirewallIptablesRules	0040ff30	0042ae88	INPUT
+setFirewallIptablesRules	0040ff3c	0042ae70	iptables
+setFirewallIptablesRules	0040ff58	0042aeb8	ACCEPT
+setFirewallIptablesRules	0040ff8c	00418edc	--destination
+setFirewallIptablesRules	0040ffa0	00418eec	224.0.0.0/4
+setFirewallIptablesRules	0040ffa4	0042ae70	iptables
+setFirewallIptablesRules	0040ffac	0042ae98	FORWARD
+setFirewallIptablesRules	0040ffc0	0042aeb8	ACCEPT
+setFirewallIptablesRules	0041003c	00418edc	--destination
+setFirewallIptablesRules	00410048	00418eec	224.0.0.0/4
+setFirewallIptablesRules	00410064	0042aeb8	ACCEPT
+setFirewallIptablesRules	00410090	0042ae70	iptables
+setFirewallIptablesRules	00410098	0042ae98	FORWARD
+setFirewallIptablesRules	004100e8	0042ae88	INPUT
+setFirewallIptablesRules	004100f4	0042ae70	iptables
+setFirewallIptablesRules	00410104	0042aeb8	ACCEPT
+setFirewallIptablesRules	00410120	0042ae88	INPUT
+setFirewallIptablesRules	00410128	0042ae70	iptables
+setFirewallIptablesRules	0041013c	0042aeb8	ACCEPT
+setFirewallIptablesRules	00410180	0042ae70	iptables
+setFirewallIptablesRules	00410188	0042ae98	FORWARD
+setFirewallIptablesRules	0041019c	0042aeb8	ACCEPT
+setFirewallIptablesRules	004101d4	0042afb8	state
+setFirewallIptablesRules	004101d8	0042afc0	--state
+setFirewallIptablesRules	004101dc	0042afd8	RELATED,ESTABLISHED
+setFirewallIptablesRules	004101e4	0042afc0	--state
+setFirewallIptablesRules	004101e8	0042afb8	state
+setFirewallIptablesRules	004101f0	0042afd8	RELATED,ESTABLISHED
+setFirewallIptablesRules	00410200	0042aeb8	ACCEPT
+setFirewallIptablesRules	00410208	0042ae70	iptables
+setFirewallIptablesRules	00410214	0042ae98	FORWARD
+setFirewallIptablesRules	0041024c	0042afb8	state
+setFirewallIptablesRules	00410250	0042afc0	--state
+setFirewallIptablesRules	00410254	0042afd8	RELATED,ESTABLISHED
+setFirewallIptablesRules	0041025c	0042aeb8	ACCEPT
+setFirewallIptablesRules	00410264	0042ae70	iptables
+setFirewallIptablesRules	0041026c	0042ae98	FORWARD
+setFirewallIptablesRules	00410290	0042aeac	POSTROUTING
+setFirewallIptablesRules	004102b8	0042aed4	MASQUERADE
+setFirewallIptablesRules	004102d8	0042ae70	iptables
+setFirewallIptablesRules	0041031c	00418f74	/etc/ppp/link
+setFirewallIptablesRules	004103f4	00418f84	route del -net %s netmask %s dev br0 > /dev/null 2>&1
+setFirewallIptablesRules	0041042c	00418fbc	route add -net %s netmask %s dev br0
+setFirewallIptablesRules	00410478	00418fe4	echo 1 > /etc/ppp/firewall_lock
+setFirewallIptablesRules	004104a4	00418e90	/proc/sys/net/ipv4/ip_forward
+FUN_004104f0	00410554	00417b74	killall
+FUN_004104f0	00410560	004190a0	igmpproxy
+FUN_004104f0	00410584	00417ca8	/proc/br_mCastFastFwd
+FUN_004104f0	004105a0	004190a0	igmpproxy
+FUN_004104f0	004105cc	004190ac	/proc/sys/net/ipv4/igmp_max_memberships
+FUN_004104f0	004105e8	00417ca8	/proc/br_mCastFastFwd
+FUN_00410624	00410668	00417b74	killall
+FUN_00410624	00410674	004190dc	ddns_inet
+FUN_00410624	00410734	004190dc	ddns_inet
+FUN_00410624	00410740	004190ec	dyndns
+FUN_00410624	00410760	004190dc	ddns_inet
+FUN_00410798	004107e0	004190f8	/tmp/ntp_tmp
+FUN_00410798	0041080c	00419108	2>/dev/null
+FUN_00410798	00410814	00417b74	killall
+FUN_00410798	0041081c	00417c24	ntp_inet
+FUN_00410798	00410848	00419114	Start NTP daemon
+FUN_00410798	004108e0	00417c24	ntp_inet
+FUN_00410904	0041093c	004185d0	/usr/share/udhcpc/%s.sh
+FUN_00410904	0041095c	004185e8	/usr/share/udhcpc/%s.deconfig
+FUN_00410904	0041097c	00417c64	/etc/udhcpc/udhcpc-%s.pid
+FUN_00410904	00410a20	00419128	udhcpc -i %s -p %s -s %s -h %s -a 30 &
+FUN_00410904	00410a2c	00419150	udhcpc -i %s -p %s -s %s -a 30 &
+FUN_00410a74	00410b10	00417b74	killall
+FUN_00410a74	00410b20	00417b80	miniigd
+FUN_00410a74	00410b5c	00418034	route
+FUN_00410a74	00410b68	00418b00	255.255.255.255
+FUN_00410a74	00410b70	00418af0	239.255.255.250
+FUN_00410a74	00410b74	0041802c	netmask
+FUN_00410a74	00410b94	00418034	route
+FUN_00410a74	00410b98	00418b00	255.255.255.255
+FUN_00410a74	00410ba4	00418af0	239.255.255.250
+FUN_00410a74	00410ba8	0041802c	netmask
+FUN_00410a74	00410c54	00417b80	miniigd
+FUN_00410a74	00410c7c	00417b80	miniigd
+FUN_00410cbc	00410ecc	00417e5c	ifconfig
+FUN_00410cbc	00410ed8	0041802c	netmask
+FUN_00410cbc	00410f08	00417fd0	0.0.0.0
+FUN_00410cbc	00410f24	00418034	route
+FUN_00410cbc	00410f84	0041802c	netmask
+FUN_00410cbc	00410f98	00418034	route
+FUN_00410cbc	00411200	0041917c	flash clearl2tp %d %d %02x%02x%02x%02x %02x%02x%02x%02x %02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x
+FUN_00410cbc	0041128c	00419250	user "%s" 
+FUN_00410cbc	004112a0	0041925c	/etc/ppp/options
+FUN_00410cbc	004112bc	00419270	#################################################
+FUN_00410cbc	004112d8	004192a4	/etc/ppp/pap-secrets
+FUN_00410cbc	0041130c	004192bc	"%s" * "%s" 
+FUN_00410cbc	00411314	004192a4	/etc/ppp/pap-secrets
+FUN_00410cbc	00411330	00419270	#################################################
+FUN_00410cbc	0041134c	004192cc	/etc/ppp/chap-secrets
+FUN_00410cbc	00411374	004192bc	"%s" * "%s" 
+FUN_00410cbc	00411384	004192cc	/etc/ppp/chap-secrets
+FUN_00410cbc	004113bc	0041925c	/etc/ppp/options
+FUN_00410cbc	004113dc	004192ec	noauth
+FUN_00410cbc	004113f4	0041925c	/etc/ppp/options
+FUN_00410cbc	00411414	004192f4	defaultroute
+FUN_00410cbc	0041142c	0041925c	/etc/ppp/options
+FUN_00410cbc	0041144c	00419304	usepeerdns
+FUN_00410cbc	00411464	0041925c	/etc/ppp/options
+FUN_00410cbc	00411484	00419310	lcp-echo-interval 0
+FUN_00410cbc	0041149c	0041925c	/etc/ppp/options
+FUN_00410cbc	004114bc	00419324	wantype 6
+FUN_00410cbc	004114d8	0041925c	/etc/ppp/options
+FUN_00410cbc	00411514	00419330	mtu %d 
+FUN_00410cbc	00411528	0041925c	/etc/ppp/options
+FUN_00410cbc	00411564	00419338	name %s 
+FUN_00410cbc	00411574	0041925c	/etc/ppp/options
+FUN_00410cbc	00411594	00419344	nodeflate
+FUN_00410cbc	004115ac	0041925c	/etc/ppp/options
+FUN_00410cbc	004115cc	00419350	nobsdcomp
+FUN_00410cbc	004115e4	0041925c	/etc/ppp/options
+FUN_00410cbc	00411604	0041935c	nodetach
+FUN_00410cbc	0041161c	0041925c	/etc/ppp/options
+FUN_00410cbc	00411654	0041925c	/etc/ppp/options
+FUN_00410cbc	00411674	00419370	default-asyncmap
+FUN_00410cbc	0041168c	0041925c	/etc/ppp/options
+FUN_00410cbc	004116ac	00419384	nopcomp
+FUN_00410cbc	004116c4	0041925c	/etc/ppp/options
+FUN_00410cbc	004116e4	0041938c	noaccomp
+FUN_00410cbc	004116fc	0041925c	/etc/ppp/options
+FUN_00410cbc	0041171c	00419398	noccp
+FUN_00410cbc	00411734	0041925c	/etc/ppp/options
+FUN_00410cbc	0041176c	0041925c	/etc/ppp/options
+FUN_00410cbc	0041178c	004193a0	refuse-eap
+FUN_00410cbc	004117a4	0041925c	/etc/ppp/options
+FUN_00410cbc	004117d8	004193ac	-mschap
+FUN_00410cbc	004117ec	0041925c	/etc/ppp/options
+FUN_00410cbc	0041180c	004193b4	-mschap-v2
+FUN_00410cbc	00411824	0041925c	/etc/ppp/options
+FUN_00410cbc	00411850	004193c0	[global]
+FUN_00410cbc	00411868	004193cc	/etc/ppp/l2tpd.conf
+FUN_00410cbc	00411884	004193e0	port = 1701
+FUN_00410cbc	0041189c	004193cc	/etc/ppp/l2tpd.conf
+FUN_00410cbc	004118c4	004193ec	auth file = %s 
+FUN_00410cbc	004118c8	004192cc	/etc/ppp/chap-secrets
+FUN_00410cbc	004118d8	004193cc	/etc/ppp/l2tpd.conf
+FUN_00410cbc	004118f8	004193fc	[lac client]
+FUN_00410cbc	00411910	004193cc	/etc/ppp/l2tpd.conf
+FUN_00410cbc	00411930	0041940c	lns=%s 
+FUN_00410cbc	00411948	004193cc	/etc/ppp/l2tpd.conf
+FUN_00410cbc	00411968	00419414	require chap = yes
+FUN_00410cbc	00411980	004193cc	/etc/ppp/l2tpd.conf
+FUN_00410cbc	004119c4	00419428	name = %s 
+FUN_00410cbc	004119d4	004193cc	/etc/ppp/l2tpd.conf
+FUN_00410cbc	004119f4	00419434	pppoptfile = /etc/ppp/options
+FUN_00410cbc	00411a0c	004193cc	/etc/ppp/l2tpd.conf
+FUN_00410cbc	00411a2c	00419454	l2tpd
+FUN_00410cbc	00411a38	00417b74	killall
+FUN_00410cbc	00411a4c	00417b74	killall
+FUN_00410cbc	00411a54	0041945c	ppp_inet
+FUN_00410cbc	00411a90	00419468	l2tpd&
+FUN_00410cbc	00411af4	00418034	route
+FUN_00410cbc	00411b28	00418034	route
+FUN_00410cbc	00411b34	00419470	10.112.112.112
+FUN_00410cbc	00411b48	00419480	connect /etc/ppp/true
+FUN_00410cbc	00411b64	0041925c	/etc/ppp/options
+FUN_00410cbc	00411b88	00419498	demand
+FUN_00410cbc	00411b9c	0041925c	/etc/ppp/options
+FUN_00410cbc	00411bd8	004194a0	idle %d 
+FUN_00410cbc	00411be8	0041925c	/etc/ppp/options
+FUN_00410cbc	00411c34	00417ef0	/var/ppp/manual_connect_now
+FUN_00410cbc	00411c50	004194ac	/var/ppp
+FUN_00410cbc	00411c6c	004194ac	/var/ppp
+FUN_00410cbc	00411ce8	0041945c	ppp_inet
+FUN_00411d44	00411f58	00417e5c	ifconfig
+FUN_00411d44	00411f64	0041802c	netmask
+FUN_00411d44	00411f94	00417fd0	0.0.0.0
+FUN_00411d44	00411fb0	00418034	route
+FUN_00411d44	00412010	0041802c	netmask
+FUN_00411d44	00412024	00418034	route
+FUN_00411d44	00412044	004192a4	/etc/ppp/pap-secrets
+FUN_00411d44	00412054	004192cc	/etc/ppp/chap-secrets
+FUN_00411d44	00412070	00417e44	flash
+FUN_00411d44	00412080	0041925c	/etc/ppp/options
+FUN_00411d44	004120b4	0041925c	/etc/ppp/options
+FUN_00411d44	004120d4	004192ec	noauth
+FUN_00411d44	004120ec	0041925c	/etc/ppp/options
+FUN_00411d44	0041210c	00419384	nopcomp
+FUN_00411d44	00412124	0041925c	/etc/ppp/options
+FUN_00411d44	00412144	0041938c	noaccomp
+FUN_00411d44	0041215c	0041925c	/etc/ppp/options
+FUN_00411d44	0041217c	00419350	nobsdcomp
+FUN_00411d44	00412194	0041925c	/etc/ppp/options
+FUN_00411d44	004121b4	00419344	nodeflate
+FUN_00411d44	004121cc	0041925c	/etc/ppp/options
+FUN_00411d44	004121ec	00419304	usepeerdns
+FUN_00411d44	00412204	0041925c	/etc/ppp/options
+FUN_00411d44	00412224	004194c4	lcp-echo-interval 20
+FUN_00411d44	0041223c	0041925c	/etc/ppp/options
+FUN_00411d44	0041225c	004194dc	lcp-echo-failure 3
+FUN_00411d44	00412274	0041925c	/etc/ppp/options
+FUN_00411d44	00412294	004194f0	wantype 4
+FUN_00411d44	004122b0	0041925c	/etc/ppp/options
+FUN_00411d44	004122ec	00419330	mtu %d 
+FUN_00411d44	004122fc	0041925c	/etc/ppp/options
+FUN_00411d44	0041231c	004194fc	holdoff 2
+FUN_00411d44	00412334	0041925c	/etc/ppp/options
+FUN_00411d44	00412354	004193a0	refuse-eap
+FUN_00411d44	0041236c	0041925c	/etc/ppp/options
+FUN_00411d44	0041238c	00419508	remotename PPTP
+FUN_00411d44	004123a4	00419518	/etc/ppp/peers/rpptp
+FUN_00411d44	004123c4	00419530	linkname PPTP
+FUN_00411d44	004123dc	00419518	/etc/ppp/peers/rpptp
+FUN_00411d44	004123fc	00419540	ipparam PPTP
+FUN_00411d44	00412414	00419518	/etc/ppp/peers/rpptp
+FUN_00411d44	00412434	00419550	pty "pptp %s --nolaunchpppd"
+FUN_00411d44	0041246c	00419518	/etc/ppp/peers/rpptp
+FUN_00411d44	004124a0	00419338	name %s 
+FUN_00411d44	004124b8	00419518	/etc/ppp/peers/rpptp
+FUN_00411d44	00412500	00419570	+mppe required,stateless
+FUN_00411d44	00412514	00419518	/etc/ppp/peers/rpptp
+FUN_00411d44	0041257c	00419518	/etc/ppp/peers/rpptp
+FUN_00411d44	004125a0	00419594	stateless
+FUN_00411d44	004125a8	004195a0	nomppc
+FUN_00411d44	004125bc	00419518	/etc/ppp/peers/rpptp
+FUN_00411d44	004125fc	00419398	noccp
+FUN_00411d44	00412614	00419518	/etc/ppp/peers/rpptp
+FUN_00411d44	00412648	004195a8	persist
+FUN_00411d44	00412654	00419518	/etc/ppp/peers/rpptp
+FUN_00411d44	00412670	004192ec	noauth
+FUN_00411d44	00412688	00419518	/etc/ppp/peers/rpptp
+FUN_00411d44	004126a8	004195b0	file /etc/ppp/options
+FUN_00411d44	004126c0	00419518	/etc/ppp/peers/rpptp
+FUN_00411d44	004126e0	00419350	nobsdcomp
+FUN_00411d44	004126f8	00419518	/etc/ppp/peers/rpptp
+FUN_00411d44	00412728	0041935c	nodetach
+FUN_00411d44	00412730	00419518	/etc/ppp/peers/rpptp
+FUN_00411d44	00412768	00419518	/etc/ppp/peers/rpptp
+FUN_00411d44	004127c8	00418034	route
+FUN_00411d44	00412800	00418034	route
+FUN_00411d44	0041280c	00419470	10.112.112.112
+FUN_00411d44	0041281c	004195a8	persist
+FUN_00411d44	00412838	0041925c	/etc/ppp/options
+FUN_00411d44	00412854	0041935c	nodetach
+FUN_00411d44	00412870	0041925c	/etc/ppp/options
+FUN_00411d44	00412890	00419480	connect /etc/ppp/true
+FUN_00411d44	004128a8	0041925c	/etc/ppp/options
+FUN_00411d44	004128c8	00419498	demand
+FUN_00411d44	004128e4	0041925c	/etc/ppp/options
+FUN_00411d44	00412920	004194a0	idle %d 
+FUN_00411d44	00412930	0041925c	/etc/ppp/options
+FUN_00411d44	00412950	004195c8	ktune
+FUN_00411d44	00412968	0041925c	/etc/ppp/options
+FUN_00411d44	00412988	004195d0	ipcp-accept-remote
+FUN_00411d44	004129a0	0041925c	/etc/ppp/options
+FUN_00411d44	004129c0	004195e4	ipcp-accept-local
+FUN_00411d44	004129d8	0041925c	/etc/ppp/options
+FUN_00411d44	004129f8	004195f8	noipdefault
+FUN_00411d44	00412a10	0041925c	/etc/ppp/options
+FUN_00411d44	00412a30	00419604	hide-password
+FUN_00411d44	00412a48	0041925c	/etc/ppp/options
+FUN_00411d44	00412a70	004192f4	defaultroute
+FUN_00411d44	00412a80	0041925c	/etc/ppp/options
+FUN_00411d44	00412acc	00417ef0	/var/ppp/manual_connect_now
+FUN_00411d44	00412ae8	004194ac	/var/ppp
+FUN_00411d44	00412b04	004194ac	/var/ppp
+FUN_00411d44	00412b20	00417b74	killall
+FUN_00411d44	00412b44	00417b74	killall
+FUN_00411d44	00412b48	0041945c	ppp_inet
+FUN_00411d44	00412bd4	0041945c	ppp_inet
+FUN_00412c2c	00412cd8	00417e5c	ifconfig
+FUN_00412c2c	00412cdc	00417fd0	0.0.0.0
+FUN_00412c2c	00412d08	004192a4	/etc/ppp/pap-secrets
+FUN_00412c2c	00412d20	004192cc	/etc/ppp/chap-secrets
+FUN_00412c2c	00412d28	00417e44	flash
+FUN_00412c2c	00412d2c	00419614	gen-pppoe
+FUN_00412c2c	00412d38	0041925c	/etc/ppp/options
+FUN_00412c2c	00412d54	004192ec	noauth
+FUN_00412c2c	00412d68	0041925c	/etc/ppp/options
+FUN_00412c2c	00412d88	004195a0	nomppc
+FUN_00412c2c	00412da0	0041925c	/etc/ppp/options
+FUN_00412c2c	00412dc0	004195f8	noipdefault
+FUN_00412c2c	00412dd8	0041925c	/etc/ppp/options
+FUN_00412c2c	00412df8	00419604	hide-password
+FUN_00412c2c	00412e10	0041925c	/etc/ppp/options
+FUN_00412c2c	00412e30	004192f4	defaultroute
+FUN_00412c2c	00412e48	0041925c	/etc/ppp/options
+FUN_00412c2c	00412e68	004195a8	persist
+FUN_00412c2c	00412e80	0041925c	/etc/ppp/options
+FUN_00412c2c	00412ea0	004195d0	ipcp-accept-remote
+FUN_00412c2c	00412eb8	0041925c	/etc/ppp/options
+FUN_00412c2c	00412ed8	004195e4	ipcp-accept-local
+FUN_00412c2c	00412ef0	0041925c	/etc/ppp/options
+FUN_00412c2c	00412f10	0041935c	nodetach
+FUN_00412c2c	00412f28	0041925c	/etc/ppp/options
+FUN_00412c2c	00412f48	00419304	usepeerdns
+FUN_00412c2c	00412f64	0041925c	/etc/ppp/options
+FUN_00412c2c	00412fa0	00419330	mtu %d 
+FUN_00412c2c	00412fb0	0041925c	/etc/ppp/options
+FUN_00412c2c	00412fd8	00419620	mru %d 
+FUN_00412c2c	00412fe8	0041925c	/etc/ppp/options
+FUN_00412c2c	00413008	004194c4	lcp-echo-interval 20
+FUN_00412c2c	00413020	0041925c	/etc/ppp/options
+FUN_00412c2c	00413040	004194dc	lcp-echo-failure 3
+FUN_00412c2c	00413058	0041925c	/etc/ppp/options
+FUN_00412c2c	00413078	00419628	wantype 3
+FUN_00412c2c	00413090	0041925c	/etc/ppp/options
+FUN_00412c2c	004130b0	00419634	holdoff 10
+FUN_00412c2c	004130c8	0041925c	/etc/ppp/options
+FUN_00412c2c	00413110	00419640	plugin /etc/ppp/plubins/libplugin.a rp_pppoe_service %s %s 
+FUN_00412c2c	0041312c	0041967c	plugin /etc/ppp/plubins/libplugin.a %s 
+FUN_00412c2c	00413148	0041925c	/etc/ppp/options
+FUN_00412c2c	004131a4	00419498	demand
+FUN_00412c2c	004131b4	0041925c	/etc/ppp/options
+FUN_00412c2c	004131dc	004194a0	idle %d 
+FUN_00412c2c	004131ec	0041925c	/etc/ppp/options
+FUN_00412c2c	00413238	004194ac	/var/ppp
+FUN_00412c2c	00413254	004194ac	/var/ppp
+FUN_00412c2c	004132d0	0041945c	ppp_inet
+FUN_00413328	004133b4	00417e5c	ifconfig
+FUN_00413404	00413520	00417b74	killall
+FUN_00413404	004135e4	004196ac	--cache=off
+FUN_00413404	00413634	004185c0	nameserver %s 
+FUN_00413404	004136cc	004185c0	nameserver %s 
+FUN_00413404	00413738	004185c0	nameserver %s 
+FUN_00413404	004137c4	004185c0	nameserver %s 
+FUN_00413404	00413840	004185c0	nameserver %s 
+FUN_00413404	004138a0	004185c0	nameserver %s 
+FUN_00413404	00413900	004196b8	Invalid DNS server setting
+FUN_00413934	00413b1c	0041802c	netmask
+FUN_00413934	00413b34	00417e5c	ifconfig
+FUN_00413934	00413b70	00418034	route
+FUN_00413934	00413bc0	00418034	route
+FUN_00413934	00413c40	00417e5c	ifconfig
+FUN_00413934	00413cc8	004196e8	firewall.sh
+FUN_00413934	00413ce0	004196d4	%s/%s %s
+wan_disconnect	00413dc8	00419700	can not /var/system/last_wan
+wan_disconnect	00413e24	00419720	/var/disc
+wan_disconnect	00413e30	0041972c	enter
+wan_disconnect	00413e4c	00417b74	killall
+wan_disconnect	00413e54	00417ba0	routed
+wan_disconnect	00413e74	00417b74	killall
+wan_disconnect	00413e7c	00417c24	ntp_inet
+wan_disconnect	00413ea0	00418090	/var/ntp_run
+wan_disconnect	00413ebc	00418090	/var/ntp_run
+wan_disconnect	00413ee0	00417b74	killall
+wan_disconnect	00413ee8	004190dc	ddns_inet
+wan_disconnect	00413f08	00417b74	killall
+wan_disconnect	00413f0c	00419734	updatedd
+wan_disconnect	00413f28	00417b74	killall
+wan_disconnect	00413f30	00419740	ntpclient
+wan_disconnect	00413f4c	00417b74	killall
+wan_disconnect	00413f7c	00417c80	/var/run/dnrd.pid
+wan_disconnect	00413f98	00417c80	/var/run/dnrd.pid
+wan_disconnect	00413fbc	00417b74	killall
+wan_disconnect	00413fc4	004190a0	igmpproxy
+wan_disconnect	00413fe8	00417c94	/var/run/igmp_pid
+wan_disconnect	00414004	00417c94	/var/run/igmp_pid
+wan_disconnect	00414024	00417ca8	/proc/br_mCastFastFwd
+wan_disconnect	00414074	00417b74	killall
+wan_disconnect	0041407c	0041945c	ppp_inet
+wan_disconnect	004140b4	00417b74	killall
+wan_disconnect	004140c8	00417b74	killall
+wan_disconnect	004140fc	00419754	echo 0 >/proc/fast_l2tp
+wan_disconnect	00414114	0041976c	echo 1 >/proc/fast_l2tp
+wan_disconnect	0041416c	00417b74	killall
+wan_disconnect	00414174	00419454	l2tpd
+wan_disconnect	004141ac	00417b74	killall
+wan_disconnect	004141c8	00417b74	killall
+wan_disconnect	004141f0	00419784	/var/run/ppp0.pid
+wan_disconnect	0041420c	00419784	/var/run/ppp0.pid
+wan_disconnect	0041422c	00419798	option
+wan_disconnect	00414250	00418f74	/etc/ppp/link
+wan_disconnect	00414290	004197a0	/var/disc_l2tp
+wan_disconnect	004142ac	004197b0	echo"d client" > /var/run/l2tp-control &
+wan_disconnect	004142c4	004197dc	echo "l2tpdisc" > /var/disc_l2tp
+wan_disconnect	004142e8	00419800	echo 1 > /proc/fast_pptp
+wan_disconnect	00414300	0041981c	/var/firstddns
+wan_disconnect	0041431c	0041981c	/var/firstddns
+wan_disconnect	00414330	00419798	option
+wan_disconnect	00414354	00418f74	/etc/ppp/link
+wan_disconnect	00414378	00417bc4	/etc/ppp/first
+wan_disconnect	00414398	00417bd4	/etc/ppp/firstpptp
+wan_disconnect	004143bc	00417be8	/etc/ppp/firstl2tp
+wan_disconnect	004143f0	00417bfc	/etc/ppp/firstdemand
+wan_disconnect	00414410	00418f74	/etc/ppp/link
+wan_disconnect	0041442c	00418f74	/etc/ppp/link
+wan_disconnect	00414450	00419798	option
+wan_disconnect	0041446c	0041982c	/etc/ppp/connectfile
+wan_disconnect	00414488	0041982c	/etc/ppp/connectfile
+wan_disconnect	004144d4	004180d4	/proc/pptp_conn_ck
+wan_disconnect	004144e8	004180d4	/proc/pptp_conn_ck
+wan_disconnect	0041451c	00419720	/var/disc
+wan_disconnect	0041454c	004197a0	/var/disc_l2tp
+FUN_00414574	00414624	00419844	option = %s 
+FUN_00414574	004147e4	00419854	Index ==4, but parse dns ipaddress token=%s 
+FUN_00414574	00414998	00419884	DNS[%d] = %s 
+FUN_00414574	004149ac	00419894	echo "nameserver %s " > /var/resolv.conf
+FUN_00414574	004149c4	004198c0	echo "nameserver %s " >> /var/resolv.conf
+FUN_00414574	00414a2c	0041802c	netmask
+FUN_00414574	00414a38	00417e5c	ifconfig
+FUN_00414574	00414a78	00418034	route
+FUN_00414574	00414ab0	00418034	route
+FUN_00414574	00414aec	004198ec	killall -9 haier_ota 2> /dev/null
+FUN_00414b38	00414b8c	00419910	 gethostbyname error for host:%s try again! 
+FUN_00414c28	00414d3c	00419940	can't get ServerDomain:%s 's IP
+start_wan	00414dac	00419960	Init WAN Interface...
+start_wan	00414e88	00419978	flash clearppp %d %02x%02x%02x%02x%02x%02x
+start_wan	00414ee0	004199a4	ifconfig eth5 up
+start_wan	00414fe4	00417ec4	/var/tmp_wan_check
+start_wan	00414fe8	004199b8	dhcpc
+start_wan	00415010	004199c0	rm -rf
+start_wan	00415014	004199c8	 2>/dev/null
+start_wan	00415020	00417ef0	/var/ppp/manual_connect_now
+start_wan	00415038	00417ef0	/var/ppp/manual_connect_now
+start_wan	004150ac	00418034	route
+FUN_004150f0	004151b0	00417cdc	/var/run/udhcpd.pid
+FUN_004150f0	004151f4	004199d8	  Invalid IP-address value!__[%s-%u] 
+FUN_004150f0	004151f8	00419a00	set_wan.c
+FUN_004150f0	0041522c	004199d8	  Invalid IP-address value!__[%s-%u] 
+FUN_004150f0	00415230	00419a00	set_wan.c
+FUN_004150f0	00415340	00419a0c	killall -9 udhcpd 2> /dev/null
+FUN_004150f0	0041534c	00419a2c	rm -f /var/run/udhcpd.pid 2> /dev/null
+FUN_004150f0	00415368	00419a54	rm -f /var/udhcpd.conf
+FUN_004150f0	0041538c	00418624	interface %s 
+FUN_004150f0	004153a4	00418634	/var/udhcpd.conf
+FUN_004150f0	004153fc	00418648	start %s 
+FUN_004150f0	00415418	00418634	/var/udhcpd.conf
+FUN_004150f0	0041546c	00418654	end %s 
+FUN_004150f0	00415498	00418634	/var/udhcpd.conf
+FUN_004150f0	004154bc	0041865c	opt subnet %s 
+FUN_004150f0	004154d4	00418634	/var/udhcpd.conf
+FUN_004150f0	00415548	0041866c	set MIB_DHCP_LEASE_TIME error
+FUN_004150f0	00415580	0041868c	opt lease %ld 
+FUN_004150f0	004155b8	00418634	/var/udhcpd.conf
+FUN_004150f0	004155dc	0041869c	opt router %s 
+FUN_004150f0	00415608	00418634	/var/udhcpd.conf
+FUN_004150f0	0041562c	004186ac	opt dns %s 
+FUN_004150f0	00415644	00418634	/var/udhcpd.conf
+FUN_004150f0	004156a4	004186b8	opt domain %s 
+FUN_004150f0	004156b8	00418634	/var/udhcpd.conf
+FUN_004150f0	004157a0	00419a6c	ifconfig br0 %s netmask %s
+FUN_004150f0	004157d8	00419a88	udhcpd %s
+FUN_004150f0	004157dc	00418634	/var/udhcpd.conf
+FUN_00415828	00415b34	00418034	route
+FUN_00415828	00415b70	00417ad4	wlan0
+FUN_00415828	00415b8c	00418034	route
+FUN_00415828	00415be8	004180d4	/proc/pptp_conn_ck
+FUN_00415828	00415bfc	004180d4	/proc/pptp_conn_ck
+FUN_00415828	00415ca8	00418034	route
+FUN_00415828	00415cf4	00418034	route
+FUN_00415828	00415ea8	00417e5c	ifconfig
+FUN_00415828	00415eb0	00419a94	txqueuelen
+FUN_00415828	00415ee8	00419aa4	/etc/ppp/resolv.conf
+FUN_00415828	00416060	00419abc	168.95.1.1
+FUN_00415828	00416078	00417b74	killall
+FUN_00415828	004160a0	00417c80	/var/run/dnrd.pid
+FUN_00415828	004160bc	00417c80	/var/run/dnrd.pid
+FUN_00415828	00416150	00419ac8	/etc/hosts
+FUN_00415828	004161a0	00419ae0	AP.com|
+FUN_00415828	004161a4	00419ae8	AP.net
+FUN_00415828	004161b0	00419ad4	%s\%s%s%s%s
+FUN_00415828	004161c4	00419af0	realtek
+FUN_00415828	004161c8	00419ae0	AP.com|
+FUN_00415828	004161cc	00419ae8	AP.net
+FUN_00415828	004161d0	00419af0	realtek
+FUN_00415828	004161d8	00419ad4	%s\%s%s%s%s
+FUN_00415828	004161fc	00419ac8	/etc/hosts
+FUN_00415828	0041622c	004196ac	--cache=off
+FUN_00415828	004162a8	00419aa4	/etc/ppp/resolv.conf
+FUN_00415828	004164cc	0041802c	netmask
+FUN_00415828	004164e4	00417e5c	ifconfig
+FUN_00415828	0041652c	00418034	route
+FUN_00415828	00416578	00418034	route
+FUN_00415828	004165bc	00417b74	killall
+FUN_00415828	004165e0	00417c80	/var/run/dnrd.pid
+FUN_00415828	004165fc	00417c80	/var/run/dnrd.pid
+FUN_00415828	00416690	00419ac8	/etc/hosts
+FUN_00415828	004166e0	00419ae0	AP.com|
+FUN_00415828	004166e4	00419ae8	AP.net
+FUN_00415828	004166f0	00419ad4	%s\%s%s%s%s
+FUN_00415828	00416704	00419af0	realtek
+FUN_00415828	00416708	00419ae0	AP.com|
+FUN_00415828	0041670c	00419ae8	AP.net
+FUN_00415828	00416710	00419af0	realtek
+FUN_00415828	00416718	00419ad4	%s\%s%s%s%s
+FUN_00415828	0041673c	00419ac8	/etc/hosts
+FUN_00415828	00416768	004196ac	--cache=off
+FUN_00415828	004167c4	004185c0	nameserver %s 
+FUN_00415828	004168b4	00418a68	/var/restart_iapp
+FUN_00415828	004168c8	00418a68	/var/restart_iapp
+FUN_00415828	004168ec	00419afc	can not open /var/restart_iapp
+FUN_00415828	004169b4	004185c0	nameserver %s 
+FUN_00415828	00416a20	00418034	route
+FUN_00415828	00416a80	00418034	route
+FUN_00415828	00416ac0	00417ec4	/var/tmp_wan_check
+FUN_00415828	00416adc	00417ed8	/var/tmp_wan_dhcp_info
+FUN_00415828	00416b8c	00419b1c	can't get pptpServerDomain:%s 's IP
+FUN_00415828	00416c34	00419b40	can't get l2tpServerDomain:%s 's IP
+FUN_00415828	00416d24	0041802c	netmask
+FUN_00415828	00416d5c	00418034	route
+FUN_00415828	00416d84	00417ec4	/var/tmp_wan_check
+FUN_00415828	00416d9c	00417ed8	/var/tmp_wan_dhcp_info
+FUN_00415828	00416db4	0041982c	/etc/ppp/connectfile
+FUN_00415828	00416dd0	0041982c	/etc/ppp/connectfile
+FUN_00415828	00416e7c	00419b64	ifconfig wlan0 down
+FUN_00415828	00416eb4	00419b78	ifconfig wlan1 down
+FUN_00415828	00416ecc	00419b8c	ifconfig eth0 down
+FUN_00415828	00416efc	00419ba0	ifconfig eth0 up
+FUN_00415828	00416f1c	00419bb4	ifconfig wlan0 up
+FUN_00415828	00416f3c	00419bc8	ifconfig wlan1 up
+FUN_00415828	00416f54	00419bdc	WAN Connected
+checkWanStatus	004172e4	00419bf4	/proc/eth1/up_event
+checkWanStatus	00417300	00419c08	%s: %s is not exist!! 
+checkWanStatus	00417304	00419c40	checkWanStatus
+checkWanStatus	0041730c	00419bf4	/proc/eth1/up_event
+checkWanStatus	00417348	00419bf4	/proc/eth1/up_event
+checkWanStatus	00417390	00419bf4	/proc/eth1/up_event

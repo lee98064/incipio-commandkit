@@ -1,0 +1,35 @@
+{
+  "status": "pass",
+  "backend": "flashrom v1.8.0 dummy, emulated 8 MiB Macronix SPI",
+  "checks": [
+    "actual layout/include write",
+    "independent full readback equals target",
+    "all protected bytes unchanged",
+    "actual region restore equals original"
+  ],
+  "write_range": [
+    1245184,
+    3932160
+  ],
+  "physical_device_access": false,
+  "limitation": "dummy erase/program model is not GD25Q64 hardware or electrical validation",
+  "commands": [
+    {
+      "operation": "--layout",
+      "returncode": 0
+    },
+    {
+      "operation": "-r",
+      "returncode": 0
+    },
+    {
+      "operation": "--layout",
+      "returncode": 0
+    },
+    {
+      "operation": "-r",
+      "returncode": 0
+    }
+  ],
+  "target_sha256": "ce295e13e8baa601f210379f12f0a05d923b216ebc0b1c1d51b1d09b20351217"
+}

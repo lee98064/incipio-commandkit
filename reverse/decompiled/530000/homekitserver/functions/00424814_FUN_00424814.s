@@ -1,0 +1,37 @@
+# FUN_00424814 @ 00424814
+00424814  addiu sp,sp,-0x28
+00424818  sw ra,0x24(sp)
+0042481c  sw s2,0x20(sp)
+00424820  sw s1,0x1c(sp)
+00424824  sw s0,0x18(sp)
+00424828  lui gp,0x62
+0042482c  addiu gp,gp,-0x5cf0
+00424830  sw gp,0x10(sp)
+00424834  move s2,a0
+00424838  beq a0,zero,0x00424884
+0042483c  _move s1,a1
+00424840  beq a1,zero,0x00424888
+00424844  _clear s0
+00424848  lw t9,-0x619c(gp)
+0042484c  nop
+00424850  jalr t9
+00424854  _addiu a0,a1,0x1
+00424858  lw gp,0x10(sp)
+0042485c  beq v0,zero,0x00424888
+00424860  _move s0,v0
+00424864  lw t9,-0x5c9c(gp)
+00424868  move a2,s1
+0042486c  move a1,s2
+00424870  move a0,v0
+00424874  jalr t9
+00424878  _addu s1,s0,s1
+0042487c  b 0x00424888
+00424880  _sb zero,0x0(s1)
+00424884  clear s0
+00424888  move v0,s0
+0042488c  lw ra,0x24(sp)
+00424890  lw s2,0x20(sp)
+00424894  lw s1,0x1c(sp)
+00424898  lw s0,0x18(sp)
+0042489c  jr ra
+004248a0  _addiu sp,sp,0x28

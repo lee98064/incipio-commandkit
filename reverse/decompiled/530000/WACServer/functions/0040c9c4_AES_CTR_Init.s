@@ -1,0 +1,32 @@
+# AES_CTR_Init @ 0040c9c4
+0040c9c4  addiu sp,sp,-0x28
+0040c9c8  sw ra,0x24(sp)
+0040c9cc  sw s0,0x20(sp)
+0040c9d0  lui gp,0x44
+0040c9d4  addiu gp,gp,-0x4fc0
+0040c9d8  sw gp,0x10(sp)
+0040c9dc  lw t9,-0x7fb0(gp)
+0040c9e0  sw a2,0x1c(sp)
+0040c9e4  sw a1,0x18(sp)
+0040c9e8  jalr t9
+0040c9ec  _move s0,a0
+0040c9f0  lw gp,0x10(sp)
+0040c9f4  lw a0,0x18(sp)
+0040c9f8  lw t9,-0x7de8(gp)
+0040c9fc  nop
+0040ca00  jalr t9
+0040ca04  _move a1,s0
+0040ca08  lw gp,0x10(sp)
+0040ca0c  lw a2,0x1c(sp)
+0040ca10  addiu a0,s0,0xf4
+0040ca14  lw t9,-0x7d98(gp)
+0040ca18  move a1,a2
+0040ca1c  jalr t9
+0040ca20  _li a2,0x10
+0040ca24  sb zero,0x118(s0)
+0040ca28  sw zero,0x114(s0)
+0040ca2c  lw ra,0x24(sp)
+0040ca30  lw s0,0x20(sp)
+0040ca34  clear v0
+0040ca38  jr ra
+0040ca3c  _addiu sp,sp,0x28

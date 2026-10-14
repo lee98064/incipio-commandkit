@@ -1,0 +1,2911 @@
+function	from	string_address	string
+translate_uri	00403ea4	004494f0	/countDownPage.htm
+translate_uri	00403ee8	004494f0	/countDownPage.htm
+translate_uri	00403f80	00449504	%s:%d - looking for "%s" (hash=%u,len=%u)... 
+translate_uri	00403f84	00449534	alias.c
+translate_uri	00403ff0	0044953c	%s:%d - comparing "%s" (request) to "%s" (alias): 
+translate_uri	00403ff4	00449534	alias.c
+translate_uri	004040a0	00449570	Got it! (%s) 
+translate_uri	004040d0	00449580	Don't Got it! 
+translate_uri	0040486c	004495a8	POST to non-script is disallowed. 
+translate_uri	004048f4	004495cc	Empty user-dir in URI 
+translate_uri	00404b30	004495e4	htdocs
+translate_uri	00404c00	00449590	uri too long! 
+translate_uri	00404cc8	004495ec	application/x-httpd-cgi
+translate_uri	00404d60	00449604	boafrm
+translate_uri	00404d7c	0044960c	POST to non-script disallowed. 
+add_alias	00404e90	0044962c	%s:%d - Going to add alias: "%s" -=> "%s" (hash: %u) 
+add_alias	00404e94	00449534	alias.c
+add_alias	00404fa0	00449664	%s:%d - ADDED alias: "%s" -=> "%s" hash: %u 
+add_alias	00404fa4	00449534	alias.c
+main	00405134	00449694	strdup (for server_root)
+main	00405170	004496b0	chdir (to chroot)
+main	004051b8	004496c4	chroot
+main	004051e0	004496cc	chdir (after chroot)
+main	00405218	004496e4	Usage: %s [-c serverroot] [-d] [-f configfile] [-r chroot]%s 
+main	00405220	00449724	 [-l debug_level]
+main	00405254	00449738	c:dl:f:r:
+main	00405288	00449744	/etc/boa
+main	004052a4	00449750	strdup (SERVER_ROOT)
+main	004052e4	00449768	Could not chdir to "%s": aborting 
+main	00405464	0044978c	fork/getpid
+main	004054e0	00449798	fopen pid file
+escape_string	00405684	004497f0	malloc
+req_flush	004057e4	004497f8	buffer flush
+req_write_escape_html	004059b0	00449808	Ran out of Buffer space (%d chars left)! [req_write_escape_html] 
+req_write_escape_http	00405b00	0044984c	Ran out of Buffer space! [req_write_escape_http] 
+req_write	00405bb0	00449880	There is not enough room in the buffer to copy %u bytes (%d available). Shutting down connection. 
+process_cgi_header	00405ce0	004498e8	cgi_header: unable to find LFLF 
+process_cgi_header	00405d30	0044990c	Status: 
+process_cgi_header	00405d5c	00449918	HTTP/1.0 
+process_cgi_header	00405d74	00449924	Location: 
+process_cgi_header	00405db0	00449930	server does not support internal redirection: "%s" 
+process_cgi_header	00405f08	00449964	Too much data to move! Aborting! %s %d 
+process_cgi_header	00405f0c	0044998c	cgi_header.c
+FUN_00406044	00406090	00449a24	Calling add_alias with args "%s", "%s", and %d 
+FUN_00406324	00406360	00449a80	Group %s = 
+FUN_00406324	004063e4	00449a8c	No such group: %s 
+FUN_00406468	004064a4	00449aa0	User %s = 
+FUN_00406468	00406528	00449aac	No such user: %s 
+FUN_004065ac	004065f0	00449ac0	Setting pointer %p to string %s ..
+FUN_004065ac	0040666c	00449ae4	done.
+FUN_004065ac	00406690	00449aec	skipped.
+FUN_004066bc	00406700	00449af8	Setting pointer %p to integer string %s ..
+FUN_004066bc	00406774	00449b24	 Integer converted as %d, done 
+FUN_004066bc	00406798	00449b44	Error: %s found where integer expected 
+FUN_004066bc	004067d4	00449aec	skipped.
+FUN_004067ec	00406830	00449b6c	Checking string '%s' against keyword list 
+FUN_0040689c	004069f0	00449b98	Line %d: Did not find keyword "%s" 
+FUN_0040689c	00406a2c	00449bbc	Found keyword %s in "%s" (%s)! 
+FUN_0040689c	00406adc	00449bdc	expected at least 1 arg! (%s) 
+read_config_files	00406c18	00449bfc	boa.conf
+read_config_files	00406c28	00449bfc	boa.conf
+read_config_files	00406c54	00449c08	Could not open boa.conf for reading. 
+read_config_files	00406cf0	00449c30	strdup:
+read_config_files	00406d60	00449c44	Invalid value for single_post_limit: %d 
+read_config_files	00406dac	00449c70	Both VHostRoot and VirtualHost were enabled, and they are mutually exclusive. 
+read_config_files	00406dd4	00449cc0	Both VHostRoot and DocumentRoot were enabled, and they are mutually exclusive. 
+read_config_files	00406e04	00449d10	default
+build_needs_escape	00406ecc	00449ee0	ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_.!~*'():@&=+$,/?
+FUN_00406f70	00407150	00449f34	 200 OK 
+FUN_00406f70	0040719c	00449f40	Content-Type: text/html  
+FUN_00406f70	00407224	00449f5c	%s/dir.%d.%ld
+FUN_00406f70	00407330	00449f6c	chdir
+FUN_00406f70	004073a8	00449f74	opendir failed on directory "%s": 
+FUN_00406f70	004073c0	00449f98	opendir
+FUN_00406f70	00407408	00449fa0	<HTML><HEAD> <TITLE>Index of %s</TITLE> </HEAD>  
+FUN_00406f70	00407420	00449fd4	<BODY>  <H2>Index of %s</H2>  <PRE> 
+FUN_00406f70	00407498	00449ffc	 [DIR] <A HREF="../">Parent Directory</A> 
+FUN_00406f70	004074c4	0044a028	 <A HREF="%s">%s</A> 
+FUN_00406f70	00407540	0044a040	</PRE>  </BODY> </HTML> 
+process_get	0040774c	0044a05c	%sGot SIGBUS in write(2)! 
+process_get	00407790	0044a078	write
+init_get	0040788c	0044a080	formWlanRedirect
+init_get	004078b0	0044a094	redirect-url=
+init_get	004078d0	0044a0a4	&wlan_id=
+init_get	00407900	0044a0b0	 HTTP
+init_get	00407938	0044a0b8	.mtddump
+init_get	0040795c	0044a0c4	rm /var/mtdfw.fw
+init_get	00407968	0044a0d8	/var/mtdfw.fw
+init_get	00407a1c	0044a0fc	/dev/mtdblock%d
+init_get	00407be8	0044a0d8	/var/mtdfw.fw
+init_get	00407c50	0044a14c	document open
+init_get	00407c88	0044a15c	req->pathname=%s 
+init_get	00407ca0	0044a170	home.htm
+init_get	00407fe0	0044a184	Resulting file is not a regular file. 
+init_get2	00408474	0044a1ac	countDownPage.htm
+init_get2	004084b4	0044a1c0	ifconfig br0 down
+init_get2	00408654	0044a1dc	http://%s:%d%s/
+init_get2	00408684	0044a1ec	http://%s%s/
+init_get2	004087e4	0044a204	will break
+init_get2	00408954	0044a210	Content-Length:
+init_get2	00408ae4	0044a220	boafrm/
+FUN_00408c10	00408c50	0044a250	Attempt to hash NULL or empty string! [boa_hash]! 
+FUN_00408cc0	00408d04	0044a284	Yipes! Null value sent as key! [hash_find]! 
+FUN_00408cc0	00408d24	0044a2b4	Attempt to locate empty string in hash! [hash_find]! 
+FUN_00408d78	00408de4	0044a2ec	mime_hashtable has %d total entries 
+FUN_00408d78	00408e44	0044a314	passwd_hashtable has %d total entries 
+FUN_00408e50	00408ea0	0044a33c	Yipes! Null value sent as key! [hash_insert]! 
+FUN_00408e50	00408ec0	0044a36c	Attempt to hash NULL or empty key! [hash_insert]! 
+FUN_00408e50	00408eec	0044a3a0	Yipes! Null value sent as value! [hash_insert]! 
+FUN_00408e50	00408f10	0044a3d4	Attempt to hash NULL or empty value! [hash_insert]! 
+FUN_00408e50	00408f48	0044a40c	Adding key "%s" for value "%s" (hash=%u) 
+get_home_dir	00409100	0044a250	Attempt to hash NULL or empty string! [boa_hash]! 
+get_mime_type	0040924c	0044a438	Attempt to hash NULL string! [get_mime_type] 
+get_mime_type	00409270	0044a468	Attempt to hash empty string! [get_mime_type] 
+ascii_sockaddr	00409450	0044a498	[IPv6] getnameinfo failed 
+net_port	004094cc	0044a498	[IPv6] getnameinfo failed 
+release_mmap	004095c8	0044a4b4	mmap_list(%p)->use_count already zero! 
+find_mmap	00409700	0044a4dc	Old mmap_list entry %d use_count now %d (hash was %d) 
+find_mmap	004097dc	0044a514	Unable to mmap file: 
+find_mmap	00409854	0044a534	Unable to madvise file: 
+find_mmap	00409870	0044a550	madvise
+find_mmap	004098c0	0044a558	New mmap_list entry %d (hash was %d) 
+io_shuffle	00409a24	0044a580	ioshuffle lseek
+io_shuffle	00409aa8	0044a590	ioshuffle read
+io_shuffle	00409bd4	0044a5a0	ioshuffle write
+write_from_pipe	00409ce4	0044a5b0	pipe write
+read_from_pipe	00409e54	0044a5bc	pipe read
+ranges_fixup	0040a3d4	0044a600	range.c: ranges_fixup: %lu-%lu 
+ranges_fixup	0040a4a4	0044a620	start or end of range is invalid. skipping. 
+ranges_fixup	0040a4e0	0044a650	ending with start: %lu stop: %lu 
+ranges_fixup	0040a560	0044a674	ranges_fixup returning 1 
+range_parse	0040a640	0044a690	bytes=
+range_parse	0040a66c	0044a698	range "%s" doesn't start with "bytes=" 
+range_parse	0040a7d8	0044a6c0	Invalid range request "%s". 
+range_parse	0040a860	0044a6e0	Invalid range request (neither start nor stop were specified). 
+range_parse	0040a8d4	0044a720	range.c, range_add: got: %lu-%lu 
+write_body	0040aaf0	0044a7d0	/bin/fwd
+write_body	0040abe8	0044a7dc	error, post_data_len > BUFFER_SIZE!
+write_body	0040ac9c	0044a800	%s:%d - wrote %d bytes of CGI body. %ld of %ld 
+write_body	0040aca0	0044a830	read.c
+write_body	0040ad1c	0044a838	%s:%d - wrote %d bytes (%s). %lu of %lu 
+write_body	0040ad20	0044a830	read.c
+read_body	0040ae0c	0044a864	%s:%d - Premature end of body!! 
+read_body	0040ae10	0044a830	read.c
+read_header	0040aef0	0044a888	%s:%d - Parsing headers ("%s") 
+read_header	0040aef4	0044a830	read.c
+read_header	0040af8c	0044a8a8	Illegal character (%d) in stream. 
+read_header	0040b09c	0044a8cc	Header too long at %lu bytes: "%s" 
+read_header	0040b1c0	0044a8f0	Invalid Content-Length [%s] on POST! 
+read_header	0040b21c	0044a918	Content-Length [%d] > SinglePostLimit [%d] on POST! 
+read_header	0040b26c	0044a950	Unknown Content-Length POST! 
+read_header	0040b300	0044a970	No space left in client stream buffer, closing 
+read_header	0040b36c	0044a9a0	header read
+read_header	0040b3d0	0044a9ac	client unexpectedly closed connection. 
+read_header	0040b3ec	0044a9d4	(null)
+read_header	0040b410	0044a9d4	(null)
+read_header	0040b414	0044a9dc	%s -- request "%s" ("%s"): 
+read_header	0040b478	0044a9f8	%s:%d -- We read %d bytes: "%s" 
+read_header	0040b47c	0044a830	read.c
+clear_fwupload_shm	0040b52c	0044aa1c	shmdt failed 
+clear_fwupload_shm	0040b57c	0044aa2c	shmctl(IPC_RMID) failed 
+process_option_line	0040b6a8	0044aa48	header "%s" does not contain ':' 
+process_option_line	0040b718	0044aa6c	ACCEPT
+process_option_line	0040b738	0044aa74	AUTHORIZATION
+process_option_line	0040b758	0044aa84	Basic 
+process_option_line	0040b77c	0044aa8c	Can only handle Basic auth
+process_option_line	0040b8cc	0044aaa8	No user:pass in Basic auth
+process_option_line	0040b954	0044aad4	multipart/form-data
+process_option_line	0040b97c	0044aae8	boundary=
+process_option_line	0040b9e8	0044aafc	CONTENT_LENGTH
+process_option_line	0040ba24	0044ab0c	CONNECTION
+process_option_line	0040baec	0044ab34	REFERER
+process_option_line	0040bb0c	0044ab34	REFERER
+process_option_line	0040bb38	0044ab3c	RANGE
+process_option_line	0040bbac	0044ab44	USER_AGENT
+process_option_line	0040bbcc	0044ab44	USER_AGENT
+process_option_line	0040bc58	0044aac4	CONTENT_TYPE
+process_option_line	0040bc78	0044ab20	IF_MODIFIED_SINCE
+process_header_end	0040bcbc	0044ab50	No logline in process_header_end 
+process_header_end	0040bd10	0044ab74	URI contains bogus characters 
+process_header_end	0040bd9c	0044ab94	unable to strdup default_vhost/req->header_host 
+process_header_end	0040be14	0044abc8	host invalid! 
+process_header_end	0040bff8	0044abd8	formUploadConfig
+process_logline	0040c180	0044abec	Request too short: "%s" 
+process_logline	0040c1b0	0044ac10	HEAD 
+process_logline	0040c1d8	0044ac18	POST 
+process_logline	0040c248	0044ac20	malformed request: "%s" 
+process_logline	0040c2d4	0044ac3c	URI too long %d: "%s" 
+process_logline	0040c384	0044ac5c	bogus absolute URI 
+process_logline	0040c41c	0044ac90	Error: corruption in absolute URI:"%s".  This should not happen. 
+process_logline	0040c584	0044ace0	bogus HTTP version: "%s" 
+FUN_0040c5d0	0040c678	0044acfc	req: %p, offset: %u 
+FUN_0040c6c4	0040c8d0	0044ad14	Warning: CGI Environment contains NULL value(index %d of %d). 
+FUN_0040c6c4	0040ca58	0044ad54	free upload data.............................. 
+FUN_0040cc60	0040ccd4	0044ad84	malloc for new request
+process_requests	0040d1a0	0044ad9c	Unknown status (%d), closing! 
+process_requests	0040d254	0044adbc	/boafrm/formUpload
+process_requests	0040d2bc	0044add0	Unknown retval in process.c - Status: %d, retval: %d 
+http_ver_string	0040d330	0044ae50	HTTP/1.0
+http_ver_string	0040d338	0044ae5c	HTTP/0.9
+http_ver_string	0040d340	0044ae68	HTTP/1.1
+FUN_0040d34c	0040d388	0044ae68	HTTP/1.1
+FUN_0040d34c	0040d3a4	00468488	 100 Continue  
+FUN_0040d3c0	0040d3d0	0046849c	 --THIS_STRING_SEPARATES-- 
+FUN_0040d3dc	0040d404	0044ae74	Content-Range: bytes 
+FUN_0040d4f4	0040d54c	0044ae8c	Connection: Keep-Alive Keep-Alive: timeout=
+FUN_0040d4f4	0040d58c	0044aebc	, max=
+FUN_0040d4f4	0040d5f4	0044aec4	Connection: close 
+FUN_0040d608	0040d628	0044aed8	Content-Length: 
+print_http_headers	0040d6c0	004684f4	Date:                               
+print_http_headers	0040d6fc	004684d8	Server: Boa/0.94.14rc21 
+print_http_headers	0040d720	0044aeec	Accept-Ranges: bytes 
+FUN_0040d73c	0040d78c	0044ae50	HTTP/1.0
+FUN_0040d73c	0040d794	0044ae68	HTTP/1.1
+FUN_0040d73c	0040d7b0	0044af04	 505 HTTP Version Not Supported 
+FUN_0040d73c	0040d7d4	0044af28	Content-Type: text/html; charset=ISO-8859-1  
+FUN_0040d73c	0040d800	0044af58	<HTML><HEAD><TITLE>505 HTTP Version Not Supported</TITLE></HEAD> <BODY><H1>505 HTTP Version Not Supported</H1> HTTP versions other than 0.9 and 1.0 are not supported in Boa. <p><p>Version encountered: 
+FUN_0040d73c	0040d82c	0044b024	<p><p></BODY></HTML> 
+send_r_service_unavailable	0040d89c	004682f0	<HTML><HEAD><TITLE>503 Service Unavailable</TITLE></HEAD> <BODY><H1>503 Service Unavailable</H1> There are too many connections in use right now. Please try again later. </BODY></HTML> 
+send_r_service_unavailable	0040d910	0044b03c	strdup of _body_len from simple_itoa
+send_r_service_unavailable	0040d944	0044ae50	HTTP/1.0
+send_r_service_unavailable	0040d94c	0044ae68	HTTP/1.1
+send_r_service_unavailable	0040d968	0044b064	 503 Service Unavailable 
+send_r_service_unavailable	0040d998	0044aed8	Content-Length: 
+send_r_service_unavailable	0040d9e8	0044af28	Content-Type: text/html; charset=ISO-8859-1  
+send_r_service_unavailable	0040da0c	004682f0	<HTML><HEAD><TITLE>503 Service Unavailable</TITLE></HEAD> <BODY><H1>503 Service Unavailable</H1> There are too many connections in use right now. Please try again later. </BODY></HTML> 
+send_r_bad_gateway	0040da80	0044ae50	HTTP/1.0
+send_r_bad_gateway	0040da88	0044ae68	HTTP/1.1
+send_r_bad_gateway	0040daa4	0044b080	 502 Bad Gateway 
+send_r_bad_gateway	0040dac8	0044af28	Content-Type: text/html; charset=ISO-8859-1  
+send_r_bad_gateway	0040daf4	0044b094	<HTML><HEAD><TITLE>502 Bad Gateway</TITLE></HEAD> <BODY><H1>502 Bad Gateway</H1> The CGI was not CGI/1.1 compliant. </BODY></HTML> 
+send_r_not_implemented	0040db68	0044ae50	HTTP/1.0
+send_r_not_implemented	0040db70	0044ae68	HTTP/1.1
+send_r_not_implemented	0040db8c	0044b118	 501 Not Implemented 
+send_r_not_implemented	0040dbb0	0044af28	Content-Type: text/html; charset=ISO-8859-1  
+send_r_not_implemented	0040dbdc	0044b130	<HTML><HEAD><TITLE>501 Not Implemented</TITLE></HEAD> <BODY><H1>501 Not Implemented</H1> POST to non-script is not supported in Boa. </BODY></HTML> 
+send_r_error	0040dc44	0044ae50	HTTP/1.0
+send_r_error	0040dc4c	0044ae68	HTTP/1.1
+send_r_error	0040dc68	0044b1c8	 500 Server Error 
+send_r_error	0040dc8c	0044af28	Content-Type: text/html; charset=ISO-8859-1  
+send_r_error	0040dcb8	0044b1dc	<HTML><HEAD><TITLE>500 Server Error</TITLE></HEAD> <BODY><H1>500 Server Error</H1> The server encountered an internal error and could not complete your request. </BODY></HTML> 
+send_r_invalid_range	0040dd2c	0044ae50	HTTP/1.0
+send_r_invalid_range	0040dd34	0044ae68	HTTP/1.1
+send_r_invalid_range	0040dd50	0044b290	 416 Invalid Range 
+send_r_invalid_range	0040dd88	004683ac	<HTML><HEAD><TITLE>416 Invalid Range</TITLE></HEAD> <BODY><H1>416 Invalid Range</H1> </BODY></HTML> 
+send_r_invalid_range	0040dd9c	0044aed8	Content-Length: 
+send_r_invalid_range	0040dde4	0044b2a8	 Content-Type: text/html; charset=ISO-8859-1  
+send_r_invalid_range	0040de10	004683ac	<HTML><HEAD><TITLE>416 Invalid Range</TITLE></HEAD> <BODY><H1>416 Invalid Range</H1> </BODY></HTML> 
+FUN_0040de3c	0040de64	0044b330	<HTML><HEAD><TITLE>414 Request URI Too Long</TITLE></HEAD> <BODY><H1>414 Request URI Too Long</H1> Your client has issued a malformed or illegal request. </BODY></HTML> 
+FUN_0040de3c	0040de9c	0044ae50	HTTP/1.0
+FUN_0040de3c	0040dea4	0044ae68	HTTP/1.1
+FUN_0040de3c	0040dec0	0044b2dc	 414 Request URI Too Long 
+FUN_0040de3c	0040dee4	0044b2f8	Content-Type: text/html; charset=ISO-8859-1 
+FUN_0040de3c	0040df00	0044aed8	Content-Length: 
+FUN_0040dfd4	0040e01c	0044ae50	HTTP/1.0
+FUN_0040dfd4	0040e024	0044ae68	HTTP/1.1
+FUN_0040dfd4	0040e040	0044b3dc	 412 Precondition Failed 
+FUN_0040dfd4	0040e064	0044af28	Content-Type: text/html; charset=ISO-8859-1  
+FUN_0040dfd4	0040e090	0044b3f8	<HTML><HEAD><TITLE>412 Precondition Failed</TITLE></HEAD> <BODY><H1>412 Precondition Failed</H1> </BODY></HTML> 
+send_r_not_found	0040e100	0044ae50	HTTP/1.0
+send_r_not_found	0040e108	0044ae68	HTTP/1.1
+send_r_not_found	0040e124	0044b46c	 404 Not Found 
+send_r_not_found	0040e148	0044af28	Content-Type: text/html; charset=ISO-8859-1  
+send_r_not_found	0040e174	0044b480	<HTML><HEAD><TITLE>404 Not Found</TITLE></HEAD> <BODY><H1>404 Not Found</H1> The requested URL 
+send_r_not_found	0040e1a0	0044b4e0	 was not found on this server. </BODY></HTML> 
+send_r_forbidden	0040e218	0044ae50	HTTP/1.0
+send_r_forbidden	0040e220	0044ae68	HTTP/1.1
+send_r_forbidden	0040e23c	0044b510	 403 Forbidden 
+send_r_forbidden	0040e260	0044af28	Content-Type: text/html; charset=ISO-8859-1  
+send_r_forbidden	0040e28c	0044b524	<HTML><HEAD><TITLE>403 Forbidden</TITLE></HEAD> <BODY><H1>403 Forbidden</H1> Your client does not have permission to get URL 
+send_r_forbidden	0040e2b8	0044b5a4	 from this server. </BODY></HTML> 
+send_r_unauthorized	0040e338	0044ae50	HTTP/1.0
+send_r_unauthorized	0040e340	0044ae68	HTTP/1.1
+send_r_unauthorized	0040e35c	0044b5c8	 401 Unauthorized 
+send_r_unauthorized	0040e380	0044b5dc	WWW-Authenticate: Basic realm="."
+send_r_unauthorized	0040e3d0	0044af28	Content-Type: text/html; charset=ISO-8859-1  
+send_r_unauthorized	0040e3fc	0044b600	<HTML><HEAD><TITLE>401 Unauthorized</TITLE></HEAD> <BODY><H1>401 Unauthorized</H1> Your client does not have permission to get URL 
+send_r_unauthorized	0040e428	0044b5a4	 from this server. </BODY></HTML> 
+send_r_bad_request	0040e4a4	0044ae50	HTTP/1.0
+send_r_bad_request	0040e4ac	0044ae68	HTTP/1.1
+send_r_bad_request	0040e4c8	0044b684	 400 Bad Request 
+send_r_bad_request	0040e4ec	0044af28	Content-Type: text/html; charset=ISO-8859-1  
+send_r_bad_request	0040e518	0044b698	<HTML><HEAD><TITLE>400 Bad Request</TITLE></HEAD> <BODY><H1>400 Bad Request</H1> Your client has issued a malformed or illegal request. </BODY></HTML> 
+send_r_moved_temp	0040e594	0044ae50	HTTP/1.0
+send_r_moved_temp	0040e59c	0044ae68	HTTP/1.1
+send_r_moved_temp	0040e5b8	0044b730	 302 Moved Temporarily 
+send_r_moved_temp	0040e5dc	0044b2f8	Content-Type: text/html; charset=ISO-8859-1 
+send_r_moved_temp	0040e5f8	00449924	Location: 
+send_r_moved_temp	0040e690	0044b74c	<HTML><HEAD><TITLE>302 Moved Temporarily</TITLE></HEAD> <BODY> <H1>302 Moved</H1>The document has moved <A HREF="
+send_r_moved_temp	0040e6bc	0044b7c0	">here</A>. </BODY></HTML> 
+send_redirect_perm	0040e72c	0044b7dc	HTTP/1.0 302 Redirect 
+send_redirect_perm	0040e74c	0044b2f8	Content-Type: text/html; charset=ISO-8859-1 
+send_redirect_perm	0040e768	00449924	Location: 
+send_redirect_perm	0040e81c	0044b7f4	http://%s/%s
+send_redirect_perm	0040e8a0	0044b7f4	http://%s/%s
+send_redirect_perm	0040e8f0	0044b804	<HTML><HEAD></HEAD> <BODY> <H1>302 Redirect</H1>The document has moved <A HREF="
+send_redirect_perm	0040e924	0044b7c0	">here</A>. </BODY></HTML> 
+send_r_moved_perm	0040e9e4	0044ae50	HTTP/1.0
+send_r_moved_perm	0040e9ec	0044ae68	HTTP/1.1
+send_r_moved_perm	0040ea08	0044b858	 301 Moved Permanently 
+send_r_moved_perm	0040ea2c	0044b2f8	Content-Type: text/html; charset=ISO-8859-1 
+send_r_moved_perm	0040ea48	00449924	Location: 
+send_r_moved_perm	0040eaa8	0044b874	<HTML><HEAD><TITLE>301 Moved Permanently</TITLE></HEAD> <BODY> <H1>301 Moved</H1>The document has moved <A HREF="
+send_r_moved_perm	0040ead4	0044b7c0	">here</A>. </BODY></HTML> 
+send_r_no_content	0040eb48	0044ae50	HTTP/1.0
+send_r_no_content	0040eb50	0044ae68	HTTP/1.1
+send_r_no_content	0040eb6c	00468474	 204 NO CONTENT 
+print_last_modified	0040ec0c	0046851c	Last-Modified:                               
+FUN_0040ec18	0040ec64	0044b8e8	Content-Type: 
+FUN_0040ec18	0040ec78	004495ec	application/x-httpd-cgi
+FUN_0040ec18	0040eca0	0044b8f8	text/html
+FUN_0040ec18	0040ed04	0044b90c	; charset=
+FUN_0040ec18	0040ed5c	0044a0b8	.mtddump
+FUN_0040ec18	0040ed74	0044b918	Content-Disposition: attachment 
+FUN_0040ec18	0040ed98	0044b93c	/config.dat
+FUN_0040ec18	0040edc4	0044b918	Content-Disposition: attachment 
+FUN_0040edec	0040ee34	0044ae50	HTTP/1.0
+FUN_0040edec	0040ee3c	0044ae68	HTTP/1.1
+FUN_0040edec	0040ee58	0044b948	 411 Length Required 
+FUN_0040edec	0040ee7c	0044b2f8	Content-Type: text/html; charset=ISO-8859-1 
+FUN_0040edec	0040eed4	0044b960	<HTML><HEAD><TITLE>411 Length Required</TITLE></HEAD> <BODY><H1>411 Length Required</H1> The requested URL 
+FUN_0040edec	0040ef00	0044b9cc	 requires that a valid Content-Length header be sent with it. </BODY></HTML> 
+FUN_0040ef30	0040ef7c	0044ae50	HTTP/1.0
+FUN_0040ef30	0040ef88	0044ae5c	HTTP/0.9
+FUN_0040ef30	0040ef90	0044ae68	HTTP/1.1
+FUN_0040ef30	0040efac	0044ba1c	 304 Not Modified 
+send_r_request_ok2	0040f050	0044ae50	HTTP/1.0
+send_r_request_ok2	0040f058	0044ae68	HTTP/1.1
+send_r_request_ok2	0040f074	00449f34	 200 OK 
+send_r_request_ok2	0040f0a8	0044ba30	Pragma: no-cache 
+send_r_request_ok2	0040f0b4	0044ba44	Cache-Control: no-cache 
+send_r_request_ok2	0040f0e0	0044aed8	Content-Length: 
+send_r_request_ok2	0040f13c	0044ba60	                      
+send_r_request_ok	0040f1d0	0044ae50	HTTP/1.0
+send_r_request_ok	0040f1d8	0044ae68	HTTP/1.1
+send_r_request_ok	0040f1f4	00449f34	 200 OK 
+send_r_request_ok	0040f218	0044ba30	Pragma: no-cache 
+send_r_request_ok	0040f234	0044ba44	Cache-Control: no-cache 
+send_r_request_ok	0040f26c	0044ba78	/var/tmp/usb
+send_r_request_ok	0040f284	0044b8f8	text/html
+FUN_0040f2e0	0040f318	004684bc	 --THIS_STRING_SEPARATES 
+send_r_partial_content	0040f380	0044ae50	HTTP/1.0
+send_r_partial_content	0040f38c	0044ae5c	HTTP/0.9
+send_r_partial_content	0040f394	0044ae68	HTTP/1.1
+send_r_partial_content	0040f3b0	0046845c	 206 Partial Content 
+send_r_partial_content	0040f3f0	00468414	Content-Type: multipart/byteranges; boundary=THIS_STRING_SEPARATES 
+send_r_partial_content	0040f3f8	0044aed8	Content-Length: 
+sigchld_run	0040f680	0044ba88	reaping child %d: status %d 
+sigterm_stage1_run	0040f704	0044baa8	caught SIGTERM, starting shutdown 
+FUN_0040f72c	0040f768	0044bacc	caught SIGINT: shutting down 
+sighup_run	0040f7e8	0044baec	caught SIGHUP, restarting 
+sighup_run	0040f87c	0044bb08	re-reading configuration files 
+sighup_run	0040f8b0	0044bb28	successful restart 
+sigterm_stage2_run	0040f8f4	0044bb3c	exiting Boa normally (uptime %d seconds) 
+print_debug_usage	00410344	0044bc50	  To calculate the debug level, logically 'or'   some of the following values together to get a debug level: 
+print_debug_usage	00410370	00449e74	Alias
+print_debug_usage	00410390	0044bcc0	 %d: %s 
+FUN_0041059c	004105e0	0044bccc	%s/boa-temp.XXXXXX
+FUN_0041059c	0041062c	0044bce0	mkstemp
+FUN_0041059c	004106a8	0044bce8	not enough memory for memcpy in storage 
+FUN_0041059c	00410708	0044bd14	unlink temp file 
+parse_debug	00410844	0044bd28	Before parse_debug, debug_level is: %d 
+parse_debug	004108a4	0044bd50	Invalid level specified. 
+parse_debug	00410910	00449e74	Alias
+parse_debug	00410918	0044bd6c	Enabling %s debug level. 
+parse_debug	00410944	00449e74	Alias
+parse_debug	0041094c	0044bd88	Disabling %s debug level. 
+parse_debug	004109ac	0044bda4	After parse_debug, debug_level is: %d 
+FUN_00410bc0	00410c44	0044bdd4	%d %3s %d %d:%d:%d GMT
+FUN_00410bc0	00410c94	0044bdec	%d-%3s-%d %d:%d:%d GMT
+FUN_00410bc0	00410cc8	0044be04	%3s %d %d:%d:%d %d
+FUN_00410bc0	00410d00	0044be18	%d %10s %d %d:%d:%d GMT
+FUN_00410bc0	00410d30	0044be30	Error in %s, line %d: Unable to sscanf "%s" 
+FUN_00410bc0	00410d34	0044be60	util.c
+FUN_00410bc0	00410dc8	0044be68	Invalid month name: "%s" 
+get_commonlog_time	0041110c	0044bbfc	Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec Sun,Mon,Tue,Wed,Thu,Fri,Sat,
+FUN_00411170	004111ec	0044bf40	open_net_fd
+FUN_0041126c	00411328	0044bf4c	/bin/sh
+loop	00411974	0044bf5c	connection timed out 
+loop	004119a8	0044bf5c	connection timed out 
+loop	00411c64	0044bf74	reboot
+handleScript	00411f28	0044c0e0	getInfo
+handleScript	00411f48	0044c0e0	getInfo
+handleScript	00412054	0044c0e0	getInfo
+FUN_004124c8	00412508	0044a210	Content-Length:
+handleForm	004126bc	0044bfa0	/boafrm/
+handleForm	0041270c	0044c278	formWlanSetup
+handleForm	0041273c	0044c278	formWlanSetup
+handleForm	004127c4	0044c278	formWlanSetup
+handleForm	0041284c	0044bfac	formSaveConfig
+handleForm	00412854	0044c278	formWlanSetup
+handleForm	00412870	0044c278	formWlanSetup
+handleForm	004128e0	0044c278	formWlanSetup
+asp_init	00412a84	0044bfbc	Initialize AP MIB failed!%s:%d 
+asp_init	00412a88	0044c4e0	asp_init
+asp_init	00412b4c	0044c00c	wlan0
+FUN_00412b9c	00412bbc	0044c014	----------------------------
+FUN_00412b9c	00412bec	0044c034	can't get boundry string
+FUN_00412b9c	00412c3c	0044c050	the string of boundry is too long
+FUN_00412c70	00412d18	0044c074	can't find the first boundry
+FUN_00412c70	00412d40	0044c094	the query_string_len is less than boundry_len
+FUN_00412c70	00412d78	0044c0c4	can't find the next boundry
+FUN_00413440	00413464	0044c4f0	submit-url
+FUN_004134ac	004134cc	0044c4fc	killall -15 ppp_inet 2> /dev/null
+FUN_004134ac	004134e4	0044c520	killall -15 pppd 2> /dev/null
+FUN_004134ac	004134fc	0044c540	rm /etc/ppp/connectfile >/dev/null 2>&1
+FUN_004134ac	00413510	0044c568	rm /etc/ppp/link >/dev/null 2>&1
+FUN_0041351c	00413570	0044c58c	<tr><td align=center width="30%%" bgcolor="#808080"><font size="2"><b>IP Address</b></font></td> <td align=center width="30%%" bgcolor="#808080"><font size="2"><b>MAC Address</b></font></td> <td align=center width="30%%" bgcolor="#808080"><font size="2"><b>Comment</b></font></td> <td align=center width="10%%" bgcolor="#808080"><font size="2"><b>Select</b></font></td></tr> 
+FUN_0041351c	00413618	0044c704	 %02x-%02x-%02x-%02x-%02x-%02x
+FUN_0041351c	00413654	0044c724	<tr><td align=center width="30%%" bgcolor="#C0C0C0"><font size="2">%s</td> <td align=center width="30%%" bgcolor="#C0C0C0"><font size="2">%s</td> <td align=center width="30%%" bgcolor="#C0C0C0"><font size="2">%s</td> <td align=center width="10%%" bgcolor="#C0C0C0"><input type="checkbox" name="select%d" value="ON"></td></tr> 
+FUN_00413750	00413774	0044bfa0	/boafrm/
+FUN_004137e4	00413874	0044c86c	get mib MIB_DHCPRSVDIP_TBL fail!
+getPid	00413960	0044c890	Read pid file error! 
+isDhcpClientExist	00413a24	0044c8a8	%s/%s-%s.pid
+isDhcpClientExist	00413a28	0044c8b8	/etc/udhcpc
+isDhcpClientExist	00413a34	0044c8c4	udhcpc
+FUN_00413a64	00413ab4	0044c8cc	%s/%s.pid
+FUN_00413a64	00413ab8	0044c8d8	/var/run
+FUN_00413a64	00413ac0	0044c8e4	udhcpd
+FUN_00413a64	00413ae8	0044c8ec	kill -SIGUSR1 %d 
+FUN_00413a64	00413b38	0044c900	/var/lib/misc/udhcpd.leases
+FUN_00413a64	00413b80	0044c900	/var/lib/misc/udhcpd.leases
+FUN_00413a64	00413cc4	0044c91c	%02x:%02x:%02x:%02x:%02x:%02x
+FUN_00413a64	00413d08	0044c93c	Always
+FUN_00413a64	00413d3c	0044c9ac	<tr bgcolor=#b7b7b7><td><font size=2>%s</td><td><font size=2>%s</td><td><font size=2>%s</td></tr>
+FUN_00413a64	00413d68	0044c944	<tr bgcolor=#b7b7b7><td><font size=2>None</td><td><font size=2>----</td><td><font size=2>----</td></tr>
+tcpipWanHandler	00413f74	0044ca10	lan_ip
+tcpipWanHandler	00413f90	0044ca18	isPocketWizard
+tcpipWanHandler	00413fe8	0044c4f0	submit-url
+tcpipWanHandler	00414004	0044ca28	pppConnect
+tcpipWanHandler	00414044	0044ca38	pppDisconnect
+tcpipWanHandler	00414084	0044ca48	pptpConnect
+tcpipWanHandler	004140c4	0044ca5c	pptpDisconnect
+tcpipWanHandler	00414104	0044ca6c	l2tpConnect
+tcpipWanHandler	00414144	0044ca80	l2tpDisconnect
+tcpipWanHandler	00414184	0044ca90	USB3GConnect
+tcpipWanHandler	004141c8	0044caa8	USB3GDisconnect
+tcpipWanHandler	00414200	0044cab8	wan_macAddr
+tcpipWanHandler	00414268	0044cac4	Error! Invalid MAC address.
+tcpipWanHandler	0041429c	0044cae0	Set MIB_WAN_MAC_ADDR mib error!
+tcpipWanHandler	004142b4	0044cb00	dnsMode
+tcpipWanHandler	004142e4	0044cb08	dnsAuto
+tcpipWanHandler	00414310	0044cb10	dnsManual
+tcpipWanHandler	00414338	0044cb1c	Invalid DNS mode value!
+tcpipWanHandler	0041436c	0044cb34	Get DNS MIB error!
+tcpipWanHandler	004143b8	0044cb48	Set DNS MIB error!
+tcpipWanHandler	00414400	0044cb5c	Get DNS1 MIB error!
+tcpipWanHandler	00414438	0044cb5c	Get DNS1 MIB error!
+tcpipWanHandler	00414470	0044cb5c	Get DNS1 MIB error!
+tcpipWanHandler	004144cc	0044cb70	Invalid DNS address value!
+tcpipWanHandler	00414500	0044cb48	Set DNS MIB error!
+tcpipWanHandler	00414534	0044cb5c	Get DNS1 MIB error!
+tcpipWanHandler	00414594	0044cb70	Invalid DNS address value!
+tcpipWanHandler	004145c8	0044cb48	Set DNS MIB error!
+tcpipWanHandler	004145fc	0044cb8c	Get DNS2 MIB error!
+tcpipWanHandler	0041465c	0044cb70	Invalid DNS address value!
+tcpipWanHandler	00414690	0044cb48	Set DNS MIB error!
+tcpipWanHandler	004146c4	0044cba0	Get DNS3 MIB error!
+tcpipWanHandler	0041473c	0044cbb4	Get WAN DHCP MIB error!
+tcpipWanHandler	00414750	0044cbcc	wanType
+tcpipWanHandler	00414784	0044cbd4	autoIp
+tcpipWanHandler	004147ac	0044cbdc	fixedIp
+tcpipWanHandler	004147f8	0044cbe4	pppoeNumber
+tcpipWanHandler	00414864	0044cbf0	Set PPPoE Number MIB error!
+tcpipWanHandler	0041487c	0044cc0c	pppSubNet_1
+tcpipWanHandler	004148c4	0044cbf0	Set PPPoE Number MIB error!
+tcpipWanHandler	004148dc	0044cc18	pppSubNet_2
+tcpipWanHandler	00414924	0044cbf0	Set PPPoE Number MIB error!
+tcpipWanHandler	0041493c	0044cc24	pppSubNet_3
+tcpipWanHandler	00414984	0044cbf0	Set PPPoE Number MIB error!
+tcpipWanHandler	0041499c	0044cc30	pppSubNet_4
+tcpipWanHandler	004149e4	0044cbf0	Set PPPoE Number MIB error!
+tcpipWanHandler	004149fc	0044cc3c	pppSubNet1
+tcpipWanHandler	00414a64	0044cbf0	Set PPPoE Number MIB error!
+tcpipWanHandler	00414a7c	0044cc48	pppSubNet2
+tcpipWanHandler	00414ae4	0044cbf0	Set PPPoE Number MIB error!
+tcpipWanHandler	00414afc	0044cc54	pppSubNet3
+tcpipWanHandler	00414b64	0044cbf0	Set PPPoE Number MIB error!
+tcpipWanHandler	00414b7c	0044cc60	pppSubNet4
+tcpipWanHandler	00414be4	0044cbf0	Set PPPoE Number MIB error!
+tcpipWanHandler	00414bfc	0044cc6c	S1_F1_start
+tcpipWanHandler	00414c44	0044cc78	Invalid subnet-mask value!
+tcpipWanHandler	00414c78	0044cc94	Set subnet-mask error!
+tcpipWanHandler	00414c90	0044ccac	S1_F1_end
+tcpipWanHandler	00414cd8	0044cc78	Invalid subnet-mask value!
+tcpipWanHandler	00414d0c	0044cc94	Set subnet-mask error!
+tcpipWanHandler	00414d24	0044ccb8	S1_F2_start
+tcpipWanHandler	00414d6c	0044cc78	Invalid subnet-mask value!
+tcpipWanHandler	00414da0	0044cc94	Set subnet-mask error!
+tcpipWanHandler	00414db8	0044ccc4	S1_F2_end
+tcpipWanHandler	00414e00	0044cc78	Invalid subnet-mask value!
+tcpipWanHandler	00414e34	0044cc94	Set subnet-mask error!
+tcpipWanHandler	00414e4c	0044ccd0	S1_F3_start
+tcpipWanHandler	00414e94	0044cc78	Invalid subnet-mask value!
+tcpipWanHandler	00414ec8	0044cc94	Set subnet-mask error!
+tcpipWanHandler	00414ee0	0044ccdc	S1_F3_end
+tcpipWanHandler	00414f28	0044cc78	Invalid subnet-mask value!
+tcpipWanHandler	00414f5c	0044cc94	Set subnet-mask error!
+tcpipWanHandler	00414f74	0044cce8	S2_F1_start
+tcpipWanHandler	00414fbc	0044cc78	Invalid subnet-mask value!
+tcpipWanHandler	00414ff0	0044cc94	Set subnet-mask error!
+tcpipWanHandler	00415008	0044ccf4	S2_F1_end
+tcpipWanHandler	00415050	0044cc78	Invalid subnet-mask value!
+tcpipWanHandler	00415084	0044cc94	Set subnet-mask error!
+tcpipWanHandler	0041509c	0044cd00	S2_F2_start
+tcpipWanHandler	004150e4	0044cc78	Invalid subnet-mask value!
+tcpipWanHandler	00415118	0044cc94	Set subnet-mask error!
+tcpipWanHandler	00415130	0044cd0c	S2_F2_end
+tcpipWanHandler	00415178	0044cc78	Invalid subnet-mask value!
+tcpipWanHandler	004151ac	0044cc94	Set subnet-mask error!
+tcpipWanHandler	004151c4	0044cd18	S2_F3_start
+tcpipWanHandler	0041520c	0044cc78	Invalid subnet-mask value!
+tcpipWanHandler	00415240	0044cc94	Set subnet-mask error!
+tcpipWanHandler	00415258	0044cd24	S2_F3_end
+tcpipWanHandler	004152a0	0044cc78	Invalid subnet-mask value!
+tcpipWanHandler	004152d4	0044cc94	Set subnet-mask error!
+tcpipWanHandler	004152ec	0044cd30	S3_F1_start
+tcpipWanHandler	00415334	0044cc78	Invalid subnet-mask value!
+tcpipWanHandler	00415368	0044cc94	Set subnet-mask error!
+tcpipWanHandler	00415380	0044cd3c	S3_F1_end
+tcpipWanHandler	004153c8	0044cc78	Invalid subnet-mask value!
+tcpipWanHandler	004153fc	0044cc94	Set subnet-mask error!
+tcpipWanHandler	00415414	0044cd48	S3_F2_start
+tcpipWanHandler	0041545c	0044cc78	Invalid subnet-mask value!
+tcpipWanHandler	00415490	0044cc94	Set subnet-mask error!
+tcpipWanHandler	004154a8	0044cd54	S3_F2_end
+tcpipWanHandler	004154f0	0044cc78	Invalid subnet-mask value!
+tcpipWanHandler	00415524	0044cc94	Set subnet-mask error!
+tcpipWanHandler	0041553c	0044cd60	S3_F3_start
+tcpipWanHandler	00415584	0044cc78	Invalid subnet-mask value!
+tcpipWanHandler	004155b8	0044cc94	Set subnet-mask error!
+tcpipWanHandler	004155d0	0044cd6c	S3_F3_end
+tcpipWanHandler	00415618	0044cc78	Invalid subnet-mask value!
+tcpipWanHandler	0041564c	0044cc94	Set subnet-mask error!
+tcpipWanHandler	00415664	0044cd78	S4_F1_start
+tcpipWanHandler	004156ac	0044cc78	Invalid subnet-mask value!
+tcpipWanHandler	004156e0	0044cc94	Set subnet-mask error!
+tcpipWanHandler	004156f8	0044cd84	S4_F1_end
+tcpipWanHandler	00415740	0044cc78	Invalid subnet-mask value!
+tcpipWanHandler	00415774	0044cc94	Set subnet-mask error!
+tcpipWanHandler	0041578c	0044cd90	S4_F2_start
+tcpipWanHandler	004157d4	0044cc78	Invalid subnet-mask value!
+tcpipWanHandler	00415808	0044cc94	Set subnet-mask error!
+tcpipWanHandler	00415820	0044cd9c	S4_F2_end
+tcpipWanHandler	00415868	0044cc78	Invalid subnet-mask value!
+tcpipWanHandler	0041589c	0044cc94	Set subnet-mask error!
+tcpipWanHandler	004158b4	0044cda8	S4_F3_start
+tcpipWanHandler	004158fc	0044cc78	Invalid subnet-mask value!
+tcpipWanHandler	00415930	0044cc94	Set subnet-mask error!
+tcpipWanHandler	00415948	0044cdb4	S4_F3_end
+tcpipWanHandler	00415990	0044cc78	Invalid subnet-mask value!
+tcpipWanHandler	004159c4	0044cc94	Set subnet-mask error!
+tcpipWanHandler	004159dc	0044cdc0	pppUserName
+tcpipWanHandler	00415a24	0044cdcc	Set PPP user name MIB error!
+tcpipWanHandler	00415a3c	0044cdec	pppPassword
+tcpipWanHandler	00415a84	0044cdf8	Set PPP user password MIB error!
+tcpipWanHandler	00415a9c	0044ce1c	pppUserName2
+tcpipWanHandler	00415ae4	0044cdcc	Set PPP user name MIB error!
+tcpipWanHandler	00415afc	0044ce2c	pppPassword2
+tcpipWanHandler	00415b44	0044cdf8	Set PPP user password MIB error!
+tcpipWanHandler	00415b5c	0044ce3c	pppUserName3
+tcpipWanHandler	00415ba4	0044cdcc	Set PPP user name MIB error!
+tcpipWanHandler	00415bbc	0044ce4c	pppPassword3
+tcpipWanHandler	00415c04	0044cdf8	Set PPP user password MIB error!
+tcpipWanHandler	00415c1c	0044ce5c	pppUserName4
+tcpipWanHandler	00415c64	0044cdcc	Set PPP user name MIB error!
+tcpipWanHandler	00415c7c	0044ce6c	pppPassword4
+tcpipWanHandler	00415cc4	0044cdf8	Set PPP user password MIB error!
+tcpipWanHandler	00415cdc	0044ce7c	pppServiceName
+tcpipWanHandler	00415d24	0044ce8c	Set PPP serice name MIB error!
+tcpipWanHandler	00415d50	0044ce8c	Set PPP serice name MIB error!
+tcpipWanHandler	00415d68	0044ceac	pppServiceName2
+tcpipWanHandler	00415db0	0044ce8c	Set PPP serice name MIB error!
+tcpipWanHandler	00415ddc	0044ce8c	Set PPP serice name MIB error!
+tcpipWanHandler	00415df4	0044cebc	pppServiceName3
+tcpipWanHandler	00415e3c	0044ce8c	Set PPP serice name MIB error!
+tcpipWanHandler	00415e68	0044ce8c	Set PPP serice name MIB error!
+tcpipWanHandler	00415e80	0044cecc	pppServiceName4
+tcpipWanHandler	00415ec8	0044ce8c	Set PPP serice name MIB error!
+tcpipWanHandler	00415ef4	0044ce8c	Set PPP serice name MIB error!
+tcpipWanHandler	00415f0c	0044cedc	pppConnectType
+tcpipWanHandler	00415f6c	0044ceec	Invalid PPP type value!
+tcpipWanHandler	00415fa0	0044cf04	Set PPP type MIB error!
+tcpipWanHandler	00415fc4	0044cf1c	pppIdleTime
+tcpipWanHandler	00416030	0044cf28	Set PPP idle time MIB error!
+tcpipWanHandler	00416048	0044cf48	pppConnectType2
+tcpipWanHandler	004160a8	0044ceec	Invalid PPP type value!
+tcpipWanHandler	004160dc	0044cf04	Set PPP type MIB error!
+tcpipWanHandler	00416100	0044cf58	pppIdleTime2
+tcpipWanHandler	0041616c	0044cf28	Set PPP idle time MIB error!
+tcpipWanHandler	00416184	0044cf68	pppConnectType3
+tcpipWanHandler	004161e4	0044ceec	Invalid PPP type value!
+tcpipWanHandler	00416218	0044cf04	Set PPP type MIB error!
+tcpipWanHandler	0041623c	0044cf78	pppIdleTime3
+tcpipWanHandler	004162a8	0044cf28	Set PPP idle time MIB error!
+tcpipWanHandler	004162c0	0044cf88	pppConnectType4
+tcpipWanHandler	00416320	0044ceec	Invalid PPP type value!
+tcpipWanHandler	00416354	0044cf04	Set PPP type MIB error!
+tcpipWanHandler	00416378	0044cf98	pppIdleTime4
+tcpipWanHandler	004163e4	0044cf28	Set PPP idle time MIB error!
+tcpipWanHandler	004163fc	0044cfa8	pppMtuSize
+tcpipWanHandler	00416460	0044cfb4	Set PPP mtu size MIB error!
+tcpipWanHandler	00416478	0044cfd0	pppMtuSize2
+tcpipWanHandler	004164dc	0044cfb4	Set PPP mtu size MIB error!
+tcpipWanHandler	004164f4	0044cfdc	pppMtuSize3
+tcpipWanHandler	00416558	0044cfb4	Set PPP mtu size MIB error!
+tcpipWanHandler	00416570	0044cfe8	pppMtuSize4
+tcpipWanHandler	004165d4	0044cfb4	Set PPP mtu size MIB error!
+tcpipWanHandler	00416610	0044cff4	pptpUserName
+tcpipWanHandler	00416658	0044d004	Set PPTP user name MIB error!
+tcpipWanHandler	00416670	0044d024	pptpPassword
+tcpipWanHandler	004166b8	0044d034	Set PPTP user password MIB error!
+tcpipWanHandler	004166d0	0044d058	wan_pptp_use_dynamic_carrier_radio
+tcpipWanHandler	004166f8	0044d07c	dynamicIP
+tcpipWanHandler	00416724	0044d088	staticIP
+tcpipWanHandler	0041674c	0044d094	Invalid PPTP wan IP type!
+tcpipWanHandler	00416780	0044d0b0	Set MIB_PPTP_WAN_IP_DYNAMIC error!
+tcpipWanHandler	00416798	0044d0d4	pptpDefGw
+tcpipWanHandler	004167e0	0044d0e0	Invalid pptp default gateway value!
+tcpipWanHandler	00416814	0044d104	Set pptp default gateway error!
+tcpipWanHandler	00416838	0044d124	pptpIpAddr
+tcpipWanHandler	00416880	0044d130	Invalid IP-address value!
+tcpipWanHandler	004168b4	0044d14c	Set IP-address error!
+tcpipWanHandler	004168cc	0044d164	pptpSubnetMask
+tcpipWanHandler	00416914	0044cc78	Invalid subnet-mask value!
+tcpipWanHandler	00416948	0044cc94	Set subnet-mask error!
+tcpipWanHandler	00416960	0044d174	pptpServerIpAddr
+tcpipWanHandler	004169a8	0044d188	Invalid pptp server ip value!
+tcpipWanHandler	004169dc	0044d1a8	Set pptp server ip error!
+tcpipWanHandler	004169f4	0044d1c4	pptpGetServMode
+tcpipWanHandler	00416a18	0044d1d4	pptpGetServByDomainName
+tcpipWanHandler	00416a64	0044d1ec	Set pptp get server by domain error!
+tcpipWanHandler	00416a78	0044d214	pptpServerDomainName
+tcpipWanHandler	00416abc	0044d22c	Set pptp server domain error!
+tcpipWanHandler	00416aec	0044d1ec	Set pptp get server by domain error!
+tcpipWanHandler	00416b04	0044d24c	pptpConnectType
+tcpipWanHandler	00416b64	0044d25c	Invalid PPTP type value!
+tcpipWanHandler	00416b98	0044d278	Set PPTP type MIB error!
+tcpipWanHandler	00416bbc	0044d294	pptpIdleTime
+tcpipWanHandler	00416c28	0044d2a4	Set PPTP idle time MIB error!
+tcpipWanHandler	00416c40	0044d2c4	pptpMtuSize
+tcpipWanHandler	00416ca4	0044d2d0	Set PPTP mtu size MIB error!
+tcpipWanHandler	00416cc0	0044d2f0	pptpSecurity
+tcpipWanHandler	00416d24	0044d300	pptpCompress
+tcpipWanHandler	00416db4	0044d310	l2tpUserName
+tcpipWanHandler	00416dfc	0044d320	Set L2TP user name MIB error!
+tcpipWanHandler	00416e14	0044d340	l2tpPassword
+tcpipWanHandler	00416e5c	0044d350	Set L2TP user password MIB error!
+tcpipWanHandler	00416e74	0044d374	wan_l2tp_use_dynamic_carrier_radio
+tcpipWanHandler	00416e9c	0044d07c	dynamicIP
+tcpipWanHandler	00416ec8	0044d088	staticIP
+tcpipWanHandler	00416ef0	0044d398	Invalid L2TP wan IP type!
+tcpipWanHandler	00416f24	0044d3b4	Set MIB_L2TP_WAN_IP_DYNAMIC error!
+tcpipWanHandler	00416f3c	0044d3d8	l2tpDefGw
+tcpipWanHandler	00416f84	0044d3e4	Invalid l2tp default gateway value!
+tcpipWanHandler	00416fb8	0044d408	Set l2tp default gateway error!
+tcpipWanHandler	00416fdc	0044d428	l2tpIpAddr
+tcpipWanHandler	00417024	0044d130	Invalid IP-address value!
+tcpipWanHandler	00417058	0044d14c	Set IP-address error!
+tcpipWanHandler	00417070	0044d434	l2tpSubnetMask
+tcpipWanHandler	004170b8	0044cc78	Invalid subnet-mask value!
+tcpipWanHandler	004170ec	0044cc94	Set subnet-mask error!
+tcpipWanHandler	00417104	0044d444	l2tpServerIpAddr
+tcpipWanHandler	0041714c	0044d458	Invalid l2tp server ip value!
+tcpipWanHandler	00417180	0044d1a8	Set pptp server ip error!
+tcpipWanHandler	00417198	0044d478	l2tpGetServMode
+tcpipWanHandler	004171bc	0044d488	l2tpGetServByDomainName
+tcpipWanHandler	00417208	0044d4a0	Set l2tp get server by domain error!
+tcpipWanHandler	0041721c	0044d4c8	l2tpServerDomainName
+tcpipWanHandler	00417260	0044d4e0	Set l2tp server domain error!
+tcpipWanHandler	00417290	0044d4a0	Set l2tp get server by domain error!
+tcpipWanHandler	004172a8	0044d500	l2tpConnectType
+tcpipWanHandler	00417308	0044d510	Invalid L2TP type value!
+tcpipWanHandler	0041733c	0044d52c	Set L2TP type MIB error!
+tcpipWanHandler	00417360	0044d548	l2tpIdleTime
+tcpipWanHandler	004173cc	0044d558	Set L2TP idle time MIB error!
+tcpipWanHandler	004173e4	0044d578	l2tpMtuSize
+tcpipWanHandler	00417448	0044d584	Set L2TP mtu size MIB error!
+tcpipWanHandler	00417460	0044caa0	USB3G
+tcpipWanHandler	0041747c	0044d5a4	USB3G_USER
+tcpipWanHandler	004174c4	0044d5b0	Set USB3G user name MIB error!
+tcpipWanHandler	004174d8	0044d5d0	USB3G_PASS
+tcpipWanHandler	00417518	0044d5dc	Set USB3G user password MIB error!
+tcpipWanHandler	0041752c	0044d600	USB3G_PIN
+tcpipWanHandler	0041756c	0044d60c	Set USB3G PIN MIB error!
+tcpipWanHandler	00417580	0044d628	USB3G_APN
+tcpipWanHandler	004175c8	0044d634	Set USB3G APN MIB error!
+tcpipWanHandler	004175e0	0044d650	USB3G_DIALNUM
+tcpipWanHandler	00417628	0044d660	Set USB3G Dial number MIB error!
+tcpipWanHandler	00417640	0044d684	USB3GMtuSize
+tcpipWanHandler	00417688	0044d694	Set USB3G mtu size MIB error!
+tcpipWanHandler	004176a0	0044d6b4	USB3GConnectType
+tcpipWanHandler	0041772c	0044d6c8	Invalid USB3G type value!
+tcpipWanHandler	00417764	0044d6e4	Set USB3G type MIB error!
+tcpipWanHandler	00417780	0044d700	USB3GIdleTime
+tcpipWanHandler	00417804	0044d710	Set USB3G idle time MIB error!
+tcpipWanHandler	00417820	0044d730	Invalid IP mode value!
+tcpipWanHandler	00417854	0044d748	Set DHCP error!
+tcpipWanHandler	00417954	0044d758	wlan%d-vxd
+tcpipWanHandler	00417990	0044d764	killall -9 igmpproxy 2> /dev/null
+tcpipWanHandler	004179a8	0044d788	echo 1,0 > /proc/br_mCastFastFwd
+tcpipWanHandler	004179c0	0044d7ac	killall -9 dnrd 2> /dev/null
+tcpipWanHandler	004179e8	0044c520	killall -15 pppd 2> /dev/null
+tcpipWanHandler	00417a08	0044d7cc	killall -9 pppd 2> /dev/null
+tcpipWanHandler	00417a28	0044d7ec	disconnect.sh option
+tcpipWanHandler	00417a4c	0044d804	ppp_inet -t 16 -c 0 -x
+tcpipWanHandler	00417ae4	0044d840	killall -9 l2tpd 2> /dev/null
+tcpipWanHandler	00417af0	0044d860	rm -f /var/run/l2tpd.pid 2> /dev/null
+tcpipWanHandler	00417b1c	0044d81c	%s/%s
+tcpipWanHandler	00417b24	0044d888	l2tp.sh
+tcpipWanHandler	00417b24	0044d838	pptp.sh
+tcpipWanHandler	00417b24	0044d82c	pppoe.sh
+tcpipWanHandler	00417b44	0044d888	l2tp.sh
+tcpipWanHandler	00417b88	0044d890	PPP is connected
+tcpipWanHandler	00417be0	0044d8a4	Connected to server successfully. 
+tcpipWanHandler	00417be8	0044d8c8	Connect to server failed! 
+tcpipWanHandler	00417bfc	0044d8e4	<html><body><blockquote><h4>%s</h4> 
+tcpipWanHandler	00417c28	0044d90c	<form><input type=button value="  OK  " OnClick=window.location.replace("%s")></form></blockquote></body></html>
+tcpipWanHandler	00417c44	0044d980	<form><input type=button value="  OK  " OnClick=window.close()></form></blockquote></body></html>
+tcpipWanHandler	00417cfc	0044d81c	%s/%s
+tcpipWanHandler	00417d24	0044d9e4	disconnect.sh
+tcpipWanHandler	00417d58	0044c4fc	killall -15 ppp_inet 2> /dev/null
+tcpipWanHandler	00417d70	0044c520	killall -15 pppd 2> /dev/null
+tcpipWanHandler	00417d90	0044d9f8	PPPoE disconnected. 
+tcpipWanHandler	00417db4	0044da10	PPTP disconnected. 
+tcpipWanHandler	00417ddc	0044da24	L2TP disconnected. 
+tcpipWanHandler	00417e00	0044da38	USB3G disconnected. 
+tcpipWanHandler	00417e1c	0044d8e4	<html><body><blockquote><h4>%s</h4> 
+tcpipWanHandler	00417e44	0044d90c	<form><input type=button value="  OK  " OnClick=window.location.replace("%s")></form></blockquote></body></html>
+tcpipWanHandler	00417e60	0044d980	<form><input type=button value="  OK  " OnClick=window.close()></form></blockquote></body></html>
+tcpipWanHandler	00417e90	0044da50	wan_ip
+tcpipWanHandler	00417ed8	0044d130	Invalid IP-address value!
+tcpipWanHandler	00417f0c	0044d14c	Set IP-address error!
+tcpipWanHandler	00417f24	0044da58	wan_mask
+tcpipWanHandler	00417f6c	0044cc78	Invalid subnet-mask value!
+tcpipWanHandler	00417fa0	0044cc94	Set subnet-mask error!
+tcpipWanHandler	00417fb8	0044da64	wan_gateway
+tcpipWanHandler	00418000	0044da70	Invalid default-gateway value!
+tcpipWanHandler	00418034	0044da90	Set default-gateway error!
+tcpipWanHandler	0041804c	0044daac	fixedIpMtuSize
+tcpipWanHandler	004180b0	0044dabc	Set FIXED-IP mtu size MIB error!
+tcpipWanHandler	004180dc	0044dae0	dhcpMtuSize
+tcpipWanHandler	0041813c	0044daec	Set DHCP mtu size MIB error!
+tcpipWanHandler	00418154	0044db0c	hostName
+tcpipWanHandler	00418194	0044db18	Invalid Host Name! Please enter characters in A(a)~Z(z) or 0-9 without spacing.
+tcpipWanHandler	004181c8	0044db68	Set MIB_HOST_NAME MIB error!
+tcpipWanHandler	004181fc	0044db88	"Set MIB_HOST_NAME MIB error!"
+tcpipWanHandler	00418214	0044dba8	upnpEnabled
+tcpipWanHandler	00418284	0044dbb4	Set MIB_UPNP_ENABLED error!
+tcpipWanHandler	00418298	0044dbd0	igmpproxyEnabled
+tcpipWanHandler	00418308	0044dbe4	Set MIB_IGMP_PROXY_DISABLED error!
+tcpipWanHandler	0041831c	0044dc08	webWanAccess
+tcpipWanHandler	0041838c	0044dc18	Set WEB_WAN_ACCESS_ENABLED error!
+tcpipWanHandler	004183a0	0044dc3c	pingWanAccess
+tcpipWanHandler	00418410	0044dc4c	Set PING_WAN_ACCESS_ENABLED error!
+tcpipWanHandler	00418424	0044dc70	WANPassThru1
+tcpipWanHandler	00418494	0044dc80	Set VPN_PASSTHRU_IPSEC_ENABLED error!
+tcpipWanHandler	004184a8	0044dca8	WANPassThru2
+tcpipWanHandler	00418518	0044dcb8	Set VPN_PASSTHRU_PPTP_ENABLED error!
+tcpipWanHandler	0041852c	0044dce0	WANPassThru3
+tcpipWanHandler	0041859c	0044dcf0	Set VPN_PASSTHRU_L2TP_ENABLED error!
+tcpipWanHandler	004185b4	0044dd18	ipv6_passthru_enabled
+tcpipWanHandler	0041861c	0044dd30	Set custom passthru enabled error!
+tcpipLanHandler	00418950	0044e040	Set STP mib error!
+tcpipLanHandler	00418960	0044e054	lan_macAddr
+tcpipLanHandler	004189c4	0044cac4	Error! Invalid MAC address.
+tcpipLanHandler	00418a00	0044e060	Set MIB_ELAN_MAC_ADDR mib error!
+tcpipLanHandler	00418a18	0044e084	000000000000
+tcpipLanHandler	00418ab4	0044e094	Set MIB_WLAN_WLAN_MAC_ADDR mib error!
+tcpipLanHandler	00418b18	0044e0bc	Get DHCP MIB error!
+tcpipLanHandler	00418b84	0044e0d0	Invalid DHCP value!
+tcpipLanHandler	00418bb0	0044d748	Set DHCP error!
+tcpipLanHandler	00418bd4	0044ca10	lan_ip
+tcpipLanHandler	00418c20	0044d130	Invalid IP-address value!
+tcpipLanHandler	00418c4c	0044d14c	Set IP-address error!
+tcpipLanHandler	00418c7c	0044e0e4	Get IP-address error!
+tcpipLanHandler	00418c90	0044e0fc	lan_mask
+tcpipLanHandler	00418cdc	0044cc78	Invalid subnet-mask value!
+tcpipLanHandler	00418d08	0044cc94	Set subnet-mask error!
+tcpipLanHandler	00418d38	0044e108	Get subnet-mask error!
+tcpipLanHandler	00418d48	0044e120	lan_gateway
+tcpipLanHandler	00418da4	0044da70	Invalid default-gateway value!
+tcpipLanHandler	00418dd0	0044da90	Set default-gateway error!
+tcpipLanHandler	00418de0	0044e12c	dhcpRangeStart
+tcpipLanHandler	00418e2c	0044e13c	Invalid DHCP client start address!
+tcpipLanHandler	00418e58	0044e160	Set DHCP client start address error!
+tcpipLanHandler	00418e68	0044e188	dhcpRangeEnd
+tcpipLanHandler	00418eb4	0044e198	Invalid DHCP client end address!
+tcpipLanHandler	00418ee0	0044e1bc	Set DHCP client end address error!
+tcpipLanHandler	00418f50	0044e1e0	Invalid DHCP client range!
+tcpipLanHandler	00419070	0044cb70	Invalid DNS address value!
+tcpipLanHandler	0041909c	0044cb48	Set DNS MIB error!
+tcpipLanHandler	004190b4	0044e1fc	dhcpLeaseTime
+tcpipLanHandler	00419114	0044e20c	Set MIB_DHCP_LEASE_TIME MIB error!
+tcpipLanHandler	00419128	0044e230	domainName
+tcpipLanHandler	00419164	0044e23c	Invalid Domain Name! Please enter characters in A(a)~Z(z) or 0-9 without spacing.
+tcpipLanHandler	00419190	0044e290	Set MIB_DOMAIN_NAME MIB error!
+tcpipLanHandler	004191bc	0044e2b0	"Set MIB_DOMAIN_NAME MIB error!"
+FUN_004191f4	004192c8	0044d8e4	<html><body><blockquote><h4>%s</h4> 
+FUN_004191f4	004192f0	0044dfb0	<form><input type="button" onclick="history.go (-1)" value="&nbsp;&nbsp;OK&nbsp;&nbsp" name="OK"></form></blockquote></body></html>
+FUN_004191f4	00419480	0044e2d4	bridge
+FUN_004191f4	00419494	0044c4f0	submit-url
+FUN_004191f4	004194f0	0044dd58	/wizard.htm
+FUN_004191f4	00419514	0044dd64	<html><body><blockquote><h4>Change setting successfully!</h4>Your changes have been saved. The router must be rebooted for the changes to take effect.<br> You can reboot now, or you can continue to make other changes and reboot later. 
+FUN_004191f4	00419530	0044de50	<form action=/boafrm/formRebootCheck method=POST name='rebootForm'>
+FUN_004191f4	0041954c	0044de94	<input type='hidden' value='%s' name='submit-url'>
+FUN_004191f4	00419568	0044dec8	<input id='restartNow' type='submit' value='Reboot Now' onclick="return true" />&nbsp;&nbsp;
+FUN_004191f4	00419584	0044df28	<input id='restartLater' type='button' value='Reboot Later' OnClick=window.location.replace("%s")>
+FUN_004191f4	004195a0	0044df8c	</form></blockquote></body></html>
+FUN_004191f4	004195b8	0044c428	formRebootCheck
+FUN_004191f4	00419630	0044e2dc	<h4>Change setting successfully!<BR><BR>Do not turn off or reboot the Device during this time.</h4>
+FUN_004191f4	0041964c	0044e340	<html><head><script language=JavaScript><!-- 
+FUN_004191f4	00419670	0044e370	var count = %d;function get_by_id(id){with(document){return getElementById(id);}} 
+FUN_004191f4	00419684	0044e3c4	function do_count_down(){get_by_id("show_sec").innerHTML = count 
+FUN_004191f4	004196a8	0044e408	if(count == 0) {parent.location.href='http://%s/home.htm?t='+new Date().getTime(); return false;} 
+FUN_004191f4	004196bc	0044e46c	if (count > 0) {count--;setTimeout('do_count_down()',1000);}}
+FUN_004191f4	004196d8	0044e4ac	//--> 
+FUN_004191f4	004196f4	0044e4b4	</script></head>
+FUN_004191f4	00419718	0044e4c8	<body onload="do_count_down();"><blockquote><h4>%s</h4> 
+FUN_004191f4	0041972c	0044e504	<P align=left><h4>Please wait <B><SPAN id=show_sec></SPAN></B>&nbsp;seconds ...</h4></P>
+FUN_00419788	004197cc	0044e560	addRsvIP
+FUN_00419788	004197e4	0044e56c	deleteSelRsvIP
+FUN_00419788	0041980c	0044e57c	deleteAllRsvIP
+FUN_00419788	00419868	0044e58c	static_dhcp
+FUN_00419788	004198c0	0044e598	Set static DHCP mib error!
+FUN_00419788	004198f4	0044e5b4	hostname
+FUN_00419788	00419938	0044e5c0	ip_addr
+FUN_00419788	00419980	0044e5c8	mac_addr
+FUN_00419788	004199e4	0044cac4	Error! Invalid MAC address.
+FUN_00419788	00419a38	0044e5ec	Cannot add new entry because table is full!
+FUN_00419788	00419a68	0044e618	Cannot add new entry because the ip is not the same subnet as LAN network!
+FUN_00419788	00419a98	0044e664	This IP address has been setted!
+FUN_00419788	00419ab0	0044e688	This MAC address has been setted!
+FUN_00419788	00419af8	0044e6ac	Add table entry error!
+FUN_00419788	00419b34	0044e5d4	Get entry number error!
+FUN_00419788	00419bfc	0044e6d0	Get table entry error!
+FUN_00419788	00419c24	0044e6e8	Delete table entry error!
+FUN_00419788	00419c40	0044e6c4	select%d
+FUN_00419788	00419c7c	0044e704	Delete all table error!
+FUN_00419788	00419cb0	0044c4f0	submit-url
+FUN_00419788	00419cf0	0044dd58	/wizard.htm
+FUN_00419788	00419d14	0044dd64	<html><body><blockquote><h4>Change setting successfully!</h4>Your changes have been saved. The router must be rebooted for the changes to take effect.<br> You can reboot now, or you can continue to make other changes and reboot later. 
+FUN_00419788	00419d30	0044de50	<form action=/boafrm/formRebootCheck method=POST name='rebootForm'>
+FUN_00419788	00419d4c	0044de94	<input type='hidden' value='%s' name='submit-url'>
+FUN_00419788	00419d68	0044dec8	<input id='restartNow' type='submit' value='Reboot Now' onclick="return true" />&nbsp;&nbsp;
+FUN_00419788	00419d84	0044df28	<input id='restartLater' type='button' value='Reboot Later' OnClick=window.location.replace("%s")>
+FUN_00419788	00419da0	0044df8c	</form></blockquote></body></html>
+FUN_00419788	00419db8	0044c428	formRebootCheck
+FUN_00419788	00419dd4	0044d8e4	<html><body><blockquote><h4>%s</h4> 
+FUN_00419788	00419e00	0044dfb0	<form><input type="button" onclick="history.go (-1)" value="&nbsp;&nbsp;OK&nbsp;&nbsp" name="OK"></form></blockquote></body></html>
+FUN_00419f34	00419f44	0044e730	<option value="Disable">Disable</option>
+FUN_00419fe8	0041a00c	0044bfa0	/boafrm/
+FUN_0041a07c	0041a0d4	0044e75c	Get table entry error! 
+FUN_0041a07c	0041a100	0044e774	Get URL Filter mode error! 
+FUN_0041a07c	0041a11c	0044e790	<tr><td align=center width="70%%" bgcolor="#808080"><font size="2"><b>URL Address</b></font></td> <td align=center width="30%%" bgcolor="#808080"><font size="2"><b>Select</b></font></td></tr> 
+FUN_0041a07c	0041a17c	0044e854	<tr><td align=center width="70%%" bgcolor="#C0C0C0"><font size="2">%s</td> <td align=center width="30%%" bgcolor="#C0C0C0"><input type="checkbox" name="select%d" value="ON"></td></tr> 
+FUN_0041a1d0	0041a230	0044e75c	Get table entry error! 
+FUN_0041a1d0	0041a24c	0044e910	<tr><td align=center width="50%%" bgcolor="#808080"><font size="2"><b>MAC Address</b></font></td> <td align=center width="30%%" bgcolor="#808080"><font size="2"><b>Comment</b></font></td> <td align=center width="20%%" bgcolor="#808080"><font size="2"><b>Select</b></font></td></tr> 
+FUN_0041a1d0	0041a2a0	0044c91c	%02x:%02x:%02x:%02x:%02x:%02x
+FUN_0041a1d0	0041a2ec	0044ea2c	<tr><td align=center width="50%%" bgcolor="#C0C0C0"><font size="2">%s</td> <td align=center width="30%%" bgcolor="#C0C0C0"><font size="2">%s</td> <td align=center width="20%%" bgcolor="#C0C0C0"><input type="checkbox" name="select%d" value="ON"></td></tr> 
+FUN_0041a350	0041a3b8	0044e75c	Get table entry error! 
+FUN_0041a350	0041a3dc	0044eb2c	<tr><td align=center width="30%%" bgcolor="#808080"><font size="2"><b>Port Range</b></font></td> <td align=center width="25%%" bgcolor="#808080"><font size="2"><b>Protocol</b></font></td> <td align=center width="30%%" bgcolor="#808080"><font size="2"><b>Comment</b></font></td> <td align=center width="15%%" bgcolor="#808080"><font size="2"><b>Select</b></font></td></tr> 
+FUN_0041a350	0041a4c0	0044ecb0	%d-%d
+FUN_0041a350	0041a4e0	0044ecb8	<tr><td align=center width="30%%" bgcolor="#C0C0C0"><font size="2">%s</td> <td align=center width="25%%" bgcolor="#C0C0C0"><font size="2">%s</td> <td align=center width="30%%" bgcolor="#C0C0C0"><font size="2">%s</td> <td align=center width="15%%" bgcolor="#C0C0C0"><input type="checkbox" name="select%d" value="ON"></td></tr> 
+FUN_0041a544	0041a5a8	0044e75c	Get table entry error! 
+FUN_0041a544	0041a5c4	0044ee00	<tr><td align=center width="30%%" bgcolor="#808080"><font size="2"><b>Local IP Address</b></font></td> <td align=center width="25%%" bgcolor="#808080"><font size="2"><b>Protocol</b></font></td> <td align=center width="25%%" bgcolor="#808080"><font size="2"><b>Comment</b></font></td> <td align=center width="20%%" bgcolor="#808080"><font size="2"><b>Select</b></font></td></tr> 
+FUN_0041a544	0041a64c	0044ef7c	0.0.0.0
+FUN_0041a544	0041a6a0	0044ef84	<tr><td align=center width="30%%" bgcolor="#C0C0C0"><font size="2">%s</td> <td align=center width="25%%" bgcolor="#C0C0C0"><font size="2">%s</td> <td align=center width="25%%" bgcolor="#C0C0C0"><font size="2">%s</td> <td align=center width="20%%" bgcolor="#C0C0C0"><input type="checkbox" name="select%d" value="ON"></td></tr> 
+FUN_0041a6fc	0041a760	0044e75c	Get table entry error! 
+FUN_0041a6fc	0041a77c	0044f0cc	<tr><td align=center width="25%%" bgcolor="#808080"><font size="2"><b>Local IP Address</b></font></td> <td align=center width="20%%" bgcolor="#808080"><font size="2"><b>Protocol</b></font></td> <td align=center width="20%%" bgcolor="#808080"><font size="2"><b>Port Range</b></font></td> <td align=center width="20%%" bgcolor="#808080"><font size="2"><b>Comment</b></font></td> <td align=center width="15%%" bgcolor="#808080"><font size="2"><b>Select</b></font></td></tr> 
+FUN_0041a6fc	0041a7f8	0044ef7c	0.0.0.0
+FUN_0041a6fc	0041a894	0044ecb0	%d-%d
+FUN_0041a6fc	0041a8c4	0044f2a4	<tr><td align=center width="25%%" bgcolor="#C0C0C0"><font size="2">%s</td> <td align=center width="20%%" bgcolor="#C0C0C0"><font size="2">%s</td> <td align=center width="20%%" bgcolor="#C0C0C0"><font size="2">%s</td> <td align=center width="20%%" bgcolor="#C0C0C0"><font size="2">%s</td> <td align=center width="15%%" bgcolor="#C0C0C0"><input type="checkbox" name="select%d" value="ON"></td></tr> 
+FUN_0041a920	0041a988	0044e75c	Get table entry error! 
+FUN_0041a920	0041a9a8	0044f434	<tr><td align=center width="" bgcolor="#808080"><font size="2"><b>Local IP Address</b></font></td> <td align=center width="" bgcolor="#808080"><font size="2"><b>MAC Address</b></font></td> <td align=center width="" bgcolor="#808080"><font size="2"><b>Mode</b></font></td> <td align=center width="" bgcolor="#808080"><font size="2"><b>Uplink Bandwidth</b></font></td> <td align=center width="" bgcolor="#808080"><font size="2"><b>Downlink Bandwidth</b></font></td> <td align=center width="" bgcolor="#808080"><font size="2"><b>Comment</b></font></td> <td align=center width="" bgcolor="#808080"><font size="2"><b>Select</b></font></td></tr> 
+FUN_0041a920	0041aa6c	0044f6b8	%s - %s
+FUN_0041a920	0041aac0	0044f6c0	%02x%02x%02x%02x%02x%02x
+FUN_0041a920	0041ab28	00450118	Guaranteed minimum bandwidth
+FUN_0041a920	0041ab28	00450138	Restricted maximum bandwidth
+FUN_0041a920	0041abb0	00450118	Guaranteed minimum bandwidth
+FUN_0041a920	0041abc0	0044f6e0	<tr><td align=center width="" bgcolor="#C0C0C0"><font size="2">%s</td> <td align=center width="" bgcolor="#C0C0C0"><font size="2">%s</td> <td align=center width="" bgcolor="#C0C0C0"><font size="2">%s</td> <td align=center width="" bgcolor="#C0C0C0"><font size="2">%s</td> <td align=center width="" bgcolor="#C0C0C0"><font size="2">%s</td> <td align=center width="" bgcolor="#C0C0C0"><font size="2">%s</td> <td align=center width="" bgcolor="#C0C0C0"><input type="checkbox" name="select%d" value="ON"></td></tr> 
+FUN_0041ac24	0041acd8	0044f8e0	Get vlan entry fail 
+FUN_0041ac24	0041ad34	0044f900	Ethernet Port
+FUN_0041ac24	0041ad4c	0044f914	Wireless 1 Primary AP
+FUN_0041ac24	0041ad80	0044f930	Wireless 1 Virtual AP
+FUN_0041ac24	0041ad98	0044f948	Wireless 2 Primary AP
+FUN_0041ac24	0041adac	0044f960	Wireless 2 Virtual AP
+FUN_0041ac24	0041add0	0044f978	Ethernet Port5
+FUN_0041ac24	0041ae08	0044f988	Local Host/WAN
+FUN_0041ac24	0041ae7c	0044f998	token[%d] ='%d|%s|%d|%d|%d|%d|%d|%d|%s'; 
+FUN_0041ac24	0041ae9c	0044f9c4	token[%d] ='0|none|0|0|0|0|0|0|LAN'; 
+FUN_0041af90	0041afd4	0044f9ec	vlan_onoff
+FUN_0041af90	0041b034	0044f9f8	set  MIB_VLANCONFIG_ENABLED error!
+FUN_0041af90	0041b078	0044e704	Delete all table error!
+FUN_0041af90	0041b100	0044fa1c	vlan_iface_%d
+FUN_0041af90	0041b16c	00468820	Ethernet Port1
+FUN_0041af90	0041b16c	00468850	Ethernet Port2
+FUN_0041af90	0041b170	00468820	Ethernet Port1
+FUN_0041af90	0041b170	00468850	Ethernet Port2
+FUN_0041af90	0041b184	00468820	Ethernet Port1
+FUN_0041af90	0041b200	0044e6ac	Add table entry error!
+FUN_0041af90	0041b228	0044fa2c	vlan_enable_%d
+FUN_0041af90	0041b294	0044fa3c	vlan_tag_%d
+FUN_0041af90	0041b308	0044fa48	vlan_cfg_%d
+FUN_0041af90	0041b37c	0044fa54	vlan_id_%d
+FUN_0041af90	0041b3f8	0044fa60	vlan_priority_%d
+FUN_0041af90	0041b46c	0044e6ac	Add table entry error!
+FUN_0041af90	0041b494	0044d8e4	<html><body><blockquote><h4>%s</h4> 
+FUN_0041af90	0041b4b8	0044dfb0	<form><input type="button" onclick="history.go (-1)" value="&nbsp;&nbsp;OK&nbsp;&nbsp" name="OK"></form></blockquote></body></html>
+FUN_0041af90	0041b500	0044c4f0	submit-url
+FUN_0041af90	0041b548	0044dd58	/wizard.htm
+FUN_0041af90	0041b564	0044dd64	<html><body><blockquote><h4>Change setting successfully!</h4>Your changes have been saved. The router must be rebooted for the changes to take effect.<br> You can reboot now, or you can continue to make other changes and reboot later. 
+FUN_0041af90	0041b578	0044de50	<form action=/boafrm/formRebootCheck method=POST name='rebootForm'>
+FUN_0041af90	0041b59c	0044de94	<input type='hidden' value='%s' name='submit-url'>
+FUN_0041af90	0041b5b0	0044dec8	<input id='restartNow' type='submit' value='Reboot Now' onclick="return true" />&nbsp;&nbsp;
+FUN_0041af90	0041b5d4	0044df28	<input id='restartLater' type='button' value='Reboot Later' OnClick=window.location.replace("%s")>
+FUN_0041af90	0041b5f8	0044df8c	</form></blockquote></body></html>
+FUN_0041af90	0041b610	0044c428	formRebootCheck
+FUN_0041b644	0041b688	0044fa74	addPortFw
+FUN_0041b644	0041b6a0	0044fa80	deleteSelPortFw
+FUN_0041b644	0041b6c0	0044fa90	deleteAllPortFw
+FUN_0041b644	0041b778	0044faa0	Set enabled flag error!
+FUN_0041b644	0041b7a4	0044fab8	fromPort
+FUN_0041b644	0041b7c4	0044fac4	toPort
+FUN_0041b644	0041b7e4	0044facc	comment
+FUN_0041b644	0041b83c	0044fad4	Error! No ip address to set.
+FUN_0041b644	0041b8b8	0044faf4	Invalid IP address! It should be set within the current subnet.
+FUN_0041b644	0041b8d4	0044fb34	Error! No from-port value to be set.
+FUN_0041b644	0041b918	0044fb5c	Error! Invalid value of from-port.
+FUN_0041b644	0041b96c	0044fb80	Error! Invalid value of to-port.
+FUN_0041b644	0041b994	0044fba4	Error! Invalid port range.
+FUN_0041b644	0041b9a0	0044fbc0	protocol
+FUN_0041b644	0041ba10	0044fbcc	Error! Invalid protocol type.
+FUN_0041b644	0041ba20	0044fbec	Error! Protocol type cannot be empty.
+FUN_0041b644	0041ba50	0044fc14	Error! Comment length too long.
+FUN_0041b644	0041bab0	0044e5ec	Cannot add new entry because table is full!
+FUN_0041b644	0041bad8	0044e6d0	Get table entry error!
+FUN_0041b644	0041bb44	0044fc34	Setting port range has overlapped with used port numbers!
+FUN_0041b644	0041bba8	0044e6ac	Add table entry error!
+FUN_0041b644	0041bbe4	0044e5d4	Get entry number error!
+FUN_0041b644	0041bc24	0044e6c4	select%d
+FUN_0041b644	0041bc90	0044e6d0	Get table entry error!
+FUN_0041b644	0041bcc0	0044e6e8	Delete table entry error!
+FUN_0041b644	0041bd00	0044e704	Delete all table error!
+FUN_0041b644	0041bd28	0044d8e4	<html><body><blockquote><h4>%s</h4> 
+FUN_0041b644	0041bd4c	0044dfb0	<form><input type="button" onclick="history.go (-1)" value="&nbsp;&nbsp;OK&nbsp;&nbsp" name="OK"></form></blockquote></body></html>
+FUN_0041b644	0041bdac	0044c4f0	submit-url
+FUN_0041b644	0041bdf8	0044d81c	%s/%s
+FUN_0041b644	0041be18	0044fc70	firewall.sh
+FUN_0041b644	0041be5c	0044dd58	/wizard.htm
+FUN_0041b644	0041be80	0044dd64	<html><body><blockquote><h4>Change setting successfully!</h4>Your changes have been saved. The router must be rebooted for the changes to take effect.<br> You can reboot now, or you can continue to make other changes and reboot later. 
+FUN_0041b644	0041be9c	0044de50	<form action=/boafrm/formRebootCheck method=POST name='rebootForm'>
+FUN_0041b644	0041beb8	0044de94	<input type='hidden' value='%s' name='submit-url'>
+FUN_0041b644	0041bed4	0044dec8	<input id='restartNow' type='submit' value='Reboot Now' onclick="return true" />&nbsp;&nbsp;
+FUN_0041b644	0041bef0	0044df28	<input id='restartLater' type='button' value='Reboot Later' OnClick=window.location.replace("%s")>
+FUN_0041b644	0041bf0c	0044df8c	</form></blockquote></body></html>
+FUN_0041b644	0041bf24	0044c428	formRebootCheck
+FUN_0041bf80	0041c038	0044faa0	Set enabled flag error!
+FUN_0041bf80	0041c0d8	0044faf4	Invalid IP address! It should be set within the current subnet.
+FUN_0041bf80	0041c0fc	0044fc84	Set DMZ MIB error!
+FUN_0041bf80	0041c120	0044d8e4	<html><body><blockquote><h4>%s</h4> 
+FUN_0041bf80	0041c144	0044dfb0	<form><input type="button" onclick="history.go (-1)" value="&nbsp;&nbsp;OK&nbsp;&nbsp" name="OK"></form></blockquote></body></html>
+FUN_0041bf80	0041c1a4	0044c4f0	submit-url
+FUN_0041bf80	0041c1f0	0044d81c	%s/%s
+FUN_0041bf80	0041c210	0044fc70	firewall.sh
+FUN_0041bf80	0041c254	0044dd58	/wizard.htm
+FUN_0041bf80	0041c278	0044dd64	<html><body><blockquote><h4>Change setting successfully!</h4>Your changes have been saved. The router must be rebooted for the changes to take effect.<br> You can reboot now, or you can continue to make other changes and reboot later. 
+FUN_0041bf80	0041c294	0044de50	<form action=/boafrm/formRebootCheck method=POST name='rebootForm'>
+FUN_0041bf80	0041c2b0	0044de94	<input type='hidden' value='%s' name='submit-url'>
+FUN_0041bf80	0041c2cc	0044dec8	<input id='restartNow' type='submit' value='Reboot Now' onclick="return true" />&nbsp;&nbsp;
+FUN_0041bf80	0041c2e8	0044df28	<input id='restartLater' type='button' value='Reboot Later' OnClick=window.location.replace("%s")>
+FUN_0041bf80	0041c304	0044df8c	</form></blockquote></body></html>
+FUN_0041bf80	0041c31c	0044c428	formRebootCheck
+FUN_0041c474	0041c4b8	0044fc98	addFilterIp
+FUN_0041c474	0041c4d0	0044fca4	deleteSelFilterIp
+FUN_0041c474	0041c4f0	0044fcb8	deleteAllFilterIp
+FUN_0041c474	0041c510	0044fccc	addFilterPort
+FUN_0041c474	0041c530	0044fcdc	deleteSelFilterPort
+FUN_0041c474	0041c550	0044fcf0	deleteAllFilterPort
+FUN_0041c474	0041c570	0044fd04	addFilterMac
+FUN_0041c474	0041c590	0044fd14	deleteSelFilterMac
+FUN_0041c474	0041c5b0	0044fd28	deleteAllFilterMac
+FUN_0041c474	0041c5d0	0044fd3c	addFilterUrl
+FUN_0041c474	0041c5f0	0044fd4c	deleteSelFilterUrl
+FUN_0041c474	0041c618	0044fd60	deleteAllFilterUrl
+FUN_0041c474	0041c8d0	0044faa0	Set enabled flag error!
+FUN_0041c474	0041c8e0	0044facc	comment
+FUN_0041c474	0041c9e4	0044fab8	fromPort
+FUN_0041c474	0041ca08	0044fac4	toPort
+FUN_0041c474	0041cb64	0044fbc0	protocol
+FUN_0041c474	0041cce0	0044fd98	urlFilterMode
+FUN_0041c474	0041cfd4	0044e6c4	select%d
+FUN_0041c474	0041d040	0044e6d0	Get table entry error!
+FUN_0041c474	0041d06c	0044e6e8	Delete table entry error!
+FUN_0041c474	0041d090	0044d8e4	<html><body><blockquote><h4>%s</h4> 
+FUN_0041c474	0041d0b4	0044dfb0	<form><input type="button" onclick="history.go (-1)" value="&nbsp;&nbsp;OK&nbsp;&nbsp" name="OK"></form></blockquote></body></html>
+FUN_0041c474	0041d1ac	0044c4f0	submit-url
+FUN_0041c474	0041d1f8	0044d81c	%s/%s
+FUN_0041c474	0041d218	0044fc70	firewall.sh
+FUN_0041c474	0041d25c	0044dd58	/wizard.htm
+FUN_0041c474	0041d280	0044dd64	<html><body><blockquote><h4>Change setting successfully!</h4>Your changes have been saved. The router must be rebooted for the changes to take effect.<br> You can reboot now, or you can continue to make other changes and reboot later. 
+FUN_0041c474	0041d29c	0044de50	<form action=/boafrm/formRebootCheck method=POST name='rebootForm'>
+FUN_0041c474	0041d2b8	0044de94	<input type='hidden' value='%s' name='submit-url'>
+FUN_0041c474	0041d2d4	0044dec8	<input id='restartNow' type='submit' value='Reboot Now' onclick="return true" />&nbsp;&nbsp;
+FUN_0041c474	0041d2f0	0044df28	<input id='restartLater' type='button' value='Reboot Later' OnClick=window.location.replace("%s")>
+FUN_0041c474	0041d30c	0044df8c	</form></blockquote></body></html>
+FUN_0041c474	0041d324	0044c428	formRebootCheck
+FUN_0041d380	0041d3c4	0044fdf4	addQos
+FUN_0041d380	0041d3dc	0044fdfc	deleteSel
+FUN_0041d380	0041d3fc	0044fe08	deleteAll
+FUN_0041d380	0041d4ac	0044faa0	Set enabled flag error!
+FUN_0041d380	0041d4c8	0044fe14	automaticUplinkSpeed
+FUN_0041d380	0041d554	0044fe3c	manualUplinkSpeed
+FUN_0041d380	0041d5a0	0044fe50	automaticDownlinkSpeed
+FUN_0041d380	0041d62c	0044fe68	manualDownlinkSpeed
+FUN_0041d380	0041d674	0044fe2c	Set mib error!
+FUN_0041d380	0041d68c	0044fe7c	ipStart
+FUN_0041d380	0041d6a8	0044fe84	ipEnd
+FUN_0041d380	0041d6e8	0044fe8c	bandwidth
+FUN_0041d380	0041d708	0044fe98	bandwidth_downlink
+FUN_0041d380	0041d728	0044facc	comment
+FUN_0041d380	0041d748	0044feac	l7_protocol
+FUN_0041d380	0041d7fc	0044feb8	addressType
+FUN_0041d380	0041d90c	0044fec4	 ip address conflict!
+FUN_0041d380	0041da50	0044fedc	 mac address conflict!
+FUN_0041d380	0041da90	0044fef4	MAC input fail!
+FUN_0041d380	0041db40	0044ff04	checkQosRuleBw fail!
+FUN_0041d380	0041db58	0044ff1c	Error: for guaranteed minimum bandwidth of both uplink and downlink, the sum bandwidth of all qos rules are larger than the total bandwidth!
+FUN_0041d380	0041db70	0044ffac	Error: for guaranteed minimum bandwidth of downlink, the sum bandwidth of all qos rules is larger than the total downlink bandwidth!
+FUN_0041d380	0041db84	00450034	Error: for guaranteed minimum bandwidth of uplink, the sum bandwidth of all qos rules is larger than the total uplink bandwidth!
+FUN_0041d380	0041dbf8	0044e5ec	Cannot add new entry because table is full!
+FUN_0041d380	0041dc40	0044e6ac	Add table entry error!
+FUN_0041d380	0041dc7c	0044e5d4	Get entry number error!
+FUN_0041d380	0041dcbc	0044e6c4	select%d
+FUN_0041d380	0041dd28	0044e6d0	Get table entry error!
+FUN_0041d380	0041dd58	0044e6e8	Delete table entry error!
+FUN_0041d380	0041dd98	0044e704	Delete all table error!
+FUN_0041d380	0041ddc0	0044d8e4	<html><body><blockquote><h4>%s</h4> 
+FUN_0041d380	0041dde4	0044dfb0	<form><input type="button" onclick="history.go (-1)" value="&nbsp;&nbsp;OK&nbsp;&nbsp" name="OK"></form></blockquote></body></html>
+FUN_0041d380	0041de4c	0044c4f0	submit-url
+FUN_0041d380	0041de98	0044d81c	%s/%s
+FUN_0041d380	0041deb8	004500b8	ip_qos.sh
+FUN_0041d380	0041defc	0044dd58	/wizard.htm
+FUN_0041d380	0041df20	0044dd64	<html><body><blockquote><h4>Change setting successfully!</h4>Your changes have been saved. The router must be rebooted for the changes to take effect.<br> You can reboot now, or you can continue to make other changes and reboot later. 
+FUN_0041d380	0041df3c	0044de50	<form action=/boafrm/formRebootCheck method=POST name='rebootForm'>
+FUN_0041d380	0041df58	0044de94	<input type='hidden' value='%s' name='submit-url'>
+FUN_0041d380	0041df74	0044dec8	<input id='restartNow' type='submit' value='Reboot Now' onclick="return true" />&nbsp;&nbsp;
+FUN_0041d380	0041df90	0044df28	<input id='restartLater' type='button' value='Reboot Later' OnClick=window.location.replace("%s")>
+FUN_0041d380	0041dfac	0044df8c	</form></blockquote></body></html>
+FUN_0041d380	0041dfc4	0044c428	formRebootCheck
+write_line_to_file	0041e160	00450160	Create %s error! 
+SetWlan_idx	0041e668	00450174	invalid wlan interface index number!
+SetWlan_idx	0041e6f0	0045019c	invalid virtual wlan interface index number!
+getWLAN_ChipVersion	0041e8f8	004501d0	/proc/wlan%d/mib_rf
+getWLAN_ChipVersion	0041e960	004501e4	RTL8192SE
+getWLAN_ChipVersion	0041e984	004501f0	RTL8188C
+getWLAN_ChipVersion	0041e9a0	004501fc	RTL8188R
+getWLAN_ChipVersion	0041e9bc	00450208	RTL6195B
+getWLAN_ChipVersion	0041e9d8	00450214	RTL8188E
+getWLAN_ChipVersion	0041e9fc	00450220	RTL8192C
+getWLAN_ChipVersion	0041ea18	0045022c	RTL8192D
+getWLAN_ChipVersion	0041ea3c	00450238	RTL8812
+getWLAN_ChipVersion	0041ea58	00450240	RTL8192E
+killDaemon	0041eb50	0045024c	killall -9 sleep 2> /dev/null
+killDaemon	0041eb68	0045026c	killsh.sh
+killDaemon	0041eb80	00450278	killall -9 routed 2> /dev/null
+killDaemon	0041eb98	00450298	killall -9 pppoe 2> /dev/null
+killDaemon	0041ebb0	0044d7cc	killall -9 pppd 2> /dev/null
+killDaemon	0041ebc8	004502b8	killall -9 pptp 2> /dev/null
+killDaemon	0041ebe0	0044d7ac	killall -9 dnrd 2> /dev/null
+killDaemon	0041ebf8	004502d8	killall -9 ntpclient 2> /dev/null
+killDaemon	0041ec10	004502fc	killall -9 miniigd 2> /dev/null
+killDaemon	0041ec28	0045031c	killall -9 lld2d 2> /dev/null
+killDaemon	0041ec40	0044d840	killall -9 l2tpd 2> /dev/null
+killDaemon	0041ec58	0045033c	killall -9 udhcpc 2> /dev/null
+killDaemon	0041ec70	0045035c	killall -9 udhcpd 2> /dev/null
+killDaemon	0041ec88	0045037c	killall -9 reload 2> /dev/null
+killDaemon	0041eca0	0045039c	killall -9 iapp 2> /dev/null
+killDaemon	0041ecb8	004503bc	killall -9 wscd 2> /dev/null
+killDaemon	0041ecd0	004503dc	killall -9 mini_upnpd 2> /dev/null
+killDaemon	0041ece8	00450400	killall -9 iwcontrol 2> /dev/null
+killDaemon	0041ed00	00450424	killall -9 auth 2> /dev/null
+killDaemon	0041ed18	00450444	killall -9 disc_server 2> /dev/null
+killDaemon	0041ed30	0044d764	killall -9 igmpproxy 2> /dev/null
+killDaemon	0041ed48	00450468	killall -9 mldproxy 2> /dev/null
+killDaemon	0041ed60	0045048c	echo 1,0 > /proc/br_mCastFastFwd 
+killDaemon	0041ed78	004504b0	killall -9 syslogd 2> /dev/null
+killDaemon	0041ed90	004504d0	killall -9 klogd 2> /dev/null
+killDaemon	0041eda4	004504f0	killall -9 ntfs-3g 2> /dev/null
+FUN_0041edc0	0041edf8	00450510	killall solar_monitor
+FUN_0041edc0	0041ee10	00450528	kill solar 
+FUN_0041edc0	0041ee2c	00450534	/var/run/solar.pid
+FUN_0041edc0	0041eecc	00450548	/bin/solar
+FUN_0041edc0	0041eee4	00450554	/bin/solar_monitor
+FUN_0041edc0	0041eefc	00450568	rm /web -rf
+FUN_0041edc0	0041ef44	00450574	kill process
+FUN_0041edc0	0041f020	00450584	kill boa 
+FUN_0041edc0	0041f02c	00450590	/var/run/webs.pid
+FUN_0041edc0	0041f0dc	004505a4	/bin/boa
+FUN_0041edc0	0041f0f4	004505b0	kill wscd 
+FUN_0041edc0	0041f100	004505bc	/var/run/wscd-wlan0.pid
+FUN_0041edc0	0041f1b0	004505d4	/bin/wscd
+FUN_0041edc0	0041f1c8	004505e0	kill ivrserver 
+FUN_0041edc0	0041f1d4	004505f0	/var/run/ivrserver.pid
+FUN_0041edc0	0041f284	00450608	/bin/ivrserver
+FUN_0041edc0	0041f29c	00450618	kill dns_task
+FUN_0041edc0	0041f2a8	00450628	/var/run/dns_task.pid
+FUN_0041edc0	0041f358	00450640	/bin/dns_task
+FUN_0041edc0	0041f370	00450650	kill lld2d 
+FUN_0041edc0	0041f37c	0045065c	/var/run/lld2d-br0.pid
+FUN_0041edc0	0041f42c	00450674	/bin/lld2d
+FUN_0041edc0	0041f444	00450680	kill iwcontrol 
+FUN_0041edc0	0041f450	00450690	/var/run/iwcontrol.pid
+FUN_0041edc0	0041f500	004506a8	/bin/iwcontrol
+FUN_0041edc0	0041f518	004506b8	kill iapp 
+FUN_0041edc0	0041f534	004506c4	/var/run/iapp.pid
+FUN_0041edc0	0041f5d4	004506d8	/bin/iapp
+kill_processes	0041f68c	004506e4	upgrade: killing tasks...
+getWispRptIface	0041fb3c	00450700	wlan0-vxd
+getWispRptIface	0041fb3c	0045070c	wlan1-vxd
+FUN_00420434	00420468	00450718	dump clients
+FUN_00420434	004204ac	00450730	fname %s
+FUN_00420434	004204c0	00450728	%d:  
+FUN_004204ec	00420530	0045073c	dump Torrent
+FUN_004204ec	004205c0	0045074c	status %d 
+FUN_004204ec	004205d8	00450758	ctorrent %d 
+FUN_004204ec	004205f0	00450768	dfiles %s 
+FUN_004204ec	00420608	00450774	n_have %d 
+FUN_004204ec	00420620	00450780	n_total %d 
+FUN_004204ec	00420638	0045078c	piece_size %d 
+FUN_004204ec	00420644	0045079c	index %d 
+FUN_004204ec	00420674	00450728	%d:  
+FUN_004206a8	00420720	004507b8	filesize %lu 
+FUN_004206a8	00420738	004507c8	file download %d 
+FUN_004206a8	00420748	004507a8	filename %s 
+getStats	004207cc	004507dc	/proc/net/dev
+getStats	004207e4	004507ec	Warning: cannot open %s 
+getStats	004207ec	004507dc	/proc/net/dev
+getStats	00420834	00450808	compressed
+getStats	00420860	00450814	bytes
+getStats	004209ec	0045081c	%Lu %Lu %lu %lu %lu %lu %lu %lu %Lu %Lu %lu %lu %lu %lu %lu %lu
+getStats	00420a6c	0045085c	%Lu %Lu %lu %lu %lu %lu %Lu %Lu %lu %lu %lu %lu %lu
+getStats	00420ab4	00450890	%Lu %lu %lu %lu %lu %Lu %lu %lu %lu %lu %lu
+getDefaultRoute	00420bcc	004508bc	/proc/net/route
+getDefaultRoute	00420be4	004508bc	/proc/net/route
+getDefaultRoute	00420bec	004508cc	Open %s file error. 
+getDefaultRoute	00420d0c	004508e4	%16s %128s %128s %X %d %d %d %128s %d %d %d
+FUN_00420d64	00420dc8	00450914	Cannot open /proc
+FUN_00420d64	00420e20	00450928	/proc/%s/status
+check_wlan_downup	0042100c	00450948	socket error!
+check_wlan_downup	0042103c	00450958	SIOCGIFFLAGS error!
+bt_saveTorrentfile	004210e0	0045096c	Can not create bt file
+FUN_00421134	004211dc	00450984	connect error
+FUN_004218dc	00421954	00450998	error in readline (recv)
+FUN_004219c0	004219fc	004509b4	GETTDETAILS /%d
+bt_setfiles	00421af0	004509c4	SETFILES /%d/%d
+FUN_00421bb0	00421bf8	004509d4	GETSTATS
+bt_getDetails	00421e20	004509e0	GETDETAILS /%d
+bt_deleteTorrent	00421f44	004509f0	TORRENTDELETE /%d/%d
+bt_startTorrent	00422028	00450a08	TORRENTSTART /%d
+bt_getTorrents	00422108	00450a1c	GETTORRENTS
+bt_clientPause	004221f4	00450a28	CLIENTPAUSE /%d
+bt_clientUpdate	004222d8	00450a38	CLIENTUPDATE /%d
+bt_clientQuit	004223a8	00450a4c	CLIENTQUIT /%d
+FUN_0042244c	00422488	00450a5c	GETLIMITS
+FUN_00422578	004225a8	00450a68	SETLIMITS /%d/%d/%d
+bt_getClientsInfo	004226b4	00450a7c	GETCLIENTSINFO
+dirExits	0042283c	00449f98	opendir
+FUN_0042286c	004228c8	00450a90	fatal error socket 
+FUN_0042286c	00422924	00450aa4	device ioctl:
+getWanInfo	00422b88	0044c00c	wlan0
+getWanInfo	00422b88	00450ab4	wlan1
+getWanInfo	00422bf0	0044ef7c	0.0.0.0
+getWanInfo	00422c5c	0044ef7c	0.0.0.0
+getWanInfo	00422cc4	0044ef7c	0.0.0.0
+getWanInfo	00422d2c	0044ef7c	0.0.0.0
+getWanInfo	00422d70	0044c00c	wlan0
+getWanInfo	00422d70	00450ab4	wlan1
+getWanInfo	00422d98	0044c00c	wlan0
+getWanInfo	00422df0	0044c91c	%02x:%02x:%02x:%02x:%02x:%02x
+FUN_00422e30	00422ed0	00450ad0	<option selected value="0">AP</option>
+FUN_00422e30	00422ef4	00450af8	<option value="1">Client</option>
+FUN_00422e30	00422f20	00450b5c	<option value="0">AP</option>
+FUN_00422e30	00422f3c	00450b7c	<option selected value="1">Client</option>
+FUN_00422e30	00422f60	00450b1c	<option value="2">WDS</option><option value="3">AP+WDS</option>
+FUN_00422e30	00422f88	00450b5c	<option value="0">AP</option>
+FUN_00422e30	00422fa4	00450af8	<option value="1">Client</option>
+FUN_00422e30	00422fc8	00450ba8	<option selected value="2">WDS</option><option value="3">AP+WDS</option>
+FUN_00422e30	00422ff8	00450b5c	<option value="0">AP</option>
+FUN_00422e30	00423014	00450af8	<option value="1">Client</option>
+FUN_00422e30	00423030	00450bf4	<option value="2">WDS</option><option selected value="3">AP+WDS</option>
+FUN_00423078	00423100	00450c40	<option selected value="0">Disabled</option><option value="1">Client</option><option value="2">Server</option>
+FUN_00423078	00423118	00450cb0	<option  value="0">Disabled</option><option selected value="1">Client</option><option value="2">Server</option>
+FUN_00423078	00423134	00450d20	<option  value="0">Disabled</option><option  value="1">Client</option><option selected value="2">Server</option>
+isConnectPPP	0042316c	00450d94	/etc/ppp/link
+translate_control_code	004232b0	00450da4	&quot;
+translate_control_code	004232dc	00450dac	&#39;
+translate_control_code	004232f0	00450db4	&#92;
+translate_control_code	0042331c	00450dbc	&#60;
+translate_control_code	00423334	00450dc4	&#62;
+FUN_00423394	0042341c	00450dcc	Insufficient args 
+FUN_00423394	00423430	00450de0	device_name
+FUN_00423394	00423490	00450dec	wlProfileSupport
+FUN_00423394	004234e4	00450e00	wlProfile_checkbox
+FUN_00423394	00423548	00450e14	checked
+FUN_00423394	00423574	00450e1c	wlProfile_value
+FUN_00423394	00423604	00450e2c	wlan_profile_num
+FUN_00423394	00423668	00450e40	wlEnableProfile
+FUN_00423394	004236cc	00450e50	uptime
+FUN_00423394	00423728	00450e58	%dday:%dh:%dm:%ds
+FUN_00423394	00423804	00450e74	month
+FUN_00423394	00423994	00450e84	minute
+FUN_00423394	00423a18	00450e8c	second
+FUN_00423394	00423a9c	00450e94	clientnum
+FUN_00423394	00423bc0	00450ea8	channel
+FUN_00423394	00423d70	0044d758	wlan%d-vxd
+FUN_00423394	00423d98	00450eb4	cat /proc/%s/mib_ap_profile | grep in_use_profile
+FUN_00423394	00423dfc	00450ee8	in_use_profile
+FUN_00423394	00423e10	00450ef8	in_use_profile: %d
+FUN_00423394	00423f4c	00450f30	WPA2 Mixed
+FUN_00423394	00423fb0	00450f0c	WEP 64bits
+FUN_00423394	00423fc4	00450f18	WEP 128bits
+FUN_00423394	00423ffc	00450f44	wdsEncrypt
+FUN_00423394	00424060	00450f0c	WEP 64bits
+FUN_00423394	0042408c	00450f18	WEP 128bits
+FUN_00423394	004240dc	00450f5c	mesh_comment_start
+FUN_00423394	00424114	00450f78	mesh_comment_end
+FUN_00423394	0042414c	00450f90	mesh_jscomment_start
+FUN_00423394	00424184	00450fac	mesh_jscomment_end
+FUN_00423394	00424238	0044ef7c	0.0.0.0
+FUN_00423394	004242c4	0044ef7c	0.0.0.0
+FUN_00423394	00424374	0044ef7c	0.0.0.0
+FUN_00423394	004243dc	0044ef7c	0.0.0.0
+FUN_00423394	00424528	0044ef7c	0.0.0.0
+FUN_00423394	0042456c	00450fc4	static_dhcp_onoff
+FUN_00423394	004245e0	00450fd8	dhcp-current
+FUN_00423394	0042466c	00450fe8	Getting IP from DHCP server...
+FUN_00423394	004246c0	00451010	Fixed IP
+FUN_00423394	004246d0	0044e12c	dhcpRangeStart
+FUN_00423394	0042473c	0044e188	dhcpRangeEnd
+FUN_00423394	004247a8	0044e1fc	dhcpLeaseTime
+FUN_00423394	0042481c	0045101c	set MIB_DHCP_LEASE_TIME error
+FUN_00423394	00424880	0045103c	wan-dns1
+FUN_00423394	00424928	00451048	wan-dns2
+FUN_00423394	004249d0	00451054	wan-dns3
+FUN_00423394	00424a78	00451060	ntpTimeZone
+FUN_00423394	00424ad4	0045106c	ntpServerIp1
+FUN_00423394	00424b78	0045107c	ntpServerIp2
+FUN_00423394	00424c20	0045108c	wan_access_type_s
+FUN_00423394	00424c60	004510a0	wan_access_type_e
+FUN_00423394	00424ca0	004510b4	wan-ppp-idle
+FUN_00423394	00424d28	004510c4	wan-ppp-idle2
+FUN_00423394	00424db0	004510d4	wan-ppp-idle3
+FUN_00423394	00424e38	004510e4	wan-ppp-idle4
+FUN_00423394	00424ec0	0044cc6c	S1_F1_start
+FUN_00423394	00424f48	0044ccac	S1_F1_end
+FUN_00423394	00424fd0	0044ccb8	S1_F2_start
+FUN_00423394	00425058	0044ccc4	S1_F2_end
+FUN_00423394	004250e0	0044ccd0	S1_F3_start
+FUN_00423394	00425168	0044ccdc	S1_F3_end
+FUN_00423394	004251f0	0044cce8	S2_F1_start
+FUN_00423394	00425278	0044ccf4	S2_F1_end
+FUN_00423394	00425300	0044cd00	S2_F2_start
+FUN_00423394	00425388	0044cd0c	S2_F2_end
+FUN_00423394	00425410	0044cd18	S2_F3_start
+FUN_00423394	00425498	0044cd24	S2_F3_end
+FUN_00423394	00425520	0044cd30	S3_F1_start
+FUN_00423394	004255a8	0044cd3c	S3_F1_end
+FUN_00423394	00425630	0044cd48	S3_F2_start
+FUN_00423394	004256b8	0044cd54	S3_F2_end
+FUN_00423394	00425740	0044cd60	S3_F3_start
+FUN_00423394	004257c8	0044cd6c	S3_F3_end
+FUN_00423394	00425850	0044cd78	S4_F1_start
+FUN_00423394	004258d8	0044cd84	S4_F1_end
+FUN_00423394	00425960	0044cd90	S4_F2_start
+FUN_00423394	004259e8	0044cd9c	S4_F2_end
+FUN_00423394	00425a70	0044cda8	S4_F3_start
+FUN_00423394	00425af8	0044cdb4	S4_F3_end
+FUN_00423394	00425b80	0044cc3c	pppSubNet1
+FUN_00423394	00425bdc	0044cc48	pppSubNet2
+FUN_00423394	00425c38	0044cc54	pppSubNet3
+FUN_00423394	00425c94	0044cc60	pppSubNet4
+FUN_00423394	00425cf0	0044ce1c	pppUserName2
+FUN_00423394	00425d68	0044ce2c	pppPassword2
+FUN_00423394	00425dc8	0044ce3c	pppUserName3
+FUN_00423394	00425e40	0044ce4c	pppPassword3
+FUN_00423394	00425ea0	0044ce5c	pppUserName4
+FUN_00423394	00425f18	0044ce6c	pppPassword4
+FUN_00423394	00425f78	0044ceac	pppServiceName2
+FUN_00423394	00425fd4	0044cebc	pppServiceName3
+FUN_00423394	00426030	0044cecc	pppServiceName4
+FUN_00423394	0042608c	0044cfd0	pppMtuSize2
+FUN_00423394	004260fc	0044cfdc	pppMtuSize3
+FUN_00423394	0042616c	0044cfe8	pppMtuSize4
+FUN_00423394	004261dc	004510f4	wan-pptp-idle
+FUN_00423394	00426264	00451104	wan-l2tp-idle
+FUN_00423394	004262ec	00451114	wan-USB3G-idle
+FUN_00423394	00426384	00451124	dmzHost
+FUN_00423394	0042642c	0045112c	wanMac
+FUN_00423394	00426498	0044f6c0	%02x%02x%02x%02x%02x%02x
+FUN_00423394	004264a8	0044daac	fixedIpMtuSize
+FUN_00423394	00426518	0044dae0	dhcpMtuSize
+FUN_00423394	00426604	0044c91c	%02x:%02x:%02x:%02x:%02x:%02x
+FUN_00423394	00426628	00451134	bridgeMac
+FUN_00423394	00426694	0044f6c0	%02x%02x%02x%02x%02x%02x
+FUN_00423394	004266a4	00451140	fragThreshold
+FUN_00423394	00426714	00451150	rtsThreshold
+FUN_00423394	00426784	00451160	beaconInterval
+FUN_00423394	004267f4	00451170	ackTimeout
+FUN_00423394	00426864	0045117c	dtimPeriod
+FUN_00423394	004268d4	00451188	fwVersion
+FUN_00423394	00426918	00451194	/etc/customize.version
+FUN_00423394	0042698c	004511ac	/etc/svn.version
+FUN_00423394	004269e4	004511c0	%s-%s
+FUN_00423394	00426a1c	004511c8	buildTime
+FUN_00423394	00426a3c	004511d4	/proc/version
+FUN_00423394	00426a68	004511e4	Read /proc/version failed! 
+FUN_00423394	00426a84	00451200	Unknown
+FUN_00423394	00426ac8	00451208	#[0-9][0-9]* \(.*\)$
+FUN_00423394	00426b6c	00451200	Unknown
+FUN_00423394	00426b80	00451220	lanTxPacketNum
+FUN_00423394	00426c04	00451230	lanRxPacketNum
+FUN_00423394	00426c88	00451240	lan2TxPacketNum
+FUN_00423394	00426d0c	00451250	lan2RxPacketNum
+FUN_00423394	00426d90	00451260	lan3TxPacketNum
+FUN_00423394	00426e14	00451270	lan3RxPacketNum
+FUN_00423394	00426e98	00451280	lan4TxPacketNum
+FUN_00423394	00426f1c	00451290	lan4RxPacketNum
+FUN_00423394	00426fa0	004512a0	wlanTxPacketNum
+FUN_00423394	00427020	004512b0	wlanRxPacketNum
+FUN_00423394	004270a0	004512c0	bssid
+FUN_00423394	00427134	0044c91c	%02x:%02x:%02x:%02x:%02x:%02x
+FUN_00423394	00427160	004512c8	bssid_drv
+FUN_00423394	004271cc	0044c91c	%02x:%02x:%02x:%02x:%02x:%02x
+FUN_00423394	004271dc	004512d4	ssid_drv
+FUN_00423394	00427254	004512e0	state_drv
+FUN_00423394	004272dc	004512f4	Started
+FUN_00423394	004272e8	004512fc	Connected
+FUN_00423394	004272f4	00451308	Waiting for keys
+FUN_00423394	004272fc	0045131c	Scanning
+FUN_00423394	00427320	00451328	channel_drv
+FUN_00423394	004273b4	00451334	wan-ip-rom
+FUN_00423394	0042743c	00451340	wan-mask-rom
+FUN_00423394	004274c4	00451350	wan-gateway-rom
+FUN_00423394	00427540	0044ef7c	0.0.0.0
+FUN_00423394	00427584	0044cdc0	pppUserName
+FUN_00423394	004275fc	0044cdec	pppPassword
+FUN_00423394	0042765c	00451360	pptpIp
+FUN_00423394	004276e4	0044d0d4	pptpDefGw
+FUN_00423394	00427750	00451368	pptpSubnet
+FUN_00423394	004277d8	00451374	pptpServerIp
+FUN_00423394	00427860	00451384	pptpServerDomain
+FUN_00423394	004278cc	0044d2c4	pptpMtuSize
+FUN_00423394	00427954	0044cff4	pptpUserName
+FUN_00423394	004279cc	0044d024	pptpPassword
+FUN_00423394	00427a44	00451398	l2tpIp
+FUN_00423394	00427acc	004513a0	l2tpSubnet
+FUN_00423394	00427b54	0044d3d8	l2tpDefGw
+FUN_00423394	00427bc0	004513ac	l2tpServerDomain
+FUN_00423394	00427c2c	004513c0	l2tpServerIp
+FUN_00423394	00427cb4	0044d578	l2tpMtuSize
+FUN_00423394	00427d3c	0044d310	l2tpUserName
+FUN_00423394	00427db4	0044d340	l2tpPassword
+FUN_00423394	00427e2c	0044d600	USB3G_PIN
+FUN_00423394	00427ea4	0044d628	USB3G_APN
+FUN_00423394	00427f1c	0044d650	USB3G_DIALNUM
+FUN_00423394	00427f94	0044d5a4	USB3G_USER
+FUN_00423394	0042800c	0044d5d0	USB3G_PASS
+FUN_00423394	00428084	0044d684	USB3GMtuSize
+FUN_00423394	004280fc	0044ce7c	pppServiceName
+FUN_00423394	00428158	0044cfa8	pppMtuSize
+FUN_00423394	004281c8	004513d0	wizard_menu_onoff
+FUN_00423394	004281ec	004513e4	menu.addItem('Setup Wizard', 'wizard.htm', '', 'Setup Wizard');
+FUN_00423394	00428200	00451424	opmode_menu_onoff
+FUN_00423394	00428224	00451438	menu.addItem('Operation Mode', 'opmode.htm', '', 'Operation Mode');
+FUN_00423394	00428238	0045147c	qos_root_menu
+FUN_00423394	0042825c	0045148c	menu.addItem('QoS', 'ip_qos.htm', '', 'Setup QoS');
+FUN_00423394	00428270	004514c0	route_menu_onoff
+FUN_00423394	004282a8	004514d4	snmp_menu
+FUN_00423394	004282e0	004514e0	ddns_menu
+FUN_00423394	00428318	004514ec	wanDhcp-current
+FUN_00423394	004283f4	0044c00c	wlan0
+FUN_00423394	004283f4	00450ab4	wlan1
+FUN_00423394	00428434	0044c00c	wlan0
+FUN_00423394	00428458	00450fe8	Getting IP from DHCP server...
+FUN_00423394	00428478	00450fe8	Getting IP from DHCP server...
+FUN_00423394	004284b4	004514fc	Fixed IP Disconnected
+FUN_00423394	004284c8	00451514	Fixed IP Connected
+FUN_00423394	00428504	00451528	PPPoE Disconnected
+FUN_00423394	00428518	0045153c	PPPoE Connected
+FUN_00423394	00428530	00451528	PPPoE Disconnected
+FUN_00423394	0042856c	0045154c	PPTP Disconnected
+FUN_00423394	00428580	00451560	PPTP Connected
+FUN_00423394	00428598	0045154c	PPTP Disconnected
+FUN_00423394	004285d4	00451570	L2TP Disconnected
+FUN_00423394	004285e8	00451584	L2TP Connected
+FUN_00423394	00428600	00451570	L2TP Disconnected
+FUN_00423394	0042864c	00451594	USB3G Connected
+FUN_00423394	0042866c	004515a4	/var/usb3g.stat
+FUN_00423394	004286f4	004515b4	USB3G Modem Initializing...
+FUN_00423394	0042872c	004515d8	USB3G Dialing...
+FUN_00423394	00428748	004515ec	remove
+FUN_00423394	00428768	004515f4	USB3G Removed
+FUN_00423394	0042877c	00451604	USB3G Disconnected
+FUN_00423394	0042878c	00451618	wan-ip
+FUN_00423394	004287e8	00451620	wan-mask
+FUN_00423394	00428844	0045162c	wan-gateway
+FUN_00423394	004288a0	00451638	wan-hwaddr
+FUN_00423394	00428934	00451644	wanTxPacketNum
+FUN_00423394	00428a00	0044c00c	wlan0
+FUN_00423394	00428a00	00450ab4	wlan1
+FUN_00423394	00428a08	0044c00c	wlan0
+FUN_00423394	00428a08	00450ab4	wlan1
+FUN_00423394	00428a6c	00451654	wanRxPacketNum
+FUN_00423394	00428b38	0044c00c	wlan0
+FUN_00423394	00428b38	00450ab4	wlan1
+FUN_00423394	00428b40	0044c00c	wlan0
+FUN_00423394	00428b40	00450ab4	wlan1
+FUN_00423394	00428ba4	00451664	pocketRouter_Mode_countdown
+FUN_00423394	00428bf8	00451680	countDownTime_wait
+FUN_00423394	00428c4c	00451694	pptp_comment_start
+FUN_00423394	00428c84	004516a8	pptp_comment_end
+FUN_00423394	00428cbc	004516bc	l2tp_comment_start
+FUN_00423394	00428cf4	004516d0	l2tp_comment_end
+FUN_00423394	00428d2c	004516e4	usb3g_comment_start
+FUN_00423394	00428d64	004516f8	usb3g_comment_end
+FUN_00423394	00428d9c	0045170c	usb3g_jscomment_start
+FUN_00423394	00428dd4	00451724	usb3g_jscomment_end
+FUN_00423394	00428e0c	00451738	rsCertInstall
+FUN_00423394	00428e28	00451748	eapUserId
+FUN_00423394	00428e68	00451754	radiusUserName
+FUN_00423394	00428ea8	00451764	radiusUserPass
+FUN_00423394	00428ee8	00451774	radiusUserCertPass
+FUN_00423394	00428fd0	00451790	rsPort
+FUN_00423394	00429040	00451798	rsPassword
+FUN_00423394	004290a0	004517a4	accountRsIp
+FUN_00423394	00429148	004517b0	accountRsPort
+FUN_00423394	004291b8	004517c0	accountRsPassword
+FUN_00423394	00429218	004517d4	groupRekeyTime
+FUN_00423394	00429288	004517e4	groupRekeyTimeDay
+FUN_00423394	00429314	004517f8	groupRekeyTimeHr
+FUN_00423394	004293b8	0045180c	groupRekeyTimeMin
+FUN_00423394	00429474	00451820	groupRekeyTimeSec
+FUN_00423394	00429530	00451834	pskValue
+FUN_00423394	00429594	00451840	pskValueUnmask
+FUN_00423394	004295f8	00451850	wps_key
+FUN_00423394	00429788	0045185c	wpsRpt_key
+FUN_00423394	004297dc	00451868	wdsPskValue
+FUN_00423394	00429840	00451874	accountRsUpdateDelay
+FUN_00423394	004298b0	0045188c	rsInterval
+FUN_00423394	00429920	00451898	accountRsInterval
+FUN_00423394	00429990	004518ac	userName
+FUN_00423394	004299f0	004518b8	last_url
+FUN_00423394	00429a2c	004518c4	wscLoocalPin
+FUN_00423394	00429a88	004518d4	powerConsumption_menu
+FUN_00423394	00429ac0	004518ec	ip_filter
+FUN_00423394	00429ae4	004518f8	firewall.addItem('IP Filtering', 'ipfilter.htm', '', 'Setup IP filering');
+FUN_00423394	00429af8	00451944	port_filter
+FUN_00423394	00429b1c	00451950	firewall.addItem('Port Filtering', 'portfilter.htm', '', 'Setup port filer');
+FUN_00423394	00429b30	004519a0	is_ulinker
+FUN_00423394	00429b84	004519ac	is_wan_link
+FUN_00423394	00429c00	004519b8	isPocketRouter
+FUN_00423394	00429c54	004519c8	pocketRouter_Mode
+FUN_00423394	00429ca8	004519dc	ddnsDomainName
+FUN_00423394	00429cfc	004519ec	ddnsUser
+FUN_00423394	00429d50	004519f8	ddnsPassword
+FUN_00423394	00429da4	00451a08	maxWebVlanNum
+FUN_00423394	00429dfc	00451a18	vlanOnOff
+FUN_00423394	00429e6c	00451a24	vlan_menu_onoff
+FUN_00423394	00429e90	00451a34	firewall.addItem('VLAN', 'vlan.htm', '', 'Setup VLAN');
+FUN_00423394	00429ea4	00451a6c	vlan_wan_menu_onoff
+FUN_00423394	00429edc	00451a80	wlanMode
+FUN_00423394	00429f4c	00451a8c	wlanModeByStr
+FUN_00423394	00429ffc	00451aa0	qosEnabled
+FUN_00423394	0042a048	00451aac	false
+FUN_00423394	0042a080	00451abc	qosAutoUplinkSpeed
+FUN_00423394	0042a0cc	00451aac	false
+FUN_00423394	0042a104	00451ad0	qosManualUplinkSpeed
+FUN_00423394	0042a174	00451ae8	qosManualDownlinkSpeed
+FUN_00423394	0042a1e4	00451b00	syssynFlood
+FUN_00423394	0042a254	00451b0c	sysfinFlood
+FUN_00423394	0042a2c4	00451b18	sysudpFlood
+FUN_00423394	0042a334	00451b24	sysicmpFlood
+FUN_00423394	0042a3a4	00451b34	pipsynFlood
+FUN_00423394	0042a414	00451b40	pipfinFlood
+FUN_00423394	0042a484	00451b4c	pipudpFlood
+FUN_00423394	0042a4f4	00451b58	pipicmpFlood
+FUN_00423394	0042a564	00451b68	blockTime
+FUN_00423394	0042a5d4	0044db0c	hostName
+FUN_00423394	0042a628	00451b74	rtLogServer
+FUN_00423394	0042a6d0	0044e230	domainName
+FUN_00423394	0042a724	00451b80	repeaterSSID
+FUN_00423394	0042a7a8	00451b90	repeaterState
+FUN_00423394	0042a7e0	00450700	wlan0-vxd
+FUN_00423394	0042a7e8	0045070c	wlan1-vxd
+FUN_00423394	0042a860	004512f4	Started
+FUN_00423394	0042a86c	004512fc	Connected
+FUN_00423394	0042a878	00451308	Waiting for keys
+FUN_00423394	0042a880	0045131c	Scanning
+FUN_00423394	0042a8a4	00451ba0	repeaterClientnum
+FUN_00423394	0042a8dc	00450700	wlan0-vxd
+FUN_00423394	0042a8e4	0045070c	wlan1-vxd
+FUN_00423394	0042a958	00451bb4	repeaterSSID_drv
+FUN_00423394	0042a990	00450700	wlan0-vxd
+FUN_00423394	0042a998	0045070c	wlan1-vxd
+FUN_00423394	0042aa04	00451bc8	repeaterBSSID
+FUN_00423394	0042aa3c	00450700	wlan0-vxd
+FUN_00423394	0042aa44	0045070c	wlan1-vxd
+FUN_00423394	0042aaa4	0044c91c	%02x:%02x:%02x:%02x:%02x:%02x
+FUN_00423394	0042aab4	00451bd8	wlanRepeaterTxPacketNum
+FUN_00423394	0042aaec	00450700	wlan0-vxd
+FUN_00423394	0042aaf4	0045070c	wlan1-vxd
+FUN_00423394	0042ab70	00451bf0	wlanRepeaterRxPacketNum
+FUN_00423394	0042aba8	00450700	wlan0-vxd
+FUN_00423394	0042abb0	0045070c	wlan1-vxd
+FUN_00423394	0042ac2c	00451c08	voip_
+FUN_00423394	0042ac4c	00451c10	IPv6_
+FUN_00423394	0042ac6c	00451c18	cwmp_tr069_menu
+FUN_00423394	0042ac88	00451c28	tr069_nojs_menu
+FUN_00423394	0042acc4	00451c40	wapiLocalAsSupport
+FUN_00423394	0042acf4	00451aac	false
+FUN_00423394	0042ad04	00451c54	wapiLocalAsOption
+FUN_00423394	0042ad20	00451c68	wapiLocalAsCertsUploadForm
+FUN_00423394	0042ad3c	00451c84	bt_enabled
+FUN_00423394	0042ad90	00451c90	torrents
+FUN_00423394	0042aedc	00451cb8	Not Running
+FUN_00423394	0042aeec	00451cb0	,'%s'
+FUN_00423394	0042af00	00451cb0	,'%s'
+FUN_00423394	0042af14	00451cb0	,'%s'
+FUN_00423394	0042af30	00451cb0	,'%s'
+FUN_00423394	0042af4c	00451cb0	,'%s'
+FUN_00423394	0042af68	00451cb0	,'%s'
+FUN_00423394	0042af94	00451cb0	,'%s'
+FUN_00423394	0042afb0	00451cc4	,'%d'
+FUN_00423394	0042b030	00451cb0	,'%s'
+FUN_00423394	0042b038	00451ccc	Paused
+FUN_00423394	0042b048	00451cb0	,'%s'
+FUN_00423394	0042b0ac	00451cb0	,'%s'
+FUN_00423394	0042b0dc	00451cb0	,'%s'
+FUN_00423394	0042b0e4	00451ccc	Paused
+FUN_00423394	0042b1b8	00451cdc	,'%s/%s'
+FUN_00423394	0042b210	00451cdc	,'%s/%s'
+FUN_00423394	0042b250	00451cb0	,'%s'
+FUN_00423394	0042b26c	00451cc4	,'%d'
+FUN_00423394	0042b2a4	00451cc4	,'%d'
+FUN_00423394	0042b2c0	00451cc4	,'%d'
+FUN_00423394	0042b2d8	00451cc4	,'%d'
+FUN_00423394	0042b410	00451cf0	btfiles
+FUN_00423394	0042b450	00451cf8	ctorrent
+FUN_00423394	0042b57c	00451cc4	,'%d'
+FUN_00423394	0042b598	00451cc4	,'%d'
+FUN_00423394	0042b5d0	00451cb0	,'%s'
+FUN_00423394	0042b5e4	00451cc4	,'%d'
+FUN_00423394	0042b694	00451d04	btclientindex
+FUN_00423394	0042b6b8	00451cf8	ctorrent
+FUN_00423394	0042b6f4	00451d14	bt_status
+FUN_00423394	0042b710	00451d20	bt_limits
+FUN_00423394	0042b72c	00451d2c	BTDDir
+FUN_00423394	0042b788	00451d34	BTUDir
+FUN_00423394	0042b7e4	00451d3c	BTdlimit
+FUN_00423394	0042b838	00451d48	BTulimit
+FUN_00423394	0042b88c	00451d54	BTrefreshtime
+FUN_00423394	0042b8e0	00451d64	rtl_bt_menu
+FUN_00423394	0042b910	00451d70	manage.addItem("BT Client", "bt.htm", "", "BT Client");
+FUN_00423394	0042b920	00451da8	countDownTime
+FUN_00423394	0042b968	00451db8	okMsg
+FUN_00423394	0042b9c4	00451dc0	lastUrl
+FUN_00423394	0042ba00	0044dd58	/wizard.htm
+FUN_00423394	0042ba40	00451dc8	status_warning
+FUN_00423394	0042ba80	00451dd8	<tr><td></td></tr><tr><td><font size=2><font color='#FF0000'>                 Below status shows currnt settings, but does not take effect.                </font></td></tr>
+FUN_00423394	0042baac	00451e88	wlan_onoff_tkip
+FUN_00423394	0042bb00	00451e98	onoff_tkip_comment_start
+FUN_00423394	0042bbb0	00451eb4	onoff_tkip_comment_end
+FUN_00423394	0042bc60	00451ecc	wlanband
+FUN_00423394	0042bd08	00451ed8	pocketRouter_html_wan_hide_s
+FUN_00423394	0042bd5c	00451ef8	pocketRouter_html_wan_hide_e
+FUN_00423394	0042bdb0	00451f18	pocketRouter_html_lan_hide_s
+FUN_00423394	0042be04	00451f38	pocketRouter_html_lan_hide_e
+FUN_00423394	0042be58	00451f58	wlan_xTxR
+FUN_00423394	0042bf28	00451f70	ip-lan
+FUN_00423394	0042bfec	00451f78	redirect_ip
+FUN_00423394	0042c264	00451f84	accessFromWan
+FUN_00423394	0042c3a8	00451f94	maxWebWlSchNum
+FUN_00423394	0042c400	00451fa4	wlsch_onoff
+FUN_00423394	0042c470	00451fb0	onoff_dual_firmware_start
+FUN_00423394	0042c4b0	00451fcc	onoff_dual_firmware_end
+FUN_00423394	0042c4f0	00451fe4	enable_dualFw
+FUN_00423394	0042c544	00451ff4	currFwBank
+FUN_00423394	0042c5b8	00452000	backFwBank
+FUN_00423394	0042c62c	0045200c	wlan_bandMode_menu_onoff
+FUN_00423394	0042c664	00452028	onoff_dmdphy_comment_start
+FUN_00423394	0042c6a4	00452044	single_band
+FUN_00423394	0042c6d4	00452050	<input type="radio" value="3" name="wlBandMode" onClick="" ></input>
+FUN_00423394	0042c6e4	00452098	onoff_dmdphy_comment_end
+FUN_00423394	0042c724	004520b4	initpage
+FUN_00423394	0042c754	004520c0	wizard.htm
+FUN_00423394	0042c764	004520cc	homepage
+FUN_00423394	0042c788	0044a170	home.htm
+FUN_00423394	0042c79c	004520d8	info_country
+FUN_00423394	0042c820	004520e8	[%d,'%s',%d,%d,'%s'
+FUN_00423394	0042c834	00468afd	ALBANIA
+FUN_00423394	0042c834	00468b21	ALGERIA
+FUN_00423394	0042c8a8	00452100	info_2g
+FUN_00423394	0042c930	00452108	[%d,%d,'%s'
+FUN_00423394	0042c99c	00452114	info_5g
+FUN_00423394	0042ca24	00452108	[%d,%d,'%s'
+FUN_00423394	0042ca90	0045211c	country_str
+FUN_00423394	0042cae8	00452128	tx_restrict
+FUN_00423394	0042cb58	00452134	rx_restrict
+FUN_00423394	0042cbc8	00452140	wlan%d-status
+FUN_0042cc90	0042cd44	00452150	%s-va%d
+FUN_0042cecc	0042cf48	00450dcc	Insufficient args 
+FUN_0042cecc	0042d034	00452168	no-cache
+FUN_0042cecc	0042d080	00452174	%s %s %s 
+FUN_0042cecc	0042d084	00452180	<meta http-equiv="Pragma" content="no-cache">
+FUN_0042cecc	0042d088	004521b0	<meta HTTP-equiv="Cache-Control" content="no-cache">
+FUN_0042cecc	0042d0c0	0045222c	usb_update_img_enabled
+FUN_0042cecc	0042d11c	00450fd8	dhcp-current
+FUN_0042cecc	0042d240	00452244	sch_enabled
+FUN_0042cecc	0042d2b8	00452250	isPureAP
+FUN_0042cecc	0042d314	0045225c	wanDNS
+FUN_0042cecc	0042d384	00452264	ntpEnabled
+FUN_0042cecc	0042d3fc	00452270	DaylightSave
+FUN_0042cecc	0042d474	00452280	ntpServerId
+FUN_0042cecc	0042d4ec	0045228c	wanDhcp
+FUN_0042cecc	0042d564	00452294	multiPppoe
+FUN_0042cecc	0042d5c0	004522a0	pppoeNo
+FUN_0042cecc	0042d634	004522a8	subnet1
+FUN_0042cecc	0042d6ac	004522b0	subnet2
+FUN_0042cecc	0042d724	004522b8	subnet3
+FUN_0042cecc	0042d79c	004522c0	subnet4
+FUN_0042cecc	0042d814	0044cf48	pppConnectType2
+FUN_0042cecc	0042d88c	0044cf68	pppConnectType3
+FUN_0042cecc	0042d904	0044cf88	pppConnectType4
+FUN_0042cecc	0042d97c	004522c8	pppConnectStatus2
+FUN_0042cecc	0042d9e0	004522dc	pppConnectStatus3
+FUN_0042cecc	0042da44	004522f0	pppConnectStatus4
+FUN_0042cecc	0042daa8	00452304	enableGetServIpByDomainName
+FUN_0042cecc	0042db04	00452320	pptpGetServIpByDomainName
+FUN_0042cecc	0042db7c	0045233c	l2tpGetServIpByDomainName
+FUN_0042cecc	0042dbf4	004514ec	wanDhcp-current
+FUN_0042cecc	0042dc8c	0044c00c	wlan0
+FUN_0042cecc	0042dca0	00450ab4	wlan1
+FUN_0042cecc	0042dd24	0044cedc	pppConnectType
+FUN_0042cecc	0042dd9c	00452358	pptp_wan_ip_mode
+FUN_0042cecc	0042de14	0044d24c	pptpConnectType
+FUN_0042cecc	0042de8c	0045236c	l2tp_wan_ip_mode
+FUN_0042cecc	0042df04	0044d500	l2tpConnectType
+FUN_0042cecc	0042df7c	0044d6b4	USB3GConnectType
+FUN_0042cecc	0042dfd4	00452380	pppConnectStatus
+FUN_0042cecc	0042e038	00452394	portFwNum
+FUN_0042cecc	0042e0b0	004523a0	ipFilterNum
+FUN_0042cecc	0042e128	004523ac	portFilterNum
+FUN_0042cecc	0042e1a0	004523bc	macFilterNum
+FUN_0042cecc	0042e218	004523cc	urlFilterNum
+FUN_0042cecc	0042e290	004523dc	triggerPortNum
+FUN_0042cecc	0042e308	00451aa0	qosEnabled
+FUN_0042cecc	0042e380	00451abc	qosAutoUplinkSpeed
+FUN_0042cecc	0042e3f8	004523ec	qosRuleNum
+FUN_0042cecc	0042e470	004523f8	qosAutoDownlinkSpeed
+FUN_0042cecc	0042e4c4	00450e14	checked
+FUN_0042cecc	0042e4f4	00452410	portFwEnabled
+FUN_0042cecc	0042e56c	00452420	ipFilterEnabled
+FUN_0042cecc	0042e5e4	00452430	portFilterEnabled
+FUN_0042cecc	0042e65c	00452444	macFilterEnabled
+FUN_0042cecc	0042e6d4	00452458	triggerPortEnabled
+FUN_0042cecc	0042e74c	0045246c	dmzEnabled
+FUN_0042cecc	0042e7c4	0044dba8	upnpEnabled
+FUN_0042cecc	0042e83c	00452478	igmpproxyDisabled
+FUN_0042cecc	0042e8b4	00450ea8	channel
+FUN_0042cecc	0042e92c	0045248c	regDomain
+FUN_0042cecc	0042ea1c	00452498	defaultKeyId
+FUN_0042cecc	0042eaa0	004524a8	keyType
+FUN_0042cecc	0042eb18	004524b0	authType
+FUN_0042cecc	0042eb90	004524bc	operRate
+FUN_0042cecc	0042ec08	004524c8	basicRate
+FUN_0042cecc	0042ec80	004524d4	preamble
+FUN_0042cecc	0042ecf8	004524e0	hiddenSSID
+FUN_0042cecc	0042ed70	004524ec	wmFilterNum
+FUN_0042cecc	0042ede8	004524f8	wlanDisabled
+FUN_0042cecc	0042ee60	00452508	wlanAcNum
+FUN_0042cecc	0042eed8	00452514	wlanAcEnabled
+FUN_0042cecc	0042ef50	00452524	rateAdaptiveEnabled
+FUN_0042cecc	0042efc8	00451a80	wlanMode
+FUN_0042cecc	0042f040	00452538	wlanMode_rpt
+FUN_0042cecc	0042f09c	00452548	networkType
+FUN_0042cecc	0042f114	00452554	networkType_rpt
+FUN_0042cecc	0042f170	00452564	lockdown_stat
+FUN_0042cecc	0042f190	00452574	/tmp/wscd_lock_stat
+FUN_0042cecc	0042f1fc	00452588	iappDisabled
+FUN_0042cecc	0042f274	00452598	protectionDisabled
+FUN_0042cecc	0042f2ec	004525ac	encrypt
+FUN_0042cecc	0042f364	004525b4	encrypt_rpt
+FUN_0042cecc	0042f3c0	004525c0	enable1X
+FUN_0042cecc	0042f438	004525cc	enable1x_rpt
+FUN_0042cecc	0042f494	004525dc	enableSuppNonWpa
+FUN_0042cecc	0042f50c	004525f0	suppNonWpa
+FUN_0042cecc	0042f584	004525fc	wpaAuth
+FUN_0042cecc	0042f5fc	00452604	wpa_auth_rpt
+FUN_0042cecc	0042f658	00452614	clientModeSupport1X
+FUN_0042cecc	0042f6b4	00452628	eapType
+FUN_0042cecc	0042f714	00452630	eapInsideType
+FUN_0042cecc	0042f774	00452640	wpaCipher
+FUN_0042cecc	0042f7ec	0045264c	wpa2Cipher
+FUN_0042cecc	0042f864	00452658	pskFormat
+FUN_0042cecc	0042f8dc	00452664	accountRsEnabled
+FUN_0042cecc	0042f954	00452678	accountRsUpdateEnabled
+FUN_0042cecc	0042f9cc	00452690	enableMacAuth
+FUN_0042cecc	0042fa44	004526a0	rsRetry
+FUN_0042cecc	0042fabc	004526a8	accountRsRetry
+FUN_0042cecc	0042fb34	004526b8	wlanWdsEnabled
+FUN_0042cecc	0042fbac	004526c8	wlanWdsNum
+FUN_0042cecc	0042fc24	00450f44	wdsEncrypt
+FUN_0042cecc	0042fc9c	004526d4	wdsWepFormat
+FUN_0042cecc	0042fd14	004526e4	wdsPskFormat
+FUN_0042cecc	0042fd8c	004526f4	RFType
+FUN_0042cecc	0042fe7c	004526fc	fixTxRate
+FUN_0042cecc	0042fef4	00452708	preAuth
+FUN_0042cecc	0042ff6c	00452710	turboMode
+FUN_0042cecc	0042ffe4	0045271c	RFPower
+FUN_0042cecc	0043005c	00452724	ddnsEnabled
+FUN_0042cecc	004300d4	00452730	ddnsType
+FUN_0042cecc	0043014c	0044dc08	webWanAccess
+FUN_0042cecc	004301c4	0044dc3c	pingWanAccess
+FUN_0042cecc	0043023c	0045273c	VPNPassThruIPsec
+FUN_0042cecc	004302b4	00452750	VPNPassThruPPTP
+FUN_0042cecc	0043032c	00452760	VPNPassThruL2TP
+FUN_0042cecc	004303a4	00452770	ppoepassthrouh
+FUN_0042cecc	00430424	00452780	ipv6passthrouh
+FUN_0042cecc	004304a0	00452790	urlFilterEnabled
+FUN_0042cecc	00430518	0044fd98	urlFilterMode
+FUN_0042cecc	00430590	004527a4	wispWanId
+FUN_0042cecc	00430680	004527b0	wlan_num
+FUN_0042cecc	004306e0	004527bc	show_wlan_num
+FUN_0042cecc	00430740	004527cc	vwlan_num
+FUN_0042cecc	004307a0	004527d8	wlan_idx
+FUN_0042cecc	00430800	004527e4	wlanMacClone
+FUN_0042cecc	00430878	004527f4	isWispDisplay
+FUN_0042cecc	004308d4	00452804	isRepeaterDisplay
+FUN_0042cecc	00430930	00452818	isWDSDefined
+FUN_0042cecc	0043098c	00452828	isOtg_Auto
+FUN_0042cecc	004309e8	00452834	ulinker_opMode
+FUN_0042cecc	00430a44	00452844	isP2PSupport
+FUN_0042cecc	00430aa0	00452854	isMeshDefined
+FUN_0042cecc	00430afc	00452864	isNewMeshUI
+FUN_0042cecc	00430b58	00452870	sambaEnabled
+FUN_0042cecc	00430bb4	00452880	rtLogEnabled
+FUN_0042cecc	00430ca4	00452890	multiRepeaterEnabled
+FUN_0042cecc	00430d00	004528a8	multiAPRepeaterStr
+FUN_0042cecc	00430d58	004528bc	repeaterEnabled
+FUN_0042cecc	00430de4	004528cc	isRepeaterEnabled
+FUN_0042cecc	00430ee0	004528e0	repeaterMode
+FUN_0042cecc	00430f90	004528f0	WiFiTest
+FUN_0042cecc	00431000	004528fc	dosEnabled
+FUN_0042cecc	00431078	0044d2f0	pptpSecurity
+FUN_0042cecc	004310f0	0044d300	pptpCompress
+FUN_0042cecc	00431168	00452908	wscDisable
+FUN_0042cecc	004311d8	00452914	wscConfig
+FUN_0042cecc	00431248	00452920	wscRptConfig
+FUN_0042cecc	004312a4	00452930	wps_by_reg
+FUN_0042cecc	00431314	0045293c	wps_auth
+FUN_0042cecc	00431384	00452948	wpsRpt_auth
+FUN_0042cecc	004313e0	00452954	wps_enc
+FUN_0042cecc	00431450	0045295c	wpsRpt_enc
+FUN_0042cecc	004314ac	00452968	hs2Enabled
+FUN_0042cecc	00431508	00452974	wmmEnabled
+FUN_0042cecc	00431580	00452980	ChannelBonding
+FUN_0042cecc	004315f8	00452990	ControlSideBand
+FUN_0042cecc	00431670	004529a0	aggregation
+FUN_0042cecc	004316e8	004529ac	shortGIEnabled
+FUN_0042cecc	00431760	0044e58c	static_dhcp
+FUN_0042cecc	004317d8	004529bc	wlanAccess
+FUN_0042cecc	00431850	004529c8	rf_used
+FUN_0042cecc	004318cc	004529d0	block_relay
+FUN_0042cecc	00431944	004529dc	tx_stbc
+FUN_0042cecc	004319bc	004529e4	tx_ldpc
+FUN_0042cecc	00431a34	004529ec	coexist
+FUN_0042cecc	00431aac	004529f4	tx_beamforming
+FUN_0042cecc	00431b24	00452a04	mc2u_disable
+FUN_0042cecc	00431b9c	00452a14	lowestMlcstRate
+FUN_0042cecc	00431c14	00452a24	vlan_bridge_feature
+FUN_0042cecc	00431c70	00452a38	hw_vlan_support
+FUN_0042cecc	00431ccc	00452a48	mssid_idx
+FUN_0042cecc	00431d2c	00452a54	wlan_mssid_num
+FUN_0042cecc	00431d88	00452a64	wlan_root_mssid_rpt_num
+FUN_0042cecc	00431de4	00452a7c	wapiAuth
+FUN_0042cecc	00431e44	00452a88	wapiPskFormat
+FUN_0042cecc	00431ec8	00452a98	isSupportNewWlanSch
+FUN_0042cecc	00431f20	00452aac	clientModeSupportWapi
+FUN_0042cecc	00431f7c	00452ac4	is_rpt_wps_support
+FUN_0042cecc	00431fd8	00452ad8	wps_either_ap_or_vxd
+FUN_0042cecc	00432034	00452af0	wlanBand2G5GSelect
+FUN_0042cecc	004320a4	00452b04	Band2G5GSupport
+FUN_0042cecc	00432114	00452b14	wlan_support_92D
+FUN_0042cecc	00432170	00452b28	wlan_support_8812e
+FUN_0042cecc	004321cc	00452b3c	wlan_support_ac2g
+FUN_0042cecc	00432228	00452b50	wlan_support_8192f
+FUN_0042cecc	00432284	00452b64	wlan_mode_2x2
+FUN_0042cecc	004322e0	00452b74	wlan_support_92D_concurrent
+FUN_0042cecc	0043233c	00452b90	wlan1_phyband
+FUN_0042cecc	00432394	00452ba0	wlan2_phyband
+FUN_0042cecc	004323ec	00451a08	maxWebVlanNum
+FUN_0042cecc	00432448	00452bb0	2G_ssid
+FUN_0042cecc	00432548	00452bb8	5G_ssid
+FUN_0042cecc	00432648	00452bc0	dsf_enable
+FUN_0042cecc	004326a4	00452bcc	set_wlanindex
+FUN_0042cecc	0043270c	00452bdc	vlan_val_init
+FUN_0042cecc	004327fc	00452bec	wlanMode[%d]=%d; 
+FUN_0042cecc	00432850	00452c00	wlanDisabled[%d]=%d; 
+FUN_0042cecc	00432890	00452c18	wlan%d-va%d
+FUN_0042cecc	004328d8	00452c24	mssid_disable[%d][%d]=%d; 
+FUN_0042cecc	00432994	00452c40	wizard_wlband_init
+FUN_0042cecc	00432a70	004524f8	wlanDisabled
+FUN_0042cecc	00432a84	004524f8	wlanDisabled
+FUN_0042cecc	00432a8c	00452c54	%s[%d]=%s; 
+FUN_0042cecc	00432ab4	004526f4	RFType
+FUN_0042cecc	00432ac0	004526f4	RFType
+FUN_0042cecc	00432acc	00452c54	%s[%d]=%s; 
+FUN_0042cecc	00432af8	00451a80	wlanMode
+FUN_0042cecc	00432b0c	00452c60	APMode
+FUN_0042cecc	00432b14	00452c54	%s[%d]=%s; 
+FUN_0042cecc	00432b7c	00452c74	bandIdx
+FUN_0042cecc	00432b8c	00452c68	%s[%d]=%d; 
+FUN_0042cecc	00432bc0	00452c7c	bandIdxClient
+FUN_0042cecc	00432bd0	00452c68	%s[%d]=%d; 
+FUN_0042cecc	00432bf4	00452548	networkType
+FUN_0042cecc	00432c08	00452548	networkType
+FUN_0042cecc	00432c10	00452c54	%s[%d]=%s; 
+FUN_0042cecc	00432c3c	0045248c	regDomain
+FUN_0042cecc	00432c50	0045248c	regDomain
+FUN_0042cecc	00432c58	00452c54	%s[%d]=%s; 
+FUN_0042cecc	00432c84	00450ea8	channel
+FUN_0042cecc	00432c98	00452c8c	defaultChan
+FUN_0042cecc	00432ca0	00452c54	%s[%d]=%s; 
+FUN_0042cecc	00432ce0	00452c98	usedBand
+FUN_0042cecc	00432ce8	00452c54	%s[%d]=%s; 
+FUN_0042cecc	00432d2c	00452ca4	%s[%d]='%s'; 
+FUN_0042cecc	00432d64	004525ac	encrypt
+FUN_0042cecc	00432d78	004525ac	encrypt
+FUN_0042cecc	00432d80	00452c54	%s[%d]=%s; 
+FUN_0042cecc	00432dc8	00452c54	%s[%d]=%s; 
+FUN_0042cecc	00432df4	00452498	defaultKeyId
+FUN_0042cecc	00432e08	00452498	defaultKeyId
+FUN_0042cecc	00432e10	00452c54	%s[%d]=%s; 
+FUN_0042cecc	00432e3c	00452658	pskFormat
+FUN_0042cecc	00432e50	00452cb4	defPskFormat
+FUN_0042cecc	00432e58	00452c54	%s[%d]=%s; 
+FUN_0042cecc	00432e84	004527e4	wlanMacClone
+FUN_0042cecc	00432e98	00452cc4	macClone
+FUN_0042cecc	00432ea0	00452c54	%s[%d]=%s; 
+FUN_0042cecc	00432ecc	00452640	wpaCipher
+FUN_0042cecc	00432ee0	00452640	wpaCipher
+FUN_0042cecc	00432ee8	00452ca4	%s[%d]='%s'; 
+FUN_0042cecc	00432f14	0045264c	wpa2Cipher
+FUN_0042cecc	00432f28	0045264c	wpa2Cipher
+FUN_0042cecc	00432f30	00452ca4	%s[%d]='%s'; 
+FUN_0042cecc	00432f5c	00451834	pskValue
+FUN_0042cecc	00432f70	00451834	pskValue
+FUN_0042cecc	00432f78	00452ca4	%s[%d]='%s'; 
+FUN_0042cecc	00432fa4	004524a8	keyType
+FUN_0042cecc	00432fb8	004524a8	keyType
+FUN_0042cecc	00432fc0	00452c54	%s[%d]=%s; 
+FUN_0042cecc	00432fec	00452a7c	wapiAuth
+FUN_0042cecc	00433000	00452cd0	defWapiAuth
+FUN_0042cecc	00433008	00452c54	%s[%d]=%s; 
+FUN_0042cecc	00433034	00452a88	wapiPskFormat
+FUN_0042cecc	00433048	00452cdc	defWapiPskFormat
+FUN_0042cecc	00433050	00452c54	%s[%d]=%s; 
+FUN_0042cecc	0043307c	00452cf0	wapiPskValue
+FUN_0042cecc	00433090	00452d00	defWapiPskValue
+FUN_0042cecc	00433098	00452c54	%s[%d]=%s; 
+FUN_0042cecc	004330c4	00452d10	wapiASIp
+FUN_0042cecc	004330d8	00452d1c	defWapiASIP
+FUN_0042cecc	004330e0	00452c54	%s[%d]=%s; 
+FUN_0042cecc	0043310c	00452d28	wapiCertSel
+FUN_0042cecc	00433120	00452d34	defWapiCertSel
+FUN_0042cecc	00433128	00452c54	%s[%d]=%s; 
+FUN_0042cecc	00433154	00452980	ChannelBonding
+FUN_0042cecc	00433168	00452d44	init_bound
+FUN_0042cecc	00433170	00452c54	%s[%d]=%s; 
+FUN_0042cecc	0043319c	00452990	ControlSideBand
+FUN_0042cecc	004331b0	00452d50	init_sideband
+FUN_0042cecc	004331b8	00452c54	%s[%d]=%s; 
+FUN_0042cecc	004331e4	00452b04	Band2G5GSupport
+FUN_0042cecc	004331f8	00452d60	wlanBand2G5G
+FUN_0042cecc	00433200	00452c54	%s[%d]=%s; 
+FUN_0042cecc	004332a0	00452d70	is_l7_qos_support
+FUN_00433364	00433418	00452150	%s-va%d
+FUN_00433520	00433580	00450dcc	Insufficient args 
+FUN_00433520	0043363c	00452dd0	wlProfileTblEnable
+FUN_00433520	00433678	00452de4	wlProfileSSID
+FUN_00433820	0043384c	00452df4	redirect-url
+FUN_00433820	00433868	00452e04	wlan_id
+FUN_00433910	00433934	0044c4f0	submit-url
+FUN_0043397c	00433a18	00452e0c	//wireless profile disabled
+FUN_0043397c	00433bdc	00452e28	token[%d] ='%s|%s|%d|%s|%d|%d|%d|%d|%s'; 
+FUN_00433c3c	00433c5c	0045024c	killall -9 sleep 2> /dev/null
+FUN_00433c3c	00433c74	00450278	killall -9 routed 2> /dev/null
+FUN_00433c3c	00433c8c	0044d7ac	killall -9 dnrd 2> /dev/null
+FUN_00433c3c	00433ca4	004502d8	killall -9 ntpclient 2> /dev/null
+FUN_00433c3c	00433cbc	0045031c	killall -9 lld2d 2> /dev/null
+FUN_00433c3c	00433cd4	0045037c	killall -9 reload 2> /dev/null
+FUN_00433c3c	00433cec	0045039c	killall -9 iapp 2> /dev/null
+FUN_00433c3c	00433d04	004503bc	killall -9 wscd 2> /dev/null
+FUN_00433c3c	00433d1c	004503dc	killall -9 mini_upnpd 2> /dev/null
+FUN_00433c3c	00433d34	00450400	killall -9 iwcontrol 2> /dev/null
+FUN_00433c3c	00433d4c	00450424	killall -9 auth 2> /dev/null
+FUN_00433c3c	00433d64	00450444	killall -9 disc_server 2> /dev/null
+FUN_00433c3c	00433d7c	0044d764	killall -9 igmpproxy 2> /dev/null
+FUN_00433c3c	00433d94	0044d788	echo 1,0 > /proc/br_mCastFastFwd
+FUN_00433c3c	00433dac	004504b0	killall -9 syslogd 2> /dev/null
+FUN_00433c3c	00433dc4	004504d0	killall -9 klogd 2> /dev/null
+FUN_00433c3c	00433dd8	00452e54	killall -9 ppp_inet 2> /dev/null
+FUN_00433de4	00433e38	00452c18	wlan%d-va%d
+FUN_00433de4	00433ea0	0044d758	wlan%d-vxd
+FUN_004340e4	00434108	0044bfa0	/boafrm/
+FUN_00434178	004341e4	00452e78	Allocate buffer failed!
+FUN_00434178	0043420c	00452e90	Read wlan sta info failed!
+FUN_00434178	004344c0	00452eb8	<tr bgcolor=#b7b7b7><td><font size=2>%02x:%02x:%02x:%02x:%02x:%02x</td><td><font size=2>%d</td><td><font size=2>%d</td><td><font size=2>%d</td><td><font size=2>%s</td>
+FUN_004346d8	00434760	0044e75c	Get table entry error! 
+FUN_004346d8	00434778	00452f60	<tr><td align=center width="35%%" bgcolor="#808080"><font size="2"><b>MAC Address</b></font></td> <td align=center width="25%%" bgcolor="#808080"><font size="2"><b>Tx Rate (Mbps)</b></font></td> <td align=center width="30%%" bgcolor="#808080"><font size="2"><b>Comment</b></font></td> <td align=center width="10%%" bgcolor="#808080"><font size="2"><b>Select</b></font></td></tr> 
+FUN_004346d8	00434818	0044c91c	%02x:%02x:%02x:%02x:%02x:%02x
+FUN_004346d8	004348ac	004530e4	<tr><td align=center width="35%%" bgcolor="#C0C0C0"><font size="2">%s</td> <td align=center width="25%%" bgcolor="#C0C0C0"><font size="2">%s</td> <td align=center width="30%%" bgcolor="#C0C0C0"><font size="2">%s</td> <td align=center width="10%%" bgcolor="#C0C0C0"><input type="checkbox" name="select%d" value="ON"></td></tr> 
+FUN_00434910	00434990	0044e75c	Get table entry error! 
+FUN_00434910	004349ac	0045322c	<tr><td align=center width="45%%" bgcolor="#808080"><font size="2"><b>MAC Address</b></font></td> <td align=center width="35%%" bgcolor="#808080"><font size="2"><b>Comment</b></font></td> <td align=center width="20%%" bgcolor="#808080"><font size="2"><b>Select</b></font></td></tr> 
+FUN_00434910	004349fc	0044c91c	%02x:%02x:%02x:%02x:%02x:%02x
+FUN_00434910	00434a48	00453348	<tr><td align=center width="45%%" bgcolor="#C0C0C0"><font size="2">%s</td> <td align=center width="35%%" bgcolor="#C0C0C0"><font size="2">%s</td> <td align=center width="20%%" bgcolor="#C0C0C0"><input type="checkbox" name="select%d" value="ON"></td></tr> 
+FUN_00434aac	00434b1c	00453448	<tr><td align=center width="" bgcolor="#808080"><font size="2"><b>SSID</b></font></td> <td align=center width="" bgcolor="#808080"><font size="2"><b>Encrypt</b></font></td> <td align=center width="20%%" bgcolor="#808080"><font size="2"><b>Select</b></font></td></tr> 
+FUN_00434aac	00434c54	00453570	<tr><td align=center width="35%%" bgcolor="#C0C0C0"><font size="2">%s</td> <td align=center width="20%%" bgcolor="#C0C0C0"><font size="2">%s</td> <td align=center width="10%%" bgcolor="#C0C0C0"><input type="checkbox" name="select%d" value="ON"></td></tr> 
+FUN_00434cb8	00434fc4	00453670	%s %d 
+wepHandler	004355d4	00453678	wepEnabled%d
+wepHandler	0043562c	00453688	length%d
+wepHandler	00435678	00453694	Key length must exist!
+wepHandler	0043569c	004536ac	Invalid key length value!
+wepHandler	004356d8	004536c8	Set WEP MIB error!
+wepHandler	00435718	004536dc	Set MIB_WLAN_ENCRYPT mib error!
+wepHandler	0043573c	004536fc	authType%d
+wepHandler	004357a8	00453710	shared
+wepHandler	004357e4	00453718	format%d
+wepHandler	00435838	00453724	Key type must exist!
+wepHandler	00435858	0045373c	Invalid key type value!
+wepHandler	0043588c	00453754	Set WEP key type error!
+wepHandler	004358c4	0045376c	key%d
+wepHandler	0043593c	00453774	Invalid key length! Expect length is %d
+wepHandler	004359c8	0045379c	Invalid wep-key value!
+wepHandler	00435a9c	004537b4	Set wep-key error!
+wepHandler	00435ad0	004537c8	wps_clear_configure_by_reg%d
+FUN_00436454	004364c0	00452e78	Allocate buffer failed!
+FUN_00436454	0043650c	0045424c	-va%d
+FUN_00436454	00436568	00452e90	Read wlan sta info failed!
+FUN_00436454	00436628	00454254	 11ac
+FUN_00436454	004368e8	00454288	<tr bgcolor=#b7b7b7><td><font size=2>%02x:%02x:%02x:%02x:%02x:%02x</td><td><font size=2>%s</td><td><font size=2>%d</td><td><font size=2>%d</td><td><font size=2>%s</td><td><font size=2>%s</td><td><font size=2>%d</td></tr>
+FUN_00436454	00436928	00454368	<tr bgcolor=#b7b7b7><td><font size=2>None</td><td><font size=2>---</td><td><font size=2>---</td><td><font size=2>---</td><td><font size=2>---</td><td><font size=2>---</td><td><font size=2>---</td></tr>
+FUN_00436978	004369e8	004524b0	authType
+FUN_00436978	00436a34	00453710	shared
+FUN_00436978	00436a88	0045443c	Error! Invalid authentication value.
+FUN_00436978	00436ab0	00454464	Set authentication failed!
+FUN_00436978	00436ad0	00451140	fragThreshold
+FUN_00436978	00436b38	00454480	Error! Invalid value of fragment threshold.
+FUN_00436978	00436b64	004544ac	Set fragment threshold failed!
+FUN_00436978	00436b74	00451150	rtsThreshold
+FUN_00436978	00436bd8	004544cc	Error! Invalid value of RTS threshold.
+FUN_00436978	00436c04	004544f4	Set RTS threshold failed!
+FUN_00436978	00436c14	00451160	beaconInterval
+FUN_00436978	00436c7c	00454510	Error! Invalid value of Beacon Interval.
+FUN_00436978	00436ca8	0045453c	Set Beacon interval failed!
+FUN_00436978	00436cb8	00451170	ackTimeout
+FUN_00436978	00436d1c	00454558	Error! Invalid value of Ack timeout.
+FUN_00436978	00436d48	00454580	Set Ack timeout failed!
+FUN_00436978	00436d5c	00454598	operRate1M
+FUN_00436978	00436dc0	004545a4	operRate2M
+FUN_00436978	00436e14	004545b0	operRate5M
+FUN_00436978	00436e68	004545bc	operRate11M
+FUN_00436978	00436ebc	004545c8	operRate6M
+FUN_00436978	00436f10	004545d4	operRate9M
+FUN_00436978	00436f64	004545e0	operRate12M
+FUN_00436978	00436fb8	004545ec	operRate18M
+FUN_00436978	0043700c	004545f8	operRate24M
+FUN_00436978	00437060	00454604	operRate36M
+FUN_00436978	004370b4	00454610	operRate48M
+FUN_00436978	00437108	0045461c	operRate54M
+FUN_00436978	0043717c	00454628	Set Tx operation rate failed!
+FUN_00436978	0043718c	00454648	basicRate1M
+FUN_00436978	004371f0	00454654	basicRate2M
+FUN_00436978	00437244	00454660	basicRate5M
+FUN_00436978	00437298	0045466c	basicRate11M
+FUN_00436978	004372ec	0045467c	basicRate6M
+FUN_00436978	00437340	00454688	basicRate9M
+FUN_00436978	00437394	00454694	basicRate12M
+FUN_00436978	004373e8	004546a4	basicRate18M
+FUN_00436978	0043743c	004546b4	basicRate24M
+FUN_00436978	00437490	004546c4	basicRate36M
+FUN_00436978	004374e4	004546d4	basicRate48M
+FUN_00436978	00437538	004546e4	basicRate54M
+FUN_00436978	004375a8	004546f4	Set Tx basic rate failed!
+FUN_00436978	004375b8	004524d4	preamble
+FUN_00436978	0043760c	00454718	short
+FUN_00436978	00437634	00454720	Error! Invalid Preamble value.
+FUN_00436978	00437660	00454740	Set Preamble failed!
+FUN_00436978	00437670	0045117c	dtimPeriod
+FUN_00436978	004376d4	00454758	Error! Invalid value of DTIM period.
+FUN_00436978	00437700	00454780	Set DTIM period failed!
+FUN_00436978	0043778c	004547a0	Error! Invalid IAPP value.
+FUN_00436978	004377b8	004547bc	Set MIB_WLAN_IAPP_DISABLED failed!
+FUN_00436978	004377c8	004547e0	11g_protection
+FUN_00436978	00437844	004547f0	Error! Invalid 11g Protection value.
+FUN_00436978	00437870	00454818	Set MIB_WLAN_PROTECTION_DISABLED failed!
+FUN_00436978	00437880	00454844	turbo
+FUN_00436978	004378cc	0045484c	always
+FUN_00436978	00437920	0045485c	Error! Invalid turbo mode value.
+FUN_00436978	0043794c	00454880	Set MIB_WLAN_TURBO_MODE failed!
+FUN_00436978	0043795c	0045271c	RFPower
+FUN_00436978	00437a44	004548a0	Error! Invalid RF output power value.
+FUN_00436978	00437a70	004548c8	Set MIB_WLAN_RFPOWER_SCALE failed!
+FUN_00436978	00437a80	004529a0	aggregation
+FUN_00436978	00437aac	004548ec	disable
+FUN_00436978	00437af0	004548f4	Set MIB_WLAN_AGGREGATION failed!
+FUN_00436978	00437b00	004529d0	block_relay
+FUN_00436978	00437b6c	00454918	shortGI0
+FUN_00436978	00437be8	00454924	Error! Invalid short GI.
+FUN_00436978	00437c14	00454940	Set MIB_WLAN_SHORT_GI failed!
+FUN_00436978	00437c24	004529dc	tx_stbc
+FUN_00436978	00437cbc	004529e4	tx_ldpc
+FUN_00436978	00437d54	00454960	coexist_
+FUN_00436978	00437dc0	0045496c	beamforming_
+FUN_00436978	00437e30	0045497c	mc2u_
+FUN_00436978	00437ea0	00454984	mlcstrate
+FUN_00437f3c	00437fa0	00454990	SSID_Setting
+FUN_00437f3c	00437ff4	004549a0	ssid_idx is invalid!!
+FUN_00437f3c	00438054	0044e6d0	Get table entry error!
+FUN_00437f3c	00438084	004549b8	method%d
+FUN_00437f3c	004380d0	00453688	length%d
+FUN_00437f3c	00438134	00453718	format%d
+FUN_00437f3c	00438194	004524b0	authType
+FUN_00437f3c	004381e8	00453710	shared
+FUN_00437f3c	00438214	0045376c	key%d
+FUN_00437f3c	00438310	0045379c	Invalid wep-key value!
+FUN_00437f3c	00438430	004549c4	wpaAuth%d
+FUN_00437f3c	0043848c	004549d4	Invalid wpaAuth value!
+FUN_00437f3c	004384bc	004549f0	Error! Invalid wpa authentication value.
+FUN_00437f3c	00438588	00454a3c	wpa2ciphersuite%d
+FUN_00437f3c	00438620	00454a1c	Invalid value of cipher suite!
+FUN_00437f3c	00438644	00454a50	pskFormat%d
+FUN_00437f3c	0043868c	00454a5c	Error! no psk format.
+FUN_00437f3c	004386a8	00454a74	Error! invalid psk format.
+FUN_00437f3c	004386b8	00454a90	pskValue%d
+FUN_00437f3c	00438770	00454a9c	Error! invalid psk value.
+FUN_00437f3c	00438828	00454ab8	Modify table entry error!
+wpaHandler	004388ac	004549b8	method%d
+wpaHandler	00438900	00454ad4	Error! no encryption method.
+wpaHandler	00438930	00454af4	Invalid encryption method!
+wpaHandler	00438a08	004536dc	Set MIB_WLAN_ENCRYPT mib error!
+wpaHandler	00438a24	00454b10	use1x%d
+wpaHandler	00438aac	00454b18	Error! 802.1x authentication cannot be used when device is set to client mode.
+wpaHandler	00438af0	00454b68	Set 1x enable flag error!
+wpaHandler	00438b30	00454b84	Get MIB_WLAN_WEP MIB error!
+wpaHandler	00438b6c	004536c8	Set WEP MIB error!
+wpaHandler	00438b78	00454ba0	useMacAuth%d
+wpaHandler	00438c04	00454bb0	Set MIB_WLAN_MAC_AUTH_ENABLED MIB error!
+wpaHandler	00438c10	00454bdc	nonWpaSupp%d
+wpaHandler	00438cb4	00454bec	Set MIB_WLAN_ENABLE_SUPP_NONWPA mib error!
+wpaHandler	00438cd0	00454c18	nonWpaWep%d
+wpaHandler	00438d44	00454c24	nonWpa1x%d
+wpaHandler	00438dd4	00454c30	Set MIB_WLAN_SUPP_NONWPA mib error!
+wpaHandler	00438de8	004549c4	wpaAuth%d
+wpaHandler	00438e74	00454c54	Error! WPA-RADIUS cannot be used when device is set to client mode.
+wpaHandler	00438ec4	004549f0	Error! Invalid wpa authentication value.
+wpaHandler	00438ef0	00454c98	Set MIB_WLAN_WPA_AUTH failed!
+wpaHandler	00438fb8	00454a1c	Invalid value of cipher suite!
+wpaHandler	00439040	00454a3c	wpa2ciphersuite%d
+wpaHandler	004390f0	00454d2c	Invalid value of wpa2 cipher suite!
+wpaHandler	0043915c	00454cb8	Error! Can't set cipher to TKIP + AES when device is set to client mode.
+wpaHandler	0043918c	00454d50	Set MIB_WLAN_WPA2_CIPHER_SUITE failed!
+wpaHandler	004391c0	00454d78	preAuth%d
+wpaHandler	00439240	00454d04	Set MIB_WLAN_WPA_CIPHER_SUITE failed!
+wpaHandler	00439254	00454a50	pskFormat%d
+wpaHandler	004392a4	00454a5c	Error! no psk format.
+wpaHandler	004392c4	00454a74	Error! invalid psk format.
+wpaHandler	00439318	00454a90	pskValue%d
+wpaHandler	004393d4	00454d84	Set MIB_WLAN_PSK_FORMAT failed!
+wpaHandler	0043943c	00454a9c	Error! invalid psk value.
+wpaHandler	00439468	00454da4	Set MIB_WLAN_WPA_PSK error!
+wpaHandler	00439478	00454dc0	groupKeyTimeDay%d
+wpaHandler	004394dc	00454dd4	Error! Invalid value of rekey day.
+wpaHandler	0043950c	00454df8	groupKeyTimeHr%d
+wpaHandler	0043956c	00454e0c	Error! Invalid value of rekey hr.
+wpaHandler	00439598	00454e30	groupKeyTimeMin%d
+wpaHandler	004395f8	00454e44	Error! Invalid value of rekey min.
+wpaHandler	00439624	00454e68	groupKeyTimeSec%d
+wpaHandler	00439680	00454e7c	Error! Invalid value of rekey sec.
+wpaHandler	004396d0	00454ea0	Set MIB_WLAN_WPA_GROUP_REKEY_TIME error!
+wpaHandler	00439700	00454ecc	radiusPort%d
+wpaHandler	0043974c	00454edc	No RS port number!
+wpaHandler	00439794	00454ef0	Error! Invalid value of RS port number.
+wpaHandler	004397c0	00454f18	Set RS port error!
+wpaHandler	004397cc	00454f2c	radiusIP%d
+wpaHandler	00439818	00454f38	No RS IP address!
+wpaHandler	00439844	00454f4c	Invalid RS IP-address value!
+wpaHandler	00439870	00454f6c	Set RS IP-address error!
+wpaHandler	0043987c	00454f88	radiusPass%d
+wpaHandler	00439910	00454f98	Set RS password error!
+wpaHandler	0043991c	00454fb0	radiusRetry%d
+wpaHandler	0043997c	00454fc0	Invalid RS retry value!
+wpaHandler	004399a8	00454fd8	Set MIB_WLAN_RS_MAXRETRY error!
+wpaHandler	004399b8	00454ff8	radiusTime%d
+wpaHandler	00439a18	00455008	Invalid RS time value!
+wpaHandler	00439a48	00455020	Set MIB_WLAN_RS_INTERVAL_TIME error!
+wpaHandler	00439a58	00455048	useAccount%d
+wpaHandler	00439ae4	00455058	Set MIB_WLAN_ACCOUNT_RS_ENABLED mib error!
+wpaHandler	00439b00	00455084	accountPort%d
+wpaHandler	00439b48	00455094	No account RS port number!
+wpaHandler	00439b90	004550b0	Error! Invalid value of account RS port number.
+wpaHandler	00439bbc	004550e0	Set account RS port error!
+wpaHandler	00439bc8	004550fc	accountIP%d
+wpaHandler	00439c14	00455108	No account RS IP address!
+wpaHandler	00439c40	00455124	Invalid account RS IP-address value!
+wpaHandler	00439c70	0045514c	Set account RS IP-address error!
+wpaHandler	00439c7c	00455170	accountPass%d
+wpaHandler	00439ce0	00455180	Account RS password length too long!
+wpaHandler	00439d0c	004551a8	Set account RS password error!
+wpaHandler	00439d18	004551c8	accountRetry%d
+wpaHandler	00439d78	004551d8	Invalid account RS retry value!
+wpaHandler	00439da4	004551f8	Set MIB_WLAN_ACCOUNT_RS_MAXRETRY error!
+wpaHandler	00439db4	00455220	accountTime%d
+wpaHandler	00439e14	00455230	Invalid account RS time value!
+wpaHandler	00439e44	00455250	Set MIB_WLAN_ACCOUNT_RS_INTERVAL_TIME error!
+wpaHandler	00439e54	00455280	accountUpdateEnabled%d
+wpaHandler	00439ee4	00455298	Set MIB_WLAN_ACCOUNT_RS_UPDATE_ENABLED mib error!
+wpaHandler	00439ef0	004552cc	accountUpdateTime%d
+wpaHandler	00439f50	004552e0	Error! Invalid value of update time
+wpaHandler	00439f7c	00455304	Set MIB_WLAN_ACCOUNT_RS_UPDATE_DELAY mib error!
+wpaHandler	00439f90	00455334	wepKeyLen%d
+wpaHandler	00439ffc	00455348	wep128
+wpaHandler	0043a044	00455350	Error! Invalid wepkeylen value.
+wpaHandler	0043a04c	00455370	Set MIB_WLAN_WEP failed!
+wpaHandler	0043a084	004537c8	wps_clear_configure_by_reg%d
+addWlProfileHandler	0043a158	0045538c	wps_client_profile
+addWlProfileHandler	0043a17c	004553a0	wizardAddProfile%d
+addWlProfileHandler	0043a244	0044e5ec	Cannot add new entry because table is full!
+addWlProfileHandler	0043a700	0044e6ac	Add table entry error!
+addWlProfileHandler	0043a750	004553b4	this profile is exist, replace it with new configuration
+FUN_0043a7c8	0043a814	0044d758	wlan%d-vxd
+wlanHandler	0043a9c0	004553f0	wlanDisabled%d
+wlanHandler	0043aa54	00455400	Set disabled flag error!
+wlanHandler	0043aac4	0045541c	regdomain%d
+wlanHandler	0043ab64	00455428	Set wlan regdomain error!
+wlanHandler	0043ab9c	00455444	countrystr%d
+wlanHandler	0043ac00	00455454	Set wlan countrystr error!
+wlanHandler	0043ac10	00455470	tx_restrict%d
+wlanHandler	0043ac90	00455480	Set MIB_WLAN_TX_RESTRICT error!
+wlanHandler	0043aca0	004554a0	rx_restrict%d
+wlanHandler	0043ad20	004554b0	Set MIB_WLAN_RX_RESTRICT error!
+wlanHandler	0043ad30	004554d0	mode%d
+wlanHandler	0043ade8	004554d8	Invalid mode value!
+wlanHandler	0043ae4c	004554ec	You cannot set client mode with Enterprise (RADIUS) !<br><br>Please change the encryption method in security page first.
+wlanHandler	0043ae8c	00455568	You cannot set client mode with 802.1x enabled!<br><br>Please change the encryption method in security page first.
+wlanHandler	0043ae9c	004555dc	wlanMacClone%d
+wlanHandler	0043af24	004555ec	Set wlan Mac clone error!
+wlanHandler	0043af50	00455608	Set MIB_WLAN_MODE error!
+wlanHandler	0043afd8	00455624	Set SSID error!
+wlanHandler	0043afe8	00455634	chan%d
+wlanHandler	0043b078	0045563c	Invalid channel number!
+wlanHandler	0043b0a4	00455654	Set channel number error!
+wlanHandler	0043b0b4	00455670	type%d
+wlanHandler	0043b110	00455678	Invalid network type value!
+wlanHandler	0043b150	00455694	Set MIB_WLAN_NETWORK_TYPE failed!
+wlanHandler	0043b164	004556b8	band%d
+wlanHandler	0043b1ec	004556c0	Invalid band value!
+wlanHandler	0043b380	004556d4	Set band error!
+wlanHandler	0043b5b8	004556e4	txRate%d
+wlanHandler	0043b648	004556f0	Set rate adaptive failed!
+wlanHandler	0043b6b0	0045570c	Set fix rate failed!
+wlanHandler	0043b6c8	00455724	basicrates%d
+wlanHandler	0043b74c	00455734	operrates%d
+wlanHandler	0043b7c8	00455740	hiddenSSID%d
+wlanHandler	0043b84c	00455770	Set hidden ssid failed!
+wlanHandler	0043b85c	00455788	wlanwmm%d
+wlanHandler	0043b8c8	00455794	Error! Invalid WMM value.
+wlanHandler	0043b92c	004557b0	Set MIB_WLAN_WMM_ENABLED failed!
+wlanHandler	0043b93c	004557d4	channelbound%d
+wlanHandler	0043b9b8	00455750	Error! Invalid Channel Bonding.
+wlanHandler	0043b9e4	004557e4	Set MIB_WLAN_CHANNEL_BONDING failed!
+wlanHandler	0043b9f4	0045580c	controlsideband%d
+wlanHandler	0043ba60	00455820	Error! Invalid Control SideBand.
+wlanHandler	0043ba8c	00455844	Set MIB_WLAN_CONTROL_SIDEBAND failed!
+wlanHandler	0043ba98	00455724	basicrates%d
+wlanHandler	0043bb18	004546f4	Set Tx basic rate failed!
+wlanHandler	0043bb24	00455734	operrates%d
+wlanHandler	0043bba4	00454628	Set Tx operation rate failed!
+wlanHandler	0043bbb0	0045586c	repeaterEnabled%d
+wlanHandler	0043bbd0	0044ca10	lan_ip
+wlanHandler	0043bc80	00455880	repeaterSSID%d
+wlanHandler	0043bf48	004537c8	wps_clear_configure_by_reg%d
+FUN_0043bfe4	0043c040	00450dcc	Insufficient args 
+FUN_0043bfe4	0043c04c	00455890	wlan_state
+FUN_0043bfe4	0043c0d0	0045589c	system_time
+FUN_0043bfe4	0043c13c	0044e6d0	Get table entry error!
+FUN_0043bfe4	0043c198	004558a8	wlanSchedule-0-0-0-0-0-0
+FUN_0043bfe4	0043c1c0	004558c4	Get SCHEDULE entry fail 
+FUN_0043bfe4	0043c22c	004558e0	%s-%d-%d-%d-%d-%d-%d
+FUN_0043c284	0043c30c	004558f8	Get schedule entry fail 
+FUN_0043c284	0043c33c	00455914	%d|%d|%d|%d
+FUN_0043c284	0043c360	00455920	0|0|0|0
+run_init_script	0043c3d8	00455928	killall -9 mnet 2> /dev/null
+run_init_script	0043c3f0	00455948	killall -9 hub-ctrl 2> /dev/null
+run_init_script	0043c408	0045596c	killall -9 usb_modeswitch 2> /dev/null
+run_init_script	0043c420	00452e54	killall -9 ppp_inet 2> /dev/null
+run_init_script	0043c438	0044d7cc	killall -9 pppd 2> /dev/null
+run_init_script	0043c450	0044c540	rm /etc/ppp/connectfile >/dev/null 2>&1
+run_init_script	0043c470	0044c8cc	%s/%s.pid
+run_init_script	0043c474	0044c8d8	/var/run
+run_init_script	0043c4e8	0045035c	killall -9 udhcpd 2> /dev/null
+run_init_script	0043c500	00455994	rm -f /var/run/udhcpd.pid 2> /dev/null
+run_init_script	0043c520	0045026c	killsh.sh
+run_init_script	0043c558	004559bc	%s gw %s
+run_init_script	0043c55c	004559c8	init.sh
+sigHandler_autoconf	0043c628	004559d0	/tmp/reinit_web
+sigHandler_autoconf	0043c64c	004559d0	/tmp/reinit_web
+sigHandler_autoconf	0043c6c4	0045538c	wps_client_profile
+FUN_0043c7a8	0043c828	0044e6e8	Delete table entry error!
+FUN_0043c7a8	0043c834	004559e0	enabled_sch
+FUN_0043c7a8	0043c8c4	004559ec	wlanSchedule
+FUN_0043c7a8	0043c8e8	004559fc	weekdays
+FUN_0043c7a8	0043c960	00455a0c	all_day
+FUN_0043c7a8	0043c9c0	00455a14	start_time
+FUN_0043c7a8	0043ca04	00455a20	end_time
+FUN_0043c7a8	0043ca7c	00455a2c	"Get entry number error!"
+FUN_0043c7a8	0043caa4	0044e6ac	Add table entry error!
+FUN_0043c7a8	0043cac8	0044d8e4	<html><body><blockquote><h4>%s</h4> 
+FUN_0043c7a8	0043caec	0044dfb0	<form><input type="button" onclick="history.go (-1)" value="&nbsp;&nbsp;OK&nbsp;&nbsp" name="OK"></form></blockquote></body></html>
+FUN_0043c7a8	0043cb08	0044e2d4	bridge
+FUN_0043c7a8	0043cb38	0044dd58	/wizard.htm
+FUN_0043c7a8	0043cb54	0044dd64	<html><body><blockquote><h4>Change setting successfully!</h4>Your changes have been saved. The router must be rebooted for the changes to take effect.<br> You can reboot now, or you can continue to make other changes and reboot later. 
+FUN_0043c7a8	0043cb68	0044de50	<form action=/boafrm/formRebootCheck method=POST name='rebootForm'>
+FUN_0043c7a8	0043cb8c	0044de94	<input type='hidden' value='%s' name='submit-url'>
+FUN_0043c7a8	0043cba0	0044dec8	<input id='restartNow' type='submit' value='Reboot Now' onclick="return true" />&nbsp;&nbsp;
+FUN_0043c7a8	0043cbc4	0044df28	<input id='restartLater' type='button' value='Reboot Later' OnClick=window.location.replace("%s")>
+FUN_0043c7a8	0043cbe8	0044df8c	</form></blockquote></body></html>
+FUN_0043c7a8	0043cc00	0044c428	formRebootCheck
+FUN_0043cc20	0043cc84	00451fa4	wlsch_onoff
+FUN_0043cc20	0043cce8	00455a48	set  MIB_WLAN_SCHEDULE_ENABLED error!
+FUN_0043cc20	0043cd1c	00455a70	MIB_WLAN_SCHEDULE_DELALL error!
+FUN_0043cc20	0043cd9c	00455a90	wlsch_enable_%d
+FUN_0043cc20	0043ce10	00455aa0	wlsch_day_%d
+FUN_0043cc20	0043ce84	00455ab0	wlsch_from_%d
+FUN_0043cc20	0043cf00	00455ac0	wlsch_to_%d
+FUN_0043cc20	0043cf6c	00455acc	MIB_WLAN_SCHEDULE_ADD error!
+FUN_0043cc20	0043cf94	0044d8e4	<html><body><blockquote><h4>%s</h4> 
+FUN_0043cc20	0043cfb8	0044dfb0	<form><input type="button" onclick="history.go (-1)" value="&nbsp;&nbsp;OK&nbsp;&nbsp" name="OK"></form></blockquote></body></html>
+FUN_0043cc20	0043cfd4	0044c4f0	submit-url
+FUN_0043cc20	0043d024	0044dd58	/wizard.htm
+FUN_0043cc20	0043d040	0044dd64	<html><body><blockquote><h4>Change setting successfully!</h4>Your changes have been saved. The router must be rebooted for the changes to take effect.<br> You can reboot now, or you can continue to make other changes and reboot later. 
+FUN_0043cc20	0043d054	0044de50	<form action=/boafrm/formRebootCheck method=POST name='rebootForm'>
+FUN_0043cc20	0043d078	0044de94	<input type='hidden' value='%s' name='submit-url'>
+FUN_0043cc20	0043d08c	0044dec8	<input id='restartNow' type='submit' value='Reboot Now' onclick="return true" />&nbsp;&nbsp;
+FUN_0043cc20	0043d0b0	0044df28	<input id='restartLater' type='button' value='Reboot Later' OnClick=window.location.replace("%s")>
+FUN_0043cc20	0043d0d4	0044df8c	</form></blockquote></body></html>
+FUN_0043cc20	0043d0ec	0044c428	formRebootCheck
+FUN_0043d120	0043d1ac	004554d0	mode%d
+FUN_0043d120	0043d290	004554ec	You cannot set client mode with Enterprise (RADIUS) !<br><br>Please change the encryption method in security page first.
+FUN_0043d120	0043d2cc	00455568	You cannot set client mode with 802.1x enabled!<br><br>Please change the encryption method in security page first.
+FUN_0043d120	0043d2dc	004555dc	wlanMacClone%d
+FUN_0043d120	0043d360	004555ec	Set wlan Mac clone error!
+FUN_0043d120	0043d388	00455608	Set MIB_WLAN_MODE error!
+FUN_0043d120	0043d3d4	00455aec	wlProfileEnabled
+FUN_0043d120	0043d3ec	00455b00	addWlProfile
+FUN_0043d120	0043d40c	00455b10	addRptProfile
+FUN_0043d120	0043d42c	00455b20	delSelWlProfile
+FUN_0043d120	0043d44c	00455b30	delAllWlProfile
+FUN_0043d120	0043d4d4	0045538c	wps_client_profile
+FUN_0043d120	0043d528	0044d758	wlan%d-vxd
+FUN_0043d120	0043d554	0045538c	wps_client_profile
+FUN_0043d120	0043d66c	0044e6d0	Get table entry error!
+FUN_0043d120	0043d690	0044e6e8	Delete table entry error!
+FUN_0043d120	0043d6b0	0044e6c4	select%d
+FUN_0043d120	0043d6e4	0044e704	Delete all table error!
+FUN_0043d120	0043d79c	00454d04	Set MIB_WLAN_WPA_CIPHER_SUITE failed!
+FUN_0043d120	0043d7a8	00455b64	Warning! WPA2 Mixed encryption is not supported in client Mode. <BR> Change to WPA2 Encryption.
+FUN_0043d120	0043d814	00455b40	Set MIB_WLAN_WPA2_UNICIPHER failed!
+FUN_0043d120	0043d848	00455b40	Set MIB_WLAN_WPA2_UNICIPHER failed!
+FUN_0043d120	0043d850	00455bc4	Warning! WPA encryption is only supported in client Mode. <BR> Change to WPA2 Encryption.
+FUN_0043d120	0043d86c	0044e2d4	bridge
+FUN_0043d120	0043d880	00455c20	wlan-url
+FUN_0043d120	0043d8a4	0044d8e4	<html><body><blockquote><h4>%s</h4> 
+FUN_0043d120	0043d8d0	0044d90c	<form><input type=button value="  OK  " OnClick=window.location.replace("%s")></form></blockquote></body></html>
+FUN_0043d120	0043d8ec	0044d980	<form><input type=button value="  OK  " OnClick=window.close()></form></blockquote></body></html>
+FUN_0043d120	0043d914	0044dd58	/wizard.htm
+FUN_0043d120	0043d938	0044dd64	<html><body><blockquote><h4>Change setting successfully!</h4>Your changes have been saved. The router must be rebooted for the changes to take effect.<br> You can reboot now, or you can continue to make other changes and reboot later. 
+FUN_0043d120	0043d954	0044de50	<form action=/boafrm/formRebootCheck method=POST name='rebootForm'>
+FUN_0043d120	0043d970	0044de94	<input type='hidden' value='%s' name='submit-url'>
+FUN_0043d120	0043d98c	0044dec8	<input id='restartNow' type='submit' value='Reboot Now' onclick="return true" />&nbsp;&nbsp;
+FUN_0043d120	0043d9a8	0044df28	<input id='restartLater' type='button' value='Reboot Later' OnClick=window.location.replace("%s")>
+FUN_0043d120	0043d9c4	0044df8c	</form></blockquote></body></html>
+FUN_0043d120	0043d9dc	0044c428	formRebootCheck
+FUN_0043d120	0043d9f8	0044d8e4	<html><body><blockquote><h4>%s</h4> 
+FUN_0043d120	0043da1c	0044dfb0	<form><input type="button" onclick="history.go (-1)" value="&nbsp;&nbsp;OK&nbsp;&nbsp" name="OK"></form></blockquote></body></html>
+FUN_0043da70	0043dadc	0044e2d4	bridge
+FUN_0043da70	0043daf0	0044c4f0	submit-url
+FUN_0043da70	0043db30	0044dd58	/wizard.htm
+FUN_0043da70	0043db54	0044dd64	<html><body><blockquote><h4>Change setting successfully!</h4>Your changes have been saved. The router must be rebooted for the changes to take effect.<br> You can reboot now, or you can continue to make other changes and reboot later. 
+FUN_0043da70	0043db70	0044de50	<form action=/boafrm/formRebootCheck method=POST name='rebootForm'>
+FUN_0043da70	0043db8c	0044de94	<input type='hidden' value='%s' name='submit-url'>
+FUN_0043da70	0043dba8	0044dec8	<input id='restartNow' type='submit' value='Reboot Now' onclick="return true" />&nbsp;&nbsp;
+FUN_0043da70	0043dbc4	0044df28	<input id='restartLater' type='button' value='Reboot Later' OnClick=window.location.replace("%s")>
+FUN_0043da70	0043dbe0	0044df8c	</form></blockquote></body></html>
+FUN_0043da70	0043dbf8	0044c428	formRebootCheck
+FUN_0043da70	0043dc14	0044d8e4	<html><body><blockquote><h4>%s</h4> 
+FUN_0043da70	0043dc40	0044dfb0	<form><input type="button" onclick="history.go (-1)" value="&nbsp;&nbsp;OK&nbsp;&nbsp" name="OK"></form></blockquote></body></html>
+FUN_0043dc58	0043dcc0	00455c2c	wlan_ssid_id
+FUN_0043dc58	0043dcd8	00454990	SSID_Setting
+FUN_0043dc58	0043dd7c	004549b8	method%d
+FUN_0043dc58	0043ddc0	004524b0	authType
+FUN_0043dc58	0043de10	00453710	shared
+FUN_0043dc58	0043de4c	00454b10	use1x%d
+FUN_0043dc58	0043df1c	0044e2d4	bridge
+FUN_0043dc58	0043df30	0044c4f0	submit-url
+FUN_0043dc58	0043df70	0044dd58	/wizard.htm
+FUN_0043dc58	0043df8c	0044dd64	<html><body><blockquote><h4>Change setting successfully!</h4>Your changes have been saved. The router must be rebooted for the changes to take effect.<br> You can reboot now, or you can continue to make other changes and reboot later. 
+FUN_0043dc58	0043dfa0	0044de50	<form action=/boafrm/formRebootCheck method=POST name='rebootForm'>
+FUN_0043dc58	0043dfc4	0044de94	<input type='hidden' value='%s' name='submit-url'>
+FUN_0043dc58	0043dfd8	0044dec8	<input id='restartNow' type='submit' value='Reboot Now' onclick="return true" />&nbsp;&nbsp;
+FUN_0043dc58	0043dffc	0044df28	<input id='restartLater' type='button' value='Reboot Later' OnClick=window.location.replace("%s")>
+FUN_0043dc58	0043e020	0044df8c	</form></blockquote></body></html>
+FUN_0043dc58	0043e038	0044c428	formRebootCheck
+FUN_0043dc58	0043e064	0044d8e4	<html><body><blockquote><h4>%s</h4> 
+FUN_0043dc58	0043e090	0044dfb0	<form><input type="button" onclick="history.go (-1)" value="&nbsp;&nbsp;OK&nbsp;&nbsp" name="OK"></form></blockquote></body></html>
+FUN_0043e0c0	0043e124	0044fd04	addFilterMac
+FUN_0043e0c0	0043e13c	0044fd14	deleteSelFilterMac
+FUN_0043e0c0	0043e15c	0044fd28	deleteAllFilterMac
+FUN_0043e0c0	0043e17c	00452514	wlanAcEnabled
+FUN_0043e0c0	0043e1d4	0044faa0	Set enabled flag error!
+FUN_0043e0c0	0043e248	0044cac4	Error! Invalid MAC address.
+FUN_0043e0c0	0043e254	0044facc	comment
+FUN_0043e0c0	0043e2a8	0044fc14	Error! Comment length too long.
+FUN_0043e0c0	0043e304	0044e5ec	Cannot add new entry because table is full!
+FUN_0043e0c0	0043e34c	0044e6ac	Add table entry error!
+FUN_0043e0c0	0043e388	0044e5d4	Get entry number error!
+FUN_0043e0c0	0043e434	0044e6d0	Get table entry error!
+FUN_0043e0c0	0043e45c	0044e6e8	Delete table entry error!
+FUN_0043e0c0	0043e478	0044e6c4	select%d
+FUN_0043e0c0	0043e4b0	0044e704	Delete all table error!
+FUN_0043e0c0	0043e4d8	0044d8e4	<html><body><blockquote><h4>%s</h4> 
+FUN_0043e0c0	0043e4fc	0044dfb0	<form><input type="button" onclick="history.go (-1)" value="&nbsp;&nbsp;OK&nbsp;&nbsp" name="OK"></form></blockquote></body></html>
+FUN_0043e0c0	0043e518	0044e2d4	bridge
+FUN_0043e0c0	0043e52c	0044c4f0	submit-url
+FUN_0043e0c0	0043e56c	0044dd58	/wizard.htm
+FUN_0043e0c0	0043e588	0044dd64	<html><body><blockquote><h4>Change setting successfully!</h4>Your changes have been saved. The router must be rebooted for the changes to take effect.<br> You can reboot now, or you can continue to make other changes and reboot later. 
+FUN_0043e0c0	0043e59c	0044de50	<form action=/boafrm/formRebootCheck method=POST name='rebootForm'>
+FUN_0043e0c0	0043e5c0	0044de94	<input type='hidden' value='%s' name='submit-url'>
+FUN_0043e0c0	0043e5d4	0044dec8	<input id='restartNow' type='submit' value='Reboot Now' onclick="return true" />&nbsp;&nbsp;
+FUN_0043e0c0	0043e5f8	0044df28	<input id='restartLater' type='button' value='Reboot Later' OnClick=window.location.replace("%s")>
+FUN_0043e0c0	0043e61c	0044df8c	</form></blockquote></body></html>
+FUN_0043e0c0	0043e634	0044c428	formRebootCheck
+FUN_0043e668	0043e6c4	0044e2d4	bridge
+FUN_0043e668	0043e6d8	0044c4f0	submit-url
+FUN_0043e668	0043e718	0044dd58	/wizard.htm
+FUN_0043e668	0043e73c	0044dd64	<html><body><blockquote><h4>Change setting successfully!</h4>Your changes have been saved. The router must be rebooted for the changes to take effect.<br> You can reboot now, or you can continue to make other changes and reboot later. 
+FUN_0043e668	0043e758	0044de50	<form action=/boafrm/formRebootCheck method=POST name='rebootForm'>
+FUN_0043e668	0043e774	0044de94	<input type='hidden' value='%s' name='submit-url'>
+FUN_0043e668	0043e790	0044dec8	<input id='restartNow' type='submit' value='Reboot Now' onclick="return true" />&nbsp;&nbsp;
+FUN_0043e668	0043e7ac	0044df28	<input id='restartLater' type='button' value='Reboot Later' OnClick=window.location.replace("%s")>
+FUN_0043e668	0043e7c8	0044df8c	</form></blockquote></body></html>
+FUN_0043e668	0043e7e0	0044c428	formRebootCheck
+FUN_0043e668	0043e7fc	0044d8e4	<html><body><blockquote><h4>%s</h4> 
+FUN_0043e668	0043e828	0044dfb0	<form><input type="button" onclick="history.go (-1)" value="&nbsp;&nbsp;OK&nbsp;&nbsp" name="OK"></form></blockquote></body></html>
+FUN_0043e840	0043e8d0	00455c3c	wl_disable%d
+FUN_0043e840	0043e95c	00455c4c	wl_band%d
+FUN_0043e840	0043eaac	00455c58	wl_ssid%d
+FUN_0043e840	0043eb0c	00455c64	TxRate%d
+FUN_0043e840	0043ebdc	00455c70	wl_hide_ssid%d
+FUN_0043e840	0043ec4c	00455c80	wl_wmm_capable%d
+FUN_0043e840	0043ecf4	00455c94	wl_access%d
+FUN_0043e840	0043ed64	00455470	tx_restrict%d
+FUN_0043e840	0043eddc	004554a0	rx_restrict%d
+FUN_0043e840	0043eea8	0044e2d4	bridge
+FUN_0043e840	0043eebc	0044c4f0	submit-url
+FUN_0043e840	0043eefc	00455ca0	/boafrm/formWlanRedirect?redirect-url=%s&wlan_id=%d
+FUN_0043e840	0043ef34	0044dd58	/wizard.htm
+FUN_0043e840	0043ef50	0044dd64	<html><body><blockquote><h4>Change setting successfully!</h4>Your changes have been saved. The router must be rebooted for the changes to take effect.<br> You can reboot now, or you can continue to make other changes and reboot later. 
+FUN_0043e840	0043ef64	0044de50	<form action=/boafrm/formRebootCheck method=POST name='rebootForm'>
+FUN_0043e840	0043ef88	0044de94	<input type='hidden' value='%s' name='submit-url'>
+FUN_0043e840	0043efa4	0044dec8	<input id='restartNow' type='submit' value='Reboot Now' onclick="return true" />&nbsp;&nbsp;
+FUN_0043e840	0043efc0	0044df28	<input id='restartLater' type='button' value='Reboot Later' OnClick=window.location.replace("%s")>
+FUN_0043e840	0043efdc	0044df8c	</form></blockquote></body></html>
+FUN_0043e840	0043eff4	0044c428	formRebootCheck
+FUN_0043f028	0043f088	00455cd4	addWdsMac
+FUN_0043f028	0043f0a0	00455ce0	deleteSelWdsMac
+FUN_0043f028	0043f0c0	00455cf0	deleteAllWdsMac
+FUN_0043f028	0043f0e0	004526b8	wlanWdsEnabled
+FUN_0043f028	0043f158	0044faa0	Set enabled flag error!
+FUN_0043f028	0043f1cc	0044cac4	Error! Invalid MAC address.
+FUN_0043f028	0043f1d8	0044facc	comment
+FUN_0043f028	0043f22c	0044fc14	Error! Comment length too long.
+FUN_0043f028	0043f254	00455d00	txRate
+FUN_0043f028	0043f2a8	00455d08	  wds txRate val=%d  
+FUN_0043f028	0043f324	0044e5ec	Cannot add new entry because table is full!
+FUN_0043f028	0043f36c	0044e6ac	Add table entry error!
+FUN_0043f028	0043f3a8	0044e5d4	Get entry number error!
+FUN_0043f028	0043f454	0044e6d0	Get table entry error!
+FUN_0043f028	0043f47c	0044e6e8	Delete table entry error!
+FUN_0043f028	0043f498	0044e6c4	select%d
+FUN_0043f028	0043f4d0	0044e704	Delete all table error!
+FUN_0043f028	0043f4f8	0044d8e4	<html><body><blockquote><h4>%s</h4> 
+FUN_0043f028	0043f51c	0044dfb0	<form><input type="button" onclick="history.go (-1)" value="&nbsp;&nbsp;OK&nbsp;&nbsp" name="OK"></form></blockquote></body></html>
+FUN_0043f028	0043f538	0044e2d4	bridge
+FUN_0043f028	0043f54c	0044c4f0	submit-url
+FUN_0043f028	0043f58c	0044dd58	/wizard.htm
+FUN_0043f028	0043f5a8	0044dd64	<html><body><blockquote><h4>Change setting successfully!</h4>Your changes have been saved. The router must be rebooted for the changes to take effect.<br> You can reboot now, or you can continue to make other changes and reboot later. 
+FUN_0043f028	0043f5bc	0044de50	<form action=/boafrm/formRebootCheck method=POST name='rebootForm'>
+FUN_0043f028	0043f5e0	0044de94	<input type='hidden' value='%s' name='submit-url'>
+FUN_0043f028	0043f5f4	0044dec8	<input id='restartNow' type='submit' value='Reboot Now' onclick="return true" />&nbsp;&nbsp;
+FUN_0043f028	0043f618	0044df28	<input id='restartLater' type='button' value='Reboot Later' OnClick=window.location.replace("%s")>
+FUN_0043f028	0043f63c	0044df8c	</form></blockquote></body></html>
+FUN_0043f028	0043f654	0044c428	formRebootCheck
+FUN_0043f688	0043f6cc	00456650	0123456789ABCDEFupdate_wps_configured
+FUN_0043f688	0043f6f4	00455d20	encrypt%d
+FUN_0043f688	0043f74c	00455d2c	encrypt value not validt!
+FUN_0043f688	0043f794	00453718	format%d
+FUN_0043f688	0043f834	00455d68	wepKey%d
+FUN_0043f688	0043f8ac	00455d74	Invalid wep key length!
+FUN_0043f688	0043f998	00454a50	pskFormat%d
+FUN_0043f688	0043f9e8	00455d48	Invalid wep key format value!
+FUN_0043f688	0043fa64	00454a90	pskValue%d
+FUN_0043f688	0043fb4c	00454a9c	Error! invalid psk value.
+FUN_0043f688	0043fb74	0044d8e4	<html><body><blockquote><h4>%s</h4> 
+FUN_0043f688	0043fb98	0044dfb0	<form><input type="button" onclick="history.go (-1)" value="&nbsp;&nbsp;OK&nbsp;&nbsp" name="OK"></form></blockquote></body></html>
+FUN_0043f688	0043fbfc	0044e2d4	bridge
+FUN_0043f688	0043fc10	0044c4f0	submit-url
+FUN_0043f688	0043fc4c	0044dd58	/wizard.htm
+FUN_0043f688	0043fc68	0044dd64	<html><body><blockquote><h4>Change setting successfully!</h4>Your changes have been saved. The router must be rebooted for the changes to take effect.<br> You can reboot now, or you can continue to make other changes and reboot later. 
+FUN_0043f688	0043fc7c	0044de50	<form action=/boafrm/formRebootCheck method=POST name='rebootForm'>
+FUN_0043f688	0043fca0	0044de94	<input type='hidden' value='%s' name='submit-url'>
+FUN_0043f688	0043fcb4	0044dec8	<input id='restartNow' type='submit' value='Reboot Now' onclick="return true" />&nbsp;&nbsp;
+FUN_0043f688	0043fcd8	0044df28	<input id='restartLater' type='button' value='Reboot Later' OnClick=window.location.replace("%s")>
+FUN_0043f688	0043fcfc	0044df8c	</form></blockquote></body></html>
+FUN_0043f688	0043fd14	0044c428	formRebootCheck
+FUN_0043fd30	0043fd88	00455d8c	targetAPMac
+FUN_0043fd30	0043fda0	00455d98	targetAPSsid
+FUN_0043fd30	0043fdc0	0044c4f0	submit-url
+FUN_0043fd30	0043fde0	00455da8	resetUnCfg
+FUN_0043fd30	0043fe10	0044c00c	wlan0
+FUN_0043fd30	0043fe1c	00455db4	disableWPS
+FUN_0043fd30	0043febc	00455dc0	<h4>Change setting successfully!<BR>
+FUN_0043fd30	0043fee0	004494f0	/countDownPage.htm
+FUN_0043fd30	0043ff00	0044e2d4	bridge
+FUN_0043fd30	0043ff14	00455de8	unlockautolockdown
+FUN_0043fd30	0043ff4c	00455dfc	%s -sig_unlock wlan%d
+FUN_0043fd30	0043ffc0	00455e24	Applied WPS unlock successfully!<br>
+FUN_0043fd30	0043ffdc	00455e4c	triggerPBC
+FUN_0043fd30	00440068	00455e58	echo 1 > /var/wps_start_pbc
+FUN_0043fd30	00440074	0044e2d4	bridge
+FUN_0043fd30	00440094	00455e74	%s -sig_pbc wlan%d
+FUN_0043fd30	004400ec	00455e88	Start PBC successfully!<br><br>You have to run Wi-Fi Protected Setup in %s within 2 minutes.
+FUN_0043fd30	004400f4	00455ee8	stopwsc
+FUN_0043fd30	00440120	00455ef0	echo 1 > /tmp/wscd_cancel
+FUN_0043fd30	00440158	00455f0c	Applied WPS STOP successfully!<br>
+FUN_0043fd30	00440160	00455f30	triggerPIN
+FUN_0043fd30	0044018c	00455f3c	localPin
+FUN_0043fd30	00440270	00455f48	echo 1 > /var/wps_start_pin
+FUN_0043fd30	004402b0	00455f64	echo %s > /var/wps_local_pin
+FUN_0043fd30	004402e8	00455f48	echo 1 > /var/wps_start_pin
+FUN_0043fd30	004402fc	0044e2d4	bridge
+FUN_0043fd30	004403c0	00455f84	invaild MAC Addr Len 
+FUN_0043fd30	004403e0	00455f9c	iwpriv wlan%d set_mib wsc_specmac=%s 
+FUN_0043fd30	00440444	00455fc4	iwpriv wlan%d set_mib wsc_specssid="%s" 
+FUN_0043fd30	0044046c	00455ff0	invaild SSID Len
+FUN_0043fd30	0044049c	00456004	%s -sig_start wlan%d
+FUN_0043fd30	004404e0	00455e1c	client
+FUN_0043fd30	004404f0	0045601c	Start PIN successfully!<br><br>You have to run Wi-Fi Protected Setup in %s within 2 minutes.
+FUN_0043fd30	00440504	0044d8e4	<html><body><blockquote><h4>%s</h4> 
+FUN_0043fd30	00440514	0045607c	setPIN
+FUN_0043fd30	0044053c	00456084	peerPin
+FUN_0043fd30	004405a4	0045608c	echo %s > /var/wps_peer_pin
+FUN_0043fd30	004405d4	0044e2d4	bridge
+FUN_0043fd30	0044065c	004560a8	iwpriv %s set_mib pin=%s
+FUN_0043fd30	00440690	0044d8e4	<html><body><blockquote><h4>%s</h4> 
+FUN_0043fd30	00440694	004560c4	Applied WPS PIN successfully!<br><br>You have to run Wi-Fi Protected Setup within 2 minutes.
+FUN_0043fd30	004406bc	0044d90c	<form><input type=button value="  OK  " OnClick=window.location.replace("%s")></form></blockquote></body></html>
+FUN_0043fd30	004406d8	0044d980	<form><input type=button value="  OK  " OnClick=window.close()></form></blockquote></body></html>
+FUN_0043fd30	004406f0	00455db4	disableWPS
+FUN_0043fd30	004407a4	00455f3c	localPin
+FUN_0043fd30	004407e4	0044e2d4	bridge
+FUN_0043fd30	00440814	0044dd58	/wizard.htm
+FUN_0043fd30	00440830	0044dd64	<html><body><blockquote><h4>Change setting successfully!</h4>Your changes have been saved. The router must be rebooted for the changes to take effect.<br> You can reboot now, or you can continue to make other changes and reboot later. 
+FUN_0043fd30	00440844	0044de50	<form action=/boafrm/formRebootCheck method=POST name='rebootForm'>
+FUN_0043fd30	00440868	0044de94	<input type='hidden' value='%s' name='submit-url'>
+FUN_0043fd30	0044087c	0044dec8	<input id='restartNow' type='submit' value='Reboot Now' onclick="return true" />&nbsp;&nbsp;
+FUN_0043fd30	004408a0	0044df28	<input id='restartLater' type='button' value='Reboot Later' OnClick=window.location.replace("%s")>
+FUN_0043fd30	004408c4	0044df8c	</form></blockquote></body></html>
+FUN_0043fd30	004408dc	0044c428	formRebootCheck
+FUN_00440908	00440968	0044c4f0	submit-url
+FUN_00440908	00440980	00456124	refresh
+FUN_00440908	004409d4	0045612c	ifname
+FUN_00440908	00440a54	00456138	Auto scan running!!please wait...
+FUN_00440908	00440a70	0045615c	Site-survey request failed!
+FUN_00440908	00440ab0	00456178	scan request timeout!
+FUN_00440908	00440b10	004537e8	Read site-survey status failed!
+FUN_00440908	00440b30	00456190	scan timeout!
+FUN_00440908	00440cb0	004561a0	wlanif
+FUN_00440908	00440cf4	004561a8	%s-vxd
+FUN_00440908	00440d28	004561b0	pocketAP_ssid
+FUN_00440908	00440dcc	0044c91c	%02x:%02x:%02x:%02x:%02x:%02x
+FUN_00440908	00440e5c	0044c91c	%02x:%02x:%02x:%02x:%02x:%02x
+FUN_00440908	00440ed4	004561c0	select
+FUN_00440908	00440f10	004561c8	Please refresh again!
+FUN_00440908	00440f20	004561e0	sel%d
+FUN_00440908	00440f54	004561e8	Connect failed 1!
+FUN_00440908	00440f60	004561a0	wlanif
+FUN_00440908	00440f78	004527d8	wlan_idx
+FUN_00440908	00440fc4	004549b8	method%d
+FUN_00440908	004410dc	00455694	Set MIB_WLAN_NETWORK_TYPE failed!
+FUN_00440908	00441134	00455654	Set channel number error!
+FUN_00440908	004411ec	00455654	Set channel number error!
+FUN_00440908	004412cc	004561fc	ifconfig %s-vxd down
+FUN_00440908	00441308	00456214	ifconfig %s down
+FUN_00440908	00441338	00456228	flash set_mib %s
+FUN_00440908	0044136c	0045623c	ifconfig %s up
+FUN_00440908	004413a8	0045624c	flash set_mib %s-vxd
+FUN_00440908	004413d8	00456264	ifconfig %s-vxd up
+FUN_00440908	00441424	00456278	sysconf wlanapp start wlan0 br0
+FUN_00440908	0044145c	00456298	sysconf upnpd 1 1
+FUN_00440908	00441504	004562ac	Get Join result failed!
+FUN_00440908	00441534	004562c4	connect timeout!
+FUN_00440908	00441684	0044dd58	/wizard.htm
+FUN_00440908	004416a0	004562c4	connect timeout!
+FUN_00440908	004416a4	004562f0	<html><body><blockquote><h4>%s</h4>
+FUN_00440908	004416b8	00456314	<form action=/boafrm/formSiteSurveyProfile method=POST name='rebootSiteSurveyProfileForm'>
+FUN_00440908	004416d4	0044de94	<input type='hidden' value='%s' name='submit-url'>
+FUN_00440908	00441704	00456370	<td><font size=2><b><input type="checkbox" name=wizardAddProfile%d value="ON">&nbsp;&nbsp;Add to Wireless Profile</b></td><br><br>
+FUN_00440908	00441728	004563f4	<input id='restartLater' name='restartLater' type='submit' value='  OK  ' onclick="return true" />&nbsp;&nbsp;
+FUN_00440908	0044174c	00456464	<input id='restartNow' name='restartNow' type='submit' value='Reboot Now' onclick="return true" />&nbsp;&nbsp;
+FUN_00440908	00441774	004564d4	<input id='restartLater' name='restartLater' type='submit' value='Reboot Later' OnClick=window.location.replace("%s");return true>
+FUN_00440908	00441798	0044df8c	</form></blockquote></body></html>
+FUN_00440908	004417b0	0044c438	formSiteSurveyProfile
+FUN_00440908	0044188c	0044d8e4	<html><body><blockquote><h4>%s</h4> 
+FUN_00440908	004418b8	0044dfb0	<form><input type="button" onclick="history.go (-1)" value="&nbsp;&nbsp;OK&nbsp;&nbsp" name="OK"></form></blockquote></body></html>
+FUN_00441988	004419ac	0044bfa0	/boafrm/
+FUN_00441a1c	00441a48	00456680	rlx-linux
+FUN_00441a1c	00441b80	00456698	kernel: 
+FUN_00441be4	00441c54	004566a4	/var/log/log_split
+FUN_00441be4	00441ce4	004566b8	/var/log/messages.%d
+FUN_00441be4	00441d00	004566d0	/var/log/messages
+FUN_00441e2c	00441e58	0044c4f0	submit-url
+FUN_00441e2c	00441e70	004566e4	sysCmd
+FUN_00441e2c	00441ea8	004566fc	/tmp/syscmd.log
+FUN_00441e2c	00441eac	004566ec	%s 2>&1 > %s
+FUN_00441f08	00441f2c	0045670c	logout
+FUN_00441f08	00441f64	00456714	return-url
+FUN_00441f90	00441fb4	0044c4f0	submit-url
+FUN_00441ffc	004420a0	00456720	dlenabled
+FUN_00441ffc	00442110	0044faa0	Set enabled flag error!
+FUN_00441ffc	00442138	00452280	ntpServerId
+FUN_00441ffc	00442184	00456744	timeZone
+FUN_00441ffc	004421cc	0045672c	Set Time Zone error!
+FUN_00441ffc	004421dc	0045106c	ntpServerIp1
+FUN_00441ffc	0044223c	00456750	Set NTP server error!
+FUN_00441ffc	00442250	0045107c	ntpServerIp2
+FUN_00441ffc	004422a8	00456768	Set NTP server IP error!
+FUN_004422d8	00442358	00456784	Set Opmode error!
+FUN_004422d8	0044237c	004527a4	wispWanId
+FUN_004422d8	004423c4	00456798	Set WISP WAN Id error!
+FUN_004422d8	004424a8	0044d758	wlan%d-vxd
+FUN_004422d8	004425c4	0044d758	wlan%d-vxd
+FUN_00442668	004426a8	004566fc	/tmp/syscmd.log
+FUN_00442668	00442734	004566fc	/tmp/syscmd.log
+FUN_0044275c	004427a4	004567b8	memcmp SIGN_HEADER(%s) fail! 
+FUN_0044275c	004427c4	004567d8	can't get SIGN_HEADER!
+get_bank_info	00442818	004567f0	/proc/bootbank
+get_bank_info	00442850	00456800	Read /proc/bootbank failed! 
+FUN_004428e4	0044296c	00456820	COMPHS
+FUN_004428e4	0044298c	00456828	COMPDS
+FUN_004428e4	004429a0	00456830	COMPCS
+FUN_004428e4	00442a1c	00456838	malloc for expFile error!!
+FUN_00442e04	00442e30	00457890	/octet-stream 
+FUN_00442e04	00442e48	004578a8	/x-ns-proxy-autoconfig 
+FUN_00442e04	00442e68	004578cc	/macbinary 
+FUN_00442e04	00442e88	004578e4	/x-macbinary 
+FUN_00442e04	00442ea8	00456880	filename=
+FUN_00442f14	00442f6c	0044c4f0	submit-url
+FUN_00442f14	00443058	00456820	COMPHS
+FUN_00442f14	00443078	00456828	COMPDS
+FUN_00442f14	00443098	00456830	COMPCS
+FUN_00442f14	004430bc	00456830	COMPCS
+FUN_00442f14	00443130	0045688c	<b>Invalid file format!
+FUN_00442f14	00443154	004568c4	<b>Image len exceed max size 0x%x ! len=0x%x</b><br>
+FUN_00442f14	004431a8	004568fc	<b>Image checksum mismatched! len=0x%x, checksum=0x%x</b><br>
+FUN_00442f14	004431f8	0045693c	<b>Image checksum mismatched! len=0x%x</b><br>
+FUN_00442f14	00443220	0045696c	Upload successfully (size = %d bytes)!<br><br>Firmware update in progress.
+FUN_00442f14	00443274	004569b8	Signature verify fail!<br>Your firmware is not a dual image version!<br>
+FUN_00442f14	004432b8	0044d8e4	<html><body><blockquote><h4>%s</h4> 
+FUN_00442f14	004432dc	0044dfb0	<form><input type="button" onclick="history.go (-1)" value="&nbsp;&nbsp;OK&nbsp;&nbsp" name="OK"></form></blockquote></body></html>
+FUN_00442f14	00443330	00456a04	<b>Update successfully!
+FUN_00442f14	00443378	00456a1c	/status.htm
+FUN_00442f14	004433b8	004494f0	/countDownPage.htm
+FUN_004433ec	004434b8	00456a28	no sys signature at !
+FUN_004434f4	004435b8	00456a40	Open file failed!
+FUN_004434f4	0044363c	00456a64	no rootfs signature at !
+FUN_00443680	004436e4	00456a80	Open file %s failed! 
+FUN_00443680	0044375c	00456a98	lseek %s to 0x%x failed! 
+FUN_00443680	004437bc	00456ab4	write %s offset 0x%x failed! 
+FUN_004437ec	00443850	00456ad4	Open file failed! 
+FirmwareUpgrade	00443968	00456ae8	ifconfig br0 down 2> /dev/null
+FirmwareUpgrade	00443a78	00456820	COMPHS
+FirmwareUpgrade	00443a98	00456828	COMPDS
+FirmwareUpgrade	00443ac0	00456830	COMPCS
+FirmwareUpgrade	00443b24	00456b20	Invalid configuration file!
+FirmwareUpgrade	00443b30	00456b3c	Update successfully!
+FirmwareUpgrade	00443b60	00456b08	Invalid file format!
+FirmwareUpgrade	00443b94	00456b54	Image len exceed max size 0x%x ! len=0x%x</b><br>
+FirmwareUpgrade	00443bf0	00456b88	Image checksum mismatched! len=0x%x, checksum=0x%x</b><br>
+FirmwareUpgrade	00443c48	00456bc4	Image checksum mismatched! len=0x%x</b><br>
+FirmwareUpgrade	00443d94	00456c00	/dev/mtdblock0
+FirmwareUpgrade	00443dc4	00456c00	/dev/mtdblock0
+FirmwareUpgrade	00443dc8	00456bf0	/var/fwd.conf
+FirmwareUpgrade	00443df4	00456c10	File open failed!
+FirmwareUpgrade	00443e7c	00456bf0	/var/fwd.conf
+FirmwareUpgrade	00443eac	00456ae8	ifconfig br0 down 2> /dev/null
+FirmwareUpgrade	00443ec0	00456c28	ifconfig eth0 down 2> /dev/null
+FirmwareUpgrade	00443ee8	00456c48	ifconfig eth1 down 2> /dev/null
+FirmwareUpgrade	00443f00	00456c68	ifconfig ppp0 down 2> /dev/null
+FirmwareUpgrade	00443f18	00456c88	ifconfig wlan0 down 2> /dev/null
+FirmwareUpgrade	00443f30	00456cac	ifconfig wlan0-vxd down 2> /dev/null
+FirmwareUpgrade	00443f48	00456cd4	ifconfig wlan0-va0 down 2> /dev/null
+FirmwareUpgrade	00443f60	00456cfc	ifconfig wlan0-va1 down 2> /dev/null
+FirmwareUpgrade	00443f78	00456d24	ifconfig wlan0-va2 down 2> /dev/null
+FirmwareUpgrade	00443f90	00456d4c	ifconfig wlan0-va3 down 2> /dev/null
+FirmwareUpgrade	00443fa8	00456d74	ifconfig wlan0-wds0 down 2> /dev/null
+FirmwareUpgrade	00443fc0	00456d9c	ifconfig wlan0-wds1 down 2> /dev/null
+FirmwareUpgrade	00443fd8	00456dc4	ifconfig wlan0-wds2 down 2> /dev/null
+FirmwareUpgrade	00443ff0	00456dec	ifconfig wlan0-wds3 down 2> /dev/null
+FirmwareUpgrade	00444008	00456e14	ifconfig wlan0-wds4 down 2> /dev/null
+FirmwareUpgrade	00444020	00456e3c	ifconfig wlan0-wds5 down 2> /dev/null
+FirmwareUpgrade	00444038	00456e64	ifconfig wlan0-wds6 down 2> /dev/null
+FirmwareUpgrade	00444050	00456e8c	ifconfig wlan0-wds7 down 2> /dev/null
+FirmwareUpgrade	004440f8	00456bf0	/var/fwd.conf
+FirmwareUpgrade	00444130	00456bf0	/var/fwd.conf
+FirmwareUpgrade	004441d8	00456ebc	/var/fwd.ready
+FUN_0044421c	0044426c	00456a40	Open file failed!
+FUN_0044448c	004444f4	00452e78	Allocate buffer failed!
+FUN_0044448c	00444514	00456ecc	save-cs
+FUN_0044448c	0044455c	00456ed4	save-hs
+FUN_0044448c	00444584	00456edc	save-ds
+FUN_0044448c	004445b0	00456ee4	save-all
+FUN_0044448c	004445e8	00456ef0	%s:%d 
+FUN_0044448c	004445ec	00457908	formSaveConfig
+FUN_0044448c	00444610	0044b93c	/config.dat
+FUN_0044448c	00444624	00456ef8	reset
+FUN_0044448c	0044464c	00456f00	Reset
+FUN_0044448c	004446a0	00456f08	Write default to current setting failed! 
+FUN_0044448c	004446d4	00456f34	Reload setting successfully!<br><br>The Router is booting.<br>Do not turn off or reboot the Device during this time.<br>
+FUN_0044448c	00444760	0044e340	<html><head><script language=JavaScript><!-- 
+FUN_0044448c	0044477c	0044e370	var count = %d;function get_by_id(id){with(document){return getElementById(id);}} 
+FUN_0044448c	00444798	0044e3c4	function do_count_down(){get_by_id("show_sec").innerHTML = count 
+FUN_0044448c	004447b4	0044e408	if(count == 0) {parent.location.href='http://%s/home.htm?t='+new Date().getTime(); return false;} 
+FUN_0044448c	004447d0	0044e46c	if (count > 0) {count--;setTimeout('do_count_down()',1000);}}
+FUN_0044448c	004447ec	0044e4ac	//--> 
+FUN_0044448c	00444808	0044e4b4	</script></head>
+FUN_0044448c	00444824	0044e4c8	<body onload="do_count_down();"><blockquote><h4>%s</h4> 
+FUN_0044448c	00444840	0044e504	<P align=left><h4>Please wait <B><SPAN id=show_sec></SPAN></B>&nbsp;seconds ...</h4></P>
+FUN_0044448c	0044487c	0044bf74	reboot
+FUN_0044448c	00444898	0044d8e4	<html><body><blockquote><h4>%s</h4> 
+FUN_0044448c	004448c4	0044dfb0	<form><input type="button" onclick="history.go (-1)" value="&nbsp;&nbsp;OK&nbsp;&nbsp" name="OK"></form></blockquote></body></html>
+FUN_004448e4	0044494c	00456b08	Invalid file format!
+FUN_004448e4	00444958	00456820	COMPHS
+FUN_004448e4	00444978	00456828	COMPDS
+FUN_004448e4	00444998	00456830	COMPCS
+FUN_004448e4	004449f8	00456b20	Invalid configuration file!
+FUN_004448e4	00444a2c	0044d8e4	<html><body><blockquote><h4>%s</h4> 
+FUN_004448e4	00444a58	0044dfb0	<form><input type="button" onclick="history.go (-1)" value="&nbsp;&nbsp;OK&nbsp;&nbsp" name="OK"></form></blockquote></body></html>
+FUN_004448e4	00444a6c	00456fb0	Update successfully!<br><br>Update in progressing.<br>Do not turn off or reboot the Device during this time.<br>
+FUN_004448e4	00444a94	0044c4f0	submit-url
+FUN_004448e4	00444b5c	004494f0	/countDownPage.htm
+FUN_00444b88	00444bbc	0044c4f0	submit-url
+FUN_00444b88	00444bd4	00457024	active
+FUN_00444b88	00444c24	0045702c	dualFw
+FUN_00444b88	00444c54	0044bf74	reboot
+FUN_00444b88	00444c8c	00457034	Rebooting !!~~~~Please wait for 40~50secs! 
+FUN_00444b88	00444ca0	0044d8e4	<html><body><blockquote><h4>%s</h4> 
+FUN_00444b88	00444cc8	0044dfb0	<form><input type="button" onclick="history.go (-1)" value="&nbsp;&nbsp;OK&nbsp;&nbsp" name="OK"></form></blockquote></body></html>
+FUN_00444b88	00444ce0	0044bf74	reboot
+FUN_00444b88	00444cfc	00457060	Reboot Fail!!The image in Backup Bank maybe corrupted!! 
+FUN_00444b88	00444d10	0044d8e4	<html><body><blockquote><h4>%s</h4> 
+FUN_00444b88	00444d38	0044dfb0	<form><input type="button" onclick="history.go (-1)" value="&nbsp;&nbsp;OK&nbsp;&nbsp" name="OK"></form></blockquote></body></html>
+FUN_00444b88	00444d90	0044dd58	/wizard.htm
+FUN_00444b88	00444dac	0044dd64	<html><body><blockquote><h4>Change setting successfully!</h4>Your changes have been saved. The router must be rebooted for the changes to take effect.<br> You can reboot now, or you can continue to make other changes and reboot later. 
+FUN_00444b88	00444dc0	0044de50	<form action=/boafrm/formRebootCheck method=POST name='rebootForm'>
+FUN_00444b88	00444de4	0044de94	<input type='hidden' value='%s' name='submit-url'>
+FUN_00444b88	00444df8	0044dec8	<input id='restartNow' type='submit' value='Reboot Now' onclick="return true" />&nbsp;&nbsp;
+FUN_00444b88	00444e1c	0044df28	<input id='restartLater' type='button' value='Reboot Later' OnClick=window.location.replace("%s")>
+FUN_00444b88	00444e40	0044df8c	</form></blockquote></body></html>
+FUN_00444b88	00444e58	0044c428	formRebootCheck
+FUN_00444e7c	00444eac	0045709c	username
+FUN_00444e7c	00444ecc	004570a8	newpass
+FUN_00444e7c	00444f00	004570b0	ERROR: Password cannot be empty.
+FUN_00444e7c	00444f28	004570d4	ERROR: Set user name to MIB database failed.
+FUN_00444e7c	00444f50	00457104	ERROR: Set user password to MIB database failed.
+FUN_00444e7c	00444f74	0044d8e4	<html><body><blockquote><h4>%s</h4> 
+FUN_00444e7c	00444f98	0044dfb0	<form><input type="button" onclick="history.go (-1)" value="&nbsp;&nbsp;OK&nbsp;&nbsp" name="OK"></form></blockquote></body></html>
+FUN_00444e7c	00444fc0	0044c4f0	submit-url
+FUN_00444e7c	00444fd8	00457138	Change setting successfully!<br><br>Do not turn off or reboot the Router during this time.
+FUN_00444e7c	00445038	0044e340	<html><head><script language=JavaScript><!-- 
+FUN_00444e7c	0044505c	0044e370	var count = %d;function get_by_id(id){with(document){return getElementById(id);}} 
+FUN_00444e7c	00445070	0044e3c4	function do_count_down(){get_by_id("show_sec").innerHTML = count 
+FUN_00444e7c	00445094	0044e408	if(count == 0) {parent.location.href='http://%s/home.htm?t='+new Date().getTime(); return false;} 
+FUN_00444e7c	004450a8	0044e46c	if (count > 0) {count--;setTimeout('do_count_down()',1000);}}
+FUN_00444e7c	004450c4	0044e4ac	//--> 
+FUN_00444e7c	004450e0	0044e4b4	</script></head>
+FUN_00444e7c	00445104	0044e4c8	<body onload="do_count_down();"><blockquote><h4>%s</h4> 
+FUN_00444e7c	00445118	0044e504	<P align=left><h4>Please wait <B><SPAN id=show_sec></SPAN></B>&nbsp;seconds ...</h4></P>
+FUN_00445180	004451bc	0044c4f0	submit-url
+FUN_00445180	00445208	00456744	timeZone
+FUN_00445180	00445250	0045672c	Set Time Zone error!
+FUN_00445180	00445260	00456720	dlenabled
+FUN_00445180	004452c4	00457194	Set dl enabled flag error!
+FUN_00445180	00445398	00450e74	month
+FUN_00445180	00445440	00450e84	minute
+FUN_00445180	00445478	00450e8c	second
+FUN_00445180	004454f4	004571b0	set Time Error 
+FUN_00445180	0044560c	0044faa0	Set enabled flag error!
+FUN_00445180	00445680	0044dd58	/wizard.htm
+FUN_00445180	004456a4	0044dd64	<html><body><blockquote><h4>Change setting successfully!</h4>Your changes have been saved. The router must be rebooted for the changes to take effect.<br> You can reboot now, or you can continue to make other changes and reboot later. 
+FUN_00445180	004456c0	0044de50	<form action=/boafrm/formRebootCheck method=POST name='rebootForm'>
+FUN_00445180	004456dc	0044de94	<input type='hidden' value='%s' name='submit-url'>
+FUN_00445180	004456f8	0044dec8	<input id='restartNow' type='submit' value='Reboot Now' onclick="return true" />&nbsp;&nbsp;
+FUN_00445180	00445714	0044df28	<input id='restartLater' type='button' value='Reboot Later' OnClick=window.location.replace("%s")>
+FUN_00445180	00445730	0044df8c	</form></blockquote></body></html>
+FUN_00445180	00445748	0044c428	formRebootCheck
+FUN_00445180	00445764	0044d8e4	<html><body><blockquote><h4>%s</h4> 
+FUN_00445180	00445790	0044dfb0	<form><input type="button" onclick="history.go (-1)" value="&nbsp;&nbsp;OK&nbsp;&nbsp" name="OK"></form></blockquote></body></html>
+FUN_004457b8	004458a4	004571c0	submit-url-lan
+FUN_004457b8	004458f0	004571d0	submit-url-wan
+FUN_004457b8	00445930	004549b8	method%d
+FUN_004457b8	00445940	004571e0	submit-url-wlan1
+FUN_004457b8	00445998	004571f4	submit-url-wlan2
+FUN_004457b8	004459d4	004571f4	submit-url-wlan2
+FUN_004457b8	00445c98	00457208	next_url
+FUN_004457b8	00445cb0	0044dd58	/wizard.htm
+FUN_004457b8	00445cc8	00455dc0	<h4>Change setting successfully!<BR>
+FUN_004457b8	00445cec	004494f0	/countDownPage.htm
+FUN_004457b8	00445d00	0044d8e4	<html><body><blockquote><h4>%s</h4> 
+FUN_004457b8	00445d24	0044d90c	<form><input type=button value="  OK  " OnClick=window.location.replace("%s")></form></blockquote></body></html>
+FUN_004457b8	00445d2c	0044dd58	/wizard.htm
+FUN_00445d60	00445db0	00457214	pocket_ssid
+FUN_00445d60	00445e00	004554d0	mode%d
+FUN_00445d60	00445e80	004549b8	method%d
+FUN_00445d60	00445f90	00457220	method0
+FUN_00445d60	00445fa8	0044dd58	/wizard.htm
+FUN_00445d60	00445fc0	00455dc0	<h4>Change setting successfully!<BR>
+FUN_00445d60	00445fe4	004494f0	/countDownPage.htm
+FUN_00445d60	00445ff8	0044d8e4	<html><body><blockquote><h4>%s</h4> 
+FUN_00445d60	0044601c	0044d90c	<form><input type=button value="  OK  " OnClick=window.location.replace("%s")></form></blockquote></body></html>
+FUN_00445d60	00446024	0044dd58	/wizard.htm
+FUN_0044603c	00446068	0044c4f0	submit-url
+FUN_0044603c	004460d0	00455dc0	<h4>Change setting successfully!<BR>
+FUN_0044603c	004460f4	004494f0	/countDownPage.htm
+FUN_0044603c	00446128	0044d8e4	<html><body><blockquote><h4>%s</h4> 
+FUN_0044603c	00446154	0044dfb0	<form><input type="button" onclick="history.go (-1)" value="&nbsp;&nbsp;OK&nbsp;&nbsp" name="OK"></form></blockquote></body></html>
+FUN_00446170	00446198	0044c4f0	submit-url
+FUN_00446170	004461f8	00455dc0	<h4>Change setting successfully!<BR>
+FUN_00446170	0044621c	004494f0	/countDownPage.htm
+FUN_00446244	00446294	004553a0	wizardAddProfile%d
+FUN_00446244	0044638c	0044d758	wlan%d-vxd
+FUN_00446244	00446444	00457228	  Add wireless profile fail__[%s-%u] 
+FUN_00446244	00446448	00457250	fmmgmt.c
+FUN_00446244	0044646c	0045725c	iwpriv %s set_mib ap_profile_enable=%d
+FUN_00446244	004464a0	00457284	iwpriv %s set_mib ap_profile_num=0
+FUN_00446244	0044656c	004572a8	iwpriv %s set_mib ap_profile_add="%s",%d,%d
+FUN_00446244	0044666c	004572d4	%d,%d,%02x%02x%02x%02x%02x,%02x%02x%02x%02x%02x,%02x%02x%02x%02x%02x,%02x%02x%02x%02x%02x
+FUN_00446244	004467ec	00457330	%d,%d,%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x,%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x,%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x,%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x
+FUN_00446244	00446810	0045740c	iwpriv %s set_mib ap_profile_add="%s",%d,%s,
+FUN_00446244	0044683c	0045743c	%d,%s
+FUN_00446244	0044685c	00457444	iwpriv %s set_mib ap_profile_add="%s",%d,0,%s
+FUN_00446244	004468cc	0044c4f0	submit-url
+FUN_00446244	004468e8	00457474	restartNow
+FUN_00446244	0044694c	00455dc0	<h4>Change setting successfully!<BR>
+FUN_00446244	00446970	004494f0	/countDownPage.htm
+FUN_004469c8	004469f8	0044c4f0	submit-url
+FUN_004469c8	00446a10	00457480	clear
+FUN_004469c8	00446a44	00457488	echo " " > %s
+FUN_004469c8	00446a48	004566d0	/var/log/messages
+FUN_004469c8	00446a84	00457498	rm /var/log/messages.* >/dev/null 2>&1
+FUN_004469c8	00446b10	004574c0	syslogEnabled
+FUN_004469c8	00446b64	004574d0	wlanlogEnabled
+FUN_004469c8	00446bbc	004574e0	doslogEnabled
+FUN_004469c8	00446c2c	004574f0	Set log enable error!
+FUN_004469c8	00446c4c	00452880	rtLogEnabled
+FUN_004469c8	00446cb8	00457508	Set remote log enable error!
+FUN_004469c8	00446cc4	00457528	logServer
+FUN_004469c8	00446d1c	00457534	Set remote log server error!
+FUN_004469c8	00446d40	0044d8e4	<html><body><blockquote><h4>%s</h4> 
+FUN_004469c8	00446d64	0044dfb0	<form><input type="button" onclick="history.go (-1)" value="&nbsp;&nbsp;OK&nbsp;&nbsp" name="OK"></form></blockquote></body></html>
+FUN_004469c8	00446dbc	0044dd58	/wizard.htm
+FUN_004469c8	00446dd8	0044dd64	<html><body><blockquote><h4>Change setting successfully!</h4>Your changes have been saved. The router must be rebooted for the changes to take effect.<br> You can reboot now, or you can continue to make other changes and reboot later. 
+FUN_004469c8	00446dec	0044de50	<form action=/boafrm/formRebootCheck method=POST name='rebootForm'>
+FUN_004469c8	00446e10	0044de94	<input type='hidden' value='%s' name='submit-url'>
+FUN_004469c8	00446e24	0044dec8	<input id='restartNow' type='submit' value='Reboot Now' onclick="return true" />&nbsp;&nbsp;
+FUN_004469c8	00446e48	0044df28	<input id='restartLater' type='button' value='Reboot Later' OnClick=window.location.replace("%s")>
+FUN_004469c8	00446e6c	0044df8c	</form></blockquote></body></html>
+FUN_004469c8	00446e84	0044c428	formRebootCheck
+FUN_00446ea4	00446ed8	0044c4f0	submit-url
+FUN_00446ea4	00446f14	004528fc	dosEnabled
+FUN_00446ea4	00446f58	00457554	sysfloodSYN
+FUN_00446ea4	00446fa8	00457560	sysfloodSYNcount
+FUN_00446ea4	00446ff4	00457574	Set DoS SYSSYN_FLOOD error!
+FUN_00446ea4	0044700c	00457590	sysfloodFIN
+FUN_00446ea4	0044705c	0045759c	sysfloodFINcount
+FUN_00446ea4	004470a8	004575b0	Set DoS SYSFIN_FLOOD error!
+FUN_00446ea4	004470c0	004575cc	sysfloodUDP
+FUN_00446ea4	00447110	004575d8	sysfloodUDPcount
+FUN_00446ea4	0044715c	004575ec	Set DoS SYSUDP_FLOOD error!
+FUN_00446ea4	00447174	00457608	sysfloodICMP
+FUN_00446ea4	004471c4	00457618	sysfloodICMPcount
+FUN_00446ea4	00447210	0045762c	Set DoS SYSICMP_FLOOD error!
+FUN_00446ea4	00447228	0045764c	ipfloodSYN
+FUN_00446ea4	00447278	00457658	ipfloodSYNcount
+FUN_00446ea4	004472c4	00457668	Set DoS PIPSYN_FLOOD error!
+FUN_00446ea4	004472dc	00457684	ipfloodFIN
+FUN_00446ea4	0044732c	00457690	ipfloodFINcount
+FUN_00446ea4	00447378	004576a0	Set DoS PIPFIN_FLOOD error!
+FUN_00446ea4	00447390	004576bc	ipfloodUDP
+FUN_00446ea4	004473e0	004576c8	ipfloodUDPcount
+FUN_00446ea4	0044742c	004576d8	Set DoS PIPUDP_FLOOD error!
+FUN_00446ea4	00447444	004576f4	ipfloodICMP
+FUN_00446ea4	00447494	00457700	ipfloodICMPcount
+FUN_00446ea4	004474e0	00457714	Set DoS PIPICMP_FLOOD error!
+FUN_00446ea4	004474f8	00457734	TCPUDPPortScan
+FUN_00446ea4	00447548	00457744	portscanSensi
+FUN_00446ea4	00447590	00457754	ICMPSmurfEnabled
+FUN_00446ea4	004475e8	00457768	IPLandEnabled
+FUN_00446ea4	00447640	00457778	IPSpoofEnabled
+FUN_00446ea4	00447698	00457788	IPTearDropEnabled
+FUN_00446ea4	004476f0	0045779c	PingOfDeathEnabled
+FUN_00446ea4	00447748	004577b0	TCPScanEnabled
+FUN_00446ea4	004477a4	004577c0	TCPSynWithDataEnabled
+FUN_00446ea4	00447804	004577d8	UDPBombEnabled
+FUN_00446ea4	00447864	004577e8	UDPEchoChargenEnabled
+FUN_00446ea4	004478c4	00457800	sourceIPblock
+FUN_00446ea4	00447918	00457810	IPblockTime
+FUN_00446ea4	00447960	0045781c	Set DoS IP Block Timer error!
+FUN_00446ea4	00447998	0045783c	Set DoS enable error!
+FUN_00446ea4	004479bc	0044d8e4	<html><body><blockquote><h4>%s</h4> 
+FUN_00446ea4	004479e0	0044dfb0	<form><input type="button" onclick="history.go (-1)" value="&nbsp;&nbsp;OK&nbsp;&nbsp" name="OK"></form></blockquote></body></html>
+FUN_00446ea4	00447a38	0044dd58	/wizard.htm
+FUN_00446ea4	00447a54	0044dd64	<html><body><blockquote><h4>Change setting successfully!</h4>Your changes have been saved. The router must be rebooted for the changes to take effect.<br> You can reboot now, or you can continue to make other changes and reboot later. 
+FUN_00446ea4	00447a68	0044de50	<form action=/boafrm/formRebootCheck method=POST name='rebootForm'>
+FUN_00446ea4	00447a8c	0044de94	<input type='hidden' value='%s' name='submit-url'>
+FUN_00446ea4	00447aa0	0044dec8	<input id='restartNow' type='submit' value='Reboot Now' onclick="return true" />&nbsp;&nbsp;
+FUN_00446ea4	00447ac4	0044df28	<input id='restartLater' type='button' value='Reboot Later' OnClick=window.location.replace("%s")>
+FUN_00446ea4	00447ae8	0044df8c	</form></blockquote></body></html>
+FUN_00446ea4	00447b00	0044c428	formRebootCheck
+FUN_00447b20	00447b4c	0044c4f0	submit-url
+FUN_00447b20	00447b70	00452724	ddnsEnabled
+FUN_00447b20	00447bd8	0044faa0	Set enabled flag error!
+FUN_00447b20	00447bf4	00452730	ddnsType
+FUN_00447b20	00447c38	0045792c	Set DDNS Type error!
+FUN_00447b20	00447c4c	0044bfa0	/boafrm/
+FUN_00447b20	00447c80	004519ec	ddnsUser
+FUN_00447b20	00447cc4	00457944	Set DDNS User String error!
+FUN_00447b20	00447cd4	004519f8	ddnsPassword
+FUN_00447b20	00447d1c	004519dc	ddnsDomainName
+FUN_00447b20	00447d60	00457960	Set DDNS Password String error!
+FUN_00447b20	00447dd4	0044dd58	/wizard.htm
+FUN_00447b20	00447df8	0044dd64	<html><body><blockquote><h4>Change setting successfully!</h4>Your changes have been saved. The router must be rebooted for the changes to take effect.<br> You can reboot now, or you can continue to make other changes and reboot later. 
+FUN_00447b20	00447e14	0044de50	<form action=/boafrm/formRebootCheck method=POST name='rebootForm'>
+FUN_00447b20	00447e30	0044de94	<input type='hidden' value='%s' name='submit-url'>
+FUN_00447b20	00447e4c	0044dec8	<input id='restartNow' type='submit' value='Reboot Now' onclick="return true" />&nbsp;&nbsp;
+FUN_00447b20	00447e68	0044df28	<input id='restartLater' type='button' value='Reboot Later' OnClick=window.location.replace("%s")>
+FUN_00447b20	00447e84	0044df8c	</form></blockquote></body></html>
+FUN_00447b20	00447e9c	0044c428	formRebootCheck
+FUN_00447b20	00447f04	0044d8e4	<html><body><blockquote><h4>%s</h4> 
+FUN_00447b20	00447f2c	0044dfb0	<form><input type="button" onclick="history.go (-1)" value="&nbsp;&nbsp;OK&nbsp;&nbsp" name="OK"></form></blockquote></body></html>
+FUN_00447f50	00447f74	0044bfa0	/boafrm/
+FUN_00447fe4	00448018	0044c4f0	submit-url
+FUN_00447fe4	00448034	00457980	filename
+FUN_00447fe4	00448090	0045798c	ERROR, filename NULL
+FUN_00447fe4	004480d4	0044d8e4	<html><body><blockquote><h4>%s</h4> 
+FUN_00447fe4	004480dc	004579a4	Get seeds directory failed
+FUN_00447fe4	00448114	0044d8e4	<html><body><blockquote><h4>%s</h4> 
+FUN_00447fe4	00448118	004579c0	Seeds Directory Not Exists
+FUN_00447fe4	0044813c	0044dfb0	<form><input type="button" onclick="history.go (-1)" value="&nbsp;&nbsp;OK&nbsp;&nbsp" name="OK"></form></blockquote></body></html>
+FUN_00448238	0044826c	004579dc	nextwebpage
+FUN_00448238	00448284	004579e8	clientindex
+FUN_00448238	004482d0	004579f4	selectedfiles
+FUN_00448238	004482ec	00457a04	selectednum
+FUN_00448238	00448394	00457a10	?ctorrent=%d
+FUN_004483d0	00448408	004579dc	nextwebpage
+FUN_004483d0	00448424	00457a20	operation
+FUN_004483d0	00448444	00457a2c	clientsindex
+FUN_004483d0	00448464	00457a3c	torrentsindex
+FUN_004483d0	004484e8	00457a4c	pause
+FUN_004483d0	004485b0	00457a5c	update
+FUN_004483d0	00448614	00457a64	delete
+FUN_004483d0	00448684	00457a6c	deleteallfiles
+FUN_00448704	00448738	004579dc	nextwebpage
+FUN_00448704	00448750	00457a7c	btdownloaddir
+FUN_00448704	00448770	00457a8c	btuploaddir
+FUN_00448704	0044881c	0044d8e4	<html><body><blockquote><h4>%s</h4> 
+FUN_00448704	00448824	00457a98	Directory Not Exists!!!
+FUN_00448704	00448840	0044dfb0	<form><input type="button" onclick="history.go (-1)" value="&nbsp;&nbsp;OK&nbsp;&nbsp" name="OK"></form></blockquote></body></html>
+FUN_00448704	0044887c	00457ab0	totalulimit
+FUN_00448704	004488d4	00457abc	totaldlimit
+FUN_00448704	00448928	00457ac8	refreshtime
+FUN_00448704	0044897c	00451c84	bt_enabled
+FUN_00448704	00448a5c	0044d81c	%s/%s
+FUN_00448704	00448a7c	00457ad4	bt.sh
+timestamp	00448ab8	00457ad4	bt.sh
+timestamp	00448adc	00457af4	Boa/0.94.14rc21
+timestamp	00448ae4	00457adc	boa: server version %s 
+timestamp	00448b00	00457b04	boa: server built Sep 14 2016 at 16:21:28. 
+timestamp	00448b3c	00457b30	boa: starting server pid=%d, port %d 

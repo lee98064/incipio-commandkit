@@ -1,0 +1,10 @@
+#!/bin/sh
+umask 077
+sleep 30
+printf 'EXEC_SUITE_BEGIN test.tar; run_once_per_boot=1; results_volatile=1\n' > /var/log/exec-suite.txt
+for test in tiny_eb tiny_gcc16 cpp_lean; do
+    /bin/exec-test-runner "$test"
+    result=$?
+    printf 'test=%s runner_exit=%s\n' "$test" "$result" >> /var/log/exec-suite.txt
+done
+printf 'EXEC_SUITE_END\n' >> /var/log/exec-suite.txt

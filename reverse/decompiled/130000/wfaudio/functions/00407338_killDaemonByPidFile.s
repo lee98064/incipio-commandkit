@@ -1,0 +1,55 @@
+# killDaemonByPidFile @ 00407338
+00407338  addiu sp,sp,-0x40
+0040733c  sw ra,0x3c(sp)
+00407340  sw s0,0x38(sp)
+00407344  lui gp,0x43
+00407348  addiu gp,gp,-0x4f70
+0040734c  sw gp,0x18(sp)
+00407350  bne a0,zero,0x00407378
+00407354  _move s0,a0
+00407358  lw t9,-0x7dbc(gp)
+0040735c  lui a0,0x41
+00407360  lui a1,0x41
+00407364  addiu a0,a0,0xfc4
+00407368  jalr t9
+0040736c  _addiu a1,a1,0x1490
+00407370  b 0x004073fc
+00407374  _li v1,-0x1
+00407378  jal 0x00407300
+0040737c  _nop
+00407380  beq v0,zero,0x004073fc
+00407384  _li v1,-0x1
+00407388  jal 0x00406f20
+0040738c  _move a0,s0
+00407390  lw gp,0x18(sp)
+00407394  beq v0,zero,0x004073e8
+00407398  _addiu a3,sp,0x20
+0040739c  lw t9,-0x7f2c(gp)
+004073a0  lui a1,0x41
+004073a4  move a0,a3
+004073a8  addiu a1,a1,0x1514
+004073ac  move a2,v0
+004073b0  jalr t9
+004073b4  _sw a3,0x30(sp)
+004073b8  lw a3,0x30(sp)
+004073bc  lui a1,0x41
+004073c0  lui a2,0x41
+004073c4  lui v0,0x41
+004073c8  addiu v0,v0,0x9e4
+004073cc  addiu a1,a1,0xfe4
+004073d0  addiu a2,a2,0xfec
+004073d4  clear a0
+004073d8  jal 0x00407250
+004073dc  _sw v0,0x10(sp)
+004073e0  lw gp,0x18(sp)
+004073e4  nop
+004073e8  lw t9,-0x7ea0(gp)
+004073ec  nop
+004073f0  jalr t9
+004073f4  _move a0,s0
+004073f8  clear v1
+004073fc  lw ra,0x3c(sp)
+00407400  lw s0,0x38(sp)
+00407404  move v0,v1
+00407408  jr ra
+0040740c  _addiu sp,sp,0x40

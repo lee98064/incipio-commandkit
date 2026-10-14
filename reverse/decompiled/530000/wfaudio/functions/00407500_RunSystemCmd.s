@@ -1,0 +1,45 @@
+# RunSystemCmd @ 00407500
+00407500  addiu sp,sp,-0x90
+00407504  sw ra,0x8c(sp)
+00407508  sw s1,0x88(sp)
+0040750c  sw s0,0x84(sp)
+00407510  lui gp,0x43
+00407514  addiu gp,gp,-0x4c90
+00407518  sw gp,0x10(sp)
+0040751c  lw t9,-0x7ee0(gp)
+00407520  addiu s0,sp,0x1c
+00407524  sw a1,0x94(sp)
+00407528  sw a2,0x98(sp)
+0040752c  sw a3,0x9c(sp)
+00407530  move s1,a0
+00407534  clear a1
+00407538  move a0,s0
+0040753c  jalr t9
+00407540  _li a2,0x60
+00407544  addiu v0,sp,0x94
+00407548  sw v0,0x18(sp)
+0040754c  clear v1
+00407550  lw a0,0x18(sp)
+00407554  addiu v0,v1,0x1
+00407558  addiu a1,a0,0x4
+0040755c  sw a1,0x18(sp)
+00407560  lw a0,0x0(a0)
+00407564  nop
+00407568  lbu a1,0x0(a0)
+0040756c  nop
+00407570  beq a1,zero,0x00407584
+00407574  _move v1,v0
+00407578  sw a0,0x0(s0)
+0040757c  b 0x00407550
+00407580  _addiu s0,s0,0x4
+00407584  sll v0,v0,0x2
+00407588  addu v0,sp,v0
+0040758c  move a1,s1
+00407590  addiu a0,sp,0x1c
+00407594  jal 0x004072fc
+00407598  _sw zero,0x1c(v0)
+0040759c  lw ra,0x8c(sp)
+004075a0  lw s1,0x88(sp)
+004075a4  lw s0,0x84(sp)
+004075a8  jr ra
+004075ac  _addiu sp,sp,0x90

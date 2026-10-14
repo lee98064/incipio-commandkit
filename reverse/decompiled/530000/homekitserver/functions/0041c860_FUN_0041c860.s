@@ -1,0 +1,87 @@
+# FUN_0041c860 @ 0041c860
+0041c860  addiu sp,sp,-0x40
+0041c864  sw ra,0x3c(sp)
+0041c868  sw s4,0x38(sp)
+0041c86c  sw s3,0x34(sp)
+0041c870  sw s2,0x30(sp)
+0041c874  sw s1,0x2c(sp)
+0041c878  sw s0,0x28(sp)
+0041c87c  lui gp,0x62
+0041c880  addiu gp,gp,-0x5cf0
+0041c884  sw gp,0x18(sp)
+0041c888  move s2,a0
+0041c88c  sw zero,0x20(sp)
+0041c890  sw zero,0x24(sp)
+0041c894  lw s1,0x50(sp)
+0041c898  bne a1,zero,0x0041c974
+0041c89c  _move s3,a3
+0041c8a0  lw t9,-0x6788(gp)
+0041c8a4  addiu v0,sp,0x24
+0041c8a8  lui a1,0x5b
+0041c8ac  sw v0,0x10(sp)
+0041c8b0  addiu a1,a1,-0x3c28
+0041c8b4  li a0,0xc8
+0041c8b8  move a2,s1
+0041c8bc  jalr t9
+0041c8c0  _addiu a3,sp,0x20
+0041c8c4  lw gp,0x18(sp)
+0041c8c8  bne v0,zero,0x0041c974
+0041c8cc  _move s4,v0
+0041c8d0  lw v0,0x20(sp)
+0041c8d4  nop
+0041c8d8  beq v0,zero,0x0041c974
+0041c8dc  _li a1,0x1
+0041c8e0  lw a0,0x24(sp)
+0041c8e4  lw t9,-0x5a50(gp)
+0041c8e8  nop
+0041c8ec  jalr t9
+0041c8f0  _addu a0,s1,a0
+0041c8f4  lw gp,0x18(sp)
+0041c8f8  beq v0,zero,0x0041c974
+0041c8fc  _move s0,v0
+0041c900  lw t9,-0x5c9c(gp)
+0041c904  lw a1,0x20(sp)
+0041c908  lw a2,0x24(sp)
+0041c90c  jalr t9
+0041c910  _move a0,v0
+0041c914  lw gp,0x18(sp)
+0041c918  beq s1,zero,0x0041c938
+0041c91c  _move a1,s3
+0041c920  lw a0,0x24(sp)
+0041c924  lw t9,-0x5c9c(gp)
+0041c928  addu a0,s0,a0
+0041c92c  jalr t9
+0041c930  _move a2,s1
+0041c934  lw gp,0x18(sp)
+0041c938  lw v0,0x54(sp)
+0041c93c  lw a2,0x24(sp)
+0041c940  lw t9,-0x7d58(gp)
+0041c944  lw a3,0xc(v0)
+0041c948  addu a2,s1,a2
+0041c94c  move a0,s2
+0041c950  jalr t9
+0041c954  _move a1,s0
+0041c958  lw gp,0x18(sp)
+0041c95c  move a0,s0
+0041c960  lw t9,-0x7aa4(gp)
+0041c964  nop
+0041c968  jalr t9
+0041c96c  _move s4,v0
+0041c970  lw gp,0x18(sp)
+0041c974  lw a0,0x20(sp)
+0041c978  nop
+0041c97c  beq a0,zero,0x0041c998
+0041c980  _move v0,s4
+0041c984  lw t9,-0x7aa4(gp)
+0041c988  nop
+0041c98c  jalr t9
+0041c990  _nop
+0041c994  move v0,s4
+0041c998  lw ra,0x3c(sp)
+0041c99c  lw s4,0x38(sp)
+0041c9a0  lw s3,0x34(sp)
+0041c9a4  lw s2,0x30(sp)
+0041c9a8  lw s1,0x2c(sp)
+0041c9ac  lw s0,0x28(sp)
+0041c9b0  jr ra
+0041c9b4  _addiu sp,sp,0x40

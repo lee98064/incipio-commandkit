@@ -1,0 +1,37 @@
+# FUN_80407ee8 @ 80407ee8
+80407ee8  addiu sp,sp,-0x20
+80407eec  sw ra,0x1c(sp)
+80407ef0  sw s1,0x18(sp)
+80407ef4  sw s0,0x14(sp)
+80407ef8  move s0,a1
+80407efc  beq a0,zero,0x80407f50
+80407f00  _move s1,a2
+80407f04  lui a0,0x3b02
+80407f08  jal 0x80407de0
+80407f0c  _ori a0,a0,0x3380
+80407f10  li v1,0x1
+80407f14  beq v0,v1,0x80407f28
+80407f18  _nop
+80407f1c  move a0,s0
+80407f20  jal 0x80407e24
+80407f24  _move a1,s1
+80407f28  lui a0,0x8041
+80407f2c  jal 0x804077a4
+80407f30  _addiu a0,a0,-0x2410
+80407f34  lui v0,0xb800
+80407f38  ori v0,v0,0x3000
+80407f3c  sw zero,0x0(v0)
+80407f40  jal 0x80407d48
+80407f44  _nop
+80407f48  j 0x80407f64
+80407f4c  _nop
+80407f50  lui v0,0xb800
+80407f54  ori v0,v0,0x3000
+80407f58  sw zero,0x0(v0)
+80407f5c  jal 0x80407d48
+80407f60  _nop
+80407f64  lw ra,0x1c(sp)
+80407f68  lw s1,0x18(sp)
+80407f6c  lw s0,0x14(sp)
+80407f70  jr ra
+80407f74  _addiu sp,sp,0x20

@@ -1,0 +1,56 @@
+# FUN_00437824 @ 00437824
+00437824  lui gp,0x1e
+00437828  addiu gp,gp,0x2aec
+0043782c  addu gp,gp,t9
+00437830  addiu sp,sp,-0x20
+00437834  sw ra,0x1c(sp)
+00437838  sw s8,0x18(sp)
+0043783c  move s8,sp
+00437840  sw gp,0x10(sp)
+00437844  sw a0,0x20(s8)
+00437848  sw a1,0x24(s8)
+0043784c  sw a2,0x28(s8)
+00437850  sw a3,0x2c(s8)
+00437854  lw a0,0x24(s8)
+00437858  lw v0,-0x7fd0(gp)
+0043785c  nop
+00437860  addiu a1,v0,-0x1718
+00437864  lw v0,-0x654c(gp)
+00437868  nop
+0043786c  move t9,v0
+00437870  jalr t9
+00437874  _nop
+00437878  lw gp,0x10(s8)
+0043787c  lw v0,0x20(s8)
+00437880  nop
+00437884  lw v1,0x18(v0)
+00437888  lw v0,0x20(s8)
+0043788c  nop
+00437890  lw v0,0x1c(v0)
+00437894  lw a0,0x24(s8)
+00437898  move a1,v1
+0043789c  move a2,v0
+004378a0  lw v0,-0x7fcc(gp)
+004378a4  nop
+004378a8  addiu v0,v0,0x54f0
+004378ac  move t9,v0
+004378b0  jalr t9
+004378b4  _nop
+004378b8  lw gp,0x10(s8)
+004378bc  lw a0,0x24(s8)
+004378c0  lw v0,-0x7fd0(gp)
+004378c4  nop
+004378c8  addiu a1,v0,-0x1718
+004378cc  lw v0,-0x654c(gp)
+004378d0  nop
+004378d4  move t9,v0
+004378d8  jalr t9
+004378dc  _nop
+004378e0  lw gp,0x10(s8)
+004378e4  clear v0
+004378e8  move sp,s8
+004378ec  lw ra,0x1c(sp)
+004378f0  lw s8,0x18(sp)
+004378f4  addiu sp,sp,0x20
+004378f8  jr ra
+004378fc  _nop

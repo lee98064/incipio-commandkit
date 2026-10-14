@@ -1,0 +1,15 @@
+{
+  "status": "pass",
+  "checks": [
+    "BE 172-byte records",
+    "duplicate/signal/security classification",
+    "UTF-8 and JSON escaping",
+    "all generic setup AP suffixes omitted",
+    "hidden/invalid/5GHz/ad-hoc records omitted",
+    "malformed buffers fail closed",
+    "empty and 64-network bounds"
+  ],
+  "binary_sha256": "e9f77c51d6424501c8703351b8f23f181fb471ed652256f386ef623746975721",
+  "environment": "actual MIPS ELF, qemu-user, synthetic site-survey buffers",
+  "hardware_RF_scan": false
+}

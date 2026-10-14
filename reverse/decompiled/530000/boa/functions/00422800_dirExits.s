@@ -1,0 +1,28 @@
+# dirExits @ 00422800
+00422800  addiu sp,sp,-0x20
+00422804  sw ra,0x1c(sp)
+00422808  lui gp,0x47
+0042280c  addiu gp,gp,0x2630
+00422810  sw gp,0x10(sp)
+00422814  lw t9,-0x7de8(gp)
+00422818  nop
+0042281c  jalr t9
+00422820  _nop
+00422824  lw gp,0x10(sp)
+00422828  bne v0,zero,0x00422848
+0042282c  _lui a0,0x45
+00422830  lw t9,-0x7aec(gp)
+00422834  nop
+00422838  jalr t9
+0042283c  _addiu a0,a0,-0x6068
+00422840  b 0x0042285c
+00422844  _clear v0
+00422848  lw t9,-0x7f58(gp)
+0042284c  nop
+00422850  jalr t9
+00422854  _move a0,v0
+00422858  li v0,0x1
+0042285c  lw ra,0x1c(sp)
+00422860  nop
+00422864  jr ra
+00422868  _addiu sp,sp,0x20

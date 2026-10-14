@@ -1,0 +1,90 @@
+# FUN_00432754 @ 00432754
+00432754  addiu sp,sp,-0xb8
+00432758  sw ra,0xb4(sp)
+0043275c  sw s1,0xb0(sp)
+00432760  sw s0,0xac(sp)
+00432764  lui gp,0x62
+00432768  addiu gp,gp,-0x6b80
+0043276c  sw gp,0x18(sp)
+00432770  move s0,a0
+00432774  move s1,a1
+00432778  sb zero,0x0(a0)
+0043277c  sb zero,0x1(a0)
+00432780  sb zero,0x2(a0)
+00432784  sb zero,0x3(a0)
+00432788  addiu v0,sp,0x28
+0043278c  addiu v1,sp,0xa8
+00432790  sw zero,0x0(v0)
+00432794  addiu v0,v0,0x4
+00432798  bne v0,v1,0x00432790
+0043279c  _nop
+004327a0  lui v0,0x61
+004327a4  lw a0,0x505c(v0)
+004327a8  addiu v0,sp,0x20
+004327ac  li v1,0x1
+004327b0  srl a1,a0,0x5
+004327b4  sll a1,a1,0x2
+004327b8  addu a1,v0,a1
+004327bc  lw a3,0x8(a1)
+004327c0  sllv a2,v1,a0
+004327c4  lw t9,-0x6654(gp)
+004327c8  or a2,a3,a2
+004327cc  sw a2,0x8(a1)
+004327d0  sw v1,0x20(sp)
+004327d4  sw v0,0x10(sp)
+004327d8  sw zero,0x24(sp)
+004327dc  addiu a0,a0,0x1
+004327e0  addiu a1,sp,0x28
+004327e4  clear a2
+004327e8  jalr t9
+004327ec  _clear a3
+004327f0  lw gp,0x18(sp)
+004327f4  bgez v0,0x0043283c
+004327f8  _lui v0,0x61
+004327fc  lw t9,-0x5b04(gp)
+00432800  nop
+00432804  jalr t9
+00432808  _nop
+0043280c  lw v1,0x0(v0)
+00432810  li v0,0x4
+00432814  lw gp,0x18(sp)
+00432818  beq v1,v0,0x00432838
+0043281c  _lui a0,0x5b
+00432820  lw t9,-0x7c24(gp)
+00432824  nop
+00432828  jalr t9
+0043282c  _addiu a0,a0,-0x2fe8
+00432830  b 0x004328a4
+00432834  _clear v0
+00432838  lui v0,0x61
+0043283c  lw a0,0x505c(v0)
+00432840  nop
+00432844  srl v0,a0,0x5
+00432848  sll v0,v0,0x2
+0043284c  addu v0,sp,v0
+00432850  lw v0,0x28(v0)
+00432854  nop
+00432858  srav v0,v0,a0
+0043285c  andi v0,v0,0x1
+00432860  beq v0,zero,0x00432888
+00432864  _move a1,s0
+00432868  lw t9,-0x6590(gp)
+0043286c  nop
+00432870  jalr t9
+00432874  _move a2,s1
+00432878  move v1,v0
+0043287c  lw gp,0x18(sp)
+00432880  bgtz v1,0x004328a4
+00432884  _nop
+00432888  lw v0,-0x67e8(gp)
+0043288c  lw t9,-0x7058(gp)
+00432890  lui a0,0x5b
+00432894  lw a1,0x0(v0)
+00432898  jalr t9
+0043289c  _addiu a0,a0,-0x2a24
+004328a0  clear v0
+004328a4  lw ra,0xb4(sp)
+004328a8  lw s1,0xb0(sp)
+004328ac  lw s0,0xac(sp)
+004328b0  jr ra
+004328b4  _addiu sp,sp,0xb8

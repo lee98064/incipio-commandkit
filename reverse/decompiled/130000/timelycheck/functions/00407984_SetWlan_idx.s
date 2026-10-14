@@ -1,0 +1,105 @@
+# SetWlan_idx @ 00407984
+00407984  addiu sp,sp,-0x30
+00407988  sw ra,0x2c(sp)
+0040798c  sw s3,0x28(sp)
+00407990  sw s2,0x24(sp)
+00407994  sw s1,0x20(sp)
+00407998  sw s0,0x1c(sp)
+0040799c  lui gp,0x43
+004079a0  addiu gp,gp,0x3060
+004079a4  sw gp,0x10(sp)
+004079a8  lw t9,-0x7f9c(gp)
+004079ac  addiu s0,a0,0x4
+004079b0  move s1,a0
+004079b4  jalr t9
+004079b8  _move a0,s0
+004079bc  lw gp,0x10(sp)
+004079c0  blez v0,0x004079d4
+004079c4  _lui a0,0x42
+004079c8  lw t9,-0x7ea8(gp)
+004079cc  b 0x00407a5c
+004079d0  _addiu a0,a0,-0x7900
+004079d4  lw s2,-0x7f04(gp)
+004079d8  lw s3,-0x7ef4(gp)
+004079dc  lw t9,-0x7fa4(gp)
+004079e0  sw v0,0x0(s2)
+004079e4  sw zero,0x0(s3)
+004079e8  jalr t9
+004079ec  _move a0,s1
+004079f0  sltiu v0,v0,0x9
+004079f4  lw gp,0x10(sp)
+004079f8  bne v0,zero,0x00407a84
+004079fc  _li v0,0x2d
+00407a00  lb v1,0x5(s1)
+00407a04  nop
+00407a08  bne v1,v0,0x00407a84
+00407a0c  _li v0,0x76
+00407a10  lb v1,0x6(s1)
+00407a14  nop
+00407a18  bne v1,v0,0x00407a84
+00407a1c  _li v0,0x61
+00407a20  lb v1,0x7(s1)
+00407a24  nop
+00407a28  bne v1,v0,0x00407a84
+00407a2c  _nop
+00407a30  lw t9,-0x7f9c(gp)
+00407a34  nop
+00407a38  jalr t9
+00407a3c  _addiu a0,s1,0x8
+00407a40  slti v1,v0,0x5
+00407a44  lw gp,0x10(sp)
+00407a48  bne v1,zero,0x00407a6c
+00407a4c  _addiu v0,v0,0x1
+00407a50  lw t9,-0x7ea8(gp)
+00407a54  lui a0,0x42
+00407a58  addiu a0,a0,-0x78d8
+00407a5c  jalr t9
+00407a60  _nop
+00407a64  b 0x00407b04
+00407a68  _clear v1
+00407a6c  lw t9,-0x7f9c(gp)
+00407a70  sw v0,0x0(s3)
+00407a74  jalr t9
+00407a78  _move a0,s0
+00407a7c  lw gp,0x10(sp)
+00407a80  sw v0,0x0(s2)
+00407a84  lw t9,-0x7fa4(gp)
+00407a88  nop
+00407a8c  jalr t9
+00407a90  _move a0,s1
+00407a94  sltiu v0,v0,0x9
+00407a98  lw gp,0x10(sp)
+00407a9c  bne v0,zero,0x00407b00
+00407aa0  _li v0,0x2d
+00407aa4  lb v1,0x5(s1)
+00407aa8  nop
+00407aac  bne v1,v0,0x00407b04
+00407ab0  _li v1,0x1
+00407ab4  lw t9,-0x7f28(gp)
+00407ab8  lui a1,0x41
+00407abc  addiu a0,s1,0x6
+00407ac0  addiu a1,a1,0x7f7c
+00407ac4  jalr t9
+00407ac8  _li a2,0x3
+00407acc  lw gp,0x10(sp)
+00407ad0  bne v0,zero,0x00407b00
+00407ad4  _li v1,0x5
+00407ad8  lw v0,-0x7ef4(gp)
+00407adc  lw t9,-0x7f9c(gp)
+00407ae0  sw v1,0x0(v0)
+00407ae4  jalr t9
+00407ae8  _move a0,s0
+00407aec  lw gp,0x10(sp)
+00407af0  li v1,0x1
+00407af4  lw a0,-0x7f04(gp)
+00407af8  b 0x00407b04
+00407afc  _sw v0,0x0(a0)
+00407b00  li v1,0x1
+00407b04  lw ra,0x2c(sp)
+00407b08  lw s3,0x28(sp)
+00407b0c  lw s2,0x24(sp)
+00407b10  lw s1,0x20(sp)
+00407b14  lw s0,0x1c(sp)
+00407b18  move v0,v1
+00407b1c  jr ra
+00407b20  _addiu sp,sp,0x30

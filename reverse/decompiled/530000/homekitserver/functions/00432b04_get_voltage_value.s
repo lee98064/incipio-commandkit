@@ -1,0 +1,37 @@
+# get_voltage_value @ 00432b04
+00432b04  addiu sp,sp,-0x28
+00432b08  sw ra,0x24(sp)
+00432b0c  sw s2,0x20(sp)
+00432b10  sw s1,0x1c(sp)
+00432b14  sw s0,0x18(sp)
+00432b18  lui gp,0x62
+00432b1c  addiu gp,gp,-0x5cf0
+00432b20  sw gp,0x10(sp)
+00432b24  lui s0,0x61
+00432b28  lw s1,0x5f08(s0)
+00432b2c  lui s2,0x5b
+00432b30  lw t9,-0x79f4(gp)
+00432b34  lw a1,-0x17e8(s2)
+00432b38  jalr t9
+00432b3c  _move a0,s1
+00432b40  lw gp,0x10(sp)
+00432b44  blez v0,0x00432b58
+00432b48  _nop
+00432b4c  lw v0,-0x17e8(s2)
+00432b50  b 0x00432b74
+00432b54  _sw v0,0x5f08(s0)
+00432b58  lw t9,-0x5cb8(gp)
+00432b5c  move a0,s1
+00432b60  jalr t9
+00432b64  _clear a1
+00432b68  bgez v0,0x00432b74
+00432b6c  _clear v0
+00432b70  sw v0,0x5f08(s0)
+00432b74  lui v0,0x61
+00432b78  lw v0,0x5f08(v0)
+00432b7c  lw ra,0x24(sp)
+00432b80  lw s2,0x20(sp)
+00432b84  lw s1,0x1c(sp)
+00432b88  lw s0,0x18(sp)
+00432b8c  jr ra
+00432b90  _addiu sp,sp,0x28

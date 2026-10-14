@@ -1,0 +1,6 @@
+program=phytrex_tools
+language=MIPS:BE:32:default
+compiler=default
+image_base=00400000
+attempted=27
+succeeded=27

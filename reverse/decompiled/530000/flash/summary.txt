@@ -1,0 +1,6 @@
+program=flash
+language=MIPS:BE:32:default
+compiler=default
+image_base=00400000
+attempted=34
+succeeded=34

@@ -1,0 +1,42 @@
+# HomekitOTAThreadStart @ 004317c0
+004317c0  addiu sp,sp,-0x58
+004317c4  sw ra,0x54(sp)
+004317c8  sw s1,0x50(sp)
+004317cc  sw s0,0x4c(sp)
+004317d0  lui gp,0x62
+004317d4  addiu gp,gp,-0x5cf0
+004317d8  sw gp,0x10(sp)
+004317dc  lw t9,-0x5f5c(gp)
+004317e0  addiu s0,sp,0x18
+004317e4  move a3,a0
+004317e8  sw a3,0x40(sp)
+004317ec  jalr t9
+004317f0  _move a0,s0
+004317f4  lw gp,0x10(sp)
+004317f8  move a0,s0
+004317fc  li a1,0x1
+00431800  lw t9,-0x5ba0(gp)
+00431804  nop
+00431808  jalr t9
+0043180c  _li s1,-0x1
+00431810  lw gp,0x10(sp)
+00431814  lw a3,0x40(sp)
+00431818  lui a0,0x61
+0043181c  lw t9,-0x6bd0(gp)
+00431820  lui a2,0x43
+00431824  move a1,s0
+00431828  addiu a2,a2,0x1864
+0043182c  jalr t9
+00431830  _addiu a0,a0,0x5e50
+00431834  lw gp,0x10(sp)
+00431838  movz s1,zero,v0
+0043183c  lw t9,-0x6ae0(gp)
+00431840  nop
+00431844  jalr t9
+00431848  _move a0,s0
+0043184c  move v0,s1
+00431850  lw ra,0x54(sp)
+00431854  lw s1,0x50(sp)
+00431858  lw s0,0x4c(sp)
+0043185c  jr ra
+00431860  _addiu sp,sp,0x58

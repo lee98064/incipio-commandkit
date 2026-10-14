@@ -1,0 +1,24 @@
+# FUN_00410750 @ 00410750
+00410750  lui gp,0x2
+00410754  addiu gp,gp,-0x5330
+00410758  addu gp,gp,t9
+0041075c  addiu sp,sp,-0x28
+00410760  sw ra,0x24(sp)
+00410764  sw s1,0x20(sp)
+00410768  sw s0,0x1c(sp)
+0041076c  sw gp,0x10(sp)
+00410770  lw s0,-0x7fe8(gp)
+00410774  li s1,-0x1
+00410778  b 0x00410788
+0041077c  _addiu s0,s0,0x33b4
+00410780  jalr t9
+00410784  _nop
+00410788  lw t9,0x0(s0)
+0041078c  nop
+00410790  bne t9,s1,0x00410780
+00410794  _addiu s0,s0,-0x4
+00410798  lw ra,0x24(sp)
+0041079c  lw s1,0x20(sp)
+004107a0  lw s0,0x1c(sp)
+004107a4  jr ra
+004107a8  _addiu sp,sp,0x28

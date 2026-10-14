@@ -1,0 +1,94 @@
+# HKSetupDNSServiceName @ 00431810
+00431810  addiu sp,sp,-0x130
+00431814  sw ra,0x12c(sp)
+00431818  sw s2,0x128(sp)
+0043181c  sw s1,0x124(sp)
+00431820  sw s0,0x120(sp)
+00431824  lui gp,0x62
+00431828  addiu gp,gp,-0x6b80
+0043182c  sw gp,0x10(sp)
+00431830  lw t9,-0x7eb0(gp)
+00431834  addiu s0,sp,0x18
+00431838  lui a1,0x5b
+0043183c  addiu a1,a1,-0x2cc4
+00431840  move s2,a0
+00431844  jalr t9
+00431848  _move a0,s0
+0043184c  lw gp,0x10(sp)
+00431850  nop
+00431854  lw t9,-0x5c10(gp)
+00431858  nop
+0043185c  jalr t9
+00431860  _move a0,s0
+00431864  lw gp,0x10(sp)
+00431868  lui a0,0x5b
+0043186c  lui a1,0x5b
+00431870  lw t9,-0x69c0(gp)
+00431874  addiu a0,a0,-0x2c90
+00431878  jalr t9
+0043187c  _addiu a1,a1,0x1ae8
+00431880  lw gp,0x10(sp)
+00431884  beq v0,zero,0x00431940
+00431888  _move s1,v0
+0043188c  lw t9,-0x7244(gp)
+00431890  move a0,s0
+00431894  clear a1
+00431898  jalr t9
+0043189c  _li a2,0x100
+004318a0  lw gp,0x10(sp)
+004318a4  move a0,s0
+004318a8  li a1,0x100
+004318ac  lw t9,-0x6928(gp)
+004318b0  li a2,0x1
+004318b4  jalr t9
+004318b8  _move a3,s1
+004318bc  lw gp,0x10(sp)
+004318c0  lui a1,0x5b
+004318c4  move a0,s0
+004318c8  lw t9,-0x786c(gp)
+004318cc  nop
+004318d0  jalr t9
+004318d4  _addiu a1,a1,-0x2c7c
+004318d8  lw gp,0x10(sp)
+004318dc  beq v0,zero,0x00431928
+004318e0  _addiu a3,v0,0x15
+004318e4  lw t9,-0x7b28(gp)
+004318e8  move a0,a3
+004318ec  li a1,0x22
+004318f0  jalr t9
+004318f4  _sw a3,0x118(sp)
+004318f8  lw gp,0x10(sp)
+004318fc  lw a3,0x118(sp)
+00431900  lui a0,0x61
+00431904  lw t9,-0x64f4(gp)
+00431908  subu v0,v0,a3
+0043190c  lui a2,0x5e
+00431910  addiu a0,a0,0x5000
+00431914  addiu a1,v0,0x1
+00431918  jalr t9
+0043191c  _addiu a2,a2,-0x6fb0
+00431920  lw gp,0x10(sp)
+00431924  nop
+00431928  lw t9,-0x68e0(gp)
+0043192c  nop
+00431930  jalr t9
+00431934  _move a0,s1
+00431938  lw gp,0x10(sp)
+0043193c  nop
+00431940  lw t9,-0x5c10(gp)
+00431944  lui a0,0x5b
+00431948  jalr t9
+0043194c  _addiu a0,a0,-0x2c64
+00431950  lw gp,0x10(sp)
+00431954  lui a1,0x61
+00431958  move a0,s2
+0043195c  lw t9,-0x7eb0(gp)
+00431960  nop
+00431964  jalr t9
+00431968  _addiu a1,a1,0x5000
+0043196c  lw ra,0x12c(sp)
+00431970  lw s2,0x128(sp)
+00431974  lw s1,0x124(sp)
+00431978  lw s0,0x120(sp)
+0043197c  jr ra
+00431980  _addiu sp,sp,0x130

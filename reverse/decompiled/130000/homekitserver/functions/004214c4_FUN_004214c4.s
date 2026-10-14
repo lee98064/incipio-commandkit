@@ -1,0 +1,8 @@
+# FUN_004214c4 @ 004214c4
+004214c4  lui gp,0x62
+004214c8  addiu gp,gp,-0x6b80
+004214cc  lw t9,-0x5a68(gp)
+004214d0  li a0,0x1
+004214d4  li a1,0x188
+004214d8  jr t9
+004214dc  _nop

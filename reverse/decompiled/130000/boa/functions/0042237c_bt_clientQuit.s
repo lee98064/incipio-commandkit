@@ -1,0 +1,53 @@
+# bt_clientQuit @ 0042237c
+0042237c  addiu sp,sp,-0x2a8
+00422380  sw ra,0x2a4(sp)
+00422384  sw s1,0x2a0(sp)
+00422388  sw s0,0x29c(sp)
+0042238c  lui gp,0x47
+00422390  addiu gp,gp,0x2630
+00422394  sw gp,0x10(sp)
+00422398  lw t9,-0x7e28(gp)
+0042239c  addiu s1,sp,0x18
+004223a0  lui a1,0x45
+004223a4  move a2,a0
+004223a8  addiu a1,a1,0xa4c
+004223ac  jalr t9
+004223b0  _move a0,s1
+004223b4  jal 0x00421134
+004223b8  _nop
+004223bc  lw gp,0x10(sp)
+004223c0  move a0,s1
+004223c4  lw t9,-0x7f1c(gp)
+004223c8  nop
+004223cc  jalr t9
+004223d0  _move s0,v0
+004223d4  lw gp,0x10(sp)
+004223d8  move a1,s1
+004223dc  move a2,v0
+004223e0  lw t9,-0x7c34(gp)
+004223e4  move a0,s0
+004223e8  jalr t9
+004223ec  _addiu s1,sp,0x98
+004223f0  lw gp,0x10(sp)
+004223f4  lui a1,0x45
+004223f8  addiu a1,a1,-0x671c
+004223fc  lw t9,-0x7c34(gp)
+00422400  move a0,s0
+00422404  jalr t9
+00422408  _li a2,0x2
+0042240c  move a0,s0
+00422410  move a1,s1
+00422414  jal 0x004218dc
+00422418  _li a2,0x200
+0042241c  lw gp,0x10(sp)
+00422420  bgtz v0,0x00422410
+00422424  _move a0,s0
+00422428  lw t9,-0x7f9c(gp)
+0042242c  nop
+00422430  jalr t9
+00422434  _move a0,s0
+00422438  lw ra,0x2a4(sp)
+0042243c  lw s1,0x2a0(sp)
+00422440  lw s0,0x29c(sp)
+00422444  jr ra
+00422448  _addiu sp,sp,0x2a8

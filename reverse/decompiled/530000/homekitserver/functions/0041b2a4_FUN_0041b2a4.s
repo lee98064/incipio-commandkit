@@ -1,0 +1,26 @@
+# FUN_0041b2a4 @ 0041b2a4
+0041b2a4  addiu sp,sp,-0x20
+0041b2a8  sw ra,0x1c(sp)
+0041b2ac  sw s0,0x18(sp)
+0041b2b0  lui gp,0x62
+0041b2b4  addiu gp,gp,-0x5cf0
+0041b2b8  sw gp,0x10(sp)
+0041b2bc  lw t9,-0x648c(gp)
+0041b2c0  li a1,0x3
+0041b2c4  jalr t9
+0041b2c8  _move s0,a0
+0041b2cc  li v1,-0x1
+0041b2d0  lw gp,0x10(sp)
+0041b2d4  beq v0,v1,0x0041b2f8
+0041b2d8  _move a0,s0
+0041b2dc  lw t9,-0x648c(gp)
+0041b2e0  lw ra,0x1c(sp)
+0041b2e4  lw s0,0x18(sp)
+0041b2e8  ori a2,v0,0x80
+0041b2ec  li a1,0x4
+0041b2f0  jr t9
+0041b2f4  _addiu sp,sp,0x20
+0041b2f8  lw ra,0x1c(sp)
+0041b2fc  lw s0,0x18(sp)
+0041b300  jr ra
+0041b304  _addiu sp,sp,0x20

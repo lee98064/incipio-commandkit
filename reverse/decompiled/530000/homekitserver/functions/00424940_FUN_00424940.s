@@ -1,0 +1,25 @@
+# FUN_00424940 @ 00424940
+00424940  addiu sp,sp,-0x98
+00424944  sw ra,0x94(sp)
+00424948  lui gp,0x62
+0042494c  addiu gp,gp,-0x5cf0
+00424950  sw gp,0x18(sp)
+00424954  blez a0,0x00424990
+00424958  _clear v0
+0042495c  lw t9,-0x6c00(gp)
+00424960  li v0,0x68
+00424964  sw v0,0x20(sp)
+00424968  addiu v0,sp,0x20
+0042496c  sw v0,0x10(sp)
+00424970  li a1,0x6
+00424974  li a2,0xb
+00424978  jalr t9
+0042497c  _addiu a3,sp,0x24
+00424980  lbu v0,0x24(sp)
+00424984  nop
+00424988  xori v0,v0,0x1
+0042498c  sltiu v0,v0,0x1
+00424990  lw ra,0x94(sp)
+00424994  nop
+00424998  jr ra
+0042499c  _addiu sp,sp,0x98

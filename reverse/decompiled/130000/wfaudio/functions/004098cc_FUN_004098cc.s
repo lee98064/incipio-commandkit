@@ -1,0 +1,180 @@
+# FUN_004098cc @ 004098cc
+004098cc  addiu sp,sp,-0x118
+004098d0  sw ra,0x114(sp)
+004098d4  sw s8,0x110(sp)
+004098d8  sw s7,0x10c(sp)
+004098dc  sw s6,0x108(sp)
+004098e0  sw s5,0x104(sp)
+004098e4  sw s4,0x100(sp)
+004098e8  sw s3,0xfc(sp)
+004098ec  sw s2,0xf8(sp)
+004098f0  sw s1,0xf4(sp)
+004098f4  sw s0,0xf0(sp)
+004098f8  lui gp,0x43
+004098fc  addiu gp,gp,-0x4f70
+00409900  sw gp,0x18(sp)
+00409904  lw t9,-0x7ee8(gp)
+00409908  addiu s6,sp,0x48
+0040990c  move s0,a0
+00409910  li a2,0x40
+00409914  move a0,s6
+00409918  clear a1
+0040991c  sw zero,0x20(sp)
+00409920  sw zero,0x24(sp)
+00409924  jalr t9
+00409928  _sw zero,0x28(sp)
+0040992c  lw gp,0x18(sp)
+00409930  li a0,0x16
+00409934  addiu a1,sp,0x20
+00409938  lw v1,-0x7e8c(gp)
+0040993c  lw v0,-0x7e78(gp)
+00409940  lw t9,-0x7e2c(gp)
+00409944  sw s0,0x0(v1)
+00409948  lw s8,0x0(v0)
+0040994c  jalr t9
+00409950  _sw zero,0x0(v0)
+00409954  lw gp,0x18(sp)
+00409958  lui s7,0x41
+0040995c  addiu s7,s7,0x16e0
+00409960  lw t9,-0x7f2c(gp)
+00409964  move a0,s6
+00409968  move a1,s7
+0040996c  jalr t9
+00409970  _move a2,s0
+00409974  lw gp,0x18(sp)
+00409978  nop
+0040997c  lw t9,-0x7ea0(gp)
+00409980  nop
+00409984  jalr t9
+00409988  _move a0,s6
+0040998c  lw v0,0x20(sp)
+00409990  lw gp,0x18(sp)
+00409994  bne v0,zero,0x00409b10
+00409998  _li a0,0x1f7
+0040999c  lw t9,-0x7e2c(gp)
+004099a0  nop
+004099a4  jalr t9
+004099a8  _addiu a1,sp,0x24
+004099ac  lw gp,0x18(sp)
+004099b0  li a0,0x1f8
+004099b4  lw t9,-0x7e2c(gp)
+004099b8  nop
+004099bc  jalr t9
+004099c0  _addiu a1,sp,0x28
+004099c4  lw v1,0x24(sp)
+004099c8  li v0,0x1
+004099cc  lw gp,0x18(sp)
+004099d0  bne v1,v0,0x00409ad8
+004099d4  _nop
+004099d8  lw v0,0x28(sp)
+004099dc  nop
+004099e0  blez v0,0x00409ad8
+004099e4  _li s5,0x1
+004099e8  li s1,0x1
+004099ec  addiu s4,sp,0x2c
+004099f0  addiu s2,sp,0x88
+004099f4  b 0x00409ac4
+004099f8  _li s3,0x1
+004099fc  jalr t9
+00409a00  _sb s1,0x0(s4)
+00409a04  lw gp,0x18(sp)
+00409a08  move a0,s2
+00409a0c  clear a1
+00409a10  lw t9,-0x7ee8(gp)
+00409a14  nop
+00409a18  jalr t9
+00409a1c  _li a2,0x64
+00409a20  lw v0,0x40(sp)
+00409a24  lw gp,0x18(sp)
+00409a28  srl v1,v0,0x10
+00409a2c  bne v1,s3,0x00409abc
+00409a30  _lui a1,0x41
+00409a34  andi v0,v0,0xffff
+00409a38  lw t9,-0x7f2c(gp)
+00409a3c  move a2,s1
+00409a40  move a0,s2
+00409a44  bne v0,zero,0x00409a5c
+00409a48  _addiu a1,a1,0x16f4
+00409a4c  lhu v1,0x44(sp)
+00409a50  nop
+00409a54  beq v1,zero,0x00409abc
+00409a58  _nop
+00409a5c  lw a3,0x44(sp)
+00409a60  sw v0,0x10(sp)
+00409a64  srl v0,a3,0x10
+00409a68  sw v0,0x14(sp)
+00409a6c  jalr t9
+00409a70  _andi a3,a3,0xffff
+00409a74  lw gp,0x18(sp)
+00409a78  move a0,s6
+00409a7c  move a1,s7
+00409a80  lw t9,-0x7f2c(gp)
+00409a84  nop
+00409a88  jalr t9
+00409a8c  _move a2,s0
+00409a90  lw gp,0x18(sp)
+00409a94  xori a1,s5,0x1
+00409a98  li v0,0x2
+00409a9c  lw t9,-0x7e24(gp)
+00409aa0  movz v0,s3,a1
+00409aa4  move a1,v0
+00409aa8  move a0,s6
+00409aac  jalr t9
+00409ab0  _move a2,s2
+00409ab4  lw gp,0x18(sp)
+00409ab8  li s5,0x2
+00409abc  addiu s1,s1,0x1
+00409ac0  lw v0,0x28(sp)
+00409ac4  lw t9,-0x7e2c(gp)
+00409ac8  ori a0,zero,0x81f9
+00409acc  slt v0,v0,s1
+00409ad0  beq v0,zero,0x004099fc
+00409ad4  _move a1,s4
+00409ad8  bne s0,zero,0x00409b50
+00409adc  _addiu s0,sp,0x48
+00409ae0  lw t9,-0x7f2c(gp)
+00409ae4  lui a1,0x41
+00409ae8  lui a2,0x41
+00409aec  move a0,s0
+00409af0  addiu a1,a1,0x1704
+00409af4  jalr t9
+00409af8  _addiu a2,a2,0x1714
+00409afc  lw gp,0x18(sp)
+00409b00  nop
+00409b04  lw t9,-0x7e20(gp)
+00409b08  b 0x00409b40
+00409b0c  _move a0,s0
+00409b10  bne s0,zero,0x00409b50
+00409b14  _lui a1,0x41
+00409b18  lw t9,-0x7f2c(gp)
+00409b1c  lui a2,0x41
+00409b20  move a0,s6
+00409b24  addiu a1,a1,0x1704
+00409b28  jalr t9
+00409b2c  _addiu a2,a2,0x1714
+00409b30  lw gp,0x18(sp)
+00409b34  move a0,s6
+00409b38  lw t9,-0x7e20(gp)
+00409b3c  nop
+00409b40  jalr t9
+00409b44  _nop
+00409b48  lw gp,0x18(sp)
+00409b4c  nop
+00409b50  lw v0,-0x7e78(gp)
+00409b54  nop
+00409b58  sw zero,0x0(v0)
+00409b5c  lw v0,-0x7e8c(gp)
+00409b60  nop
+00409b64  sw s8,0x0(v0)
+00409b68  lw ra,0x114(sp)
+00409b6c  lw s8,0x110(sp)
+00409b70  lw s7,0x10c(sp)
+00409b74  lw s6,0x108(sp)
+00409b78  lw s5,0x104(sp)
+00409b7c  lw s4,0x100(sp)
+00409b80  lw s3,0xfc(sp)
+00409b84  lw s2,0xf8(sp)
+00409b88  lw s1,0xf4(sp)
+00409b8c  lw s0,0xf0(sp)
+00409b90  jr ra
+00409b94  _addiu sp,sp,0x118

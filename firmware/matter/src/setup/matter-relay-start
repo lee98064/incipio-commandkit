@@ -1,0 +1,9 @@
+#!/bin/sh
+# Firmware starts only this MCU owner; the V2 executable is retained for recovery.
+if [ -n "$(/bin/pidof homekitserver 2>/dev/null)" ]; then
+    echo 'MCU_OWNER_CONFLICT: HomeKit is running; Matter relay not started' > /var/log/matter-test.log
+    exit 1
+fi
+if /bin/matter-diag --run-probe; then
+    (/bin/matter-diag --run-matter; echo "matterd-test_exit=$?; no automatic restart") 2>&1 | /bin/matter-diag --log
+fi

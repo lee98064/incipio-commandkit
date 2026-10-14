@@ -1,0 +1,80 @@
+# FUN_8040a33c @ 8040a33c
+8040a33c  addiu sp,sp,-0x38
+8040a340  sw ra,0x34(sp)
+8040a344  sw s2,0x30(sp)
+8040a348  sw s1,0x2c(sp)
+8040a34c  sw s0,0x28(sp)
+8040a350  bne a0,zero,0x8040a38c
+8040a354  _addiu s1,sp,0x18
+8040a358  lui v0,0x8041
+8040a35c  lbu a1,0x50(v0)
+8040a360  addiu v0,v0,0x50
+8040a364  lbu a2,0x1(v0)
+8040a368  lbu a3,0x2(v0)
+8040a36c  lbu v0,0x3(v0)
+8040a370  nop
+8040a374  sw v0,0x10(sp)
+8040a378  lui a0,0x8041
+8040a37c  jal 0x804077a4
+8040a380  _addiu a0,a0,-0x1dd0
+8040a384  j 0x8040a460
+8040a388  _nop
+8040a38c  lw s0,0x0(a1)
+8040a390  addiu s2,sp,0x28
+8040a394  move a0,s0
+8040a398  clear a1
+8040a39c  jal 0x80406b90
+8040a3a0  _li a2,0xa
+8040a3a4  sw v0,0x0(s1)
+8040a3a8  move a0,s0
+8040a3ac  jal 0x804069a8
+8040a3b0  _li a1,0x2e
+8040a3b4  addiu s1,s1,0x4
+8040a3b8  bne s1,s2,0x8040a394
+8040a3bc  _addiu s0,v0,0x1
+8040a3c0  lw a1,0x18(sp)
+8040a3c4  lui v0,0x8041
+8040a3c8  sb a1,0x50(v0)
+8040a3cc  lw a2,0x1c(sp)
+8040a3d0  addiu v0,v0,0x50
+8040a3d4  sb a2,0x1(v0)
+8040a3d8  lw a3,0x20(sp)
+8040a3dc  nop
+8040a3e0  sb a3,0x2(v0)
+8040a3e4  lw a0,0x24(sp)
+8040a3e8  nop
+8040a3ec  sb a0,0x3(v0)
+8040a3f0  sll t1,a1,0x18
+8040a3f4  sra t1,t1,0x18
+8040a3f8  lui t0,0x8041
+8040a3fc  addiu v1,t0,-0x1710
+8040a400  sb t1,0x1(v1)
+8040a404  sll t2,a2,0x18
+8040a408  sra t2,t2,0x18
+8040a40c  sb t2,0x2(v1)
+8040a410  sll t3,a3,0x18
+8040a414  sra t3,t3,0x18
+8040a418  sb t3,0x3(v1)
+8040a41c  sll t4,a0,0x18
+8040a420  sra t4,t4,0x18
+8040a424  sb t4,0x4(v1)
+8040a428  lbu v1,0x5(v1)
+8040a42c  nop
+8040a430  sb v1,0x9(v0)
+8040a434  sb t4,0x8(v0)
+8040a438  sb t3,0x7(v0)
+8040a43c  sb t2,0x6(v0)
+8040a440  sb t1,0x5(v0)
+8040a444  lbu v1,-0x1710(t0)
+8040a448  nop
+8040a44c  sb v1,0x4(v0)
+8040a450  sw a0,0x10(sp)
+8040a454  lui a0,0x8041
+8040a458  jal 0x804079cc
+8040a45c  _addiu a0,a0,-0x1db0
+8040a460  lw ra,0x34(sp)
+8040a464  lw s2,0x30(sp)
+8040a468  lw s1,0x2c(sp)
+8040a46c  lw s0,0x28(sp)
+8040a470  jr ra
+8040a474  _addiu sp,sp,0x38

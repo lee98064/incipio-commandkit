@@ -1,0 +1,25 @@
+# TLVGetNext @ 00429260
+00429260  subu v1,a1,a0
+00429264  sltiu v1,v1,0x2
+00429268  lw t0,0x14(sp)
+0042926c  bne v1,zero,0x004292b8
+00429270  _li v0,-0x1a47
+00429274  lbu t1,0x1(a0)
+00429278  addiu t2,a0,0x2
+0042927c  addu v1,t2,t1
+00429280  sltu v0,v1,a0
+00429284  bne v0,zero,0x004292b8
+00429288  _li v0,-0x1a5e
+0042928c  sltu a1,a1,v1
+00429290  bne a1,zero,0x004292b8
+00429294  _nop
+00429298  lbu a0,0x0(a0)
+0042929c  clear v0
+004292a0  sb a0,0x0(a2)
+004292a4  lw a0,0x10(sp)
+004292a8  sw t2,0x0(a3)
+004292ac  beq t0,zero,0x004292b8
+004292b0  _sw t1,0x0(a0)
+004292b4  sw v1,0x0(t0)
+004292b8  jr ra
+004292bc  _nop

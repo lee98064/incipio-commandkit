@@ -1,0 +1,22 @@
+# SHA1_Init_compat @ 00429b50
+00429b50  lui v0,0x6745
+00429b54  ori v0,v0,0x2301
+00429b58  sw v0,0x8(a0)
+00429b5c  lui v0,0xefcd
+00429b60  ori v0,v0,0xab89
+00429b64  sw v0,0xc(a0)
+00429b68  lui v0,0x98ba
+00429b6c  ori v0,v0,0xdcfe
+00429b70  sw v0,0x10(a0)
+00429b74  lui v0,0x1032
+00429b78  ori v0,v0,0x5476
+00429b7c  sw v0,0x14(a0)
+00429b80  lui v0,0xc3d2
+00429b84  ori v0,v0,0xe1f0
+00429b88  sw v0,0x18(a0)
+00429b8c  clear v1
+00429b90  clear v0
+00429b94  sw v0,0x0(a0)
+00429b98  sw zero,0x1c(a0)
+00429b9c  jr ra
+00429ba0  _sw v1,0x4(a0)

@@ -1,0 +1,37 @@
+# strnicmp_suffix @ 00424294
+00424294  addiu sp,sp,-0x30
+00424298  sw ra,0x2c(sp)
+0042429c  sw s1,0x28(sp)
+004242a0  sw s0,0x24(sp)
+004242a4  lui gp,0x62
+004242a8  addiu gp,gp,-0x5cf0
+004242ac  sw gp,0x10(sp)
+004242b0  lw t9,-0x75bc(gp)
+004242b4  sw a2,0x18(sp)
+004242b8  jalr t9
+004242bc  _move s0,a0
+004242c0  lw gp,0x10(sp)
+004242c4  lw a2,0x18(sp)
+004242c8  move s1,v0
+004242cc  lw t9,-0x63c4(gp)
+004242d0  nop
+004242d4  jalr t9
+004242d8  _move a0,a2
+004242dc  sltu v1,s1,v0
+004242e0  lw gp,0x10(sp)
+004242e4  lw a2,0x18(sp)
+004242e8  beq v1,zero,0x00424308
+004242ec  _move a1,v0
+004242f0  lw ra,0x2c(sp)
+004242f4  lw s1,0x28(sp)
+004242f8  lw s0,0x24(sp)
+004242fc  li v0,-0x1
+00424300  jr ra
+00424304  _addiu sp,sp,0x30
+00424308  subu a0,s1,v0
+0042430c  addu a0,s0,a0
+00424310  lw ra,0x2c(sp)
+00424314  lw s1,0x28(sp)
+00424318  lw s0,0x24(sp)
+0042431c  j 0x00423258
+00424320  _addiu sp,sp,0x30

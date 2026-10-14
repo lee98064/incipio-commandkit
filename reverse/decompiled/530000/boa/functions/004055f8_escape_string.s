@@ -1,0 +1,86 @@
+# escape_string @ 004055f8
+004055f8  addiu sp,sp,-0x28
+004055fc  sw ra,0x24(sp)
+00405600  sw s2,0x20(sp)
+00405604  sw s1,0x1c(sp)
+00405608  sw s0,0x18(sp)
+0040560c  lui gp,0x47
+00405610  addiu gp,gp,0x2630
+00405614  sw gp,0x10(sp)
+00405618  lw t9,-0x7f1c(gp)
+0040561c  li s1,0x3
+00405620  move s0,a1
+00405624  jalr t9
+00405628  _move s2,a0
+0040562c  mult v0,s1
+00405630  lw gp,0x10(sp)
+00405634  bne s0,zero,0x00405664
+00405638  _mflo s1
+0040563c  beq s1,zero,0x00405678
+00405640  _nop
+00405644  lw t9,-0x7b1c(gp)
+00405648  nop
+0040564c  jalr t9
+00405650  _addiu a0,s1,0x1
+00405654  lw gp,0x10(sp)
+00405658  beq v0,zero,0x00405678
+0040565c  _nop
+00405660  move s0,v0
+00405664  move v0,s0
+00405668  li t1,0x25
+0040566c  lw a3,-0x7c6c(gp)
+00405670  b 0x004056f8
+00405674  _li t0,0x1
+00405678  lw t9,-0x7aec(gp)
+0040567c  lui a0,0x45
+00405680  jalr t9
+00405684  _addiu a0,a0,-0x6810
+00405688  b 0x00405734
+0040568c  _move v0,s0
+00405690  bltz a1,0x004056ac
+00405694  _nop
+00405698  lw t3,0x0(t3)
+0040569c  nop
+004056a0  and t2,t2,t3
+004056a4  beq t2,zero,0x004056f0
+004056a8  _nop
+004056ac  addiu a1,a2,0x57
+004056b0  sb t1,0x0(v0)
+004056b4  bne t4,zero,0x004056c4
+004056b8  _addiu a2,a2,0x30
+004056bc  sll a2,a1,0x18
+004056c0  sra a2,a2,0x18
+004056c4  andi v1,v1,0xf
+004056c8  slti t2,v1,0xa
+004056cc  addiu a1,v1,0x57
+004056d0  sb a2,0x0(a0)
+004056d4  addiu v1,v1,0x30
+004056d8  bne t2,zero,0x004056e8
+004056dc  _addiu v0,a0,0x1
+004056e0  sll v1,a1,0x18
+004056e4  sra v1,v1,0x18
+004056e8  b 0x004056f4
+004056ec  _sb v1,0x1(a0)
+004056f0  sb a1,0x0(v0)
+004056f4  addiu v0,v0,0x1
+004056f8  lb a1,0x0(s2)
+004056fc  addiu a0,v0,0x1
+00405700  addiu s2,s2,0x1
+00405704  andi v1,a1,0xff
+00405708  srl t3,v1,0x5
+0040570c  sll t3,t3,0x2
+00405710  srl a2,v1,0x4
+00405714  addu t3,a3,t3
+00405718  sllv t2,t0,v1
+0040571c  beq v1,zero,0x0040572c
+00405720  _sltiu t4,a2,0xa
+00405724  bgtz s1,0x00405690
+00405728  _nop
+0040572c  sb zero,0x0(v0)
+00405730  move v0,s0
+00405734  lw ra,0x24(sp)
+00405738  lw s2,0x20(sp)
+0040573c  lw s1,0x1c(sp)
+00405740  lw s0,0x18(sp)
+00405744  jr ra
+00405748  _addiu sp,sp,0x28

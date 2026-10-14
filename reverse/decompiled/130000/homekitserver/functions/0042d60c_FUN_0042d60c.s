@@ -1,0 +1,27 @@
+# FUN_0042d60c @ 0042d60c
+0042d60c  addiu sp,sp,-0x100
+0042d610  sw ra,0xfc(sp)
+0042d614  sw s2,0xf8(sp)
+0042d618  sw s1,0xf4(sp)
+0042d61c  sw s0,0xf0(sp)
+0042d620  addiu s0,sp,0x18
+0042d624  move s2,a1
+0042d628  move a1,a0
+0042d62c  move a0,s0
+0042d630  move s1,a2
+0042d634  jal 0x00429a04
+0042d638  _sw a1,0xe8(sp)
+0042d63c  lw a1,0xe8(sp)
+0042d640  move a2,s2
+0042d644  jal 0x0042d4dc
+0042d648  _move a0,s0
+0042d64c  move a1,s0
+0042d650  jal 0x0042d034
+0042d654  _move a0,s1
+0042d658  move v0,s1
+0042d65c  lw ra,0xfc(sp)
+0042d660  lw s2,0xf8(sp)
+0042d664  lw s1,0xf4(sp)
+0042d668  lw s0,0xf0(sp)
+0042d66c  jr ra
+0042d670  _addiu sp,sp,0x100

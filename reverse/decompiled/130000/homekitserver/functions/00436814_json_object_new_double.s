@@ -1,0 +1,44 @@
+# json_object_new_double @ 00436814
+00436814  lui gp,0x1e
+00436818  addiu gp,gp,0x2c6c
+0043681c  addu gp,gp,t9
+00436820  addiu sp,sp,-0x28
+00436824  sw ra,0x24(sp)
+00436828  sw s8,0x20(sp)
+0043682c  move s8,sp
+00436830  sw gp,0x10(sp)
+00436834  sw a1,0x2c(s8)
+00436838  sw a0,0x28(s8)
+0043683c  li a0,0x2
+00436840  lw v0,-0x7fcc(gp)
+00436844  nop
+00436848  addiu v0,v0,0x4df0
+0043684c  move t9,v0
+00436850  jalr t9
+00436854  _nop
+00436858  lw gp,0x10(s8)
+0043685c  sw v0,0x18(s8)
+00436860  lw v0,0x18(s8)
+00436864  nop
+00436868  bne v0,zero,0x0043687c
+0043686c  _nop
+00436870  clear v0
+00436874  b 0x004368a8
+00436878  _nop
+0043687c  lw v0,0x18(s8)
+00436880  lw v1,-0x7fcc(gp)
+00436884  nop
+00436888  addiu v1,v1,0x6624
+0043688c  sw v1,0x8(v0)
+00436890  lw a0,0x18(s8)
+00436894  lw v1,0x2c(s8)
+00436898  lw v0,0x28(s8)
+0043689c  sw v1,0x1c(a0)
+004368a0  sw v0,0x18(a0)
+004368a4  lw v0,0x18(s8)
+004368a8  move sp,s8
+004368ac  lw ra,0x24(sp)
+004368b0  lw s8,0x20(sp)
+004368b4  addiu sp,sp,0x28
+004368b8  jr ra
+004368bc  _nop

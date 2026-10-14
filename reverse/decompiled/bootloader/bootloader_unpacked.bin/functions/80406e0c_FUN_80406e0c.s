@@ -1,0 +1,24 @@
+# FUN_80406e0c @ 80406e0c
+80406e0c  clear a2
+80406e10  j 0x80406e4c
+80406e14  _li a1,0x20
+80406e18  beq v1,a1,0x80406e48
+80406e1c  _nop
+80406e20  addiu a2,a2,0x1
+80406e24  addiu a0,a0,0x1
+80406e28  lb v1,0x0(a0)
+80406e2c  nop
+80406e30  beq v1,a1,0x80406e54
+80406e34  _nop
+80406e38  bne v1,zero,0x80406e28
+80406e3c  _addiu a0,a0,0x1
+80406e40  j 0x80406e54
+80406e44  _addiu a0,a0,-0x1
+80406e48  addiu a0,a0,0x1
+80406e4c  lb v1,0x0(a0)
+80406e50  nop
+80406e54  bne v1,zero,0x80406e18
+80406e58  _li v0,0x13
+80406e5c  slti v1,a2,0x14
+80406e60  jr ra
+80406e64  _movn v0,a2,v1
