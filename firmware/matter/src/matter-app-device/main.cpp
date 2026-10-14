@@ -212,19 +212,30 @@ int main(int argc,char**argv){
         }
         _exit(0);
     }
-    if (!LoadDeviceIdentity(deviceIdentity)) {
-        std::fputs("device identity unavailable or invalid; no shared pairing code fallback\n",stderr); _exit(5);
-    }
+    bool hardwareOnly = argc == 4 && strcmp(argv[1], "--hardware-only") == 0;
     bool persistentVm=argc==5&&strcmp(argv[1],"--vm-persistent")==0;
     bool vm = argc == 5 && (strcmp(argv[1], "--vm") == 0 || persistentVm);
     isVm=vm;if(vm&&!persistentVm)storage=&vmStorage;
-    bool hardwareOnly = argc == 4 && strcmp(argv[1], "--hardware-only") == 0;
     const char * iface = vm ? argv[2] : (argc==2 ? argv[1] : "br0");
     const char * port = (vm || hardwareOnly) ? argv[hardwareOnly ? 2 : 3] : "/dev/ttyACM0";
     const char * gpio = (vm || hardwareOnly) ? argv[hardwareOnly ? 3 : 4] : "/proc/wlan0/gpio_ctrl";
     std::puts("matterd-test " CK_VERSION_STRING "; persistent fabrics; signed OTA; one MCU owner; cold OFF");
     signal(SIGTERM, SignalStop); signal(SIGINT, SignalStop);
     if (!hardware.Start(port, gpio)) { std::fputs("MCU ownership/thread setup failed\n", stderr); return 4; }
+    if (!hardwareOnly) {
+        // Setup generates identity after its 15-second network startup delay.
+        // Keep the MCU worker active while waiting; no pairing key fallback.
+        bool ready = false;
+        for (unsigned attempt = 0; attempt < 240 && !stopping; ++attempt) {
+            if (LoadDeviceIdentity(deviceIdentity)) { ready = true; break; }
+            if (attempt == 0) std::puts("MCU_ACTIVE_WAITING_FOR_DEVICE_IDENTITY");
+            usleep(250000);
+        }
+        if (!ready) {
+            if (!stopping) std::fputs("device identity unavailable or invalid; no shared pairing code fallback\n",stderr);
+            hardware.Stop(); _exit(stopping ? 0 : 5);
+        }
+    }
     if (!vm) {
         for (;;) {
             char state[64] = {}; int fd = open("/var/run/ck-setup-state", O_RDONLY);

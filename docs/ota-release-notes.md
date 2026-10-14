@@ -1,4 +1,6 @@
-此版新增簽章 OTA、區網管理頁、線上版本檢查、Matter OTA Requestor，以及設定／fabrics 持久儲存。
+v0.2.2 修正原機 `wlan0` 介面名稱、身分產生前啟動 MCU 的順序，以及 Linux 2.6.30 MTD 不支援 `fsync` 的相容性。初始化失敗時保留本機 MCU 通訊及使用裝置原有 bootstrap 身分的設定／診斷入口；不將 RAM 退路當作持久 fabrics。
+
+此系列提供簽章 OTA、區網管理頁、線上版本檢查、Matter OTA Requestor，以及設定／fabrics 持久儲存。
 
 首次安裝仍需以原燒錄工具將支援 OTA 的韌體寫入 Bank 1；後續使用 `.ota` 更新包。`matter-8m-region.bin` 是部分燒錄映像，必須本機個別化，禁止整片覆蓋。`matter-matter-ota.bin` 是提供 Matter OTA Provider 的標準外層容器。
 

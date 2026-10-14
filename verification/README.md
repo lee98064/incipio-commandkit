@@ -1,5 +1,7 @@
 # 驗證索引
 
+v0.2.2 的舊 MTD、配網啟動、身分等待及 MCU 退路修復見[修復結果](recovery-results.json)；原機開機驗收狀態與模擬結果分別記錄。
+
 v0.2.1 的軟體累積 kWh、獨立 Flash 循環紀錄及標準能源訂閱見 [電量結果](energy-results.json)。
 
 v0.2 的新增測試見 [OTA／持久儲存／量測結果](ota-results.json)；以下歷史 v0.1 結果與新版本分開保存。

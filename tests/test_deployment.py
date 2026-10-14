@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Synthetic flash contents + real published rootfs. Never access a programmer."""
 import argparse
+import hashlib
 import json
 import os
 import shutil
@@ -116,6 +117,36 @@ class Deployment(unittest.TestCase):
         with self.assertRaises(ValueError):
             self.prepare()
         self.assertFalse(self.output.exists())
+
+    def test_intact_uncommitted_first_import_preserves_identity_and_journal(self):
+        self.prepare()
+        before = bytearray(self.output.read_bytes())
+        key = b'identity/device'
+        identity = (self.profile / 'device-identity.key').read_bytes()
+        payload = struct.pack('>BBH', len(key), 0, len(identity)) + key + identity
+        header = bytearray(b'\xff' * 64)
+        header[:8] = b'CKSTORE1'
+        struct.pack_into('>QI', header, 8, 1, len(payload))
+        header[20:52] = hashlib.sha256(header[8:20] + payload).digest()
+        before[0x3c0000:0x3c0000+64+len(payload)] = header + payload
+        self.first.write_bytes(before)
+        self.second.write_bytes(before)
+        result = self.work / 'recovery.bin'
+        self.prepare(output=result)
+        after = result.read_bytes()
+        self.assertEqual(after[fw.END:], before[fw.END:])
+        self.assertEqual(fw.read_file(after[fw.START:fw.END], 'etc/matter-device.key'), identity)
+        for at in (0x3c000f, 0x3c0014, 0x3c003c, 0x3d0000):
+            damaged = bytearray(before)
+            damaged[at] ^= 1
+            with self.assertRaises(ValueError):
+                fw.journal_state(damaged)
+        wrong = bytearray(before)
+        wrong[0x3c0040+len(payload)-1] ^= 1
+        wrong[0x3c0014:0x3c0034] = hashlib.sha256(wrong[0x3c0008:0x3c0014] +
+                                                wrong[0x3c0040:0x3c0040+len(payload)]).digest()
+        with self.assertRaises(ValueError):
+            fw.journal_state(wrong)
 
     def test_same_file_and_hardlink(self):
         with self.assertRaises(ValueError):

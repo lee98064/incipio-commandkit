@@ -105,6 +105,8 @@ int ck_flash_open(struct ck_flash *f, unsigned part, int writable) {
   f->base = 0;
 #endif
   f->size = sizes[part];
+  f->part = part;
+  f->writable = writable;
   return 0;
 fail:
   close(f->fd);
@@ -157,7 +159,36 @@ int ck_flash_erase(struct ck_flash *f, unsigned at, unsigned n) {
   return ioctl(f->fd, MEMERASE, &erase);
 #endif
 }
-int ck_flash_sync(struct ck_flash *f) { return fsync(f->fd); }
+int ck_flash_sync(struct ck_flash *f) {
+  int result;
+  do {
+    result = fsync(f->fd);
+  } while (result && errno == EINTR);
+#ifndef CK_TESTING
+  if (result && errno == EINVAL && f->writable) {
+    /* Linux 2.6.30 mtdchar has no .fsync callback: fsync returns EINVAL.
+     * Its .release callback calls mtd->sync for writable descriptors.
+     * Open and validate a replacement first, then close the original to
+     * perform that barrier. Callers seek explicitly before every I/O and
+     * still independently read back data before committing a record.
+     * Never treat a real I/O error or a different device as synchronized. */
+    struct stat original, replacement;
+    struct ck_flash next;
+    if (fstat(f->fd, &original) || !S_ISCHR(original.st_mode) ||
+        major(original.st_rdev) != 90 ||
+        ck_flash_open(&next, f->part, f->writable))
+      return -1;
+    if (fstat(next.fd, &replacement) ||
+        replacement.st_rdev != original.st_rdev) {
+      close(next.fd);
+      return -1;
+    }
+    result = close(f->fd);
+    f->fd = next.fd;
+  }
+#endif
+  return result;
+}
 int ck_lock(void) {
   int fd = open(ck_path("/var/lock/ck-flash.lock"),
                 O_RDWR | O_CREAT | O_NOFOLLOW | O_CLOEXEC, 0600);

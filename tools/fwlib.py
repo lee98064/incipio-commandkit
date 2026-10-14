@@ -229,7 +229,7 @@ def profile_lock(profile):
 
 
 def journal_state(before):
-    """Accept erased or committed CKSTORE1 only; never silently claim vendor data."""
+    """Accept erased, committed, or bootstrap-matched first imports only."""
     area = before[END:END+0x20000]
     if area == b"\xff" * len(area):
         return {}
@@ -253,7 +253,28 @@ def journal_state(before):
             values[key] = payload[at+4+key_size:at+4+key_size+value_size]
             at += 4+key_size+value_size
         valid.append((struct.unpack_from(">Q", block, 8)[0], block, values))
-    require(valid, "預留 journal 含未辨識資料；拒絕初始化，請保存當次備份")
+    if not valid:
+        # v0.2.1 may have programmed the complete first import before the old
+        # MTD driver's unsupported fsync prevented its commit. Recognize only
+        # an intact generation-1 body matching the personalized bootstrap;
+        # preserve the journal bytes for the repaired runtime to recover.
+        first, second = area[:0x10000], area[0x10000:]
+        size = struct.unpack_from(">I", first, 16)[0]
+        initial = (first[:8] == b"CKSTORE1" and struct.unpack_from(">Q", first, 8)[0] == 1 and
+                   first[60:64] == b"\xff"*4 and 0 < size <= 0x10000-64 and
+                   second == b"\xff"*len(second) and first[64+size:] == b"\xff"*(0x10000-64-size))
+        if initial and hashlib.sha256(first[8:20]+first[64:64+size]).digest() == first[20:52]:
+            root = before[START:END]
+            names = file_inventory(root)
+            for key, path, count in (("identity/device", "etc/matter-device.key", 32),
+                                     ("identity/setup-ap", "etc/ck-setup-ap.bin", 104)):
+                if path not in names:
+                    continue
+                bootstrap = read_file(root, path)
+                payload = struct.pack(">BBH", len(key), 0, count) + key.encode() + bootstrap
+                if len(bootstrap) == count and first[64:64+size] == payload:
+                    return {key: bootstrap}
+        raise ValueError("預留 journal 含未辨識資料；拒絕初始化，請保存當次備份")
     if len(valid) == 2 and valid[0][0] == valid[1][0]:
         require(valid[0][1] == valid[1][1], "journal 同序號內容衝突")
     return max(valid, key=lambda item:item[0])[2]

@@ -88,8 +88,24 @@ static int apply(int simulation) {
   const char *ramroot = ck_path("/var/run/ck-ota/root");
   if (mkdir(ramroot, 0700) && access(ramroot, F_OK))
     return 9;
-  if (mount("ramfs", ramroot, "ramfs", MS_NOSUID | MS_NODEV, NULL))
+  if (mount("ramfs", ramroot, "ramfs", MS_NOSUID, NULL))
     return 10;
+#ifndef CK_TESTING
+  /* Legacy mtdchar synchronizes on close, then the backend opens the same
+   * verified device again. Keep that node and fresh proc metadata accessible
+   * after detaching the old SquashFS. Only PID1 remains; no device is inferred
+   * from an unchecked minor number. */
+  struct stat device;
+  char devdir[128], node[128], procdir[128];
+  snprintf(devdir, sizeof(devdir), "%s/dev", ramroot);
+  snprintf(node, sizeof(node), "%s/dev/mtd1", ramroot);
+  snprintf(procdir, sizeof(procdir), "%s/proc", ramroot);
+  if (fstat(flash.fd, &device) || !S_ISCHR(device.st_mode) ||
+      mkdir(devdir, 0700) || mknod(node, S_IFCHR | 0600, device.st_rdev) ||
+      mkdir(procdir, 0700) ||
+      mount("proc", procdir, "proc", MS_NOSUID | MS_NODEV | MS_NOEXEC, NULL))
+    return 11;
+#endif
   char old[128];
   snprintf(old, sizeof(old), "%s/old", ramroot);
   if (mkdir(old, 0700) || mount(NULL, "/", NULL, MS_REC | MS_PRIVATE, NULL) ||

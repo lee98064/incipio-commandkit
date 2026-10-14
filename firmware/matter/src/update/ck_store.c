@@ -222,11 +222,15 @@ static int migrate(const char *name, const char *source, const char *dest,
   int r = ck_store_get(name, b, &n);
   if (r == 1) {
     if (ck_exact_file(ck_path(source), b, expected) ||
-        ck_store_set(name, b, expected))
+        ck_store_set(name, b, expected)) {
+      fprintf(stderr, "CK_STORE_IMPORT_WRITE_FAILED key=%s\n", name);
       return -1;
+    }
     n = expected;
-  } else if (r)
+  } else if (r) {
+    fprintf(stderr, "CK_STORE_IMPORT_READ_FAILED key=%s result=%d\n", name, r);
     return -1;
+  }
   if (n != expected)
     return -1;
   r = ck_atomic(ck_path(dest), b, n, 0600);

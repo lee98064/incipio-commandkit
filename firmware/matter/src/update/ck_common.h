@@ -35,7 +35,8 @@ int ck_unhex(const char *in, size_t n, uint8_t *out);
 int ck_equal(const void *a, const void *b, size_t size);
 struct ck_flash {
   int fd;
-  unsigned base, size;
+  unsigned base, size, part;
+  int writable;
 };
 int ck_flash_open(struct ck_flash *f, unsigned part, int writeable);
 int ck_flash_read(struct ck_flash *f, unsigned at, void *p, unsigned n);
