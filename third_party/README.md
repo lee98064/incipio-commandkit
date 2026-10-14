@@ -3,6 +3,8 @@
 | 元件 | 固定來源／用途 | 授權紀錄 |
 |---|---|---|
 | connectedhomeip | `sdk-lock.json` 的 v1.6.1.0 commit／submodules，Matter stack 與 SDK 範例 attestation | Apache-2.0，文字保存在 licenses/ |
+| Monocypher 4.0.3 | `firmware/matter/src/vendor/monocypher/provenance.json`，逐檔 URL／SHA-256，Ed25519 驗簽 | BSD-2-Clause／CC0 雙授權，原 LICENSE 保留 |
+| LinuxStorage override | 相同固定 SDK 的 `src/platform/Linux/CHIPLinuxStorage.cpp`，增加平台設定 journal mirror | Apache-2.0 header 保留於 override |
 | Nayuki QR encoder | `firmware/matter/src/vendor/qrcodegen/provenance.json`，固定 commit／兩檔 SHA-256 | MIT 文字包含於來源 |
 | musl-cross-make | 固定 commit，GCC 14.3.0／binutils 2.44／musl bootstrap，輕量 builder 來源也保存 | builder MIT；各工具鏈元件保留 upstream 授權 |
 | uClibc-ng 1.0.54 | `download-lock.json`，RTL8196E 相容 C/C++ runtime | LGPL-2.1 文字保存；相容修補脚本公開 |

@@ -1,0 +1,60 @@
+#!/bin/sh
+set -eu
+umask 077
+mkdir -p /var/lib/ck-state /var/run/ck-ota /var/lock
+if ! /bin/ck-updater --import > /var/log/ck-store-init.log 2>&1; then
+    echo 'Persistent identity unavailable; Matter and firmware writes disabled.' >> /var/log/ck-store-init.log
+    touch /var/run/ck-rescue
+    # Expose diagnostics/setup with this device's original bootstrap identity.
+    # This is RAM only; do not replace unknown journal data or claim fabrics
+    # are persistent. The MCU-only startup path retains local communication.
+    for pair in matter-device.key:device.key matter-diag.key:diag.key ck-update.pub:update.pub ck-setup-ap.bin:setup-ap.bin; do
+        source=${pair%:*}
+        dest=${pair#*:}
+        if [ -f "/etc/$source" ]; then
+            cp "/etc/$source" "/var/lib/ck-state/$dest"
+            chmod 600 "/var/lib/ck-state/$dest"
+        fi
+    done
+    exit 1
+fi
+/bin/ck-updater --boot || touch /var/run/ck-rescue
+(
+    while :; do
+        if [ ! -f /var/run/ck-ota/queued ]; then
+            rm -f /var/run/ck-ota/upload.ota /var/run/ck-ota/staging.ota
+        fi
+        /bin/ck-updated > /var/log/ck-update.log 2>&1 || true
+        sleep 5
+    done
+) &
+# A failed application leaves the independent maintenance page available.
+(
+    # Allow the owner unlimited time to complete first-time Wi-Fi setup.
+    while :; do
+        state=
+        if [ -f /var/run/ck-setup-state ]; then
+            read -r state < /var/run/ck-setup-state || true
+        fi
+        if [ "$state" = state=online ]; then break; fi
+        sleep 2
+    done
+    variant=
+    read -r variant < /etc/ck-variant || true
+    if [ "$variant" = exec-test ]; then
+        sleep 10
+        if /bin/pidof exec-diag >/dev/null && /bin/pidof ck-setupd >/dev/null && /bin/ck-updater --confirm; then
+            touch /var/run/ck-update-healthy
+        else
+            touch /var/run/ck-rescue
+        fi
+        exit 0
+    fi
+    sleep 180
+    if [ ! -f /var/run/ck-update-healthy ]; then
+        touch /var/run/ck-rescue
+        if [ ! -f /var/run/ck-mcu-only ]; then
+            /bin/killall matterd-test 2>/dev/null || true
+        fi
+    fi
+) &

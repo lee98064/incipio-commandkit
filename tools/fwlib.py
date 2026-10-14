@@ -228,7 +228,60 @@ def profile_lock(profile):
         os.close(fd)
 
 
-def profile_keys(profile, before, variant):
+def journal_state(before):
+    """Accept erased, committed, or bootstrap-matched first imports only."""
+    area = before[END:END+0x20000]
+    if area == b"\xff" * len(area):
+        return {}
+    valid = []
+    for index in range(2):
+        block = area[index*0x10000:(index+1)*0x10000]
+        size = struct.unpack_from(">I", block, 16)[0]
+        if block[:8] != b"CKSTORE1" or block[60:64] != b"CKOK" or size > 0x10000-64:
+            continue
+        payload = block[64:64+size]
+        if hashlib.sha256(block[8:20]+payload).digest() != block[20:52]:
+            continue
+        values, at = {}, 0
+        while at < size:
+            require(size-at >= 4, "journal entry 截斷")
+            key_size, reserved, value_size = struct.unpack_from(">BBH", payload, at)
+            require(0 < key_size <= 96 and reserved == 0 and 4+key_size+value_size <= size-at,
+                    "journal entry 格式不符")
+            key = payload[at+4:at+4+key_size].decode("ascii")
+            require(all(33 <= ord(c) <= 126 for c in key) and key not in values, "journal key 不符")
+            values[key] = payload[at+4+key_size:at+4+key_size+value_size]
+            at += 4+key_size+value_size
+        valid.append((struct.unpack_from(">Q", block, 8)[0], block, values))
+    if not valid:
+        # v0.2.1 may have programmed the complete first import before the old
+        # MTD driver's unsupported fsync prevented its commit. Recognize only
+        # an intact generation-1 body matching the personalized bootstrap;
+        # preserve the journal bytes for the repaired runtime to recover.
+        first, second = area[:0x10000], area[0x10000:]
+        size = struct.unpack_from(">I", first, 16)[0]
+        initial = (first[:8] == b"CKSTORE1" and struct.unpack_from(">Q", first, 8)[0] == 1 and
+                   first[60:64] == b"\xff"*4 and 0 < size <= 0x10000-64 and
+                   second == b"\xff"*len(second) and first[64+size:] == b"\xff"*(0x10000-64-size))
+        if initial and hashlib.sha256(first[8:20]+first[64:64+size]).digest() == first[20:52]:
+            root = before[START:END]
+            names = file_inventory(root)
+            for key, path, count in (("identity/device", "etc/matter-device.key", 32),
+                                     ("identity/setup-ap", "etc/ck-setup-ap.bin", 104)):
+                if path not in names:
+                    continue
+                bootstrap = read_file(root, path)
+                payload = struct.pack(">BBH", len(key), 0, count) + key.encode() + bootstrap
+                if len(bootstrap) == count and first[64:64+size] == payload:
+                    return {key: bootstrap}
+        raise ValueError("預留 journal 含未辨識資料；拒絕初始化，請保存當次備份")
+    if len(valid) == 2 and valid[0][0] == valid[1][0]:
+        require(valid[0][1] == valid[1][1], "journal 同序號內容衝突")
+    return max(valid, key=lambda item:item[0])[2]
+
+
+def profile_keys(profile, before, variant, journal_data=None):
+    journal_data = journal_data or {}
     identity = sha(before[0x6000:0x8000] + before[0x7F8000:])
     binding = profile / "device.json"
     existing_keys = []
@@ -245,10 +298,13 @@ def profile_keys(profile, before, variant):
     def key(name, count, hexadecimal=False):
         dest = profile / name
         require(not dest.is_symlink(), "金鑰不可為 symlink")
+        stored = journal_data.get({"diag.key": "identity/diag", "device-identity.key": "identity/device"}[name])
         if not dest.exists():
             raw = secrets.token_bytes(count)
-            atomic_write(dest, raw.hex().encode() + b"\n" if hexadecimal else raw)
+            generated = raw.hex().encode() + b"\n" if hexadecimal else raw
+            atomic_write(dest, stored if stored is not None else generated)
         data = dest.read_bytes()
+        require(stored is None or data == stored, "profile 金鑰與裝置持久身分不符")
         require((re.fullmatch(b"[0-9a-f]{64}\n", data) if hexadecimal else len(data) == count),
                 "profile 金鑰格式不符")
         os.chmod(dest, 0o600)
@@ -267,9 +323,12 @@ def profile_keys(profile, before, variant):
             record[4:7] = bytes([len(ssid), len(password), 1])
             record[8:8 + len(ssid)] = ssid
             record[40:40 + len(password)] = password
+            record = journal_data.get("identity/setup-ap", record)
             atomic_write(dest, record)
-            write_json(profile / "setup-ap.json", {"ssid": ssid.decode(), "password": password.decode()})
+            write_json(profile / "setup-ap.json", {"ssid": bytes(record[8:8+record[4]]).decode(), "password": bytes(record[40:40+record[5]]).decode()})
         data = dest.read_bytes()
+        require("identity/setup-ap" not in journal_data or data == journal_data["identity/setup-ap"],
+                "profile AP 憑證與裝置持久設定不符")
         require(len(data) == 104 and data[:4] == b"CKW1" and data[6] == 1,
                 "設定熱點憑證格式不符")
         os.chmod(dest, 0o600)
@@ -288,8 +347,9 @@ def prepare(first, second, release, manifest, profile, output):
     before = matching_backups(first, second)
     root, meta = load_release(release, manifest)
     compatible(before, meta["compatibility"])
+    journal_data = journal_state(before) if "etc/ck-update.meta" in file_inventory(root) else {}
     with profile_lock(profile) as folder:
-        injected = profile_keys(folder, before, meta["variant"])
+        injected = profile_keys(folder, before, meta["variant"], journal_data)
         root = repack(root, injected)
         target = before[:START] + root + before[END:]
         image_checks(target)

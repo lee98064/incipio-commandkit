@@ -86,14 +86,17 @@ void McuController::Gpio(const char * command)
 }
 void McuController::Report(uint64_t now, const RelaySnapshot & s, bool led)
 {
-    char text[768];
+    char text[1024];
     int n = std::snprintf(text, sizeof(text),
         "matter-hardware/1\nconnected=%d baud=9600 cold_off_confirmed=%d\nrelay_known=%d relay_on=%d relay_age_ms=%llu\n"
         "completed_id=%u result=%u relay_frames=%u\npower_raw=%u power_frames=%u power_age_ms=%llu load_blink=%d led=%d\n"
-        "reset_events=%u reset_action=record_only\nfabrics=RAM_only\n",
+        "voltage_raw=%u voltage_valid=%d voltage_age_ms=%llu current_raw=%u current_valid=%d current_age_ms=%llu power_valid=%d\n"
+        "reset_events=%u reset_action=record_only\n",
         int(mFd >= 0), int(s.bootOffConfirmed), int(s.known && now-s.relayAt <= 10000), int(s.on),
         static_cast<unsigned long long>(now-s.relayAt), s.completedId, unsigned(s.result), s.relayFrames,
-        s.powerRaw, s.powerFrames, static_cast<unsigned long long>(now-s.powerAt), int(mEngine.LoadBlink(now)), int(led), s.resetEvents);
+        s.powerRaw, s.powerFrames, static_cast<unsigned long long>(now-s.powerAt), int(mEngine.LoadBlink(now)), int(led), s.voltageRaw, int(s.voltageValid && now-s.voltageAt<=15000), static_cast<unsigned long long>(now-s.voltageAt),
+        s.currentRaw, int(s.currentValid && now-s.currentAt<=15000), static_cast<unsigned long long>(now-s.currentAt),
+        int(s.powerValid && now-s.powerAt<=15000), s.resetEvents);
     int fd = open("/var/log/matter-hardware.txt.tmp", O_WRONLY | O_CREAT | O_TRUNC | O_NOFOLLOW, 0600);
     if (fd >= 0) {
         if (n > 0 && n < int(sizeof(text)) && write(fd, text, n) == n) { close(fd); rename("/var/log/matter-hardware.txt.tmp", "/var/log/matter-hardware.txt"); }

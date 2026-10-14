@@ -1,6 +1,14 @@
 # 驗證索引
 
-最終結果見 [test-results.json](test-results.json)、[公開包稽核](public-audit.json)、[flashrom dummy backend](dummy-flashrom.json)。公開 manifest 的 hash 對應本次檔案；原始 VM console／配對記錄只留在本機。
+v0.2.3 的手機即時監測頁、RAM 快照、讀值過期、完整 Matter／HTTP VM 比對，以及原機 OTA 安裝狀態見[監測頁驗證](monitor-results.json)。
+
+v0.2.2 的舊 MTD、配網啟動、身分等待及 MCU 退路修復見[修復結果](recovery-results.json)；原機開機驗收狀態與模擬結果分別記錄。
+
+v0.2.1 的軟體累積 kWh、獨立 Flash 循環紀錄及標準能源訂閱見 [電量結果](energy-results.json)。
+
+v0.2 的新增測試見 [OTA／持久儲存／量測結果](ota-results.json)；以下歷史 v0.1 結果與新版本分開保存。
+
+歷史結果見 [test-results.json](test-results.json)、[公開包稽核](public-audit.json)、[flashrom dummy backend](dummy-flashrom.json)。公開 manifest 的 hash 對應本次檔案；原始 VM console／配對記錄只留在本機。
 
 本次獨立 SDK 建置使用搬移後的來源與本專案 Dockerfile，第三方 SDK／編譯器使用固定版本快取的獨立複本，不讀取原研究來源路徑。原廠 libraries 從裝置備份提取；公開重打包只替換等長 debug source path 字串。
 
@@ -12,6 +20,7 @@
 python3 tests/test_deployment.py --release-dir artifacts/releases -v
 python3 tests/test_dummy_flashrom.py --flashrom artifacts/flashrom-source/build/flashrom
 python3 tools/check_public.py --repository . --release-dir artifacts/releases
+node tests/test_monitor.js
 ```
 
 MIPS HTTP／診斷／身分測試使用 Docker 內的 qemu-user 或 Malta／24Kc／Linux 4.19 VM。測試金鑰須在本機重新產生，不能複製公開範例固定碼。先在 `firmware/matter/private/` 準備 `diag.key`（64 位十六進位及換行）與 `device-identity.key`（32 bytes），權限 0600：
@@ -54,4 +63,4 @@ python3 firmware/matter/tools/test_device_vm.py
 
 ## 原機待驗收
 
-公開重打包、Mac／driver／OTP 相容性、RF／Wi-Fi 掃描、手機 captive portal、家庭 app UI、繼電器及負載切換、10 次重啟與長時間 RAM 穩定性未在本次完成。fabrics 持久化與 OTA 尚未實作。模擬機／dummy pass 不提升这些狀態。
+公開重打包、Mac／driver／OTP 相容性、RF／Wi-Fi 掃描、手機 captive portal、家庭 app UI、繼電器及負載切換、10 次重啟與長時間 RAM 穩定性未在本次完成。v0.2 已實作 fabrics 持久化、OTA 與標準量測，其 fixture／VM 檢查見上方新增結果；原機仍須驗收。模擬機／dummy pass 不提升这些狀態。

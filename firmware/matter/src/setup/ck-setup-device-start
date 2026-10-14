@@ -2,11 +2,11 @@
 umask 077
 sleep 15
 # Generate all onboarding data together before changing the network mode.
-/bin/matterd-test --init-identity wl0 > /var/log/matter-identity.log 2>&1 || exit 1
+/bin/matterd-test --init-identity wlan0 > /var/log/matter-identity.log 2>&1 || exit 1
 status=$(/bin/ck-wificfg status 2>/dev/null) || exit 1
 case "$status" in
 *configured=1*) printf configured > /var/run/ck-setup-boot ;;
 *) printf unconfigured > /var/run/ck-setup-boot ;;
 esac
 # A single controller. Never restart failed MIB writes in a tight loop.
-exec /bin/ck-setupd --serve /etc/matter-diag.key
+exec /bin/ck-setupd --serve /var/lib/ck-state/diag.key

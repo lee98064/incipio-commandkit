@@ -24,6 +24,18 @@ docker run --rm -v "$PWD/firmware/matter:/work" incipio-public-build:v0.1.0-prev
 
 需使用 Linux 的區分大小寫檔案系統解壓舊 kernel headers；腳本已在容器 `/tmp` 處理。SDK、下載、工具鏈與 build 產物不應加入 Git。
 
+## v0.2 一次建立兩版及更新附件
+
+依賴及工具鏈準備完成後，使用 [更新說明](updates.md) 的 `tools/release.py`。它從固定 SHA-256 的公開 v0.1 基底組裝兩種韌體，不需要將私人 Flash 備份交給 CI。新版私鑰需沿用，公鑰已固定於來源。
+
+下列個別建置命令也需先產生版本及更新服務：
+
+```bash
+python3 tools/generate_update.py
+docker run --rm -v "$PWD/firmware/matter:/work" incipio-public-build:v0.1.0-preview \
+  sh tools/build_updates.sh
+```
+
 ## 提取自己的原廠 helper libraries
 
 ```bash
@@ -43,7 +55,7 @@ python3 tools/build.py matter --binaries firmware/matter/artifacts/softap-device
   --base private/read-01/before-1.bin --output artifacts/matter-8m-region.bin
 ```
 
-`build.py` 從搬移後的來源編譯診斷、設定頁、RAM runner、Wi-Fi scan 與 lease publisher，稽核 ISA、組裝原廠 Bank 2 rootfs、停用 HomeKit／OTA，並移除私人憑證。輸出公開格式 BIN 與 JSON；接著使用 [prepare](flashing.md) 個別化，不能直接全片寫入此公開檔。
+`build.py` 從搬移後的來源編譯診斷、設定頁、RAM runner、Wi-Fi scan 與 lease publisher，稽核 ISA、組裝原廠 Bank 2 rootfs、停用原廠 HomeKit／OTA，加入簽章更新入口，並移除私人憑證。輸出公開格式 BIN 與 JSON；接著使用 [prepare](flashing.md) 個別化，不能直接全片寫入此公開檔。
 
 生成頁面 header 的腳本是來源的一部分；重建可能更新生成 header。沒有共用配對碼的私有 header 依賴。
 

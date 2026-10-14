@@ -1,0 +1,149 @@
+{
+  "version": "0.2.1-preview",
+  "software_version": 3,
+  "date": "2026-10-14",
+  "status": "pass_for_listed_fixture_and_vm_checks",
+  "physical_device_access": false,
+  "native": {
+    "status": "pass",
+    "tests": 20,
+    "log_sha256": "2ac9c7dc28ffb8a4559305f209ab77323264393b4957125346feb3a1078cae04"
+  },
+  "mips": {
+    "status": "pass",
+    "tests": 20,
+    "log_sha256": "9ed57090d20804b659e12ce69019fc0afc4cc2e44a251662024d3b4493be5f72"
+  },
+  "deployment": {
+    "status": "pass",
+    "tests": 11,
+    "log_sha256": "b279e839c450f702b0df9e60a41a69749130deb196939a833ce206b85ac8b964"
+  },
+  "integration_math": {
+    "status": "pass",
+    "checks": 14,
+    "vectors": [
+      "1000 W for 1 hour = 1 kWh",
+      "sub-mWh remainder retention",
+      "trapezoidal ramp",
+      "duplicate sample ignored",
+      "invalid/stale/long gaps not filled",
+      "fractional checkpoint restore",
+      "no cross-boot interpolation",
+      "bounds and overflow"
+    ]
+  },
+  "flash_checks": [
+    "two-page ring wraps across 260 records",
+    "configuration and all other bytes preserved",
+    "torn body and interrupted erase retain preceding committed energy",
+    "initial zero interrupted commit can retry",
+    "unknown tail and oversized legacy snapshot refused without erase",
+    "firmware write preserves accumulated energy and fabric"
+  ],
+  "storage": {
+    "record_bytes": 64,
+    "page_bytes": 4096,
+    "pages": 2,
+    "records": 128,
+    "checkpoint_seconds": 30,
+    "configuration_payload_max": 61376,
+    "physical_page_starts": [
+      "0x3cf000",
+      "0x3df000"
+    ],
+    "matter_reports": "only verified durable mWh; Accuracy.Measured=false"
+  },
+  "pid1": {
+    "status": "pass",
+    "environment": "native Linux PID1 in private container namespaces; regular-file NOR fixture; separate MIPS writer suite",
+    "checks": [
+      "real process quiesce and pivot_root branch",
+      "updater executable copied to ramfs",
+      "rootfs written and read back",
+      "all protected bytes and journal unchanged",
+      "namespace reboot"
+    ],
+    "physical_device_access": false,
+    "container_exit_code": 129,
+    "updater_sha256": "d6c0853157fe57e5d9248463339e6434eea23550fc064abf0e4b7d2c3879b9d2"
+  },
+  "matter_vm": {
+    "status": "pass",
+    "environment": "MIPS Malta/24Kc Linux 4.19 VM, 64 MiB RAM, 8 MiB daemon AS; simulated serial MCU",
+    "binary_sha256": "1faab3b4f6c6ed952c254cf40ee3a9db4b3d833d952b664ee2637cd7da4be4b2",
+    "full_commissioning": true,
+    "checks": [
+      "cold boot sends OFF and awaits MCU confirmation",
+      "full development commissioning, default attestation verifier",
+      "OTA Requestor cluster available over encrypted Matter session",
+      "process reboot retains fabrics; encrypted CASE command succeeds without commissioning again",
+      "standard ElectricalPowerMeasurement: 109000 mV, 1500 mA RMS and 500000 mW over CASE",
+      "standard active-power and cumulative-energy subscriptions report MCU sample and durable energy changes",
+      "stale metering becomes null, fresh readings recover; unsupported ActiveCurrent rejected",
+      "standard cumulative imported mWh is estimated, pauses during missing samples and survives reboot",
+      "10 encrypted On/Off/Toggle commands including duplicates confirmed through kernel TTY",
+      "unsolicited physical-button frame reflected in Matter attribute",
+      "MCU timeout returns failure; subsequent command recovers",
+      "Identify command accepted by integrated LED delegate"
+    ],
+    "mcu_tx_frames": 197,
+    "mcu_bad_frames": []
+  },
+  "production_elf_sha256": "628e6f8cacfe1d089c5c21fb0bdea94747cea86a64b7fd3e7d6f2a092be8345d",
+  "artifacts": {
+    "SHA256SUMS": {
+      "bytes": 837,
+      "sha256": "b24cd45b854388f12300e0a197a1fa0f26ed8e330f3af2a645e85bb4ac114977"
+    },
+    "exec-test-8m-region.bin": {
+      "bytes": 8388608,
+      "sha256": "8439fa6cc935a0ffad28f0a9454e7a48f6f5f810b9fbd99841a6ac28eab48f29"
+    },
+    "exec-test-8m-region.json": {
+      "bytes": 679,
+      "sha256": "61579dc0d589142707944fdaf52aa53f05ae03ab2db772ec372df70756ac7c77"
+    },
+    "exec-test.json": {
+      "bytes": 610,
+      "sha256": "db1c1e1e9fd78fca4cf7ce47e8617fe6b6216f830669bf1c532cbafaa7ac1ae7"
+    },
+    "exec-test.ota": {
+      "bytes": 2687232,
+      "sha256": "8d2d8eb75b2084afb1d80ecc5c546f904abb0ae305aac15e87732807347a9273"
+    },
+    "index.json": {
+      "bytes": 1547,
+      "sha256": "7db45f9e17d6ab7afc0cd651dafa7984e02a2f1a998cef8407cb346c7f1937a6"
+    },
+    "matter-8m-region.bin": {
+      "bytes": 8388608,
+      "sha256": "05272b491d34e48b96ebfe4918c8668c8a590885497052756a7dc3d3edab144f"
+    },
+    "matter-8m-region.json": {
+      "bytes": 676,
+      "sha256": "686170453699b904de902c619f33b331650d57597b5b9f4300493c7a4258c58b"
+    },
+    "matter-matter-ota.bin": {
+      "bytes": 2687321,
+      "sha256": "4c356b40de491fedd8775030d9fe9c9e079149811404920aae490adc4a2b128f"
+    },
+    "matter.json": {
+      "bytes": 607,
+      "sha256": "db26e04d63f2ef0ff23b3cfee0df3c2587fe635b1a9e64f80e935dd40bcb9720"
+    },
+    "matter.ota": {
+      "bytes": 2687232,
+      "sha256": "fc3ecff9c2dc2c95cb1e7218b5386673935404cb645651d9a6ffce3946dfc690"
+    }
+  },
+  "limitations": [
+    "No original-hardware calibration or power-cut/MTD-driver validation",
+    "No Apple Home or other phone UI validation; controller must support standard energy clusters",
+    "Complete Matter Provider-to-installed-version path remains unverified",
+    "Sudden power loss can discard about 30 seconds of uncommitted integration plus one sample interval; storage failure can extend that loss",
+    "Missing samples and time without power are not estimated; counter starts at feature initialization, not factory lifetime",
+    "Legacy configuration payloads over 61376 bytes require migration; energy log refuses to erase them"
+  ],
+  "maximum_mwh": 4611686018427387904
+}

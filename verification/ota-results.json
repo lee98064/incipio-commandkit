@@ -1,0 +1,147 @@
+{
+  "format": "commandkit-ota-verification-v1",
+  "date": "2026-10-14",
+  "version": "0.2.0-preview",
+  "software_version": 2,
+  "status": "pass_for_listed_fixture_and_vm_checks",
+  "physical_device_access": false,
+  "native_update_suite": {
+    "status": "pass",
+    "tests": 16,
+    "log_sha256": "89841d854973d06ea337be4fc129ababd0e841ffb0717d241de84347f844b465"
+  },
+  "mips_update_suite": {
+    "status": "pass",
+    "tests": 16,
+    "log_sha256": "514225dd0f396d5b0782f57fe27d7b53e87730fe012a70bccd2fc89ec8486583"
+  },
+  "deployment_suite": {
+    "status": "pass",
+    "tests": 11,
+    "log_sha256": "1b716bad176959bdd8de8887dbe72344184127c7817a601ba8c973c6e7838a8c"
+  },
+  "pid1": {
+    "status": "pass",
+    "environment": "native Linux PID1 in private container namespaces; regular-file NOR fixture; separate MIPS writer suite",
+    "checks": [
+      "real process quiesce and pivot_root branch",
+      "updater executable copied to ramfs",
+      "rootfs written and read back",
+      "all protected bytes and journal unchanged",
+      "namespace reboot"
+    ],
+    "physical_device_access": false,
+    "container_exit_code": 129,
+    "updater_sha256": "bc345a9f4c97bcf60769e8a98a0423089b724731c99878672d7dfb848217f9b7"
+  },
+  "browser_crypto": {
+    "status": "pass",
+    "sha256_independent_node_vectors": 9
+  },
+  "protocol": {
+    "status": "pass",
+    "native_checks": 574,
+    "confirmed_command_cycles": 100
+  },
+  "matter_vm": {
+    "status": "pass",
+    "environment": "MIPS Malta/24Kc Linux 4.19 VM, 64 MiB RAM, 8 MiB daemon AS; simulated serial MCU",
+    "binary_sha256": "39732f48392101148d3feb9998dc276945c9ec4d0be9e8ee37da7ed843a2ad3d",
+    "original_hardware_test": false,
+    "flash_access": "regular-file journal fixture",
+    "full_commissioning": true,
+    "checks": [
+      "cold boot sends OFF and awaits MCU confirmation",
+      "full development commissioning, default attestation verifier",
+      "OTA Requestor cluster available over encrypted Matter session",
+      "process reboot retains fabrics; encrypted CASE command succeeds without commissioning again",
+      "standard ElectricalPowerMeasurement: 109000 mV, 1500 mA RMS and 500000 mW over CASE",
+      "standard active-power subscription reports changed MCU sample",
+      "stale metering becomes null, fresh readings recover; unsupported ActiveCurrent rejected",
+      "10 encrypted On/Off/Toggle commands including duplicates confirmed through kernel TTY",
+      "unsolicited physical-button frame reflected in Matter attribute",
+      "MCU timeout returns failure; subsequent command recovers",
+      "Identify command accepted by integrated LED delegate"
+    ],
+    "mcu_tx_frames": 92,
+    "mcu_bad_frames": []
+  },
+  "production_matter_elf_sha256": "c9830b0c695c854cb3c550f38894ab434294ff23a70fb9080646fa97eb10aa56",
+  "linux_rootfs_assembly": {
+    "status": "pass",
+    "log_sha256": "38bf88382c29ff1098bacc47be2dae20b87ea61a2e95f0f6eb83c64aa851cfdf"
+  },
+  "workflow_lint": {
+    "status": "pass",
+    "tool": "actionlint 1.7.12"
+  },
+  "browser_ui": {
+    "status": "pass",
+    "target": "local mock preview, no device writes",
+    "checks": [
+      "no update key / authorization selector",
+      "current version shown",
+      "missing package message",
+      "unpublished catalog fallback"
+    ]
+  },
+  "artifacts": {
+    "SHA256SUMS": {
+      "size": 837,
+      "sha256": "8278a3179dfe8e40fdb5f0301a4f01205cd19624a891b11d5ebb6fcbc6330296"
+    },
+    "exec-test-8m-region.bin": {
+      "size": 8388608,
+      "sha256": "e63932474b22ff779626925315ed029c06ed4a7ce0bcc2a02aff5c7840c7d8b4"
+    },
+    "exec-test-8m-region.json": {
+      "size": 679,
+      "sha256": "dc937e96f908e1589dc8f0aa36f23b549d12bcde40635366accf9f1f9af0a267"
+    },
+    "exec-test.json": {
+      "size": 610,
+      "sha256": "c899fd5cbe6b6d8b152987a93181b22e553c9f05aa65088e4f7fed74f2cd805a"
+    },
+    "exec-test.ota": {
+      "size": 2687232,
+      "sha256": "809e959d7f0ac94631dd3586ed6b0001850bf7a009da9902f5ebf8ed64304759"
+    },
+    "index.json": {
+      "size": 1547,
+      "sha256": "3b2d5427dc643dc1f074888d7f43ea0218039a39edbe21411c3bb85131ee4375"
+    },
+    "matter-8m-region.bin": {
+      "size": 8388608,
+      "sha256": "627db077554679b5e6ae34938091331559db01a3809f3303ef65a880bbedc7d1"
+    },
+    "matter-8m-region.json": {
+      "size": 676,
+      "sha256": "db7779e162957384596196b984ea6597178d03fb9ce65db8bf7bb95f26bf331f"
+    },
+    "matter-matter-ota.bin": {
+      "size": 2687321,
+      "sha256": "e4df350b455a4415b51b340ebae174e9ef2c696fee36e11a78f66c82b6507ec1"
+    },
+    "matter.json": {
+      "size": 607,
+      "sha256": "308a8244e413d5b4ce81793e78ec16d2551b844246bd30929b0a0efd9f6ee273"
+    },
+    "matter.ota": {
+      "size": 2687232,
+      "sha256": "2181b319da2a30cd77052851c9dcc18f6b664e97ed0070fbe05636cb0f532847"
+    }
+  },
+  "limitations": [
+    "No physical RLX4181 / vendor Linux 2.6.30.9 flash-driver or power-cut validation",
+    "No complete Matter Provider-to-BDX-to-installed-new-version validation",
+    "No original-hardware meter comparison/calibration or verified cumulative energy counter",
+    "No Apple Home / other phone ecosystem UI validation; pairing alone does not imply energy UI support",
+    "Preserved vendor Bank 2 is checksum fallback, not full application-failure A/B rollback",
+    "Release artifacts are local preview candidates; no new release or live update feed published"
+  ],
+  "references": {
+    "update": "docs/updates.md",
+    "measurement": "docs/measurements.md",
+    "technical_report": "docs/technical-report.md"
+  }
+}

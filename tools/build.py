@@ -6,6 +6,7 @@ import os
 import re
 import shutil
 import subprocess
+import struct
 from pathlib import Path
 from fwlib import (START, END, SIZE, BUDGET, SECRET_FILES, require, sha, rootfs_check,
                    compatibility, image_checks, read_file, repack, atomic_write, write_json, file_inventory)
@@ -73,25 +74,39 @@ def services(variant, output):
     return output
 
 
-def assemble(variant, backup, binaries, output):
+def assemble(variant, backup, binaries, output, template_manifest=None):
     """Input: user's compatible backup and their rebuilt binaries; no old research layout."""
     before = backup.read_bytes()
-    image_checks(before)
-    require(compatibility(before) == json.loads((REPO / "third_party/platform.json").read_text()),
-            "此預覽版限定已驗證的 10219 kernel／Bank 2；基底不相容")
+    platform = json.loads((REPO / "third_party/platform.json").read_text())
+    if template_manifest:
+        from fwlib import load_release
+        vendor_root, base_meta = load_release(backup, template_manifest)
+        require(base_meta["compatibility"] == platform, "公開基底平台不符")
+        base_compatibility = base_meta["compatibility"]
+    else:
+        image_checks(before)
+        require(compatibility(before) == platform,
+                "此預覽版限定已驗證的 10219 kernel／Bank 2；基底不相容")
+        vendor_root = before[0x530000:0x7E0000]
+        base_compatibility = compatibility(before)
     source = REPO / "firmware" / variant / "src"
     # Both images use the 10219 vendor rootfs from Bank 2 with the matching V2 kernel.
-    vendor_root = before[0x530000:0x7E0000]
     rc = read_file(vendor_root, "etc/init.d/rcS").decode()
-    require(rc.count("wfaudio &") == 1 and rc.count("\nhomekitserver\n") == 1,
-            "原廠 startup 結構不符")
+    require((rc.count("wfaudio &") == 1 and rc.count("\nhomekitserver\n") == 1) or
+            (template_manifest and rc.count("/bin/ck-setup-start &") == 1), "startup 結構不符")
     rc = rc.replace("wfaudio &", "/bin/ck-setup-start &").replace("hostname rlx-linux", "hostname CommandKit-Outlet")
     rc = rc.replace("\nhomekitserver\n", "\n# HomeKit disabled: current test service owns the MCU.\n")
     additions = {"etc/init.d/rcS": (b"", 0o755)}
     def add(dest, data, mode=0o755):
         additions[dest] = (data, mode)
     if variant == "matter":
-        rc += "\n/bin/matter-diag-start &\n/bin/matter-test-start &\n"
+        built = json.loads((binaries / "matter-build.json").read_text())
+        version = json.loads((REPO / "version.json").read_text())
+        require(built["software_version"] == version["software_version"] and
+                not built["test_backend"] and built["binary_sha256"] == sha((binaries / "matterd-test").read_bytes()),
+                "Matter 執行檔版本不符、已修改或是測試 backend；請重建正式目標")
+        if "/bin/matter-diag-start &" not in rc:
+            rc += "\n/bin/matter-diag-start &\n/bin/matter-test-start &\n"
         for name in ("matterd-test", "matter-diag", "ck-setupd", "ck-wificfg", "ck-ram-probe", "ck-wifiscan", "ck-lease"):
             add("bin/" + name, (binaries / name).read_bytes())
         for dest, filename in (("matter-diag-start", "matter-diag-start"),
@@ -101,6 +116,7 @@ def assemble(variant, backup, binaries, output):
                                ("ck-udhcpc", "setup/ck-udhcpc-fixed")):
             add("bin/" + dest, (source / filename).read_bytes())
     else:
+        rc = rc.replace("\n/bin/matter-diag-start &", "").replace("\n/bin/matter-test-start &", "")
         rc += "\n/bin/exec-diag-start &\n/bin/exec-test-start &\n"
         for name in ("exec-diag", "exec-test-runner", "ck-setupd", "ck-wificfg", "ck-wifiscan", "ck-lease"):
             add("bin/" + name, (binaries / name).read_bytes())
@@ -111,6 +127,23 @@ def assemble(variant, backup, binaries, output):
             add("bin/" + dest, (source / filename).read_bytes())
         for name in ("tiny_eb", "tiny_gcc16", "cpp_lean"):
             add("bin/test-" + name, (REPO / "firmware/exec-test/samples" / name).read_bytes(), 0o444)
+    if variant in ("matter", "exec-test"):
+        version = json.loads((REPO / "version.json").read_text())
+        public_key = (REPO / "third_party/ota-signing.pub").read_bytes()
+        require(len(public_key) == 32, "更新公鑰必須為 32 bytes")
+        for name in ("ck-updater", "ck-updated"):
+            add("bin/" + name, (REPO / "firmware/matter/artifacts/update" / name).read_bytes())
+        add("bin/ck-ota-start", (REPO / "firmware/matter/src/update/ck-ota-start").read_bytes())
+        add("etc/ck-update.pub", public_key, 0o444)
+        add("etc/ck-update.meta", struct.pack(">III", 0x434B0004, 1 if variant=="matter" else 2, version["software_version"]), 0o444)
+        add("etc/ck-version", (version["version"] + "\n").encode(), 0o444)
+        add("etc/ck-variant", (variant+"\n").encode(), 0o444)
+        inittab = read_file(vendor_root, "etc/inittab").decode()
+        require("::restart:" not in inittab, "已有 PID1 restart action，拒絕覆寫")
+        add("etc/inittab", (inittab + "\n::restart:/var/run/ck-ota/apply --pid1\n").encode(), 0o644)
+        # Import journal before diagnostics, identity generation, or Matter startup.
+        rc = rc.replace("# Start system script", "/bin/ck-ota-start\n\n# Start system script", 1)
+        require(rc.count("/bin/ck-ota-start\n") == 1, "OTA startup injection 不符")
     additions["etc/init.d/rcS"] = (rc.encode(), 0o755)
     add("etc/ck-udhcpd.conf", (source / "setup/ck-udhcpd.conf").read_bytes(), 0o644)
     # Equal-length debug-path substitutions preserve ELF layout and addresses.
@@ -122,14 +155,16 @@ def assemble(variant, backup, binaries, output):
             if clean != data:
                 require(len(clean) == len(data), "ELF 字串替换改變長度")
                 add(name, clean, int(fields[3], 8))
-    root = repack(vendor_root, additions, remove=SECRET_FILES | {"bin/upgfw"})
+    stale = {"bin/matterd-test", "bin/matter-diag", "bin/matter-test-start", "bin/matter-diag-start"} if variant=="exec-test" else set()
+    root = repack(vendor_root, additions, remove=SECRET_FILES | {"bin/upgfw"} | stale)
     image = b"\xff" * START + root + b"\xff" * (SIZE - END)
     atomic_write(output, image, mode=0o644)
     write_json(output.with_suffix(".json"), {"format": "commandkit-region-v1", "variant": variant,
                "size": SIZE, "sha256": sha(image), "write_range": [START, END],
-               "compatibility": compatibility(before), "rootfs": rootfs_check(root),
+               "compatibility": base_compatibility, "rootfs": rootfs_check(root),
                "credentials_included": False, "requires_local_personalization": True,
-               "physical_boot_validation": "pending for this public repack", "release": "v0.1.0-preview"})
+               "physical_boot_validation": "pending for this public repack",
+               "release": "v" + json.loads((REPO / "version.json").read_text())["version"]})
 
 
 def main():
@@ -137,12 +172,13 @@ def main():
     parser.add_argument("variant", choices=("matter", "exec-test"))
     parser.add_argument("--binaries", type=Path, required=True)
     parser.add_argument("--base", type=Path, help="使用者自己的相容 8 MiB 備份；省略時只編譯服務")
+    parser.add_argument("--template-manifest", type=Path, help="使用去識別化公開 BIN 作基底時的 JSON")
     parser.add_argument("--output", type=Path)
     args = parser.parse_args()
     services(args.variant, args.binaries)
     if args.base:
         require(args.output, "組裝需指定 --output")
-        assemble(args.variant, args.base, args.binaries, args.output)
+        assemble(args.variant, args.base, args.binaries, args.output, args.template_manifest)
     print("本機建置完成；未存取燒錄器。")
 
 

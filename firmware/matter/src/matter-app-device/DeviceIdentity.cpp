@@ -16,7 +16,9 @@
 #include <unistd.h>
 
 namespace {
-constexpr const char * keyPath = "/etc/matter-device.key";
+const char * KeyPath() {
+    return access("/etc/ck-update.meta",F_OK)==0 ? "/var/lib/ck-state/device.key" : "/etc/matter-device.key";
+}
 constexpr const char * recordPath = "/var/run/matter-device-identity";
 bool ReadExact(const char * path, void * output, size_t length) {
     int fd = open(path, O_RDONLY | O_NOFOLLOW);
@@ -113,7 +115,7 @@ bool InitializeDeviceIdentity(const char * interfaceName) {
     unlink(recordPath); unlink("/var/run/matter-manual-code");
     unlink("/var/run/matter-qr.svg"); unlink("/var/run/ck-setup-ap.bin");
     uint8_t key[32]{};
-    if (!ReadExact(keyPath, key, sizeof(key)) || strlen(interfaceName) >= IFNAMSIZ) return false;
+    if (!ReadExact(KeyPath(), key, sizeof(key)) || strlen(interfaceName) >= IFNAMSIZ) return false;
     int fd = socket(AF_INET, SOCK_DGRAM, 0);
     struct ifreq request{}; strcpy(request.ifr_name, interfaceName);
     if (fd < 0) return false;
@@ -148,7 +150,7 @@ bool InitializeDeviceIdentity(const char * interfaceName) {
 
 bool LoadDeviceIdentity(DeviceIdentityData & identity) {
     uint8_t record[66]{}, key[32]{}, digest[32]{};
-    if (!ReadExact(keyPath, key, sizeof(key)) || !ReadExact(recordPath, record, sizeof(record)) ||
+    if (!ReadExact(KeyPath(), key, sizeof(key)) || !ReadExact(recordPath, record, sizeof(record)) ||
         memcmp(record, "CKI1", 4) || record[10] || record[11] || !Hash(key, record, 34, digest)) return false;
     uint8_t difference = 0;
     for (unsigned i = 0; i < 32; ++i) difference |= digest[i] ^ record[34 + i];

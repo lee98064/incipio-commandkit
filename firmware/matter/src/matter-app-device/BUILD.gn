@@ -1,5 +1,8 @@
 import("//build_overrides/chip.gni")
-declare_args() { incipio_uclibc_runtime = false }
+declare_args() {
+  incipio_uclibc_runtime = false
+  incipio_update_test = false
+}
 
 config("app_config") {
   include_dirs = [ "../.." ]
@@ -7,8 +10,16 @@ config("app_config") {
 }
 
 executable("matterd-test") {
-  sources = [ "main.cpp", "DeviceIdentity.cpp", "../vendor/qrcodegen/qrcodegen.c", "../platform_probe.cpp", "../sdk-overrides/TLVReader.cpp", "../relay/RelayEngine.cpp", "../relay/RelayEngine.h", "../relay/McuController.cpp", "../relay/McuController.h" ]
+  sources = [ "main.cpp", "DeviceIdentity.cpp", "MatterOta.cpp", "ElectricalMeasurements.cpp", "../update/ck_store.c", "../update/ck_energy.c", "../update/ck_common.c", "../update/ck_flash.c", "../vendor/qrcodegen/qrcodegen.c", "../platform_probe.cpp", "../sdk-overrides/TLVReader.cpp", "../sdk-overrides/CHIPLinuxStorage.cpp", "../relay/RelayEngine.cpp", "../relay/RelayEngine.h", "../relay/McuController.cpp", "../relay/McuController.h" ]
+  sources += [
+    "../update/ck_meter.c",
+    "${chip_root}/src/app/clusters/ota-requestor/BDXDownloader.cpp",
+    "${chip_root}/src/app/clusters/ota-requestor/DefaultOTARequestor.cpp",
+    "${chip_root}/src/app/clusters/ota-requestor/DefaultOTARequestorDriver.cpp",
+    "${chip_root}/src/app/clusters/ota-requestor/DefaultOTARequestorStorage.cpp",
+  ]
   defines = [ "INCIPIO_MATTER_EMBEDDED_PROBE=1" ]
+  if (incipio_update_test) { defines += [ "CK_TESTING=1" ] }
   include_dirs = [
     ".",
     "${chip_root}/examples/all-devices-app/all-devices-common",
@@ -20,6 +31,10 @@ executable("matterd-test") {
     "${chip_root}/src/app/persistence",
     "${chip_root}/src/app/clusters/on-off-server",
     "${chip_root}/src/app/clusters/identify-server",
+    "${chip_root}/src/app/clusters/ota-requestor",
+    "${chip_root}/src/app/clusters/electrical-power-measurement-server",
+    "${chip_root}/src/app/clusters/electrical-energy-measurement-server",
+    "${chip_root}/src/app/clusters/power-topology-server",
     "${chip_root}/src/data-model-providers/codedriven",
     "${chip_root}/src/credentials",
     "${chip_root}/src/lib",

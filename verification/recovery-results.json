@@ -1,0 +1,100 @@
+{
+  "version": "0.2.2-preview",
+  "software_version": 4,
+  "date": "2026-10-14",
+  "status": "pass_for_listed_fixture_and_vm_checks",
+  "checks": {
+    "legacy_mtd": {
+      "status": "pass",
+      "tests": 5,
+      "log_sha256": "08078df9b86dc2ffcb5480c802c7fa31caf8872610680c1fef71b5e5ce3e6afd"
+    },
+    "startup": {
+      "status": "pass",
+      "tests": 5,
+      "log_sha256": "cc14148741917f176c522c2abd365eceb7a97afdcebc42f02ef610ad0a37d4a1"
+    },
+    "native": {
+      "status": "pass",
+      "tests": 20,
+      "log_sha256": "d4f3cbeac9bd17b69fc4865cce4e688eec8ee43aa8c93e938112661fa43f6bc8"
+    },
+    "mips": {
+      "status": "pass",
+      "tests": 20,
+      "log_sha256": "6b89f04a9485f54b2c8d5e4d4853aa6535264639384e86081140a5d3eb48536c"
+    },
+    "deployment": {
+      "status": "pass",
+      "tests": 12,
+      "log_sha256": "bb5c167b5ad4f5cf22ade1cb5a063ae4fed2b795c0c6725c07d7f425f1040b61"
+    }
+  },
+  "mcu_vm": {
+    "status": "pass",
+    "binary_sha256": "185d4feccb0989890c22e0582217ad3f79e180e88216f4a6f2ab343b67d8ee80",
+    "identity_missing": true,
+    "cold_off_confirmed": true,
+    "startup_identity_wait_and_mcu_only_mode": true,
+    "simulated_button_state_changes": 8,
+    "continued_mcu_polling": true,
+    "flash_devices_present": false,
+    "virtual_nic_present": false,
+    "original_hardware_test": false,
+    "address_space_limit": 8388608
+  },
+  "pid1": {
+    "status": "pass",
+    "environment": "native Linux PID1 in private container namespaces; regular-file NOR fixture; separate MIPS writer suite",
+    "checks": [
+      "real process quiesce and pivot_root branch",
+      "updater executable copied to ramfs",
+      "rootfs written and read back",
+      "all protected bytes and journal unchanged",
+      "namespace reboot"
+    ],
+    "physical_device_access": false,
+    "container_exit_code": 129,
+    "updater_sha256": "e60adbb3f85c6a1cec32ea141980cf0569a41aead6b33080ef6a334e552832b5"
+  },
+  "fixes": [
+    "use original wlan0 interface when generating setup identity",
+    "start MCU communication before waiting up to 60 seconds for setup identity",
+    "synchronize legacy MTD by checked reopen and close barrier; real I/O errors still fail",
+    "retain validated device node and proc metadata in RAM updater root",
+    "preserve MCU-only recovery and bootstrap-based setup/diagnostics on failed persistent import",
+    "recognize only intact generation-1 uncommitted journal matching original bootstrap, without changing journal bytes during programmer installation"
+  ],
+  "original_device": {
+    "previous_version": "0.2.1-preview",
+    "owner_observation": [
+      "setup AP absent",
+      "button turns relay on once, subsequent off unresponsive",
+      "LED steady on"
+    ],
+    "consistent_post_boot_dump": true,
+    "original_kernel_and_bank2_unchanged": true,
+    "installed_rootfs_unchanged": true,
+    "initial_identity_body_checksum_valid": true,
+    "initial_identity_commit_missing": true,
+    "repair_installation": "write_verified_with_independent_full_chip_readback",
+    "repair_boot_validation": "pass_for_listed_checks",
+    "journal_and_identity_preserved": true,
+    "owner_confirmed_physical_button_repeated_on_off": true,
+    "network": "reconnected to previously configured home Wi-Fi; setup AP intentionally inactive",
+    "authenticated_diagnostics_received": true,
+    "matter_started": true,
+    "mcu_transport_connected": true,
+    "cold_off_confirmed": true,
+    "relay_state_fresh": true,
+    "meter_samples_fresh": true,
+    "update_health_confirmed": true,
+    "confirmed_software_version": 4,
+    "rescue": false,
+    "bootbank": 1,
+    "initial_import_recovered": true
+  },
+  "matter_image_sha256": "27bb2d53da8f58b7ba993e65f3bd72b296c4203025dd6040a8ffc1d2e53718f1",
+  "original_hardware_power_cut_test": false,
+  "phone_ui_verification": false
+}

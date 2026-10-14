@@ -1,5 +1,5 @@
 // Integrated relay test: one MCU owner and confirmed physical state.
-// Fabrics remain RAM-only. No MTD writes or meter attributes.
+// Fabrics use a bounded, verified journal. Firmware update writes only Bank 1.
 #include <cstdio>
 #include <cstring>
 #include <map>
@@ -32,6 +32,10 @@
 #include <setup_payload/QRCodeSetupPayloadGenerator.h>
 #include <setup_payload/SetupPayload.h>
 #include "DeviceIdentity.h"
+#include "FlashStorage.h"
+#include "ElectricalMeasurements.h"
+#include "MatterOta.h"
+#include "Version.h"
 static DeviceIdentityData deviceIdentity;
 using namespace chip;
 using namespace chip::app;
@@ -142,27 +146,37 @@ public:
     void OnTriggerEffect(Clusters::IdentifyCluster&) override{}
     bool IsTriggerEffectEnabled()const override{return false;}
 };
+static const DataModel::DeviceTypeEntry plugTypes[] = {Device::Type::kOnOffPlugInUnit, Device::Type::kElectricalSensor};
 class TestPlug final : public SingleEndpoint {
+    ElectricalMeasurements measurements{timer};
     RelayOnOff onoff;
     ServerClusterRegistration onoffRegistration{onoff};
     TestIdentify identifyDelegate;
     LazyRegisteredServerCluster<Clusters::IdentifyCluster> identify;
 public:
-    TestPlug():SingleEndpoint(Span<const DataModel::DeviceTypeEntry>(&Device::Type::kOnOffPlugInUnit,1)){}
-    void Poll() { onoff.Poll(); }
+    TestPlug():SingleEndpoint(Span<const DataModel::DeviceTypeEntry>(plugTypes)){}
+    CHIP_ERROR InitEnergy(bool persistent) { return measurements.InitEnergy(persistent); }
+    void SaveEnergy() { LogErrorOnFailure(measurements.SaveEnergy(true)); }
+    void Poll() { onoff.Poll(); measurements.Poll(hardware.Snapshot(),incipio::McuController::Now()); }
     CHIP_ERROR Register(EndpointId id,CodeDrivenDataModelProvider&model,EndpointComposition c={}) override {
         ReturnErrorOnFailure(RegisterDescriptor(id,model,c));
         identify.Create(Clusters::IdentifyCluster::Config(id,timer).WithDelegate(&identifyDelegate).WithIdentifyType(Clusters::Identify::IdentifyTypeEnum::kVisibleIndicator));
         ReturnErrorOnFailure(model.AddCluster(identify.Registration()));
         ReturnErrorOnFailure(model.AddCluster(onoffRegistration));
+        ReturnErrorOnFailure(measurements.Register(model));
         return model.AddEndpoint(mEndpointRegistration);
     }
     void Unregister(CodeDrivenDataModelProvider&model) override {
+        measurements.Unregister(model);
         LogErrorOnFailure(model.RemoveCluster(&onoff));
         LogErrorOnFailure(model.RemoveCluster(&identify.Cluster()));identify.Destroy();UnregisterDescriptor(model);
     }
 };
-static BoundedRamStorage storage;
+static BoundedRamStorage vmStorage;
+static FlashStorage flashStorage;
+static PersistentStorageDelegate *storage = &flashStorage;
+static bool isVm = false, healthConfirmed = false;
+static uint64_t healthySince = 0;
 static Identity identity;
 static CommonCaseDeviceServerInitParams params;
 static DefaultAttributePersistenceProvider attributes;
@@ -171,8 +185,17 @@ static std::unique_ptr<CodeDrivenDataModelProvider> model;
 static std::unique_ptr<RootNode> root;
 static TestPlug plug;
 static void PollHardware(System::Layer * layer, void *) {
-    if (stopping) { hardware.Stop(); _exit(0); }
-    plug.Poll(); LogErrorOnFailure(layer->StartTimer(System::Clock::Milliseconds32(100), PollHardware, nullptr));
+    if (stopping) { plug.SaveEnergy(); hardware.Stop(); _exit(0); }
+    plug.Poll();
+    auto snapshot=hardware.Snapshot();uint64_t now=incipio::McuController::Now();
+    if(!isVm&&!healthConfirmed){
+        if(!snapshot.known||now-snapshot.relayAt>10000)healthySince=0;
+        else if(!healthySince)healthySince=now;
+        else if(now-healthySince>=30000&&ck_store_confirm(CK_SOFTWARE_VERSION)==0){
+            int fd=open("/var/run/ck-update-healthy",O_WRONLY|O_CREAT|O_TRUNC,0600);if(fd>=0){close(fd);healthConfirmed=true;MatterOtaHealthy();}
+        }
+    }
+    LogErrorOnFailure(layer->StartTimer(System::Clock::Milliseconds32(100), PollHardware, nullptr));
 }
 static int Fail(CHIP_ERROR err,const char*where){
     std::fprintf(stderr,"matterd-test: %s failed: %" CHIP_ERROR_FORMAT "\n",where,err.Format());
@@ -189,17 +212,30 @@ int main(int argc,char**argv){
         }
         _exit(0);
     }
-    if (!LoadDeviceIdentity(deviceIdentity)) {
-        std::fputs("device identity unavailable or invalid; no shared pairing code fallback\n",stderr); _exit(5);
-    }
-    bool vm = argc == 5 && strcmp(argv[1], "--vm") == 0;
     bool hardwareOnly = argc == 4 && strcmp(argv[1], "--hardware-only") == 0;
+    bool persistentVm=argc==5&&strcmp(argv[1],"--vm-persistent")==0;
+    bool vm = argc == 5 && (strcmp(argv[1], "--vm") == 0 || persistentVm);
+    isVm=vm;if(vm&&!persistentVm)storage=&vmStorage;
     const char * iface = vm ? argv[2] : (argc==2 ? argv[1] : "br0");
     const char * port = (vm || hardwareOnly) ? argv[hardwareOnly ? 2 : 3] : "/dev/ttyACM0";
     const char * gpio = (vm || hardwareOnly) ? argv[hardwareOnly ? 3 : 4] : "/proc/wlan0/gpio_ctrl";
-    std::puts("matterd-test/relay-test SDK v1.6.1.0; one MCU owner; cold OFF; fabrics are RAM-only");
+    std::puts("matterd-test " CK_VERSION_STRING "; persistent fabrics; signed OTA; one MCU owner; cold OFF");
     signal(SIGTERM, SignalStop); signal(SIGINT, SignalStop);
     if (!hardware.Start(port, gpio)) { std::fputs("MCU ownership/thread setup failed\n", stderr); return 4; }
+    if (!hardwareOnly) {
+        // Setup generates identity after its 15-second network startup delay.
+        // Keep the MCU worker active while waiting; no pairing key fallback.
+        bool ready = false;
+        for (unsigned attempt = 0; attempt < 240 && !stopping; ++attempt) {
+            if (LoadDeviceIdentity(deviceIdentity)) { ready = true; break; }
+            if (attempt == 0) std::puts("MCU_ACTIVE_WAITING_FOR_DEVICE_IDENTITY");
+            usleep(250000);
+        }
+        if (!ready) {
+            if (!stopping) std::fputs("device identity unavailable or invalid; no shared pairing code fallback\n",stderr);
+            hardware.Stop(); _exit(stopping ? 0 : 5);
+        }
+    }
     if (!vm) {
         for (;;) {
             char state[64] = {}; int fd = open("/var/run/ck-setup-state", O_RDONLY);
@@ -213,28 +249,31 @@ int main(int argc,char**argv){
     TRY(Platform::MemoryInit());TRY(PlatformMgr().InitChipStack());TRY(identity.Init());
     SetCommissionableDataProvider(&identity);
     Credentials::SetDeviceAttestationCredentialsProvider(Credentials::Examples::GetExampleDACProvider());
-    params.persistentStorageDelegate=&storage;TRY(params.InitializeStaticResourcesBeforeServerInit());
-    TRY(attributes.Init(&storage));TRY(safeAttributes.Init(&storage));SetSafeAttributePersistenceProvider(&safeAttributes);
-    model=std::make_unique<CodeDrivenDataModelProvider>(storage,attributes);
+    params.persistentStorageDelegate=storage;TRY(params.InitializeStaticResourcesBeforeServerInit());
+    TRY(attributes.Init(storage));TRY(safeAttributes.Init(storage));SetSafeAttributePersistenceProvider(&safeAttributes);
+    model=std::make_unique<CodeDrivenDataModelProvider>(*storage,attributes);
     auto&s=Server::GetInstance();auto*info=GetDeviceInstanceInfoProvider();if(info==nullptr)return 3;
     root=std::make_unique<RootNode>(RootNode::Context{
         .commissioningWindowManager=s.GetCommissioningWindowManager(),.configurationManager=ConfigurationMgr(),
         .deviceControlServer=DeviceControlServer::DeviceControlSvr(),.fabricTable=s.GetFabricTable(),
-        .accessControl=s.GetAccessControl(),.persistentStorage=storage,.failSafeContext=s.GetFailSafeContext(),
+        .accessControl=s.GetAccessControl(),.persistentStorage=*storage,.failSafeContext=s.GetFailSafeContext(),
         .deviceInstanceInfoProvider=*info,.platformManager=PlatformMgr(),.groupDataProvider=*params.groupDataProvider,
         .sessionManager=s.GetSecureSessionManager(),.dnssdServer=DnssdServer::Instance(),
         .deviceLoadStatusProvider=*InteractionModelEngine::GetInstance(),.diagnosticDataProvider=GetDiagnosticDataProvider(),
         .testEventTriggerDelegate=nullptr,.dacProvider=*Credentials::GetDeviceAttestationCredentialsProvider(),
         .eventManagement=EventManagement::GetInstance(),.timerDelegate=timer});
+    TRY(plug.InitEnergy(!vm || persistentVm));
     TRY(root->Register(0,*model));TRY(plug.Register(1,*model));
+    TRY(RegisterMatterOta(*model));
     params.dataModelProvider=model.get();params.interfaceId=Inet::InterfaceId(index);
     TRY(s.Init(params));
+    TRY(StartMatterOta());
     SetupPayload payload;payload.version=0;payload.vendorID=0xFFF1;payload.productID=0x8000;
     payload.setUpPINCode=deviceIdentity.pin;payload.discriminator.SetLongValue(deviceIdentity.discriminator);
     payload.rendezvousInformation.SetValue(RendezvousInformationFlag::kOnNetwork);
     std::string qr;TRY(QRCodeSetupPayloadGenerator(payload).payloadBase38Representation(qr));
     // Redirect logs to bounded RAM sink in firmware; QR is available only through authenticated download.
-    std::printf("ONBOARDING_QR=%s\nREADY: interface=%s; port=5540; confirmed relay enabled; fabrics RAM-only\n",qr.c_str(),iface);
+    std::printf("ONBOARDING_QR=%s\nREADY: interface=%s; port=5540; confirmed relay enabled; persistent fabrics; signed OTA\n",qr.c_str(),iface);
     TRY(SystemLayer().StartTimer(System::Clock::Milliseconds32(100), PollHardware, nullptr));
     PlatformMgr().RunEventLoop();hardware.Stop();return 0;
 }
