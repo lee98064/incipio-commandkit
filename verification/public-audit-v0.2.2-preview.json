@@ -1,8 +1,8 @@
 {
   "status": "pass",
   "scope": "selected public files and decompressed release rootfs",
-  "public_file_count": 5053,
-  "public_bytes": 24838218,
+  "public_file_count": 5054,
+  "public_bytes": 24884020,
   "variants": {
     "matter": {
       "sha256": "27bb2d53da8f58b7ba993e65f3bd72b296c4203025dd6040a8ffc1d2e53718f1",
