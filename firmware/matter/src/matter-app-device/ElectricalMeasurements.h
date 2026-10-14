@@ -22,6 +22,7 @@ class ElectricalMeasurements final : public chip::app::Clusters::ElectricalPower
     incipio::EnergyCounter mCounter;
     bool mPersistent=false, mEnergyReady=false, mFirstEnergyReport=true;
     uint64_t mSavedMwh=0, mLastSaveAttempt=0, mReportedMwh=0;
+    uint64_t mNextPublish=0;
     uint32_t mSavedRemainder=0;
     Range mEnergyRange{.rangeMin=0,.rangeMax=int64_t(incipio::EnergyCounter::kMaxMwh)};
     Accuracy mEnergyAccuracy{.measurementType=chip::app::Clusters::detail::MeasurementTypeEnum::kElectricalEnergy,

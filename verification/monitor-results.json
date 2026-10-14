@@ -1,0 +1,114 @@
+{
+  "version": "0.2.3-preview",
+  "software_version": 5,
+  "feature": "LAN live voltage/current/power and saved estimated kWh monitor with existing OTA UI",
+  "source_sha256": {
+    "firmware/matter/src/update/ck_meter.c": "e9aab87c4cb9b17903c24b5b1fbdfd4e8da6ef8853728a4d8146242e9f8e669a",
+    "firmware/matter/src/update/ck_meter.h": "8dd09077d789e817a4df9d7a23885df28ae0cec4d396882eac39ec01cfa0a765",
+    "firmware/matter/src/update/ck_updated.c": "5bdae6a21b93a752215b8f50c1cef291149ea98af0d2e4ff246279b7055c0d11",
+    "firmware/matter/src/update/update.html": "1bf5c56eac8eb244b856a1c88ed3b7a4c51229ff592a4f35ba187f126baca32f",
+    "firmware/matter/src/update/update.js": "11557466bea064b61d8e443860be28d30cd86561b41d032fec5d6c492d9ed33b",
+    "firmware/matter/src/matter-app-device/ElectricalMeasurements.cpp": "c849400919e6c72a4e0eae811b23846556b10b0c566ea10a877c37452f4aef18",
+    "tests/test_updates.py": "6ce9b07a110c0fa6c48fe261cde419f9ecc127adcf16443eed2674197ee72779",
+    "tests/test_monitor.js": "b79db259652ad83cb526cfccdda1f3d88f764a58bd840103943956a4de7ff15b"
+  },
+  "tests": {
+    "native_linux_http_store_ota": {
+      "status": "pass",
+      "tests": 24
+    },
+    "mips_qemu_http_store_ota": {
+      "status": "pass",
+      "tests": 24
+    },
+    "deployment": {
+      "status": "pass",
+      "tests": 12
+    },
+    "browser_sha256_comparisons": {
+      "status": "pass",
+      "cases": 9
+    },
+    "monitor_js": {
+      "status": "pass",
+      "checks": [
+        "mV/mA/mW to V/A/W",
+        "valid zero",
+        "exact 64-bit cumulative kWh",
+        "missing, invalid and stale readings"
+      ]
+    },
+    "browser_ui": {
+      "status": "pass",
+      "environment": "Codex in-app browser, synthetic API fixture",
+      "widths_px": [
+        320,
+        390
+      ],
+      "checks": [
+        "four live values rendered",
+        "one missing sensor stays unavailable",
+        "connection failure clears all old readings",
+        "auto recovery",
+        "maximum cumulative value has no horizontal overflow",
+        "manual OTA disclosure and missing-file error"
+      ]
+    }
+  },
+  "integrated_mips_vm": {
+    "status": "pass",
+    "environment": "MIPS Malta/24Kc Linux 4.19 VM, 64 MiB RAM, 8 MiB daemon AS; simulated serial MCU",
+    "binary_sha256": "725fcdea1d069fe6ea0cad7000fb2eff43d9c6f0cdedf04d625c93a710d8f689",
+    "full_commissioning": true,
+    "checks": [
+      "cold boot sends OFF and awaits MCU confirmation",
+      "full development commissioning, default attestation verifier",
+      "OTA Requestor cluster available over encrypted Matter session",
+      "process reboot retains fabrics; encrypted CASE command succeeds without commissioning again",
+      "standard ElectricalPowerMeasurement: 109000 mV, 1500 mA RMS and 500000 mW over CASE",
+      "actual MIPS HTTP monitor reads RAM published by Matter under 8 MiB AS; units agree with CASE attributes",
+      "standard active-power and cumulative-energy subscriptions report MCU sample and durable energy changes",
+      "MIPS HTTP monitor clears stale MCU readings while retaining the saved cumulative total",
+      "stale metering becomes null, fresh readings recover; unsupported ActiveCurrent rejected",
+      "standard cumulative imported mWh is estimated, pauses during missing samples and survives reboot",
+      "10 encrypted On/Off/Toggle commands including duplicates confirmed through kernel TTY",
+      "unsolicited physical-button frame reflected in Matter attribute",
+      "MCU timeout returns failure; subsequent command recovers",
+      "Identify command accepted by integrated LED delegate"
+    ]
+  },
+  "production_matter": {
+    "software_version": 5,
+    "test_backend": false,
+    "binary_sha256": "331b7d0ab8751a3c8b48d0e64024708ac445feff2fb5e03425a1a4e584f03539"
+  },
+  "signed_ota_sha256": "57a37abdcc3261f23302e0e0cfd803a333750eb764435c971cfa35e7fe3292e4",
+  "original_device": {
+    "status": "pass",
+    "installation": "signed LAN OTA from version 4 to version 5; no external programmer",
+    "healthy": true,
+    "confirmed_version": 5,
+    "rescue": false,
+    "authenticated_diagnostics": "pass with the same device profile before and after OTA",
+    "fresh_measurements": {
+      "available": true,
+      "sample_age_ms": 30,
+      "relay_on": false,
+      "voltage_mv": 122109,
+      "current_ma": 4,
+      "power_mw": 0,
+      "energy_mwh": "0",
+      "energy_estimated": true,
+      "checkpoint_interval_s": 30
+    },
+    "live_page_matches_built_source": true,
+    "live_page_sha256": "f6db29361229fafd1b632f3b6e75c2e0678e1bd7b067c61fdaf07910e0ee9595",
+    "browser_ui": "actual device page shows all four readings and OTA controls",
+    "physical_button_and_nonzero_load_test": "not performed in this version"
+  },
+  "limits": [
+    "energy is software-estimated and only reports saved checkpoints",
+    "MCU metering cadence is about 5 seconds; page refreshes every 2 seconds",
+    "Apple Home UI and reference-meter calibration remain unverified"
+  ]
+}

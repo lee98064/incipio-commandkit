@@ -20,6 +20,7 @@ jobs:
       - run: python3 tests/test_legacy_mtd.py
       - run: python3 tests/test_startup_recovery.py
       - run: node tests/test_update_crypto.js
+      - run: node tests/test_monitor.js
       - run: c++ -std=c++11 -Wall -Wextra -Werror firmware/matter/tests/energy_counter_tests.cpp -o /tmp/ck-energy-tests && /tmp/ck-energy-tests
       - run: c++ -std=c++11 -Wall -Wextra -Werror firmware/matter/src/relay/RelayEngine.cpp firmware/matter/tests/relay_engine_tests.cpp -o /tmp/ck-relay-tests && /tmp/ck-relay-tests
   release:

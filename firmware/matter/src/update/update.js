@@ -19,10 +19,37 @@ function sha256(input) {
   const out=new Uint8Array(32), dv=new DataView(out.buffer);h.forEach((v,i)=>dv.setUint32(i*4,v));return out;
 }
 const hex = bytes => Array.from(bytes,b=>b.toString(16).padStart(2,'0')).join('');
-if (typeof module !== 'undefined') module.exports={sha256,hex};
+function meterView(data) {
+  const reading=(n,max,digits)=>Number.isInteger(n)&&n>=0&&n<=max?(n/1000).toFixed(digits):'—';
+  const live=!!(data&&data.available===true&&Number.isInteger(data.sample_age_ms)&&data.sample_age_ms>=0&&data.sample_age_ms<=5000);
+  const d=live?data:{};
+  let energy='—';
+  if(typeof d.energy_mwh==='string'&&/^(0|[1-9][0-9]{0,18})$/.test(d.energy_mwh)&&
+     (d.energy_mwh.length<19||d.energy_mwh<='4611686018427387904')){
+    const digits=d.energy_mwh.padStart(7,'0');energy=digits.slice(0,-6)+'.'+digits.slice(-6);
+  }
+  const values={voltage:reading(d.voltage_mv,300000,2),current:reading(d.current_ma,15000,3),power:reading(d.power_mw,2000000,1),energy};
+  const complete=live&&Object.values(values).every(v=>v!=='—');
+  return {...values,live,complete,relay:d.relay_on===true?'插座已開啟':d.relay_on===false?'插座已關閉':'插座狀態未知',
+    state:complete?'量測資料正常':live?'部分讀值尚未就緒':'暫無即時資料',
+    note:live?'讀值於 '+new Date().toLocaleTimeString('zh-TW',{hour12:false})+' 更新':'等待裝置提供新的量測資料'};
+}
+if (typeof module !== 'undefined') module.exports={sha256,hex,meterView};
 if (typeof document !== 'undefined') (async () => {
   const $=id=>document.getElementById(id), message=text=>{$('message').textContent=text;};
   let status=null, latest=null, busy=false;
+  function drawMeter(data,offline=false){const view=meterView(data);
+    for(const [id,value] of [['voltage',view.voltage],['current-amps',view.current],['power',view.power],['energy',view.energy],['relay',view.relay],['meter-updated',view.note]])$(id).textContent=value;
+    $('meter-state').textContent=offline?'連線中斷，正在重試':view.state;
+    $('meter-state').dataset.state=offline?'offline':view.complete?'live':'waiting';}
+  async function monitor(){
+    if(!busy&&!document.hidden){const controller=new AbortController(),timeout=setTimeout(()=>controller.abort(),4000);
+      try{const r=await fetch('/measurements',{cache:'no-store',signal:controller.signal});if(!r.ok)throw Error('measurements');const data=await r.json();if(!busy&&!document.hidden)drawMeter(data);}
+      catch{if(!busy&&!document.hidden)drawMeter(null,true);}finally{clearTimeout(timeout);}}
+    setTimeout(monitor,2000);
+  }
+  document.addEventListener('visibilitychange',()=>{if(document.hidden)drawMeter(null);});
+  monitor();
   async function refresh(){const r=await fetch('/status');if(!r.ok)throw Error('裝置尚未準備好');status=await r.json();$('current').textContent=status.version;
     if(status.rescue)message('裝置目前在維修模式，可安裝較新的修正版。');}
   async function post(path,bytes,imageHash=null){const digest=imageHash||hex(sha256(bytes));
@@ -30,6 +57,7 @@ if (typeof document !== 'undefined') (async () => {
     if(!response.ok){const problem=await response.json();throw Error(problem.error==='busy_or_low_memory'?'插座正在更新或記憶體不足，請稍候再試':'更新遭拒絕：請確認機型、版本與簽章，或下載完整檔案後重試');}
     return response.json();}
   async function install(bytes,expected){if(busy)return;busy=true;document.querySelectorAll('button').forEach(b=>b.disabled=true);
+    drawMeter(null);$('meter-state').textContent='更新期間暫停量測';
     try{if(bytes.length!==status.max_size)throw Error('請選擇 .ota 更新包；8 MiB 燒錄映像不適用');
       message('正在驗證並上傳，請保持此頁開啟…');await post('/upload',bytes);
       message('簽章驗證完成，正在安裝。請保持插座供電…');await post('/apply',new Uint8Array(),hex(sha256(bytes)));

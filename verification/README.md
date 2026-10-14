@@ -1,5 +1,7 @@
 # 驗證索引
 
+v0.2.3 的手機即時監測頁、RAM 快照、讀值過期、完整 Matter／HTTP VM 比對，以及原機 OTA 安裝狀態見[監測頁驗證](monitor-results.json)。
+
 v0.2.2 的舊 MTD、配網啟動、身分等待及 MCU 退路修復見[修復結果](recovery-results.json)；原機開機驗收狀態與模擬結果分別記錄。
 
 v0.2.1 的軟體累積 kWh、獨立 Flash 循環紀錄及標準能源訂閱見 [電量結果](energy-results.json)。
@@ -18,6 +20,7 @@ v0.2 的新增測試見 [OTA／持久儲存／量測結果](ota-results.json)；
 python3 tests/test_deployment.py --release-dir artifacts/releases -v
 python3 tests/test_dummy_flashrom.py --flashrom artifacts/flashrom-source/build/flashrom
 python3 tools/check_public.py --repository . --release-dir artifacts/releases
+node tests/test_monitor.js
 ```
 
 MIPS HTTP／診斷／身分測試使用 Docker 內的 qemu-user 或 Malta／24Kc／Linux 4.19 VM。測試金鑰須在本機重新產生，不能複製公開範例固定碼。先在 `firmware/matter/private/` 準備 `diag.key`（64 位十六進位及換行）與 `device-identity.key`（32 bytes），權限 0600：

@@ -1,11 +1,11 @@
 # 安裝更新與發布新版
 
-v0.2.2-preview 提供區網網頁更新、線上更新索引、Ed25519 簽章，以及 Matter OTA Requestor，並修正舊 MTD 同步、`wlan0` 設定介面及身分產生的啟動順序。Matter fabrics、平台設定及裝置身分改存入 Flash journal。**第一次仍須以 CH341A 安裝支援 OTA 的版本；v0.1.0-preview 沒有永久更新入口。**原機 Flash driver、斷電、RF 及家庭平台驗收尚待完成；新增檢查見[修復驗證](../verification/recovery-results.json)，電量檢查見 [v0.2.1 驗證](../verification/energy-results.json)。
+v0.2.3-preview 在管理頁新增即時 V／A／W／估算累積 kWh，並保留區網網頁更新、線上更新索引、Ed25519 簽章與 Matter OTA Requestor。v0.2.2 的舊 MTD 同步、`wlan0` 設定介面及身分產生的啟動順序修復繼續保留。Matter fabrics、平台設定及裝置身分存入 Flash journal。**第一次仍須以 CH341A 安裝支援 OTA 的版本；v0.1.0-preview 沒有永久更新入口。**原機斷電、RF 及家庭平台完整驗收尚待完成；修復檢查見[修復驗證](../verification/recovery-results.json)，電量檢查見 [v0.2.1 驗證](../verification/energy-results.json)。
 
 ## 在插座網頁更新
 
 1. 首次依 [燒錄說明](flashing.md) 安裝新的 `matter-8m-region.bin` 或 `exec-test-8m-region.bin`，沿用同一台插座的 profile。
-2. 配網後，從路由器取得插座 IPv4 位址，在瀏覽器開啟 `http://插座IP:18082/`。
+2. 配網後，從路由器取得插座 IPv4 位址，在瀏覽器開啟 `http://插座IP:18082/`；即時監測與更新共用此頁。
 3. 按「檢查新版本」及「下載並更新」，或選擇已下載的 `.ota`，按「驗證並更新」。
 4. 等候簽章核對、安裝、重開及健康確認。保持供電；更新暫停 Matter 控制，現有啟動邏輯會要求 MCU 確認 OFF。
 
@@ -30,7 +30,7 @@ python3 tools/update.py "$OUTLET_IP" \
   --package artifacts/releases/v0.2.1-preview/matter.ota --check-only
 ```
 
-第一次安裝 v0.2.2-preview 後，必須發布 `software_version` 大於 4 的更新才能安裝。`--check-only` 不傳送更新，也不重新啟動。
+安裝 v0.2.3-preview（`software_version=5`）後，後續更新的 `software_version` 必須大於 5 才能安裝。`--check-only` 不傳送更新，也不重新啟動。
 
 ## 更新包與保留範圍
 
@@ -75,7 +75,7 @@ Matter 必須連續 30 秒取得新鮮 MCU 狀態才確認新版本；診斷版�
 
 維護者的私鑰保存在自己的 `private/ota-signing.key`，公鑰是 `third_party/ota-signing.pub`。發布既有裝置更新時必須沿用原金鑰；不要重新執行 keygen。fork 的維護者須自行產生金鑰，替換其來源公鑰，並首次安裝自己的信任來源。
 
-1. 修改 `version.json`，增加 `software_version` 並更新版本名稱；例如數值 5、名稱 `0.3.0-preview`。
+1. 修改 `version.json`，增加 `software_version` 並更新版本名稱；例如數值 6、名稱 `0.3.0-preview`。
 2. 執行完整建置；工具也會產生 Matter 執行檔的版本紀錄，拒絕混用舊執行檔或測試 backend：
 
 ```bash

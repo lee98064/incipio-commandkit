@@ -1,5 +1,6 @@
 #include "ElectricalMeasurements.h"
 #include "../update/ck_energy.h"
+#include "../update/ck_meter.h"
 using namespace chip;
 using namespace chip::app;
 namespace EPM = Clusters::ElectricalPowerMeasurement;
@@ -59,6 +60,20 @@ void ElectricalMeasurements::Poll(const incipio::RelaySnapshot & s, uint64_t now
     }
     if (current!=mCurrent) { mCurrent=current; mPowerCluster.Changed(EPM::Attributes::RMSCurrent::Id); }
     if (power!=mPower) { mPower=power; mPowerCluster.Changed(EPM::Attributes::ActivePower::Id); }
+    if (now >= mNextPublish) {
+        mNextPublish=now+1000;
+        ck_meter sample{};
+        sample.published_ms=now;
+        sample.voltage_ms=s.voltageAt;sample.current_ms=s.currentAt;
+        sample.power_ms=s.powerAt;sample.relay_ms=s.relayAt;
+        if (!mVoltage.IsNull()) { sample.flags|=CK_METER_VOLTAGE;sample.voltage_mv=uint32_t(mVoltage.Value()); }
+        if (!mCurrent.IsNull()) { sample.flags|=CK_METER_CURRENT;sample.current_ma=uint32_t(mCurrent.Value()); }
+        if (!mPower.IsNull()) { sample.flags|=CK_METER_POWER;sample.power_mw=uint32_t(mPower.Value()); }
+        if (mEnergyReady && mPersistent) { sample.flags|=CK_METER_ENERGY;sample.energy_mwh=mSavedMwh; }
+        if (s.known && now-s.relayAt<=10000) { sample.flags|=CK_METER_RELAY;if(s.on)sample.flags|=CK_METER_ON; }
+        // Failure only makes the monitor unavailable; relay control stays independent.
+        (void)ck_meter_publish(&sample);
+    }
 }
 
 CHIP_ERROR ElectricalMeasurements::InitEnergy(bool persistent) {

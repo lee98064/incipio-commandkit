@@ -41,7 +41,7 @@ class Updates(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.build=tempfile.TemporaryDirectory(prefix='ck-update-build-');cls.bin=Path(cls.build.name)
-        common=[str(SOURCE/'update'/p) for p in ['ck_common.c','ck_flash.c','ck_store.c','ck_energy.c','ck_ota.c']]
+        common=[str(SOURCE/'update'/p) for p in ['ck_common.c','ck_flash.c','ck_store.c','ck_energy.c','ck_ota.c','ck_meter.c']]
         common += [str(SOURCE/'vendor/monocypher'/p) for p in ['monocypher.c','monocypher-ed25519.c']]
         flags=['cc','-DCK_TESTING','-std=c11','-O2','-g','-Wall','-Wextra','-Werror','-Wno-misleading-indentation','-Wno-unused-function']
         subprocess.run(flags+['-shared','-fPIC',*common,'-o',str(cls.bin/'state.so')],check=True)
@@ -193,6 +193,61 @@ class Updates(unittest.TestCase):
         c=http.client.HTTPConnection('127.0.0.1',self.port,timeout=10);c.request(method,path,body=body,headers=headers or {});r=c.getresponse();result=(r.status,r.read());c.close();return result
     def request_headers(self,data,image_hash=None):
         return {'X-CK-SHA256':image_hash or hashlib.sha256(data).hexdigest(),'Content-Type':'application/octet-stream'}
+    def meter_snapshot(self,**overrides):
+        now=time.monotonic_ns()//1000000
+        s=dict(published=now,flags=63,voltage=122313,current=12,power=0,
+               energy=1234567,voltage_at=now,current_at=now,power_at=now,relay_at=now)
+        s.update(overrides)
+        data=struct.pack('>8sQI3IQ4Q',b'CKMETER1',s['published'],s['flags'],s['voltage'],
+                         s['current'],s['power'],s['energy'],s['voltage_at'],s['current_at'],
+                         s['power_at'],s['relay_at'])
+        (self.work/'var/run/ck-meter.bin').write_bytes(data)
+        return data
+    def test_http_meter_units_saved_energy_and_no_flash_writes(self):
+        self.start_server();before=self.flash.read_bytes();self.meter_snapshot()
+        code,data=self.request('GET','/measurements');self.assertEqual(code,200)
+        s=json.loads(data);self.assertTrue(s['available']);self.assertTrue(s['relay_on'])
+        self.assertEqual([s[k] for k in ['voltage_mv','current_ma','power_mw','energy_mwh']],
+                         [122313,12,0,'1234567'])
+        self.assertTrue(s['energy_estimated']);self.assertEqual(s['checkpoint_interval_s'],30)
+        self.assertEqual(before,self.flash.read_bytes())
+        self.assertEqual(self.request('GET','/measurements',headers={'Host':'evil.example'})[0],403)
+        self.assertEqual(self.request('GET','/measurements',headers={'Origin':'http://evil.example'})[0],403)
+    def test_meter_missing_invalid_or_stopped_owner_never_looks_live(self):
+        self.start_server();path=self.work/'var/run/ck-meter.bin'
+        cases=[None,b'',b'not a snapshot',self.meter_snapshot(published=0),
+               self.meter_snapshot(published=time.monotonic_ns()//1000000+60000),
+               self.meter_snapshot(flags=127)]
+        for data in cases:
+            if data is None:path.unlink(missing_ok=True)
+            else:path.write_bytes(data)
+            with self.subTest(data=data):
+                code,body=self.request('GET','/measurements');self.assertEqual(code,200)
+                s=json.loads(body);self.assertFalse(s['available'])
+                for key in ['voltage_mv','current_ma','power_mw','energy_mwh','relay_on','sample_age_ms']:
+                    self.assertIsNone(s[key])
+        path.unlink();path.symlink_to(self.work/'etc/matter-device.key')
+        self.assertFalse(json.loads(self.request('GET','/measurements')[1])['available'])
+    def test_meter_individual_staleness_and_sensor_bounds(self):
+        self.start_server();now=time.monotonic_ns()//1000000
+        self.meter_snapshot(voltage_at=now-16000,current=15001,power=2000001,
+                            relay_at=now-11000,energy=(1<<62)+1)
+        s=json.loads(self.request('GET','/measurements')[1]);self.assertTrue(s['available'])
+        for key in ['voltage_mv','current_ma','power_mw','energy_mwh','relay_on']:self.assertIsNone(s[key])
+        self.meter_snapshot(voltage_at=now+60000,flags=9)
+        s=json.loads(self.request('GET','/measurements')[1])
+        self.assertIsNone(s['voltage_mv']);self.assertEqual(s['energy_mwh'],'1234567')
+    def test_meter_publisher_is_atomic_big_endian_and_preserves_large_totals(self):
+        class Meter(ctypes.Structure):
+            _fields_=[(name,ctypes.c_uint64) for name in ['published','energy','voltage_at','current_at','power_at','relay_at']]+[(name,ctypes.c_uint32) for name in ['flags','voltage','current','power']]
+        self.lib.ck_meter_publish.argtypes=[ctypes.POINTER(Meter)]
+        now=time.monotonic_ns()//1000000;s=Meter(now,1<<62,now,now,now,now,31,109000,1500,500000)
+        self.assertEqual(self.lib.ck_meter_publish(ctypes.byref(s)),0)
+        data=(self.work/'var/run/ck-meter.bin').read_bytes()
+        self.assertEqual(struct.unpack('>8sQI3IQ4Q',data),(b'CKMETER1',now,31,109000,1500,500000,1<<62,now,now,now,now))
+        self.assertFalse(list((self.work/'var/run').glob('ck-meter.bin.tmp.*')))
+        self.start_server();result=json.loads(self.request('GET','/measurements')[1])
+        self.assertEqual(result['energy_mwh'],str(1<<62));self.assertFalse(result['relay_on'])
     def test_http_direct_lan_upload_and_origin(self):
         self.start_server();data=self.ota.read_bytes();before=self.flash.read_bytes()
         self.assertEqual(self.request('GET','/')[0],200)

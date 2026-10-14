@@ -64,6 +64,9 @@ int main(void) {
   puts("MATTER_TLV_VM_NETWORK_READY");
   sleep(2);
 restart_application:
+#ifdef CK_TESTING
+  if (!fork()) { execl("/bin/ck-updated","ck-updated",NULL); _exit(127); }
+#endif
   int child = fork();
   if (!child) {
     struct rlimit limit = {8*1024*1024,8*1024*1024};

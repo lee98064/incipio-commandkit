@@ -19,6 +19,16 @@ v0.2 在同一個 endpoint 1 宣告 On/Off Plug-in Unit 與 Electrical Sensor，
 
 只取得 RMS 電流，不能據此聲稱得到 ActiveCurrent（同相分量）；此屬性不列入 AttributeList。未取得的 reactive/apparent power、頻率及功率因數不宣告。v0.2.1 新增由功率積分的軟體累積電量，透過標準 ElectricalEnergyMeasurement 回報，Accuracy.Measured=false 表示估算，不宣稱 MCU 有獨立硬體能源計數器。
 
+## 使用手機查看即時讀值
+
+安裝 v0.2.3-preview 後，手機與插座連上同一個區網，在 Safari 開啟 `http://插座IP:18082/`。頁面上方顯示電壓 V、電流 A、即時功率 W、估算累積 kWh，以及插座開關狀態；下方保留 OTA 更新入口。IP 可從路由器的裝置清單取得，不需要 Apple 家庭先完成配對。
+
+網頁每 2 秒重新整理資料；MCU 原有量測週期仍約 5 秒，因此連續幾次看到相同數字是正常的。累積 kWh 顯示已保存的總量，約每 30 秒變動一次，保留 6 位小數。沒有有效讀值時顯示「—」，有效的零顯示為 0。網頁背景暫停輪詢；連線中斷後清除舊讀值並自動重試。
+
+`GET /measurements` 只讀取 Matter 程式每秒在 RAM 原子發布的固定大小快照，不開啟 MCU 串列、不發控制命令，也不為網頁請求寫入 Flash。電壓／電流／功率資料超過 15 秒或快照發布停止超過 5 秒時回傳 `null`。API 使用 `voltage_mv`、`current_ma`、`power_mw`；`energy_mwh` 是十進位字串，避免瀏覽器遺失大整數精度。它沿用管理頁的區網、數字 Host 與同源限制。
+
+診斷版或應用尚未啟動時仍可開啟管理頁，但沒有 Matter 發布的量測快照，讀值會顯示「—」。
+
 ## 更新、過期與通知
 
 單一 MCU owner 依序查詢，電力量測約每 5 秒一次；繼電器確認命令優先。每次只有一個待回覆查詢，拆段回應逐 byte 解析。數值回應沒有 transaction ID，因此無法從內容判別任意延遲跨查詢的回覆；逾時後加入安靜間隔並忽略非待查詢數值，實際最大回應延遲仍需原機確認。

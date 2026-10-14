@@ -2,6 +2,7 @@
 #include "ck_common.h"
 #include "ck_ota.h"
 #include "ck_store.h"
+#include "ck_meter.h"
 #include "update_page.h"
 #include <arpa/inet.h>
 #include <errno.h>
@@ -201,6 +202,16 @@ static void handle(int fd, int server) {
                                                                    : "true",
                ck_store_floor(), CK_ROOTFS_SIZE + 256);
       json(fd, 200, b);
+      return;
+    }
+    if (!strcmp(path, "/measurements")) {
+      struct timespec now;
+      char b[512];
+      if (clock_gettime(CLOCK_MONOTONIC, &now) ||
+          ck_meter_json(b, sizeof(b), (uint64_t)now.tv_sec * 1000 + now.tv_nsec / 1000000))
+        json(fd, 503, "{}");
+      else
+        json(fd, 200, b);
       return;
     }
     json(fd, 404, "{}");

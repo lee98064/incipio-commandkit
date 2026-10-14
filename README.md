@@ -13,6 +13,7 @@
 | 內容 | 入口 |
 |---|---|
 | 網頁／Matter OTA 與發布新版 | [更新說明](docs/updates.md) |
+| 手機網頁即時查看 V／A／W／kWh | [即時監測頁](docs/measurements.md#使用手機查看即時讀值) |
 | 標準電壓、RMS 電流、功率及累積 kWh | [Matter 電力量測](docs/measurements.md) |
 | 使用、配網、Matter、診斷 | [使用說明](docs/usage.md) |
 | 備份、限定區域燒錄、讀回、復原 | [燒錄說明](docs/flashing.md) |
@@ -23,7 +24,7 @@
 | 測試與發布交付狀態 | [驗證索引](verification/README.md) |
 | 上傳 GitHub 與建立 Release | [發布說明](docs/publishing.md) |
 
-目前來源為 `v0.2.2-preview` 候選版；修正設定介面名稱、首次身分初始化及 Flash 同步相容性，新增 MCU 控制退路，見[修復驗證](verification/recovery-results.json)。v0.1 Release 尚無永久 OTA，第一次升級仍須限定區域燒錄。
+目前來源為 `v0.2.3-preview` 候選版；在既有管理網址新增手機即時監測頁，顯示 V／A／W／估算累積 kWh。v0.2.2 的配網、Flash 同步及 MCU 控制修復繼續保留，見[修復驗證](verification/recovery-results.json)。v0.1 Release 尚無永久 OTA，第一次升級仍須限定區域燒錄。
 
 ## 兩種韌體
 
@@ -32,7 +33,7 @@
 | `matter` | 開放設定熱點、Wi-Fi 掃描、裝置專屬 Matter 碼／QR、On/Off/Toggle、MCU 確認、Identify、診斷 | v0.2 已加入持久 fabrics、簽章 OTA、標準電力量測；使用開發測試 attestation；原機驗收待完成 |
 | `exec-test` | 依序執行三支附件 MIPS 程式、逾時／資源／hash 限制、認證診斷下載 | 不啟動 Matter／HomeKit；不提供軟體繼電器控制；附件只有執行檔，沒有其原始碼 |
 
-Matter v0.2.2 已完成原機限定區域燒錄與獨立全片讀回；開機及操作驗收另記於修復結果。診斷版尚未完成本版原機驗收。歷史版本的原機平台／協議測試與本次 VM 測試分開記錄；不可用模擬機結果宣稱原機 RF、家庭 app、負載切換或長期穩定性通過。
+Matter v0.2.2 已完成原機限定區域燒錄、獨立全片讀回及按鍵驗收；v0.2.3 已在同一台插座透過 OTA 安裝，確認版本 5 健康、診斷認證沿用，以及手機網頁可取得即時讀值，見[監測頁驗證](verification/monitor-results.json)。診斷版尚未完成本版原機驗收。歷史版本的原機平台／協議測試與本次 VM 測試分開記錄；不可用模擬機結果宣稱家庭 app、負載切換或長期穩定性通過。
 
 ## 目錄
 

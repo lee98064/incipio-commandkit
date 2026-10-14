@@ -10,7 +10,7 @@ flags='-static -Os -std=c11 -Wall -Wextra -Werror -Wno-misleading-indentation -W
 if [ "${CK_TESTING:-0}" = 1 ]; then flags="$flags -DCK_TESTING"; fi
 common='src/update/ck_common.c src/update/ck_flash.c src/update/ck_store.c src/update/ck_ota.c src/vendor/monocypher/monocypher.c src/vendor/monocypher/monocypher-ed25519.c'
 ${cross}gcc $flags $common src/update/ck_updater.c -o "$dest/ck-updater"
-${cross}gcc $flags $common src/update/ck_updated.c -o "$dest/ck-updated"
+${cross}gcc $flags $common src/update/ck_meter.c src/update/ck_updated.c -o "$dest/ck-updated"
 if [ "${CK_TESTING:-0}" = 1 ]; then
     ${cross}gcc $flags -DCK_TEST_PID1 $common src/update/ck_updater.c -o "$dest/ck-updater-vm"
     ${cross}strip "$dest/ck-updater-vm"

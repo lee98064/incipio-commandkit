@@ -23,6 +23,7 @@ for name,mode,device in [('console',0o600,(5,1)),('null',0o666,(1,3)),('urandom'
 entry('dev/ttyS1',mode=stat.S_IFCHR|0o600,rdev=(4,65));entry('tmp/gpio',b' '*32,mode=stat.S_IFREG|0o600)
 entry('etc/matter-device.key',(OUT/'private/device-identity.key').read_bytes(),mode=stat.S_IFREG|0o600)
 if persistent:
+    entry('bin/ck-updated',(OUT/'artifacts/update-test/ck-updated').read_bytes())
     entry('dev/ttyS0',mode=stat.S_IFCHR|0o600,rdev=(4,64))
     entry('etc/ck-update.pub',(Path('/repo/third_party/ota-signing.pub')).read_bytes(),mode=stat.S_IFREG|0o444)
     config=json.loads((Path('/repo/version.json')).read_text())

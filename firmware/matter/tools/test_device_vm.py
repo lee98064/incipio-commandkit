@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Real MIPS Matter stack and kernel TTY, with a simulated MCU; no outlet access."""
-import hashlib,json,re,socket,subprocess,threading,time,os,sys
+import hashlib,json,re,socket,subprocess,threading,time,os,sys,http.client
 from datetime import datetime
 from pathlib import Path
 
@@ -55,12 +55,13 @@ def main():
     build=json.loads((OUT/'evidence/chip-tool-macos/build.json').read_text())
     binary=Path(build['binary']);assert sha(binary)==build['binary_sha256']
     cmd=['docker','run','-i','--rm','--name',NAME,'-p','127.0.0.1:55640:55640/udp','-p','127.0.0.1:15551:15551',
+         '-p','127.0.0.1:18184:18184',
          '-v',str(OUT)+':/work:ro','-v',os.environ.get('CK_SDK_DIR',str(OUT/'deps'))+':/work/deps:ro','incipio-public-build:v0.1.0-preview','qemu-system-mips',
          '-M','malta','-cpu','24Kc','-m','64','-vga','none','-display','none','-monitor','none','-no-reboot',
          '-serial','stdio','-serial','tcp:0.0.0.0:15551,server=on,wait=off',
          '-kernel','/work/deps/downloads/vmlinux-4.19.0-21-4kc-malta','-initrd','/work/'+ART+'/vm.cpio',
          '-append','console=ttyS0 rdinit=/init panic=1','-netdev',
-         'user,id=n,restrict=off,hostfwd=udp:0.0.0.0:55640-10.0.2.15:5540','-device','pcnet,netdev=n,romfile=,mac=52:54:00:12:34:56']
+         'user,id=n,restrict=off,hostfwd=udp:0.0.0.0:55640-10.0.2.15:5540,hostfwd=tcp:0.0.0.0:18184-10.0.2.15:18082','-device','pcnet,netdev=n,romfile=,mac=52:54:00:12:34:56']
     report={'status':'failed','environment':'MIPS Malta/24Kc Linux 4.19 VM, 64 MiB RAM, 8 MiB daemon AS; simulated serial MCU',
             'binary_sha256':sha(OUT/ART/'matterd-test'),'source_sha256':{str(p.relative_to(OUT)):sha(p) for p in
                 [OUT/'src/relay/RelayEngine.cpp',OUT/'src/relay/McuController.cpp',OUT/'src/matter-app-device/main.cpp',Path(__file__)]},
@@ -85,6 +86,12 @@ def main():
                                  stdout=sink,stderr=subprocess.STDOUT,timeout=timeout)
         report.setdefault('commands',[]).append({'name':name,'returncode':child.returncode,'log':str(log.relative_to(OUT)),'sha256':sha(log)})
         return child.returncode,log.read_text(errors='replace')
+    def web_meter():
+        c=http.client.HTTPConnection('127.0.0.1',18184,timeout=5)
+        c.request('GET','/measurements',headers={'Host':'10.0.2.15:18082'})
+        r=c.getresponse();data=r.read();c.close()
+        assert r.status==200,'MIPS monitor HTTP endpoint unavailable'
+        return json.loads(data)
     with console.open('w') as sink:
         vm=subprocess.Popen(cmd,stdin=subprocess.PIPE if PERSISTENT else None,stdout=sink,stderr=subprocess.STDOUT)
         def mcu_when_ready():
@@ -133,6 +140,11 @@ def main():
                 rc,text=tool('meter-'+attribute,['electricalpowermeasurement','read',attribute,'12344321','1'])
                 assert rc==0 and re.search(r':\s*'+str(expected)+r'\b',text),'meter value mismatch: '+attribute
             report['checks'].append('standard ElectricalPowerMeasurement: 109000 mV, 1500 mA RMS and 500000 mW over CASE')
+            if PERSISTENT:
+                web=web_meter()
+                assert web['available'] and web['voltage_mv']==109000 and web['current_ma']==1500 and web['power_mw']==500000,web
+                assert isinstance(web['energy_mwh'],str) and web['energy_estimated'] is True,web
+                report['checks'].append('actual MIPS HTTP monitor reads RAM published by Matter under 8 MiB AS; units agree with CASE attributes')
             rc,text=tool('meter-descriptor',['descriptor','read','server-list','12344321','1'])
             assert rc==0 and '144 (ElectricalPowerMeasurement)' in text,'ElectricalPowerMeasurement missing from Descriptor'
             rc,text=tool('meter-accuracy',['electricalpowermeasurement','read','accuracy','12344321','1'])
@@ -176,6 +188,10 @@ def main():
                 'log':str(subscription_log.relative_to(OUT)),'sha256':sha(subscription_log)})
             report['checks'].append('standard active-power and cumulative-energy subscriptions report MCU sample and durable energy changes')
             mcu.meter_drop=True;time.sleep(16)
+            if PERSISTENT:
+                web=web_meter()
+                assert all(web[k] is None for k in ('voltage_mv','current_ma','power_mw')),web
+                report['checks'].append('MIPS HTTP monitor clears stale MCU readings while retaining the saved cumulative total')
             for attribute in ['voltage','rmscurrent','active-power']:
                 rc,text=tool('meter-stale-'+attribute,['electricalpowermeasurement','read',attribute,'12344321','1'])
                 assert rc==0 and re.search(r':\s*null\b',text,re.I),'stale measurement must be null'
@@ -207,6 +223,7 @@ def main():
                     time.sleep(.1)
                 else:raise RuntimeError('energy restart failed')
                 assert read_energy('energy-after-restart')==frozen,'durable energy changed across process reboot'
+                assert web_meter()['energy_mwh']==str(frozen),'monitor disagrees with durable Matter energy after restart'
                 report['checks'].append('standard cumulative imported mWh is estimated, pauses during missing samples and survives reboot')
             mcu.meter_drop=False
 
