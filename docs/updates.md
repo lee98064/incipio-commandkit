@@ -97,6 +97,8 @@ python3 tools/release.py --private private/ota-signing.key \
 
 預設索引為 `https://lee98064.github.io/incipio-commandkit/updates/index.json`。尚未發布更新時，網頁會說明來源未就緒，手動上傳仍可使用。首次設定 Pages 不代表附件已經發布。
 
+首次部署時，若發布 workflow 還沒有合併到預設分支，Release 事件與手動 dispatch 可能無法啟動。可以在已核對的 workflow commit 建立 `updates-v版本` tag，例如 `updates-v0.2.3-preview`，只發布對應的既有公開 Release，不重新編譯或修改韌體。`github-pages` environment 必須允許該部署 tag；首次部署可暫時加入精確 tag 規則，成功後移除。草稿 Release 不會進入線上索引。部署完成後應確認索引與兩個 `.ota` 均回應 200、提供跨來源讀取標頭，並從插座網頁按「檢查新版本」驗收。
+
 ## Matter OTA
 
 Root endpoint 宣告 OTA Requestor 及 Provider client；使用官方 DefaultOTARequestor、BDXDownloader 與此硬體的 image processor。收到標準 Matter 映像後，檢查內外版本一致，將內層 `.ota` 交給同一更新器驗簽；不執行 Linux 範例中的任意下載程式。版本確認等到裝置健康檢查通過後才通知 Provider。

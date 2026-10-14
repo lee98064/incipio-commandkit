@@ -1,5 +1,9 @@
 name: Publish update feed
 on:
+  # Allows publishing an already verified release before this workflow is on
+  # the default branch. This tag never starts the firmware rebuild workflow.
+  push:
+    tags: ['updates-v*']
   release:
     types: [published]
   workflow_dispatch:
@@ -29,9 +33,16 @@ jobs:
       - name: Download and verify published firmware
         env:
           GH_TOKEN: ${{ github.token }}
-          RELEASE_TAG: ${{ github.event.release.tag_name || inputs.tag }}
+          RELEASE_TAG: ${{ github.event.release.tag_name || inputs.tag || github.ref_name }}
           GH_REPO: ${{ github.repository }}
         run: |
+          case "$RELEASE_TAG" in updates-*) RELEASE_TAG="${RELEASE_TAG#updates-}" ;; esac
+          gh release view "$RELEASE_TAG" --json isDraft,tagName > /tmp/ck-release.json
+          python3 - <<'PY'
+          import json
+          release=json.load(open('/tmp/ck-release.json'))
+          assert not release['isDraft'], 'Publish the reviewed release before deploying the update feed'
+          PY
           mkdir -p site/updates
           gh release download "$RELEASE_TAG" --pattern '*.ota' --pattern 'matter.json' --pattern 'exec-test.json' --dir site/updates
           python3 tools/ota.py verify site/updates/matter.ota --public third_party/ota-signing.pub
