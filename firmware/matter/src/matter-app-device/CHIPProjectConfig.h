@@ -1,4 +1,7 @@
 #pragma once
+#include "Version.h"
+#define CHIP_DEVICE_CONFIG_DEVICE_SOFTWARE_VERSION CK_SOFTWARE_VERSION
+#define CHIP_DEVICE_CONFIG_DEVICE_SOFTWARE_VERSION_STRING CK_VERSION_STRING
 // Phase C, native on-network interoperability prototype. No production claim.
 #define CHIP_CONFIG_MAX_FABRICS 4
 #define CHIP_CONFIG_IM_MAX_NUM_SUBSCRIPTIONS 8

@@ -2,7 +2,7 @@
 
 自有 CMNDKT-004／RTL8196E 智慧插座的逆向紀錄，以及保留原廠 kernel／驅動的 Matter 和執行檔診斷預覽版。說明以繁體中文為主。
 
-公開來源位於 [GitHub repository](https://github.com/lee98064/incipio-commandkit)；兩份去識別化 BIN、JSON 與校驗碼見 [v0.1.0-preview Release](https://github.com/lee98064/incipio-commandkit/releases/tag/v0.1.0-preview)。
+公開來源位於 [GitHub repository](https://github.com/lee98064/incipio-commandkit)；已發布的 v0.1 歷史去識別化 BIN、JSON 與校驗碼見 [v0.1.0-preview Release](https://github.com/lee98064/incipio-commandkit/releases/tag/v0.1.0-preview)。
 
 **Release 的 8 MiB BIN 是位址對齊的「部分燒錄映像」，不是整片還原映像。**只有 Bank 1 rootfs 有內容；其餘區域為 `0xFF`。請用本專案工具個別化後限定區域寫入，保留每台插座自己的 MAC、MIB、校正、HomeKit／MFi 與 Bank 2。對空白晶片直接刷入公開 BIN 無法建立完整可開機裝置。
 
@@ -12,6 +12,8 @@
 
 | 內容 | 入口 |
 |---|---|
+| 網頁／Matter OTA 與發布新版 | [更新說明](docs/updates.md) |
+| 標準電壓、RMS 電流、功率 | [Matter 電力量測](docs/measurements.md) |
 | 使用、配網、Matter、診斷 | [使用說明](docs/usage.md) |
 | 備份、限定區域燒錄、讀回、復原 | [燒錄說明](docs/flashing.md) |
 | 從自己的原廠備份重建 | [建置說明](docs/build.md) |
@@ -21,11 +23,13 @@
 | 測試與發布交付狀態 | [驗證索引](verification/README.md) |
 | 上傳 GitHub 與建立 Release | [發布說明](docs/publishing.md) |
 
+目前來源為 `v0.2.0-preview` 候選版；v0.1 Release 尚無永久 OTA，第一次升級仍須限定區域燒錄。
+
 ## 兩種韌體
 
 | 版本 | 功能 | 限制 |
 |---|---|---|
-| `matter` | 開放設定熱點、Wi-Fi 掃描、裝置專屬 Matter 碼／QR、On/Off/Toggle、MCU 確認、Identify、診斷 | 配對 fabrics 在 RAM，斷電需重新配對；停用 HomeKit 啟動與原廠 OTA；使用開發測試 attestation |
+| `matter` | 開放設定熱點、Wi-Fi 掃描、裝置專屬 Matter 碼／QR、On/Off/Toggle、MCU 確認、Identify、診斷 | v0.2 已加入持久 fabrics、簽章 OTA、標準電力量測；使用開發測試 attestation；原機驗收待完成 |
 | `exec-test` | 依序執行三支附件 MIPS 程式、逾時／資源／hash 限制、認證診斷下載 | 不啟動 Matter／HomeKit；不提供軟體繼電器控制；附件只有執行檔，沒有其原始碼 |
 
 這兩份公開重打包版本尚未實體燒錄與原機驗收。歷史版本的原機平台／協議測試與本次 VM 測試分開記錄；不可用模擬機結果宣稱原機 RF、家庭 app、負載切換或長期穩定性通過。

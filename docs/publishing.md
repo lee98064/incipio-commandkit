@@ -1,5 +1,7 @@
 # 上傳 GitHub 與建立 Release
 
+v0.2 起使用 [簽章建置與 Pages 發布流程](updates.md)，以 tag 建立草稿 Release，人工發布後才更新索引。以下是 v0.1 的歷史交付方式。
+
 交付資料夾的 `repository/` 是 GitHub repository 內容；`release-assets/v0.1.0-preview/` 是 GitHub Release 附件。本機驗證快取、私人備份及金鑰不屬於公開交付內容，不能上傳。
 
 1. 上傳 `repository/` 的公開檔案清單內容；不要把整個研究工作區或外層資料夾上傳。

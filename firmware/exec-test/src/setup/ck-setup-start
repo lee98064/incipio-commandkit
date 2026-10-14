@@ -7,4 +7,4 @@ case "$status" in
 *) printf unconfigured > /var/run/ck-setup-boot ;;
 esac
 # A single controller. Never restart failed MIB writes in a tight loop.
-exec /bin/ck-setupd --serve /etc/matter-diag.key
+exec /bin/ck-setupd --serve /var/lib/ck-state/diag.key

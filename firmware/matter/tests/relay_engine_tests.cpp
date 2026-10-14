@@ -19,9 +19,14 @@ static void confirmed(RelayEngine & e, uint32_t id, bool on, uint64_t at) {
     auto s=e.Snapshot(); check(s.completedId==id&&s.result==RelayResult::Confirmed&&s.on==on,"fresh confirmation");
 }
 static void power(RelayEngine & e,uint16_t raw,uint64_t at) {
-    McuTx tx; check(e.NextTx(at,tx),"poll available");
-    if(tx.bytes[1]==0xa4) { state(e,true,at); check(e.NextTx(at+1,tx),"power after relay"); }
-    check(tx.bytes[1]==0xa7,"power query only");
+    McuTx tx; bool found=false;
+    for (unsigned i=0;i<6;++i) {
+        check(e.NextTx(at+i,tx),"poll available");
+        if(tx.bytes[1]==0xa4) { state(e,true,at+i); }
+        else if(tx.bytes[1]==0xa7) { found=true; break; }
+        else { uint8_t reply[]={0xff,0,0,0x55}; for(auto b:reply)e.Feed(b,at+i); }
+    }
+    check(found,"power query only");
     uint8_t frame[]={0xff,uint8_t(raw),uint8_t(raw>>8),0x55}; for(auto b:frame)e.Feed(b,at+2);
 }
 int main() {
@@ -58,5 +63,28 @@ int main() {
     check(e.Snapshot().completedId==203&&e.Snapshot().result==RelayResult::TransportError&&!e.Snapshot().known,"transport failure never succeeds");
     RelayEngine late; check(late.Request(1,false,0),"late fixture");late.NextTx(0,tx);late.NextTx(100,tx);state(late,false,3000);late.NextTx(3000,tx);
     check(late.Snapshot().result==RelayResult::Timeout,"expired replies do not confirm");
+    RelayEngine meter;
+    // Numerical replies have no command ID: accept only one pending query.
+    check(meter.NextTx(0,tx)&&tx.bytes[1]==0xa4,"initial relay query");state(meter,false,1);
+    uint8_t unsolicited[]={0xff,0x40,0x1b,0x55};for(auto b:unsolicited)meter.Feed(b,20);
+    check(!meter.Snapshot().voltageValid,"unsolicited number ignored");
+    check(meter.NextTx(500,tx)&&tx.bytes[1]==0xa5,"voltage poll");
+    for(auto b:unsolicited)meter.Feed(b,510); // 109.0 V = 6976 / 64.
+    check(meter.Snapshot().voltageRaw==6976&&meter.Snapshot().voltageValid,"fragmented voltage raw");
+    check(meter.NextTx(1500,tx)&&tx.bytes[1]==0xa6,"RMS current poll");
+    uint8_t amps[]={0xff,0x80,0x01,0x55};for(auto b:amps)meter.Feed(b,1510);
+    check(meter.Snapshot().currentRaw==384&&meter.Snapshot().currentValid,"1.5 A raw");
+    check(meter.NextTx(5000,tx)&&tx.bytes[1]==0xa4,"relay keeps priority");state(meter,false,5001);
+    check(meter.NextTx(5002,tx)&&tx.bytes[1]==0xa7,"power measurement");
+    uint8_t watts[]={0xff,0xf4,1,0x55};for(auto b:watts)meter.Feed(b,5003);
+    check(meter.Snapshot().powerRaw==500&&meter.Snapshot().powerValid,"500 W raw");
+    check(meter.NextTx(5500,tx)&&tx.bytes[1]==0xa5,"second voltage poll");
+    uint8_t invalid[]={0xff,0xff,0xff,0x55};for(auto b:invalid)meter.Feed(b,5501);
+    check(!meter.Snapshot().voltageValid,"out of range voltage unavailable");
+    check(meter.NextTx(6500,tx)&&tx.bytes[1]==0xa6,"second current poll");
+    meter.NextTx(7100,tx);check(!meter.Snapshot().currentValid,"query timeout invalidates current");
+    for(auto b:amps)meter.Feed(b,7110);
+    check(!meter.Snapshot().currentValid,"late response ignored during quiet interval");
+    meter.Disconnect();check(!meter.Snapshot().powerValid,"disconnect invalidates metering");
     std::printf("relay_engine=PASS checks=%d commands=100\n",checks);return 0;
 }

@@ -4,7 +4,7 @@
 
 ## 概述
 
-將原廠 Linux／Wi-Fi／硬體初始化保留於每台插座，只替換 Bank 1 rootfs。Matter 版接入開放設定 AP、Wi-Fi 選單、裝置身分與 MCU 控制；獨立診斷版驗證外部工具鏈產出的三支 MIPS 執行檔。公開 BIN 的保留區填值，不帶這台插座的設定與出廠資料；本機個別化與限定區域寫入工具將裝置資料與公開程式區分開。預覽版尚未原機驗收，fabrics 持久儲存與正式 OTA 不在本次實作。
+將原廠 Linux／Wi-Fi／硬體初始化保留於每台插座，只替換 Bank 1 rootfs。Matter 版接入開放設定 AP、Wi-Fi 選單、裝置身分與 MCU 控制；獨立診斷版驗證外部工具鏈產出的三支 MIPS 執行檔。公開 BIN 的保留區填值，不帶這台插座的設定與出廠資料；本機個別化與限定區域寫入工具將裝置資料與公開程式區分開。v0.2 加入 journal 持久儲存、簽章 OTA 與 Matter 電力量測；原機驗收尚待完成。實作與新證據見 [更新流程](updates.md)、[標準量測](measurements.md)及[更新驗證](../verification/ota-results.json)。其餘歷史 v0.1 測試仍保留原適用範圍。
 
 ## 硬體與保留邊界
 
@@ -14,7 +14,8 @@ Realtek RTL8196E／RLX4181、RTL8188ER Wi-Fi、GD25Q64 8 MiB。CPU 為 MIPS 32-b
 |---|---|
 | `[0,0x130000)` | 保留 bootloader、硬體／default／current MIB、Bank 1 kernel |
 | `[0x130000,0x3C0000)` | 唯一允許替換的 Bank 1 rootfs，2,686,976 bytes |
-| `[0x3C0000,0x800000)` | 保留 journal、HomeKit、Bank 2、factory、MAC／校正／production 資料 |
+| `[0x3C0000,0x3E0000)` | 首次限定區域燒錄保留；v0.2 執行期間使用為兩份持久 journal |
+| `[0x3E0000,0x800000)` | 保留 HomeKit、Bank 2、factory、MAC／校正／production 資料 |
 
 Release 容器有相同位址範圍，但兩段保留區是全 `0xFF`，不是可部署的內容。私人目標從當次備份取得兩段原值，再替換 rootfs。bankmark／kernel 不更改；相容性限制由公開 executable-range hashes 表達，沒有原裝置完整備份 hash 或 bytes。
 
@@ -41,6 +42,8 @@ DeviceIdentity 讀取實際 `wl0` MAC 與部署時新產生的 32-byte 金鑰，
 | E-003 | verification/public-audit.json、Release JSON／SHA256SUMS | 公開 BIN padding、checksum、解壓後憑證缺席與檔案 hash |
 | E-004 | verification/test-results.json；搬移後服務與 Matter 來源 | 本次執行的獨立建置、MIPS／HTTP／身分／協議測試及明確限制 |
 | E-005 | tests/test_dummy_flashrom.py | flashrom dummy backend 的限定區域寫入、保留區與復原 |
+| E-006 | verification/ota-results.json；tests/test_updates.py、tests/test_update_pid1.py | v0.2 簽章、未知 journal 拒絕、寫入中斷、保留區及 PID 1 安裝路徑 |
+| E-007 | firmware/matter/tools/test_device_vm.py；verification/ota-results.json | 持久配對、標準電力量測讀取／訂閱、null／恢復，僅限模擬 MCU |
 
 F-001：公開包不含原裝置保留區與原憑證。Evidence E-002／E-003；confidence=high，依本次檔案 manifest 的範圍成立。
 
@@ -51,6 +54,14 @@ F-003：新增服務／Matter 行為通過的項目以 E-004 最終結果為準�
 P-001（callflow，E-002／E-003／E-005 → F-001／F-002）：一致備份 → 驗證公開 BIN → 本機 profile 新金鑰 → 重打包與 checksum → 原備份補回保留區 → 固定 layout 寫入 → 獨立全片讀回 → 比較私人完整目標。所有失敗停止，沒有自動重刷或全片清除。
 
 P-002（callflow，E-004 → F-003）：MAC／私人金鑰 → RAM 身分與 QR → 開放設定 AP → 原廠 Wi-Fi helper → LAN Matter commissioning → 加密命令 → MCU TX／RX 確認 → Matter 屬性同步。VM 的 MCU 為模擬對端。
+
+F-004：v0.2 的區網 OTA 不需要更新操作憑證，仍強制檢查簽章、機型、種類、版本及平台。E-006 的 native／MIPS／隔離 PID 1 測試支持實作行為，未驗證原機 MTD driver。
+
+F-005：E-007 支持同一標準 Matter 資料可由已授權 controller 讀取和訂閱，不支持「所有家庭 app 必然顯示」或「原機量測精度已確認」的結論。
+
+P-003（E-006 → F-004）：區網上傳／Matter BDX → RAM 暫存 → 驗簽與相容性檢查 → 固定 PID 1 action → RAM root → 限定 rootfs 寫入及讀回 → 重開 → MCU 健康確認版本。完整 Provider 傳輸及原機驗收仍待完成。
+
+P-004（E-007 → F-005）：A5／A6／A7 → 有界待查詢解析 → 原廠名義單位縮放 → 標準 ElectricalPowerMeasurement → 讀取／訂閱；逾時、斷線或過期 → null。
 
 ## 狀態與時序
 

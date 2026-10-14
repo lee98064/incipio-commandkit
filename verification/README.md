@@ -1,6 +1,8 @@
 # 驗證索引
 
-最終結果見 [test-results.json](test-results.json)、[公開包稽核](public-audit.json)、[flashrom dummy backend](dummy-flashrom.json)。公開 manifest 的 hash 對應本次檔案；原始 VM console／配對記錄只留在本機。
+v0.2 的新增測試見 [OTA／持久儲存／量測結果](ota-results.json)；以下歷史 v0.1 結果與新版本分開保存。
+
+歷史結果見 [test-results.json](test-results.json)、[公開包稽核](public-audit.json)、[flashrom dummy backend](dummy-flashrom.json)。公開 manifest 的 hash 對應本次檔案；原始 VM console／配對記錄只留在本機。
 
 本次獨立 SDK 建置使用搬移後的來源與本專案 Dockerfile，第三方 SDK／編譯器使用固定版本快取的獨立複本，不讀取原研究來源路徑。原廠 libraries 從裝置備份提取；公開重打包只替換等長 debug source path 字串。
 
@@ -54,4 +56,4 @@ python3 firmware/matter/tools/test_device_vm.py
 
 ## 原機待驗收
 
-公開重打包、Mac／driver／OTP 相容性、RF／Wi-Fi 掃描、手機 captive portal、家庭 app UI、繼電器及負載切換、10 次重啟與長時間 RAM 穩定性未在本次完成。fabrics 持久化與 OTA 尚未實作。模擬機／dummy pass 不提升这些狀態。
+公開重打包、Mac／driver／OTP 相容性、RF／Wi-Fi 掃描、手機 captive portal、家庭 app UI、繼電器及負載切換、10 次重啟與長時間 RAM 穩定性未在本次完成。v0.2 已實作 fabrics 持久化、OTA 與標準量測，其 fixture／VM 檢查見上方新增結果；原機仍須驗收。模擬機／dummy pass 不提升这些狀態。

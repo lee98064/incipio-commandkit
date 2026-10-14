@@ -32,6 +32,8 @@ class Deployment(unittest.TestCase):
         image[0x530000:0x530000 + len(root)] = root
         for offset in (0x50, 0x6010, 0xC010, 0x3C0010, 0x7F8010):
             image[offset:offset + 8] = b"TESTDATA"
+        if "etc/ck-update.meta" in fw.file_inventory(root):
+            image[0x3c0000:0x3e0000] = b"\xff" * 0x20000
         cls.before = bytes(image)
         fw.image_checks(cls.before)
         metadata["compatibility"] = fw.compatibility(cls.before)

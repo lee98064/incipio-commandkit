@@ -1,0 +1,84 @@
+name: Build signed OTA release
+on:
+  pull_request:
+  push:
+    tags: ['v*']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+        with:
+          python-version: '3.12'
+      - run: pip install -r tools/requirements.txt
+      - run: python3 tools/generate_update.py
+      - run: python3 tests/test_updates.py
+      - run: node tests/test_update_crypto.js
+      - run: c++ -std=c++11 -Wall -Wextra -Werror firmware/matter/src/relay/RelayEngine.cpp firmware/matter/tests/relay_engine_tests.cpp -o /tmp/ck-relay-tests && /tmp/ck-relay-tests
+  release:
+    needs: test
+    if: startsWith(github.ref, 'refs/tags/')
+    runs-on: ubuntu-24.04
+    timeout-minutes: 360
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+        with:
+          python-version: '3.12'
+      - name: Check version matches tag
+        env:
+          RELEASE_TAG: ${{ github.ref_name }}
+        run: python3 -c 'import json,os; assert os.environ["RELEASE_TAG"] == "v"+json.load(open("version.json"))["version"]'
+      - run: sudo apt-get update && sudo apt-get install -y squashfs-tools llvm lld
+      - run: pip install -r tools/requirements.txt
+      - uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
+        with:
+          path: |
+            firmware/matter/deps
+            firmware/matter/toolchains
+            firmware/matter/artifacts/uclibc-toolchain
+          key: ota-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('third_party/sdk-lock.json', 'third_party/download-lock.json', 'firmware/matter/tools/prepare*.py', 'firmware/matter/tools/uclibc.config') }}
+      - run: docker build -t incipio-public-build:v0.1.0-preview .
+      - run: python3 tools/bootstrap.py --sdk --toolchain
+      - name: Build compatible toolchain
+        run: |
+          docker run --rm -v "$PWD/firmware/matter:/work" incipio-public-build:v0.1.0-preview sh -c 'make -C deps/musl-cross-make -j4 && make -C deps/musl-cross-make install && bash tools/build_uclibc_toolchain.sh'
+      - name: Load signing key
+        env:
+          OTA_SIGNING_KEY_HEX: ${{ secrets.OTA_SIGNING_KEY_HEX }}
+        run: |
+          python3 - <<'PY'
+          import os
+          from pathlib import Path
+          value=bytes.fromhex(os.environ['OTA_SIGNING_KEY_HEX'])
+          assert len(value)==32, 'Configure OTA_SIGNING_KEY_HEX first'
+          path=Path('private/ota-signing.key');path.parent.mkdir(mode=0o700,exist_ok=True)
+          fd=os.open(path,os.O_CREAT|os.O_EXCL|os.O_WRONLY,0o600)
+          with os.fdopen(fd,'wb') as f:f.write(value)
+          PY
+      - name: Test the actual MIPS updater
+        run: |
+          python3 tools/generate_update.py
+          docker run --rm -e CK_TESTING=1 -v "$PWD/firmware/matter:/work" incipio-public-build:v0.1.0-preview sh tools/build_updates.sh
+          docker run --rm -e CK_TEST_RUNNER=qemu-mips -e CK_TEST_BIN=/repo/firmware/matter/artifacts/update-test -v "$PWD:/repo" -w /repo incipio-public-build:v0.1.0-preview sh -c 'python3 -m venv /tmp/ck-tests && /tmp/ck-tests/bin/pip -q install -r tools/requirements.txt && /tmp/ck-tests/bin/python tests/test_updates.py'
+          python3 tests/test_update_pid1.py
+      - name: Build, verify and sign public artifacts
+        run: python3 tools/release.py --private private/ota-signing.key --output artifacts/ota-release
+      - name: Validate release assembly
+        run: |
+          python3 tests/test_deployment.py --release-dir artifacts/ota-release -v
+          python3 tools/check_public.py --repository . --release-dir artifacts/ota-release
+      - name: Create reviewable release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_TAG: ${{ github.ref_name }}
+        run: gh release create "$RELEASE_TAG" artifacts/ota-release/* --verify-tag --draft --prerelease --title "$RELEASE_TAG" --notes-file docs/ota-release-notes.md
+      - name: Remove signing material
+        if: always()
+        run: rm -f private/ota-signing.key

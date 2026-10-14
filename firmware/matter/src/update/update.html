@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="zh-Hant"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CommandKit 更新</title>
+<style>
+:root{font:16px/1.65 system-ui,sans-serif;color:#202d2b;background:#f1f3ed}*{box-sizing:border-box}body{max-width:760px;margin:0 auto;padding:48px 22px}header{border-bottom:1px solid #c6cec4;padding-bottom:26px;margin-bottom:30px}.brand{letter-spacing:.15em;font-size:12px;font-weight:700;color:#496253}h1{font-size:36px;line-height:1.2;margin:12px 0}p{margin:12px 0}section{background:#fff;border:1px solid #d7ddd2;border-radius:12px;padding:24px;margin:18px 0}h2{font-size:19px;margin:0 0 14px}label{display:block;margin:12px 0 6px}input{display:block;max-width:100%;margin:8px 0 20px}button{border:0;border-radius:6px;padding:12px 18px;background:#245b43;color:white;font:inherit;cursor:pointer;margin:4px 6px 4px 0}button.secondary{background:#e8eee5;color:#244532}button:disabled{opacity:.55;cursor:wait}small{color:#536457}#message{padding:20px;border-left:4px solid #598268;background:#e5edde;white-space:pre-wrap;min-height:68px}footer{font-size:13px;color:#536457;margin-top:28px}
+</style>
+<header><span class="brand">COMMANDKIT / DEVICE CARE</span><h1>讓插座保持更新</h1><p>目前版本 <strong id="current">讀取中…</strong> · CMNDKT-004</p></header>
+<section><h2>線上更新</h2><p>檢查已發布的版本，下載後由插座驗證簽章。</p><button id="check" class="secondary">檢查新版本</button><button id="online" hidden>下載並更新</button></section>
+<section><h2>使用已下載的更新包</h2><label for="package">選擇 .ota 檔案</label><input type="file" id="package" accept=".ota"><button id="manual">驗證並更新</button><p><small>更新會暫停控制並重新啟動插座，請保持供電。裝置設定與已保存的配對會保留。</small></p></section>
+<p id="message" role="status" aria-live="polite">可檢查新版本，或選擇已下載的更新包。</p>
+<footer>更新完成並重新連線通常需要數分鐘。若應用程式無法啟動，可透過此頁安裝修正版。</footer>
+<script>const CK_CATALOG_URL = {{CATALOG_URL}};
+{{SCRIPT}}
+</script></html>

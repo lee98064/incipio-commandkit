@@ -25,7 +25,7 @@ if [ -f /var/run/ck-udhcpc.pid ]; then
 fi
 rm -f /var/run/ck-wifi-bound
 if [ "$op" = ap ]; then
-    /bin/ck-wificfg ap /etc/ck-setup-ap.bin
+    /bin/ck-wificfg ap /var/lib/ck-state/setup-ap.bin
     /bin/sysconf init ap all
     /bin/killall boa dnrd udhcpd 2>/dev/null || true
     sleep 1

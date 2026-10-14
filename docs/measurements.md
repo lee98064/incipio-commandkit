@@ -1,0 +1,51 @@
+# Matter 電力量測
+
+v0.2 在同一個 endpoint 1 宣告 On/Off Plug-in Unit 與 Electrical Sensor，提供標準 ElectricalPowerMeasurement（`0x0090`）及 PowerTopology（`0x009C`，NodeTopology）。已配對且獲 ACL 允許的 Matter controller 可透過標準讀取／訂閱取得相同資料，不使用廠商私有 characteristic 或 Apple 專屬橋接。
+
+**可配對不等於該系統已實作電力量測 UI。** Matter 1.3 加入標準電力／能源回報；較舊或尚未支援這些叢集的 controller 可能只顯示開關。Apple 官方 Matter framework 提供此類 cluster API，但本專案沒有完成 iPhone 家庭 app 或其他家庭平台的真機 UI 驗收，不能保證每個 app 都會顯示每個欄位。
+
+## 可取得的數值
+
+| 屬性 | ID | Matter 單位 | MCU 換算 | 語義 |
+|---|---|---|---|---|
+| Voltage | `0x0004` | mV | `round(raw × 1000 / 64)` | 原廠 Vrms，通用電壓欄位 |
+| RMSVoltage | `0x000B` | mV | 同上 | 明確標示 RMS 的同一讀值 |
+| RMSCurrent | `0x000C` | mA | `round(raw × 1000 / 256)` | 原廠 Irms |
+| ActivePower | `0x0008` | mW | `raw × 1000` | 原廠 Power |
+
+`raw = b1 + 256*b2`，數值回應為 `FF b1 b2 55`。A5、A6、A7 查詢與原廠公式來自既有[逐 byte 協議核對](../reverse/docs/meter_protocol.md)。例如 `FF 40 1B 55` 在 A5 查詢後對應 109000 mV；`FF 80 01 55` 在 A6 後對應 1500 mA；`FF F4 01 55` 在 A7 後對應 500000 mW。
+
+這是依原廠 Vrms／Irms／Power 命名、算式及 300／15／2000 上限採用的**名義 V／A／W 映射**。原機與參考電表比對、非零負載精度及校正仍待驗收，不宣稱計費精度。Accuracy 列出量測類型及名義範圍，沒有填入未經證實的誤差百分比。
+
+只取得 RMS 電流，不能據此聲稱得到 ActiveCurrent（同相分量）；此屬性不列入 AttributeList。未取得的 reactive/apparent power、頻率、功率因數及累積 kWh 也不宣告。沒有已確認的硬體能源計數器，因此此版不提供 ElectricalEnergyMeasurement（`0x0091`），也不把功率積分假裝成硬體總電量。
+
+## 更新、過期與通知
+
+單一 MCU owner 依序查詢，電力量測約每 5 秒一次；繼電器確認命令優先。每次只有一個待回覆查詢，拆段回應逐 byte 解析。數值回應沒有 transaction ID，因此無法從內容判別任意延遲跨查詢的回覆；逾時後加入安靜間隔並忽略非待查詢數值，實際最大回應延遲仍需原機確認。
+
+查詢逾時、斷線、超出原廠名義上限，或資料超過 15 秒，屬性為 Matter `null`。有效的 0 保持為 0；失去資料不補 0，不依繼電器狀態推算功率。讀值變更及有效／null 轉換會通知 Matter reporting engine，依 controller 訂閱間隔回報。
+
+## 使用標準 controller 驗證
+
+以下 node ID `12344321` 是本機 VM 測試節點，實際使用時改成自己的 node ID：
+
+```bash
+chip-tool descriptor read device-type-list 12344321 1
+chip-tool descriptor read server-list 12344321 1
+chip-tool electricalpowermeasurement read attribute-list 12344321 1
+chip-tool electricalpowermeasurement read voltage 12344321 1
+chip-tool electricalpowermeasurement read rmscurrent 12344321 1
+chip-tool electricalpowermeasurement read active-power 12344321 1
+chip-tool electricalpowermeasurement subscribe active-power 1 10 12344321 1
+```
+
+模擬機測試使用實際 MIPS Matter stack、完整 commissioning、加密 CASE、kernel TTY 及可控制的 MCU 對端，驗證縮放、訂閱變更、過期 null 及恢復；結果見[驗證紀錄](../verification/ota-results.json)。模擬 MCU 數值只作測試，不植入產品執行路徑。
+
+## 平台驗收與來源
+
+原機需要與參考電表比對電壓／電流／功率；再以每個目標系統完成配對、讀取、訂閱與失聯測試。Apple 家庭 iPhone 是使用者的優先 UI；尚未取得該 UI 實測證據。不能用 chip-tool 成功代替 Apple 家庭或其他系統已顯示成功。
+
+- [CSA：Matter 1.3 的即時電力與能源回報](https://csa-iot.org/newsroom/matter-1-3-specification-released/)
+- [固定 SDK 的標準 ElectricalPowerMeasurement 實作](https://github.com/project-chip/connectedhomeip/tree/3bcdd56ba54fb88b2afb4bfef575014671df7aa7/src/app/clusters/electrical-power-measurement-server)
+- [Apple Matter framework](https://developer.apple.com/documentation/matter)
+- [Apple Matter 互通說明](https://developer.apple.com/apple-home/matter/)
