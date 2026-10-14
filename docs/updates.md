@@ -1,6 +1,6 @@
 # 安裝更新與發布新版
 
-v0.2.0-preview 提供區網網頁更新、線上更新索引、Ed25519 簽章，以及 Matter OTA Requestor。Matter fabrics、平台設定及裝置身分改存入 Flash journal。**第一次仍須以 CH341A 安裝支援 OTA 的版本；v0.1.0-preview 沒有永久更新入口。**原機 Flash driver、斷電、RF 及家庭平台驗收尚待完成；已通過的模擬／VM 檢查見 [更新驗證](../verification/ota-results.json)。
+v0.2.1-preview 提供區網網頁更新、線上更新索引、Ed25519 簽章，以及 Matter OTA Requestor。Matter fabrics、平台設定及裝置身分改存入 Flash journal。**第一次仍須以 CH341A 安裝支援 OTA 的版本；v0.1.0-preview 沒有永久更新入口。**原機 Flash driver、斷電、RF 及家庭平台驗收尚待完成；已通過的模擬／VM 檢查見 [v0.2.1 驗證](../verification/energy-results.json)。
 
 ## 在插座網頁更新
 
@@ -27,10 +27,10 @@ python3 tools/update.py "$OUTLET_IP" --latest
 
 ```bash
 python3 tools/update.py "$OUTLET_IP" \
-  --package artifacts/releases/v0.2.0-preview/matter.ota --check-only
+  --package artifacts/releases/v0.2.1-preview/matter.ota --check-only
 ```
 
-第一次安裝 v0.2.0-preview 後，必須發布 `software_version` 大於 2 的更新才能安裝。`--check-only` 不傳送更新，也不重新啟動。
+第一次安裝 v0.2.1-preview 後，必須發布 `software_version` 大於 3 的更新才能安裝。`--check-only` 不傳送更新，也不重新啟動。
 
 ## 更新包與保留範圍
 
@@ -48,7 +48,7 @@ python3 tools/update.py "$OUTLET_IP" \
 
 ## 設定如何保留
 
-journal 為兩個 64 KiB snapshot，使用不同序號、SHA-256 與最後寫入的 commit word。只擦除新 snapshot 實際用到的 4 KiB sectors；相同值不寫入。每次寫入都讀回核對，成功後才回覆 Matter 的儲存請求。
+journal 為兩個 64 KiB slots；各 slot 前 60 KiB 為設定 snapshot，最後 4 KiB 是獨立電量 append page。設定 snapshot 使用不同序號、SHA-256 與最後寫入的 commit word。只擦除新 snapshot 實際用到的 4 KiB sectors；相同值不寫入。每次寫入都讀回核對，成功後才回覆 Matter 的儲存請求。
 
 | key 前綴 | 資料 |
 |---|---|
@@ -57,7 +57,7 @@ journal 為兩個 64 KiB snapshot，使用不同序號、SHA-256 與最後寫入
 | `platform/` | SDK factory/config/counters/KVS 的 INI 內容，單筆上限 16 KiB |
 | `ota/` | 已確認版本、待確認版本及啟動嘗試次數 |
 
-總 payload 上限 65,472 bytes。Wi-Fi 原廠 MIB 沿用既有 helper；不用公開更新包重建 MAC／校正或裝置金鑰。新 profile 可從已辨識 journal 恢復相同憑證；已有 profile 與 journal 不符會停止，避免默默換碼。既有 profile 缺少檔案仍須先復原，不會隨機補上新金鑰。
+設定 payload 上限 61,376 bytes；電量另以 128 筆循環紀錄保存在兩個末端 pages，詳見[電量保存](measurements.md)。Wi-Fi 原廠 MIB 沿用既有 helper；不用公開更新包重建 MAC／校正或裝置金鑰。新 profile 可從已辨識 journal 恢復相同憑證；已有 profile 與 journal 不符會停止，避免默默換碼。既有 profile 缺少檔案仍須先復原，不會隨機補上新金鑰。
 
 SDK 原本寫入 `/tmp/*.ini` 的平台設定也會同步保存至 journal。此修改保留 upstream 授權，來源見 `src/sdk-overrides/CHIPLinuxStorage.cpp` 與 [第三方說明](../third_party/README.md)。
 
@@ -75,7 +75,7 @@ Matter 必須連續 30 秒取得新鮮 MCU 狀態才確認新版本；診斷版�
 
 維護者的私鑰保存在自己的 `private/ota-signing.key`，公鑰是 `third_party/ota-signing.pub`。發布既有裝置更新時必須沿用原金鑰；不要重新執行 keygen。fork 的維護者須自行產生金鑰，替換其來源公鑰，並首次安裝自己的信任來源。
 
-1. 修改 `version.json`，增加 `software_version` 並更新版本名稱；例如數值 3、名稱 `0.3.0-preview`。
+1. 修改 `version.json`，增加 `software_version` 並更新版本名稱；例如數值 4、名稱 `0.3.0-preview`。
 2. 執行完整建置；工具也會產生 Matter 執行檔的版本紀錄，拒絕混用舊執行檔或測試 backend：
 
 ```bash

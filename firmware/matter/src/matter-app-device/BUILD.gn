@@ -10,7 +10,7 @@ config("app_config") {
 }
 
 executable("matterd-test") {
-  sources = [ "main.cpp", "DeviceIdentity.cpp", "MatterOta.cpp", "ElectricalMeasurements.cpp", "../update/ck_store.c", "../update/ck_common.c", "../update/ck_flash.c", "../vendor/qrcodegen/qrcodegen.c", "../platform_probe.cpp", "../sdk-overrides/TLVReader.cpp", "../sdk-overrides/CHIPLinuxStorage.cpp", "../relay/RelayEngine.cpp", "../relay/RelayEngine.h", "../relay/McuController.cpp", "../relay/McuController.h" ]
+  sources = [ "main.cpp", "DeviceIdentity.cpp", "MatterOta.cpp", "ElectricalMeasurements.cpp", "../update/ck_store.c", "../update/ck_energy.c", "../update/ck_common.c", "../update/ck_flash.c", "../vendor/qrcodegen/qrcodegen.c", "../platform_probe.cpp", "../sdk-overrides/TLVReader.cpp", "../sdk-overrides/CHIPLinuxStorage.cpp", "../relay/RelayEngine.cpp", "../relay/RelayEngine.h", "../relay/McuController.cpp", "../relay/McuController.h" ]
   sources += [
     "${chip_root}/src/app/clusters/ota-requestor/BDXDownloader.cpp",
     "${chip_root}/src/app/clusters/ota-requestor/DefaultOTARequestor.cpp",
@@ -32,6 +32,7 @@ executable("matterd-test") {
     "${chip_root}/src/app/clusters/identify-server",
     "${chip_root}/src/app/clusters/ota-requestor",
     "${chip_root}/src/app/clusters/electrical-power-measurement-server",
+    "${chip_root}/src/app/clusters/electrical-energy-measurement-server",
     "${chip_root}/src/app/clusters/power-topology-server",
     "${chip_root}/src/data-model-providers/codedriven",
     "${chip_root}/src/credentials",

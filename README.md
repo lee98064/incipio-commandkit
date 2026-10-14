@@ -13,7 +13,7 @@
 | 內容 | 入口 |
 |---|---|
 | 網頁／Matter OTA 與發布新版 | [更新說明](docs/updates.md) |
-| 標準電壓、RMS 電流、功率 | [Matter 電力量測](docs/measurements.md) |
+| 標準電壓、RMS 電流、功率及累積 kWh | [Matter 電力量測](docs/measurements.md) |
 | 使用、配網、Matter、診斷 | [使用說明](docs/usage.md) |
 | 備份、限定區域燒錄、讀回、復原 | [燒錄說明](docs/flashing.md) |
 | 從自己的原廠備份重建 | [建置說明](docs/build.md) |
@@ -23,7 +23,7 @@
 | 測試與發布交付狀態 | [驗證索引](verification/README.md) |
 | 上傳 GitHub 與建立 Release | [發布說明](docs/publishing.md) |
 
-目前來源為 `v0.2.0-preview` 候選版；v0.1 Release 尚無永久 OTA，第一次升級仍須限定區域燒錄。
+目前來源為 `v0.2.1-preview` 候選版；v0.1 Release 尚無永久 OTA，第一次升級仍須限定區域燒錄。
 
 ## 兩種韌體
 

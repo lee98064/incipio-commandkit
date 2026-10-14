@@ -157,6 +157,15 @@ def main():
                         if re.search(r'ActivePower:\s*625000\b',subscription_log.read_text(errors='replace')):break
                         time.sleep(.1)
                     else:raise RuntimeError('changed power subscription report missing')
+                    subscriber.stdin.write(b'electricalenergymeasurement subscribe cumulative-energy-imported 1 10 12344321 1 --keepSubscriptions true\n');subscriber.stdin.flush()
+                    until=time.monotonic()+40;initial=None
+                    while time.monotonic()<until:
+                        values=[int(x) for x in re.findall(r'Energy:\s*(\d+)',subscription_log.read_text(errors='replace'))]
+                        if values:
+                            if initial is None:initial=values[0]
+                            if values[-1]>initial:break
+                        time.sleep(.1)
+                    else:raise RuntimeError('cumulative energy subscription update missing')
                 finally:
                     if subscriber.poll() is None:
                         subscriber.stdin.write(b'exit\n');subscriber.stdin.flush()
@@ -165,7 +174,7 @@ def main():
                     subscriber.stdin.close()
             report.setdefault('commands',[]).append({'name':'meter-subscribe','returncode':subscriber.returncode,
                 'log':str(subscription_log.relative_to(OUT)),'sha256':sha(subscription_log)})
-            report['checks'].append('standard active-power subscription reports changed MCU sample')
+            report['checks'].append('standard active-power and cumulative-energy subscriptions report MCU sample and durable energy changes')
             mcu.meter_drop=True;time.sleep(16)
             for attribute in ['voltage','rmscurrent','active-power']:
                 rc,text=tool('meter-stale-'+attribute,['electricalpowermeasurement','read',attribute,'12344321','1'])
@@ -176,6 +185,30 @@ def main():
             rc,_=tool('meter-unsupported',['electricalpowermeasurement','read','active-current','12344321','1'])
             assert rc!=0,'RMS current must not be relabelled ActiveCurrent'
             report['checks'].append('stale metering becomes null, fresh readings recover; unsupported ActiveCurrent rejected')
+
+            def read_energy(name):
+                rc,text=tool(name,['electricalenergymeasurement','read','cumulative-energy-imported','12344321','1'])
+                match=re.search(r'Energy:\s*(\d+)',text)
+                assert rc==0 and match,'standard cumulative energy missing'
+                return int(match[1])
+            time.sleep(31)
+            energy_before=read_energy('energy-before-restart');assert energy_before>0,'energy did not accumulate'
+            rc,text=tool('energy-accuracy',['electricalenergymeasurement','read','accuracy','12344321','1'])
+            assert rc==0 and re.search(r'Measured:\s*FALSE',text,re.I),'software energy must identify itself as estimated'
+            mcu.meter_drop=True;time.sleep(32)
+            frozen=read_energy('energy-gap-start');time.sleep(8)
+            assert read_energy('energy-gap-end')==frozen,'missing power must not manufacture energy'
+            if PERSISTENT:
+                count=console.read_text(errors='replace').count('READY: interface=')
+                vm.stdin.write(b'restart\n');vm.stdin.flush()
+                until=time.monotonic()+35
+                while time.monotonic()<until:
+                    if console.read_text(errors='replace').count('READY: interface=')>count:break
+                    time.sleep(.1)
+                else:raise RuntimeError('energy restart failed')
+                assert read_energy('energy-after-restart')==frozen,'durable energy changed across process reboot'
+                report['checks'].append('standard cumulative imported mWh is estimated, pauses during missing samples and survives reboot')
+            mcu.meter_drop=False
 
             for i,command in enumerate(['on','off','toggle','on','on','off','off','toggle','off','on']):
                 before=mcu.on;rc,_=tool('relay-'+str(i),['onoff',command,'12344321','1'])

@@ -14,7 +14,7 @@ Matter On/Off/Toggle 會送出 MCU 命令並等待狀態確認；按鍵回報同
 
 v0.2 的 fabrics／配對紀錄存入 Flash journal，後續重開及 OTA 沿用相同身分與配對。從 v0.1 首次轉入仍需重新配對。本版不啟動原廠 HomeKit server；[新版更新服務](updates.md)使用簽章包。保留 Bank 2 不代表應用崩潰時 bootloader 必然自動切換。
 
-電力量測使用標準 Matter cluster，可讀取並訂閱電壓、RMS 電流與功率。MCU 無有效資料時為 null；各平台是否顯示取決於其 cluster 支援，見 [讀值及平台驗收](measurements.md)。
+電力量測使用標準 Matter cluster，可讀取並訂閱電壓、RMS 電流、功率與軟體累積電量（kWh）。MCU 無有效資料時為 null；各平台是否顯示取決於其 cluster 支援，見 [讀值及平台驗收](measurements.md)。
 
 ## 執行檔診斷版
 

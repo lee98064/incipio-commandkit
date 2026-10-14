@@ -18,6 +18,7 @@ jobs:
       - run: python3 tools/generate_update.py
       - run: python3 tests/test_updates.py
       - run: node tests/test_update_crypto.js
+      - run: c++ -std=c++11 -Wall -Wextra -Werror firmware/matter/tests/energy_counter_tests.cpp -o /tmp/ck-energy-tests && /tmp/ck-energy-tests
       - run: c++ -std=c++11 -Wall -Wextra -Werror firmware/matter/src/relay/RelayEngine.cpp firmware/matter/tests/relay_engine_tests.cpp -o /tmp/ck-relay-tests && /tmp/ck-relay-tests
   release:
     needs: test

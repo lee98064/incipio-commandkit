@@ -1,5 +1,7 @@
 # 驗證索引
 
+v0.2.1 的軟體累積 kWh、獨立 Flash 循環紀錄及標準能源訂閱見 [電量結果](energy-results.json)。
+
 v0.2 的新增測試見 [OTA／持久儲存／量測結果](ota-results.json)；以下歷史 v0.1 結果與新版本分開保存。
 
 歷史結果見 [test-results.json](test-results.json)、[公開包稽核](public-audit.json)、[flashrom dummy backend](dummy-flashrom.json)。公開 manifest 的 hash 對應本次檔案；原始 VM console／配對記錄只留在本機。

@@ -11,6 +11,7 @@ extern "C" {
 #define CK_SLOT_SIZE 0x10000u
 #define CK_PART_SIZE 0x2b0000u
 #define CK_ERASE_SIZE 0x1000u
+#define CK_STORE_PAYLOAD_MAX (CK_SLOT_SIZE - CK_ERASE_SIZE - 64u)
 #define CK_OTA_HEADER 256u
 const char *ck_path(const char *path);
 uint32_t ck_be32(const uint8_t *p);

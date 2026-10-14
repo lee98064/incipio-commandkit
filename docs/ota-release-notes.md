@@ -6,4 +6,4 @@
 
 本版屬預覽版本。離線、模擬 Flash 與 VM 測試結果不能代替原機斷電、Flash driver、RF、Matter 控制及復原驗收。原廠槽只提供映像校驗失敗的備援，沒有宣稱完整自動版本回退。應用失敗時可使用維修模式安裝較新修正版。
 
-Matter 版加入標準 ElectricalPowerMeasurement，提供電壓、RMS 電流、功率與訂閱通知。無有效 MCU 資料時為 null。累積 kWh、實機校正及 Apple／其他家庭平台 UI 未宣稱已驗收，詳見電力量測文件。
+Matter 版加入標準 ElectricalPowerMeasurement，提供電壓、RMS 電流、功率與訂閱通知。無有效 MCU 資料時為 null。累積 kWh 透過標準 ElectricalEnergyMeasurement 提供，標示為估算；實機校正及 Apple／其他家庭平台 UI 仍待驗收，詳見電力量測文件。

@@ -64,7 +64,7 @@ static int load(struct ck_flash *f, int *active, uint64_t *seq, unsigned *n) {
     return 0;
   }
   uint64_t sa = ck_be64(snapshots[0] + 8), sb = ck_be64(snapshots[1] + 8);
-  if (a && b && sa == sb && !ck_equal(snapshots[0], snapshots[1], CK_SLOT_SIZE))
+  if (a && b && sa == sb && !ck_equal(snapshots[0], snapshots[1], HEADER + ck_be32(snapshots[0]+16)))
     return -1;
   *active = (!a || (b && sb > sa)) ? 1 : 0;
   *seq = ck_be64(snapshots[*active] + 8);
@@ -92,7 +92,7 @@ static int entry(const char *key, unsigned n, unsigned *at, unsigned *size) {
   return 0;
 }
 static int save(struct ck_flash *f, int active, uint64_t seq, unsigned n) {
-  if (seq == UINT64_MAX)
+  if (seq == UINT64_MAX || n > CK_STORE_PAYLOAD_MAX)
     return -1;
   uint8_t digest[32], commit[4];
   memset(work, 255, HEADER);
@@ -188,7 +188,7 @@ static int change(const char *key, const void *value, size_t size, int remove) {
     goto closed;
   }
   unsigned old = found ? (unsigned)(4 + k + v) : 0;
-  if (n - old + (remove ? 0 : 4 + k + size) > PAYLOAD_MAX)
+  if (n - old + (remove ? 0 : 4 + k + size) > CK_STORE_PAYLOAD_MAX)
     goto closed;
   if (found) {
     memmove(work + HEADER + at, work + HEADER + at + old, n - at - old);

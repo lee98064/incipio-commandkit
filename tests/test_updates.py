@@ -41,7 +41,7 @@ class Updates(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.build=tempfile.TemporaryDirectory(prefix='ck-update-build-');cls.bin=Path(cls.build.name)
-        common=[str(SOURCE/'update'/p) for p in ['ck_common.c','ck_flash.c','ck_store.c','ck_ota.c']]
+        common=[str(SOURCE/'update'/p) for p in ['ck_common.c','ck_flash.c','ck_store.c','ck_energy.c','ck_ota.c']]
         common += [str(SOURCE/'vendor/monocypher'/p) for p in ['monocypher.c','monocypher-ed25519.c']]
         flags=['cc','-DCK_TESTING','-std=c11','-O2','-g','-Wall','-Wextra','-Werror','-Wno-misleading-indentation','-Wno-unused-function']
         subprocess.run(flags+['-shared','-fPIC',*common,'-o',str(cls.bin/'state.so')],check=True)
@@ -55,6 +55,8 @@ class Updates(unittest.TestCase):
         cls.lib.ck_store_set.argtypes=[ctypes.c_char_p,ctypes.c_void_p,ctypes.c_size_t]
         cls.lib.ck_store_get.argtypes=[ctypes.c_char_p,ctypes.c_void_p,ctypes.POINTER(ctypes.c_size_t)]
         cls.lib.ck_store_delete.argtypes=[ctypes.c_char_p]
+        cls.lib.ck_energy_load.argtypes=[ctypes.POINTER(ctypes.c_uint64),ctypes.POINTER(ctypes.c_uint32)]
+        cls.lib.ck_energy_save.argtypes=[ctypes.c_uint64,ctypes.c_uint32]
 
     @classmethod
     def tearDownClass(cls):cls.build.cleanup()
@@ -68,18 +70,54 @@ class Updates(unittest.TestCase):
         self.image=bytearray(bytes(range(256))*(0x800000//256));self.image[JOURNAL:JOURNAL+0x20000]=b'\xff'*0x20000
         self.flash=self.work/'flash.bin';self.flash.write_bytes(self.image)
         os.environ['CK_FLASH_FILE']=str(self.flash);os.environ['CK_TEST_ROOT']=str(self.work)
-        os.environ.pop('CK_FAIL_STORE',None);os.environ.pop('CK_FAIL_OTA_AFTER',None)
+        os.environ.pop('CK_FAIL_STORE',None);os.environ.pop('CK_FAIL_OTA_AFTER',None);os.environ.pop('CK_FAIL_ENERGY',None)
         self.assertEqual(self.lib.ck_store_import(),0)
         self.ota=self.work/'update.ota';self.ota.write_bytes(package(self.key,self.image))
         self.server=None
     def tearDown(self):
         if self.server:
             self.server.terminate();self.server.wait(timeout=5);self.server.stdout.close();self.server.stderr.close()
-        os.environ.pop('CK_FAIL_STORE',None);os.environ.pop('CK_FAIL_OTA_AFTER',None);self.tmp.cleanup()
+        os.environ.pop('CK_FAIL_STORE',None);os.environ.pop('CK_FAIL_OTA_AFTER',None);os.environ.pop('CK_FAIL_ENERGY',None);self.tmp.cleanup()
     def get(self,key):
         b=ctypes.create_string_buffer(65536);n=ctypes.c_size_t(len(b));r=self.lib.ck_store_get(key.encode(),b,ctypes.byref(n));return r,b.raw[:n.value]
     def put(self,key,value):return self.lib.ck_store_set(key.encode(),value,len(value))
     def run_updater(self,*args):return subprocess.run([*self.runner,str(self.updater),*map(str,args)],capture_output=True,timeout=15)
+    def energy(self):
+        total=ctypes.c_uint64();fraction=ctypes.c_uint32()
+        result=self.lib.ck_energy_load(ctypes.byref(total),ctypes.byref(fraction))
+        return result,total.value,fraction.value
+    def test_energy_ring_wrap_preserves_configuration(self):
+        self.assertEqual(self.energy(),(1,0,0))
+        self.assertNotEqual(self.lib.ck_energy_save((1<<62)+1,0),0)
+        self.assertEqual(self.put('matter/fabric',b'retain this fabric'),0)
+        before=self.flash.read_bytes()
+        for i in range(260):self.assertEqual(self.lib.ck_energy_save(i,17),0)
+        self.assertEqual(self.energy(),(0,259,17));self.assertEqual(self.get('matter/fabric'),(0,b'retain this fabric'))
+        after=self.flash.read_bytes()
+        for start,end in [(0,0x3cf000),(0x3d0000,0x3df000),(0x3e0000,0x800000)]:self.assertEqual(before[start:end],after[start:end])
+        self.assertEqual(self.put('matter/large',b'x'*60000),0)
+        self.assertEqual(self.energy(),(0,259,17))
+        self.assertEqual(self.lib.ck_energy_save(259,17),0);self.assertNotEqual(self.lib.ck_energy_save(258,17),0)
+        self.assertEqual(self.lib.ck_energy_save(260,18),0);self.assertEqual(self.energy(),(0,260,18))
+    def test_energy_torn_append_and_erase_keep_last_checkpoint(self):
+        for i in range(128):self.assertEqual(self.lib.ck_energy_save(i,0),0)
+        for point in ['after-erase','before-commit']:
+            os.environ['CK_FAIL_ENERGY']=point
+            self.assertNotEqual(self.lib.ck_energy_save(128,0),0)
+            os.environ.pop('CK_FAIL_ENERGY');self.assertEqual(self.energy(),(0,127,0))
+        self.assertEqual(self.lib.ck_energy_save(128,0),0);self.assertEqual(self.energy(),(0,128,0))
+    def test_energy_initial_zero_commit_can_retry(self):
+        os.environ['CK_FAIL_ENERGY']='before-commit';self.assertNotEqual(self.lib.ck_energy_save(0,0),0)
+        os.environ.pop('CK_FAIL_ENERGY');self.assertEqual(self.energy(),(1,0,0))
+        self.assertEqual(self.lib.ck_energy_save(0,0),0);self.assertEqual(self.energy(),(0,0,0))
+    def test_energy_rejects_unknown_or_oversized_legacy_store(self):
+        before=bytearray(self.flash.read_bytes());before[0x3cf000:0x3cf006]=b'vendor';self.flash.write_bytes(before)
+        self.assertLess(self.energy()[0],0);self.assertNotEqual(self.lib.ck_energy_save(0,0),0)
+        self.assertEqual(self.flash.read_bytes(),before)
+        before[0x3cf000:0x3d0000]=b'\xff'*0x1000
+        struct.pack_into('>I',before,0x3c0010,64000);before[0x3c003c:0x3c0040]=b'CKOK'
+        self.flash.write_bytes(before);self.assertNotEqual(self.lib.ck_energy_save(0,0),0)
+        self.assertEqual(self.flash.read_bytes(),before)
     def test_persistence_and_noop_wear(self):
         self.assertEqual(self.put('matter/fabric',b'paired fabric secret'),0)
         before=self.flash.read_bytes();self.assertEqual(self.put('matter/fabric',b'paired fabric secret'),0);self.assertEqual(before,self.flash.read_bytes())
@@ -113,10 +151,12 @@ class Updates(unittest.TestCase):
         self.assertEqual(self.flash.read_bytes(),before)
     def test_rootfs_write_and_preservation(self):
         self.assertEqual(self.put('matter/fabric',b'paired'),0)
+        self.assertEqual(self.lib.ck_energy_save(1234567,17),0)
         before=self.flash.read_bytes();self.assertEqual(self.run_updater('--stage',self.ota).returncode,0)
         self.assertEqual(self.run_updater('--simulate').returncode,0)
         after=self.flash.read_bytes();self.assertEqual(after[START:END],rootfs());self.assertEqual(before[:START],after[:START]);self.assertEqual(before[END:],after[END:])
         self.assertEqual(self.get('matter/fabric'),(0,b'paired'))
+        self.assertEqual(self.energy(),(0,1234567,17))
     def test_interrupted_write_leaves_invalid_magic_and_original_bank(self):
         before=self.flash.read_bytes();self.assertEqual(self.run_updater('--stage',self.ota).returncode,0)
         os.environ['CK_FAIL_OTA_AFTER']='4';self.assertNotEqual(self.run_updater('--simulate').returncode,0)

@@ -148,13 +148,15 @@ public:
 };
 static const DataModel::DeviceTypeEntry plugTypes[] = {Device::Type::kOnOffPlugInUnit, Device::Type::kElectricalSensor};
 class TestPlug final : public SingleEndpoint {
-    ElectricalMeasurements measurements;
+    ElectricalMeasurements measurements{timer};
     RelayOnOff onoff;
     ServerClusterRegistration onoffRegistration{onoff};
     TestIdentify identifyDelegate;
     LazyRegisteredServerCluster<Clusters::IdentifyCluster> identify;
 public:
     TestPlug():SingleEndpoint(Span<const DataModel::DeviceTypeEntry>(plugTypes)){}
+    CHIP_ERROR InitEnergy(bool persistent) { return measurements.InitEnergy(persistent); }
+    void SaveEnergy() { LogErrorOnFailure(measurements.SaveEnergy(true)); }
     void Poll() { onoff.Poll(); measurements.Poll(hardware.Snapshot(),incipio::McuController::Now()); }
     CHIP_ERROR Register(EndpointId id,CodeDrivenDataModelProvider&model,EndpointComposition c={}) override {
         ReturnErrorOnFailure(RegisterDescriptor(id,model,c));
@@ -183,7 +185,7 @@ static std::unique_ptr<CodeDrivenDataModelProvider> model;
 static std::unique_ptr<RootNode> root;
 static TestPlug plug;
 static void PollHardware(System::Layer * layer, void *) {
-    if (stopping) { hardware.Stop(); _exit(0); }
+    if (stopping) { plug.SaveEnergy(); hardware.Stop(); _exit(0); }
     plug.Poll();
     auto snapshot=hardware.Snapshot();uint64_t now=incipio::McuController::Now();
     if(!isVm&&!healthConfirmed){
@@ -249,6 +251,7 @@ int main(int argc,char**argv){
         .deviceLoadStatusProvider=*InteractionModelEngine::GetInstance(),.diagnosticDataProvider=GetDiagnosticDataProvider(),
         .testEventTriggerDelegate=nullptr,.dacProvider=*Credentials::GetDeviceAttestationCredentialsProvider(),
         .eventManagement=EventManagement::GetInstance(),.timerDelegate=timer});
+    TRY(plug.InitEnergy(!vm || persistentVm));
     TRY(root->Register(0,*model));TRY(plug.Register(1,*model));
     TRY(RegisterMatterOta(*model));
     params.dataModelProvider=model.get();params.interfaceId=Inet::InterfaceId(index);

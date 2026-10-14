@@ -61,6 +61,8 @@ F-005：E-007 支持同一標準 Matter 資料可由已授權 controller 讀取�
 
 P-003（E-006 → F-004）：區網上傳／Matter BDX → RAM 暫存 → 驗簽與相容性檢查 → 固定 PID 1 action → RAM root → 限定 rootfs 寫入及讀回 → 重開 → MCU 健康確認版本。完整 Provider 傳輸及原機驗收仍待完成。
 
+[v0.2.1 驗證](../verification/energy-results.json)補上功率積分的累積用電（EEM 0x0091），以估算標誌及 30 秒獨立 Flash 循環 checkpoint 回報。設定 snapshot 容量改為每 slot 前 60 KiB；末端各 4 KiB 保存電量，不碰原廠資料。積分與中斷寫入驗證見[電力量測](measurements.md)。
+
 P-004（E-007 → F-005）：A5／A6／A7 → 有界待查詢解析 → 原廠名義單位縮放 → 標準 ElectricalPowerMeasurement → 讀取／訂閱；逾時、斷線或過期 → null。
 
 ## 狀態與時序
