@@ -15,6 +15,10 @@
 #include <sys/syscall.h>
 #include <sys/wait.h>
 #include <unistd.h>
+#include <poll.h>
+#include "ck_factory_reset.h"
+#include "ck_protocol_owner.h"
+#include "ck_led_service.h"
 static int other_processes(void) {
   DIR *dir = opendir("/proc");
   if (!dir)
@@ -179,6 +183,19 @@ static int apply(int simulation) {
   return result ? 12 : 0;
 }
 int main(int argc, char **argv) {
+  if(argc==2 && !strcmp(argv[1],"--run-led")) return ck_led_run();
+  if(argc==3 && !strcmp(argv[1],"--led-ntp")) return ck_led_ntp(argv[2]);
+  if((argc==2 && !strcmp(argv[1],"--factory-reset")) || (argc==1 && strstr(argv[0],"ck-reset")))
+    {
+    int lock=ck_transfer_lock();if(lock<0)return 1;
+    if(!access(ck_path("/var/run/ck-ota/queued"),F_OK) || !access(ck_path(CK_PROTOCOL_PENDING),F_OK) ||
+       !access(ck_path("/var/run/ck-network-changing"),F_OK) || mkdir(ck_path(CK_MATTER_LOCK),0700)) {close(lock);return 1;}
+    int r=ck_factory_request();if(r)rmdir(ck_path(CK_MATTER_LOCK));close(lock);return r?1:0;
+  }
+  if(argc==2 && !strcmp(argv[1],"--enroll-admin")) return admin_enroll() ? 1 : 0;
+  if(argc==2 && !strcmp(argv[1],"--admin-state")) return admin_export_state() ? 1 : 0;
+  if(argc==2 && !strcmp(argv[1],"--run-protocol")) return run_protocol();
+  if(argc==2 && !strcmp(argv[1],"--protocol-boot")) return protocol_boot();
   if (argc == 3 && !strcmp(argv[1], "--verify")) {
     struct ck_image im;
     int r = ck_ota_verify(argv[2], &im);
@@ -209,8 +226,19 @@ int main(int argc, char **argv) {
   if (argc == 2 && !strcmp(argv[1], "--simulate"))
     return apply(1);
 #endif
-  if (argc == 2 && !strcmp(argv[1], "--import"))
-    return ck_store_import() ? 1 : 0;
+  if (argc == 2 && (!strcmp(argv[1], "--import") || !strcmp(argv[1], "--import-wait"))) {
+    int r = !strcmp(argv[1], "--import-wait") ? ck_store_import_wait() : ck_store_import();
+    return r == 75 ? 75 : r ? 1 : 0;
+  }
+  if (argc == 2 && !strcmp(argv[1], "--onboarded")) {
+    if(ck_store_onboarded())return 1;
+#ifndef CK_TESTING
+    if(!strcmp(ck_protocol_active(),"homekit")) {
+      pid_t child=fork();if(!child){sleep(2);execl("/bin/reboot","reboot",(char *)NULL);_exit(127);}
+    }
+#endif
+    return 0;
+  }
   if (argc == 2 && !strcmp(argv[1], "--boot"))
     return ck_store_boot();
   if (argc == 2 && !strcmp(argv[1], "--confirm")) {

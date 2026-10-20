@@ -1,5 +1,7 @@
 'use strict';
 (function () {
+  var protocolPanel = document.getElementById('protocol-management');
+  if (protocolPanel) { protocolPanel.href = 'http://' + location.hostname + ':18082/'; protocolPanel.hidden = false; }
   var form = document.getElementById('wifi-form');
   var list = document.getElementById('network');
   var manual = document.getElementById('manual-network');
@@ -11,6 +13,36 @@
   var retry = document.getElementById('scan-again');
   var save = document.getElementById('save');
   var networks = [], scanning = false;
+  var adminState=null,setting=false;
+  var adminMessage=document.getElementById('admin-setup-status');
+  async function adminStatus(){try{
+    var response=await fetch('/admin/status',{cache:'no-store'});adminState=await response.json();
+    if(!adminState.ready){setTimeout(adminStatus,1500);return;}
+    document.getElementById('admin-setup').hidden=adminState.configured;
+    document.getElementById('admin-password').required=!adminState.configured;
+    document.getElementById('admin-confirm').required=!adminState.configured;
+    adminMessage.textContent=adminState.configured?'管理密碼已設定。':'請建立管理密碼，不需要下載金鑰檔案。';
+    if(!adminState.wifi_allowed){form.hidden=true;adminMessage.textContent='請開啟管理面板，登入後修改 Wi-Fi。';}
+  }catch{adminMessage.textContent='管理服務尚未就緒，正在重試…';setTimeout(adminStatus,1500);}}
+  adminStatus();
+  form.addEventListener('submit',async function(event){
+    event.preventDefault();if(setting)return;
+    try{
+      if(!adminState?.ready)throw Error('請稍候管理服務準備完成');
+      setting=true;save.disabled=true;
+      if(!adminState.configured){
+        var password=document.getElementById('admin-password').value;
+        if(password!==document.getElementById('admin-confirm').value)throw Error('兩次管理密碼不相同');
+        adminMessage.textContent='正在保護管理密碼，請稍候…';
+        var salt=CKPassword.salt(),key=await CKPassword.derive(password,salt);
+        document.getElementById('admin-password').value='';document.getElementById('admin-confirm').value='';password='';
+        var enroll=await fetch('/admin/enroll',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:'token='+form.elements.token.value+'&credential='+CKPassword.record(salt,key)});key='';
+        if(!enroll.ok)throw Error('管理密碼未保存，請重新開啟設定頁再試');
+        adminState.configured=true;
+      }
+      adminMessage.textContent='密碼已保存，正在連線…';HTMLFormElement.prototype.submit.call(form);
+    }catch(error){adminMessage.textContent=error.message;setting=false;save.disabled=false;}
+  });
   function passwordMode() {
     var open = security.value === 'open';
     password.required = !open;

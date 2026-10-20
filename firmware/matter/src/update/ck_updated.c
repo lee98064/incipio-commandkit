@@ -3,6 +3,11 @@
 #include "ck_ota.h"
 #include "ck_store.h"
 #include "ck_meter.h"
+#include "ck_led.h"
+#include "ck_protocol.h"
+#include "ck_matter_control.h"
+#include "ck_energy.h"
+#include "password_script.h"
 #include "update_page.h"
 #include <arpa/inet.h>
 #include <errno.h>
@@ -55,9 +60,101 @@ static void reply(int fd, int status, const char *type, const char *body) {
 static void json(int fd, int status, const char *body) {
   reply(fd, status, "application/json; charset=utf-8", body);
 }
+#include "ck_web_auth.h"
+static void protocol_get(int fd) {
+  char b[256];const char *selected=ck_protocol_selected(),*active=ck_protocol_active();
+  snprintf(b,sizeof(b),"{\"selected\":\"%s\",\"active\":\"%s\",\"restart_pending\":%s}",selected,active,access(ck_path(CK_PROTOCOL_PENDING),F_OK)?"false":"true");
+  json(fd,200,b);
+}
+static void management_reboot(void) {
+#ifndef CK_TESTING
+  pid_t child=fork();if(!child) { for(int f=0;f<128;f++)close(f);sleep(2);execl("/bin/reboot","reboot",(char *)NULL);_exit(127); }
+#endif
+}
+static int operation_begin(void) {
+  int lock=ck_transfer_lock();if(lock<0)return -1;
+  if(!access(ck_path("/var/run/ck-ota/queued"),F_OK) || !access(ck_path(CK_PROTOCOL_PENDING),F_OK) ||
+     !access(ck_path("/var/run/ck-network-changing"),F_OK) ||
+     !access(ck_path("/var/run/ck-factory-pending"),F_OK) || mkdir(ck_path(CK_MATTER_LOCK),0700)) { close(lock);return -1; }
+  return lock;
+}
+static void operation_end(int lock) { rmdir(ck_path(CK_MATTER_LOCK));close(lock); }
+static void protocol_set(int fd,const char *mode) {
+  if(!ck_protocol_valid(mode)){json(fd,400,"{\"error\":\"protocol\"}");return;}
+  int lock=operation_begin();if(lock<0){json(fd,409,"{\"error\":\"busy\"}");return;}
+  if(!strcmp(mode,ck_protocol_active()) && !strcmp(mode,ck_protocol_selected())) {
+    operation_end(lock);json(fd,200,"{\"status\":\"unchanged\"}");return;
+  }
+  int error=ck_atomic(ck_path(CK_PROTOCOL_PENDING),mode,strlen(mode),0600);
+  if(!error)error=ck_store_set(CK_PROTOCOL_KEY,mode,strlen(mode));
+  if(error){unlink(ck_path(CK_PROTOCOL_PENDING));operation_end(lock);json(fd,503,"{\"error\":\"storage\"}");return;}
+  close(lock);json(fd,200,"{\"status\":\"restarting\"}");management_reboot();
+}
+static void matter_queue(int fd,char action,int lock) {
+  char id[65],command[67];
+  if(web_random(id)){operation_end(lock);json(fd,503,"{}");return;}
+  command[0]=action;command[1]=' ';memcpy(command+2,id,64);command[66]='\n';
+  if(ck_atomic(ck_path(CK_MATTER_REQUEST),command,sizeof(command),0600)) { operation_end(lock);json(fd,503,"{}");return; }
+  close(lock);char b[128];snprintf(b,sizeof(b),"{\"request_id\":\"%s\",\"result\":\"queued\"}",id);json(fd,202,b);
+}
+static int matter_ready(void) {
+  char b[512];FILE *f=fopen(ck_path(CK_MATTER_STATE),"r");long stamp=0;int ok=0;
+  if(f){if(fgets(b,sizeof(b),f) && sscanf(b,"{\"updated_s\":%ld,",&stamp)==1 && stamp<=web_now() && web_now()-stamp<=5)ok=1;fclose(f);}
+  return ok;
+}
+static void admin_action(int fd,const char *path,const char *body,unsigned length) {
+  int lock=operation_begin();if(lock<0){json(fd,409,"{\"error\":\"busy\"}");return;}
+  if(!strcmp(path,"/admin/led") || !strcmp(path,"/admin/led-find") || !strcmp(path,"/admin/led-time")) {
+    int r=-2;
+    if(!strcmp(path,"/admin/led"))r=ck_led_save_config(body);
+    else if(!strcmp(path,"/admin/led-find"))r=length?-2:ck_led_find();
+    else {
+      char *end=NULL;errno=0;unsigned long long utc=strtoull(body,&end,10);
+      if(length>=10 && length<=11 && body[0]>='1' && body[0]<='9' && !errno && end && !*end)r=ck_led_set_time(utc,0);
+    }
+    operation_end(lock);json(fd,r==-2?400:r?503:200,r?"{\"error\":\"led_settings\"}":"{\"result\":\"complete\"}");return;
+  }
+  if(!strcmp(path,"/admin/energy-reset")) {
+    if(!strcmp(ck_protocol_active(),"matter")) {
+      if(!matter_ready()){operation_end(lock);json(fd,503,"{\"error\":\"protocol_not_ready\"}");return;}
+      matter_queue(fd,'E',lock);return;
+    }
+    if(strcmp(ck_protocol_active(),"homekit")){operation_end(lock);json(fd,503,"{\"error\":\"protocol_not_ready\"}");return;}
+    int r=ck_energy_reset();operation_end(lock);json(fd,r?503:200,r?"{\"error\":\"storage\"}":"{\"result\":\"complete\"}");return;
+  }
+  if(!strcmp(path,"/admin/factory-reset")) {
+    if(ck_factory_request()){operation_end(lock);json(fd,503,"{\"error\":\"storage\"}");return;}
+    close(lock);json(fd,200,"{\"status\":\"restarting\"}");management_reboot();return;
+  }
+  if(!strcmp(path,"/admin/reboot")) {
+    if(ck_atomic(ck_path(CK_PROTOCOL_PENDING),"reboot",6,0600)){operation_end(lock);json(fd,503,"{}");return;}
+    close(lock);json(fd,200,"{\"status\":\"restarting\"}");management_reboot();return;
+  }
+  if(!strcmp(path,"/admin/open-commissioning") || !strcmp(path,"/admin/pairing-reset")) {
+    if(!strcmp(ck_protocol_active(),"matter") && matter_ready()) { matter_queue(fd,!strcmp(path,"/admin/pairing-reset")?'R':'O',lock);return; }
+    if(!strcmp(path,"/admin/pairing-reset") && !strcmp(ck_protocol_active(),"homekit")) {
+      if(ck_store_set("control/homekit-reset","1",1) || ck_atomic(ck_path(CK_PROTOCOL_PENDING),"homekit",7,0600)) {
+        operation_end(lock);json(fd,503,"{}");return;
+      }
+      close(lock);json(fd,200,"{\"status\":\"restarting\"}");management_reboot();return;
+    }
+    operation_end(lock);json(fd,503,"{\"error\":\"protocol_not_ready\"}");return;
+  }
+  if(!strcmp(path,"/admin/wifi")) {
+    uint8_t request[104];
+    if(length!=208 || ck_unhex(body,104,request) || memcmp(request,"CKW1",4) || request[4]<1 || request[4]>32 || request[5]>64 || request[6]>1 || request[7] ||
+       (request[6] && request[5]<8) || (!request[6] && request[5])) {operation_end(lock);json(fd,400,"{}");return;}
+    int error=ck_atomic(ck_path("/var/run/ck-setup-request.bin"),request,sizeof(request),0600);
+    if(!error)error=ck_atomic(ck_path("/var/run/ck-network-changing"),"1",1,0600);
+    if(!error)error=ck_atomic(ck_path("/var/run/ck-admin-wifi"),"1",1,0600);
+    if(error)unlink(ck_path("/var/run/ck-network-changing"));
+    memset(request,0,sizeof(request));operation_end(lock);json(fd,error?503:202,error?"{}":"{\"result\":\"queued\"}");return;
+  }
+  operation_end(lock);json(fd,404,"{}");
+}
 static void handle(int fd, int server) {
   char request[4096], method[12], path[80], version[16],
-      host[128] = "", origin[160] = "", digest[80] = "";
+      host[128] = "", origin[160] = "", digest[80] = "", proof[132] = "", cookie[512]="", csrf[80]="", login[132]="";
   unsigned n = 0, base = 0, length = 0, seen = 0;
   time_t start = time(NULL);
   while (!base && n < sizeof(request) - 1 && time(NULL) - start < 10) {
@@ -105,6 +202,11 @@ static void handle(int fd, int server) {
       bit = 8;
       out = digest;
       cap = sizeof(digest);
+    } else if(!strcasecmp(line,"Cookie")) { bit=64;out=cookie;cap=sizeof(cookie);
+    } else if(!strcasecmp(line,"X-CK-CSRF")) { bit=128;out=csrf;cap=sizeof(csrf);
+    } else if(!strcasecmp(line,"X-CK-Login")) { bit=256;out=login;cap=sizeof(login);
+    } else if (!strcasecmp(line,"X-CK-Proof")) {
+      bit=32;out=proof;cap=sizeof(proof);
     } else if (!strcasecmp(line, "Content-Length")) {
       bit = 16;
       char *tail;
@@ -173,10 +275,64 @@ static void handle(int fd, int server) {
       return;
     }
   }
+  struct web_session *session=web_session(cookie,remote);
+  if(!strcmp(method,"POST") && strcmp(path,"/upload")) {
+    if(length>512){json(fd,400,"{}");return;}
+    while(n-base<length && n<sizeof(request)-1) {
+      ssize_t got=recv(fd,request+n,length-(n-base),0);if(got<=0)break;n+=(unsigned)got;
+    }
+    if(n-base!=length || memchr(request+base,0,length)){json(fd,400,"{}");return;}
+    request[n]=0;
+  }
+  if(!strcmp(method,"GET") && !length && n==base && !strcmp(path,"/auth/challenge")){web_challenge(fd,remote);return;}
+  if(!strcmp(method,"POST") && !length && !strcmp(path,"/auth/login")){web_login(fd,remote,login);return;}
+  if(!strcmp(method,"GET") && !length && n==base && !strcmp(path,"/auth/session")) {
+    char b[256];snprintf(b,sizeof(b),"{\"authenticated\":%s,\"configured\":%s,\"storage_ready\":%s,\"csrf\":\"%s\"}",session?"true":"false",web_credential_state==0?"true":"false",web_storage_ready?"true":"false",session?session->csrf:"");json(fd,200,b);return;
+  }
+  if(!strcmp(method,"POST")) {
+    if(!web_storage_ready){json(fd,503,"{\"error\":\"storage\"}");return;}
+    if(!web_authorized(session,csrf)){json(fd,401,"{\"error\":\"login_required\"}");return;}
+    if(!strcmp(path,"/auth/logout")){memset(session,0,sizeof(*session));json(fd,200,"{\"authenticated\":false}");return;}
+    if(!strcmp(path,"/auth/password")) {
+      uint8_t record[CK_ADMIN_BYTES];
+      if(length!=120 || ck_unhex(request+base,60,record) || !ck_admin_valid(record)){json(fd,400,"{}");return;}
+      int lock=operation_begin();if(lock<0){memset(record,0,sizeof(record));json(fd,409,"{}");return;}
+      int r=ck_store_set(CK_ADMIN_KEY,record,sizeof(record));memset(record,0,sizeof(record));
+      operation_end(lock);
+      if(!r)memset(web_sessions,0,sizeof(web_sessions));json(fd,r?503:200,r?"{\"error\":\"storage\"}":"{\"result\":\"login_again\"}");return;
+    }
+    if(!strcmp(path,"/protocol")){protocol_set(fd,request+base);return;}
+    if(!strncmp(path,"/admin/",7)) {
+      if(strcmp(path,"/admin/wifi") && strcmp(path,"/admin/led") && strcmp(path,"/admin/led-time") && length){json(fd,400,"{}");return;}
+      admin_action(fd,path,request+base,length);return;
+    }
+  }
   if (!strcmp(method, "GET") && length == 0 && n == base) {
     if (!strcmp(path, "/")) {
       reply(fd, 200, "text/html; charset=utf-8", ck_update_page);
       return;
+    }
+    if(!strcmp(path,"/password.js")){reply(fd,200,"application/javascript",ck_password_script);return;}
+    if(!strcmp(path,"/admin/led")) {
+      if(!session){json(fd,401,"{}");return;}char b[768];
+      if(ck_led_status(b,sizeof(b))){json(fd,503,"{\"error\":\"storage\"}");return;}json(fd,200,b);return;
+    }
+    if(!strcmp(path,"/admin/onboarding")) {
+      if(!session){json(fd,401,"{}");return;}
+      char manual[12]={0},b[48];
+      if(ck_exact_file(ck_path("/var/run/matter-manual-code"),manual,11)){json(fd,503,"{}");return;}
+      for(unsigned i=0;i<11;i++)if(manual[i]<'0'||manual[i]>'9'){json(fd,503,"{}");return;}
+      snprintf(b,sizeof(b),"{\"manual_code\":\"%s\"}",manual);json(fd,200,b);return;
+    }
+    if(!strcmp(path,"/protocol")){protocol_get(fd);return;}
+    if(!strcmp(path,"/admin/state")) {
+      if(!session){json(fd,401,"{}");return;}
+      char state[512]="null",b[768],energy[32]="null";FILE *f=fopen(ck_path(CK_MATTER_STATE),"r");
+      if(f){if(!fgets(state,sizeof(state),f) || strncmp(state,"{\"updated_s\":",13))strcpy(state,"null");fclose(f);}
+      uint64_t total=0;uint32_t fraction=0;
+      if(ck_energy_load(&total,&fraction)>=0)snprintf(energy,sizeof(energy),"\"%llu\"",(unsigned long long)total);
+      snprintf(b,sizeof(b),"{\"matter\":%s,\"energy_mwh\":%s}",state,energy);
+      json(fd,200,b);return;
     }
     if (!strcmp(path, "/status")) {
       char b[512], label[32] = {0};
@@ -192,6 +348,8 @@ static void handle(int fd, int server) {
         fclose(f);
       }
       label[strcspn(label, "\r\n")] = 0;
+      uint8_t floor_bytes[4]={0};size_t floor_size=4;
+      if(ck_store_try_get("ota/floor",floor_bytes,&floor_size) || floor_size!=4)memset(floor_bytes,0,4);
       snprintf(b, sizeof(b),
                "{\"software_version\":%u,\"variant\":%u,\"version\":\"%s\","
                "\"rescue\":%s,\"healthy\":%s,\"confirmed_version\":%u,\"max_"
@@ -200,7 +358,7 @@ static void handle(int fd, int server) {
                access(ck_path("/var/run/ck-rescue"), F_OK) ? "false" : "true",
                access(ck_path("/var/run/ck-update-healthy"), F_OK) ? "false"
                                                                    : "true",
-               ck_store_floor(), CK_ROOTFS_SIZE + 256);
+               ck_be32(floor_bytes), CK_ROOTFS_SIZE + 256);
       json(fd, 200, b);
       return;
     }

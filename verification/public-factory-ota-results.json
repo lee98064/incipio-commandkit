@@ -1,0 +1,20 @@
+{
+  "status": "pass",
+  "environment": "actual MIPS test updater under qemu-user; temporary regular-file NOR fixture",
+  "image_sha256": "14e9161f6148eed114c3662fa3f6a118ec204ad7c9c29bf5a34b33d48c9ae0a6",
+  "updater_sha256": "3029a837e5e9da28a665519b5fce4314714ae523f47217ffafdd66626744ccb6",
+  "checks": [
+    "first import into erased journal",
+    "boot and version confirmation",
+    "signed next-version OTA accepted on factory kernel",
+    "vendor boot-mark changes accepted",
+    "changed code/padding/Bank 2 rejected without writes",
+    "OTA rootfs write/readback",
+    "persistent identity and trust preserved across OTA",
+    "all ranges outside OTA rootfs preserved"
+  ],
+  "public_image_without_preset_keys": true,
+  "actual_mips_manual_and_qr_stable_across_reboot_and_ota": true,
+  "physical_device_access": false,
+  "factory_boot_tested": false
+}

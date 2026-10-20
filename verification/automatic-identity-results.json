@@ -1,0 +1,66 @@
+{
+  "status": "pass",
+  "release": "v0.2.5-preview",
+  "software_version": 7,
+  "public_first_install_image_sha256": "14e9161f6148eed114c3662fa3f6a118ec204ad7c9c29bf5a34b33d48c9ae0a6",
+  "public_image_size": 3997728,
+  "preset_device_credentials_present": false,
+  "identity_generation": "32 bytes of kernel-credited /dev/random; domain-separated HMAC-SHA256",
+  "atomic_initial_commit_and_marker_retirement": true,
+  "tests": {
+    "native_updates": 32,
+    "actual_mips_updates": 32,
+    "deployment": 12,
+    "startup_recovery": 7,
+    "setup_control_and_downloaded_profile": 3,
+    "publication_profile_leak_guard": 2,
+    "actual_mips_setup_portal": {
+      "status": "pass",
+      "checks": [
+        "mobile page and per-boot CSRF",
+        "initial page shows SDK manual code and exact device Matter QR SVG before Wi-Fi submit",
+        "captive HTTP probe redirect",
+        "unauthenticated setup rejected",
+        "management key export only in setup portal with valid CSRF/origin; absent on LAN and initial page",
+        "HMAC state and replay rejection",
+        "DNS A synthesis and AAAA NODATA",
+        "CSRF/origin/SSID/password/control-byte validation",
+        "scan start/poll/cached results and open network metadata",
+        "null origin with valid token and MIME charset accepted; evil origins and duplicate headers rejected",
+        "same-origin local JavaScript and textContent for network labels",
+        "Wi-Fi submission confirmation retains same manual code and QR",
+        "duplicate guard and fixture transition"
+      ],
+      "binary_sha256": "37a9b0effb27682a51cb140442f71bbef1e5b0c4ec680575279355892e96083f",
+      "environment": "actual MIPS ELF under qemu-user; fixture backend; no RF/Flash",
+      "real_softap_station_and_commissioning": "pending"
+    },
+    "mcu_identity_wait_vm": {
+      "status": "pass",
+      "binary_sha256": "e76ed46878219d5e30507f2602d3b55f001eea8d949629b32fd9c392b3c3e7cd",
+      "identity_missing": true,
+      "cold_off_confirmed": true,
+      "startup_identity_wait_and_mcu_only_mode": true,
+      "simulated_button_state_changes": 10,
+      "continued_mcu_polling": true,
+      "identity_pending_over_60_seconds_keeps_buttons_active": true,
+      "flash_devices_present": false,
+      "virtual_nic_present": false,
+      "original_hardware_test": false,
+      "address_space_limit": 8388608
+    },
+    "browser_management_key_download": "pass; successful file download and visible confirmation"
+  },
+  "production_binaries": {
+    "ck-updater": "a85aee3c6fd66d01a26b58f6eb408a937aecc5a84bb22c36e81072ead7e926b5",
+    "ck-updated": "730889a5b7bbb46c2f5ebe9cd851935a5b6769166766952967224e07064ecf03"
+  },
+  "production_matter_sha256": "e76ed46878219d5e30507f2602d3b55f001eea8d949629b32fd9c392b3c3e7cd",
+  "public_factory_ota_report": "public-factory-ota-results.json",
+  "original_boa_bootloader_report": "public-factory-boa-results.json",
+  "physical_device_access": false,
+  "physical_first_install_tested": false,
+  "original_hardware_entropy_quality_and_collection_time": "not independently validated",
+  "github_publication_performed": false,
+  "public_factory_reproduced_from_public_template_without_private_dump": true
+}

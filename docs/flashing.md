@@ -4,6 +4,8 @@
 
 v0.2 首次安裝後可使用[簽章 OTA](updates.md)，後續更新不需再次拆機。v0.1 沒有永久 OTA 入口。
 
+原廠 `10219-1531`／Active Bank 2／雙韌體已啟用的 CMNDKT-004，另有[網頁首次安裝包](factory-install.md)；目前通過離線驗證，原廠機首次寫入驗收尚未完成。
+
 ## 接線與前提
 
 1. 插座與市電完全斷開。不得一邊接市電一邊接 USB 燒錄器／UART。
@@ -40,7 +42,7 @@ python3 tools/flash.py prepare \
   --profile private/outlet-a --output private/matter-target.bin
 ```
 
-此步不接觸硬體。它產生新的私人診斷金鑰、Matter 身分金鑰，重打包 rootfs、保留 special device nodes／symlink metadata，重算 Realtek checksum，再用當次備份補回其餘區域。輸出完整私人目標映像及 `.bin.json`。
+此步不接觸硬體。已有 journal 身分時沿用原診斷與 Matter 金鑰，只有沒有既有身分的新安裝才產生新金鑰；接著重打包 rootfs、保留 special device nodes／symlink metadata，重算 Realtek checksum，再用當次備份補回其餘區域。輸出完整私人目標映像及 `.bin.json`。
 
 同一插座後續更新使用相同 `--profile`，以保留其配對碼來源。另一台使用另一個 profile。不要公開 profile 或合成映像；更換／遺失身分金鑰會改變設定碼。診斷版把檔名改成 `exec-test-8m-region.bin`／`.json`，其設定熱點帳密會另存在 profile 的 `setup-ap.json`。
 
@@ -73,3 +75,5 @@ python3 tools/flash.py restore \
 ```
 
 復原同樣取得兩份當次備份，要求原備份的 kernel／Bank 2 相容，只取回原備份中的 Bank 1 rootfs。當次 MAC、校正、MIB 與其他保留區維持當次值。這不是空白晶片初始化或 bootloader 修復工具。
+
+v0.2.10 的 host 工具另支援已固定 hash 的 Boa 首次安裝 kernel wrapper，與 production OTA verifier 採相同嚴格條件。只正規化其 boot mark；程式、長度、padding、checksum 及 Bank 2 仍完整核對，kernel 不會被寫入。較新程式可接續保留的舊 OTA pending 狀態，仍需正常健康確認，見[復原報告](2026-10-20_firmware-programmer-recovery-report.md)。

@@ -18,6 +18,7 @@ def public_paths(repository):
     return sorted(p for p in repository.rglob("*")
                   if (p.is_file() or p.is_symlink()) and
                   not EXCLUDED & set(p.relative_to(repository).parts) and
+                  not (p.name.startswith('commandkit-management') and p.suffix == '.json') and
                   p.name != ".DS_Store" and not p.name.endswith(".pyc"))
 
 
@@ -37,6 +38,11 @@ def audit(repository, release):
         require(not PERSONAL.search(data),
                 "仍有可識別路径／歷史裝置名稱：" + rel)
         require(path.suffix not in (".key", ".pseudo", ".cpio", ".sqsh"), "公開包含私人格式：" + rel)
+        if path.suffix == '.json':
+            try: record = json.loads(data)
+            except (ValueError, UnicodeDecodeError): record = None
+            require(not isinstance(record,dict) or record.get('format') != 'commandkit-management-v1',
+                    '公開包含管理金鑰：' + rel)
         if path.suffix == ".md":
             text = data.decode()
             for link in re.findall(r"(?<!!)\[[^\]]*\]\(([^)]+)\)", text):
@@ -45,14 +51,21 @@ def audit(repository, release):
                     continue
                 resolved = (path.parent / target).resolve()
                 require(resolved.exists(), "文件連結不存在：" + rel + " → " + target)
+    require((release/"matter-8m-region.bin").is_file(), "缺少主要韌體")
     variants = {}
     for variant in ("matter", "exec-test"):
+        if variant=="exec-test" and not (release/(variant+"-8m-region.bin")).exists(): continue
         root, meta = load_release(release / (variant + "-8m-region.bin"), release / (variant + "-8m-region.json"))
         inventory = file_inventory(root)
         regular = [name for name, line in inventory.items() if line.split()[1] == "R"]
         hashes = {}
         for name in regular:
             data = read_file(root, name)
+            if name.endswith('.json'):
+                try: record = json.loads(data)
+                except (ValueError, UnicodeDecodeError): record = None
+                require(not isinstance(record,dict) or record.get('format') != 'commandkit-management-v1',
+                        'rootfs 包含管理金鑰：' + name)
             require(not PERSONAL.search(data),
                     "rootfs 仍有可識別路径／名稱：" + variant + "/" + name)
             hashes[name] = sha(data)

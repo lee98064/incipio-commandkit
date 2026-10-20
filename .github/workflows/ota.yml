@@ -19,9 +19,13 @@ jobs:
       - run: python3 tests/test_updates.py
       - run: python3 tests/test_legacy_mtd.py
       - run: python3 tests/test_startup_recovery.py
+      - run: python3 tests/test_boot_guard.py
       - run: node tests/test_update_crypto.js
+      - run: node tests/test_password_crypto.js
       - run: node tests/test_monitor.js
       - run: python3 tests/test_update_feed.py
+      - run: python3 tests/test_setup_control.py
+      - run: python3 tests/test_public_management.py
       - run: c++ -std=c++11 -Wall -Wextra -Werror firmware/matter/tests/energy_counter_tests.cpp -o /tmp/ck-energy-tests && /tmp/ck-energy-tests
       - run: c++ -std=c++11 -Wall -Wextra -Werror firmware/matter/src/relay/RelayEngine.cpp firmware/matter/tests/relay_engine_tests.cpp -o /tmp/ck-relay-tests && /tmp/ck-relay-tests
   release:
@@ -71,7 +75,7 @@ jobs:
         run: |
           python3 tools/generate_update.py
           docker run --rm -e CK_TESTING=1 -v "$PWD/firmware/matter:/work" incipio-public-build:v0.1.0-preview sh tools/build_updates.sh
-          docker run --rm -e CK_TEST_RUNNER=qemu-mips -e CK_TEST_BIN=/repo/firmware/matter/artifacts/update-test -v "$PWD:/repo" -w /repo incipio-public-build:v0.1.0-preview sh -c 'python3 -m venv /tmp/ck-tests && /tmp/ck-tests/bin/pip -q install -r tools/requirements.txt && /tmp/ck-tests/bin/python tests/test_updates.py'
+          docker run --rm -e CK_TEST_RUNNER=qemu-mips -e CK_TEST_BIN=/repo/firmware/matter/artifacts/update-test -v "$PWD:/repo" -w /repo incipio-public-build:v0.1.0-preview sh -c 'python3 -m venv /tmp/ck-tests && /tmp/ck-tests/bin/pip -q install -r tools/requirements.txt && /tmp/ck-tests/bin/python tests/test_updates.py && CK_BOOT_RUNNER=qemu-mips CK_BOOT_BIN=/repo/firmware/matter/artifacts/update-test/ck-boot-guard /tmp/ck-tests/bin/python tests/test_boot_guard.py'
           python3 tests/test_update_pid1.py
       - name: Build, verify and sign public artifacts
         run: python3 tools/release.py --private private/ota-signing.key --output artifacts/ota-release

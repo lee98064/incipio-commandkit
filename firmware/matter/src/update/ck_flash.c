@@ -189,15 +189,17 @@ int ck_flash_sync(struct ck_flash *f) {
 #endif
   return result;
 }
-int ck_lock(void) {
+static int lock_flash(int nonblocking) {
   int fd = open(ck_path("/var/lock/ck-flash.lock"),
                 O_RDWR | O_CREAT | O_NOFOLLOW | O_CLOEXEC, 0600);
-  if (fd >= 0 && flock(fd, LOCK_EX) == 0)
+  if (fd >= 0 && flock(fd, LOCK_EX | (nonblocking ? LOCK_NB : 0)) == 0)
     return fd;
   if (fd >= 0)
     close(fd);
   return -1;
 }
+int ck_lock(void) { return lock_flash(0); }
+int ck_try_lock(void) { return lock_flash(1); }
 void ck_unlock(int fd) {
   if (fd >= 0) {
     flock(fd, LOCK_UN);

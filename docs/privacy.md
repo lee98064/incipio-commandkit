@@ -4,7 +4,7 @@
 
 公開 BIN 大小為 8 MiB，只有 `[0x130000,0x3C0000)` 是 rootfs。其餘 bytes 是 `0xFF`，包含低位 bootloader／硬體設定、default／current MIB、journal、HomeKit、Bank 2、factory／校正／production identity。這些區域不是公共部署時的寫入內容。
 
-rootfs 中的 `matter-diag.key`、`matter-device.key`、設定 AP 憑證、既有 QR／manual code 均移除。新服務從自己的本機 profile 取得部署時新生成的資料，沒有原裝置金鑰或共享配對碼 fallback。缺少 Matter 金鑰／有效身分時拒絕啟動。
+rootfs 中的 `matter-diag.key`、`matter-device.key`、設定 AP 憑證、既有 QR／manual code 均移除。v0.2.5 公開首次安裝包會在各台第一次開機時產生並保存金鑰，見[自動身分](automatic-identity.md)。私人 profile 個別化方式繼續支援；沒有共享配對碼 fallback。缺少有效身分或隨機資料時不會啟動 Matter 配對。
 
 部署後的完整目標映像含使用者自己的保留資料及新金鑰，必須留在私人目錄。部分燒錄不是把 MAC 改成另一個通用 MAC，而是保留該台原值。
 
@@ -23,3 +23,7 @@ rootfs 中的 `matter-diag.key`、`matter-device.key`、設定 AP 憑證、既�
 `check_public.py` 檢查公開容器格式、checksum、保留區填充值、解壓後憑證檔案缺席、公開檔案列表及常見可識別字串。發布者另外對原私人憑證做精確 bytes 比對；私人值不寫入公開掃描設定或報告。
 
 之後新增截圖、診斷或測試證據仍需單獨檢查。公開包掃描通過只對本次已記錄 hash 的檔案成立。
+
+## v0.2.9 管理密碼
+
+公開 rootfs 不含 `admin/credential`、預設管理密碼或實機 session。密碼設定及 salt 在各顆裝置本地產生，credential 保存於私人 journal，屬登入等同憑證；不進入 OTA 或公開 profile。測試的 `FixtureAdmin42`、模擬設定碼與 localhost 截圖是合成資料，從未寫入實機。恢復出廠為邏輯清除，不宣稱安全抹除 Flash 歷史頁。對外發布前仍需掃描 source 與解壓附件。

@@ -2,9 +2,25 @@
 set -eu
 umask 077
 mkdir -p /var/lib/ck-state /var/run/ck-ota /var/lock
-if ! /bin/ck-updater --import > /var/log/ck-store-init.log 2>&1; then
+: > /var/run/ck-identity-pending
+initialize_identity() {
+if /bin/ck-updater --import > /var/log/ck-store-init.log 2>&1; then
+    result=0
+else
+    result=$?
+fi
+if [ "$result" = 75 ]; then
+    echo 'Waiting for device randomness; local button remains active.' >> /var/log/ck-store-init.log
+    if /bin/ck-updater --import-wait >> /var/log/ck-store-init.log 2>&1; then
+        result=0
+    else
+        result=1
+    fi
+fi
+if [ "$result" != 0 ]; then
     echo 'Persistent identity unavailable; Matter and firmware writes disabled.' >> /var/log/ck-store-init.log
-    touch /var/run/ck-rescue
+    : > /var/run/ck-rescue
+    rm -f /var/run/ck-identity-pending
     # Expose diagnostics/setup with this device's original bootstrap identity.
     # This is RAM only; do not replace unknown journal data or claim fabrics
     # are persistent. The MCU-only startup path retains local communication.
@@ -16,9 +32,13 @@ if ! /bin/ck-updater --import > /var/log/ck-store-init.log 2>&1; then
             chmod 600 "/var/lib/ck-state/$dest"
         fi
     done
-    exit 1
+    return 1
 fi
-/bin/ck-updater --boot || touch /var/run/ck-rescue
+: > /var/run/ck-identity-ready
+rm -f /var/run/ck-identity-pending
+}
+start_services() {
+/bin/ck-updater --boot || : > /var/run/ck-rescue
 (
     while :; do
         if [ ! -f /var/run/ck-ota/queued ]; then
@@ -28,6 +48,22 @@ fi
         sleep 5
     done
 ) &
+}
+# A public image may need to collect entropy for its first identity. Continue
+# vendor network/MCU startup while that one bounded initializer waits.
+if [ -x /bin/ck-boot-guard ]; then
+    # Snapshot the boot choice before PID1 starts the entropy/journal importer.
+    # A later import must never delay the selected service's physical controls.
+    /bin/ck-boot-guard --protocol-boot || printf unavailable > /var/run/ck-protocol-active
+    # Matter identity/update services are separately supervised by PID1.
+    # rcS must reach vendor Wi-Fi initialization even with a broken journal.
+    :
+elif [ -f /etc/ck-identity-policy ] && [ ! -f /etc/matter-device.key ]; then
+    ( initialize_identity && start_services ) &
+else
+    initialize_identity || exit 1
+    start_services
+fi
 # A failed application leaves the independent maintenance page available.
 (
     # Allow the owner unlimited time to complete first-time Wi-Fi setup.
@@ -43,16 +79,16 @@ fi
     read -r variant < /etc/ck-variant || true
     if [ "$variant" = exec-test ]; then
         sleep 10
-        if /bin/pidof exec-diag >/dev/null && /bin/pidof ck-setupd >/dev/null && /bin/ck-updater --confirm; then
-            touch /var/run/ck-update-healthy
+        if /bin/ps | /bin/grep -q '[e]xec-diag' && /bin/ps | /bin/grep -q '[c]k-setupd' && /bin/ck-updater --confirm; then
+            : > /var/run/ck-update-healthy
         else
-            touch /var/run/ck-rescue
+            : > /var/run/ck-rescue
         fi
         exit 0
     fi
     sleep 180
     if [ ! -f /var/run/ck-update-healthy ]; then
-        touch /var/run/ck-rescue
+        : > /var/run/ck-rescue
         if [ ! -f /var/run/ck-mcu-only ]; then
             /bin/killall matterd-test 2>/dev/null || true
         fi

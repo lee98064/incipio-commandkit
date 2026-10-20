@@ -65,6 +65,23 @@ def write_json(path, value, overwrite=False):
                  overwrite=overwrite)
 
 
+def profile_diag_key(profile):
+    """Accept a legacy profile directory/key or the setup page's private JSON."""
+    path = Path(profile)
+    if path.is_dir():
+        path = path / 'diag.key'
+    require(path.is_file() and path.stat().st_size <= 4096, '管理金鑰檔案不符')
+    raw = path.read_bytes()
+    if path.suffix == '.json':
+        record = json.loads(raw)
+        require(isinstance(record, dict) and record.get('format') == 'commandkit-management-v1' and
+                isinstance(record.get('diag_key'), str) and
+                re.fullmatch(r'[0-9a-f]{64}', record['diag_key']), '管理金鑰 JSON 格式不符')
+        return bytes.fromhex(record['diag_key'])
+    require(re.fullmatch(b'[0-9a-f]{64}\n',raw), '管理金鑰格式不符')
+    return bytes.fromhex(raw.decode().strip())
+
+
 def rootfs_check(data, budget=BUDGET):
     require(len(data) >= 96 and data[:4] == b"hsqs", "rootfs magic 不符")
     extent = struct.unpack_from(">I", data, 8)[0] + 0x282
@@ -94,7 +111,23 @@ def compatibility(image):
 
 def compatible(image, expected):
     require(len(image) == SIZE, "備份大小不是 8 MiB")
-    require(compatibility(image) == expected, "kernel／Bank 2 不相容；拒絕寫入")
+    actual = compatibility(image)
+    matches = actual == expected
+    if not matches and actual["bank2_executable_sha256"] == expected.get("bank2_executable_sha256"):
+        # Match the same strict alternative accepted by ck_ota.c. Boa's
+        # first-install container wraps the verified kernel in a full-span
+        # length/checksum; only its mutable bank mark is canonicalized.
+        text = (Path(__file__).resolve().parents[1] /
+                "firmware/matter/src/update/ck_factory.h").read_text()
+        hashes = dict(re.findall(r'#define CK_(LEGACY|FACTORY)_KERNEL_SHA256 "([0-9a-f]{64})"', text))
+        kernel = bytearray(image[0x10000:START])
+        magic, entry, mark, length = struct.unpack_from(">4sIII", kernel)
+        if (expected.get("bank1_kernel_sha256") == hashes.get("LEGACY") and
+                magic == b"cr6c" and entry == 0x80500000 and
+                mark >= 0x80000002 and length == 0x11fff0):
+            struct.pack_into(">I", kernel, 8, 0x8000004d)
+            matches = sha(kernel) == hashes.get("FACTORY")
+    require(matches, "kernel／Bank 2 不相容；拒絕寫入")
     image_checks(image)
 
 

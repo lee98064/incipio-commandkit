@@ -1,0 +1,2 @@
+#!/bin/sh
+exec /bin/ck-updater --factory-reset

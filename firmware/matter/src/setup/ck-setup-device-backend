@@ -4,7 +4,25 @@ set -eu
 umask 077
 op=${1:-}
 case "$op" in ap|join|resume|commit) ;; *) exit 2 ;; esac
-if [ "$op" = commit ]; then exec /bin/ck-wificfg commit; fi
+if [ "$op" = commit ]; then
+    /bin/ck-wificfg commit
+    exec /bin/ck-updater --onboarded
+fi
+dhcp_running=0
+if [ -f /var/run/ck-udhcpc.pid ]; then
+    read -r pid < /var/run/ck-udhcpc.pid || true
+    case "$pid" in ''|*[!0-9]*) ;; *)
+        if proc_name=$(
+            while read -r field value rest; do
+                if [ "$field" = Name: ]; then printf '%s' "$value"; break; fi
+            done 2>/dev/null < "/proc/$pid/status"
+        ) && [ "$proc_name" = udhcpc ] && kill -0 "$pid" 2>/dev/null; then
+            dhcp_running=1
+        fi
+        ;; esac
+fi
+# Controller restarts and periodic checks adopt the existing client/lease.
+if [ "$op" = resume ] && [ "$dhcp_running" = 1 ]; then exit 0; fi
 /bin/killall wfaudio WACServer 2>/dev/null || true
 sleep 2
 /bin/killall -9 wfaudio WACServer 2>/dev/null || true
@@ -43,5 +61,5 @@ if [ "$op" = join ]; then
     /bin/killall boa dnrd udhcpd 2>/dev/null || true
 fi
 /bin/ifconfig br0 0.0.0.0 up
-/bin/udhcpc -f -i br0 -p /var/run/ck-udhcpc.pid -s /bin/ck-udhcpc >/dev/null 2>&1 &
+/bin/udhcpc -f -i br0 -p /var/run/ck-udhcpc.pid -s /bin/ck-udhcpc 2>&1 | /bin/ck-boot-guard --dhcp-log &
 exit 0

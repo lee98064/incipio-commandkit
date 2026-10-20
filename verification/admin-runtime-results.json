@@ -1,0 +1,32 @@
+{
+  "status": "pass",
+  "real_outlet": false,
+  "native_c_tests": 48,
+  "mips_c_tests": 48,
+  "deployment_passed": 12,
+  "diagnostic_not_shipped_skipped": 1,
+  "startup_tests": 9,
+  "legacy_client_compatibility_tests": 5,
+  "browser": "actual C HTTP backend and temporary NOR; guest/login/settings/logout; Matter to HomeKit and HomeKit to Matter saved through UI; service/RAM restart simulated, no HAP or RF",
+  "test_log_sha256": {
+    "v0.2.9-update-tests.log": "5333acb9a6ed9480721475620daf224ff37f5b071727ea91ab5b2c754722ffc5",
+    "v0.2.9-deployment-tests.log": "966f9f1f1412307675f40ea0977e74e6b28743c88e4cffa5482c1723f4c44a69",
+    "v0.2.9-startup-tests.log": "0dfd7d274a91032806a92a674a57e88e503a43e2c536be5e75b62812e4503544",
+    "v0.2.9-portal-tests.log": "a2ccf2416083dae3c8ac262306780e737943491acb8ced6fcb76b2f07cf2ad17",
+    "v0.2.9-password-tests.log": "08fc8706d01105f34eae9854bc436d1da16fafd4d8e96a55342701fb0e28fd49",
+    "v0.2.9-monitor-tests.log": "90e96f673ac3314490dbb4a1580b7bdf1db9acfbd80bcb36be5364eba6d24474",
+    "v0.2.9-client-tests.log": "2d014bb427120fb1a5014d7499096989061fd0fdf40acb471c2e2667de60e71e",
+    "v0.2.9-feed-tests.log": "b51312b84ad50dab25ea72609cf71d1ceff8df638e3eeb4d2954da84f009e75a",
+    "v0.2.9-update-crypto-tests.log": "2647f50f6654294d733bb0ea310c30c645d9458f2a066ae739422398905a948e"
+  },
+  "screenshots": {
+    "verification/admin-ui/returned-matter-fixture.png": "167f18b5c8e0c8d9944e9b23c354f3323e23e6a2ca7323760b3b09bbc0fff867",
+    "verification/admin-ui/guest-fixture.png": "f8c31bab2f08353bbe67dcfd2959b6acad8939cf9d8cafebbf41f37768387ef5",
+    "verification/admin-ui/homekit-settings-fixture.png": "bc3736258dfa2dbd69fb6269ee91d39337d9a52c47b80f948ade9cdb0d4ee2c9",
+    "verification/admin-ui/homekit-guest-fixture.png": "6cfda76323bcb03f69fa9b6a1a8a9113438819ffbc7e2c18202164046cbc53c3",
+    "verification/admin-ui/settings-fixture.png": "721a4accfba37a0e45e6a647b51c9d1f29586f474d5a2d0e9261e62e69eee102"
+  },
+  "hardware_rf_mfi_power_cut_validation": "pending",
+  "feed_tests": 4,
+  "update_sha256_comparisons": 9
+}

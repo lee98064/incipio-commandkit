@@ -16,6 +16,8 @@ int main(void) {
   mount("ramfs", "/var", "ramfs", 0, NULL);
   mkdir("/var/run", 0700);
   mkdir("/var/log", 0700);
+  int pending = open("/var/run/ck-identity-pending", O_WRONLY | O_CREAT, 0600);
+  if (pending >= 0) close(pending);
   puts("MCU_ONLY_VM_READY_NO_IDENTITY");
   sleep(2);
   int phase = 0;
@@ -32,7 +34,7 @@ start_phase:
     _exit(127);
   }
   int control = open("/dev/ttyS0", O_RDONLY | O_NONBLOCK), status = -1;
-  for (unsigned tick = 0; tick < 200; tick++) {
+  for (unsigned tick = 0; tick < 400; tick++) {
     if (waitpid(child, &status, WNOHANG) == child) break;
     char command[64] = {0};
     if (control >= 0 && read(control, command, sizeof(command)-1) > 0 && strstr(command, "stop")) {

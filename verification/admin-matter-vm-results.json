@@ -1,0 +1,13 @@
+{
+  "status": "pass",
+  "environment": "actual MIPS SDK, 64 MiB Malta VM, daemon limited to 8 MiB AS, serial MCU and NOR file fixtures",
+  "real_outlet": false,
+  "binary_sha256": "45f861b4ead114248fb3edb29945d3414cd63953c0d75807f7555a78b81f7d0e",
+  "checks": [
+    "authenticated open-window retains completed fabric and encrypted CASE control",
+    "open-window expires incomplete PASE fail-safe and reopens while retaining completed fabric",
+    "password-authenticated kWh reset commits zero in actual SDK owner and stays zero after next 30-second save",
+    "remote reset removes old controller, opens 900-second window, retains QR/admin password/network/cumulative energy and permits fresh full commissioning",
+    "reset-arm frame alone keeps pairing; confirmed physical long press commits durable factory intent and shuts down protocol owner"
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "status": "pass",
+  "real_outlet": false,
+  "environment": "original MIPS HAP ELF and vendor uClibc under qemu-user; synthetic apmib and regular NOR file; no RF/MFi/hardware",
+  "checks": [
+    "patched stock -c resets HAP pairing header and entire pairing area",
+    "MIB set/update/default calls forbidden; none executed",
+    "all bytes after 0xa5d, including factory PIN/calibration tail, unchanged"
+  ],
+  "original_sha256": "2d50339436759f3d602c150fb4f1a42f0fdf122fc18e9a4f54f6e6b07d7a0c62",
+  "patched_sha256": "f27336a5aa672169b88d81e3a215a4a4dea59badf31c56e912aedd43ad870ee6",
+  "length": 2116412,
+  "changed_bytes": 2643
+}

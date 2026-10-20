@@ -1,0 +1,15 @@
+{
+  "status": "pass",
+  "binary_sha256": "6912e221c16dca073935bfad570c827812df704f148f5e8286e42139cf5714ce",
+  "identity_missing": true,
+  "cold_off_confirmed": true,
+  "startup_identity_wait_and_mcu_only_mode": true,
+  "simulated_button_state_changes": 10,
+  "continued_mcu_polling": true,
+  "identity_pending_over_60_seconds_keeps_buttons_active": true,
+  "flash_devices_present": false,
+  "virtual_nic_present": false,
+  "original_hardware_test": false,
+  "vm_memory_mib": 64,
+  "address_space_limit": 8388608
+}

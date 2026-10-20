@@ -20,6 +20,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--deps', type=Path, required=True)
     parser.add_argument('--toolchains', type=Path, required=True)
+    parser.add_argument('--memory', type=int, choices=(32,64), default=64, help='Linux 4.19 Malta fixture needs 64 MiB; daemon remains capped at 8 MiB')
     args = parser.parse_args()
     binary = ROOT / 'firmware/matter/artifacts/softap-device-code/matterd-test'
     with tempfile.TemporaryDirectory(prefix='ck-mcu-only-vm-') as name:
@@ -59,7 +60,7 @@ def main():
                    '-p', '127.0.0.1:15551:15551', '-v', str(directory) + ':/fixture:ro',
                    '-v', str(args.deps.resolve()) + ':/deps:ro',
                    'incipio-public-build:v0.1.0-preview', 'qemu-system-mips',
-                   '-M', 'malta', '-cpu', '24Kc', '-m', '32', '-vga', 'none', '-display', 'none',
+                   '-M', 'malta', '-cpu', '24Kc', '-m', str(args.memory), '-vga', 'none', '-display', 'none',
                    '-monitor', 'none', '-no-reboot', '-serial', 'stdio',
                    '-serial', 'tcp:0.0.0.0:15551,server=on,wait=off',
                    '-kernel', '/deps/downloads/vmlinux-4.19.0-21-4kc-malta',
@@ -86,6 +87,7 @@ def main():
                 worker.start()
                 for phase in range(2):
                     wait_for(lambda text: 'MCU_VM_PHASE=' + str(phase) in text)
+                    phase_started=time.monotonic()
                     text = console.read_text(errors='replace')
                     start = text.index('MCU_VM_PHASE=' + str(phase))
                     wait_for(lambda text: 'cold_off_confirmed=1' in text, start=start)
@@ -97,6 +99,14 @@ def main():
                         mcu.event(on)
                         expected = 'relay_known=1 relay_on=' + str(int(on))
                         wait_for(lambda text: expected in text, start=at)
+                    if phase == 0:
+                        while time.monotonic()-phase_started < 62:time.sleep(.1)
+                        self_start=console.stat().st_size
+                        mcu.event(True)
+                        wait_for(lambda text:'relay_known=1 relay_on=1' in text,start=self_start)
+                        self_start=console.stat().st_size
+                        mcu.event(False)
+                        wait_for(lambda text:'relay_known=1 relay_on=0' in text,start=self_start)
                     process.stdin.write(b'stop\n')
                     process.stdin.flush()
                     wait_for(lambda text: 'MCU_VM_PHASE_' + str(phase) + '_WAIT=0' in text)
@@ -105,9 +115,10 @@ def main():
                 print(json.dumps({'status': 'pass', 'binary_sha256': hashlib.sha256(binary.read_bytes()).hexdigest(),
                                   'identity_missing': True, 'cold_off_confirmed': True,
                                   'startup_identity_wait_and_mcu_only_mode': True,
-                                  'simulated_button_state_changes': 8, 'continued_mcu_polling': True,
+                                  'simulated_button_state_changes': 10, 'continued_mcu_polling': True,
+                                  'identity_pending_over_60_seconds_keeps_buttons_active': True,
                                   'flash_devices_present': False, 'virtual_nic_present': False,
-                                  'original_hardware_test': False, 'address_space_limit': 8*1024*1024}))
+                                  'original_hardware_test': False, 'vm_memory_mib': args.memory, 'address_space_limit': 8*1024*1024}))
             finally:
                 mcu.done = True
                 subprocess.run(['docker', 'stop', '-t', '1', 'incipio-mcu-only-vm'],

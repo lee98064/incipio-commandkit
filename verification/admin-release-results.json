@@ -1,0 +1,52 @@
+{
+  "status": "pass",
+  "version": "0.2.9-preview",
+  "software_version": 11,
+  "real_outlet": false,
+  "checks": [
+    "exact production binaries and scripts match payload",
+    "one supervised protocol owner; no direct rcS protocol launch",
+    "HomeKit ELF retains original length; version-specific reset commands and CLI argument verified",
+    "original HAP shared libraries retained; unused Boa/router GUI removed"
+  ],
+  "rootfs": {
+    "bytes_used": 2461240,
+    "checksum_extent": 2461698
+  },
+  "ota_sha256": "c67b25b86533d3928799522fdf2bb284dd26cefb5edae1620d197eb3fc247f58",
+  "original_homekit_sha256": "2d50339436759f3d602c150fb4f1a42f0fdf122fc18e9a4f54f6e6b07d7a0c62",
+  "homekit_sha256": "f27336a5aa672169b88d81e3a215a4a4dea59badf31c56e912aedd43ad870ee6",
+  "homekit_elf_bytes": 2116412,
+  "production_sha256": {
+    "bin/ck-updater": "1e82c933d5f38e46d2be6437de91b82d57b01b5d9267eb2a83d2549baad8e6bb",
+    "bin/ck-updated": "b7f0ee8bdba396f23a254c6b62118aa5b776c31b2fbea133eef36ffa34fe9c5e",
+    "bin/ck-boot-guard": "37565ba17daec3f26d855b9501d534162f4fea57d3927fa7645dde7990c5d7c4",
+    "bin/matterd-test": "00e3f521c9ac40d7323169649a121d138c358c39ac9cd04d326c15823cd348fc",
+    "bin/ck-setupd": "5947428dae9c093d99204a44006ad5e33a569b620fc721cd4a211ed35574d49f",
+    "bin/ck-protocol-start": "c4c480e842af76719eb6906e4c273fe1e6601496daaa2307b9bea8a6cab218a4",
+    "bin/matter-test-start": "81b58c484ea70d27607b587cf12153d287b79309ebd49d5cc790bc9c4d8d234e",
+    "bin/ck-ota-start": "a31d0039bd6e7cd601b3e1f57391c570e16accddefc6c69772656e2a005c6d87",
+    "bin/ck-management-start": "d2291c2a7be779f7e14f46ead4756c96325ee818a7c36b53bd01fd28ee3eab82",
+    "bin/ck-reset": "6377d813a108e6977069ab4c7e87dff7750b60499c0e100465f8f0c82b403259"
+  },
+  "limitations": [
+    "No physical HomeKit/MFi, RF or iPhone pairing validation",
+    "HomeKit pauses custom web measurements and kWh accumulation; saved checkpoints remain",
+    "HomeKit daemon lifecycle tests use a fixture",
+    "Network VM uses 64 MiB/Linux 4.19 and MIB/import fixtures, not actual 32 MiB hardware",
+    "No CH341A write, live reset/switch, git push or publication performed"
+  ],
+  "rootfs_free_bytes": 225278,
+  "tests": {
+    "native_storage_ota_http_admin_protocol": 48,
+    "mips_storage_ota_http_admin_protocol": 48,
+    "deployment_and_hap_layout_passed": 12,
+    "diagnostic_variant_not_shipped_skipped": 1,
+    "test_log_sha256": {
+      "v0.2.9-update-tests.log": "5333acb9a6ed9480721475620daf224ff37f5b071727ea91ab5b2c754722ffc5",
+      "v0.2.9-deployment-tests.log": "966f9f1f1412307675f40ea0977e74e6b28743c88e4cffa5482c1723f4c44a69",
+      "v0.2.9-portal-tests.log": "a2ccf2416083dae3c8ac262306780e737943491acb8ced6fcb76b2f07cf2ad17",
+      "v0.2.9-password-tests.log": "08fc8706d01105f34eae9854bc436d1da16fafd4d8e96a55342701fb0e28fd49"
+    }
+  }
+}

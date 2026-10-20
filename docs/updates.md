@@ -1,12 +1,20 @@
 # 安裝更新與發布新版
 
+v0.2.11-preview（software version 13）加入[六種 LED 模式及夜間熄燈](led-control.md)，使用相同管理後台與 OTA 簽章來源，保留既有裝置身分、配對與 kWh。
+
+v0.2.9-preview（software version 11）改為[密碼管理後台](admin-backend.md)，HomeKit／Matter 兩種模式共用管理入口。訪客能看狀態，更新、切換協議及重置必須登入。實體長按完整恢復出廠，會清除 Wi-Fi、管理密碼、兩套配對與 kWh。**從沒有管理密碼的舊版首次升級，會進入設定熱點，需建立密碼並重新輸入 Wi-Fi**；已有密碼後的更新會保留資料。本版只產生 HomeKit／Matter 共用的 `matter` 附件，不發行尚未遷移密碼初設的 `exec-test`。
+
+v0.2.7-preview（software version 9）修復原廠 BusyBox 不提供 `touch`／`pidof` 的啟動相容性，並讓已保存 Wi-Fi 的 DHCP 回連獨立於 Matter 身分初始化。服務由 PID1 監督，具備初始化期限、崩潰重啟、控制器心跳及 DHCP 存活檢查，見[修復驗證](2026-10-20_firmware-wifi-recovery-report.md)。金鑰與配對資料就緒前，管理 API 回覆 503；既有 station 回連不寫 Wi-Fi MIB。若舊版已無法啟動網路／更新服務，必須先恢復可用的管理或限定區域寫入入口，無法只靠離線裝置上的 OTA URL 自行安裝。
+
+保留 v0.2.6 的[保留 Wi-Fi／金鑰／累積 kWh 的 Matter 重設及重新開啟配對視窗](matter-reset.md)，可由登入後的管理頁或電腦工具使用；實體長按改為完整出廠重置。使用本機簽章 `matter.ota` 更新；新版本的原機安裝仍須驗收。
+
 v0.2.3-preview 在管理頁新增即時 V／A／W／估算累積 kWh，並保留區網網頁更新、線上更新索引、Ed25519 簽章與 Matter OTA Requestor。v0.2.2 的舊 MTD 同步、`wlan0` 設定介面及身分產生的啟動順序修復繼續保留。Matter fabrics、平台設定及裝置身分存入 Flash journal。**第一次仍須以 CH341A 安裝支援 OTA 的版本；v0.1.0-preview 沒有永久更新入口。**原機斷電、RF 及家庭平台完整驗收尚待完成；修復檢查見[修復驗證](../verification/recovery-results.json)，電量檢查見 [v0.2.1 驗證](../verification/energy-results.json)。
 
 ## 在插座網頁更新
 
 1. 首次依 [燒錄說明](flashing.md) 安裝新的 `matter-8m-region.bin` 或 `exec-test-8m-region.bin`，沿用同一台插座的 profile。
 2. 配網後，從路由器取得插座 IPv4 位址，在瀏覽器開啟 `http://插座IP:18082/`；即時監測與更新共用此頁。
-3. 按「檢查新版本」及「下載並更新」，或選擇已下載的 `.ota`，按「驗證並更新」。
+3. 按「管理員登入」，進入管理設定後，按「檢查新版本」及「下載並更新」，或選擇已下載的 `.ota`，按「驗證並更新」。
 4. 等候簽章核對、安裝、重開及健康確認。保持供電；更新暫停 Matter 控制，現有啟動邏輯會要求 MCU 確認 OFF。
 
 相同或較舊版本、不同韌體種類、錯誤機型、平台 hash 不符、截斷及簽章錯誤都會拒絕。不能把 8 MiB BIN 當成 `.ota`，也不能透過 OTA 在 Matter 與診斷版之間切換。
@@ -30,7 +38,7 @@ python3 tools/update.py "$OUTLET_IP" \
   --package artifacts/releases/v0.2.1-preview/matter.ota --check-only
 ```
 
-安裝 v0.2.3-preview（`software_version=5`）後，後續更新的 `software_version` 必須大於 5 才能安裝。`--check-only` 不傳送更新，也不重新啟動。
+後續更新的 `software_version` 必須大於目前確認版本；例如 v0.2.9 的數值是 11。工具在實際上傳前提示管理密碼，密碼不放入 argv 或下載檔。`--check-only` 不傳送更新，也不重新啟動。
 
 ## 更新包與保留範圍
 
@@ -52,6 +60,8 @@ journal 為兩個 64 KiB slots；各 slot 前 60 KiB 為設定 snapshot，最後
 
 | key 前綴 | 資料 |
 |---|---|
+| `admin/` | 隨機 salt、密碼推導參數及登入等同 credential |
+| `config/` | 協議偏好、需要重新設定標記 |
 | `identity/` | 裝置身分、診斷金鑰、更新信任公鑰、診斷版 AP 憑證 |
 | `matter/` | fabrics、ACL、金鑰、session resumption、持久屬性 |
 | `platform/` | SDK factory/config/counters/KVS 的 INI 內容，單筆上限 16 KiB |
@@ -63,7 +73,7 @@ SDK 原本寫入 `/tmp/*.ini` 的平台設定也會同步保存至 journal。此
 
 ## 安裝與復原流程
 
-區網內可直接上傳及安裝，不需要 diag.key、HMAC、nonce 或額外操作授權。上傳完成後才驗證整包；管理頁及電腦工具會附上所選 package 的 checksum，避免套用不同的暫存檔。BusyBox PID 1 的固定 restart action 執行 RAM 中的靜態更新器；它停止其他使用者行程、切換 RAM root 並卸離舊 rootfs，才開寫。先使 rootfs magic 無效，寫入 body，最後補回第一個 sector，讀回 hash 與 journal 後重開。
+v0.2.9 的上傳及安裝均需管理密碼登入後取得 session 與 CSRF token；不需要 diag.key 或管理金鑰檔。上傳完成後才驗證整包；管理頁及電腦工具會附上所選 package 的 checksum，避免套用不同的暫存檔。BusyBox PID 1 的固定 restart action 執行 RAM 中的靜態更新器；它停止其他使用者行程、切換 RAM root 並卸離舊 rootfs，才開寫。先使 rootfs magic 無效，寫入 body，最後補回第一個 sector，讀回 hash 與 journal 後重開。
 
 Matter 必須連續 30 秒取得新鮮 MCU 狀態才確認新版本；診斷版確認網路及兩個服務已啟動。應用未通過健康檢查時，獨立管理頁保留維修入口；連續三次未確認啟動後不再啟動 Matter。可以安裝較新的修正版。
 
@@ -75,7 +85,7 @@ Matter 必須連續 30 秒取得新鮮 MCU 狀態才確認新版本；診斷版�
 
 維護者的私鑰保存在自己的 `private/ota-signing.key`，公鑰是 `third_party/ota-signing.pub`。發布既有裝置更新時必須沿用原金鑰；不要重新執行 keygen。fork 的維護者須自行產生金鑰，替換其來源公鑰，並首次安裝自己的信任來源。
 
-1. 修改 `version.json`，增加 `software_version` 並更新版本名稱；例如數值 6、名稱 `0.3.0-preview`。
+1. 修改 `version.json`，增加 `software_version` 並更新版本名稱；例如數值 8、名稱 `0.3.0-preview`。
 2. 執行完整建置；工具也會產生 Matter 執行檔的版本紀錄，拒絕混用舊執行檔或測試 backend：
 
 ```bash
@@ -95,7 +105,7 @@ python3 tools/release.py --private private/ota-signing.key \
 
 - PR 執行 native C／HTTP／儲存測試與瀏覽器 SHA 對照。
 - 發布 tag 後，再建置工具鏈、測試 MIPS 更新器與 Linux PID 1 路徑、產生簽章附件並建立 **草稿 pre-release**。
-- 人工發布 Release 後，另一個 workflow 驗證簽章，把兩種 `.ota` 與索引部署至 Pages。較舊版本不能覆蓋較新的索引。
+- 人工發布 Release 後，另一個 workflow 驗證簽章，把此次 Release 的 `.ota` 與索引部署至 Pages。較舊版本不能覆蓋較新的索引。
 
 預設索引為 `https://lee98064.github.io/incipio-commandkit/updates/index.json`。尚未發布更新時，網頁會說明來源未就緒，手動上傳仍可使用。首次設定 Pages 不代表附件已經發布。
 
@@ -117,9 +127,11 @@ TCP 18082，只綁定 `br0`，Host 必須為該連線的 IPv4 與 port；有 Ori
 |---|---|
 | `GET /` | 自包含管理頁，不載入第三方 JavaScript |
 | `GET /status` | 版本、種類、維修及健康狀態，不含金鑰 |
-| `POST /upload` | 接收完整 `.ota`，驗證並暫存 RAM，不寫 rootfs |
-| `POST /apply` | 排程 PID 1 安裝，可附所選 package hash 核對 |
+| `POST /upload` | 登入與 CSRF 驗證後接收完整 `.ota`，驗證並暫存 RAM，不寫 rootfs |
+| `POST /apply` | 登入與 CSRF 驗證後排程 PID 1 安裝，可附所選 package hash 核對 |
 
-不需要更新憑證。`X-CK-SHA256` 是可選的傳輸 checksum；管理頁與電腦工具自動附上，上傳時對應 body，apply 時對應先前核對的完整 package。未提供 checksum 的區網用戶端仍可直接更新，但更新包簽章、版本、機型、平台與長度檢查不會省略。服務另檢查來源 IP、Host、Origin、重複 header 及固定長度。原有診斷和 Wi-Fi 設定服務仍使用其原認證。
+需要有效管理 session 及 `X-CK-CSRF`；`X-CK-SHA256` 是可選的傳輸 checksum；管理頁與電腦工具自動附上，上傳時對應 body，apply 時對應先前核對的完整 package。已登入但未提供 checksum 的用戶端仍可更新，但更新包簽章、版本、機型、平台與長度檢查不會省略。服務另檢查來源 IP、Host、Origin、重複 header 及固定長度。舊診斷 HMAC 的變更 POST 已停用，不能繞過管理登入。
 
 `.ota` 的前 256 bytes 為 big-endian header：magic 0、format 8、model 12、variant 16、版本 20、payload 長度 24、保留 flags 28、payload SHA-256 32、kernel SHA-256 64、Bank 2 SHA-256 96、公鑰 128、NUL 結尾版本名稱 160、Ed25519 signature 192。簽章涵蓋前 192 bytes，payload hash 因而受到簽章保護；後面接固定 2,686,976-byte rootfs。
+
+HomeKit 模式的健康確認使用原廠 daemon PID、listener 與網路狀態連續約 30 秒存活；不等同 MCU 確認或實機配對驗收。切換實作及證據見[協議切換報告](2026-10-20_firmware-protocol-switch-report.md)。

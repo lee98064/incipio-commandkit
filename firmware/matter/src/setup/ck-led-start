@@ -1,0 +1,4 @@
+#!/bin/sh
+umask 077
+mkdir -p /var/run /var/lock /var/log
+exec /bin/ck-updater --run-led > /var/log/ck-led.log 2>&1

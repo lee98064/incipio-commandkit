@@ -1,0 +1,44 @@
+{
+  "status": "pass",
+  "method": "original MIPS Boa executed in Unicorn 2.1.4; every external operation stubbed",
+  "boa_sha256": "175c66efa68eabda38c8ca6990e824ddcc41dfec0219bc739bce7b8ffe0a587a",
+  "image_sha256": "14e9161f6148eed114c3662fa3f6a118ec204ad7c9c29bf5a34b33d48c9ae0a6",
+  "physical_flash_access": false,
+  "actual_mtd_driver_tested": false,
+  "factory_boot_tested": false,
+  "stock_bootbank": 2,
+  "dual_firmware": true,
+  "writes": [
+    {
+      "device": "/dev/mtdblock0",
+      "seek": 65536,
+      "length": 1179648,
+      "upload_offset": 260
+    },
+    {
+      "device": "/dev/mtdblock1",
+      "seek": 0,
+      "length": 2818048,
+      "upload_offset": 1179924
+    }
+  ],
+  "kernel_bankmark": "0x8000004d",
+  "canonical_factory_kernel_sha256": "6c72f554c78d0e71e9dfbd1c1b466eef4700f965b8a21e6958567750be933308",
+  "preserved_ranges": [
+    [
+      0,
+      65536
+    ],
+    [
+      4063232,
+      8388608
+    ]
+  ],
+  "journal_initializer": "auto-v1",
+  "damaged_kernel_rootfs_trailer_rejected": true,
+  "decompressed_kernel_unchanged": true,
+  "decompressed_kernel_sha256": "f160b5df1bac550b4703ee030db147c08406e740e3171c04c688f7dddfa14f8f",
+  "bootloader_sha256": "6bd88f63f7c9b48266d3f512024e188d3b65163b67b0abc54838c0b7eb430e89",
+  "original_boot_selector_and_checksums_passed": true,
+  "corrupt_bank1_rootfs_selects_bank2_in_emulator": true
+}

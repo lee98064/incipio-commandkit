@@ -1,12 +1,18 @@
 #!/bin/sh
 umask 077
-sleep 15
-# Generate all onboarding data together before changing the network mode.
-/bin/matterd-test --init-identity wlan0 > /var/log/matter-identity.log 2>&1 || exit 1
-status=$(/bin/ck-wificfg status 2>/dev/null) || exit 1
+if [ ! -f /var/run/ck-setup-boot ]; then sleep 15; fi
+if [ -f /var/run/ck-first-setup ]; then
+    status=configured=0
+else
+    # A failed read must not replace saved station credentials with an AP.
+    status=$(/bin/ck-boot-guard --mib 2>/dev/null) || status=configured=1
+fi
 case "$status" in
 *configured=1*) printf configured > /var/run/ck-setup-boot ;;
 *) printf unconfigured > /var/run/ck-setup-boot ;;
 esac
-# A single controller. Never restart failed MIB writes in a tight loop.
-exec /bin/ck-setupd --serve /var/lib/ck-state/diag.key
+# Starts networking before it has any Matter identity or management key.
+# The guard restarts hung children; PID1 restarts a crashed supervisor.
+/bin/ck-boot-guard --setup > /var/log/ck-setupd.log 2>&1
+sleep 5
+exit 1

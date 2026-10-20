@@ -26,6 +26,7 @@ void ck_sha256(const void *data, size_t n, uint8_t out[32]);
 void ck_sha256_pair(const void *a, size_t an, const void *b, size_t bn,
                     uint8_t out[32]);
 int ck_hash_fd(int fd, unsigned offset, unsigned size, uint8_t out[32]);
+int ck_hash_factory_kernel(int fd, unsigned offset, uint8_t out[32]);
 int ck_hash_pair(int a, unsigned ao, unsigned an, int b, unsigned bo,
                  unsigned bn, uint8_t out[32]);
 void ck_hmac(const uint8_t key[32], const void *data, size_t size,
@@ -44,6 +45,7 @@ int ck_flash_write(struct ck_flash *f, unsigned at, const void *p, unsigned n);
 int ck_flash_erase(struct ck_flash *f, unsigned at, unsigned n);
 int ck_flash_sync(struct ck_flash *f);
 int ck_lock(void);
+int ck_try_lock(void);
 void ck_unlock(int fd);
 int ck_download_begin(void);
 int ck_transfer_lock(void);

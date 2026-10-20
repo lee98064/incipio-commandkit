@@ -210,7 +210,10 @@ int ck_download_begin(void) {
   int fd = ck_transfer_lock();
   if (fd < 0)
     return -1;
-  if (ck_ram_storage() || !access(ck_path("/var/run/ck-ota/queued"), F_OK)) {
+  if (ck_ram_storage() || !access(ck_path("/var/run/ck-ota/queued"), F_OK) ||
+      !access(ck_path("/var/run/ck-protocol-pending"),F_OK) || !access(ck_path("/var/run/ck-factory-pending"),F_OK) ||
+      !access(ck_path("/var/run/ck-network-changing"),F_OK) ||
+      !access(ck_path("/var/run/ck-matter-request.lock"),F_OK)) {
     close(fd);
     return -1;
   }
@@ -352,6 +355,30 @@ int ck_hash_fd(int fd, unsigned off, unsigned n, uint8_t out[32]) {
       return -1;
     sha_add(&s, b, take);
     n -= take;
+  }
+  sha_end(&s, out);
+  return 0;
+}
+int ck_hash_factory_kernel(int fd, unsigned off, uint8_t out[32]) {
+  /* The factory web uploader rewrites only the bank-selection mark. All
+   * executable bytes, the length and the padding/checksum remain hashed. */
+  Sha s;
+  uint8_t b[4096];
+  unsigned remaining = 0x120000;
+  if (lseek(fd, off, SEEK_SET) < 0 || ck_read_all(fd, b, 16) ||
+      memcmp(b, "cr6c", 4) || ck_be32(b + 4) != 0x80500000 ||
+      ck_be32(b + 8) < 0x80000002 || ck_be32(b + 12) != 0x11fff0)
+    return -1;
+  ck_put32(b + 8, 0x8000004d);
+  sha_init(&s);
+  sha_add(&s, b, 16);
+  remaining -= 16;
+  while (remaining) {
+    unsigned take = remaining > sizeof(b) ? sizeof(b) : remaining;
+    if (ck_read_all(fd, b, take))
+      return -1;
+    sha_add(&s, b, take);
+    remaining -= take;
   }
   sha_end(&s, out);
   return 0;

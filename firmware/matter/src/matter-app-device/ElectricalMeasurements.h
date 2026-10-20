@@ -41,6 +41,7 @@ public:
     explicit ElectricalMeasurements(chip::TimerDelegate & timer);
     CHIP_ERROR InitEnergy(bool persistent);
     CHIP_ERROR SaveEnergy(bool force=false);
+    CHIP_ERROR ResetEnergy();
     Value GetCumulativeEnergyImported() override { return mEnergyReady ? chip::app::DataModel::MakeNullable(int64_t(mSavedMwh)) : Value{}; }
     Value GetCumulativeEnergyExported() override { return {}; }
     Value GetPeriodicEnergyImported() override { return {}; }

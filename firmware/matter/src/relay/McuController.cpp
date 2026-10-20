@@ -1,4 +1,5 @@
 #include "McuController.h"
+#include "../update/ck_led.h"
 #include <cerrno>
 #include <cstdio>
 #include <cstring>
@@ -78,23 +79,19 @@ bool McuController::Send(const McuTx & tx)
     }
     return sent == sizeof(tx.bytes);
 }
-void McuController::Gpio(const char * command)
+void McuController::Report(uint64_t now, const RelaySnapshot & s)
 {
-    int fd = open(mGpio, O_WRONLY | O_NOFOLLOW);
-    if (fd < 0) { return; }
-    ssize_t unused = write(fd, command, std::strlen(command)); (void) unused; close(fd);
-}
-void McuController::Report(uint64_t now, const RelaySnapshot & s, bool led)
-{
+    (void)ck_led_hw_publish("matter",now,s.relayAt,s.powerAt,mIdentify?now+2000:0,s.powerRaw*1000u,
+        (s.known?CK_LED_KNOWN:0)|(s.on?CK_LED_RELAY_ON:0)|(s.powerValid?CK_LED_POWER:0)|CK_LED_READY,s.powerFrames);
     char text[1024];
     int n = std::snprintf(text, sizeof(text),
         "matter-hardware/1\nconnected=%d baud=9600 cold_off_confirmed=%d\nrelay_known=%d relay_on=%d relay_age_ms=%llu\n"
-        "completed_id=%u result=%u relay_frames=%u\npower_raw=%u power_frames=%u power_age_ms=%llu load_blink=%d led=%d\n"
+        "completed_id=%u result=%u relay_frames=%u\npower_raw=%u power_frames=%u power_age_ms=%llu load_blink=%d identify=%d\n"
         "voltage_raw=%u voltage_valid=%d voltage_age_ms=%llu current_raw=%u current_valid=%d current_age_ms=%llu power_valid=%d\n"
-        "reset_events=%u reset_action=record_only\n",
+        "reset_events=%u reset_action=dispatched_by_matter_event_loop\n",
         int(mFd >= 0), int(s.bootOffConfirmed), int(s.known && now-s.relayAt <= 10000), int(s.on),
         static_cast<unsigned long long>(now-s.relayAt), s.completedId, unsigned(s.result), s.relayFrames,
-        s.powerRaw, s.powerFrames, static_cast<unsigned long long>(now-s.powerAt), int(mEngine.LoadBlink(now)), int(led), s.voltageRaw, int(s.voltageValid && now-s.voltageAt<=15000), static_cast<unsigned long long>(now-s.voltageAt),
+        s.powerRaw, s.powerFrames, static_cast<unsigned long long>(now-s.powerAt), int(mEngine.LoadBlink(now)), int(mIdentify), s.voltageRaw, int(s.voltageValid && now-s.voltageAt<=15000), static_cast<unsigned long long>(now-s.voltageAt),
         s.currentRaw, int(s.currentValid && now-s.currentAt<=15000), static_cast<unsigned long long>(now-s.currentAt),
         int(s.powerValid && now-s.powerAt<=15000), s.resetEvents);
     int fd = open("/var/log/matter-hardware.txt.tmp", O_WRONLY | O_CREAT | O_TRUNC | O_NOFOLLOW, 0600);
@@ -105,8 +102,7 @@ void McuController::Report(uint64_t now, const RelaySnapshot & s, bool led)
 }
 void McuController::Worker()
 {
-    uint64_t start = Now(), nextOpen = 0, nextReport = 0; bool lastLed = false;
-    Gpio("config 6 w"); Gpio("set 6 1");
+    uint64_t nextOpen = 0, nextReport = 0;
     for (;;) {
         uint64_t now = Now();
         pthread_mutex_lock(&mMutex);
@@ -127,13 +123,9 @@ void McuController::Worker()
                 ioctl(mFd, TIOCNXCL); close(mFd); mFd = -1; mEngine.Disconnect();
             }
         }
-        bool led = mIdentify ? ((now / 250) & 1) : (mEngine.LoadBlink(now) && ((now / 500) & 1));
-        if (!mIdentify && now >= start + 10000 && now < start + 11500) { led = ((now-start-10000)/250)%2 == 0; }
-        if (led != lastLed) { Gpio(led ? "set 6 0" : "set 6 1"); lastLed = led; }
-        if (now >= nextReport) { Report(now, mEngine.Snapshot(), led); nextReport = now + 1000; }
+        if (now >= nextReport) { Report(now, mEngine.Snapshot()); nextReport = now + 1000; }
         pthread_mutex_unlock(&mMutex); usleep(10000);
     }
     if (mFd >= 0) { ioctl(mFd, TIOCNXCL); close(mFd); mFd = -1; }
-    Gpio("set 6 1");
 }
 } // namespace incipio

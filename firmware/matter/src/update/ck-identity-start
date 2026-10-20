@@ -1,0 +1,32 @@
+#!/bin/sh
+umask 077
+mkdir -p /var/lib/ck-state /var/run/ck-ota /var/lock
+: > /var/run/ck-identity-pending
+trap 'rm -f /var/run/ck-identity-pending; exit 1' 1 2 15
+while :; do
+    printf 'phase=importing\n' > /var/run/ck-identity-state
+    if /bin/ck-boot-guard --import > /var/log/ck-store-init.log 2>&1; then result=0; else result=$?; fi
+    if [ "$result" = 75 ]; then
+        printf 'phase=waiting-entropy\n' > /var/run/ck-identity-state
+        if /bin/ck-boot-guard --import-wait >> /var/log/ck-store-init.log 2>&1; then result=0; else result=$?; fi
+    fi
+    if [ "$result" = 0 ]; then break; fi
+    printf 'phase=retrying\nerror=%s\n' "$result" > /var/run/ck-identity-state
+    # Never format unknown journal data or substitute a shared identity.
+    sleep 10
+done
+: > /var/run/ck-identity-ready
+rm -f /var/run/ck-identity-pending
+printf 'phase=ready\n' > /var/run/ck-identity-state
+if [ ! -f /var/run/ck-ota-booted ]; then
+    # Count this power-on once, even if the update HTTP daemon later crashes.
+    : > /var/run/ck-ota-booted
+    /bin/ck-boot-guard --boot >> /var/log/ck-store-init.log 2>&1 || : > /var/run/ck-rescue
+fi
+if [ ! -f /var/run/ck-ota/queued ]; then
+    rm -f /var/run/ck-ota/upload.ota /var/run/ck-ota/staging.ota
+fi
+/bin/ck-updater --admin-state || true
+trap - 1 2 15
+# Management is a separate PID1 service, even when import never succeeds.
+exec /bin/sleep 2147483647

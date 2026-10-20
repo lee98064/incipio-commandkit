@@ -58,7 +58,7 @@ int main() {
     power(e,6,65000); power(e,6,70000); check(e.LoadBlink(70003),"load reentry");
     state(e,true,84000); check(!e.LoadBlink(85002),"stale metering stops blink");
     uint8_t reset[]={0xaa,0xff,0,0x55,0xaa,0xff,0xff,0x55};for(auto b:reset)e.Feed(b,86000);
-    check(e.Snapshot().resetEvents==2,"reset events recorded without erasing");
+    check(e.Snapshot().resetEvents==1,"only confirmed long press dispatches factory reset");
     check(e.Request(203,false,87000),"disconnect command");e.Disconnect();
     check(e.Snapshot().completedId==203&&e.Snapshot().result==RelayResult::TransportError&&!e.Snapshot().known,"transport failure never succeeds");
     RelayEngine late; check(late.Request(1,false,0),"late fixture");late.NextTx(0,tx);late.NextTx(100,tx);state(late,false,3000);late.NextTx(3000,tx);

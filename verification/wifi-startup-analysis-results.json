@@ -1,0 +1,317 @@
+{
+  "date": "2026-10-20",
+  "status": "analysis_and_offline_reproduction_complete",
+  "physical_device_root_cause": "unconfirmed; no post-update boot log",
+  "physical_device_updated_again": false,
+  "inputs_and_file_comparison": {
+    "inputs": {
+      "v0.2.4": "f9cb04be891a3ea725aa9628cfb4d22e9da37f5826b9fdeaea827c3550d343d9",
+      "v0.2.6": "6dfe222d5d93586cda39fcc7234ab84aa75f1eb1a5b5c762b9023ee3a5bb2ba9"
+    },
+    "files": {
+      "etc/init.d/rcS": {
+        "old_sha256": "2e8254920a09c4c068a6506f5be87f7b00bc54124b8b246ddff5aea4e3982eff",
+        "new_sha256": "2e8254920a09c4c068a6506f5be87f7b00bc54124b8b246ddff5aea4e3982eff",
+        "same": true
+      },
+      "etc/inittab": {
+        "old_sha256": "7728ecf0138d2ed4b1408204e8c7b0c7eacfe650b1fe29cadfe941031b476e3a",
+        "new_sha256": "7728ecf0138d2ed4b1408204e8c7b0c7eacfe650b1fe29cadfe941031b476e3a",
+        "same": true
+      },
+      "bin/ck-ota-start": {
+        "old_sha256": "c108a2c73020bcf8cb78ea46d5fde32228e434caa3f1f9d12ce8d6f2b141a4a9",
+        "new_sha256": "d69c030901d66abb5e23603e0c7f212cb258fee9af4d4fa6572afb3941310e22",
+        "same": false
+      },
+      "bin/ck-setup-start": {
+        "old_sha256": "3399f3f277217be511874b8622115547bb5fe3b413596b49682a28dfc970e636",
+        "new_sha256": "6573ce2db304e7acac47b740b5e68c96022178dce560ee10cf4394415e349bb6",
+        "same": false
+      },
+      "bin/ck-setup-backend": {
+        "old_sha256": "226d6b78cd8c7163809c62391a587a285c88fb2720d2d2accc850cbcb3ed8616",
+        "new_sha256": "4d2bf725ad5fe9ac9d10a1f326d0d35d488455b0ce6b2b5a3e4a857d8f62c827",
+        "same": false
+      },
+      "bin/ck-udhcpc": {
+        "old_sha256": "97eb31d69d3514a5a552b075a5089527ef95917e29ee08105a830996d3ac6b85",
+        "new_sha256": "97eb31d69d3514a5a552b075a5089527ef95917e29ee08105a830996d3ac6b85",
+        "same": true
+      },
+      "bin/matter-test-start": {
+        "old_sha256": "220891adfa0d2671da1fefb4b1347c2b014ce47b5aa1455240e934eb8d28c629",
+        "new_sha256": "220891adfa0d2671da1fefb4b1347c2b014ce47b5aa1455240e934eb8d28c629",
+        "same": true
+      },
+      "bin/matter-diag-start": {
+        "old_sha256": "d214053c374cbe396097f76a8fa97927a767fad3620bfc40ab1116e38fb5c31a",
+        "new_sha256": "f6d1cfb0850b5d65ea1269804c9d143a64044119f0dd6ee0ed01df35d126cb78",
+        "same": false
+      },
+      "bin/matterd-test": {
+        "old_sha256": "3463308fe83048ff316ae4bf0041565575610e8cc08bc85c7fbc2d9ea562cbb7",
+        "new_sha256": "a2cb46bbcd65c20693db1943939cea3d10620156ca7a35d63f01226e0dbd3f5b",
+        "same": false
+      },
+      "bin/ck-updater": {
+        "old_sha256": "0bc3580c7833c1068ad664aad505b808f043b89ef25fdfc7ab90a0f05ff255ea",
+        "new_sha256": "a85aee3c6fd66d01a26b58f6eb408a937aecc5a84bb22c36e81072ead7e926b5",
+        "same": false
+      },
+      "bin/ck-updated": {
+        "old_sha256": "44871971b20c9c6dcbedb223279c48aaddc1599f6192b92199e8fbccb922563b",
+        "new_sha256": "730889a5b7bbb46c2f5ebe9cd851935a5b6769166766952967224e07064ecf03",
+        "same": false
+      },
+      "bin/ck-setupd": {
+        "old_sha256": "5b5dee66061b2860906bfec429eefd089b5196f6ad14473815838fb3fb5ac954",
+        "new_sha256": "60805b118ee8e26431961d38ace710b4475daaef37158c3352a073da42515854",
+        "same": false
+      },
+      "bin/ck-wificfg": {
+        "old_sha256": "350402de512d6e124346f24a39695b0fdb2b3b4ea06ec0c5bbaf1e852f0ab2dd",
+        "new_sha256": "350402de512d6e124346f24a39695b0fdb2b3b4ea06ec0c5bbaf1e852f0ab2dd",
+        "same": true
+      },
+      "bin/ck-lease": {
+        "old_sha256": "38e9987f8fc53109113f8aefba380f3c5a4e2575ec053d1ec82b140d28ccbe66",
+        "new_sha256": "38e9987f8fc53109113f8aefba380f3c5a4e2575ec053d1ec82b140d28ccbe66",
+        "same": true
+      },
+      "bin/busybox": {
+        "old_sha256": "3cd0ec8270214a74879ee4b67e592be285e23d6a9cca964b64a86b88c821e619",
+        "new_sha256": "3cd0ec8270214a74879ee4b67e592be285e23d6a9cca964b64a86b88c821e619",
+        "same": true
+      },
+      "lib/libapmib.so": {
+        "old_sha256": "e88721af68971ac96e949e7a918ae59e339cea1a3e7ecc9d40d59d5024e62824",
+        "new_sha256": "e88721af68971ac96e949e7a918ae59e339cea1a3e7ecc9d40d59d5024e62824",
+        "same": true
+      },
+      "bin/init.sh": {
+        "old_sha256": "37a89df20b2efa6b9e4268320fae90e29774dc894168a257f25b89f452e7bda2",
+        "new_sha256": "37a89df20b2efa6b9e4268320fae90e29774dc894168a257f25b89f452e7bda2",
+        "same": true
+      },
+      "bin/startup.sh": {
+        "old_sha256": "d620040cff0aa1ada99a9d68d1fc8436cd335ace89481880c5c2daf70a7e8fdb",
+        "new_sha256": "d620040cff0aa1ada99a9d68d1fc8436cd335ace89481880c5c2daf70a7e8fdb",
+        "same": true
+      }
+    }
+  },
+  "elf_survey": {
+    "busybox": {
+      "sha256": "3cd0ec8270214a74879ee4b67e592be285e23d6a9cca964b64a86b88c821e619",
+      "arch": "mips",
+      "cpu": "mips1",
+      "interpreter": "/lib/ld-uClibc.so.0",
+      "import_count": 244
+    },
+    "matterd-test": {
+      "sha256": "a2cb46bbcd65c20693db1943939cea3d10620156ca7a35d63f01226e0dbd3f5b",
+      "arch": "mips",
+      "cpu": "mips1",
+      "interpreter": "",
+      "import_count": 0
+    },
+    "ck-updater": {
+      "sha256": "a85aee3c6fd66d01a26b58f6eb408a937aecc5a84bb22c36e81072ead7e926b5",
+      "arch": "mips",
+      "cpu": "mips1",
+      "interpreter": "",
+      "import_count": 0
+    },
+    "ck-setupd": {
+      "sha256": "60805b118ee8e26431961d38ace710b4475daaef37158c3352a073da42515854",
+      "arch": "mips",
+      "cpu": "mips1",
+      "interpreter": "",
+      "import_count": 0
+    }
+  },
+  "startup_fault_replay": {
+    "status": "pass",
+    "environment": "actual v0.2.6 BusyBox ash under qemu-user in offline Linux container",
+    "actual_scripts_with_fixture_path_rewrites": true,
+    "mocks": [
+      "updater",
+      "identity helper",
+      "Wi-Fi MIB helper",
+      "setup controller",
+      "network commands"
+    ],
+    "no_physical_device_or_network_access": true,
+    "limitation": "Injected faults establish startup consequences, not which fault occurred on hardware. DHCP launch marker is not a DHCP exchange.",
+    "sha256": {
+      "bin/busybox": "3cd0ec8270214a74879ee4b67e592be285e23d6a9cca964b64a86b88c821e619",
+      "bin/ck-ota-start": "d69c030901d66abb5e23603e0c7f212cb258fee9af4d4fa6572afb3941310e22",
+      "bin/ck-setup-start": "6573ce2db304e7acac47b740b5e68c96022178dce560ee10cf4394415e349bb6",
+      "bin/ck-setup-backend": "4d2bf725ad5fe9ac9d10a1f326d0d35d488455b0ce6b2b5a3e4a857d8f62c827"
+    },
+    "cases": [
+      {
+        "scenario": "success",
+        "public_image": true,
+        "expected_observation_confirmed": true,
+        "identity_pending": false,
+        "rescue_marker": false,
+        "identity_helper_reached": true,
+        "controller_reached": true,
+        "dhcp_launch_reached": true,
+        "setup_exit_status": null
+      },
+      {
+        "scenario": "import_error",
+        "public_image": true,
+        "expected_observation_confirmed": true,
+        "identity_pending": false,
+        "rescue_marker": true,
+        "identity_helper_reached": true,
+        "controller_reached": false,
+        "dhcp_launch_reached": false,
+        "setup_exit_status": 1
+      },
+      {
+        "scenario": "import_crash",
+        "public_image": true,
+        "expected_observation_confirmed": true,
+        "identity_pending": false,
+        "rescue_marker": true,
+        "identity_helper_reached": true,
+        "controller_reached": false,
+        "dhcp_launch_reached": false,
+        "setup_exit_status": 1
+      },
+      {
+        "scenario": "import_hang",
+        "public_image": true,
+        "expected_observation_confirmed": true,
+        "identity_pending": true,
+        "rescue_marker": false,
+        "identity_helper_reached": false,
+        "controller_reached": false,
+        "dhcp_launch_reached": false,
+        "setup_exit_status": null
+      },
+      {
+        "scenario": "initializer_killed",
+        "public_image": true,
+        "expected_observation_confirmed": true,
+        "identity_pending": true,
+        "rescue_marker": false,
+        "identity_helper_reached": false,
+        "controller_reached": false,
+        "dhcp_launch_reached": false,
+        "setup_exit_status": null
+      },
+      {
+        "scenario": "identity_crash",
+        "public_image": true,
+        "expected_observation_confirmed": true,
+        "identity_pending": false,
+        "rescue_marker": false,
+        "identity_helper_reached": true,
+        "controller_reached": false,
+        "dhcp_launch_reached": false,
+        "setup_exit_status": 1
+      },
+      {
+        "scenario": "controller_reject",
+        "public_image": true,
+        "expected_observation_confirmed": true,
+        "identity_pending": false,
+        "rescue_marker": false,
+        "identity_helper_reached": true,
+        "controller_reached": true,
+        "dhcp_launch_reached": false,
+        "setup_exit_status": 11
+      },
+      {
+        "scenario": "mib_error",
+        "public_image": true,
+        "expected_observation_confirmed": true,
+        "identity_pending": false,
+        "rescue_marker": false,
+        "identity_helper_reached": true,
+        "controller_reached": false,
+        "dhcp_launch_reached": false,
+        "setup_exit_status": 1
+      },
+      {
+        "scenario": "import_error",
+        "public_image": false,
+        "expected_observation_confirmed": true,
+        "identity_pending": false,
+        "rescue_marker": true,
+        "identity_helper_reached": true,
+        "controller_reached": true,
+        "dhcp_launch_reached": true,
+        "setup_exit_status": null
+      }
+    ]
+  },
+  "production_identity": {
+    "status": "pass",
+    "environment": "actual extracted MIPS production binaries under qemu-user; synthetic key and Docker Ethernet MAC; ioctl only, no network requests",
+    "limitations": "Modern container kernel, not physical RTL8196E/Linux 2.6.30. Does not exclude hardware-only crashes or OOM.",
+    "cases": [
+      {
+        "binary": "v0.2.4",
+        "scenario": "valid",
+        "exit_status": 0,
+        "manual_created": true,
+        "identity_record_created": true,
+        "manual_sha256": "056dc4477c7a5b366b2e20b43009e8d99874b63346a3d70dc293c44bac945a5b"
+      },
+      {
+        "binary": "v0.2.6",
+        "scenario": "valid",
+        "exit_status": 0,
+        "manual_created": true,
+        "identity_record_created": true,
+        "manual_sha256": "056dc4477c7a5b366b2e20b43009e8d99874b63346a3d70dc293c44bac945a5b"
+      },
+      {
+        "binary": "v0.2.6",
+        "scenario": "missing-key",
+        "exit_status": 5,
+        "manual_created": false,
+        "identity_record_created": false
+      },
+      {
+        "binary": "v0.2.6",
+        "scenario": "short-key",
+        "exit_status": 5,
+        "manual_created": false,
+        "identity_record_created": false
+      },
+      {
+        "binary": "v0.2.6",
+        "scenario": "missing-interface",
+        "exit_status": 5,
+        "manual_created": false,
+        "identity_record_created": false
+      }
+    ]
+  },
+  "legacy_identity_tests": {
+    "legacy-native.log": {
+      "status": "pass",
+      "test": "test_auto_policy_keeps_existing_legacy_identity_without_entropy",
+      "sha256": "a412b8c0ec874fe9fa214803df30d9393f4f97a4950a9a3c1170ce30026bcbec"
+    },
+    "legacy-mips.log": {
+      "status": "pass",
+      "test": "test_auto_policy_keeps_existing_legacy_identity_without_entropy",
+      "sha256": "7f730657f909bd869404307d1beff422bfbe591b0bfa2607427d0b0f72971d31"
+    }
+  },
+  "existing_startup_tests": {
+    "status": "pass",
+    "tests": 7
+  },
+  "reproducer_sha256": "d0528da412d31940ed72dc7b252d0a0ea6d036d78668a8df21376a2ec13a8194",
+  "scope": "Own firmware images and isolated local fixtures; no physical flash writes or UniFi configuration changes during this analysis."
+}

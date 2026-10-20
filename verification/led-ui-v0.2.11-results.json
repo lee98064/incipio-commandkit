@@ -1,0 +1,15 @@
+{
+  "status": "pass",
+  "environment": "isolated C HTTP/NOR/MCU-state fixtures in desktop browser",
+  "real_outlet": false,
+  "checks": [
+    "visitor cannot see LED settings",
+    "login exposes six-mode selector and schedule",
+    "off mode and 23:00-07:00 schedule saved",
+    "phone clock calibration acknowledged and night state shown",
+    "15-second find acknowledged",
+    "switch Matter to HomeKit; login and LED preferences retained"
+  ],
+  "screenshot": "verification/led-ui/homekit-led-panel.png",
+  "screenshot_sha256": "dc62a42b19eb8118d3f4c1b5a0ee55cc70284a8e17a72a497cfb150cb8454dd3"
+}
