@@ -19,10 +19,10 @@
 
 ## 下載
 
-從 [v0.3.0-preview Release](https://github.com/lee98064/incipio-commandkit/releases/tag/v0.3.0-preview) 下載 `commandkit-matter-v0.3.0-public-first-install.bin`，並核對 SHA-256：
+從 [v0.3.1-preview Release](https://github.com/lee98064/incipio-commandkit/releases/tag/v0.3.1-preview) 下載 `commandkit-matter-v0.3.1-public-first-install.bin`，並核對 SHA-256：
 
 ```text
-7497ddbfecdf486726b269c6943121939154814e6c4f274fd25b0c5ba76a35ab  commandkit-matter-v0.3.0-public-first-install.bin
+6de78864111c8c3e9fa966878085e8bf97c7fdb97c244c9a4cf18359781f1862  commandkit-matter-v0.3.1-public-first-install.bin
 ```
 
 `matter.ota`、`matter-matter-ota.bin` 與 `matter-8m-region.bin` 都**不能**用在原廠更新頁。
@@ -31,7 +31,7 @@
 
 1. 插座裝好外殼，接上電源，不要接負載；手機或電腦與插座連在同一個網路。
 2. 在路由器的裝置清單找到插座 IP，以瀏覽器開啟 `http://插座IP/upload.htm`，核對上述四項條件；保留雙韌體設定，不要變更。
-3. 在頁面上方按 **Select File**，選擇 `commandkit-matter-v0.3.0-public-first-install.bin`，再按 **Upload**。
+3. 在頁面上方按 **Select File**，選擇 `commandkit-matter-v0.3.1-public-first-install.bin`，再按 **Upload**。
 4. 等待頁面倒數與重新開機，期間**保持供電**。不要按「Reboot Form Backup Bank Now」。
 5. 第一次開機會先收集足夠的隨機資料再產生身分，可能比平常久；這段時間實體按鍵仍可操作。
 6. 出現 `CommandKit-Setup-XXXXXX` 熱點後，依[使用說明](../guide/usage.md)完成首次設定：選擇 Wi-Fi、建立管理密碼、保存 Matter QR Code。插座原廠的 HomeKit 碼不適用於 Matter。
@@ -43,7 +43,7 @@
 
 - 首次安裝檔會初始化持久資料區。**不要拿來更新已安裝本韌體的插座**，否則會清除配對、管理密碼與累積用電；已安裝的插座請用 `matter.ota`。
 - 第二槽的原廠韌體會保留，但應用程式啟動失敗時，bootloader 不保證自動切回第二槽。無法開機時需以[燒錄器復原](flashing.md#復原先前-rootfs)。
-- v0.3.0 安裝檔沿用已實測版本的 kernel 與上傳格式，並已通過原廠 Boa／bootloader 模擬與首次匯入後的簽章 OTA 測試，見[驗證紀錄](../../verification/public-factory-v0.3.0-results.json)。
+- v0.3.1 安裝檔沿用已實測版本的 kernel 與上傳格式，並已通過原廠 Boa／bootloader 模擬與首次匯入後的簽章 OTA 測試，見[驗證紀錄](../../verification/public-factory-v0.3.1-results.json)。
 
 ## 寫入與保留範圍
 

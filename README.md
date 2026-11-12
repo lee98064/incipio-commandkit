@@ -24,7 +24,7 @@ English: [README.en.md](README.en.md)
 
 | 方式 | 適用 | 說明 |
 |---|---|---|
-| **原廠網頁上傳（不必拆機）** | 原廠 `10219-1531`、Active Bank 2、已啟用 Dual Firmware | 在原廠 `/upload.htm` 上傳 Release 的 `commandkit-matter-v0.3.0-public-first-install.bin`，已實機驗證，見[網頁首次安裝](docs/install/factory-install.md) |
+| **原廠網頁上傳（不必拆機）** | 原廠 `10219-1531`、Active Bank 2、已啟用 Dual Firmware | 在原廠 `/upload.htm` 上傳 Release 的 `commandkit-matter-v0.3.1-public-first-install.bin`，已實機驗證，見[網頁首次安裝](docs/install/factory-install.md) |
 | **燒錄器** | 任何原廠版本 | CH341A 備份、個別化並只寫入 Bank 1 rootfs，見[燒錄說明](docs/install/flashing.md) |
 
 已安裝自訂韌體：開啟 `http://插座IP:18082/`，登入後在「更新」分頁下載安裝，或手動上傳 Release 的 `matter.ota`。一般 OTA 保留身分、Wi-Fi、密碼、配對與累積 kWh；從無管理密碼的舊版首次升級須重新設定 Wi-Fi 及密碼。詳見[更新說明](docs/guide/updates.md)。
@@ -33,7 +33,7 @@ English: [README.en.md](README.en.md)
 
 - HomeKit／Matter 單選切換，保留既有配對與設定；同時只有一個 MCU 控制程序。
 - 三步驟設定熱點：選擇 Wi-Fi、建立管理密碼、加入家庭。
-- 訪客狀態頁與密碼管理後台，含分頁、手機介面、深色模式。
+- 訪客狀態頁與密碼管理後台，含分頁、手機介面、深色模式；管理員可在網頁直接開關插座（Matter 模式）。
 - Matter 與網頁 V／A／W／估算 kWh、即時功率走勢；HomeKit 模式暫停自訂即時量測及 kWh 累計。
 - 六種 LED 模式、尋找插座、夜間熄燈及校時備援。
 - 開頁自動檢查更新、分步安裝、Ed25519 簽章驗證、配對重設與完整出廠重置。

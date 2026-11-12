@@ -115,8 +115,8 @@ python3 -m pip install -r tools/requirements.txt</pre></div>
 
 <div class="method-title" id="method-a"><span>方式 A</span><h4>原廠網頁上傳（不必拆機）</h4></div>
 <ol class="steps">
-<li><b>下載首次安裝檔</b><p>下載 <code>commandkit-matter-v0.3.0-public-first-install.bin</code>。這是公開共用檔，不含任何裝置金鑰；每台插座第一次開機時會自行產生身分與 Matter 設定碼。</p>
-<div class="cta"><a class="btn outline" href="https://github.com/lee98064/incipio-commandkit/releases/download/v0.3.0-preview/commandkit-matter-v0.3.0-public-first-install.bin"><svg class="i"><use href="#i-download"/></svg>下載首次安裝檔</a></div></li>
+<li><b>下載首次安裝檔</b><p>下載 <code>commandkit-matter-v0.3.1-public-first-install.bin</code>。這是公開共用檔，不含任何裝置金鑰；每台插座第一次開機時會自行產生身分與 Matter 設定碼。</p>
+<div class="cta"><a class="btn outline" href="https://github.com/lee98064/incipio-commandkit/releases/download/v0.3.1-preview/commandkit-matter-v0.3.1-public-first-install.bin"><svg class="i"><use href="#i-download"/></svg>下載首次安裝檔</a></div></li>
 <li><b>開啟原廠更新頁並核對條件</b><p>插座裝好外殼、接上電源、不要接負載。在路由器的裝置清單找到插座 IP，以瀏覽器開啟 <code>http://插座IP/upload.htm</code>，確認韌體為 <code>10219-1531</code>、Active Bank 2、已勾選 Enable Dual Firmware。不要變更雙韌體設定。</p></li>
 <li><b>上傳</b><p>在頁面上方按 <b>Select File</b> 選擇首次安裝檔，再按 <b>Upload</b>。</p></li>
 <li><b>等待重新開機</b><p>等待頁面倒數與重新開機，<b>期間請保持供電</b>。不要按「Reboot Form Backup Bank Now」。第一次開機會先產生裝置身分，可能比平常久一些。</p></li>
@@ -179,7 +179,7 @@ python3 -m pip install -r tools/requirements.txt</pre></div>
 <table class="table"><thead><tr><th>項目</th><th>說明</th></tr></thead><tbody>
 <tr><td>開啟管理後台</td><td>在路由器的裝置清單找到插座 IP，以瀏覽器開啟 <code>http://插座IP/</code>，會自動轉到 <code>:18082</code>。</td></tr>
 <tr><td>訪客檢視</td><td>不必登入即可查看即時功率、電壓、電流、累積用電與韌體版本。</td></tr>
-<tr><td>管理員</td><td>登入後可調整指示燈、切換協議、重新開啟配對視窗、變更 Wi-Fi 與管理密碼。</td></tr>
+<tr><td>管理員</td><td>登入後可在總覽頁直接開關插座（Matter 模式），並可調整指示燈、切換協議、重新開啟配對視窗、變更 Wi-Fi 與管理密碼。</td></tr>
 <tr><td>實體按鈕</td><td>短按切換插座開關；長按直到插座重新啟動，會恢復出廠設定。</td></tr>
 </tbody></table>
 <h4>線上更新</h4>
@@ -220,7 +220,7 @@ python3 -m pip install -r tools/requirements.txt</pre></div>
 <span class="kicker">下載</span><h2 class="title">下載韌體</h2><p class="sub">已安裝本韌體的插座，直接在管理後台更新即可；以下檔案供手動更新與首次安裝使用。</p>
 <div class="downloads">
 <article class="dl main"><h3>線上更新包</h3><div class="ver" data-latest-version>v0.3.0-preview</div><p>matter.ota（<span data-latest-size>2.6 MB</span>），供已安裝本韌體的插座在管理後台手動更新。</p><a class="btn primary" href="updates/matter.ota"><svg class="i"><use href="#i-download"/></svg>下載 matter.ota</a></article>
-<article class="dl"><h3>首次安裝檔</h3><p>原廠網頁上傳用的 first-install.bin（方式 A），以及燒錄器用的 matter-8m-region.bin／.json（方式 B，需個別化，不可整片燒錄）。</p><div class="cta"><a class="btn solid" href="https://github.com/lee98064/incipio-commandkit/releases/download/v0.3.0-preview/commandkit-matter-v0.3.0-public-first-install.bin"><svg class="i"><use href="#i-download"/></svg>原廠網頁安裝檔</a><a class="btn outline" data-release-link href="https://github.com/lee98064/incipio-commandkit/releases">版本頁</a></div></article>
+<article class="dl"><h3>首次安裝檔</h3><p>原廠網頁上傳用的 first-install.bin（方式 A），以及燒錄器用的 matter-8m-region.bin／.json（方式 B，需個別化，不可整片燒錄）。</p><div class="cta"><a class="btn solid" href="https://github.com/lee98064/incipio-commandkit/releases/download/v0.3.1-preview/commandkit-matter-v0.3.1-public-first-install.bin"><svg class="i"><use href="#i-download"/></svg>原廠網頁安裝檔</a><a class="btn outline" data-release-link href="https://github.com/lee98064/incipio-commandkit/releases">版本頁</a></div></article>
 <article class="dl"><h3>原始碼與文件</h3><p>完整原始碼、逆向紀錄、建置方式與版本紀錄。</p><a class="btn outline" href="https://github.com/lee98064/incipio-commandkit"><svg class="i"><use href="#i-code"/></svg>GitHub</a></article>
 </div></div></section>
 </main>

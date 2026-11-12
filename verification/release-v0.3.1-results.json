@@ -1,0 +1,1055 @@
+{
+  "format": "commandkit-local-release-validation-v1",
+  "version": "0.3.1-preview",
+  "software_version": 15,
+  "created_at": "2026-11-12T10:49:48.254192+00:00",
+  "status": "validated",
+  "build_status": "pass",
+  "all_required_tests_passed": true,
+  "source": {
+    "commit": "19bb3fb9699af83a63029629a7dae016e869d95c",
+    "branch": "feat/web-relay-control",
+    "note": "The web relay source and version 15/0.3.1-preview were already present at the recorded commit. No source, test, documentation, or site files were edited by this task. Concurrent documentation/site/screenshot changes were preserved. The VM test ran unchanged in an isolated scratch view to avoid overwriting its existing tracked verification file.",
+    "constraints": {
+      "status": "pass",
+      "version_and_notes_preserved": true,
+      "ui_sources_preserved": true,
+      "generated_headers": [
+        {
+          "path": "firmware/matter/src/update/password_script.h",
+          "changed_vs_head": false,
+          "changed_vs_baseline": false,
+          "sha256": "97003b1631ad4c7a708712fd639381af518c5f67fc7fcbaadc59f5b95aa5e73e"
+        },
+        {
+          "path": "firmware/matter/src/update/update_page.h",
+          "changed_vs_head": false,
+          "changed_vs_baseline": false,
+          "sha256": "8e1e9ff6ea971f56359da3861cf666598600482af1cd51c70a8549dd88d8db6b"
+        },
+        {
+          "path": "firmware/matter/src/setup/portal-device-page.h",
+          "changed_vs_head": false,
+          "changed_vs_baseline": false,
+          "sha256": "e8b8f007c983567438d5a79f517d887ca73c7d483f2fedfd4995feefc35d6034"
+        },
+        {
+          "path": "firmware/matter/src/setup/portal-scan-script.h",
+          "changed_vs_head": false,
+          "changed_vs_baseline": false,
+          "sha256": "3af9e14286c112d40fb92a7da8f1772b42675c3e779bdaa5fc24a558f02749b0"
+        },
+        {
+          "path": "firmware/matter/src/matter-app-device/Version.h",
+          "changed_vs_head": false,
+          "changed_vs_baseline": false,
+          "sha256": "2e8719a33975ebcadfee2c1657364f0c8c33ff43e0f99b158ad091e07712503a"
+        }
+      ],
+      "tracked_modified_files": [
+        "README.en.md",
+        "README.md",
+        "docs/images/admin-desktop-dark.webp",
+        "docs/images/admin-desktop-light.webp",
+        "docs/images/admin-mobile-dark.webp",
+        "docs/images/admin-mobile-light.webp",
+        "docs/install/factory-install.md",
+        "site/assets/img/admin-desktop-dark.webp",
+        "site/assets/img/admin-desktop-light.webp",
+        "site/assets/img/admin-mobile-dark.webp",
+        "site/assets/img/admin-mobile-light.webp",
+        "site/en/index.html",
+        "site/index.html"
+      ],
+      "source_commit": "19bb3fb9699af83a63029629a7dae016e869d95c",
+      "source_files_changed_by_task": [],
+      "concurrent_byte_changes_since_snapshot": [
+        "docs/images/admin-desktop-dark.webp",
+        "docs/images/admin-desktop-light.webp",
+        "docs/images/admin-mobile-dark.webp",
+        "docs/images/admin-mobile-light.webp",
+        "site/assets/img/admin-desktop-dark.webp",
+        "site/assets/img/admin-desktop-light.webp",
+        "site/assets/img/admin-mobile-dark.webp",
+        "site/assets/img/admin-mobile-light.webp"
+      ]
+    }
+  },
+  "build": {
+    "full_official_compile": true,
+    "skip_compile": false,
+    "generator_duration_seconds": 0.116,
+    "release_duration_seconds": 9.054,
+    "matter_application_binary_sha256": "cc85bb5406840909be461800e5a8e4ca5af124fe38a2f13d9b606386a7c588cd",
+    "compile_note": "Official release.py invoked all four compile scripts without --skip-compile; existing Ninja outputs were current."
+  },
+  "release_directory": "artifacts/releases/v0.3.1-preview",
+  "artifacts": [
+    {
+      "name": "SHA256SUMS",
+      "bytes": 495,
+      "sha256": "c0f578b0c77d95e7d266026eebee63586395770978e1909daab97db410879054"
+    },
+    {
+      "name": "index.json",
+      "bytes": 801,
+      "sha256": "246ea9a51cf01e1f979d912e790d2115d3bcb51e36c5f3f79b362f3120047d70"
+    },
+    {
+      "name": "matter-8m-region.bin",
+      "bytes": 8388608,
+      "sha256": "125fce5e3c5857d729dc50d854b75e6c23d89e5fa5508d94079134e6c2b6689f"
+    },
+    {
+      "name": "matter-8m-region.json",
+      "bytes": 676,
+      "sha256": "6370449a059ef5f56bd39b56b4919168296f147bf08682864edfbd852e3ad5eb"
+    },
+    {
+      "name": "matter-matter-ota.bin",
+      "bytes": 2687321,
+      "sha256": "60cacb59d910cca412d8d1640a4a49f79c9c58aa696fce3eb3f52461b9565f50"
+    },
+    {
+      "name": "matter.json",
+      "bytes": 608,
+      "sha256": "c419c5aa948822c667155abbb933f5892e9aa7cbf8febe79cb8ea3e2760e6513"
+    },
+    {
+      "name": "matter.ota",
+      "bytes": 2687232,
+      "sha256": "0a3c509e50e4c8dc66c896bf4e178ad6a382429a32640165b89e037e6435a2a0"
+    }
+  ],
+  "commands": [
+    {
+      "id": "00-requirements",
+      "command": "${SCRATCH}/venv/bin/pip install -r tools/requirements.txt",
+      "started_at": "2026-11-12T10:44:25.205249+00:00",
+      "duration_seconds": 0.842,
+      "exit_code": 0,
+      "status": "pass",
+      "output_sha256": "b9cd24e328d46454c96a37106f1dcb93f672d69aef083dab88488b47e82a8260",
+      "required_final_execution": true,
+      "counts": {
+        "passed": 1,
+        "failed": 0,
+        "skipped": 0,
+        "total": 1
+      },
+      "count_unit": "command execution"
+    },
+    {
+      "id": "01-generate",
+      "command": "python3 tools/generate_update.py",
+      "started_at": "2026-11-12T10:43:38.330176+00:00",
+      "duration_seconds": 0.116,
+      "exit_code": 0,
+      "status": "pass",
+      "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "required_final_execution": true,
+      "counts": {
+        "passed": 1,
+        "failed": 0,
+        "skipped": 0,
+        "total": 1
+      },
+      "count_unit": "command execution"
+    },
+    {
+      "id": "02-release",
+      "command": "python3 tools/release.py --private private/ota-signing.key --output artifacts/releases/v0.3.1-preview",
+      "started_at": "2026-11-12T10:43:38.713033+00:00",
+      "duration_seconds": 9.054,
+      "exit_code": 0,
+      "status": "pass",
+      "output_sha256": "1538a07e7cf7e72cd2f559ead4ee8d0b9c4fee1e6ad554cf5e86d683f5f5227b",
+      "required_final_execution": true,
+      "counts": {
+        "passed": 1,
+        "failed": 0,
+        "skipped": 0,
+        "total": 1
+      },
+      "count_unit": "command execution"
+    },
+    {
+      "id": "03-updates",
+      "command": "python3 tests/test_updates.py",
+      "started_at": "2026-11-12T10:43:53.932214+00:00",
+      "duration_seconds": 1.197,
+      "exit_code": 1,
+      "status": "fail",
+      "output_sha256": "a19e7bc018bd2b37ec2e85d63197afc6c531544bca5e21b650d3ca60a0b8163c",
+      "required_final_execution": false,
+      "counts": {
+        "passed": 0,
+        "failed": 0,
+        "errors": 1,
+        "skipped": 0,
+        "total": 0
+      },
+      "count_unit": "unittest cases",
+      "resolved_by": "17-linux-updates",
+      "attempt_note": "Linux-only sys/statfs.h; native Linux container passed 59 cases."
+    },
+    {
+      "id": "04-legacy",
+      "command": "python3 tests/test_legacy_mtd.py",
+      "started_at": "2026-11-12T10:43:55.239774+00:00",
+      "duration_seconds": 0.144,
+      "exit_code": 1,
+      "status": "fail",
+      "output_sha256": "46e0c4aed52f9849125fd4cc8a7fb30104639b0d0a83d084df9a3dc77de1527d",
+      "required_final_execution": false,
+      "counts": {
+        "passed": 0,
+        "failed": 0,
+        "errors": 1,
+        "skipped": 0,
+        "total": 0
+      },
+      "count_unit": "unittest cases",
+      "resolved_by": "18-linux-legacy",
+      "attempt_note": "Linux-only mtd/mtd-user.h; native Linux container passed 5 cases."
+    },
+    {
+      "id": "05-startup",
+      "command": "python3 tests/test_startup_recovery.py",
+      "started_at": "2026-11-12T10:43:55.491599+00:00",
+      "duration_seconds": 2.658,
+      "exit_code": 0,
+      "status": "pass",
+      "output_sha256": "d9dffa884abaaf89425f56d42b88ede378844605f1cb53e449cb32f153252b82",
+      "required_final_execution": true,
+      "counts": {
+        "passed": 9,
+        "failed": 0,
+        "errors": 0,
+        "skipped": 0,
+        "total": 9
+      },
+      "count_unit": "unittest cases"
+    },
+    {
+      "id": "06-boot-native",
+      "command": "python3 tests/test_boot_guard.py",
+      "started_at": "2026-11-12T10:43:58.276691+00:00",
+      "duration_seconds": 0.115,
+      "exit_code": 0,
+      "status": "pass",
+      "output_sha256": "c91248c29238cc570713bd758c2fda4758576b8b362164d2bf4453650f1dee9b",
+      "required_final_execution": false,
+      "counts": {
+        "passed": 0,
+        "failed": 0,
+        "errors": 0,
+        "skipped": 6,
+        "total": 6
+      },
+      "count_unit": "unittest cases",
+      "attempt_note": "All six cases skipped on macOS; Linux and MIPS boot-guard executions each passed all six."
+    },
+    {
+      "id": "07-js-update",
+      "command": "node tests/test_update_crypto.js",
+      "started_at": "2026-11-12T10:43:58.500136+00:00",
+      "duration_seconds": 0.071,
+      "exit_code": 0,
+      "status": "pass",
+      "output_sha256": "2647f50f6654294d733bb0ea310c30c645d9458f2a066ae739422398905a948e",
+      "required_final_execution": true,
+      "counts": {
+        "passed": 1,
+        "failed": 0,
+        "skipped": 0,
+        "total": 1
+      },
+      "count_unit": "command execution"
+    },
+    {
+      "id": "08-js-password",
+      "command": "node tests/test_password_crypto.js",
+      "started_at": "2026-11-12T10:43:58.674050+00:00",
+      "duration_seconds": 2.317,
+      "exit_code": 0,
+      "status": "pass",
+      "output_sha256": "08fc8706d01105f34eae9854bc436d1da16fafd4d8e96a55342701fb0e28fd49",
+      "required_final_execution": true,
+      "counts": {
+        "passed": 1,
+        "failed": 0,
+        "skipped": 0,
+        "total": 1
+      },
+      "count_unit": "command execution"
+    },
+    {
+      "id": "09-js-monitor",
+      "command": "node tests/test_monitor.js",
+      "started_at": "2026-11-12T10:44:01.096780+00:00",
+      "duration_seconds": 0.045,
+      "exit_code": 0,
+      "status": "pass",
+      "output_sha256": "90e96f673ac3314490dbb4a1580b7bdf1db9acfbd80bcb36be5364eba6d24474",
+      "required_final_execution": true,
+      "counts": {
+        "passed": 1,
+        "failed": 0,
+        "skipped": 0,
+        "total": 1
+      },
+      "count_unit": "command execution"
+    },
+    {
+      "id": "10-feed",
+      "command": "python3 tests/test_update_feed.py",
+      "started_at": "2026-11-12T10:44:01.245996+00:00",
+      "duration_seconds": 0.132,
+      "exit_code": 0,
+      "status": "pass",
+      "output_sha256": "c2adaef5a274f1c69ca6ab3fb9429f07b97ce06a2e77f86344903a82670a4827",
+      "required_final_execution": true,
+      "counts": {
+        "passed": 7,
+        "failed": 0,
+        "errors": 0,
+        "skipped": 0,
+        "total": 7
+      },
+      "count_unit": "unittest cases"
+    },
+    {
+      "id": "11-setup",
+      "command": "python3 tests/test_setup_control.py",
+      "started_at": "2026-11-12T10:44:01.481852+00:00",
+      "duration_seconds": 0.122,
+      "exit_code": 0,
+      "status": "pass",
+      "output_sha256": "464e0ee629edf74de09ef21e4232fbcedc26588ff7cc23c470f47fe2da88c255",
+      "required_final_execution": true,
+      "counts": {
+        "passed": 5,
+        "failed": 0,
+        "errors": 0,
+        "skipped": 0,
+        "total": 5
+      },
+      "count_unit": "unittest cases"
+    },
+    {
+      "id": "12-management",
+      "command": "python3 tests/test_public_management.py",
+      "started_at": "2026-11-12T10:44:01.717892+00:00",
+      "duration_seconds": 0.114,
+      "exit_code": 0,
+      "status": "pass",
+      "output_sha256": "fe008aab760eb03ccac7578e2b84665b1b50b0d7f855b17a0c7a8d039435b658",
+      "required_final_execution": true,
+      "counts": {
+        "passed": 2,
+        "failed": 0,
+        "errors": 0,
+        "skipped": 0,
+        "total": 2
+      },
+      "count_unit": "unittest cases"
+    },
+    {
+      "id": "13-pages",
+      "command": "python3 tests/test_pages_site.py",
+      "started_at": "2026-11-12T10:44:01.940613+00:00",
+      "duration_seconds": 3.698,
+      "exit_code": 0,
+      "status": "pass",
+      "output_sha256": "f44a58a629bc902109f4c5a2581401a0d41777f5d635c74177a57050e5a3831c",
+      "required_final_execution": true,
+      "counts": {
+        "passed": 17,
+        "failed": 0,
+        "errors": 0,
+        "skipped": 0,
+        "total": 17
+      },
+      "count_unit": "unittest cases"
+    },
+    {
+      "id": "14-changelog",
+      "command": "python3 tests/test_changelog.py",
+      "started_at": "2026-11-12T10:44:05.757314+00:00",
+      "duration_seconds": 0.357,
+      "exit_code": 0,
+      "status": "pass",
+      "output_sha256": "ffbce2b66320c8f4d4a64d3f53447df56a1dffc90d5863bebf043d9a34e75d82",
+      "required_final_execution": true,
+      "counts": {
+        "passed": 5,
+        "failed": 0,
+        "errors": 0,
+        "skipped": 0,
+        "total": 5
+      },
+      "count_unit": "unittest cases"
+    },
+    {
+      "id": "15-energy",
+      "command": "sh -c 'c++ -std=c++11 -Wall -Wextra -Werror firmware/matter/tests/energy_counter_tests.cpp -o /tmp/ck-energy-tests && /tmp/ck-energy-tests'",
+      "started_at": "2026-11-12T10:44:09.031053+00:00",
+      "duration_seconds": 0.385,
+      "exit_code": 0,
+      "status": "pass",
+      "output_sha256": "c3d6682a34568c04173824eb2b22c7bb161aca1c2432019e30e2884d0af9bf09",
+      "required_final_execution": true,
+      "counts": {
+        "passed": 1,
+        "failed": 0,
+        "skipped": 0,
+        "total": 1
+      },
+      "count_unit": "command execution"
+    },
+    {
+      "id": "16-relay",
+      "command": "sh -c 'c++ -std=c++11 -Wall -Wextra -Werror firmware/matter/src/relay/RelayEngine.cpp firmware/matter/tests/relay_engine_tests.cpp -o /tmp/ck-relay-tests && /tmp/ck-relay-tests'",
+      "started_at": "2026-11-12T10:44:09.700584+00:00",
+      "duration_seconds": 0.292,
+      "exit_code": 0,
+      "status": "pass",
+      "output_sha256": "ee708fbf113ae0c0bd1f47b05ad67190e31e6da1c8aef683c2dbee7c2eb2448a",
+      "required_final_execution": true,
+      "counts": {
+        "passed": 1,
+        "failed": 0,
+        "skipped": 0,
+        "total": 1
+      },
+      "count_unit": "command execution"
+    },
+    {
+      "id": "17-linux-updates",
+      "command": "sh -c 'docker run --rm -v \"$PWD:/repo:ro\" -w /repo incipio-public-build:v0.1.0-preview sh -c '\"'\"'python3 -m venv /tmp/ck-tests && /tmp/ck-tests/bin/pip -q install -r tools/requirements.txt && /tmp/ck-tests/bin/python tests/test_updates.py'\"'\"''",
+      "started_at": "2026-11-12T10:44:24.237725+00:00",
+      "duration_seconds": 22.627,
+      "exit_code": 0,
+      "status": "pass",
+      "output_sha256": "d38f4a82cc78f02b0bf1115794ab74cced3d81e13a7cb6121f0800ef7d693bf7",
+      "required_final_execution": true,
+      "counts": {
+        "passed": 59,
+        "failed": 0,
+        "errors": 0,
+        "skipped": 0,
+        "total": 59
+      },
+      "count_unit": "unittest cases"
+    },
+    {
+      "id": "18-linux-legacy",
+      "command": "sh -c 'docker run --rm -v \"$PWD:/repo:ro\" -w /repo incipio-public-build:v0.1.0-preview sh -c '\"'\"'python3 -m venv /tmp/ck-tests && /tmp/ck-tests/bin/pip -q install -r tools/requirements.txt && /tmp/ck-tests/bin/python tests/test_legacy_mtd.py'\"'\"''",
+      "started_at": "2026-11-12T10:44:47.037583+00:00",
+      "duration_seconds": 4.221,
+      "exit_code": 0,
+      "status": "pass",
+      "output_sha256": "58405597cf727da81c5852bd7dfe37b5b6b11c1313bcbaea0676767a881acb65",
+      "required_final_execution": true,
+      "counts": {
+        "passed": 5,
+        "failed": 0,
+        "errors": 0,
+        "skipped": 0,
+        "total": 5
+      },
+      "count_unit": "unittest cases"
+    },
+    {
+      "id": "19-linux-boot",
+      "command": "sh -c 'docker run --rm -v \"$PWD:/repo:ro\" -w /repo incipio-public-build:v0.1.0-preview sh -c '\"'\"'python3 -m venv /tmp/ck-tests && /tmp/ck-tests/bin/pip -q install -r tools/requirements.txt && /tmp/ck-tests/bin/python tests/test_boot_guard.py'\"'\"''",
+      "started_at": "2026-11-12T10:44:51.394756+00:00",
+      "duration_seconds": 15.541,
+      "exit_code": 0,
+      "status": "pass",
+      "output_sha256": "4f297fd4d7bd6c14e1fc76e2398d0e9cfac2c1e1199b9ec04db2cff82ae184ce",
+      "required_final_execution": true,
+      "counts": {
+        "passed": 6,
+        "failed": 0,
+        "errors": 0,
+        "skipped": 0,
+        "total": 6
+      },
+      "count_unit": "unittest cases"
+    },
+    {
+      "id": "20-mips-build",
+      "command": "sh -c 'docker run --rm -e CK_TESTING=1 -v \"$PWD/firmware/matter:/work\" incipio-public-build:v0.1.0-preview sh tools/build_updates.sh'",
+      "started_at": "2026-11-12T10:44:48.099029+00:00",
+      "duration_seconds": 3.578,
+      "exit_code": 0,
+      "status": "pass",
+      "output_sha256": "8cad360a43cdf3214ba80f5855e7325ef907b120de1322330634d5c25b101425",
+      "required_final_execution": true,
+      "counts": {
+        "passed": 1,
+        "failed": 0,
+        "skipped": 0,
+        "total": 1
+      },
+      "count_unit": "command execution"
+    },
+    {
+      "id": "21-mips-updates",
+      "command": "sh -c 'docker run --rm -e CK_TEST_RUNNER=qemu-mips -e CK_TEST_BIN=/repo/firmware/matter/artifacts/update-test -v \"$PWD:/repo:ro\" -w /repo incipio-public-build:v0.1.0-preview sh -c '\"'\"'python3 -m venv /tmp/ck-tests && /tmp/ck-tests/bin/pip -q install -r tools/requirements.txt && /tmp/ck-tests/bin/python tests/test_updates.py'\"'\"''",
+      "started_at": "2026-11-12T10:44:51.815364+00:00",
+      "duration_seconds": 24.973,
+      "exit_code": 0,
+      "status": "pass",
+      "output_sha256": "fa943b782509a189c40612672af6504c5f9de0665f0250a1a90942787ff0a010",
+      "required_final_execution": true,
+      "counts": {
+        "passed": 59,
+        "failed": 0,
+        "errors": 0,
+        "skipped": 0,
+        "total": 59
+      },
+      "count_unit": "unittest cases"
+    },
+    {
+      "id": "22-mips-boot",
+      "command": "sh -c 'docker run --rm -e CK_TEST_RUNNER=qemu-mips -e CK_TEST_BIN=/repo/firmware/matter/artifacts/update-test -v \"$PWD:/repo:ro\" -w /repo incipio-public-build:v0.1.0-preview sh -c '\"'\"'python3 -m venv /tmp/ck-tests && /tmp/ck-tests/bin/pip -q install -r tools/requirements.txt && CK_BOOT_RUNNER=qemu-mips CK_BOOT_BIN=/repo/firmware/matter/artifacts/update-test/ck-boot-guard /tmp/ck-tests/bin/python tests/test_boot_guard.py'\"'\"''",
+      "started_at": "2026-11-12T10:45:16.974169+00:00",
+      "duration_seconds": 16.009,
+      "exit_code": 0,
+      "status": "pass",
+      "output_sha256": "52b7b386b036d43907d4df969001b002b321550b0d0ab78f306b2f599cce91c9",
+      "required_final_execution": true,
+      "counts": {
+        "passed": 6,
+        "failed": 0,
+        "errors": 0,
+        "skipped": 0,
+        "total": 6
+      },
+      "count_unit": "unittest cases"
+    },
+    {
+      "id": "23-pid1",
+      "command": "python3 tests/test_update_pid1.py",
+      "started_at": "2026-11-12T10:45:33.116512+00:00",
+      "duration_seconds": 5.0,
+      "exit_code": 0,
+      "status": "pass",
+      "output_sha256": "90071f4c9404acd87f8ab7a8031a716c8ecd715be968093d22cc8f0ce3386235",
+      "required_final_execution": true,
+      "counts": {
+        "passed": 1,
+        "failed": 0,
+        "skipped": 0,
+        "total": 1
+      },
+      "count_unit": "command execution"
+    },
+    {
+      "id": "24-matter-vm",
+      "command": "python3 ${SCRATCH}/task-f/vm-repository/tests/test_matter_reset_vm.py",
+      "started_at": "2026-11-12T10:45:31.213934+00:00",
+      "duration_seconds": 0.111,
+      "exit_code": 1,
+      "status": "fail",
+      "output_sha256": "6f96e34fce9a03ea91eb34f22564b25d48d0ff6cf70a98bf5462678fdb8a7e81",
+      "required_final_execution": false,
+      "counts": {
+        "passed": 0,
+        "failed": 1,
+        "skipped": 0,
+        "total": 1
+      },
+      "count_unit": "command execution",
+      "resolved_by": "24b-matter-vm",
+      "attempt_note": "Scratch view initially omitted admin_session.py. Copied the unchanged tools directory and reran the unchanged VM test successfully."
+    },
+    {
+      "id": "24b-matter-vm",
+      "command": "python3 ${SCRATCH}/task-f/vm-repository/tests/test_matter_reset_vm.py",
+      "started_at": "2026-11-12T10:46:03.494762+00:00",
+      "duration_seconds": 79.418,
+      "exit_code": 0,
+      "status": "pass",
+      "output_sha256": "bd958ded4c51996ffdaa1b37a93a98e763914156e6e4bb229b20c54ec6583d9e",
+      "required_final_execution": true,
+      "counts": {
+        "passed": 1,
+        "failed": 0,
+        "skipped": 0,
+        "total": 1
+      },
+      "count_unit": "command execution",
+      "environment": "CK_SDK_DIR=${REPOSITORY}/firmware/matter/deps; byte-identical test and source copied to isolated scratch view; SDK separately mounted; generated VM verification and evidence written only in scratch"
+    },
+    {
+      "id": "25-deployment",
+      "command": "python3 tests/test_deployment.py --release-dir artifacts/releases/v0.3.1-preview -v",
+      "started_at": "2026-11-12T10:44:48.099040+00:00",
+      "duration_seconds": 8.202,
+      "exit_code": 0,
+      "status": "pass",
+      "output_sha256": "3f0bfc07f71c2d278bbc64d4d200e350f608e6c666d86debf0924294fc8f007a",
+      "required_final_execution": true,
+      "counts": {
+        "passed": 12,
+        "failed": 0,
+        "errors": 0,
+        "skipped": 1,
+        "total": 13
+      },
+      "count_unit": "unittest cases"
+    },
+    {
+      "id": "26-public",
+      "command": "python3 tools/check_public.py --repository . --release-dir artifacts/releases/v0.3.1-preview",
+      "started_at": "2026-11-12T10:44:56.421367+00:00",
+      "duration_seconds": 1.708,
+      "exit_code": 1,
+      "status": "fail",
+      "output_sha256": "f19f33eaf4619237ff4b814294463edf9cf8a920b8e957c03ee195821c7d8911",
+      "required_final_execution": false,
+      "counts": {
+        "passed": 0,
+        "failed": 1,
+        "skipped": 0,
+        "total": 1
+      },
+      "count_unit": "command execution",
+      "resolved_by": "26b-public",
+      "attempt_note": "Concurrent installation documentation linked the requested factory verification JSON before it was generated. After completing that required artifact, the unmodified audit passed."
+    },
+    {
+      "id": "26b-public",
+      "command": "python3 tools/check_public.py --repository . --release-dir artifacts/releases/v0.3.1-preview",
+      "started_at": "2026-11-12T10:47:52.017916+00:00",
+      "duration_seconds": 2.15,
+      "exit_code": 0,
+      "status": "pass",
+      "output_sha256": "6f23535bac12c2f68571075486ee34d2fc2aee9f36a6294514c671c949b51c83",
+      "required_final_execution": true,
+      "counts": {
+        "passed": 1,
+        "failed": 0,
+        "skipped": 0,
+        "total": 1
+      },
+      "count_unit": "command execution"
+    },
+    {
+      "id": "27-signature",
+      "command": "python3 tools/ota.py verify artifacts/releases/v0.3.1-preview/matter.ota --public third_party/ota-signing.pub",
+      "started_at": "2026-11-12T10:44:58.245930+00:00",
+      "duration_seconds": 0.187,
+      "exit_code": 0,
+      "status": "pass",
+      "output_sha256": "c419c5aa948822c667155abbb933f5892e9aa7cbf8febe79cb8ea3e2760e6513",
+      "required_final_execution": true,
+      "counts": {
+        "passed": 1,
+        "failed": 0,
+        "skipped": 0,
+        "total": 1
+      },
+      "count_unit": "command execution"
+    },
+    {
+      "id": "28-portal",
+      "command": "python3 firmware/matter/tests/test_device_portal.py",
+      "started_at": "2026-11-12T10:44:58.546306+00:00",
+      "duration_seconds": 6.742,
+      "exit_code": 0,
+      "status": "pass",
+      "output_sha256": "f66e4365c21047d21dfac50b12f60626a6148cf6a143b17d0c2a3fa1f525ebba",
+      "required_final_execution": true,
+      "counts": {
+        "passed": 1,
+        "failed": 0,
+        "skipped": 0,
+        "total": 1
+      },
+      "count_unit": "command execution"
+    },
+    {
+      "id": "29-compatibility-ui",
+      "command": "python3 ${SCRATCH}/task-f/compatibility_ui.py",
+      "started_at": "2026-11-12T10:46:54.319602+00:00",
+      "duration_seconds": 0.273,
+      "exit_code": 1,
+      "status": "fail",
+      "output_sha256": "8f0fec8586242728b9100a102d07e375cd86cb44daf523261040c7209cd7b147",
+      "required_final_execution": false,
+      "counts": {
+        "passed": 0,
+        "failed": 1,
+        "skipped": 0,
+        "total": 1
+      },
+      "count_unit": "command execution",
+      "resolved_by": "29b-compatibility-ui",
+      "attempt_note": "Diagnostic helper initially requested bin/matterd; the shipped production binary is named bin/matterd-test. Corrected the scratch helper path and all feature strings passed."
+    },
+    {
+      "id": "29b-compatibility-ui",
+      "command": "python3 ${SCRATCH}/task-f/compatibility_ui.py",
+      "started_at": "2026-11-12T10:47:09.639750+00:00",
+      "duration_seconds": 0.286,
+      "exit_code": 0,
+      "status": "pass",
+      "output_sha256": "d9ffa0173517acaf53c8e508239ef28cd33e02bd33028363c894b24d7e94c5dc",
+      "required_final_execution": true,
+      "counts": {
+        "passed": 1,
+        "failed": 0,
+        "skipped": 0,
+        "total": 1
+      },
+      "count_unit": "command execution"
+    },
+    {
+      "id": "30-factory-build",
+      "command": "python3 tools/factory_image.py --public --factory-template ../public-v0.2.5-preview/commandkit-matter-v0.2.5-public-first-install.bin --release artifacts/releases/v0.3.1-preview/matter-8m-region.bin --manifest artifacts/releases/v0.3.1-preview/matter-8m-region.json --output artifacts/releases/v0.3.1-preview-factory/commandkit-matter-v0.3.1-public-first-install.bin",
+      "started_at": "2026-11-12T10:45:29.414930+00:00",
+      "duration_seconds": 0.593,
+      "exit_code": 0,
+      "status": "pass",
+      "output_sha256": "0fcf51e3cbd00ff09c239a94d46615144be072286a30f951542e65395a75a9c8",
+      "required_final_execution": true,
+      "counts": {
+        "passed": 1,
+        "failed": 0,
+        "skipped": 0,
+        "total": 1
+      },
+      "count_unit": "command execution"
+    },
+    {
+      "id": "31-provenance",
+      "command": "${SCRATCH}/venv/bin/python ${SCRATCH}/task-f/verify_input_provenance.py",
+      "started_at": "2026-11-12T10:46:04.342933+00:00",
+      "duration_seconds": 0.314,
+      "exit_code": 0,
+      "status": "pass",
+      "output_sha256": "2aad6266dca03a8da4ec73f54ef166682acfa997519d665b9406e4704baccced",
+      "required_final_execution": true,
+      "counts": {
+        "passed": 1,
+        "failed": 0,
+        "skipped": 0,
+        "total": 1
+      },
+      "count_unit": "command execution"
+    },
+    {
+      "id": "32-boa",
+      "command": "python3 ${SCRATCH}/task-f/run_verification.py boa",
+      "started_at": "2026-11-12T10:46:21.581234+00:00",
+      "duration_seconds": 12.185,
+      "exit_code": 0,
+      "status": "pass",
+      "output_sha256": "b0700634c1966a43bc02b25a9c681e113fed4536190aa583a08f4566e3263730",
+      "required_final_execution": true,
+      "counts": {
+        "passed": 1,
+        "failed": 0,
+        "skipped": 0,
+        "total": 1
+      },
+      "count_unit": "command execution",
+      "tool_command": "${SCRATCH}/venv/bin/python reverse/tools/verify_boa_factory.py --boa ${PRIVATE_STOCK_BOA} --imports ${PRIVATE_STOCK_IMPORTS} --reference ${PRIVATE_STOCK_REFERENCE} --image artifacts/releases/v0.3.1-preview-factory/commandkit-matter-v0.3.1-public-first-install.bin --bootloader ${PRIVATE_STOCK_BOOTLOADER} --output ${SCRATCH}/task-f/boa-results.json",
+      "tool_exit_code": 0
+    },
+    {
+      "id": "33-factory-ota",
+      "command": "python3 ${SCRATCH}/task-f/run_verification.py ota",
+      "started_at": "2026-11-12T10:46:21.581234+00:00",
+      "duration_seconds": 4.479,
+      "exit_code": 0,
+      "status": "pass",
+      "output_sha256": "a9830be927894adbd11aa124bb7d96060c23a057d309df1eb9d8200d879408c3",
+      "required_final_execution": true,
+      "counts": {
+        "passed": 1,
+        "failed": 0,
+        "skipped": 0,
+        "total": 1
+      },
+      "count_unit": "command execution",
+      "tool_command": "${SCRATCH}/venv/bin/python tests/test_factory_upgrade.py --image artifacts/releases/v0.3.1-preview-factory/commandkit-matter-v0.3.1-public-first-install.bin --reference ${PRIVATE_STOCK_REFERENCE} --release-dir artifacts/releases/v0.3.1-preview --output ${SCRATCH}/task-f/factory-ota-results.json",
+      "tool_exit_code": 0
+    },
+    {
+      "id": "34-factory-host",
+      "command": "python3 ${SCRATCH}/task-f/run_verification.py host",
+      "started_at": "2026-11-12T10:46:21.581225+00:00",
+      "duration_seconds": 0.696,
+      "exit_code": 0,
+      "status": "pass",
+      "output_sha256": "b3a75e20824e86c5033248c8892ada70b1246e009eaca7505820ff1055adf9de",
+      "required_final_execution": true,
+      "counts": {
+        "passed": 1,
+        "failed": 0,
+        "skipped": 0,
+        "total": 1
+      },
+      "count_unit": "command execution",
+      "tool_command": "${SCRATCH}/venv/bin/python tests/test_factory_host_compat.py --reference ${PRIVATE_STOCK_HOST_REFERENCE} --output ${SCRATCH}/task-f/factory-host-compat-results.json",
+      "tool_exit_code": 0
+    },
+    {
+      "id": "35-factory-audit",
+      "command": "${SCRATCH}/venv/bin/python ${SCRATCH}/task-f/audit_public_factory.py",
+      "started_at": "2026-11-12T10:46:22.610174+00:00",
+      "duration_seconds": 2.494,
+      "exit_code": 0,
+      "status": "pass",
+      "output_sha256": "1a42dc4fb6e9adea89b744180d7c81ef7ab4a10ef5199f5ea2aee1ebf8ec7e98",
+      "required_final_execution": true,
+      "counts": {
+        "passed": 1,
+        "failed": 0,
+        "skipped": 0,
+        "total": 1
+      },
+      "count_unit": "command execution"
+    },
+    {
+      "id": "36-factory-results",
+      "command": "python3 ${SCRATCH}/task-f/finalize_factory.py",
+      "started_at": "2026-11-12T10:47:51.659738+00:00",
+      "duration_seconds": 0.103,
+      "exit_code": 0,
+      "status": "pass",
+      "output_sha256": "30a294b23d33400a39d022e4c2ea47922acc645d7dee3f7c8bfce586e44e1be4",
+      "required_final_execution": true,
+      "counts": {
+        "passed": 1,
+        "failed": 0,
+        "skipped": 0,
+        "total": 1
+      },
+      "count_unit": "command execution"
+    },
+    {
+      "id": "37-release-results",
+      "command": "python3 ${SCRATCH}/task-f/write_results.py",
+      "started_at": "2026-11-12T10:49:28.196196+00:00",
+      "duration_seconds": 0.314,
+      "exit_code": 1,
+      "status": "fail",
+      "output_sha256": "c3c0852a3ba3d861127e385cabbf8b1836c16677f923939138143f973f1cab08",
+      "required_final_execution": false,
+      "counts": {
+        "passed": 0,
+        "failed": 1,
+        "skipped": 0,
+        "total": 1
+      },
+      "count_unit": "command execution",
+      "resolved_by": "37b-release-results",
+      "attempt_note": "The scratch results writer rejected an absolute private input path in a command string before writing the public JSON. Replaced paths with symbolic labels in public command metadata; exact commands remain only in scratch."
+    },
+    {
+      "id": "38-public-audit",
+      "command": "python3 tools/check_public.py --repository . --release-dir artifacts/releases/v0.3.1-preview --output verification/public-audit-v0.3.1-preview.json",
+      "started_at": "2026-11-12T10:49:28.741153+00:00",
+      "duration_seconds": 2.023,
+      "exit_code": 0,
+      "status": "pass",
+      "output_sha256": "6f23535bac12c2f68571075486ee34d2fc2aee9f36a6294514c671c949b51c83",
+      "required_final_execution": false,
+      "counts": {
+        "passed": 1,
+        "failed": 0,
+        "skipped": 0,
+        "total": 1
+      },
+      "count_unit": "command execution"
+    }
+  ],
+  "compatibility": {
+    "status": "pass",
+    "live_feed": {
+      "url": "https://lee98064.github.io/incipio-commandkit/updates/index.json",
+      "retrieved_at": "2026-11-12T10:44:09.506508+00:00",
+      "sha256": "5054a652230e0cb1849a946eb105ad1e8514359d3bdc5c802abd3c431fcecc18",
+      "http_status": 200,
+      "etag": "\"6af59427-321\"",
+      "last_modified": "Thu, 12 Nov 2026 10:25:43 GMT"
+    },
+    "checks": [
+      {
+        "field": "bank1_kernel_sha256",
+        "live": "f081b4e0aafad65b071bcff0e0ca475fe2aa6ead608f5c7afe3a731a378b8ae8",
+        "new": "f081b4e0aafad65b071bcff0e0ca475fe2aa6ead608f5c7afe3a731a378b8ae8",
+        "status": "pass"
+      },
+      {
+        "field": "bank2_executable_sha256",
+        "live": "84da34569ed333e546ac1417042ae81cb6d42777f8847c59b39d1365a494407f",
+        "new": "84da34569ed333e546ac1417042ae81cb6d42777f8847c59b39d1365a494407f",
+        "status": "pass"
+      },
+      {
+        "field": "signing_public_key",
+        "live": "037c3a41f2177cde32f211149d3ca6f987e09089009352b5b79961af9e3978c7",
+        "new": "037c3a41f2177cde32f211149d3ca6f987e09089009352b5b79961af9e3978c7",
+        "status": "pass"
+      },
+      {
+        "field": "model",
+        "live": "CMNDKT-004",
+        "new": "CMNDKT-004",
+        "status": "pass"
+      },
+      {
+        "field": "variant",
+        "live": "matter",
+        "new": "matter",
+        "status": "pass"
+      },
+      {
+        "field": "size",
+        "live": 2687232,
+        "new": 2687232,
+        "status": "pass"
+      },
+      {
+        "field": "url",
+        "live": "https://lee98064.github.io/incipio-commandkit/updates/matter.ota",
+        "new": "https://lee98064.github.io/incipio-commandkit/updates/matter.ota",
+        "status": "pass"
+      }
+    ],
+    "software_version": {
+      "live": 14,
+      "new": 15,
+      "status": "pass"
+    },
+    "version": {
+      "live": "0.3.0-preview",
+      "new": "0.3.1-preview",
+      "status": "pass"
+    },
+    "url_pattern": "https://lee98064.github.io/incipio-commandkit/updates/{variant}.ota",
+    "validate_catalog_upgrade": {
+      "status": "pass",
+      "return_value": null
+    },
+    "historical_page_selection": [
+      {
+        "page_release": "v0.2.11-preview",
+        "page_script_sha256": "190c4bb39fd46d863a202f741a43167a384377c3f4921b6c93df986604aaef10",
+        "current_software_version": 13,
+        "selected": "0.3.1-preview",
+        "selected_software_version": 15,
+        "status": "pass",
+        "method": "exact inline filter/sort expression from unmodified git-show script"
+      },
+      {
+        "page_release": "v0.2.11-preview",
+        "page_script_sha256": "190c4bb39fd46d863a202f741a43167a384377c3f4921b6c93df986604aaef10",
+        "current_software_version": 14,
+        "selected": "0.3.1-preview",
+        "selected_software_version": 15,
+        "status": "pass",
+        "method": "exact inline filter/sort expression from unmodified git-show script"
+      },
+      {
+        "page_release": "v0.3.0-preview",
+        "page_script_sha256": "9e2b64be8f34dea4446fbca46d9111511c0f9fca09211902c4622e731f102e44",
+        "current_software_version": 13,
+        "selected": "0.3.1-preview",
+        "selected_software_version": 15,
+        "status": "pass",
+        "method": "newestUpdate from unmodified git-show script"
+      },
+      {
+        "page_release": "v0.3.0-preview",
+        "page_script_sha256": "9e2b64be8f34dea4446fbca46d9111511c0f9fca09211902c4622e731f102e44",
+        "current_software_version": 14,
+        "selected": "0.3.1-preview",
+        "selected_software_version": 15,
+        "status": "pass",
+        "method": "newestUpdate from unmodified git-show script"
+      }
+    ]
+  },
+  "ui_string_checks": {
+    "status": "pass",
+    "source": "verified matter.ota payload after its 256-byte signed header; binaries extracted by tools/fwlib.py read_file()",
+    "checks": [
+      {
+        "binary": "bin/ck-updated",
+        "string": "/admin/relay-on",
+        "status": "pass",
+        "binary_sha256": "c7fd72aeb11fa2146e926c01333cb4217c12ae2dd27bc4ed5eb9857cc650642b"
+      },
+      {
+        "binary": "bin/ck-updated",
+        "string": "relay-toggle",
+        "status": "pass",
+        "binary_sha256": "c7fd72aeb11fa2146e926c01333cb4217c12ae2dd27bc4ed5eb9857cc650642b"
+      },
+      {
+        "binary": "bin/ck-updated",
+        "string": "請用家庭 App 開關",
+        "status": "pass",
+        "binary_sha256": "c7fd72aeb11fa2146e926c01333cb4217c12ae2dd27bc4ed5eb9857cc650642b"
+      },
+      {
+        "binary": "bin/matterd-test",
+        "string": "relay-on",
+        "status": "pass",
+        "binary_sha256": "cc85bb5406840909be461800e5a8e4ca5af124fe38a2f13d9b606386a7c588cd"
+      },
+      {
+        "binary": "bin/matterd-test",
+        "string": "relay-timeout",
+        "status": "pass",
+        "binary_sha256": "cc85bb5406840909be461800e5a8e4ca5af124fe38a2f13d9b606386a7c588cd"
+      }
+    ],
+    "rootfs": {
+      "bytes_used": 2503756,
+      "checksum_extent": 2504194,
+      "budget": 2686976,
+      "headroom": 183220,
+      "status": "pass"
+    }
+  },
+  "public_audit": {
+    "path": "verification/public-audit-v0.3.1-preview.json",
+    "method": "tools.check_public.audit(Path(\".\"), Path(\"artifacts/releases/v0.3.1-preview\")), the same audit() used by tools/package_public.py; source/release archives not generated"
+  },
+  "bundle_path": "artifacts/releases/v0.3.1-preview-bundle/commandkit-v0.3.1-signed-ota.zip",
+  "physical_installation": "pending — performed by the owner",
+  "limitations": [
+    "macOS updater and legacy-MTD attempts failed on Linux-only headers; unchanged suites passed in Linux. Full failure outputs remain in the local run record.",
+    "Native macOS boot-guard skipped six Linux-only cases; native Linux and qemu-mips each passed all six.",
+    "Deployment skipped the diagnostic exec-test variant because this release only contains the Matter channel.",
+    "Real SoftAP/station RF behavior, physical flash/MTD behavior, and physical installation of this image remain pending."
+  ],
+  "local_only": true,
+  "matter_vm": {
+    "status": "pass",
+    "binary_sha256": "e5ba4b46276488e252a053fc141e6755b3704664668b9c78d2d537eb40c0bda9",
+    "checks": [
+      "real authenticated HTTP relay-on/off reaches exact 14-byte MCU frame, matching complete receipt, /measurements and Matter OnOff attribute",
+      "non-confirming MCU returns relay-failed with relay unknown; operation lock and shared engine exclude web/Matter commands in both directions; lock releases for recovery",
+      "authenticated open-window retains completed fabric and encrypted CASE control",
+      "open-window expires incomplete PASE fail-safe and reopens while retaining completed fabric",
+      "password-authenticated kWh reset commits zero in actual SDK owner and stays zero after next 30-second save",
+      "remote reset removes old controller, opens 900-second window, retains QR/admin password/network/cumulative energy and permits fresh full commissioning",
+      "reset-arm frame alone keeps pairing; confirmed physical long press commits durable factory intent and shuts down protocol owner"
+    ],
+    "environment": "actual MIPS SDK, 64 MiB Malta VM, daemon limited to 8 MiB AS, serial MCU and NOR file fixtures",
+    "test_file_byte_identical": true
+  },
+  "public_factory_verification": "verification/public-factory-v0.3.1-results.json"
+}
