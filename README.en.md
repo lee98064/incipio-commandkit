@@ -20,7 +20,12 @@ Screens show synthetic data.
 
 ## Install
 
-Start with the [installation website](https://lee98064.github.io/incipio-commandkit/) and [flashing instructions](docs/install/flashing.md). Eligible stock 10219 / Bank 2 devices have a separate [first-install procedure](docs/install/factory-install.md).
+Start with the [installation website](https://lee98064.github.io/incipio-commandkit/). There are two ways to do the first install:
+
+| Method | Works with | How |
+|---|---|---|
+| **Factory web upload (no opening)** | Factory `10219-1531`, Active Bank 2, Dual Firmware enabled | Upload the release's `commandkit-matter-v0.3.0-public-first-install.bin` on the factory `/upload.htm` page; tested on a real outlet. See the [factory web install guide](docs/install/factory-install.md) (Chinese). |
+| **Flash programmer** | Any factory version | Back up with a CH341A, personalize, and write only the Bank 1 rootfs. See the [flashing guide](docs/install/flashing.md) (Chinese). |
 
 For an existing custom installation, open `http://OUTLET_IP:18082/`, sign in and use the Updates tab, or upload `matter.ota`. Normal OTA preserves identity, Wi-Fi, password, pairings and kWh. Upgrading from firmware without an admin password requires Wi-Fi and password setup again.
 

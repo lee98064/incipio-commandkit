@@ -1,27 +1,49 @@
-# 從原廠網頁首次安裝 Matter
+# 從原廠網頁首次安裝（不必拆機）
 
-本流程限定 CMNDKT-004、原廠 `10219-1531`、Active Bank **2**，且 **Enable Dual Firmware 已勾選**。v0.2.5 的 `*-public-first-install.bin` 不含預置裝置金鑰，同一份檔案可供符合條件的插座使用。每顆首次開機自行產生並保存身分；v0.2.4 私人安裝檔仍僅供原指定插座使用。
+符合條件的原廠插座，可以直接在原廠的韌體更新頁上傳「首次安裝檔」，不必拆機、不必使用燒錄器。此方式已在實體原廠插座上實測成功。
 
-已通過原廠 Boa／bootloader MIPS 離線執行與後續 OTA fixture 驗證；**尚未在另一顆原廠插座完成實際首次寫入、driver／重開機驗收**。保留第二槽不能保證應用當機時自動回退。
+首次安裝檔是公開共用版本，不含任何裝置金鑰；每台插座第一次開機時自行產生並保存自己的身分與 Matter 設定碼。
 
-## 上傳檔案
+## 適用條件
 
-1. 插座裝回外殼、沒有燒錄器／UART／外接線，先不接負載。手機／電腦與插座在同一網路。
-2. 開啟原廠的 `/upload.htm` 更新頁，再核對上述版本、Active Bank 2 和勾選狀態。保留雙韌體設定。
-3. 在頁面上方 **Select File → Upload** 選擇公開的 `*-public-first-install.bin`。實際 multipart 上傳端點是 `/boafrm/formUpload`，欄位為 `binary`。
-4. 等頁面完成倒數／重開；完成寫入與重新連線前保持供電。不要另外按下「Reboot Form Backup Bank Now」。
+以下條件必須全部符合，否則請改用[燒錄器安裝](flashing.md)：
 
-`/boafrm/formDualFirmware` 處理雙槽設定／切換，沒有接收韌體檔案的分支。`matter.ota`、`matter-matter-ota.bin`、`matter-8m-region.bin` 都不能代替本次首次安裝檔。
+| 項目 | 需求 |
+|---|---|
+| 型號 | CMNDKT-004 |
+| 原廠韌體版本 | `10219-1531` |
+| 目前使用的韌體槽 | Active Bank **2** |
+| 雙韌體設定 | **Enable Dual Firmware** 已勾選 |
 
-## 開機後設定與更新
+以上資訊都顯示在原廠更新頁 `http://插座IP/upload.htm`。
 
-公開版首次開機會等待內核提供足夠隨機資料，再原子保存整組身分。等待期間 MCU 保持按鍵控制，設定熱點可能延後出現；原機收集時間尚待驗收。之後正常重開不會重新產生身分。
+## 下載
 
-首次初始化完成後會進入 `CommandKit-Setup-…`，即使原廠曾存過 Wi-Fi。連接後開啟 `http://192.168.1.254/`，先保存新的 Matter QR／設定碼，並建立管理密碼（v0.2.9 起不需管理金鑰檔），再完成 Wi-Fi 設定。原廠 HomeKit 碼不適用。
+從 [v0.3.0-preview Release](https://github.com/lee98064/incipio-commandkit/releases/tag/v0.3.0-preview) 下載 `commandkit-matter-v0.3.0-public-first-install.bin`，並核對 SHA-256：
 
-連上家中網路後，從路由器查詢 IP，開啟 `http://插座IP/` 查看狀態，再以管理密碼登入變更 Wi-Fi、重設配對或更新。需要完整重新設定時，實體長按恢復出廠會同時清除密碼、Wi-Fi、配對及 kWh，見[管理後台](../guide/admin-backend.md)。
+```text
+7497ddbfecdf486726b269c6943121939154814e6c4f274fd25b0c5ba76a35ab  commandkit-matter-v0.3.0-public-first-install.bin
+```
 
-後續請到 `:18082/` 上傳比目前版本更新的簽章 `matter.ota`。線上來源目前若只有舊版，顯示沒有新版本屬正常；不會自動降版。首次安裝檔會初始化持久資料區，**不要拿來更新已使用中的 Matter 插座**。
+`matter.ota`、`matter-matter-ota.bin` 與 `matter-8m-region.bin` 都**不能**用在原廠更新頁。
+
+## 安裝步驟
+
+1. 插座裝好外殼，接上電源，不要接負載；手機或電腦與插座連在同一個網路。
+2. 在路由器的裝置清單找到插座 IP，以瀏覽器開啟 `http://插座IP/upload.htm`，核對上述四項條件；保留雙韌體設定，不要變更。
+3. 在頁面上方按 **Select File**，選擇 `commandkit-matter-v0.3.0-public-first-install.bin`，再按 **Upload**。
+4. 等待頁面倒數與重新開機，期間**保持供電**。不要按「Reboot Form Backup Bank Now」。
+5. 第一次開機會先收集足夠的隨機資料再產生身分，可能比平常久；這段時間實體按鍵仍可操作。
+6. 出現 `CommandKit-Setup-XXXXXX` 熱點後，依[使用說明](../guide/usage.md)完成首次設定：選擇 Wi-Fi、建立管理密碼、保存 Matter QR Code。插座原廠的 HomeKit 碼不適用於 Matter。
+7. 之後的更新都在管理後台 `http://插座IP:18082/` 進行，不需再使用原廠更新頁。
+
+技術細節：上傳端點是 `/boafrm/formUpload`（欄位 `binary`）；`/boafrm/formDualFirmware` 只處理雙槽設定與切換，不接收韌體檔案。
+
+## 注意事項
+
+- 首次安裝檔會初始化持久資料區。**不要拿來更新已安裝本韌體的插座**，否則會清除配對、管理密碼與累積用電；已安裝的插座請用 `matter.ota`。
+- 第二槽的原廠韌體會保留，但應用程式啟動失敗時，bootloader 不保證自動切回第二槽。無法開機時需以[燒錄器復原](flashing.md#復原先前-rootfs)。
+- v0.3.0 安裝檔沿用已實測版本的 kernel 與上傳格式，並已通過原廠 Boa／bootloader 模擬與首次匯入後的簽章 OTA 測試，見[驗證紀錄](../../verification/public-factory-v0.3.0-results.json)。
 
 ## 寫入與保留範圍
 
@@ -37,14 +59,14 @@ kernel 的原載入器與壓縮資料保持一致，解壓結果逐 byte 相同�
 
 ## 產生另一台的安裝檔
 
-先建置 v0.2.5 以上來源。`--factory-template` 使用已驗證的公開首次安裝 BIN，只取固定 hash 的 kernel，不複製模板 rootfs 或任何裝置設定；不需要私人 Flash 備份。維護者也可改用 `--reference` 提供符合 `third_party/platform.json` 的本機參考映像。工具不會讀取或寫入目標插座，目標版本與槽位仍須另行核對。
+先建置 v0.2.5 以上來源（以下以 v0.3.0-preview 為例）。`--factory-template` 使用已驗證的公開首次安裝 BIN，只取固定 hash 的 kernel，不複製模板 rootfs 或任何裝置設定；不需要私人 Flash 備份。維護者也可改用 `--reference` 提供符合 `third_party/platform.json` 的本機參考映像。工具不會讀取或寫入目標插座，目標版本與槽位仍須另行核對。
 
 ```bash
 python3 tools/factory_image.py \
   --public \
   --factory-template artifacts/previous-public-first-install.bin \
-  --release artifacts/releases/v0.2.5-preview/matter-8m-region.bin \
-  --manifest artifacts/releases/v0.2.5-preview/matter-8m-region.json \
+  --release artifacts/releases/v0.3.0-preview/matter-8m-region.bin \
+  --manifest artifacts/releases/v0.3.0-preview/matter-8m-region.json \
   --output artifacts/commandkit-public-first-install.bin
 ```
 
