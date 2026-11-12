@@ -1,55 +1,78 @@
-# Incipio CommandKit 韌體研究與預覽韌體
+# Incipio CommandKit
 
-v0.2.10-preview（software version 12）保留[密碼管理後台](docs/admin-backend.md)：訪客可看狀態，登入後才能切換 HomeKit／Matter、更新韌體、清除配對或將 kWh 歸零。兩種協議都保留管理入口，實體長按可恢復出廠。首次從無密碼舊版升級須重新進入設定熱點建立密碼及設定 Wi-Fi。HomeKit 模式暫停自訂網頁即時量測及 kWh 累計；原機驗收仍待完成。
+自有 CMNDKT-004／RTL8196E 智慧插座的 Matter／HomeKit 預覽韌體與互通性研究。
 
-自有 CMNDKT-004／RTL8196E 智慧插座的逆向紀錄，以及保留原廠 kernel／驅動的 Matter 和執行檔診斷預覽版。說明以繁體中文為主。
+[![最新預覽版](https://img.shields.io/github/v/release/lee98064/incipio-commandkit?include_prereleases)](https://github.com/lee98064/incipio-commandkit/releases)
+[![MIT](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
+[![安裝網站](https://img.shields.io/badge/Pages-安裝指南-267b6b)](https://lee98064.github.io/incipio-commandkit/)
 
-公開來源位於 [GitHub repository](https://github.com/lee98064/incipio-commandkit)；目前的簽章更新包與去識別化附件見 [v0.2.3-preview Release](https://github.com/lee98064/incipio-commandkit/releases/tag/v0.2.3-preview)。[v0.1.0-preview](https://github.com/lee98064/incipio-commandkit/releases/tag/v0.1.0-preview) 保留為歷史基底。
+English: [README.en.md](README.en.md)
 
 **Release 的 8 MiB BIN 是位址對齊的「部分燒錄映像」，不是整片還原映像。**只有 Bank 1 rootfs 有內容；其餘區域為 `0xFF`。請用本專案工具個別化後限定區域寫入，保留每台插座自己的 MAC、MIB、校正、HomeKit／MFi 與 Bank 2。對空白晶片直接刷入公開 BIN 無法建立完整可開機裝置。
 
 市電插座拆機／燒錄時必須斷開市電，確認 3.3 V 並移除其他供電。完成後移除燒錄器及所有外接線，再裝回外殼上電。
 
-## 找到需要的內容
+![深色管理後台](docs/images/admin-desktop-dark.webp)
+
+<p><img src="docs/images/setup-mobile-light.webp" width="240" alt="手機設定精靈"> <img src="docs/images/admin-mobile-light.webp" width="240" alt="手機管理後台"></p>
+
+畫面為示意資料。
+
+## 安裝說明
+
+從[安裝網站](https://lee98064.github.io/incipio-commandkit/)開始；備份、個別化、限定區域寫入與復原見[燒錄說明](docs/install/flashing.md)。符合條件的原廠 10219／Bank 2 可使用[網頁首次安裝](docs/install/factory-install.md)。
+
+已安裝自訂韌體：開啟 `http://插座IP:18082/`，登入後在「更新」分頁下載安裝，或手動上傳 Release 的 `matter.ota`。一般 OTA 保留身分、Wi-Fi、密碼、配對與累積 kWh；從無管理密碼的舊版首次升級須重新設定 Wi-Fi 及密碼。詳見[更新說明](docs/guide/updates.md)。
+
+## 功能
+
+- HomeKit／Matter 單選切換，保留既有配對與設定；同時只有一個 MCU 控制程序。
+- 三步驟設定熱點：選擇 Wi-Fi、建立管理密碼、加入家庭。
+- 訪客狀態頁與密碼管理後台，含分頁、手機介面、深色模式。
+- Matter 與網頁 V／A／W／估算 kWh、即時功率走勢；HomeKit 模式暫停自訂即時量測及 kWh 累計。
+- 六種 LED 模式、尋找插座、夜間熄燈及校時備援。
+- 開頁自動檢查更新、分步安裝、Ed25519 簽章驗證、配對重設與完整出廠重置。
+
+## 文件
 
 | 內容 | 入口 |
 |---|---|
-| 密碼後台、kWh 歸零、完整恢復出廠 | [管理後台](docs/admin-backend.md) |
-| 網頁／Matter OTA 與發布新版 | [更新說明](docs/updates.md) |
-| 原廠 10219／Bank 2 從網頁首次安裝 | [專用安裝包與限制](docs/factory-install.md) |
-| 手機網頁即時查看 V／A／W／kWh | [即時監測頁](docs/measurements.md#使用手機查看即時讀值) |
-| 標準電壓、RMS 電流、功率及累積 kWh | [Matter 電力量測](docs/measurements.md) |
-| 使用、配網、Matter、診斷 | [使用說明](docs/usage.md) |
-| 備份、限定區域燒錄、讀回、復原 | [燒錄說明](docs/flashing.md) |
-| 從自己的原廠備份重建 | [建置說明](docs/build.md) |
-| 裝置資料如何排除於公開包 | [去識別化說明](docs/privacy.md) |
-| 硬體、兩版原廠程式與 bootloader | [逆向資料索引](reverse/README.md) |
-| 韌體修改架構、證據及限制 | [整合技術報告](docs/technical-report.md) |
-| 測試與發布交付狀態 | [驗證索引](verification/README.md) |
-| 上傳 GitHub 與建立 Release | [發布說明](docs/publishing.md) |
+| 全部文件 | [文件索引](docs/README.md) |
+| 使用、配網與管理 | [使用說明](docs/guide/usage.md)、[管理後台](docs/guide/admin-backend.md) |
+| 更新、指示燈與量測 | [更新](docs/guide/updates.md)、[LED](docs/guide/led-control.md)、[電力量測](docs/guide/measurements.md) |
+| 協議與配對 | [協議切換](docs/guide/protocol-switching.md)、[Matter 重設](docs/guide/matter-reset.md) |
+| 安裝與復原 | [燒錄](docs/install/flashing.md)、[原廠網頁安裝](docs/install/factory-install.md) |
+| 建置與身分 | [建置](docs/development/build.md)、[自動身分](docs/development/automatic-identity.md) |
+| 隱私與架構 | [去識別化](docs/development/privacy.md)、[技術報告](docs/development/technical-report.md) |
+| 維護與發布 | [發布流程](docs/development/releasing.md)、[版本紀錄](CHANGELOG.md) |
+| 研究與驗證 | [逆向索引](reverse/README.md)、[驗證索引](verification/README.md) |
 
-目前來源為 `v0.2.10-preview`，加入[程式區域復原接續](docs/2026-10-20_firmware-programmer-recovery-report.md)。保留獨立 DHCP 回連與 PID1 監督；[協議切換](docs/protocol-switching.md)保留既有配對及資料，[遠端配對重設](docs/matter-reset.md)與完整恢復出廠分開處理。公開包在每顆插座首次開機自行產生裝置身分，不內建共用管理密碼。本版只交付 HomeKit／Matter 共用韌體，內部診斷版尚未遷移密碼初設，不發行新版診斷 OTA。
-
-## 兩種韌體
-
-| 版本 | 功能 | 限制 |
-|---|---|---|
-| `matter` | 開放設定熱點、Wi-Fi 掃描、裝置專屬 Matter 碼／QR、On/Off/Toggle、MCU 確認、Identify、診斷 | v0.2 已加入持久 fabrics、簽章 OTA、標準電力量測；使用開發測試 attestation；原機驗收待完成 |
-| `exec-test` | 依序執行三支附件 MIPS 程式、逾時／資源／hash 限制、認證診斷下載 | 不啟動 Matter／HomeKit；不提供軟體繼電器控制；附件只有執行檔，沒有其原始碼 |
-
-Matter v0.2.2 已完成原機限定區域燒錄、獨立全片讀回及按鍵驗收；v0.2.3 已在同一台插座透過 OTA 安裝，確認版本 5 健康、診斷認證沿用，以及手機網頁可取得即時讀值，見[監測頁驗證](verification/monitor-results.json)。診斷版尚未完成本版原機驗收。歷史版本的原機平台／協議測試與本次 VM 測試分開記錄；不可用模擬機結果宣稱家庭 app、負載切換或長期穩定性通過。
-
-## 目錄
+## 目錄結構
 
 ```text
-firmware/       修改來源、啟動腳本、配網頁面與測試
-reverse/        反編譯偽碼、逐函式組語、符號、人工重建與分析工具
-tools/          建置、依賴準備、部署、診斷與公開包驗證
-docs/           使用、燒錄、建置、隱私、技術及發布文件
-third_party/    固定版本、來源與既有授權
-verification/   可公開的驗證摘要與檔案雜湊
+.github/       CI、發布、Pages 與協作範本
+docs/          guide、install、development、reports 與畫面
+firmware/      韌體來源與測試；firmware/exec-test 為已停止發行的舊診斷版
+reverse/       研究文件、asm、人工語義模型與重現工具
+site/          GitHub Pages 安裝網站（繁中／English）；部署時加入 updates/ 更新索引
+tests/         主機、Linux、MIPS 與發布檢查
+tools/         建置、安裝、更新與公開包稽核
+third_party/   固定依賴、來源與既有授權
+verification/  歷史驗證摘要與雜湊
 ```
 
-原廠反編譯 `.c` 不是原廠原始碼，也不是可直接編譯的完整韌體。`firmware/` 是我們修改／新增的可建置部分；原廠 kernel、驅動與 helper libraries 使用裝置備份中的 bytes。
+原廠反編譯與符號已另存研究封存，未納入 Git；不是原廠原始碼，也不能直接編譯。取得方式見[逆向索引](reverse/README.md)。
 
-自寫碼本次不新增授權。原廠內容與第三方元件保留各自來源和既有權利，見 [來源與授權說明](third_party/README.md)。
+## 開發
+
+環境、測試、管理頁預覽與提交規則見 [CONTRIBUTING.md](CONTRIBUTING.md)。安全問題請依 [SECURITY.md](SECURITY.md) 私下回報。
+
+## 授權
+
+[MIT](LICENSE) 僅涵蓋本專案撰寫的程式與文件。原廠韌體 bytes、原廠衍生逆向資料、`third_party/**`、`firmware/matter/src/vendor/**`、`firmware/matter/src/sdk-overrides/**`、`firmware/matter/src/matter-app-device/build_overrides/**` 及 `firmware/exec-test/samples/*` 執行檔不在此授權範圍。
+
+Monocypher 保留 BSD-2-Clause／CC0 雙授權，qrcodegen 保留 Nayuki MIT；SDK overrides 與 GN overrides 保留 connectedhomeip Apache-2.0 來源與標頭。其餘元件及個別例外見 [third_party/README.md](third_party/README.md)。
+
+## 免責聲明
+
+本專案與 Incipio 無隸屬或背書關係，僅供自有裝置研究。這是預覽韌體，使用開發測試 attestation，不宣稱商用認證；VM／fixture 測試不能代替原機、RF、負載、斷電及長期穩定性驗收。使用者須自行評估硬體、資料與供電風險。

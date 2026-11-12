@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 安裝指南
+    url: https://lee98064.github.io/incipio-commandkit/
+    about: 安裝前先閱讀備份、相容條件與用電安全。
+  - name: 私下回報安全漏洞
+    url: https://github.com/lee98064/incipio-commandkit/security/advisories/new
+    about: 請勿在公開 issue 貼出裝置秘密、金鑰或 dumps。

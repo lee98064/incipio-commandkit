@@ -23,3 +23,7 @@ __pycache__/
 *.cpio
 *.sqsh
 # Supplied small executable samples are deliberately included in samples/.
+
+# Vendor-derived research is kept locally and archived separately.
+reverse/decompiled/
+reverse/symbols/

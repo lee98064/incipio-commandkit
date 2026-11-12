@@ -1,0 +1,107 @@
+# 安裝更新
+
+v0.3.0-preview（software version 14）開啟管理頁即自動檢查更新，登入後可下載安裝；分步顯示下載、驗證、安裝與重新啟動。新版管理介面與三步驟設定精靈沿用既有簽章及資料保留範圍。
+
+v0.2.9-preview（software version 11）改為[密碼管理後台](admin-backend.md)，HomeKit／Matter 兩種模式共用管理入口。訪客能看狀態，更新、切換協議及重置必須登入。實體長按完整恢復出廠，會清除 Wi-Fi、管理密碼、兩套配對與 kWh。**從沒有管理密碼的舊版首次升級，會進入設定熱點，需建立密碼並重新輸入 Wi-Fi**；已有密碼後的更新會保留資料。本版只產生 HomeKit／Matter 共用的 `matter` 附件，不發行尚未遷移密碼初設的 `exec-test`。
+
+v0.2.7-preview（software version 9）修復原廠 BusyBox 不提供 `touch`／`pidof` 的啟動相容性，並讓已保存 Wi-Fi 的 DHCP 回連獨立於 Matter 身分初始化。服務由 PID1 監督，具備初始化期限、崩潰重啟、控制器心跳及 DHCP 存活檢查，見[修復驗證](../reports/2026-10-20_firmware-wifi-recovery-report.md)。金鑰與配對資料就緒前，管理 API 回覆 503；既有 station 回連不寫 Wi-Fi MIB。若舊版已無法啟動網路／更新服務，必須先恢復可用的管理或限定區域寫入入口，無法只靠離線裝置上的 OTA URL 自行安裝。
+
+保留 v0.2.6 的[保留 Wi-Fi／金鑰／累積 kWh 的 Matter 重設及重新開啟配對視窗](matter-reset.md)，可由登入後的管理頁或電腦工具使用；實體長按改為完整出廠重置。使用本機簽章 `matter.ota` 更新；新版本的原機安裝仍須驗收。
+
+v0.2.3-preview 在管理頁新增即時 V／A／W／估算累積 kWh，並保留區網網頁更新、線上更新索引、Ed25519 簽章與 Matter OTA Requestor。v0.2.2 的舊 MTD 同步、`wlan0` 設定介面及身分產生的啟動順序修復繼續保留。Matter fabrics、平台設定及裝置身分存入 Flash journal。**第一次仍須以 CH341A 安裝支援 OTA 的版本；v0.1.0-preview 沒有永久更新入口。**原機斷電、RF 及家庭平台完整驗收尚待完成；修復檢查見[修復驗證](../../verification/recovery-results.json)，電量檢查見 [v0.2.1 驗證](../../verification/energy-results.json)。
+
+## 在插座網頁更新
+
+1. 首次依 [燒錄說明](../install/flashing.md) 安裝新的 `matter-8m-region.bin` 或 `exec-test-8m-region.bin`，沿用同一台插座的 profile。
+2. 配網後，從路由器取得插座 IPv4 位址，在瀏覽器開啟 `http://插座IP:18082/`；即時監測與更新共用此頁。
+3. 按「管理員登入」，進入管理設定後，按「檢查新版本」及「下載並更新」，或選擇已下載的 `.ota`，按「驗證並更新」。
+4. 等候簽章核對、安裝、重開及健康確認。保持供電；更新暫停 Matter 控制，現有啟動邏輯會要求 MCU 確認 OFF。
+
+相同或較舊版本、不同韌體種類、錯誤機型、平台 hash 不符、截斷及簽章錯誤都會拒絕。不能把 8 MiB BIN 當成 `.ota`，也不能透過 OTA 在 Matter 與診斷版之間切換。
+
+初次安裝時，journal 必須為全 `0xFF` 或已辨識的 `CKSTORE1`。準備工具會拒絕未知資料，不自動清除。首個版本的 RAM-only fabrics 無法從 Flash 備份還原，因此首次換到此版仍需重新配對；此版建立的 fabrics 才會持久保留。
+
+## 使用電腦更新
+
+若瀏覽器無法下載線上檔案，Python 用戶端會代為透過 HTTPS 下載並先驗證簽章：
+
+```bash
+python3 -m pip install -r tools/requirements.txt
+read -r OUTLET_IP
+python3 tools/update.py "$OUTLET_IP" --latest
+```
+
+`read` 時輸入插座 IP 或可解析的 `.local` 名稱。使用本機檔案、只檢查更新包：
+
+```bash
+python3 tools/update.py "$OUTLET_IP" \
+  --package artifacts/releases/v0.2.1-preview/matter.ota --check-only
+```
+
+後續更新的 `software_version` 必須大於目前確認版本；例如 v0.2.9 的數值是 11。工具在實際上傳前提示管理密碼，密碼不放入 argv 或下載檔。`--check-only` 不傳送更新，也不重新啟動。
+
+## 更新包與保留範圍
+
+| 附件 | 用途 |
+|---|---|
+| `matter-8m-region.bin`／`.json` | Matter 版首次個別化及 CH341A 限定區域燒錄 |
+| `exec-test-8m-region.bin`／`.json` | 診斷版首次安裝 |
+| `matter.ota`／`exec-test.ota` | 管理頁及 Python 用戶端安裝；不含每台裝置的憑證 |
+| `matter-matter-ota.bin` | Matter 標準外層容器，內含同一份簽章 `.ota` |
+| `index.json`／`SHA256SUMS` | 線上索引及附件校驗 |
+
+8 MiB BIN 仍是部分燒錄容器，保留區為 `0xFF`；不能全片覆蓋。OTA payload 固定為 `[0x130000,0x3C0000)`。運作中的持久儲存另使用 `[0x3C0000,0x3E0000)` 的 128 KiB；bootloader、kernel、原廠 HomeKit 資料、Bank 2、MAC、校正及出廠區域不寫入。
+
+更新器檢查目前 bank、`/proc/mtd`、MTD 型別／容量／erase size，並核對 kernel 和 Bank 2 的 hash。原廠節點使用連續 minor，標準 Linux MTD 的 odd minor 則是唯讀別名；程式會核對幾何資訊，必要時在 RAM 建立 0600 的標準節點，無法確認時停止。
+
+## 設定如何保留
+
+journal 為兩個 64 KiB slots；各 slot 前 60 KiB 為設定 snapshot，最後 4 KiB 是獨立電量 append page。設定 snapshot 使用不同序號、SHA-256 與最後寫入的 commit word。只擦除新 snapshot 實際用到的 4 KiB sectors；相同值不寫入。每次寫入都讀回核對，成功後才回覆 Matter 的儲存請求。
+
+| key 前綴 | 資料 |
+|---|---|
+| `admin/` | 隨機 salt、密碼推導參數及登入等同 credential |
+| `config/` | 協議偏好、需要重新設定標記 |
+| `identity/` | 裝置身分、診斷金鑰、更新信任公鑰、診斷版 AP 憑證 |
+| `matter/` | fabrics、ACL、金鑰、session resumption、持久屬性 |
+| `platform/` | SDK factory/config/counters/KVS 的 INI 內容，單筆上限 16 KiB |
+| `ota/` | 已確認版本、待確認版本及啟動嘗試次數 |
+
+設定 payload 上限 61,376 bytes；電量另以 128 筆循環紀錄保存在兩個末端 pages，詳見[電量保存](measurements.md)。Wi-Fi 原廠 MIB 沿用既有 helper；不用公開更新包重建 MAC／校正或裝置金鑰。新 profile 可從已辨識 journal 恢復相同憑證；已有 profile 與 journal 不符會停止，避免默默換碼。既有 profile 缺少檔案仍須先復原，不會隨機補上新金鑰。
+
+SDK 原本寫入 `/tmp/*.ini` 的平台設定也會同步保存至 journal。此修改保留 upstream 授權，來源見 `src/sdk-overrides/CHIPLinuxStorage.cpp` 與 [第三方說明](../../third_party/README.md)。
+
+## 安裝與復原流程
+
+v0.2.9 的上傳及安裝均需管理密碼登入後取得 session 與 CSRF token；不需要 diag.key 或管理金鑰檔。上傳完成後才驗證整包；管理頁及電腦工具會附上所選 package 的 checksum，避免套用不同的暫存檔。BusyBox PID 1 的固定 restart action 執行 RAM 中的靜態更新器；它停止其他使用者行程、切換 RAM root 並卸離舊 rootfs，才開寫。先使 rootfs magic 無效，寫入 body，最後補回第一個 sector，讀回 hash 與 journal 後重開。
+
+Matter 必須連續 30 秒取得新鮮 MCU 狀態才確認新版本；診斷版確認網路及兩個服務已啟動。應用未通過健康檢查時，獨立管理頁保留維修入口；連續三次未確認啟動後不再啟動 Matter。可以安裝較新的修正版。
+
+**這不是完整 A/B 版本回退。**rootfs 校驗損壞時，既有 bootloader 可嘗試原廠 Bank 2；回到原廠後沒有此 OTA 服務，需要原有復原／燒錄流程。kernel、早期 init 或兩份 journal 同時損壞也不屬於應用維修頁能處理的範圍。原機斷電及 driver 行為必須另行驗收。
+
+維護者建置、GitHub 設定與發布流程見[發布說明](../development/releasing.md)。
+
+## Matter OTA
+
+Root endpoint 宣告 OTA Requestor 及 Provider client；使用官方 DefaultOTARequestor、BDXDownloader 與此硬體的 image processor。收到標準 Matter 映像後，檢查內外版本一致，將內層 `.ota` 交給同一更新器驗簽；不執行 Linux 範例中的任意下載程式。版本確認等到裝置健康檢查通過後才通知 Provider。
+
+Provider 使用 `matter-matter-ota.bin`。可以依 [SDK Linux Provider 說明](https://github.com/project-chip/connectedhomeip/tree/3bcdd56ba54fb88b2afb4bfef575014671df7aa7/examples/ota-provider-app/linux)建立 Provider，讓 Provider 與插座在同一 fabric，再送出 `AnnounceOTAProvider`。此專案仍使用開發 VID/PID／attestation，沒有登錄正式 DCL 更新；不能因此宣稱 Apple 家庭或 HA 已能自動分發這個自訂版本。
+
+目前已驗證 Requestor cluster 可由加密 Matter session 讀取、fabrics／ACL 在清除 RAM 設定並重啟後仍可用。原機 Provider→BDX→安裝→重開的完整流程，以及 Apple／HA 的更新 UI，列為待驗收項目。
+
+## 更新 API
+
+TCP 18082，只綁定 `br0`，Host 必須為該連線的 IPv4 與 port；有 Origin 時必須同源。下載、上傳、套用皆有固定範圍，沒有任意 shell 或路徑入口。
+
+| API | 行為 |
+|---|---|
+| `GET /` | 自包含管理頁，不載入第三方 JavaScript |
+| `GET /status` | 版本、種類、維修及健康狀態，不含金鑰 |
+| `POST /upload` | 登入與 CSRF 驗證後接收完整 `.ota`，驗證並暫存 RAM，不寫 rootfs |
+| `POST /apply` | 登入與 CSRF 驗證後排程 PID 1 安裝，可附所選 package hash 核對 |
+
+需要有效管理 session 及 `X-CK-CSRF`；`X-CK-SHA256` 是可選的傳輸 checksum；管理頁與電腦工具自動附上，上傳時對應 body，apply 時對應先前核對的完整 package。已登入但未提供 checksum 的用戶端仍可更新，但更新包簽章、版本、機型、平台與長度檢查不會省略。服務另檢查來源 IP、Host、Origin、重複 header 及固定長度。舊診斷 HMAC 的變更 POST 已停用，不能繞過管理登入。
+
+`.ota` 的前 256 bytes 為 big-endian header：magic 0、format 8、model 12、variant 16、版本 20、payload 長度 24、保留 flags 28、payload SHA-256 32、kernel SHA-256 64、Bank 2 SHA-256 96、公鑰 128、NUL 結尾版本名稱 160、Ed25519 signature 192。簽章涵蓋前 192 bytes，payload hash 因而受到簽章保護；後面接固定 2,686,976-byte rootfs。
+
+HomeKit 模式的健康確認使用原廠 daemon PID、listener 與網路狀態連續約 30 秒存活；不等同 MCU 確認或實機配對驗收。切換實作及證據見[協議切換報告](../reports/2026-10-20_firmware-protocol-switch-report.md)。
