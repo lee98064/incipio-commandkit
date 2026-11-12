@@ -1,8 +1,8 @@
 # 驗證索引
 
-v0.2.10 的[CH341A 復原接續報告](../docs/2026-10-20_firmware-programmer-recovery-report.md)、[host wrapper 測試](host-factory-recovery-results.json)、[產物與 50 項原生／MIPS 測試](recovery-v0.2.10-release-results.json)及[硬體寫入摘要](recovery-v0.2.10-hardware-results.json)分開記錄；實機開機狀態以硬體摘要為準。
+v0.2.10 的[CH341A 復原接續報告](../docs/reports/2026-10-20_firmware-programmer-recovery-report.md)、[host wrapper 測試](host-factory-recovery-results.json)、[產物與 50 項原生／MIPS 測試](recovery-v0.2.10-release-results.json)及[硬體寫入摘要](recovery-v0.2.10-hardware-results.json)分開記錄；實機開機狀態以硬體摘要為準。
 
-v0.2.9 管理後台、密碼登入、電量歸零與完整出廠重置見[管理報告](../docs/2026-10-20_firmware-admin-report.md)、[SDK／MIPS](admin-matter-vm-results.json)、[原廠 HAP 重置](homekit-factory-v0.2.9-results.json)與[產物驗證](admin-release-results.json)。原生與 MIPS 各 48 項通過，原機長按、RF、HomeKit／MFi 尚待驗收。截圖使用合成 fixture。
+v0.2.9 管理後台、密碼登入、電量歸零與完整出廠重置見[管理報告](../docs/reports/2026-10-20_firmware-admin-report.md)、[SDK／MIPS](admin-matter-vm-results.json)、[原廠 HAP 重置](homekit-factory-v0.2.9-results.json)與[產物驗證](admin-release-results.json)。原生與 MIPS 各 48 項通過，原機長按、RF、HomeKit／MFi 尚待驗收。截圖使用合成 fixture。
 
 v0.2.7 的實際原廠 BusyBox PID1、production MIPS 控制器、DHCP 取址與 crash／hang／DHCP 用戶端恢復見[網路開機 VM](network-boot-vm-results.json)，完整摘要見[修復結果](wifi-recovery-results.json)。測試另外重現 v0.2.6 在第 5 行因缺少 `touch` 而退出 127；先前故障注入未隔離主機工具 PATH，沒有覆蓋此相容性錯誤。測試 kernel 使用 64 MiB Malta VM，不能當作原機 32 MiB 記憶體或 RF 驗收。新版實體插座安裝仍未完成。
 
@@ -10,7 +10,7 @@ v0.2.6 的完整 SDK／MIPS 配對視窗、未完成 PASE 清理、遠端清除�
 
 v0.2.5 公開共用安裝檔的隨機金鑰、斷電復原、舊身分沿用及管理金鑰下載見[自動身分結果](automatic-identity-results.json)。原廠程式執行見[公開首次安裝包](public-factory-boa-results.json)，實際 MIPS 配對碼／QR 與後續更新見[公開包 OTA](public-factory-ota-results.json)。原機首次安裝及隨機收集時間未驗收。
 
-v0.2.4 的原廠網頁首次安裝包見 [Boa／bootloader 原程式離線執行](factory-boa-results.json)與[首次匯入及後續 OTA](factory-ota-results.json)。原廠插座實際首次寫入／開機未執行，見[使用條件](../docs/factory-install.md)。
+v0.2.4 的原廠網頁首次安裝包見 [Boa／bootloader 原程式離線執行](factory-boa-results.json)與[首次匯入及後續 OTA](factory-ota-results.json)。原廠插座實際首次寫入／開機未執行，見[使用條件](../docs/install/factory-install.md)。
 
 v0.2.3 的手機即時監測頁、RAM 快照、讀值過期、完整 Matter／HTTP VM 比對，以及原機 OTA 安裝狀態見[監測頁驗證](monitor-results.json)。
 
@@ -20,13 +20,13 @@ v0.2.1 的軟體累積 kWh、獨立 Flash 循環紀錄及標準能源訂閱見 [
 
 v0.2 的新增測試見 [OTA／持久儲存／量測結果](ota-results.json)；以下歷史 v0.1 結果與新版本分開保存。
 
-歷史結果見 [test-results.json](test-results.json)、[公開包稽核](public-audit.json)、[flashrom dummy backend](dummy-flashrom.json)。公開 manifest 的 hash 對應本次檔案；原始 VM console／配對記錄只留在本機。
+歷史結果見 [test-results.json](test-results.json)、[公開包稽核](https://github.com/lee98064/incipio-commandkit/blob/v0.3.0-preview/verification/public-audit.json)、[flashrom dummy backend](dummy-flashrom.json)。公開 manifest 的 hash 對應本次檔案；原始 VM console／配對記錄只留在本機。
 
 本次獨立 SDK 建置使用搬移後的來源與本專案 Dockerfile，第三方 SDK／編譯器使用固定版本快取的獨立複本，不讀取原研究來源路徑。原廠 libraries 從裝置備份提取；公開重打包只替換等長 debug source path 字串。
 
 ## 可重跑的檢查
 
-先依 [建置說明](../docs/build.md)準備依賴、服務、Release 附件；部署與 dummy tests 使用合成 Flash，不需要插座：
+先依 [建置說明](../docs/development/build.md)準備依賴、服務、Release 附件；部署與 dummy tests 使用合成 Flash，不需要插座：
 
 ```bash
 python3 tests/test_deployment.py --release-dir artifacts/releases -v

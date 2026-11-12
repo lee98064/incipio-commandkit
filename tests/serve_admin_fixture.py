@@ -8,7 +8,7 @@ salt=bytes(range(16));key=hashlib.pbkdf2_hmac('sha256',b'FixtureAdmin42',salt,60
 record=b'CKAUTH1\n'+(600000).to_bytes(4,'big')+salt+key
 assert fixture.put('admin/credential',record)==0
 assert fixture.lib.ck_energy_save(1234567,0)==0
-(fixture.work/'etc/ck-version').write_text('0.2.11-preview\n')
+(fixture.work/'etc/ck-version').write_text(json.loads((Path(__file__).resolve().parents[1]/'version.json').read_text())['version']+'\n')
 initial=os.environ.get('CK_FIXTURE_PROTOCOL','matter');assert initial in ('matter','homekit')
 assert fixture.put('config/protocol',initial.encode())==0
 (fixture.work/'var/run/ck-protocol-active').write_text(initial)
