@@ -32,7 +32,7 @@ def main():
         for args in [['--import'],['--stage','/fixture/update.ota']]:
             subprocess.run([*docker,'incipio-public-build:v0.1.0-preview','qemu-mips',binary,*args],check=True,timeout=30)
         before=(work/'flash.bin').read_bytes()
-        sources=['ck_common.c','ck_flash.c','ck_store.c','ck_ota.c','ck_updater.c']
+        sources=['ck_common.c','ck_flash.c','ck_store.c','ck_energy.c','ck_led.c','ck_ota.c','ck_updater.c']
         common=['/repo/firmware/matter/src/update/'+p for p in sources]
         common += ['/repo/firmware/matter/src/vendor/monocypher/'+p for p in ['monocypher.c','monocypher-ed25519.c']]
         subprocess.run([*docker,'incipio-public-build:v0.1.0-preview','cc','-static','-O2','-DCK_TESTING','-DCK_TEST_PID1',*common,'-o','/fixture/apply-native'],check=True,timeout=60)
