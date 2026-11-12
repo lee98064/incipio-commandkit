@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="zh-Hant" data-root="">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>CommandKit 開源韌體</title>
+<meta name="description" content="為 Incipio CommandKit CMNDKT-004 智慧插座打造的開源預覽韌體：Matter／HomeKit 切換、即時電力監測、簽章線上更新。附完整安裝說明。">
+<meta name="theme-color" content="#0f2a3d">
+<link rel="alternate" hreflang="zh-Hant" href="https://lee98064.github.io/incipio-commandkit/">
+<link rel="alternate" hreflang="en" href="https://lee98064.github.io/incipio-commandkit/en/">
+<link rel="icon" href="assets/icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+<symbol id="i-outlet" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="5"/><path d="M9.5 9v3M14.5 9v3M10 15.5h4"/></symbol>
+<symbol id="i-code" viewBox="0 0 24 24"><path d="m8.5 7.5-5 4.5 5 4.5M15.5 7.5l5 4.5-5 4.5M13.5 5l-3 14"/></symbol>
+<symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+<symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></symbol>
+<symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3 4.5 6v6c0 4.5 3.2 7.8 7.5 9 4.3-1.2 7.5-4.5 7.5-9V6L12 3Z"/><path d="m9 12 2 2 4-4"/></symbol>
+<symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 2.5 4.5 13.5H12l-1 8 8.5-11H12l1-8Z"/></symbol>
+<symbol id="i-update" viewBox="0 0 24 24"><path d="M20 12a8 8 0 1 1-2.4-5.7"/><path d="M20 4v4.5h-4.5"/><path d="M12 8v4.5l3 1.5"/></symbol>
+<symbol id="i-led" viewBox="0 0 24 24"><path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 0 0-3.6 10.8c.7.5 1.1 1.3 1.1 2.2h5c0-.9.4-1.7 1.1-2.2A6 6 0 0 0 12 3Z"/></symbol>
+<symbol id="i-home" viewBox="0 0 24 24"><path d="M3.5 10.5 12 4l8.5 6.5"/><path d="M5.5 9v10.5h13V9"/><path d="M10 19.5v-5h4v5"/></symbol>
+<symbol id="i-lock" viewBox="0 0 24 24"><rect x="4.5" y="10.5" width="15" height="10" rx="2.5"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"/></symbol>
+<symbol id="i-chip" viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12" rx="2"/><path d="M9 2.5v3.5M15 2.5v3.5M9 18v3.5M15 18v3.5M2.5 9h3.5M2.5 15h3.5M18 9h3.5M18 15h3.5"/></symbol>
+<symbol id="i-alert" viewBox="0 0 24 24"><path d="M12 3.5 2.5 20h19L12 3.5Z"/><path d="M12 10v4.5M12 17.5v.1"/></symbol>
+<symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v5.5M12 7.5v.1"/></symbol>
+<symbol id="i-download" viewBox="0 0 24 24"><path d="M12 4v11.5M7.5 11 12 15.5l4.5-4.5"/><path d="M4 15v3.5A1.5 1.5 0 0 0 5.5 20h13a1.5 1.5 0 0 0 1.5-1.5V15"/></symbol>
+<symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h13M13 6.5l5.5 5.5-5.5 5.5"/></symbol>
+</svg>
+<a class="skip" href="#main">跳到主要內容</a>
+<header class="nav"><div class="wrap">
+<a class="brand" href="#top"><span class="logo"><svg class="i"><use href="#i-outlet"/></svg></span><span>CommandKit<small>CMNDKT-004 開源韌體</small></span></a>
+<nav class="links" aria-label="頁面導覽"><a href="#features">功能</a><a href="#install">安裝說明</a><a href="#ch-use">使用與更新</a><a href="#faq">常見問題</a><a href="#download">下載</a></nav>
+<div class="nav-end"><span class="lang" aria-label="語言"><a href="./" aria-current="true" lang="zh-Hant">中文</a><a href="en/" lang="en" hreflang="en">EN</a></span>
+<a class="icon-link" href="https://github.com/lee98064/incipio-commandkit" aria-label="GitHub 原始碼"><svg class="i"><use href="#i-code"/></svg></a>
+<details class="menu"><summary class="icon-link" aria-label="選單"><svg class="i"><use href="#i-menu"/></svg></summary><div class="panel"><a href="#features">功能</a><a href="#install">安裝說明</a><a href="#ch-use">使用與更新</a><a href="#faq">常見問題</a><a href="#download">下載</a></div></details></div>
+</div></header>
+
+<main id="main">
+<section class="hero" id="top"><div class="wrap">
+<div>
+<a class="eyebrow" href="#download"><b>最新 <span data-latest-version>v0.3.0-preview</span></b>全新管理介面與設定精靈</a>
+<h1><span class="nw">讓 CommandKit 插座</span><br><span class="nw"><em>支援 Matter</em>，重獲新生</span></h1>
+<p class="lead">為 Incipio CommandKit CMNDKT-004 智慧插座打造的開源預覽韌體。保留原廠核心與驅動，加入 Matter／HomeKit 切換、即時電力監測與簽章線上更新；所有管理都在家中網路完成，不需要雲端帳號。</p>
+<div class="cta"><a class="btn primary" href="#install">開始安裝<svg class="i"><use href="#i-arrow"/></svg></a><a class="btn glass" href="#download"><svg class="i"><use href="#i-download"/></svg>下載韌體</a></div>
+<div class="trust"><span><svg class="i"><use href="#i-check"/></svg>MIT 開源授權</span><span><svg class="i"><use href="#i-lock"/></svg>本機運作</span><span><svg class="i"><use href="#i-shield"/></svg>Ed25519 簽章更新</span><span><svg class="i"><use href="#i-chip"/></svg>保留原廠資料</span></div>
+</div>
+<div class="shots" aria-hidden="true">
+<div class="browser"><div class="bar"><i></i><i></i><i></i><span>http://插座IP:18082/</span></div><img src="assets/img/admin-desktop-dark.webp" width="1600" height="1000" alt=""></div>
+<div class="phone"><img src="assets/img/admin-mobile-light.webp" width="600" height="1298" alt=""></div>
+<span class="caption">畫面為示意資料</span>
+</div>
+</div></section>
+
+<section class="block" id="features"><div class="wrap">
+<span class="kicker">功能</span>
+<h2 class="title">一台插座，該有的都有了</h2>
+<p class="sub">保留原廠 bootloader、核心與無線驅動，只替換上層應用程式。原廠資料與第二槽原廠韌體都完整保留。</p>
+<div class="features">
+<article class="feature"><div class="fi"><svg class="i"><use href="#i-home"/></svg></div><h3>Matter 與 HomeKit 二選一</h3><p>以 Matter 加入 Apple 家庭、Google Home 或 Home Assistant，也能切回原廠 HomeKit。切換時保留 Wi-Fi、配對與用電紀錄。</p></article>
+<article class="feature"><div class="fi"><svg class="i"><use href="#i-bolt"/></svg></div><h3>即時電力監測</h3><p>電壓、電流、功率每 2 秒更新，並估算累積用電（kWh）。Matter 平台也能讀取標準電力量測。</p></article>
+<article class="feature"><div class="fi"><svg class="i"><use href="#i-update"/></svg></div><h3>自動檢查更新</h3><p>開啟管理頁就會檢查新版本，一鍵下載安裝。每個更新包都經 Ed25519 簽章驗證，型號或平台不符一律拒絕。</p></article>
+<article class="feature"><div class="fi"><svg class="i"><use href="#i-led"/></svg></div><h3>指示燈與夜間熄燈</h3><p>六種燈號模式、尋找插座閃燈，以及可跨午夜的夜間熄燈排程；HomeKit 與 Matter 共用設定。</p></article>
+<article class="feature"><div class="fi"><svg class="i"><use href="#i-lock"/></svg></div><h3>本機管理、密碼保護</h3><p>訪客只能查看狀態；變更設定需要管理密碼。密碼以 PBKDF2 推導保存，不經過任何雲端服務。</p></article>
+<article class="feature"><div class="fi"><svg class="i"><use href="#i-chip"/></svg></div><h3>保留原廠資料</h3><p>只寫入第一槽檔案系統。bootloader、MAC、無線校正、原廠 HomeKit 資料與第二槽韌體都不會被覆寫。</p></article>
+</div></div></section>
+
+<section class="block alt" id="ui"><div class="wrap split">
+<div><span class="kicker">全新介面</span><h2 class="title">設定三步完成，<br>管理一目了然</h2><p class="sub" style="margin-bottom:26px">v0.3.0 重新設計了插座的設定熱點與管理後台，手機和電腦都好用，並支援深色模式。</p>
+<ol class="flow"><li><b>連上 Wi-Fi</b><span>附近網路以清單顯示訊號強度，點選後輸入密碼。</span></li><li><b>建立管理密碼</b><span>之後登入管理後台、更新韌體時使用。</span></li><li><b>加入家庭</b><span>掃描這台插座專屬的 Matter QR Code，就能用家庭 app 控制。</span></li></ol></div>
+<div class="duo" aria-hidden="true"><div class="phone"><img src="assets/img/setup-mobile-light.webp" width="600" height="1298" alt="" loading="lazy"></div><div class="phone"><img src="assets/img/admin-mobile-dark.webp" width="600" height="1298" alt="" loading="lazy"></div></div>
+</div></section>
+
+<section class="block" id="install"><div class="wrap">
+<span class="kicker">安裝說明</span>
+<h2 class="title">安裝與使用說明書</h2>
+<p class="sub">請依章節順序操作。首次安裝需要拆機並使用燒錄器；完成後，之後的更新都能從網頁進行。</p>
+<div class="callout danger" id="safety" role="note"><svg class="i"><use href="#i-alert"/></svg><div><span class="ct">警告：市電有觸電危險</span>
+<ul><li>拆機與燒錄前，<b>務必拔除插座電源</b>，並確認沒有其他電源接入。</li><li>插座接上市電時，<b>切勿連接</b> USB 燒錄器、UART 或任何接地設備。</li><li>GD25Q64 快閃記憶體只能使用 <b>3.3 V</b>；部分黑色 CH341A 燒錄器的訊號電壓需先量測確認。</li><li>完成後移除燒錄器與所有外接線，裝回外殼，再接上市電。</li><li>本韌體為預覽版，<b>並非 Incipio 官方軟體</b>。改裝可能使保固失效，請自行承擔風險。</li></ul></div></div>
+
+<div class="manual">
+<nav class="toc" aria-label="章節"><b>章節</b><a href="#ch-prepare">1　準備</a><a href="#ch-flash">2　首次安裝韌體</a><a href="#ch-setup">3　首次設定</a><a href="#ch-home">4　加入智慧家庭</a><a href="#ch-use">5　日常使用與更新</a><a href="#ch-reset">6　重設與復原</a><a href="#faq">常見問題</a></nav>
+<div>
+
+<article class="chapter" id="ch-prepare"><div class="chapter-head"><span class="chapter-no">第<b>1</b>章</span><h3>準備</h3></div>
+<p class="intro">開始之前，請確認下列物品與環境。</p>
+<ul class="checklist">
+<li><svg class="i"><use href="#i-check"/></svg><span>CMNDKT-004 智慧插座（RTL8196E 與 GD25Q64 8 MiB 快閃記憶體）</span></li>
+<li><svg class="i"><use href="#i-check"/></svg><span>CH341A 燒錄器（確認為 3.3 V）與 SOIC-8 測試夾</span></li>
+<li><svg class="i"><use href="#i-check"/></svg><span>macOS 或 Linux 電腦，Python 3.11 以上</span></li>
+<li><svg class="i"><use href="#i-check"/></svg><span>flashrom v1.8.0 與支援 LZMA 的 squashfs-tools</span></li>
+<li><svg class="i"><use href="#i-check"/></svg><span>Release 的 <code>matter-8m-region.bin</code> 與 <code>.json</code></span></li>
+<li><svg class="i"><use href="#i-check"/></svg><span>保存備份用的私人資料夾（備份含這台插座的專屬資料，請勿公開）</span></li>
+</ul>
+<h4>取得安裝工具</h4>
+<div class="code"><pre>git clone https://github.com/lee98064/incipio-commandkit.git
+cd incipio-commandkit
+python3 -m pip install -r tools/requirements.txt</pre></div>
+<p class="intro">將下載的 <code>matter-8m-region.bin</code> 與 <code>matter-8m-region.json</code> 放到 <code>artifacts/releases/</code>。flashrom 的建置方式請參考<a href="https://github.com/lee98064/incipio-commandkit/blob/main/docs/development/build.md">建置說明</a>。</p>
+<div class="cta"><a class="btn outline" data-asset="matter-8m-region.bin" href="https://github.com/lee98064/incipio-commandkit/releases"><svg class="i"><use href="#i-download"/></svg>matter-8m-region.bin</a><a class="btn outline" data-asset="matter-8m-region.json" href="https://github.com/lee98064/incipio-commandkit/releases"><svg class="i"><use href="#i-download"/></svg>matter-8m-region.json</a></div>
+</article>
+
+<article class="chapter" id="ch-flash"><div class="chapter-head"><span class="chapter-no">第<b>2</b>章</span><h3>首次安裝韌體</h3></div>
+<p class="intro">工具會先讀取兩份完整備份並逐位元比對，再依備份產生這台插座專用的映像，最後只寫入第一槽檔案系統。晶片型號、備份內容或核對結果有任何不符，工具都會自動停止。</p>
+<ol class="steps">
+<li><b>斷電並接上燒錄器</b><p>拔除插座電源並拆開外殼，以測試夾夾住 GD25Q64（注意 pin 1 方向），再連接 CH341A。</p></li>
+<li><b>讀取兩份備份</b>
+<div class="code"><pre>python3 tools/flash.py backup --session private/read-01 \
+  --mains-disconnected --voltage-3v3 --no-other-supply</pre></div>
+<p>三個旗標代表你已確認「已斷開市電、電壓為 3.3 V、沒有其他供電」；工具不會替你量測。備份存放在 <code>private/read-01/</code>，請妥善保存。</p></li>
+<li><b>產生這台插座專用的映像</b>
+<div class="code"><pre>python3 tools/flash.py prepare \
+  --backup1 private/read-01/before-1.bin --backup2 private/read-01/before-2.bin \
+  --release artifacts/releases/matter-8m-region.bin \
+  --manifest artifacts/releases/matter-8m-region.json \
+  --profile private/outlet-a --output private/matter-target.bin</pre></div>
+<p>此步驟不會接觸硬體。<code>--profile</code> 資料夾保存這台插座的身分；日後重新安裝同一台插座時請沿用，Matter 設定碼才會維持不變。</p></li>
+<li><b>只寫入第一槽</b>
+<div class="code"><pre>python3 tools/flash.py write \
+  --image private/matter-target.bin --record private/matter-target.bin.json \
+  --session private/write-01 \
+  --mains-disconnected --voltage-3v3 --no-other-supply</pre></div>
+<p>寫入範圍固定為 <code>0x130000–0x3BFFFF</code>。完成後工具會完整讀回並逐位元核對；顯示 <code>write_verified_not_boot_tested</code> 即表示寫入與核對完成。</p></li>
+<li><b>移除燒錄器並裝回外殼</b><p>拆下測試夾與所有接線，裝回外殼後再插上電源。</p></li>
+</ol>
+<div class="callout"><svg class="i"><use href="#i-info"/></svg><p><b>核對結果不明時，請勿接上市電。</b>保留 session 資料夾與原始備份，可以使用 <code>tools/flash.py restore</code> 取回原本的檔案系統。</p></div>
+<h4>另一種方式：從原廠網頁首次安裝</h4>
+<p class="intro" style="margin-top:0">原廠韌體為 10219-1531、目前使用第 2 槽（Active Bank 2）且已啟用 Dual Firmware 的插座，可以自行產生「網頁首次安裝檔」，從原廠更新頁上傳，不必拆機。此方式尚未完成原機驗收，操作前請先閱讀說明。</p>
+<a class="more" href="https://github.com/lee98064/incipio-commandkit/blob/main/docs/install/factory-install.md">原廠網頁首次安裝說明<svg class="i"><use href="#i-arrow"/></svg></a>　<a class="more" href="https://github.com/lee98064/incipio-commandkit/blob/main/docs/install/flashing.md">完整燒錄與復原說明<svg class="i"><use href="#i-arrow"/></svg></a>
+</article>
+
+<article class="chapter" id="ch-setup"><div class="chapter-head"><span class="chapter-no">第<b>3</b>章</span><h3>首次設定</h3></div>
+<p class="intro">接上電源後，插座會開啟設定熱點。指示燈每半秒亮滅一次，表示正在等待設定。</p>
+<ol class="steps">
+<li><b>連接設定熱點</b><p>手機的 Wi-Fi 選擇 <code>CommandKit-Setup-XXXXXX</code>，不需要密碼。此時無法上網屬正常現象，請保持連線。</p></li>
+<li><b>開啟設定頁</b><p>若設定頁沒有自動出現，請以瀏覽器開啟 <code>http://192.168.1.254/</code>。</p></li>
+<li><b>選擇家中 Wi-Fi</b><p>點選 2.4 GHz 網路並輸入密碼；隱藏網路可手動輸入名稱。插座不支援 5 GHz 與僅限 WPA3 的網路。</p></li>
+<li><b>建立管理密碼</b><p>至少 8 個字元，用於登入管理後台。忘記密碼時只能恢復出廠設定。</p></li>
+<li><b>保存 Matter 配對碼</b><p>畫面會顯示這台插座專屬的 QR Code 與 11 位數設定碼，請拍照保存。設定碼在重新開機與更新後都不會改變。</p></li>
+</ol>
+</article>
+
+<article class="chapter" id="ch-home"><div class="chapter-head"><span class="chapter-no">第<b>4</b>章</span><h3>加入智慧家庭</h3></div>
+<p class="intro">插座預設使用 Matter。</p>
+<ol class="steps">
+<li><b>手機切回家中 Wi-Fi</b><p>插座與手機必須在同一個網路。</p></li>
+<li><b>在家庭 app 加入配件</b><p>開啟 Apple 家庭、Google Home 或 Home Assistant，選擇「加入配件」或「新增裝置」。</p></li>
+<li><b>掃描 QR Code 或輸入設定碼</b><p>使用第 3 章保存的 QR Code 或 11 位數設定碼，依 app 指示完成。</p></li>
+</ol>
+<div class="callout warn"><svg class="i"><use href="#i-alert"/></svg><p><b>關於「未認證配件」提示：</b>本韌體使用 Matter 開發測試憑證，家庭 app 可能顯示未認證的提示。各平台對測試裝置的要求不同，請依該平台的官方說明操作。</p></div>
+<h4>改用 HomeKit</h4>
+<p class="intro" style="margin-top:0">登入管理後台，在「配對」分頁選擇 HomeKit 並儲存，插座會重新啟動。HomeKit 使用插座原廠標籤上的配對碼。HomeKit 模式下，網頁的即時量測與 kWh 累計會暫停。</p>
+</article>
+
+<article class="chapter" id="ch-use"><div class="chapter-head"><span class="chapter-no">第<b>5</b>章</span><h3>日常使用與更新</h3></div>
+<table class="table"><thead><tr><th>項目</th><th>說明</th></tr></thead><tbody>
+<tr><td>開啟管理後台</td><td>在路由器的裝置清單找到插座 IP，以瀏覽器開啟 <code>http://插座IP/</code>，會自動轉到 <code>:18082</code>。</td></tr>
+<tr><td>訪客檢視</td><td>不必登入即可查看即時功率、電壓、電流、累積用電與韌體版本。</td></tr>
+<tr><td>管理員</td><td>登入後可調整指示燈、切換協議、重新開啟配對視窗、變更 Wi-Fi 與管理密碼。</td></tr>
+<tr><td>實體按鈕</td><td>短按切換插座開關；長按直到插座重新啟動，會恢復出廠設定。</td></tr>
+</tbody></table>
+<h4>線上更新</h4>
+<ol class="steps">
+<li><b>開啟管理後台</b><p>頁面會自動檢查新版本；有新版時，總覽頁會顯示「有新版本可以安裝」。</p></li>
+<li><b>登入並進入「更新」分頁</b><p>以管理員登入後，按「下載並更新」。</p></li>
+<li><b>等待安裝完成</b><p>畫面會依序顯示下載、上傳驗證、安裝、重新啟動，約需 1 至 4 分鐘。<b>過程中請保持供電</b>，完成後重新登入即可。</p></li>
+</ol>
+<p class="intro">沒有網際網路時，可先在電腦下載 <code>matter.ota</code>，在「手動更新」選擇或拖放檔案。一般更新會保留裝置身分、Wi-Fi、管理密碼、家庭配對與累積用電。</p>
+<div class="callout"><svg class="i"><use href="#i-shield"/></svg><p>插座讀取的更新索引就是本網站的 <code>updates/index.json</code>。插座只會安裝簽章正確、型號相符且版本較新的更新包，不會降版。</p></div>
+<a class="more" href="https://github.com/lee98064/incipio-commandkit/blob/main/docs/guide/admin-backend.md">管理後台完整說明<svg class="i"><use href="#i-arrow"/></svg></a>
+</article>
+
+<article class="chapter" id="ch-reset"><div class="chapter-head"><span class="chapter-no">第<b>6</b>章</span><h3>重設與復原</h3></div>
+<table class="table"><thead><tr><th>情況</th><th>處理方式</th><th>會清除</th></tr></thead><tbody>
+<tr><td>重新配對</td><td>管理後台 → 配對 → 清除目前協議的配對</td><td>該協議的家庭配對</td></tr>
+<tr><td>累積用電歸零</td><td>管理後台 → 系統 → 歸零</td><td>累積用電</td></tr>
+<tr><td>忘記管理密碼、完整重設</td><td>實體長按直到插座重新啟動，或管理後台 → 系統 → 恢復出廠</td><td>管理密碼、Wi-Fi、兩套配對、累積用電</td></tr>
+<tr><td>回到原本的檔案系統</td><td>以燒錄器執行 <code>tools/flash.py restore</code></td><td>本韌體（還原為備份中的第一槽內容）</td></tr>
+</tbody></table>
+<p class="intro">恢復出廠會保留 MAC、無線校正、原廠 HomeKit 資料與這台插座的 Matter 身分。</p>
+</article>
+</div></div></div></section>
+
+<section class="block alt" id="faq"><div class="wrap">
+<span class="kicker">常見問題</span><h2 class="title">常見問題</h2>
+<div class="faq">
+<details><summary>設定熱點一直重新出現？</summary><div class="a"><p>表示插座尚未連上家中 Wi-Fi。請確認選擇的是 2.4 GHz 網路、密碼正確，且路由器沒有設定為僅限 WPA3。重新連接 CommandKit-Setup 後再設定一次。</p></div></details>
+<details><summary>找不到插座的 IP？</summary><div class="a"><p>請在路由器的「已連線裝置」或 DHCP 清單中尋找。建議在路由器為插座保留固定 IP，日後較容易開啟管理後台。</p></div></details>
+<details><summary>更新到一半斷電怎麼辦？</summary><div class="a"><p>更新器會先寫入資料，最後才補回檔案系統標記並讀回核對。新版啟動失敗時，插座會保留維修入口，可以再安裝較新的修正版；若完全無法開機，需要以燒錄器復原。這不是完整的 A/B 自動回退機制。</p></div></details>
+<details><summary>可以把 8 MiB 的 BIN 直接整片燒進晶片嗎？</summary><div class="a"><p>不行。<code>matter-8m-region.bin</code> 是「部分燒錄映像」，只有第一槽檔案系統有內容，其餘區域為 0xFF。必須用工具依你的備份個別化，並只寫入指定範圍。</p></div></details>
+<details><summary>我的資料會上傳到雲端嗎？</summary><div class="a"><p>不會。插座的管理與量測都在家中網路內完成。只有在你開啟管理後台時，瀏覽器會向本網站讀取更新索引。</p></div></details>
+<details><summary>這是 Incipio 的官方韌體嗎？</summary><div class="a"><p>不是。本專案與 Incipio 無關，是針對自有插座的研究與預覽韌體，請自行評估風險。</p></div></details>
+</div></div></section>
+
+<section class="block" id="download"><div class="wrap">
+<span class="kicker">下載</span><h2 class="title">下載韌體</h2><p class="sub">已安裝本韌體的插座，直接在管理後台更新即可；以下檔案供手動更新與首次安裝使用。</p>
+<div class="downloads">
+<article class="dl main"><h3>線上更新包</h3><div class="ver" data-latest-version>v0.3.0-preview</div><p>matter.ota（<span data-latest-size>2.6 MB</span>），供已安裝本韌體的插座在管理後台手動更新。</p><a class="btn primary" href="updates/matter.ota"><svg class="i"><use href="#i-download"/></svg>下載 matter.ota</a></article>
+<article class="dl"><h3>首次安裝映像</h3><p>matter-8m-region.bin 與 .json，搭配燒錄工具個別化後使用，不可整片燒錄。</p><a class="btn solid" data-release-link href="https://github.com/lee98064/incipio-commandkit/releases">前往版本頁</a></article>
+<article class="dl"><h3>原始碼與文件</h3><p>完整原始碼、逆向紀錄、建置方式與版本紀錄。</p><a class="btn outline" href="https://github.com/lee98064/incipio-commandkit"><svg class="i"><use href="#i-code"/></svg>GitHub</a></article>
+</div></div></section>
+</main>
+
+<footer class="site"><div class="wrap">
+<div><p><b>CommandKit 開源韌體</b></p><p>自寫程式碼以 MIT 授權釋出；原廠內容與第三方元件保留各自的權利。本專案與 Incipio 無關，並非官方產品。</p></div>
+<nav aria-label="頁尾"><a href="https://github.com/lee98064/incipio-commandkit">GitHub</a><a href="https://github.com/lee98064/incipio-commandkit/blob/main/CHANGELOG.md">版本紀錄</a><a href="https://github.com/lee98064/incipio-commandkit/tree/main/docs">完整文件</a><a href="https://github.com/lee98064/incipio-commandkit/blob/main/SECURITY.md">安全回報</a><a href="en/" lang="en">English</a></nav>
+</div></footer>
+<script src="assets/site.js" defer></script>
+</body>
+</html>
