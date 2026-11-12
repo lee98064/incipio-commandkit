@@ -214,6 +214,7 @@ class DeploymentContract(unittest.TestCase):
                      'tools/pages_site.py smoke "$PAGE_URL" _site' in step.get("run", ""))
         self.assertGreater(smoke, deploy)
         self.assertIn("          path: _site", text)
+        self.assertNotIn("branches:", text)  # same-commit redeploys are ignored by Pages
         self.assertIn("  group: update-feed", text)
         self.assertIn("  cancel-in-progress: false", text)
         self.assertIn("        required: false", text)

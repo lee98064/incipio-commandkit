@@ -71,7 +71,7 @@ def smoke_once(page_url, site, timeout=15, deadline=None):
     expected = (Path(site) / "updates/index.json").read_bytes()
     with fetch(base + "updates/index.json" + bust) as response:
         if response.status != 200 or response.read() != expected:
-            raise ValueError("線上 index.json 與部署內容不同")
+            raise ValueError("線上 index.json 與部署內容不同（若此 commit 已部署過，Pages 會忽略重複部署；請推送新 commit 後再觸發）")
     catalog = json.loads(expected)
     matter = [entry for entry in catalog["updates"] if entry["variant"] == "matter"]
     if len(matter) != 1:

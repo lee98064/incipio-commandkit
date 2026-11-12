@@ -28,7 +28,7 @@ python3 tools/release.py --private private/ota-signing.key   --output artifacts/
 - [ci.yml](../../.github/workflows/ci.yml)：PR、main push、手動與可重用呼叫；執行原生 C／HTTP／儲存、JavaScript 與 Pages／版本說明測試。
 - [release.yml](../../.github/workflows/release.yml)：`v*` tag 或手動觸發；先呼叫 CI，再沿用完整工具鏈建置、MIPS 更新器、Linux PID1、簽章與部署檢查，建立 **草稿 pre-release**。手動觸發須選擇版本 tag ref。
 - Release 說明以 `python3 tools/changelog.py "$RELEASE_TAG"` 擷取該版；缺少章節即失敗。
-- [pages.yml](../../.github/workflows/pages.yml)：Release published、main 的網站／Pages 工具變更、`updates-v*` tag 或手動觸發；**每次網站部署都重新部署更新 feed**，不能只覆蓋靜態頁。
+- [pages.yml](../../.github/workflows/pages.yml)：Release published、`updates-v*` tag 或手動觸發（只改網站時用 `workflow_dispatch`）；Pages 以 commit SHA 識別部署，同一 commit 的第二次部署不會生效，所以不在 main 推送時自動部署；**每次網站部署都重新部署更新 feed**，不能只覆蓋靜態頁。
 
 Pages 選版順序：Release 事件 tag → 手動 `tag` → 移除 `updates-` 前綴的 tag → 最新已發布、非草稿且含 `matter.ota` 的 Release（包含預覽版）。所選版缺少 `matter.ota`／`matter.json` 即停止。
 
