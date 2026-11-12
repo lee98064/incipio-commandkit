@@ -9,6 +9,8 @@ from fwlib import (START, END, SIZE, SECRET_FILES, sha, require, load_release,
 
 EXCLUDED = {".git", "private", "backups", "sessions", "deps", "toolchains", "artifacts",
             "evidence", "diagnostics", ".local", ".venv", ".sdk-venv", ".host-sdk-venv", "__pycache__"}
+# Vendor-derived research kept on disk but published only as a Release archive.
+EXCLUDED_PREFIXES = {("reverse", "decompiled"), ("reverse", "symbols")}
 PERSONAL = re.compile(rb"/Users/[A-Za-z0-9_.-]+/|/home/" + rb"al" + rb"fred/|" +
                       rb"Metering-Outlet" + rb"32C7")
 
@@ -18,6 +20,7 @@ def public_paths(repository):
     return sorted(p for p in repository.rglob("*")
                   if (p.is_file() or p.is_symlink()) and
                   not EXCLUDED & set(p.relative_to(repository).parts) and
+                  tuple(p.relative_to(repository).parts[:2]) not in EXCLUDED_PREFIXES and
                   not (p.name.startswith('commandkit-management') and p.suffix == '.json') and
                   p.name != ".DS_Store" and not p.name.endswith(".pyc"))
 

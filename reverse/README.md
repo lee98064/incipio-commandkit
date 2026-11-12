@@ -9,7 +9,13 @@
 | 選槽、bankmark、fallback、checksum | [開機流程](docs/boot_flow.md)、[C 語義模型](src/reconstructed/boot_bank_selection.c) |
 | 繼電器與電表 MCU 協議 | [電表協議](docs/meter_protocol.md)、[人工重建](src/reconstructed/Socket_Meter.c) |
 | OTA、RSA、寫槽行為 | [OTA 流程](docs/ota_flow.md) |
-| 原硬體 Matter 限制與前置評估 | [歷史可行性分析](docs/matter_feasibility.md)、[後續移植報告](../docs/technical-report.md) |
+| 原硬體 Matter 限制與前置評估 | [歷史可行性分析](docs/matter_feasibility.md)、[後續移植報告](../docs/development/technical-report.md) |
+
+## 研究封存
+
+`reverse/decompiled/` 與 `reverse/symbols/` 已移出 Git，改以 Release 附件提供：[reverse-research-archive.zip](https://github.com/lee98064/incipio-commandkit/releases/download/v0.3.0-preview/reverse-research-archive.zip)（6.3 MB，SHA-256 `f1d4dc59d123654878fe480704fd7eb2b1aa113b179e0d184003f932a352dce6`）。內容對應 commit `4bb5bd1`，保留原相對路徑，附權利說明與逐檔 `SHA256SUMS`；解壓後把其中的 `reverse/` 目錄放回 repository 根目錄即可還原原本位置。
+
+原廠內容及衍生研究資料保留原廠權利，不適用專案 MIT；這不是原廠原始碼，也不能直接編譯。歷史版本亦可在 [v0.3.0-preview 原樹](https://github.com/lee98064/incipio-commandkit/tree/v0.3.0-preview/reverse)查閱。
 
 ## 逐函式資料
 
@@ -29,4 +35,4 @@ python3 reverse/run.py --input private/read-01/before-1.bin --output private/rev
 
 加入 `--headless /absolute/path/to/analyzeHeadless` 可重新匯出 Ghidra 函式。結果寫到新的私人 case，原輸入不修改。script 生成的 images、rootfs、evidence、Ghidra 專案可能含身分／憑證，不能直接公開。
 
-歷史報告引用的 images／evidence 屬本機重現產物，以 inline 路徑標示。公開可直接查看的證據是 `decompiled/`、`symbols/`、人工語義模型與整合報告；原始 bytes 的進一步核對需要自己的備份。
+歷史報告引用的 images／evidence 屬本機重現產物，以 inline 路徑標示。可查看的證據是上述研究封存／歷史 tag、人工語義模型與整合報告；原始 bytes 的進一步核對需要自己的備份。
