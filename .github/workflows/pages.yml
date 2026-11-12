@@ -2,9 +2,10 @@ name: Deploy site and update feed
 on:
   release:
     types: [published]
+  # No push-to-main trigger: Pages identifies a deployment by commit SHA, so a
+  # second deploy of the same commit (e.g. the release built on that merge
+  # commit) is silently ignored. Deploy site-only changes with workflow_dispatch.
   push:
-    branches: [main]
-    paths: ['site/**', '.github/workflows/pages.yml', 'tools/pages_site.py']
     tags: ['updates-v*']
   workflow_dispatch:
     inputs:
