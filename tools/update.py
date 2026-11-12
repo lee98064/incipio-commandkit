@@ -4,12 +4,14 @@ import argparse
 import hashlib
 import ipaddress
 import json
+import getpass
 import socket
 import urllib.parse
 import urllib.request
 from pathlib import Path
 from ota import verify
 from fwlib import require
+from admin_session import AdminSession
 ROOT=Path(__file__).resolve().parents[1]
 LIMIT=0x290000+256
 
@@ -20,10 +22,11 @@ def download(url,limit):
         data=response.read(limit+1)
     require(len(data)<=limit,'下載檔案過大');return data
 
-def post(base,path,data,image_hash=None):
+def post(base,path,data,image_hash=None,session=None):
     digest=image_hash or hashlib.sha256(data).hexdigest()
-    request=urllib.request.Request(base+path,data=data,method='POST',headers={
-        'Content-Type':'application/octet-stream','X-CK-SHA256':digest})
+    headers={'Content-Type':'application/octet-stream','X-CK-SHA256':digest}
+    if session:return session.post(path,data,headers)
+    request=urllib.request.Request(base+path,data=data,method='POST',headers=headers)
     with urllib.request.urlopen(request,timeout=120) as r:return json.load(r)
 
 
@@ -53,7 +56,8 @@ def main():
     require(metadata['variant']==('matter' if status['variant']==1 else 'exec-test'),'韌體種類不符')
     print('已驗證更新包：'+metadata['version'])
     if args.check_only:return
-    post(base,'/upload',data);post(base,'/apply',b'',hashlib.sha256(data).hexdigest())
+    session=AdminSession(base);session.login(getpass.getpass('管理密碼：'))
+    post(base,'/upload',data,session=session);post(base,'/apply',b'',hashlib.sha256(data).hexdigest(),session=session)
     print('更新已提交，裝置正在安裝並重新啟動。請保持供電。')
 
 if __name__=='__main__':main()

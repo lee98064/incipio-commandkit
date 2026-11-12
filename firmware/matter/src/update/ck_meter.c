@@ -1,5 +1,6 @@
 #include "ck_meter.h"
 #include "ck_common.h"
+#include "ck_energy.h"
 #include <stdio.h>
 #include <string.h>
 
@@ -39,7 +40,7 @@ int ck_meter_json(char *out, size_t capacity, uint64_t now) {
   int available = 0;
   uint32_t flags = 0, voltage = 0, current = 0, power = 0;
   uint64_t published = 0, energy = 0;
-  char v[24], i[24], p[24], e[24], age[24];
+  char v[24], i[24], p[24], e[24], age[24],saved[24]="null",mode[7];
   const char *relay = "null";
   if (!ck_exact_file(ck_path(METER_PATH), b, sizeof(b)) &&
       !memcmp(b, "CKMETER1", 8)) {
@@ -62,10 +63,14 @@ int ck_meter_json(char *out, size_t capacity, uint64_t now) {
   number(age, sizeof(age), available, now - published, 0);
   if (available && (flags & CK_METER_RELAY) && fresh(ck_be64(b + 64), published, now, 10000))
     relay = flags & CK_METER_ON ? "true" : "false";
+  if(!ck_exact_file(ck_path("/var/run/ck-protocol-active"),mode,sizeof(mode)) && !memcmp(mode,"homekit",7)) {
+    uint64_t total=0;uint32_t fraction=0;
+    if(ck_energy_try_load(&total,&fraction)>=0) number(saved,sizeof(saved),1,total,1);
+  }
   int n = snprintf(out, capacity,
       "{\"available\":%s,\"sample_age_ms\":%s,\"relay_on\":%s,"
       "\"voltage_mv\":%s,\"current_ma\":%s,\"power_mw\":%s,"
-      "\"energy_mwh\":%s,\"energy_estimated\":true,\"checkpoint_interval_s\":30}",
-      available ? "true" : "false", age, relay, v, i, p, e);
+      "\"energy_mwh\":%s,\"saved_energy_mwh\":%s,\"energy_estimated\":true,\"checkpoint_interval_s\":30}",
+      available ? "true" : "false", age, relay, v, i, p, e,saved);
   return n < 0 || (size_t)n >= capacity ? -1 : 0;
 }

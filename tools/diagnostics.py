@@ -8,13 +8,11 @@ import json
 import re
 import sys
 from pathlib import Path
-from fwlib import atomic_write, require, write_json
+from fwlib import atomic_write, require, write_json, profile_diag_key
 
 
 def fetch(host, keyfile, port=18080):
-    key_text = Path(keyfile).read_bytes()
-    require(re.fullmatch(b"[0-9a-f]{64}\n", key_text), "診斷金鑰格式不符")
-    key = bytes.fromhex(key_text.decode().strip())
+    key = profile_diag_key(keyfile)
     def request(path, headers=None, limit=96 * 1024):
         client = http.client.HTTPConnection(host, port, timeout=20)
         try:
@@ -38,7 +36,7 @@ def main():
     parser.add_argument("--profile", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
     args = parser.parse_args()
-    data = fetch(args.host, args.profile / "diag.key")
+    data = fetch(args.host, args.profile)
     atomic_write(args.output, data)
     write_json(args.output.with_suffix(args.output.suffix + ".json"),
                {"sha256": hashlib.sha256(data).hexdigest(), "bytes": len(data),

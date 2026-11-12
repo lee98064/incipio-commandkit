@@ -89,6 +89,19 @@ def catalog(packages, base_url, output):
     write_json(output, {"format": "commandkit-catalog-v1", "updates": entries})
 
 
+def validate_catalog_upgrade(previous, incoming):
+    """Keep supported channels monotonic; retire the legacy exec-test channel."""
+    updates=incoming.get('updates',[])
+    versions={item['variant']:item['software_version'] for item in updates}
+    require('matter' in versions and len(versions)==len(updates), 'Missing or duplicate Matter update channel')
+    for item in previous.get('updates',[]):
+        variant=item['variant']
+        if variant not in versions:
+            require(variant=='exec-test','Refusing to remove a supported update channel')
+        else:
+            require(versions[variant]>=item['software_version'],'Refusing to replace the feed with an older release')
+
+
 def main():
     p = argparse.ArgumentParser(description=__doc__)
     commands = p.add_subparsers(dest="command", required=True)

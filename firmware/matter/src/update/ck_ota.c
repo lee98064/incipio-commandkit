@@ -3,6 +3,7 @@
 #include "../vendor/monocypher/monocypher-ed25519.h"
 #include "ck_common.h"
 #include "ck_store.h"
+#include "ck_factory.h"
 #include <errno.h>
 #include <fcntl.h>
 #include <signal.h>
@@ -21,6 +22,15 @@ static int compatibility(const uint8_t *h) {
   if (!ck_hash_fd(a.fd, a.base + 0x10000, 0x120000, hash) &&
       ck_equal(hash, h + 64, 32))
     r = 0;
+  if (r) {
+    uint8_t legacy[32], factory[32];
+    if (!ck_unhex(CK_LEGACY_KERNEL_SHA256, 32, legacy) &&
+        !ck_unhex(CK_FACTORY_KERNEL_SHA256, 32, factory) &&
+        ck_equal(h + 64, legacy, 32) &&
+        !ck_hash_factory_kernel(a.fd, a.base + 0x10000, hash) &&
+        ck_equal(hash, factory, 32))
+      r = 0;
+  }
   close(a.fd);
   if (r)
     return -1;
@@ -156,7 +166,10 @@ int ck_ota_stage(const char *path) {
   int lock = manager_lock();
   if (lock < 0)
     return -1;
-  if (!access(ck_path("/var/run/ck-ota/queued"), F_OK)) {
+  if (!access(ck_path("/var/run/ck-ota/queued"), F_OK) ||
+      !access(ck_path("/var/run/ck-protocol-pending"),F_OK) || !access(ck_path("/var/run/ck-factory-pending"),F_OK) ||
+      !access(ck_path("/var/run/ck-network-changing"),F_OK) ||
+      !access(ck_path("/var/run/ck-matter-request.lock"),F_OK)) {
     close(lock);
     return -1;
   }
@@ -202,7 +215,10 @@ int ck_ota_queue(const char *expected_hash) {
     close(lock);
     return -1;
   }
-  if (!access(ck_path("/var/run/ck-ota/queued"), F_OK)) {
+  if (!access(ck_path("/var/run/ck-ota/queued"), F_OK) ||
+      !access(ck_path("/var/run/ck-protocol-pending"),F_OK) || !access(ck_path("/var/run/ck-factory-pending"),F_OK) ||
+      !access(ck_path("/var/run/ck-network-changing"),F_OK) ||
+      !access(ck_path("/var/run/ck-matter-request.lock"),F_OK)) {
     close(transfer);
     close(lock);
     return -1;

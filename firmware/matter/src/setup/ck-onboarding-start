@@ -1,0 +1,12 @@
+#!/bin/sh
+umask 077
+# Independent from DHCP and identity import. PID1 restarts this supervisor.
+while [ ! -f /var/run/ck-onboarding-ready ]; do
+    if [ -f /var/lib/ck-state/device.key ] &&
+       /bin/ck-boot-guard --identity > /var/log/matter-identity.log 2>&1; then
+        : > /var/run/ck-onboarding-ready
+        break
+    fi
+    sleep 5
+done
+while :; do sleep 3600; done

@@ -1,0 +1,12 @@
+{
+  "status": "pass",
+  "environment": "actual MIPS SDK, 64 MiB Malta VM, daemon limited to 8 MiB AS, serial MCU and NOR file fixtures",
+  "real_outlet": false,
+  "binary_sha256": "b303d5548b638d511dce0b49e7543cec713d50925a8ec56cec1123b50788e166",
+  "checks": [
+    "authenticated open-window retains completed fabric and encrypted CASE control",
+    "open-window expires incomplete PASE fail-safe and reopens while retaining completed fabric",
+    "remote reset removes old controller, opens 900-second window, retains QR/management key/network/cumulative energy and permits fresh full commissioning",
+    "MCU long-press reset frames invoke same durable reset, burst/after-exec duplicates coalesce; short button frames retain pairing"
+  ]
+}

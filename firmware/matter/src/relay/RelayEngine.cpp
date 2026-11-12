@@ -93,7 +93,9 @@ void RelayEngine::Feed(uint8_t byte, uint64_t now)
         mQuery = Query::None; mCount = 0;
     } else if (mWindow[0] == 0xaa && mWindow[1] == 0xff && mWindow[3] == 0x55 &&
                (mWindow[2] == 0 || mWindow[2] == 0xff)) {
-        ++mState.resetEvents; mCount = 0; // Record only; never execute vendor flash-default/reboot commands.
+        // 00 arms the vendor reset flow; FF is the confirmed long-press frame.
+        if(mWindow[2]==0xff) ++mState.resetEvents;
+        mCount = 0;
     }
 }
 void RelayEngine::Disconnect()

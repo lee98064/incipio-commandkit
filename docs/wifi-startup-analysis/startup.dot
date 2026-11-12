@@ -1,0 +1,22 @@
+digraph Startup {
+  graph [rankdir=LR, bgcolor="white", pad="0.2", nodesep="0.35", ranksep="0.5"];
+  node [shape=box, style="rounded,filled", fillcolor="#eef3fa", color="#536780", fontname="Helvetica", fontsize=11];
+  edge [color="#536780", fontname="Helvetica", fontsize=10];
+  boot [label="rcS boot"];
+  wifi [label="Vendor Wi-Fi association"];
+  mcu [label="Independent MCU worker\nLocal button can remain active"];
+  import [label="Import persistent identity"];
+  helper [label="Matter identity helper"];
+  setup [label="Setup controller"];
+  dhcp [label="Resume backend\nDHCP client launch", fillcolor="#e4f4e9"];
+  stalled [label="Pending forever / early exit\nNo DHCP launch or AP recovery", fillcolor="#fce5e5", color="#b74848"];
+  boot -> wifi;
+  boot -> import;
+  boot -> mcu;
+  import -> helper [label="success"];
+  helper -> setup [label="success"];
+  setup -> dhcp [label="startup checks pass"];
+  import -> stalled [label="hang / import failure", color="#b74848"];
+  helper -> stalled [label="failure / crash", color="#b74848"];
+  setup -> stalled [label="startup failure", color="#b74848"];
+}

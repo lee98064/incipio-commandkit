@@ -1,0 +1,24 @@
+{
+  "status": "pass",
+  "real_outlet": false,
+  "environment": "64 MiB Malta/Linux 4.19; actual vendor BusyBox init, production guard/setupd/backend/DHCP/lease publisher",
+  "memory_limitation": "This Debian test kernel does not boot with -m 32 even without an initrd. This is not a physical 32 MiB outlet memory validation.",
+  "fixtures": [
+    "MIB status/write rejection",
+    "identity importer",
+    "Matter identity helper"
+  ],
+  "checks": [
+    "actual v0.2.6 startup script exits 127 before import: vendor BusyBox has no touch applet or external touch",
+    "real DHCP lease and reachable TCP management port with no identity and persistent import errors; all API access returns 503",
+    "PID1 restarts crashed setup controller; DHCP lease retained",
+    "production 40-second heartbeat watchdog kills a stopped controller; PID1 restores service",
+    "identity/management become ready after network is already online, without reboot",
+    "DHCP client death is detected and a new client completes DHCP",
+    "saved station reconnection never writes MIB or onboarded state"
+  ],
+  "sha256": {
+    "guard": "37565ba17daec3f26d855b9501d534162f4fea57d3927fa7645dde7990c5d7c4",
+    "setupd": "f35e83a62a250e0df92f23d943b6d8d336d53df5f5800a2d28614147a32b727b"
+  }
+}

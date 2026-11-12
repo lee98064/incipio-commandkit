@@ -1,0 +1,18 @@
+{
+  "status": "software_verified_hardware_pending",
+  "software_version": 13,
+  "version": "0.2.11-preview",
+  "signed_ota_sha256": "0f1c58cc8620fa5f0626570957cf2f4a28f05a3dade7e790b7f538b48588f194",
+  "rootfs_sha256": "6e1597fb8ad7cee75731b714c4ae5ba31845b799224d03a5f285b459267040d2",
+  "signing_key_unchanged": true,
+  "native_tests": 55,
+  "mips_tests": 55,
+  "deployment_passed": 12,
+  "diagnostic_skipped": 1,
+  "mcu_engine_checks": 574,
+  "mcu_engine_commands": 100,
+  "real_device_access": false,
+  "real_outlet_ota_installation": "user will install from GitHub after publication",
+  "protection": "existing journal, per-device identities, original pairing code and energy retained by upgrade",
+  "publication_requested": true
+}

@@ -1,0 +1,16 @@
+{
+  "status": "pass",
+  "real_outlet": false,
+  "original_sha256": "2d50339436759f3d602c150fb4f1a42f0fdf122fc18e9a4f54f6e6b07d7a0c62",
+  "test_payload_sha256": "1a51a42a68b058ac0d81e79804067f27f7d3dffdcc2aaff7ac771617934f8ca2",
+  "checks": [
+    "original libc read bridge including lazy GP binding",
+    "confirmed relay response observed",
+    "power response observed and fresh timestamps published",
+    "bounded identify deadline and no GPIO writes",
+    "patch restoration exactly recovers original ELF"
+  ],
+  "limitations": [
+    "qemu-user does not validate physical MCU timing, MFi or LED polarity"
+  ]
+}

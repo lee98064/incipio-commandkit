@@ -1,8 +1,10 @@
 # Incipio CommandKit 韌體研究與預覽韌體
 
+v0.2.10-preview（software version 12）保留[密碼管理後台](docs/admin-backend.md)：訪客可看狀態，登入後才能切換 HomeKit／Matter、更新韌體、清除配對或將 kWh 歸零。兩種協議都保留管理入口，實體長按可恢復出廠。首次從無密碼舊版升級須重新進入設定熱點建立密碼及設定 Wi-Fi。HomeKit 模式暫停自訂網頁即時量測及 kWh 累計；原機驗收仍待完成。
+
 自有 CMNDKT-004／RTL8196E 智慧插座的逆向紀錄，以及保留原廠 kernel／驅動的 Matter 和執行檔診斷預覽版。說明以繁體中文為主。
 
-公開來源位於 [GitHub repository](https://github.com/lee98064/incipio-commandkit)；已發布的 v0.1 歷史去識別化 BIN、JSON 與校驗碼見 [v0.1.0-preview Release](https://github.com/lee98064/incipio-commandkit/releases/tag/v0.1.0-preview)。
+公開來源位於 [GitHub repository](https://github.com/lee98064/incipio-commandkit)；目前的簽章更新包與去識別化附件見 [v0.2.3-preview Release](https://github.com/lee98064/incipio-commandkit/releases/tag/v0.2.3-preview)。[v0.1.0-preview](https://github.com/lee98064/incipio-commandkit/releases/tag/v0.1.0-preview) 保留為歷史基底。
 
 **Release 的 8 MiB BIN 是位址對齊的「部分燒錄映像」，不是整片還原映像。**只有 Bank 1 rootfs 有內容；其餘區域為 `0xFF`。請用本專案工具個別化後限定區域寫入，保留每台插座自己的 MAC、MIB、校正、HomeKit／MFi 與 Bank 2。對空白晶片直接刷入公開 BIN 無法建立完整可開機裝置。
 
@@ -12,7 +14,9 @@
 
 | 內容 | 入口 |
 |---|---|
+| 密碼後台、kWh 歸零、完整恢復出廠 | [管理後台](docs/admin-backend.md) |
 | 網頁／Matter OTA 與發布新版 | [更新說明](docs/updates.md) |
+| 原廠 10219／Bank 2 從網頁首次安裝 | [專用安裝包與限制](docs/factory-install.md) |
 | 手機網頁即時查看 V／A／W／kWh | [即時監測頁](docs/measurements.md#使用手機查看即時讀值) |
 | 標準電壓、RMS 電流、功率及累積 kWh | [Matter 電力量測](docs/measurements.md) |
 | 使用、配網、Matter、診斷 | [使用說明](docs/usage.md) |
@@ -24,7 +28,7 @@
 | 測試與發布交付狀態 | [驗證索引](verification/README.md) |
 | 上傳 GitHub 與建立 Release | [發布說明](docs/publishing.md) |
 
-目前來源為 `v0.2.3-preview` 候選版；在既有管理網址新增手機即時監測頁，顯示 V／A／W／估算累積 kWh。v0.2.2 的配網、Flash 同步及 MCU 控制修復繼續保留，見[修復驗證](verification/recovery-results.json)。v0.1 Release 尚無永久 OTA，第一次升級仍須限定區域燒錄。
+目前來源為 `v0.2.10-preview`，加入[程式區域復原接續](docs/2026-10-20_firmware-programmer-recovery-report.md)。保留獨立 DHCP 回連與 PID1 監督；[協議切換](docs/protocol-switching.md)保留既有配對及資料，[遠端配對重設](docs/matter-reset.md)與完整恢復出廠分開處理。公開包在每顆插座首次開機自行產生裝置身分，不內建共用管理密碼。本版只交付 HomeKit／Matter 共用韌體，內部診斷版尚未遷移密碼初設，不發行新版診斷 OTA。
 
 ## 兩種韌體
 

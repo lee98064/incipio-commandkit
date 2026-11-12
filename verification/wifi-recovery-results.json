@@ -1,0 +1,106 @@
+{
+  "version": "0.2.7-preview",
+  "software_version": 9,
+  "status": "offline_verified_signed_package_ready",
+  "physical_device_installed": false,
+  "physical_device_validation": "pending; previous address has no responding management service",
+  "ota_sha256": "3959e7b97bede402e1c15ae5eaa23c712cff78336c9181387a5882f517d99eaa",
+  "signed_with_existing_trust_key": true,
+  "source_and_binary_match_packaged_rootfs": [
+    "bin/ck-ota-start",
+    "bin/ck-identity-start",
+    "bin/ck-onboarding-start",
+    "bin/ck-setup-start",
+    "bin/ck-setup-backend",
+    "bin/matter-test-start",
+    "bin/matter-diag-start",
+    "bin/ck-boot-guard",
+    "bin/ck-setupd",
+    "bin/matterd-test"
+  ],
+  "pid1_services_exactly_once": true,
+  "tests": {
+    "native-tests": {
+      "status": "pass",
+      "count": 33,
+      "log_sha256": "53ac5d1c76f936da86a7151bca697e220171be8de6c0397a6c13fc8be3c5c833"
+    },
+    "mips-tests": {
+      "status": "pass",
+      "count": 33,
+      "log_sha256": "ba48dbcd8f42c15cbca9e0e27ea04c05776503f0c4e274342425cb6d4a9459ef"
+    },
+    "startup-tests": {
+      "status": "pass",
+      "count": 9,
+      "log_sha256": "dc5f8bc6a7830ccbec8b413a59a2e15c4771809f2bc5da99aa3d39de0c983b69"
+    },
+    "native-guard-tests": {
+      "status": "pass",
+      "count": 6,
+      "log_sha256": "557306dbaa19a8163ac84d92ac62b0bcbcee8622f181dadaa0dd531e30efa741"
+    },
+    "mips-guard-tests": {
+      "status": "pass",
+      "count": 6,
+      "log_sha256": "a9be1a538fa1af3463c30fb76cc179db1dfd5827d0972bafd35a55b8f97e9c59"
+    },
+    "deployment-tests": {
+      "status": "pass",
+      "count": 12,
+      "log_sha256": "40eea9b86d6c52b295d1c1369ef3907b0800af0ff162ccc40c2063a8d7dd3eee"
+    }
+  },
+  "portal_test": {
+    "status": "pass",
+    "checks": [
+      "mobile page and per-boot CSRF",
+      "initial page shows SDK manual code and exact device Matter QR SVG before Wi-Fi submit",
+      "captive HTTP probe redirect",
+      "unauthenticated setup rejected",
+      "management key export only in setup portal with valid CSRF/origin; absent on LAN and initial page",
+      "HMAC state and replay rejection",
+      "Matter reset/open require action-bound one-use HMAC, empty body, live app heartbeat and exclusive fixed mailbox",
+      "DNS A synthesis and AAAA NODATA",
+      "CSRF/origin/SSID/password/control-byte validation",
+      "scan start/poll/cached results and open network metadata",
+      "null origin with valid token and MIME charset accepted; evil origins and duplicate headers rejected",
+      "same-origin local JavaScript and textContent for network labels",
+      "Wi-Fi submission confirmation retains same manual code and QR",
+      "duplicate guard and fixture transition"
+    ],
+    "binary_sha256": "e16c11f0297dee07c06a349a9905e1208acfc3f17abc3df1d7fab7bffed02e68",
+    "environment": "actual MIPS ELF under qemu-user; fixture backend; no RF/Flash",
+    "real_softap_station_and_commissioning": "pending"
+  },
+  "network_boot_vm": {
+    "status": "pass",
+    "real_outlet": false,
+    "environment": "64 MiB Malta/Linux 4.19; actual vendor BusyBox init, production guard/setupd/backend/DHCP/lease publisher",
+    "memory_limitation": "This Debian test kernel does not boot with -m 32 even without an initrd. This is not a physical 32 MiB outlet memory validation.",
+    "fixtures": [
+      "MIB status/write rejection",
+      "identity importer",
+      "Matter identity helper"
+    ],
+    "checks": [
+      "actual v0.2.6 startup script exits 127 before import: vendor BusyBox has no touch applet or external touch",
+      "real DHCP lease and reachable TCP management port with no identity and persistent import errors; all API access returns 503",
+      "PID1 restarts crashed setup controller; DHCP lease retained",
+      "production 40-second heartbeat watchdog kills a stopped controller; PID1 restores service",
+      "identity/management become ready after network is already online, without reboot",
+      "DHCP client death is detected and a new client completes DHCP",
+      "saved station reconnection never writes MIB or onboarded state"
+    ],
+    "sha256": {
+      "guard": "4d2759104502c61b28fa922b96fcd1470a0b1ea52df853c3be3b18cdea12aa65",
+      "setupd": "e16c11f0297dee07c06a349a9905e1208acfc3f17abc3df1d7fab7bffed02e68"
+    }
+  },
+  "identity_wifi_energy_preservation": "Store/energy/OTA tests pass; normal OTA rootfs range unchanged. Physical retention awaits installation.",
+  "known_limits": [
+    "No physical RF, old 2.6.30 kernel, or 32 MiB full-outlet memory validation",
+    "VM identity importer/helper and Wi-Fi MIB are fixtures; DHCP and PID1 are actual vendor binaries"
+  ],
+  "boot_guard_testing_environment_variables_absent": true
+}

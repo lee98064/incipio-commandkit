@@ -1,0 +1,4 @@
+#!/bin/sh
+umask 077
+mkdir -p /var/run/ck-ota /var/lock /var/log
+exec /bin/ck-updated > /var/log/ck-update.log 2>&1

@@ -35,6 +35,11 @@ int main(void) {
   mkdir("/var/lock",0700);mkdir("/var/lib",0700);mkdir("/var/lib/ck-state",0700);
   setenv("CK_FLASH_FILE","/flash.bin",1);
   if(ck_store_import()){puts("PERSISTENT_VM_IMPORT_FAIL");return 6;}
+  uint8_t admin[60];int credential=open("/test-admin.bin",O_RDONLY);
+  if(credential<0 || read(credential,admin,sizeof(admin))!=sizeof(admin) || ck_store_set("admin/credential",admin,sizeof(admin)))return 7;
+  close(credential);memset(admin,0,sizeof(admin));
+  int active=open("/var/run/ck-protocol-active",O_WRONLY|O_CREAT,0600);
+  if(active>=0){write(active,"matter",6);close(active);}
 #endif
   if (module("/mii.ko") || module("/pcnet32.ko")) { perror("network module"); return 3; }
   int fd = socket(AF_INET, SOCK_DGRAM, 0); struct ifreq r;
@@ -66,12 +71,13 @@ int main(void) {
 restart_application:
 #ifdef CK_TESTING
   if (!fork()) { execl("/bin/ck-updated","ck-updated",NULL); _exit(127); }
+  if (!fork()) { execl("/bin/ck-setupd","ck-setupd","--fixture","18083","18081","no-flash","/var/lib/ck-state/diag.key",NULL); _exit(127); }
 #endif
   int child = fork();
   if (!child) {
     struct rlimit limit = {8*1024*1024,8*1024*1024};
     if (setrlimit(RLIMIT_AS,&limit)) _exit(126);
-    alarm(300);
+    alarm(600);
     char *args[] = {"/bin/matterd-test",
 #ifdef CK_TESTING
       "--vm-persistent",
@@ -100,6 +106,10 @@ restart_application:
     sleep(1);
   }
   printf("MATTER_TLV_VM_WAIT=%d\n",status);
+#ifdef CK_TESTING
+  uint8_t intent[8];size_t intent_size=sizeof(intent);
+  if(!ck_store_get("control/factory-reset",intent,&intent_size) && intent_size==8 && !memcmp(intent,"CKRESET1",8))puts("FACTORY_INTENT_DURABLE=1");
+#endif
   sync(); reboot(RB_POWER_OFF);
   for (;;) pause();
 }

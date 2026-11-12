@@ -1,0 +1,48 @@
+{
+  "status": "pass",
+  "version": "0.2.8-preview",
+  "software_version": 10,
+  "real_outlet": false,
+  "checks": [
+    "exact production binaries and scripts match payload",
+    "one supervised protocol owner; no direct rcS protocol launch",
+    "HomeKit ELF retains original length and all bytes except two fixed-size reset commands",
+    "original HAP shared libraries retained; unused Boa/router GUI removed"
+  ],
+  "rootfs": {
+    "bytes_used": 2446712,
+    "checksum_extent": 2446850
+  },
+  "ota_sha256": "37cb27447b4c0345dcd3c0ba52f32a7da1033c6f0f30f822644ab6eac094ad21",
+  "original_homekit_sha256": "2d50339436759f3d602c150fb4f1a42f0fdf122fc18e9a4f54f6e6b07d7a0c62",
+  "homekit_sha256": "1a6ee0bb5e10499c4b57b6f146eabb239cf54f5b476bdc9ef1345a2401ba93ea",
+  "homekit_elf_bytes": 2116412,
+  "production_sha256": {
+    "bin/ck-updater": "3969dba3ef71496e6c4212776841ac8918bfe6c4f9ceb67e3f8f2e67b5d57b5d",
+    "bin/ck-updated": "eb0dc308d1a2ba76239cc404c9d83d62ddddd128105fc50863c53310fe788828",
+    "bin/ck-boot-guard": "37565ba17daec3f26d855b9501d534162f4fea57d3927fa7645dde7990c5d7c4",
+    "bin/matterd-test": "7c8f4705fb97ee131469c51f019c167a23165c48e5dff009d9a89a48d92029b6",
+    "bin/ck-setupd": "f35e83a62a250e0df92f23d943b6d8d336d53df5f5800a2d28614147a32b727b",
+    "bin/ck-protocol-start": "c4c480e842af76719eb6906e4c273fe1e6601496daaa2307b9bea8a6cab218a4",
+    "bin/matter-test-start": "81b58c484ea70d27607b587cf12153d287b79309ebd49d5cc790bc9c4d8d234e",
+    "bin/ck-ota-start": "a31d0039bd6e7cd601b3e1f57391c570e16accddefc6c69772656e2a005c6d87"
+  },
+  "limitations": [
+    "No physical HomeKit/MFi, RF or iPhone pairing validation",
+    "HomeKit pauses custom web measurements and kWh accumulation; saved checkpoints remain",
+    "HomeKit daemon lifecycle tests use a fixture",
+    "Network VM uses 64 MiB/Linux 4.19 and MIB/import fixtures, not actual 32 MiB hardware",
+    "No CH341A write, live reset/switch, git push or publication performed"
+  ],
+  "rootfs_free_bytes": 240126,
+  "tests": {
+    "native_storage_ota_http_protocol": 39,
+    "mips_storage_ota_http_protocol": 39,
+    "deployment_and_hap_layout": 13,
+    "test_log_sha256": {
+      "v0.2.8-update-tests.log": "52a74d6bffba742ddd22f5bf998ec16fc26ae469ca55ec52cda8fd511f3a2b94",
+      "v0.2.8-deployment-tests.log": "3921f7f5cbf74a045c2bf65829810a45df12f9965b44a3ab97c31247dc72eca3",
+      "v0.2.8-portal-tests.log": "b514ac7535d5d393ece4cd0f00a27114286471da64337b43a83471c2a715c6aa"
+    }
+  }
+}

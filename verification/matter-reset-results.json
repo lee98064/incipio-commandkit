@@ -1,0 +1,46 @@
+{
+  "version": "0.2.6-preview",
+  "software_version": 8,
+  "ota_sha256": "6dfe222d5d93586cda39fcc7234ab84aa75f1eb1a5b5c762b9023ee3a5bb2ba9",
+  "production_matter_sha256": "a2cb46bbcd65c20693db1943939cea3d10620156ca7a35d63f01226e0dbd3f5b",
+  "checks": {
+    "native_storage_ota": {
+      "passed": 33
+    },
+    "mips_runner_storage_ota": {
+      "passed": 33
+    },
+    "deployment": {
+      "passed": 12
+    },
+    "startup_recovery": {
+      "passed": 7
+    },
+    "setup_control": {
+      "passed": 5
+    },
+    "mips_http_dns": {
+      "status": "pass"
+    },
+    "full_mips_matter_reset": {
+      "status": "pass",
+      "reference": "matter-reset-vm-results.json"
+    },
+    "public_audit": {
+      "status": "pass",
+      "reference": "public-audit-v0.2.6-preview.json"
+    }
+  },
+  "physical_device": {
+    "ota_submitted": true,
+    "healthy_version_confirmed": false,
+    "remote_reset_confirmed": false,
+    "management_reconnect": "pending; original address unreachable after accepted OTA, no matching service discovered in original /24",
+    "original_ip_confirmed_by_owner": true,
+    "retry_result": "ICMP, 18080, 18081, 18082 timed out; Matter reset not executed",
+    "health_confirmation": "pending",
+    "needs_owner_observation": "setup hotspot visibility and network recovery after a normal power cycle",
+    "physical_short_button_response": "owner confirms on/off still works"
+  },
+  "physical_button_press_test": "pending; simulated MCU reset frames passed"
+}
