@@ -28,7 +28,7 @@ class Changelog(unittest.TestCase):
     def test_repository_has_exactly_the_published_releases(self):
         text = (ROOT / "CHANGELOG.md").read_text()
         headings = [line.split()[1] for line in text.splitlines() if line.startswith("## ")]
-        self.assertEqual(headings, ["v0.3.0-preview", "v0.2.11-preview", "v0.2.3-preview",
+        self.assertEqual(headings, ["v0.3.1-preview", "v0.3.0-preview", "v0.2.11-preview", "v0.2.3-preview",
                                     "v0.1.0-preview"])
         for tag in headings:
             self.assertTrue(release_section(text, tag).startswith("## " + tag + " — "))
