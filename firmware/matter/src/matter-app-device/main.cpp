@@ -193,6 +193,7 @@ static TestPlug plug;
 static char **restartArguments;
 static char controlId[65] = "", controlAction = 0;
 static const char *controlResult = "idle";
+static uint32_t controlRelayId = 0;
 static uint64_t controlDue = 0, controlDeadline = 0, windowDeadline = 0;
 static uint64_t nextControlReport = 0, lastPhysicalReset = 0, physicalDue = 0;
 static uint32_t seenResetEvents = 0;
@@ -206,7 +207,8 @@ static void ControlPublish() {
         "{\"updated_s\":%llu,\"request_id\":\"%s\",\"action\":\"%s\",\"result\":\"%s\","
         "\"fabrics\":%u,\"window_open\":%s,\"window_seconds\":%u,\"failsafe_armed\":%s}\n",
         static_cast<unsigned long long>(now/1000),controlId,
-        controlAction == 'R' ? "reset-matter" : controlAction == 'O' ? "open-commissioning" : controlAction == 'E' ? "reset-energy" : "none",
+        controlAction == 'R' ? "reset-matter" : controlAction == 'O' ? "open-commissioning" : controlAction == 'E' ? "reset-energy" :
+        controlAction == '1' ? "relay-on" : controlAction == '0' ? "relay-off" : "none",
         controlResult,unsigned(s.GetFabricTable().FabricCount()),open ? "true" : "false",
         unsigned(open && windowDeadline > now ? (windowDeadline-now+999)/1000 : 0),
         s.GetFailSafeContext().IsFailSafeArmed() ? "true" : "false");
@@ -214,7 +216,7 @@ static void ControlPublish() {
         ck_atomic(CK_MATTER_STATE,text,n,0600) ? CHIP_ERROR_WRITE_FAILED : CHIP_NO_ERROR);
 }
 static void ControlFinish(const char *result) {
-    controlResult = result; controlDue = controlDeadline = 0;
+    controlResult = result; controlDue = controlDeadline = 0; controlRelayId = 0;
     unlink(CK_MATTER_REQUEST); rmdir(CK_MATTER_LOCK);
     ControlPublish();
 }
@@ -235,21 +237,29 @@ static void PhysicalResetPoll() {
     if(isVm)_exit(0);
     execl("/bin/reboot","reboot",(char *)nullptr);_exit(1);
 }
-static void ControlPoll(uint64_t now, const incipio::RelaySnapshot &) {
+static void ControlPoll(uint64_t now, const incipio::RelaySnapshot &snapshot) {
     // A protocol handoff owns the operation lock until reboot. Never clear it
     // or start a physical reset if this process was restarted in that window.
     if (access(CK_PROTOCOL_PENDING,F_OK)==0) return;
     if (!controlDue) {
         char request[67];
         if (!ck_exact_file(CK_MATTER_REQUEST,request,sizeof(request))) {
-            bool valid = (request[0]=='R' || request[0]=='O' || request[0]=='E') && request[1]==' ' && request[66]=='\n';
+            bool valid = (request[0]=='R' || request[0]=='O' || request[0]=='E' || request[0]=='1' || request[0]=='0') && request[1]==' ' && request[66]=='\n';
             for (unsigned i=2;i<66;++i) valid &= (request[i]>='0' && request[i]<='9') || (request[i]>='a' && request[i]<='f');
             unlink(CK_MATTER_REQUEST);
             if (valid) {
                 controlAction=request[0];memcpy(controlId,request+2,64);controlId[64]=0;
                 controlResult="running";controlDue=now;controlDeadline=now+10000;
+                if (controlAction=='1' || controlAction=='0') {
+                    controlRelayId=hardware.Request(controlAction=='1');controlDeadline=now+4500;
+                    if (!controlRelayId) ControlFinish("relay-busy");
+                }
             } else { rmdir(CK_MATTER_LOCK); }
         }
+    }
+    if (controlDue && (controlAction=='1' || controlAction=='0')) {
+        if (snapshot.completedId==controlRelayId) ControlFinish(snapshot.result==incipio::RelayResult::Confirmed?"complete":"relay-failed");
+        else if (now>=controlDeadline) ControlFinish("relay-timeout");
     }
     if(controlDue && controlAction=='E') ControlFinish(plug.ResetEnergy()==CHIP_NO_ERROR?"complete":"storage-error");
     if (controlDue && controlAction=='R') {

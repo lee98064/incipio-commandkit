@@ -115,8 +115,8 @@ python3 -m pip install -r tools/requirements.txt</pre></div>
 
 <div class="method-title" id="method-a"><span>Method A</span><h4>Factory web upload (no opening)</h4></div>
 <ol class="steps">
-<li><b>Download the first-install file</b><p>Get <code>commandkit-matter-v0.3.0-public-first-install.bin</code>. It’s a shared public file with no device keys; each outlet creates its own identity and Matter code the first time it starts.</p>
-<div class="cta"><a class="btn outline" href="https://github.com/lee98064/incipio-commandkit/releases/download/v0.3.0-preview/commandkit-matter-v0.3.0-public-first-install.bin"><svg class="i"><use href="#i-download"/></svg>Download first-install file</a></div></li>
+<li><b>Download the first-install file</b><p>Get <code>commandkit-matter-v0.3.1-public-first-install.bin</code>. It’s a shared public file with no device keys; each outlet creates its own identity and Matter code the first time it starts.</p>
+<div class="cta"><a class="btn outline" href="https://github.com/lee98064/incipio-commandkit/releases/download/v0.3.1-preview/commandkit-matter-v0.3.1-public-first-install.bin"><svg class="i"><use href="#i-download"/></svg>Download first-install file</a></div></li>
 <li><b>Open the factory update page and check</b><p>Close the case, plug the outlet in, and leave nothing plugged into it. Find its IP in your router’s device list and open <code>http://outlet-ip/upload.htm</code>. Check it shows <code>10219-1531</code>, Active Bank 2 and Enable Dual Firmware ticked. Don’t change the dual-firmware setting.</p></li>
 <li><b>Upload</b><p>At the top of the page, click <b>Select File</b>, choose the first-install file, then click <b>Upload</b>.</p></li>
 <li><b>Wait for the restart</b><p>Wait for the countdown and restart, and <b>keep the outlet powered</b>. Don’t click “Reboot Form Backup Bank Now”. The first start creates the device identity, so it can take a little longer.</p></li>
@@ -179,7 +179,7 @@ python3 -m pip install -r tools/requirements.txt</pre></div>
 <table class="table"><thead><tr><th>What</th><th>How</th></tr></thead><tbody>
 <tr><td>Open the dashboard</td><td>Find the outlet’s IP address in your router’s device list and open <code>http://outlet-ip/</code>. It forwards to <code>:18082</code>.</td></tr>
 <tr><td>Guest view</td><td>Anyone on your network can see live power, voltage, current, energy and the firmware version without signing in.</td></tr>
-<tr><td>Admin</td><td>After signing in you can change LED settings, switch protocols, reopen pairing, and change Wi-Fi or the admin password.</td></tr>
+<tr><td>Admin</td><td>After signing in you can switch the outlet on or off from the overview (Matter mode), change LED settings, switch protocols, reopen pairing, and change Wi-Fi or the admin password.</td></tr>
 <tr><td>Physical button</td><td>A short press turns the outlet on or off. Holding it until the outlet restarts does a factory reset.</td></tr>
 </tbody></table>
 <h4>Online updates</h4>
@@ -220,7 +220,7 @@ python3 -m pip install -r tools/requirements.txt</pre></div>
 <span class="kicker">Download</span><h2 class="title">Download</h2><p class="sub">If your outlet already runs this firmware, just update from the dashboard. These files are for manual updates and first installs.</p>
 <div class="downloads">
 <article class="dl main"><h3>Update package</h3><div class="ver" data-latest-version>v0.3.0-preview</div><p>matter.ota (<span data-latest-size>2.6 MB</span>) for outlets that already run this firmware. Upload it from the dashboard.</p><a class="btn primary" href="../updates/matter.ota"><svg class="i"><use href="#i-download"/></svg>Download matter.ota</a></article>
-<article class="dl"><h3>First-install files</h3><p>first-install.bin for the factory web upload (method A), and matter-8m-region.bin/.json for the programmer (method B; personalize it, never flash the whole chip).</p><div class="cta"><a class="btn solid" href="https://github.com/lee98064/incipio-commandkit/releases/download/v0.3.0-preview/commandkit-matter-v0.3.0-public-first-install.bin"><svg class="i"><use href="#i-download"/></svg>Factory web file</a><a class="btn outline" data-release-link href="https://github.com/lee98064/incipio-commandkit/releases">Release page</a></div></article>
+<article class="dl"><h3>First-install files</h3><p>first-install.bin for the factory web upload (method A), and matter-8m-region.bin/.json for the programmer (method B; personalize it, never flash the whole chip).</p><div class="cta"><a class="btn solid" href="https://github.com/lee98064/incipio-commandkit/releases/download/v0.3.1-preview/commandkit-matter-v0.3.1-public-first-install.bin"><svg class="i"><use href="#i-download"/></svg>Factory web file</a><a class="btn outline" data-release-link href="https://github.com/lee98064/incipio-commandkit/releases">Release page</a></div></article>
 <article class="dl"><h3>Source &amp; docs</h3><p>Full source, reverse-engineering notes, build steps and change log.</p><a class="btn outline" href="https://github.com/lee98064/incipio-commandkit"><svg class="i"><use href="#i-code"/></svg>GitHub</a></article>
 </div></div></section>
 </main>

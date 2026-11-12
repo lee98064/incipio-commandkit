@@ -5,6 +5,7 @@ from pathlib import Path
 OUT=Path('/work');ART=OUT/'artifacts/softap-device-code';EV=OUT/'evidence/softap-device-code'
 EV.mkdir(parents=True,exist_ok=True)
 persistent=os.environ.get('CK_UPDATE_TEST')=='1'
+fixture_dir=Path(os.environ.get('CK_VM_FIXTURE_DIR',str(OUT/'private')))
 extra=[]
 if persistent:
     ART=OUT/'artifacts/update-matter-test'
@@ -21,7 +22,7 @@ for name in ['bin','dev','proc','var','tmp','etc']:entry(name,mode=stat.S_IFDIR|
 for name,mode,device in [('console',0o600,(5,1)),('null',0o666,(1,3)),('urandom',0o444,(1,9))]:
     entry('dev/'+name,mode=stat.S_IFCHR|mode,rdev=device)
 entry('dev/ttyS1',mode=stat.S_IFCHR|0o600,rdev=(4,65));entry('tmp/gpio',b' '*32,mode=stat.S_IFREG|0o600)
-entry('etc/matter-device.key',(OUT/'private/device-identity.key').read_bytes(),mode=stat.S_IFREG|0o600)
+entry('etc/matter-device.key',(fixture_dir/'device-identity.key').read_bytes(),mode=stat.S_IFREG|0o600)
 if persistent:
     salt=bytes(range(16));key=hashlib.pbkdf2_hmac('sha256',b'FixtureAdmin42',salt,600000,32)
     entry('test-admin.bin',b'CKAUTH1\n'+struct.pack('>I',600000)+salt+key,mode=stat.S_IFREG|0o600)
@@ -31,7 +32,7 @@ if persistent:
     entry('etc/ck-update.pub',(Path('/repo/third_party/ota-signing.pub')).read_bytes(),mode=stat.S_IFREG|0o444)
     config=json.loads((Path('/repo/version.json')).read_text())
     entry('etc/ck-update.meta',struct.pack('>III',0x434b0004,1,config['software_version']),mode=stat.S_IFREG|0o444)
-    entry('etc/matter-diag.key',(OUT/'private/diag.key').read_bytes(),mode=stat.S_IFREG|0o600)
+    entry('etc/matter-diag.key',(fixture_dir/'diag.key').read_bytes(),mode=stat.S_IFREG|0o600)
     fixture=bytearray(bytes(range(256))*(0x800000//256));fixture[0x3c0000:0x3e0000]=b'\xff'*0x20000
     entry('flash.bin',fixture,mode=stat.S_IFREG|0o600)
 entry('init',(ART/'vm-init').read_bytes());entry('bin/matterd-test',(ART/'matterd-test').read_bytes())

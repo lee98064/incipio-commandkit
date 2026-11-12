@@ -24,7 +24,7 @@ Start with the [installation website](https://lee98064.github.io/incipio-command
 
 | Method | Works with | How |
 |---|---|---|
-| **Factory web upload (no opening)** | Factory `10219-1531`, Active Bank 2, Dual Firmware enabled | Upload the release's `commandkit-matter-v0.3.0-public-first-install.bin` on the factory `/upload.htm` page; tested on a real outlet. See the [factory web install guide](docs/install/factory-install.md) (Chinese). |
+| **Factory web upload (no opening)** | Factory `10219-1531`, Active Bank 2, Dual Firmware enabled | Upload the release's `commandkit-matter-v0.3.1-public-first-install.bin` on the factory `/upload.htm` page; tested on a real outlet. See the [factory web install guide](docs/install/factory-install.md) (Chinese). |
 | **Flash programmer** | Any factory version | Back up with a CH341A, personalize, and write only the Bank 1 rootfs. See the [flashing guide](docs/install/flashing.md) (Chinese). |
 
 For an existing custom installation, open `http://OUTLET_IP:18082/`, sign in and use the Updates tab, or upload `matter.ota`. Normal OTA preserves identity, Wi-Fi, password, pairings and kWh. Upgrading from firmware without an admin password requires Wi-Fi and password setup again.
@@ -33,7 +33,7 @@ For an existing custom installation, open `http://OUTLET_IP:18082/`, sign in and
 
 - Switch between HomeKit and Matter while retaining saved pairings and settings.
 - Three-step Wi-Fi, password and household setup wizard.
-- Guest status view and password-protected management, mobile navigation and dark mode.
+- Guest status view and password-protected management, mobile navigation and dark mode; admins can switch the outlet on or off from the web page (Matter mode).
 - Matter and web voltage, current, power and estimated energy; custom live metering pauses in HomeKit mode.
 - Six LED modes, outlet identification and night schedule.
 - Automatic update checks, installation steps, Ed25519 verification and reset controls.

@@ -15,6 +15,7 @@ def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
 class Mcu:
     def __init__(self):
         self.meter_drop=False;self.voltage=6976;self.current=384;self.power=500;self.on=False;self.drop=False;self.done=False;self.bad=[];self.frames=[];self.socket=None
+        self.raw_frames=[]
     def event(self,on):
         self.on=on
         self.socket.sendall(bytes([0xfe,0x31 if on else 0x30,0x31 if on else 0x30,0x56]))
@@ -38,6 +39,7 @@ class Mcu:
                 if code==0xa1:expected[9]=frame[9];expected[11]=0
                 if code not in (0xa1,0xa4,0xa5,0xa6,0xa7) or frame!=bytes(expected):self.bad.append(frame.hex());continue
                 self.frames.append({'command':hex(code),'on':frame[9]==0x31 if code==0xa1 else None})
+                self.raw_frames.append(frame)
                 if code==0xa1:self.on=frame[9]==0x31
                 elif code==0xa4 and not self.drop:self.event(self.on)
                 elif code in (0xa5,0xa6,0xa7) and not self.meter_drop:

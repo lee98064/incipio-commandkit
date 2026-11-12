@@ -1,0 +1,232 @@
+{
+  "status": "pass",
+  "release": "v0.3.1-preview",
+  "software_version": 15,
+  "factory_image_name": "commandkit-matter-v0.3.1-public-first-install.bin",
+  "factory_image_size": 3997728,
+  "factory_image_sha256": "6de78864111c8c3e9fa966878085e8bf97c7fdb97c244c9a4cf18359781f1862",
+  "public_variant": true,
+  "template_name": "commandkit-matter-v0.2.5-public-first-install.bin",
+  "template_sha256": "14e9161f6148eed114c3662fa3f6a118ec204ad7c9c29bf5a34b33d48c9ae0a6",
+  "release_region_name": "matter-8m-region.bin",
+  "release_region_sha256": "125fce5e3c5857d729dc50d854b75e6c23d89e5fa5508d94079134e6c2b6689f",
+  "required_stock_state": {
+    "stock_version": "10219",
+    "active_bank": 2,
+    "dual_firmware": true
+  },
+  "kernel": {
+    "identical_to_public_template": true,
+    "canonical_factory_kernel_sha256": "6c72f554c78d0e71e9dfbd1c1b466eef4700f965b8a21e6958567750be933308",
+    "bankmark_after_boa": "0x8000004d",
+    "upload_header_burn_offset": "0x10000",
+    "decompressed_kernel_unchanged": true,
+    "decompressed_kernel_sha256": "f160b5df1bac550b4703ee030db147c08406e740e3171c04c688f7dddfa14f8f"
+  },
+  "input_provenance": {
+    "boa_source": "bin/boa from stock Bank 2 rootfs at flash offset 0x530000, byte equality checked against the master",
+    "boa_sha256": "175c66efa68eabda38c8ca6990e824ddcc41dfec0219bc739bce7b8ffe0a587a",
+    "boa_imports": "157 imports; names match ELF PT_DYNAMIC; PLT entries match a fresh rabin2 inventory",
+    "boa_dependencies": [
+      "libapmib.so",
+      "libc.so.0",
+      "libgcc_s.so.1"
+    ],
+    "bootloader_source": "LZMA stream at master flash offset 0x1320, decompressed byte equality checked",
+    "bootloader_sha256": "6bd88f63f7c9b48266d3f512024e188d3b65163b67b0abc54838c0b7eb430e89",
+    "existing_public_verification_identities_match": [
+      "boa_sha256",
+      "bootloader_sha256",
+      "canonical_factory_kernel_sha256",
+      "decompressed_kernel_sha256"
+    ],
+    "reference_bank2_executable_matches_tracked_platform": true,
+    "original_bootloader_selects_unmodified_reference_bank": 2,
+    "dual_firmware_state": "enabled in the Boa harness as documented for the target; apmib_get(0x514)=1 is stubbed, not decoded from private settings",
+    "private_input_paths_and_full_dump_or_import_hashes": "retained only in private scratch provenance; omitted from this public result"
+  },
+  "boa_emulation": {
+    "status": "pass",
+    "method": "original MIPS Boa executed in Unicorn 2.1.4; every external operation stubbed",
+    "boa_sha256": "175c66efa68eabda38c8ca6990e824ddcc41dfec0219bc739bce7b8ffe0a587a",
+    "image_sha256": "6de78864111c8c3e9fa966878085e8bf97c7fdb97c244c9a4cf18359781f1862",
+    "physical_flash_access": false,
+    "actual_mtd_driver_tested": false,
+    "factory_boot_tested": false,
+    "stock_bootbank": 2,
+    "dual_firmware": true,
+    "writes": [
+      {
+        "device": "/dev/mtdblock0",
+        "seek": 65536,
+        "length": 1179648,
+        "upload_offset": 260
+      },
+      {
+        "device": "/dev/mtdblock1",
+        "seek": 0,
+        "length": 2818048,
+        "upload_offset": 1179924
+      }
+    ],
+    "kernel_bankmark": "0x8000004d",
+    "canonical_factory_kernel_sha256": "6c72f554c78d0e71e9dfbd1c1b466eef4700f965b8a21e6958567750be933308",
+    "preserved_ranges": [
+      [
+        0,
+        65536
+      ],
+      [
+        4063232,
+        8388608
+      ]
+    ],
+    "journal_initializer": "auto-v1",
+    "damaged_kernel_rootfs_trailer_rejected": true,
+    "decompressed_kernel_unchanged": true,
+    "decompressed_kernel_sha256": "f160b5df1bac550b4703ee030db147c08406e740e3171c04c688f7dddfa14f8f",
+    "bootloader_sha256": "6bd88f63f7c9b48266d3f512024e188d3b65163b67b0abc54838c0b7eb430e89",
+    "original_boot_selector_and_checksums_passed": true,
+    "corrupt_bank1_rootfs_selects_bank2_in_emulator": true
+  },
+  "factory_to_next_signed_ota": {
+    "status": "pass",
+    "environment": "actual MIPS test updater under qemu-user; temporary regular-file NOR fixture",
+    "image_sha256": "6de78864111c8c3e9fa966878085e8bf97c7fdb97c244c9a4cf18359781f1862",
+    "updater_sha256": "7b657847e3d3d8bcf08f117d50a14eaa4f41cfc5f6ab87a975460f44fab6311c",
+    "checks": [
+      "first import into erased journal",
+      "boot and version confirmation",
+      "signed next-version OTA accepted on factory kernel",
+      "vendor boot-mark changes accepted",
+      "changed code/padding/Bank 2 rejected without writes",
+      "OTA rootfs write/readback",
+      "persistent identity and trust preserved across OTA",
+      "all ranges outside OTA rootfs preserved"
+    ],
+    "public_image_without_preset_keys": true,
+    "actual_mips_manual_and_qr_stable_across_reboot_and_ota": true,
+    "physical_device_access": false,
+    "factory_boot_tested": false
+  },
+  "host_compatibility": {
+    "status": "pass",
+    "physical_device_access": false,
+    "accepted_known_wrapper_marks": 3,
+    "rejected_code_header_padding_bank2_or_invalid_mark": 11,
+    "legacy_kernel_sha256": "f081b4e0aafad65b071bcff0e0ca475fe2aa6ead608f5c7afe3a731a378b8ae8",
+    "factory_kernel_sha256": "6c72f554c78d0e71e9dfbd1c1b466eef4700f965b8a21e6958567750be933308",
+    "input_preserved": true,
+    "checks": [
+      "same strict kernel alternative as production OTA verifier",
+      "only bank mark normalized; full code/padding/checksum hashed",
+      "Bank 2 identity retained",
+      "mutated code rejected even with repaired checksum"
+    ],
+    "reference_fixture": "same stock master with its verified Bank 2 kernel copied into Bank 1 and only the kernel bankmark set to 0x8000004d; full strict legacy platform compatibility checked before running this test",
+    "reason_for_fixture": "the unmodified stock master has an older Bank 1; this test requires the legacy Matter-install kernel layout. Boa and OTA tests both used the same unmodified stock master."
+  },
+  "public_content_audit": {
+    "status": "pass",
+    "rootfs": {
+      "size": 2686976,
+      "bytes_used": 2503756,
+      "checksum_extent": 2504194,
+      "inventory_entries": 544,
+      "regular_files": 159,
+      "filesystem_bytes_equal_release": true,
+      "file_inventory_and_metadata_equal_release": true,
+      "all_regular_file_contents_equal_release": true,
+      "differences_from_release_rootfs": [
+        {
+          "rootfs_offset_range": [
+            2686974,
+            2686976
+          ],
+          "upload_offset_range": [
+            3866638,
+            3866640
+          ],
+          "target_flash_offset_range": [
+            3932158,
+            3932160
+          ],
+          "release_bytes_hex": "ffff",
+          "factory_bytes_hex": "9003",
+          "purpose": "Boa outer additive-checksum word in unused padding outside SquashFS and bootloader checksum extent"
+        }
+      ]
+    },
+    "credentials": {
+      "fwlib_SECRET_FILES_checked": [
+        "etc/ck-setup-ap.bin",
+        "etc/matter-device.key",
+        "etc/matter-diag.key",
+        "etc/matter-manual-code",
+        "etc/matter-qr.png",
+        "etc/matter-qr.svg"
+      ],
+      "credential_identity_pairing_qr_setup_ap_and_management_files_absent": true,
+      "private_key_files_absent": true,
+      "management_json_format_absent": true,
+      "device_mac_calibration_or_settings_sources_copied": false,
+      "device_mac_calibration_evidence": "All kernel bytes equal the verified public template; all SquashFS bytes equal the public v0.3.1 release. Build inputs contain no private dump or profile. The upload includes no bootloader, MAC/calibration/settings partition, or Bank 2.",
+      "identity_policy": "auto-v1",
+      "ota_signature_verification_public_key_present": "etc/ck-update.pub (32 bytes; public trust anchor, not a private or management key)"
+    },
+    "journal": {
+      "flash_range": [
+        3932160,
+        4063232
+      ],
+      "size": 131072,
+      "all_ff": false,
+      "initializer": "auto-v1",
+      "marker_ascii": "CKAUTOINIT-V1\r\n",
+      "marker_length": 15,
+      "marker_journal_offset": 65536,
+      "marker_flash_range": [
+        3997696,
+        3997711
+      ],
+      "all_other_bytes_ff": true,
+      "non_ff_byte_count": 15,
+      "preset_state_or_credentials": false,
+      "explanation": "The existing --public builder intentionally writes a fixed non-secret auto-v1 initializer in the second journal erase block. It is identical to the v0.2.5 public-template format. The documented 15-byte CKAUTOINIT-V1 initializer triggers first-boot identity creation; every other byte is 0xFF."
+    },
+    "literal_journal_all_ff_requirement_met": false,
+    "PERSONAL_scan": {
+      "implementation": "tools/check_public.py PERSONAL (imported directly)",
+      "bin": "pass",
+      "decompressed_pseudo_metadata_and_file_data": "pass",
+      "every_regular_file": "pass",
+      "regular_files_scanned": 159
+    },
+    "checksums": {
+      "upload_kernel_sum16": 0,
+      "upload_rootfs_sum16": 0,
+      "bootloader_rootfs_sum16": 0,
+      "dual_trailer_valid": true
+    }
+  },
+  "checks": {
+    "template_sha256_matches_requested_value": true,
+    "public_build_without_reference_dump_or_profile": true,
+    "original_boa_and_bootloader": "pass",
+    "factory_to_next_signed_ota": "pass",
+    "host_factory_kernel_compatibility": "pass",
+    "public_rootfs_and_decompressed_PERSONAL_audit": "pass",
+    "literal_journal_all_ff": false,
+    "journal_fixed_auto_v1_marker_and_all_remaining_bytes_ff": true
+  },
+  "physical_install_reported_by_owner": "factory web upload method confirmed working on a real outlet with an earlier build; this v0.3.1 image uses the same template kernel and format",
+  "physical_install_of_this_image": "pending",
+  "physical_device_access": false,
+  "actual_mtd_driver_tested": false,
+  "factory_boot_tested": false,
+  "device_requests_sent": false,
+  "production_ota_signing_key_read": false,
+  "private_input_bytes_copied_into_tracked_paths": false,
+  "github_writes_performed": false,
+  "journal_initializer_note": "The documented --public format has a fixed 15-byte CKAUTOINIT-V1 journal initializer that triggers first-boot identity creation; every other journal byte is 0xFF. It contains no preset identity, pairing data, or private/management key."
+}

@@ -59,7 +59,7 @@ if (typeof module !== 'undefined') module.exports={sha256,hex,hmac256,meterView,
 if(typeof document!=='undefined')(async()=>{
   const $=id=>document.getElementById(id),enc=s=>new TextEncoder().encode(s),sleep=ms=>new Promise(r=>setTimeout(r,ms));
   let auth={authenticated:false},csrf='',status=null,protocol=null,busy=false,latest=null,catalog={state:'idle',error:''},installing=false,
-    protocolDirty=false,ledDirty=false,current='overview',pending=null,toastTimer=0;
+    protocolDirty=false,ledDirty=false,current='overview',pending=null,toastTimer=0,relayState=null,relayBusy=false;
   const samples=[],fmtW=w=>w>=1000?(w/1000).toFixed(2)+' kW':w.toFixed(1)+' W';
   $('device-address').textContent=location.hostname;
   document.querySelectorAll('input[name=protocol]').forEach(input=>input.onchange=()=>{protocolDirty=true;});
@@ -80,7 +80,7 @@ if(typeof document!=='undefined')(async()=>{
   function drawAuth(data){auth=data;csrf=data.csrf||'';const admin=!!data.authenticated;
     document.body.classList.toggle('is-admin',admin);$('login-open').hidden=admin;$('account').hidden=!admin;$('guest-note').hidden=admin;
     $('setup-notice').hidden=data.configured!==false;$('login-open').disabled=data.configured===false;
-    if(!admin&&current!=='overview')show('overview');drawUpdate();}
+    if(!admin&&current!=='overview')show('overview');drawUpdate();drawRelay();}
   async function authRefresh(){const r=await fetch('/auth/session',{cache:'no-store'});if(!r.ok)throw Error('管理服務尚未就緒');const data=await r.json();
     if(data.storage_ready===false){$('login-open').disabled=true;$('login-open').title='管理設定準備中';return;}$('login-open').title='';drawAuth(data);}
   async function api(path,body='',digest=null){
@@ -117,6 +117,7 @@ if(typeof document!=='undefined')(async()=>{
     for(const [id,value]of[['voltage',v.voltage],['current-amps',v.current],['power',v.power],['relay-text',v.relay],['meter-updated',v.note]])$(id).textContent=value;
     $('energy').textContent=fine?v.energy.slice(0,-3):v.energy;$('energy-fine').textContent=fine?v.energy.slice(-3):'';
     $('relay').dataset.on=v.relay==='插座已開啟'?'true':v.relay==='插座已關閉'?'false':'';
+    relayState=v.relay==='插座已開啟'?true:v.relay==='插座已關閉'?false:null;drawRelay();
     $('meter-state').textContent=offline?'連線中斷，正在重試':v.state;
     const w=offline?null:powerWatts(data);$('gauge-arc').style.strokeDasharray=(w===null?0:395.84*gaugeFraction(w)).toFixed(2)+' 527.79';
     if(w!==null){const now=Date.now();samples.push([now,w]);while(samples.length&&now-samples[0][0]>120000)samples.shift();}drawTrend();
@@ -129,7 +130,7 @@ if(typeof document!=='undefined')(async()=>{
     const p=await fetch('/protocol',{cache:'no-store'});if(p.ok){const previous=protocol?.selected;protocol=await p.json();const name=protocolName(protocol.active);
       $('active-protocol').textContent=name;$('protocol-status').textContent='目前：'+name+(protocol.restart_pending?' · 等待重啟':'');
       const choice=document.querySelector('input[name="protocol"][value="'+protocol.selected+'"]');if(choice&&!protocolDirty&&previous!==protocol.selected)choice.checked=true;
-      $('matter-onboarding').hidden=protocol.active!=='matter';$('commissioning-open').hidden=protocol.active!=='matter';}}
+      $('matter-onboarding').hidden=protocol.active!=='matter';$('commissioning-open').hidden=protocol.active!=='matter';drawRelay();}}
   const ledReasons={normal:'依平常模式顯示',night:'夜間熄燈中',pairing:'等待家庭配對',joining:'正在連接 Wi-Fi',setup:'等待初次設定',error:'服務或 MCU 通訊異常',identify:'尋找插座中'};
   const ledMinutes=s=>{if(!/^\d{2}:\d{2}$/.test(s))return NaN;const [h,m]=s.split(':').map(Number);return h<24&&m<60?h*60+m:NaN;};
   const ledTime=m=>String(Math.floor(m/60)).padStart(2,'0')+':'+String(m%60).padStart(2,'0');
@@ -163,8 +164,10 @@ if(typeof document!=='undefined')(async()=>{
     try{await navigator.clipboard.writeText(text);}catch{const range=document.createRange(),selection=getSelection();range.selectNodeContents(code);selection.removeAllRanges();selection.addRange(range);
       const copied=document.execCommand('copy');selection.removeAllRanges();if(!copied){toast('無法自動複製，請手動抄寫設定碼','error');return;}}
     toast('已複製 Matter 設定碼','success');};
+  const receiptErrors={'storage-error':'裝置未能保存，請稍後再試','window-error':'無法開啟配對視窗','failsafe-timeout':'配對流程逾時，請稍後再試',
+    'relay-failed':'MCU 未確認切換，請再試一次','relay-timeout':'MCU 沒有回應，請稍後再試','relay-busy':'插座正在處理其他指令，請稍候再試'};
   async function waitReceipt(id){const until=Date.now()+60000;while(Date.now()<until){await sleep(1000);const r=await fetch('/admin/state',{cache:'no-store'});if(!r.ok)continue;const {matter}=await r.json();
-      if(matter?.request_id===id){if(matter.result==='complete')return;if(['storage-error','window-error','failsafe-timeout'].includes(matter.result))throw Error('裝置未完成操作：'+matter.result);}}
+      if(matter?.request_id===id){if(matter.result==='complete')return;if(receiptErrors[matter.result])throw Error(receiptErrors[matter.result]);}}
     throw Error('尚未收到完成回應，請檢查目前狀態，勿重複操作');}
   function restarting(text){toast(text+'。請保持供電，重啟後可用同一個管理網址登入。','success');drawAuth({authenticated:false,configured:true});}
   $('protocol-save').onclick=()=>run(async()=>{const mode=document.querySelector('input[name="protocol"]:checked').value;const data=await api('/protocol',mode);protocolDirty=false;
@@ -230,10 +233,21 @@ if(typeof document!=='undefined')(async()=>{
   drop.addEventListener('drop',e=>{if(e.dataTransfer?.files?.length){$('package').files=e.dataTransfer.files;drawPackage();}});
   $('manual').onclick=()=>{const file=$('package').files[0];if(!file){toast('請先選擇 .ota 更新包','error');return;}
     run(()=>installJob(async()=>{const b=new Uint8Array(await file.arrayBuffer());if(b.length<256)throw Error('更新檔案不完整');return [b,new DataView(b.buffer).getUint32(20)];},false),$('manual'));};
-  async function monitor(){if(!document.hidden&&!busy){const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),4000);try{
+  async function sample(){const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),4000);try{
       const r=await fetch('/measurements',{cache:'no-store',signal:controller.signal});if(!r.ok)throw Error();drawMeter(await r.json());
     }catch{drawMeter(null,true);}finally{clearTimeout(timer);}}
-    setTimeout(monitor,2000);}
+  async function monitor(){if(!document.hidden&&!busy)await sample();setTimeout(monitor,2000);}
+  function drawRelay(){const b=$('relay-toggle'),t=$('relay-toggle-text');if(relayBusy)return;
+    b.dataset.state=relayState===true?'on':relayState===false?'off':'';b.title='';
+    if(!auth.authenticated){b.disabled=auth.configured===false;t.textContent='登入後可開關';return;}
+    if(protocol&&protocol.active!=='matter'){b.disabled=true;t.textContent='請用家庭 App 開關';
+      b.title=protocol.active==='homekit'?'HomeKit 模式由原廠程式控制插座，請使用家庭 App 或實體按鍵':'維修模式無法遠端開關';return;}
+    b.disabled=relayState===null||busy;t.textContent=relayState===true?'關閉插座':relayState===false?'開啟插座':'狀態未知';}
+  $('relay-toggle').onclick=async()=>{if(!auth.authenticated){openLogin('登入後即可開關插座。');return;}if(relayBusy||busy||relayState===null)return;
+    const on=!relayState;if(!on&&!await ask('關閉後，插在這個插座上的電器會斷電。','關閉插座？','關閉'))return;
+    const b=$('relay-toggle');relayBusy=true;b.disabled=true;b.classList.add('loading');
+    try{const r=await api('/admin/relay-'+(on?'on':'off'));await waitReceipt(r.request_id);relayState=on;toast(on?'插座已開啟':'插座已關閉','success');}
+    catch(e){toast(e.message,'error');}finally{relayBusy=false;b.classList.remove('loading');await sample();drawRelay();}};
   async function statePoll(){if(!document.hidden&&!busy){try{await refresh();await authRefresh();await settingsRefresh();if(catalog.state==='idle')checkUpdates();}catch{}}setTimeout(statePoll,10000);}
   document.addEventListener('visibilitychange',()=>{if(document.hidden)drawMeter(null);});
   try{await refresh();await authRefresh();}catch{const pill=$('live-state');pill.dataset.state='offline';pill.lastElementChild.textContent='連線中斷';}

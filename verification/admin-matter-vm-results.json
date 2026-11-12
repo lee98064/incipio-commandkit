@@ -2,8 +2,43 @@
   "status": "pass",
   "environment": "actual MIPS SDK, 64 MiB Malta VM, daemon limited to 8 MiB AS, serial MCU and NOR file fixtures",
   "real_outlet": false,
-  "binary_sha256": "45f861b4ead114248fb3edb29945d3414cd63953c0d75807f7555a78b81f7d0e",
+  "binary_sha256": "e5ba4b46276488e252a053fc141e6755b3704664668b9c78d2d537eb40c0bda9",
+  "logs": "/var/folders/7f/mr8bzynd6fsd0ycf1_db6tnh0000gn/T/ck-matter-reset-vm-2newrs65",
+  "relay_receipts": [
+    {
+      "updated_s": 6,
+      "request_id": "3d6c8b6ef0010974584ff9a7481a9c1151a7b5d0c775b5509a30a3d91cf18917",
+      "action": "relay-on",
+      "result": "complete",
+      "fabrics": 1,
+      "window_open": false,
+      "window_seconds": 0,
+      "failsafe_armed": false
+    },
+    {
+      "updated_s": 7,
+      "request_id": "7d463ee98cf2f40e507b3bec4841282859d8a0dbbf05d52adaf81da98a8a8999",
+      "action": "relay-off",
+      "result": "complete",
+      "fabrics": 1,
+      "window_open": false,
+      "window_seconds": 0,
+      "failsafe_armed": false
+    },
+    {
+      "updated_s": 10,
+      "request_id": "c5e5f80db079c16b25828c52385a22dede951f2b6fcb3f214ddc3c72d6c39c6f",
+      "action": "relay-on",
+      "result": "relay-failed",
+      "fabrics": 1,
+      "window_open": false,
+      "window_seconds": 0,
+      "failsafe_armed": false
+    }
+  ],
   "checks": [
+    "real authenticated HTTP relay-on/off reaches exact 14-byte MCU frame, matching complete receipt, /measurements and Matter OnOff attribute",
+    "non-confirming MCU returns relay-failed with relay unknown; operation lock and shared engine exclude web/Matter commands in both directions; lock releases for recovery",
     "authenticated open-window retains completed fabric and encrypted CASE control",
     "open-window expires incomplete PASE fail-safe and reopens while retaining completed fabric",
     "password-authenticated kWh reset commits zero in actual SDK owner and stays zero after next 30-second save",
