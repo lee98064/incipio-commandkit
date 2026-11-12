@@ -1,0 +1,89 @@
+name: Deploy site and update feed
+on:
+  release:
+    types: [published]
+  push:
+    branches: [main]
+    paths: ['site/**', '.github/workflows/pages.yml', 'tools/pages_site.py']
+    tags: ['updates-v*']
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Published release tag (empty selects newest firmware release)
+        required: false
+        type: string
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  # Keep the existing update-feed group to serialize all feed deployments.
+  group: update-feed
+  cancel-in-progress: false
+jobs:
+  publish:
+    runs-on: ubuntu-24.04
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+        with:
+          python-version: '3.12'
+      - run: pip install -r tools/requirements.txt
+      - name: Resolve published firmware release
+        id: release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          EVENT_TAG: ${{ github.event.release.tag_name }}
+          INPUT_TAG: ${{ inputs.tag }}
+        run: |
+          RELEASE_TAG=$(python3 tools/pages_site.py resolve --release-tag "$EVENT_TAG" --dispatch-tag "$INPUT_TAG" --ref-type "$GITHUB_REF_TYPE" --ref-name "$GITHUB_REF_NAME")
+          echo "tag=$RELEASE_TAG" >> "$GITHUB_OUTPUT"
+      - name: Build site and verify published firmware
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_TAG: ${{ steps.release.outputs.tag }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          test -d site || { echo 'Missing site/'; exit 1; }
+          if [ -e site/updates ] || [ -L site/updates ]; then
+            echo 'site/updates is reserved for verified release assets'; exit 1
+          fi
+          mkdir -p _site
+          cp -R site/. _site/
+          mkdir -p _site/updates
+          gh release download "$RELEASE_TAG" --pattern '*.ota' --pattern 'matter.json' --dir _site/updates
+          python3 tools/ota.py verify _site/updates/matter.ota --public third_party/ota-signing.pub
+          if [ -f _site/updates/exec-test.ota ]; then
+            gh release download "$RELEASE_TAG" --pattern 'exec-test.json' --dir _site/updates
+            python3 tools/ota.py verify _site/updates/exec-test.ota --public third_party/ota-signing.pub
+          fi
+          python3 tools/ota.py catalog _site/updates/*.ota --base-url "https://${GITHUB_REPOSITORY_OWNER}.github.io/${GITHUB_REPOSITORY#*/}/updates" --output _site/updates/index.json
+          python3 - <<'PYTHON'
+          import json,urllib.request,urllib.error
+          url=json.load(open('version.json'))['catalog_url']
+          try:
+              with urllib.request.urlopen(url,timeout=30) as source:old=json.load(source)
+          except urllib.error.HTTPError as error:
+              if error.code!=404:raise
+              old={'updates':[]}
+          incoming=json.load(open('_site/updates/index.json'))
+          import sys
+          sys.path.insert(0,'tools')
+          from ota import validate_catalog_upgrade
+          validate_catalog_upgrade(old,incoming)
+          PYTHON
+          touch _site/.nojekyll
+      - uses: actions/configure-pages@983d7736d9b0ae728b81ab479565c72886d7745b # v5
+      - uses: actions/upload-pages-artifact@56afc609e74202658d3ffba0e8f6dda462b719fa # v3
+        with:
+          path: _site
+      - uses: actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e # v4
+        id: deployment
+      - name: Smoke-test site and update feed
+        env:
+          PAGE_URL: ${{ steps.deployment.outputs.page_url }}
+        run: python3 tools/pages_site.py smoke "$PAGE_URL" _site
