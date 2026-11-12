@@ -20,7 +20,12 @@ English: [README.en.md](README.en.md)
 
 ## 安裝說明
 
-從[安裝網站](https://lee98064.github.io/incipio-commandkit/)開始；備份、個別化、限定區域寫入與復原見[燒錄說明](docs/install/flashing.md)。符合條件的原廠 10219／Bank 2 可使用[網頁首次安裝](docs/install/factory-install.md)。
+從[安裝網站](https://lee98064.github.io/incipio-commandkit/)開始。首次安裝有兩種方式：
+
+| 方式 | 適用 | 說明 |
+|---|---|---|
+| **原廠網頁上傳（不必拆機）** | 原廠 `10219-1531`、Active Bank 2、已啟用 Dual Firmware | 在原廠 `/upload.htm` 上傳 Release 的 `commandkit-matter-v0.3.0-public-first-install.bin`，已實機驗證，見[網頁首次安裝](docs/install/factory-install.md) |
+| **燒錄器** | 任何原廠版本 | CH341A 備份、個別化並只寫入 Bank 1 rootfs，見[燒錄說明](docs/install/flashing.md) |
 
 已安裝自訂韌體：開啟 `http://插座IP:18082/`，登入後在「更新」分頁下載安裝，或手動上傳 Release 的 `matter.ota`。一般 OTA 保留身分、Wi-Fi、密碼、配對與累積 kWh；從無管理密碼的舊版首次升級須重新設定 Wi-Fi 及密碼。詳見[更新說明](docs/guide/updates.md)。
 

@@ -100,6 +100,9 @@ class StartupRecovery(unittest.TestCase):
                 ready.touch();until=time.monotonic()+3
                 while not (self.work/'var/run/ck-identity-ready').exists() and time.monotonic()<until:time.sleep(.02)
                 self.assertTrue((self.work/'var/run/ck-identity-ready').exists())
+                # ck-ota-start creates ready and then removes pending; allow that second step to land.
+                until=time.monotonic()+1
+                while pending.exists() and time.monotonic()<until:time.sleep(.01)
                 self.assertFalse(pending.exists())
             finally:
                 try:os.killpg(process.pid,signal.SIGTERM)

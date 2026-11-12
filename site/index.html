@@ -76,16 +76,25 @@
 <section class="block" id="install"><div class="wrap">
 <span class="kicker">安裝說明</span>
 <h2 class="title">安裝與使用說明書</h2>
-<p class="sub">請依章節順序操作。首次安裝需要拆機並使用燒錄器；完成後，之後的更新都能從網頁進行。</p>
-<div class="callout danger" id="safety" role="note"><svg class="i"><use href="#i-alert"/></svg><div><span class="ct">警告：市電有觸電危險</span>
+<p class="sub">請依章節順序操作。符合條件的原廠插座可以直接從原廠網頁上傳，不必拆機；其他情況使用燒錄器。安裝完成後，之後的更新都能從網頁進行。</p>
+<div class="callout danger" id="safety" role="note"><svg class="i"><use href="#i-alert"/></svg><div><span class="ct">警告：市電有觸電危險（拆機與燒錄時）</span>
 <ul><li>拆機與燒錄前，<b>務必拔除插座電源</b>，並確認沒有其他電源接入。</li><li>插座接上市電時，<b>切勿連接</b> USB 燒錄器、UART 或任何接地設備。</li><li>GD25Q64 快閃記憶體只能使用 <b>3.3 V</b>；部分黑色 CH341A 燒錄器的訊號電壓需先量測確認。</li><li>完成後移除燒錄器與所有外接線，裝回外殼，再接上市電。</li><li>本韌體為預覽版，<b>並非 Incipio 官方軟體</b>。改裝可能使保固失效，請自行承擔風險。</li></ul></div></div>
 
 <div class="manual">
-<nav class="toc" aria-label="章節"><b>章節</b><a href="#ch-prepare">1　準備</a><a href="#ch-flash">2　首次安裝韌體</a><a href="#ch-setup">3　首次設定</a><a href="#ch-home">4　加入智慧家庭</a><a href="#ch-use">5　日常使用與更新</a><a href="#ch-reset">6　重設與復原</a><a href="#faq">常見問題</a></nav>
+<nav class="toc" aria-label="章節"><b>章節</b><a href="#ch-prepare">1　選擇安裝方式</a><a href="#ch-flash">2　首次安裝韌體</a><a href="#ch-setup">3　首次設定</a><a href="#ch-home">4　加入智慧家庭</a><a href="#ch-use">5　日常使用與更新</a><a href="#ch-reset">6　重設與復原</a><a href="#faq">常見問題</a></nav>
 <div>
 
-<article class="chapter" id="ch-prepare"><div class="chapter-head"><span class="chapter-no">第<b>1</b>章</span><h3>準備</h3></div>
-<p class="intro">開始之前，請確認下列物品與環境。</p>
+<article class="chapter" id="ch-prepare"><div class="chapter-head"><span class="chapter-no">第<b>1</b>章</span><h3>選擇安裝方式</h3></div>
+<p class="intro">首次安裝有兩種方式。請先在原廠更新頁 <code>http://插座IP/upload.htm</code> 確認插座的韌體版本與設定，再選擇適合的方式。</p>
+<div class="methods">
+<div class="method rec"><span class="badge">推薦・不必拆機</span><h4>方式 A：原廠網頁上傳</h4><p>直接在原廠更新頁上傳首次安裝檔，已在實體插座實測成功。</p>
+<dl><dt>適用條件（需全部符合）</dt><dd>原廠韌體 <code>10219-1531</code>、目前使用 Active Bank 2、已勾選 Enable Dual Firmware</dd><dt>需要準備</dt><dd>與插座在同一網路的手機或電腦、首次安裝檔</dd></dl>
+<a class="more" href="#method-a">前往方式 A 步驟<svg class="i"><use href="#i-arrow"/></svg></a></div>
+<div class="method"><span class="badge">適用所有版本</span><h4>方式 B：燒錄器</h4><p>拆機並以燒錄器只寫入第一槽，適用任何原廠版本。</p>
+<dl><dt>適用情況</dt><dd>不符合方式 A 的條件，或需要從燒錄器復原</dd><dt>需要準備</dt><dd>CH341A（3.3 V）與 SOIC-8 測試夾、macOS／Linux 電腦</dd></dl>
+<a class="more" href="#method-b">前往方式 B 步驟<svg class="i"><use href="#i-arrow"/></svg></a></div>
+</div>
+<h4>方式 B 的準備清單</h4>
 <ul class="checklist">
 <li><svg class="i"><use href="#i-check"/></svg><span>CMNDKT-004 智慧插座（RTL8196E 與 GD25Q64 8 MiB 快閃記憶體）</span></li>
 <li><svg class="i"><use href="#i-check"/></svg><span>CH341A 燒錄器（確認為 3.3 V）與 SOIC-8 測試夾</span></li>
@@ -94,16 +103,30 @@
 <li><svg class="i"><use href="#i-check"/></svg><span>Release 的 <code>matter-8m-region.bin</code> 與 <code>.json</code></span></li>
 <li><svg class="i"><use href="#i-check"/></svg><span>保存備份用的私人資料夾（備份含這台插座的專屬資料，請勿公開）</span></li>
 </ul>
-<h4>取得安裝工具</h4>
 <div class="code"><pre>git clone https://github.com/lee98064/incipio-commandkit.git
 cd incipio-commandkit
 python3 -m pip install -r tools/requirements.txt</pre></div>
-<p class="intro">將下載的 <code>matter-8m-region.bin</code> 與 <code>matter-8m-region.json</code> 放到 <code>artifacts/releases/</code>。flashrom 的建置方式請參考<a href="https://github.com/lee98064/incipio-commandkit/blob/main/docs/development/build.md">建置說明</a>。</p>
+<p class="intro">將 <code>matter-8m-region.bin</code> 與 <code>matter-8m-region.json</code> 放到 <code>artifacts/releases/</code>。flashrom 的建置方式請參考<a href="https://github.com/lee98064/incipio-commandkit/blob/main/docs/development/build.md">建置說明</a>。</p>
 <div class="cta"><a class="btn outline" data-asset="matter-8m-region.bin" href="https://github.com/lee98064/incipio-commandkit/releases"><svg class="i"><use href="#i-download"/></svg>matter-8m-region.bin</a><a class="btn outline" data-asset="matter-8m-region.json" href="https://github.com/lee98064/incipio-commandkit/releases"><svg class="i"><use href="#i-download"/></svg>matter-8m-region.json</a></div>
 </article>
 
 <article class="chapter" id="ch-flash"><div class="chapter-head"><span class="chapter-no">第<b>2</b>章</span><h3>首次安裝韌體</h3></div>
-<p class="intro">工具會先讀取兩份完整備份並逐位元比對，再依備份產生這台插座專用的映像，最後只寫入第一槽檔案系統。晶片型號、備份內容或核對結果有任何不符，工具都會自動停止。</p>
+<p class="intro">依第 1 章選擇的方式操作。兩種方式都會保留 bootloader、MAC、無線校正、原廠 HomeKit 資料與第二槽原廠韌體。</p>
+
+<div class="method-title" id="method-a"><span>方式 A</span><h4>原廠網頁上傳（不必拆機）</h4></div>
+<ol class="steps">
+<li><b>下載首次安裝檔</b><p>下載 <code>commandkit-matter-v0.3.0-public-first-install.bin</code>。這是公開共用檔，不含任何裝置金鑰；每台插座第一次開機時會自行產生身分與 Matter 設定碼。</p>
+<div class="cta"><a class="btn outline" href="https://github.com/lee98064/incipio-commandkit/releases/download/v0.3.0-preview/commandkit-matter-v0.3.0-public-first-install.bin"><svg class="i"><use href="#i-download"/></svg>下載首次安裝檔</a></div></li>
+<li><b>開啟原廠更新頁並核對條件</b><p>插座裝好外殼、接上電源、不要接負載。在路由器的裝置清單找到插座 IP，以瀏覽器開啟 <code>http://插座IP/upload.htm</code>，確認韌體為 <code>10219-1531</code>、Active Bank 2、已勾選 Enable Dual Firmware。不要變更雙韌體設定。</p></li>
+<li><b>上傳</b><p>在頁面上方按 <b>Select File</b> 選擇首次安裝檔，再按 <b>Upload</b>。</p></li>
+<li><b>等待重新開機</b><p>等待頁面倒數與重新開機，<b>期間請保持供電</b>。不要按「Reboot Form Backup Bank Now」。第一次開機會先產生裝置身分，可能比平常久一些。</p></li>
+<li><b>進行首次設定</b><p>出現 <code>CommandKit-Setup-XXXXXX</code> 熱點後，依<a href="#ch-setup">第 3 章</a>完成設定。</p></li>
+</ol>
+<div class="callout warn"><svg class="i"><use href="#i-alert"/></svg><p><b>首次安裝檔只用在原廠插座。</b>它會初始化資料區；已安裝本韌體的插座請用管理後台更新，否則會清除配對、管理密碼與累積用電。<code>matter.ota</code> 與 <code>matter-8m-region.bin</code> 也不能在原廠更新頁使用。</p></div>
+<a class="more" href="https://github.com/lee98064/incipio-commandkit/blob/main/docs/install/factory-install.md">原廠網頁安裝完整說明<svg class="i"><use href="#i-arrow"/></svg></a>
+
+<div class="method-title" id="method-b"><span>方式 B</span><h4>燒錄器</h4></div>
+<p class="intro" style="margin-top:0">工具會先讀取兩份完整備份並逐位元比對，再依備份產生這台插座專用的映像，最後只寫入第一槽檔案系統。晶片型號、備份內容或核對結果有任何不符，工具都會自動停止。</p>
 <ol class="steps">
 <li><b>斷電並接上燒錄器</b><p>拔除插座電源並拆開外殼，以測試夾夾住 GD25Q64（注意 pin 1 方向），再連接 CH341A。</p></li>
 <li><b>讀取兩份備份</b>
@@ -126,9 +149,7 @@ python3 -m pip install -r tools/requirements.txt</pre></div>
 <li><b>移除燒錄器並裝回外殼</b><p>拆下測試夾與所有接線，裝回外殼後再插上電源。</p></li>
 </ol>
 <div class="callout"><svg class="i"><use href="#i-info"/></svg><p><b>核對結果不明時，請勿接上市電。</b>保留 session 資料夾與原始備份，可以使用 <code>tools/flash.py restore</code> 取回原本的檔案系統。</p></div>
-<h4>另一種方式：從原廠網頁首次安裝</h4>
-<p class="intro" style="margin-top:0">原廠韌體為 10219-1531、目前使用第 2 槽（Active Bank 2）且已啟用 Dual Firmware 的插座，可以自行產生「網頁首次安裝檔」，從原廠更新頁上傳，不必拆機。此方式尚未完成原機驗收，操作前請先閱讀說明。</p>
-<a class="more" href="https://github.com/lee98064/incipio-commandkit/blob/main/docs/install/factory-install.md">原廠網頁首次安裝說明<svg class="i"><use href="#i-arrow"/></svg></a>　<a class="more" href="https://github.com/lee98064/incipio-commandkit/blob/main/docs/install/flashing.md">完整燒錄與復原說明<svg class="i"><use href="#i-arrow"/></svg></a>
+<a class="more" href="https://github.com/lee98064/incipio-commandkit/blob/main/docs/install/flashing.md">完整燒錄與復原說明<svg class="i"><use href="#i-arrow"/></svg></a>
 </article>
 
 <article class="chapter" id="ch-setup"><div class="chapter-head"><span class="chapter-no">第<b>3</b>章</span><h3>首次設定</h3></div>
@@ -189,6 +210,7 @@ python3 -m pip install -r tools/requirements.txt</pre></div>
 <details><summary>設定熱點一直重新出現？</summary><div class="a"><p>表示插座尚未連上家中 Wi-Fi。請確認選擇的是 2.4 GHz 網路、密碼正確，且路由器沒有設定為僅限 WPA3。重新連接 CommandKit-Setup 後再設定一次。</p></div></details>
 <details><summary>找不到插座的 IP？</summary><div class="a"><p>請在路由器的「已連線裝置」或 DHCP 清單中尋找。建議在路由器為插座保留固定 IP，日後較容易開啟管理後台。</p></div></details>
 <details><summary>更新到一半斷電怎麼辦？</summary><div class="a"><p>更新器會先寫入資料，最後才補回檔案系統標記並讀回核對。新版啟動失敗時，插座會保留維修入口，可以再安裝較新的修正版；若完全無法開機，需要以燒錄器復原。這不是完整的 A/B 自動回退機制。</p></div></details>
+<details><summary>我的插座可以不拆機安裝嗎？</summary><div class="a"><p>原廠韌體為 10219-1531、目前使用 Active Bank 2 且已啟用 Dual Firmware 的插座，可以用第 2 章的方式 A 從原廠網頁上傳。其他版本請使用燒錄器（方式 B）。</p></div></details>
 <details><summary>可以把 8 MiB 的 BIN 直接整片燒進晶片嗎？</summary><div class="a"><p>不行。<code>matter-8m-region.bin</code> 是「部分燒錄映像」，只有第一槽檔案系統有內容，其餘區域為 0xFF。必須用工具依你的備份個別化，並只寫入指定範圍。</p></div></details>
 <details><summary>我的資料會上傳到雲端嗎？</summary><div class="a"><p>不會。插座的管理與量測都在家中網路內完成。只有在你開啟管理後台時，瀏覽器會向本網站讀取更新索引。</p></div></details>
 <details><summary>這是 Incipio 的官方韌體嗎？</summary><div class="a"><p>不是。本專案與 Incipio 無關，是針對自有插座的研究與預覽韌體，請自行評估風險。</p></div></details>
@@ -198,7 +220,7 @@ python3 -m pip install -r tools/requirements.txt</pre></div>
 <span class="kicker">下載</span><h2 class="title">下載韌體</h2><p class="sub">已安裝本韌體的插座，直接在管理後台更新即可；以下檔案供手動更新與首次安裝使用。</p>
 <div class="downloads">
 <article class="dl main"><h3>線上更新包</h3><div class="ver" data-latest-version>v0.3.0-preview</div><p>matter.ota（<span data-latest-size>2.6 MB</span>），供已安裝本韌體的插座在管理後台手動更新。</p><a class="btn primary" href="updates/matter.ota"><svg class="i"><use href="#i-download"/></svg>下載 matter.ota</a></article>
-<article class="dl"><h3>首次安裝映像</h3><p>matter-8m-region.bin 與 .json，搭配燒錄工具個別化後使用，不可整片燒錄。</p><a class="btn solid" data-release-link href="https://github.com/lee98064/incipio-commandkit/releases">前往版本頁</a></article>
+<article class="dl"><h3>首次安裝檔</h3><p>原廠網頁上傳用的 first-install.bin（方式 A），以及燒錄器用的 matter-8m-region.bin／.json（方式 B，需個別化，不可整片燒錄）。</p><div class="cta"><a class="btn solid" href="https://github.com/lee98064/incipio-commandkit/releases/download/v0.3.0-preview/commandkit-matter-v0.3.0-public-first-install.bin"><svg class="i"><use href="#i-download"/></svg>原廠網頁安裝檔</a><a class="btn outline" data-release-link href="https://github.com/lee98064/incipio-commandkit/releases">版本頁</a></div></article>
 <article class="dl"><h3>原始碼與文件</h3><p>完整原始碼、逆向紀錄、建置方式與版本紀錄。</p><a class="btn outline" href="https://github.com/lee98064/incipio-commandkit"><svg class="i"><use href="#i-code"/></svg>GitHub</a></article>
 </div></div></section>
 </main>

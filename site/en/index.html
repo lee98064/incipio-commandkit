@@ -76,16 +76,25 @@
 <section class="block" id="install"><div class="wrap">
 <span class="kicker">Install guide</span>
 <h2 class="title">Install and use</h2>
-<p class="sub">Follow the chapters in order. The first install means opening the outlet and using a flash programmer. After that, every update happens in the browser.</p>
-<div class="callout danger" id="safety" role="note"><svg class="i"><use href="#i-alert"/></svg><div><span class="ct">Warning: mains electricity can kill</span>
+<p class="sub">Follow the chapters in order. Factory outlets that meet the conditions can be installed from the factory web page without opening them; otherwise you use a flash programmer. After the first install, every update happens in the browser.</p>
+<div class="callout danger" id="safety" role="note"><svg class="i"><use href="#i-alert"/></svg><div><span class="ct">Warning: mains electricity can kill (when opening or flashing)</span>
 <ul><li><b>Unplug the outlet</b> before opening it or flashing, and make sure nothing else is powering it.</li><li><b>Never connect</b> a USB programmer, UART adapter or any grounded device while the outlet is plugged in.</li><li>The GD25Q64 flash chip is <b>3.3 V only</b>. Some black CH341A boards put out higher signal levels, so measure first.</li><li>When you are done, remove the programmer and every wire, close the case, then plug it in.</li><li>This is preview firmware and <b>not official Incipio software</b>. Modifying the outlet may void its warranty. You do this at your own risk.</li></ul></div></div>
 
 <div class="manual">
-<nav class="toc" aria-label="Chapters"><b>CHAPTERS</b><a href="#ch-prepare">1　Get ready</a><a href="#ch-flash">2　First install</a><a href="#ch-setup">3　First setup</a><a href="#ch-home">4　Add to your home</a><a href="#ch-use">5　Everyday use &amp; updates</a><a href="#ch-reset">6　Reset &amp; restore</a><a href="#faq">FAQ</a></nav>
+<nav class="toc" aria-label="Chapters"><b>CHAPTERS</b><a href="#ch-prepare">1　Pick a method</a><a href="#ch-flash">2　First install</a><a href="#ch-setup">3　First setup</a><a href="#ch-home">4　Add to your home</a><a href="#ch-use">5　Everyday use &amp; updates</a><a href="#ch-reset">6　Reset &amp; restore</a><a href="#faq">FAQ</a></nav>
 <div>
 
-<article class="chapter" id="ch-prepare"><div class="chapter-head"><span class="chapter-no">CH<b>1</b></span><h3>Get ready</h3></div>
-<p class="intro">Here is what you need before you start.</p>
+<article class="chapter" id="ch-prepare"><div class="chapter-head"><span class="chapter-no">CH<b>1</b></span><h3>Pick an install method</h3></div>
+<p class="intro">There are two ways to do the first install. Check the outlet’s firmware and settings on its factory update page, <code>http://outlet-ip/upload.htm</code>, then pick one.</p>
+<div class="methods">
+<div class="method rec"><span class="badge">Recommended · no opening</span><h4>Method A: factory web upload</h4><p>Upload the first-install file on the factory update page. This has been tested on a real outlet.</p>
+<dl><dt>Works when all of these are true</dt><dd>Factory firmware <code>10219-1531</code>, running from Active Bank 2, Enable Dual Firmware ticked</dd><dt>You need</dt><dd>A phone or computer on the same network, and the first-install file</dd></dl>
+<a class="more" href="#method-a">Go to method A<svg class="i"><use href="#i-arrow"/></svg></a></div>
+<div class="method"><span class="badge">Any version</span><h4>Method B: flash programmer</h4><p>Open the outlet and write only the first slot with a programmer. Works with any factory version.</p>
+<dl><dt>Use it when</dt><dd>Method A’s conditions don’t match, or you need to recover with a programmer</dd><dt>You need</dt><dd>A CH341A (3.3 V) with a SOIC-8 clip and a Mac or Linux computer</dd></dl>
+<a class="more" href="#method-b">Go to method B<svg class="i"><use href="#i-arrow"/></svg></a></div>
+</div>
+<h4>What method B needs</h4>
 <ul class="checklist">
 <li><svg class="i"><use href="#i-check"/></svg><span>A CMNDKT-004 outlet (RTL8196E with a GD25Q64 8 MiB flash chip)</span></li>
 <li><svg class="i"><use href="#i-check"/></svg><span>A CH341A programmer set to 3.3 V and a SOIC-8 test clip</span></li>
@@ -94,7 +103,6 @@
 <li><svg class="i"><use href="#i-check"/></svg><span><code>matter-8m-region.bin</code> and <code>.json</code> from the release</span></li>
 <li><svg class="i"><use href="#i-check"/></svg><span>A private folder for backups (they contain data unique to your outlet, so keep them to yourself)</span></li>
 </ul>
-<h4>Get the tools</h4>
 <div class="code"><pre>git clone https://github.com/lee98064/incipio-commandkit.git
 cd incipio-commandkit
 python3 -m pip install -r tools/requirements.txt</pre></div>
@@ -103,7 +111,22 @@ python3 -m pip install -r tools/requirements.txt</pre></div>
 </article>
 
 <article class="chapter" id="ch-flash"><div class="chapter-head"><span class="chapter-no">CH<b>2</b></span><h3>First install</h3></div>
-<p class="intro">The tool reads two full backups and compares them byte by byte, builds an image made for your outlet from that backup, then writes only the first-slot file system. If the chip, the backups or any check doesn’t match, it stops.</p>
+<p class="intro">Follow the method you picked in chapter 1. Both keep the bootloader, MAC address, radio calibration, original HomeKit data and the factory firmware in the second slot.</p>
+
+<div class="method-title" id="method-a"><span>Method A</span><h4>Factory web upload (no opening)</h4></div>
+<ol class="steps">
+<li><b>Download the first-install file</b><p>Get <code>commandkit-matter-v0.3.0-public-first-install.bin</code>. It’s a shared public file with no device keys; each outlet creates its own identity and Matter code the first time it starts.</p>
+<div class="cta"><a class="btn outline" href="https://github.com/lee98064/incipio-commandkit/releases/download/v0.3.0-preview/commandkit-matter-v0.3.0-public-first-install.bin"><svg class="i"><use href="#i-download"/></svg>Download first-install file</a></div></li>
+<li><b>Open the factory update page and check</b><p>Close the case, plug the outlet in, and leave nothing plugged into it. Find its IP in your router’s device list and open <code>http://outlet-ip/upload.htm</code>. Check it shows <code>10219-1531</code>, Active Bank 2 and Enable Dual Firmware ticked. Don’t change the dual-firmware setting.</p></li>
+<li><b>Upload</b><p>At the top of the page, click <b>Select File</b>, choose the first-install file, then click <b>Upload</b>.</p></li>
+<li><b>Wait for the restart</b><p>Wait for the countdown and restart, and <b>keep the outlet powered</b>. Don’t click “Reboot Form Backup Bank Now”. The first start creates the device identity, so it can take a little longer.</p></li>
+<li><b>Set it up</b><p>When the <code>CommandKit-Setup-XXXXXX</code> hotspot appears, continue with <a href="#ch-setup">chapter 3</a>.</p></li>
+</ol>
+<div class="callout warn"><svg class="i"><use href="#i-alert"/></svg><p><b>The first-install file is for factory outlets only.</b> It resets the data area. If the outlet already runs this firmware, update it from the dashboard instead, or you’ll lose pairings, the admin password and the energy total. <code>matter.ota</code> and <code>matter-8m-region.bin</code> don’t work on the factory update page.</p></div>
+<a class="more" href="https://github.com/lee98064/incipio-commandkit/blob/main/docs/install/factory-install.md">Factory web install guide (Chinese)<svg class="i"><use href="#i-arrow"/></svg></a>
+
+<div class="method-title" id="method-b"><span>Method B</span><h4>Flash programmer</h4></div>
+<p class="intro" style="margin-top:0">The tool reads two full backups and compares them byte by byte, builds an image made for your outlet from that backup, then writes only the first-slot file system. If the chip, the backups or any check doesn’t match, it stops.</p>
 <ol class="steps">
 <li><b>Unplug and connect the programmer</b><p>Unplug the outlet, open the case, clip onto the GD25Q64 (mind pin 1) and connect the CH341A.</p></li>
 <li><b>Read two backups</b>
@@ -126,9 +149,7 @@ python3 -m pip install -r tools/requirements.txt</pre></div>
 <li><b>Remove the programmer and close the case</b><p>Take off the clip and every wire, put the case back together, then plug the outlet in.</p></li>
 </ol>
 <div class="callout"><svg class="i"><use href="#i-info"/></svg><p><b>If a check is unclear, don’t plug it in.</b> Keep the session folders and the original backups; <code>tools/flash.py restore</code> brings back the original file system.</p></div>
-<h4>Another way: install from the factory web page</h4>
-<p class="intro" style="margin-top:0">Outlets on factory firmware 10219-1531, running from slot 2 (Active Bank 2) with Dual Firmware enabled, can use a self-built “first-install file” uploaded through the factory update page, with no need to open the case. This path has not been tested on real hardware yet, so read the guide first.</p>
-<a class="more" href="https://github.com/lee98064/incipio-commandkit/blob/main/docs/install/factory-install.md">Factory web install (Chinese)<svg class="i"><use href="#i-arrow"/></svg></a>　<a class="more" href="https://github.com/lee98064/incipio-commandkit/blob/main/docs/install/flashing.md">Full flashing &amp; restore guide (Chinese)<svg class="i"><use href="#i-arrow"/></svg></a>
+<a class="more" href="https://github.com/lee98064/incipio-commandkit/blob/main/docs/install/flashing.md">Full flashing &amp; restore guide (Chinese)<svg class="i"><use href="#i-arrow"/></svg></a>
 </article>
 
 <article class="chapter" id="ch-setup"><div class="chapter-head"><span class="chapter-no">CH<b>3</b></span><h3>First setup</h3></div>
@@ -189,6 +210,7 @@ python3 -m pip install -r tools/requirements.txt</pre></div>
 <details><summary>The setup hotspot keeps coming back</summary><div class="a"><p>The outlet couldn’t join your Wi-Fi. Make sure you picked a 2.4 GHz network, typed the right password, and your router isn’t set to WPA3 only. Join CommandKit-Setup again and redo the setup.</p></div></details>
 <details><summary>I can’t find the outlet’s IP address</summary><div class="a"><p>Look in your router’s connected devices or DHCP list. Reserving a fixed IP for the outlet makes the dashboard easier to reach later.</p></div></details>
 <details><summary>What if the power goes out during an update?</summary><div class="a"><p>The updater writes the data first and restores the file-system marker last, then reads everything back. If the new version fails to start, the outlet keeps a recovery page where you can install a newer fix. If it can’t boot at all, you’ll need the programmer to restore it. This is not a full A/B automatic rollback.</p></div></details>
+<details><summary>Can I install without opening the outlet?</summary><div class="a"><p>Yes, if it runs factory firmware 10219-1531 from Active Bank 2 with Dual Firmware enabled: use method A in chapter 2. Other versions need the programmer (method B).</p></div></details>
 <details><summary>Can I flash the 8 MiB BIN onto the whole chip?</summary><div class="a"><p>No. <code>matter-8m-region.bin</code> is a partial image: only the first-slot file system has data and the rest is 0xFF. Use the tool to build it from your own backup and write only the allowed range.</p></div></details>
 <details><summary>Does any of my data go to the cloud?</summary><div class="a"><p>No. Control and measurements stay on your home network. The only outside request is your browser reading the update feed from this site when you open the dashboard.</p></div></details>
 <details><summary>Is this official Incipio firmware?</summary><div class="a"><p>No. This project has nothing to do with Incipio. It is research and preview firmware for outlets the author owns. Weigh the risks yourself.</p></div></details>
@@ -198,7 +220,7 @@ python3 -m pip install -r tools/requirements.txt</pre></div>
 <span class="kicker">Download</span><h2 class="title">Download</h2><p class="sub">If your outlet already runs this firmware, just update from the dashboard. These files are for manual updates and first installs.</p>
 <div class="downloads">
 <article class="dl main"><h3>Update package</h3><div class="ver" data-latest-version>v0.3.0-preview</div><p>matter.ota (<span data-latest-size>2.6 MB</span>) for outlets that already run this firmware. Upload it from the dashboard.</p><a class="btn primary" href="../updates/matter.ota"><svg class="i"><use href="#i-download"/></svg>Download matter.ota</a></article>
-<article class="dl"><h3>First-install image</h3><p>matter-8m-region.bin and .json. Personalize it with the flashing tool; never flash it over the whole chip.</p><a class="btn solid" data-release-link href="https://github.com/lee98064/incipio-commandkit/releases">Open the release</a></article>
+<article class="dl"><h3>First-install files</h3><p>first-install.bin for the factory web upload (method A), and matter-8m-region.bin/.json for the programmer (method B; personalize it, never flash the whole chip).</p><div class="cta"><a class="btn solid" href="https://github.com/lee98064/incipio-commandkit/releases/download/v0.3.0-preview/commandkit-matter-v0.3.0-public-first-install.bin"><svg class="i"><use href="#i-download"/></svg>Factory web file</a><a class="btn outline" data-release-link href="https://github.com/lee98064/incipio-commandkit/releases">Release page</a></div></article>
 <article class="dl"><h3>Source &amp; docs</h3><p>Full source, reverse-engineering notes, build steps and change log.</p><a class="btn outline" href="https://github.com/lee98064/incipio-commandkit"><svg class="i"><use href="#i-code"/></svg>GitHub</a></article>
 </div></div></section>
 </main>
