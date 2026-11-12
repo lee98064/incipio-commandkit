@@ -1,0 +1,9 @@
+{
+  "status": "pass",
+  "archive": "commandkit-v0.2.10-signed-ota.zip",
+  "bytes": 4950987,
+  "sha256": "2098b87b80e052f179e2f40007965344f384c0fe17e28c16c4bfc819358aa672",
+  "ota_sha256": "cfa7a12dcc57bd3e7f25768f51f1ec3e207ab79d7c4b050e23d734734bab4e1e",
+  "archive_integrity": "pass",
+  "private_credentials_included": false
+}

@@ -1,0 +1,4 @@
+#!/bin/sh
+umask 077
+mkdir -p /var/run /var/lock /var/log
+exec /bin/ck-updater --run-protocol > /var/log/ck-protocol.log 2>&1

@@ -76,6 +76,37 @@ class Deployment(unittest.TestCase):
         self.assertEqual((self.profile / "diag.key").stat().st_mode & 0o777, 0o600)
         self.assertEqual(self.output.stat().st_mode & 0o777, 0o600)
 
+    def test_homekit_patch_preserves_original_elf_and_one_boot_owner(self):
+        root=self.release.read_bytes()[fw.START:fw.END]
+        meta=fw.read_file(root,'etc/ck-update.meta')
+        if struct.unpack('>III',meta)[2]<10:self.skipTest('protocol selection requires software version 10')
+        hap=fw.read_file(root,'bin/homekitserver')
+        original=bytearray(hap)
+        for offset,command in ((0x1ae5b8,b'flash default-sw\0'),(0x1ae5e0,b'homekitserver -c\0')):
+            action=b'/bin/ck-reset' if struct.unpack('>III',meta)[2]>=11 and command.startswith(b'flash') else b'true'
+            replacement=action.ljust(len(command)-1,b' ')+b'\0'
+            self.assertEqual(original[offset:offset+len(command)],replacement)
+            original[offset:offset+len(command)]=command
+        if struct.unpack('>III',meta)[2]>=11:
+            self.assertEqual(original[0x1b8e4:0x1b8e8],bytes.fromhex('24040000'))
+            original[0x1b8e4:0x1b8e8]=bytes.fromhex('24040001')
+        if struct.unpack('>III',meta)[2]>=13:
+            from homekit_led import restore
+            record=json.loads(fw.read_file(root,'etc/ck-homekit-led.json'))
+            original=restore(original,record)
+            self.assertEqual(fw.read_file(root,'etc/inittab').count(b'::respawn:/bin/ck-led-start\n'),1)
+        self.assertEqual(hashlib.sha256(original).hexdigest(),'2d50339436759f3d602c150fb4f1a42f0fdf122fc18e9a4f54f6e6b07d7a0c62')
+        inventory=fw.file_inventory(root)
+        self.assertNotIn('bin/boa',inventory)
+        self.assertFalse(any(n.startswith('web/') for n in inventory))
+        for name in ['libgcc_s.so.1','libapmib.so','libpthread.so.0','libdl.so.0','librt.so.0','libm.so.0','libc.so.0','ld-uClibc.so.0']:
+            self.assertIn('lib/'+name,inventory)
+        inittab=fw.read_file(root,'etc/inittab')
+        self.assertEqual(inittab.count(b'::respawn:/bin/ck-protocol-start\n'),1)
+        rc=fw.read_file(root,'etc/init.d/rcS')
+        for old in [b'\nhomekitserver\n',b'/bin/matter-test-start &',b'\nboa\n']:
+            self.assertNotIn(old,rc)
+
     def test_different_devices_get_different_keys(self):
         self.prepare()
         other = bytearray(self.before)
@@ -99,6 +130,7 @@ class Deployment(unittest.TestCase):
     def test_diagnostic_profile_uses_private_wpa2_credentials(self):
         release = Path(os.environ["CK_RELEASE_DIR"])
         image = release / "exec-test-8m-region.bin"
+        if not image.exists():self.skipTest("本版只交付 HomeKit／Matter 韌體")
         meta = json.loads((release / "exec-test-8m-region.json").read_text())
         meta["compatibility"] = fw.compatibility(self.before)
         manifest = self.work / "exec.json"

@@ -1,0 +1,31 @@
+{
+  "status": "pass",
+  "release": "v0.2.4-preview",
+  "software_version": 6,
+  "target_confirmed_by_user": {
+    "stock_version": "10219-1531",
+    "active_bank": 2,
+    "dual_firmware": true
+  },
+  "factory_image_size": 3997728,
+  "factory_image_sha256": "f9cb04be891a3ea725aa9628cfb4d22e9da37f5826b9fdeaea827c3550d343d9",
+  "checks": {
+    "native_update_tests": 25,
+    "mips_update_tests": 25,
+    "deployment_tests": 12,
+    "setup_control_tests": 2,
+    "original_boa_and_bootloader": "factory-boa-results.json",
+    "factory_to_next_ota": "factory-ota-results.json",
+    "public_rootfs_audit": "pass",
+    "production_mips_build_and_isa_audit": "pass"
+  },
+  "production_binaries": {
+    "ck-updater": "0bc3580c7833c1068ad664aad505b808f043b89ef25fdfc7ab90a0f05ff255ea",
+    "ck-updated": "44871971b20c9c6dcbedb223279c48aaddc1599f6192b92199e8fbccb922563b"
+  },
+  "production_matter_sha256": "3463308fe83048ff316ae4bf0041565575610e8cc08bc85c7fbc2d9ea562cbb7",
+  "physical_factory_install_tested": false,
+  "device_requests_sent": false,
+  "private_image_uploaded_to_github": false,
+  "keys_from_existing_outlet_reused": false
+}

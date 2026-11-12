@@ -48,8 +48,8 @@ static int scan(struct ck_flash *f,uint8_t pages[2*CK_ERASE_SIZE],int *latest) {
     }
     return 0;
 }
-int ck_energy_load(uint64_t *mwh,uint32_t *remainder) {
-    int lock=ck_lock(),result=-1,latest;
+static int load_energy(uint64_t *mwh,uint32_t *remainder,int nonblocking) {
+    int lock=nonblocking?ck_try_lock():ck_lock(),result=-1,latest;
     struct ck_flash f;uint8_t pages[2*CK_ERASE_SIZE];
     if(lock<0) return -1;
     if(ck_flash_open(&f,1,0)) goto done;
@@ -60,7 +60,9 @@ int ck_energy_load(uint64_t *mwh,uint32_t *remainder) {
 closed:close(f.fd);
 done:ck_unlock(lock);return result;
 }
-int ck_energy_save(uint64_t mwh,uint32_t remainder) {
+int ck_energy_load(uint64_t *mwh,uint32_t *remainder) { return load_energy(mwh,remainder,0); }
+int ck_energy_try_load(uint64_t *mwh,uint32_t *remainder) { return load_energy(mwh,remainder,1); }
+static int save_energy(uint64_t mwh,uint32_t remainder,int reset) {
     if(mwh>ENERGY_MAX || remainder>=DENOMINATOR) return -1;
     int lock=ck_lock(),result=-1,latest;
     struct ck_flash f;uint8_t pages[2*CK_ERASE_SIZE],record[RECORD],verify[RECORD];
@@ -71,7 +73,7 @@ int ck_energy_save(uint64_t mwh,uint32_t remainder) {
     if(seq==UINT64_MAX) goto closed;
     if(latest>=0) {
         uint64_t old=ck_be64(pages+latest*RECORD+16);uint32_t fraction=ck_be32(pages+latest*RECORD+24);
-        if(mwh<old || (mwh==old && remainder<fraction)) goto closed;
+        if(!reset && (mwh<old || (mwh==old && remainder<fraction))) goto closed;
         if(mwh==old && remainder==fraction) {result=0;goto closed;}
     }
     unsigned next=latest<0?0:((unsigned)latest+1)%COUNT;
@@ -101,3 +103,5 @@ int ck_energy_save(uint64_t mwh,uint32_t remainder) {
 closed:close(f.fd);
 done:ck_unlock(lock);return result;
 }
+int ck_energy_save(uint64_t mwh,uint32_t remainder) { return save_energy(mwh,remainder,0); }
+int ck_energy_reset(void) { return save_energy(0,0,1); }

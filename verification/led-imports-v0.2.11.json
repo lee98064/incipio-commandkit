@@ -1,0 +1,45 @@
+{
+  "format": "commandkit-led-imports-v1",
+  "original_sha256": "2d50339436759f3d602c150fb4f1a42f0fdf122fc18e9a4f54f6e6b07d7a0c62",
+  "architecture": "MIPS-I BE o32",
+  "import_count": 207,
+  "file_io": [
+    "fprintf",
+    "write",
+    "fopen",
+    "fclose",
+    "read",
+    "open"
+  ],
+  "clock": [
+    "sigtimedwait",
+    "localtime",
+    "time",
+    "sem_timedwait",
+    "gmtime",
+    "setitimer",
+    "mq_timedreceive",
+    "gettimeofday",
+    "clock_gettime",
+    "strftime"
+  ],
+  "threading": [
+    "pthread_setcancelstate",
+    "pthread_mutex_unlock",
+    "pthread_cancel",
+    "pthread_exit",
+    "pthread_cond_init",
+    "pthread_self",
+    "pthread_create",
+    "pthread_attr_destroy",
+    "pthread_mutex_destroy",
+    "pthread_kill",
+    "pthread_sigmask",
+    "pthread_mutex_lock",
+    "pthread_attr_init",
+    "pthread_mutex_init",
+    "pthread_attr_setdetachstate",
+    "pthread_setcanceltype"
+  ],
+  "provenance": "rabin2 -I/-ij against pinned public release base; reverse/decompiled/530000/homekitserver/functions"
+}

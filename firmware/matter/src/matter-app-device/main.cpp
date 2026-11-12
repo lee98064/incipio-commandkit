@@ -10,6 +10,8 @@
 #include <unistd.h>
 #include <csignal>
 #include <fcntl.h>
+#include <sys/stat.h>
+#include <cerrno>
 #include <app/CommandHandler.h>
 #include <system/SystemLayer.h>
 #include "../relay/McuController.h"
@@ -36,6 +38,9 @@
 #include "ElectricalMeasurements.h"
 #include "MatterOta.h"
 #include "Version.h"
+#include "../update/ck_common.h"
+#include "../update/ck_matter_control.h"
+#include "../update/ck_admin.h"
 static DeviceIdentityData deviceIdentity;
 using namespace chip;
 using namespace chip::app;
@@ -156,7 +161,8 @@ class TestPlug final : public SingleEndpoint {
 public:
     TestPlug():SingleEndpoint(Span<const DataModel::DeviceTypeEntry>(plugTypes)){}
     CHIP_ERROR InitEnergy(bool persistent) { return measurements.InitEnergy(persistent); }
-    void SaveEnergy() { LogErrorOnFailure(measurements.SaveEnergy(true)); }
+    CHIP_ERROR SaveEnergy() { return measurements.SaveEnergy(true); }
+    CHIP_ERROR ResetEnergy() { return measurements.ResetEnergy(); }
     void Poll() { onoff.Poll(); measurements.Poll(hardware.Snapshot(),incipio::McuController::Now()); }
     CHIP_ERROR Register(EndpointId id,CodeDrivenDataModelProvider&model,EndpointComposition c={}) override {
         ReturnErrorOnFailure(RegisterDescriptor(id,model,c));
@@ -184,10 +190,105 @@ static DefaultSafeAttributePersistenceProvider safeAttributes;
 static std::unique_ptr<CodeDrivenDataModelProvider> model;
 static std::unique_ptr<RootNode> root;
 static TestPlug plug;
+static char **restartArguments;
+static char controlId[65] = "", controlAction = 0;
+static const char *controlResult = "idle";
+static uint64_t controlDue = 0, controlDeadline = 0, windowDeadline = 0;
+static uint64_t nextControlReport = 0, lastPhysicalReset = 0, physicalDue = 0;
+static uint32_t seenResetEvents = 0;
+static bool resetOnBoot = false;
+static void ControlPublish() {
+    auto &s = Server::GetInstance();
+    uint64_t now = incipio::McuController::Now();
+    bool open = s.GetCommissioningWindowManager().IsCommissioningWindowOpen();
+    char text[512];
+    int n = std::snprintf(text,sizeof(text),
+        "{\"updated_s\":%llu,\"request_id\":\"%s\",\"action\":\"%s\",\"result\":\"%s\","
+        "\"fabrics\":%u,\"window_open\":%s,\"window_seconds\":%u,\"failsafe_armed\":%s}\n",
+        static_cast<unsigned long long>(now/1000),controlId,
+        controlAction == 'R' ? "reset-matter" : controlAction == 'O' ? "open-commissioning" : controlAction == 'E' ? "reset-energy" : "none",
+        controlResult,unsigned(s.GetFabricTable().FabricCount()),open ? "true" : "false",
+        unsigned(open && windowDeadline > now ? (windowDeadline-now+999)/1000 : 0),
+        s.GetFailSafeContext().IsFailSafeArmed() ? "true" : "false");
+    if (n > 0 && n < int(sizeof(text))) LogErrorOnFailure(
+        ck_atomic(CK_MATTER_STATE,text,n,0600) ? CHIP_ERROR_WRITE_FAILED : CHIP_NO_ERROR);
+}
+static void ControlFinish(const char *result) {
+    controlResult = result; controlDue = controlDeadline = 0;
+    unlink(CK_MATTER_REQUEST); rmdir(CK_MATTER_LOCK);
+    ControlPublish();
+}
+static void PhysicalResetPoll() {
+    uint64_t now=incipio::McuController::Now();auto snapshot=hardware.Snapshot();
+    if(snapshot.resetEvents!=seenResetEvents) {
+        seenResetEvents=snapshot.resetEvents;if(!physicalDue)physicalDue=now+500;
+    }
+    if(!physicalDue || now<physicalDue || !access(CK_PROTOCOL_PENDING,F_OK)) return;
+    int transfer=ck_transfer_lock();if(transfer<0)return;
+    if(!access("/var/run/ck-ota/queued",F_OK) || !access("/var/run/ck-network-changing",F_OK) || mkdir(CK_MATTER_LOCK,0700)) {close(transfer);return;}
+    if(plug.SaveEnergy()!=CHIP_NO_ERROR || ck_factory_request()) {
+        rmdir(CK_MATTER_LOCK);close(transfer);physicalDue=now+3000;return;
+    }
+    close(transfer);
+    std::puts("FACTORY_RESET_REQUESTED: Wi-Fi, admin, pairings and energy clear on reboot");
+    hardware.Stop();
+    if(isVm)_exit(0);
+    execl("/bin/reboot","reboot",(char *)nullptr);_exit(1);
+}
+static void ControlPoll(uint64_t now, const incipio::RelaySnapshot &) {
+    // A protocol handoff owns the operation lock until reboot. Never clear it
+    // or start a physical reset if this process was restarted in that window.
+    if (access(CK_PROTOCOL_PENDING,F_OK)==0) return;
+    if (!controlDue) {
+        char request[67];
+        if (!ck_exact_file(CK_MATTER_REQUEST,request,sizeof(request))) {
+            bool valid = (request[0]=='R' || request[0]=='O' || request[0]=='E') && request[1]==' ' && request[66]=='\n';
+            for (unsigned i=2;i<66;++i) valid &= (request[i]>='0' && request[i]<='9') || (request[i]>='a' && request[i]<='f');
+            unlink(CK_MATTER_REQUEST);
+            if (valid) {
+                controlAction=request[0];memcpy(controlId,request+2,64);controlId[64]=0;
+                controlResult="running";controlDue=now;controlDeadline=now+10000;
+            } else { rmdir(CK_MATTER_LOCK); }
+        }
+    }
+    if(controlDue && controlAction=='E') ControlFinish(plug.ResetEnergy()==CHIP_NO_ERROR?"complete":"storage-error");
+    if (controlDue && controlAction=='R') {
+        // No SDK callbacks run between the durable purge and exec. This avoids
+        // restoring removed fabrics from live SDK caches, including fail-safe
+        // state from an interrupted PASE commissioning attempt.
+        if (plug.SaveEnergy()!=CHIP_NO_ERROR || ck_store_reset_matter(controlId)) { ControlFinish("storage-error"); }
+        else {
+            uint8_t stamp[8];ck_put64(stamp,now);
+            ck_atomic("/var/run/ck-matter-reset-cooldown",stamp,sizeof(stamp),0600);
+            controlResult="restarting";ControlPublish();
+            std::puts("MATTER_ONLY_RESET_COMMITTED: Wi-Fi, device identity, OTA trust and kWh retained");
+            hardware.Stop();
+            for (int fd=3;fd<1024;++fd) close(fd);
+            execv("/bin/matterd-test",restartArguments);
+            std::fputs("MATTER_ONLY_RESET_EXEC_FAILED; receipt retained for next boot\n",stderr);_exit(1);
+        }
+    }
+    if (controlDue && controlAction=='O') {
+        auto &s=Server::GetInstance();auto &failsafe=s.GetFailSafeContext();
+        if (strcmp(controlResult,"running")==0) {
+            s.GetCommissioningWindowManager().CloseCommissioningWindow();
+            failsafe.ForceFailSafeTimerExpiry();
+            controlResult="waiting-for-failsafe";
+        }
+        if (failsafe.IsFailSafeFullyDisarmed()) {
+            CHIP_ERROR err=s.GetCommissioningWindowManager().OpenBasicCommissioningWindow(
+                System::Clock::Seconds32(CK_MATTER_WINDOW_SECONDS),CommissioningWindowAdvertisement::kDnssdOnly);
+            if (err==CHIP_NO_ERROR) { windowDeadline=now+CK_MATTER_WINDOW_SECONDS*1000;ControlFinish("complete"); }
+            else { LogErrorOnFailure(err);ControlFinish("window-error"); }
+        } else if (now>=controlDeadline) { ControlFinish("failsafe-timeout"); }
+    }
+    if (now>=nextControlReport) { ControlPublish();nextControlReport=now+1000; }
+}
 static void PollHardware(System::Layer * layer, void *) {
-    if (stopping) { plug.SaveEnergy(); hardware.Stop(); _exit(0); }
-    plug.Poll();
+    if (stopping) { LogErrorOnFailure(plug.SaveEnergy()); hardware.Stop(); _exit(0); }
+    PhysicalResetPoll();plug.Poll();
     auto snapshot=hardware.Snapshot();uint64_t now=incipio::McuController::Now();
+    ControlPoll(now,snapshot);
     if(!isVm&&!healthConfirmed){
         if(!snapshot.known||now-snapshot.relayAt>10000)healthySince=0;
         else if(!healthySince)healthySince=now;
@@ -204,6 +305,7 @@ static int Fail(CHIP_ERROR err,const char*where){
 }
 #define TRY(e) do{CHIP_ERROR er=(e);if(er!=CHIP_NO_ERROR)return Fail(er,#e);}while(0)
 int main(int argc,char**argv){
+    restartArguments=argv;
     setvbuf(stdout,nullptr,_IONBF,0);setvbuf(stderr,nullptr,_IONBF,0);
     if(argc==3&&strcmp(argv[1],"--probe")==0)return platform_probe_main(argc-1,argv+1);
     if(argc==3&&strcmp(argv[1],"--init-identity")==0) {
@@ -226,8 +328,10 @@ int main(int argc,char**argv){
         // Setup generates identity after its 15-second network startup delay.
         // Keep the MCU worker active while waiting; no pairing key fallback.
         bool ready = false;
-        for (unsigned attempt = 0; attempt < 240 && !stopping; ++attempt) {
+        for (unsigned attempt = 0; !stopping; ++attempt) {
+            PhysicalResetPoll();
             if (LoadDeviceIdentity(deviceIdentity)) { ready = true; break; }
+            if (attempt >= 240 && access("/var/run/ck-identity-pending",F_OK) != 0) break;
             if (attempt == 0) std::puts("MCU_ACTIVE_WAITING_FOR_DEVICE_IDENTITY");
             usleep(250000);
         }
@@ -238,6 +342,7 @@ int main(int argc,char**argv){
     }
     if (!vm) {
         for (;;) {
+            PhysicalResetPoll();
             char state[64] = {}; int fd = open("/var/run/ck-setup-state", O_RDONLY);
             ssize_t n = fd < 0 ? -1 : read(fd, state, sizeof(state)-1); if (fd >= 0) { close(fd); }
             if (stopping) { hardware.Stop(); return 0; }
@@ -246,6 +351,16 @@ int main(int argc,char**argv){
         }
     }
     unsigned index=if_nametoindex(iface);if(index==0){std::fprintf(stderr,"interface unavailable\n");hardware.Stop();return 2;}
+    size_t resetSize=64;
+    int resetRead=ck_store_get(CK_MATTER_RESET_KEY,controlId,&resetSize);
+    if (resetRead==0 && resetSize==64) {
+        controlId[64]=0;resetOnBoot=true;controlAction='R';controlResult="restarting";
+        // Platform KVS also has a RAM copy. Never fall back to its old contents
+        // after the journal transaction removed the operational namespace.
+        if (unlink("/tmp/chip_kvs") && errno!=ENOENT) { hardware.Stop();_exit(6); }
+    } else if (resetRead!=1 && (!vm || persistentVm)) { hardware.Stop();_exit(6); }
+    uint8_t cooldown[8];
+    if (!ck_exact_file("/var/run/ck-matter-reset-cooldown",cooldown,sizeof(cooldown))) lastPhysicalReset=ck_be64(cooldown);
     TRY(Platform::MemoryInit());TRY(PlatformMgr().InitChipStack());TRY(identity.Init());
     SetCommissionableDataProvider(&identity);
     Credentials::SetDeviceAttestationCredentialsProvider(Credentials::Examples::GetExampleDACProvider());
@@ -268,6 +383,14 @@ int main(int argc,char**argv){
     params.dataModelProvider=model.get();params.interfaceId=Inet::InterfaceId(index);
     TRY(s.Init(params));
     TRY(StartMatterOta());
+    windowDeadline=incipio::McuController::Now()+CK_MATTER_WINDOW_SECONDS*1000;
+    if (resetOnBoot) {
+        auto &window=s.GetCommissioningWindowManager();
+        window.CloseCommissioningWindow();
+        TRY(window.OpenBasicCommissioningWindow(System::Clock::Seconds32(CK_MATTER_WINDOW_SECONDS),CommissioningWindowAdvertisement::kDnssdOnly));
+        if (s.GetFabricTable().FabricCount()!=0 || ck_store_delete(CK_MATTER_RESET_KEY)) { hardware.Stop();_exit(6); }
+        ControlFinish("complete");
+    } else { ControlPublish(); }
     SetupPayload payload;payload.version=0;payload.vendorID=0xFFF1;payload.productID=0x8000;
     payload.setUpPINCode=deviceIdentity.pin;payload.discriminator.SetLongValue(deviceIdentity.discriminator);
     payload.rendezvousInformation.SetValue(RendezvousInformationFlag::kOnNetwork);

@@ -1,0 +1,51 @@
+{
+  "status": "pass",
+  "version": "0.2.11-preview",
+  "software_version": 13,
+  "real_outlet": false,
+  "checks": [
+    "exact production binaries and scripts match payload",
+    "one supervised protocol owner; no direct rcS protocol launch",
+    "HomeKit original segments restored byte-for-byte; reset patches and LED observer verified",
+    "original HAP shared libraries retained; unused Boa/router GUI removed",
+    "version 13: hash-bound LED observer segment and exact reversible patch manifest"
+  ],
+  "rootfs": {
+    "bytes_used": 2488453,
+    "checksum_extent": 2488834
+  },
+  "ota_sha256": "0f1c58cc8620fa5f0626570957cf2f4a28f05a3dade7e790b7f538b48588f194",
+  "original_homekit_sha256": "2d50339436759f3d602c150fb4f1a42f0fdf122fc18e9a4f54f6e6b07d7a0c62",
+  "homekit_sha256": "c5f5484772e80a28421cda71e7e182ac4db527a0b4409e0898da0e16f0ed18ad",
+  "homekit_elf_bytes": 2164760,
+  "production_sha256": {
+    "bin/ck-updater": "1442c6010feeb5566ba852f43a1e3513bd3113d2a316b6d0456b9bd7af8ada28",
+    "bin/ck-updated": "b1bb065bd811525bcd6d4d1c4dcde6ab9bc16d7603d3d5856d387b23b3fef365",
+    "bin/ck-boot-guard": "37565ba17daec3f26d855b9501d534162f4fea57d3927fa7645dde7990c5d7c4",
+    "bin/matterd-test": "6912e221c16dca073935bfad570c827812df704f148f5e8286e42139cf5714ce",
+    "bin/ck-setupd": "5947428dae9c093d99204a44006ad5e33a569b620fc721cd4a211ed35574d49f",
+    "bin/ck-protocol-start": "c4c480e842af76719eb6906e4c273fe1e6601496daaa2307b9bea8a6cab218a4",
+    "bin/matter-test-start": "81b58c484ea70d27607b587cf12153d287b79309ebd49d5cc790bc9c4d8d234e",
+    "bin/ck-ota-start": "a31d0039bd6e7cd601b3e1f57391c570e16accddefc6c69772656e2a005c6d87",
+    "bin/ck-management-start": "d2291c2a7be779f7e14f46ead4756c96325ee818a7c36b53bd01fd28ee3eab82",
+    "bin/ck-reset": "6377d813a108e6977069ab4c7e87dff7750b60499c0e100465f8f0c82b403259"
+  },
+  "limitations": [
+    "No physical HomeKit/MFi, RF or iPhone pairing validation",
+    "HomeKit pauses custom web measurements and kWh accumulation; saved checkpoints remain",
+    "HomeKit daemon lifecycle tests use a fixture",
+    "Network VM uses 64 MiB/Linux 4.19 and MIB/import fixtures, not actual 32 MiB hardware",
+    "No CH341A write, live reset/switch, git push or publication performed"
+  ],
+  "rootfs_free_bytes": 198142,
+  "tests": {
+    "native_storage_ota_http_admin_protocol": 55,
+    "mips_storage_ota_http_admin_protocol": 55,
+    "deployment_and_hap_layout_passed": 12,
+    "diagnostic_variant_not_shipped_skipped": 1,
+    "test_log_sha256": {
+      "led-v0.2.11/full-combined.log": "65a51687f922bf63c5ea456f0de6f78289efb9297327fdc158de12286b9addbf",
+      "led-v0.2.11/deployment.log": "2928a8994f45082b76d9f57fbd07381271c0388babfb3c20efa4e0df7d9d82e1"
+    }
+  }
+}

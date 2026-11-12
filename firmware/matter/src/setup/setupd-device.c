@@ -6,6 +6,8 @@
 #undef diag_main
 #include "portal-device-page.h"
 #include "portal-scan-script.h"
+#include "../update/ck_matter_control.h"
+#include "../update/password_script.h"
 static char kMatterManualCode[12];
 #include "ram_probe.h"
 static int ram_worker = -1, ram_time, received_body, content_len;
@@ -18,6 +20,33 @@ static const char *mode = "starting";
 static char csrf[65], portal_ip[32] = "192.168.1.254", iface_name[16] = "br0";
 static char host_allowed[48];
 static u8 portal_addr[4];
+static const char *identity_keypath;
+static int identity_ready, identity_checked = -5, first_setup_handled;
+static int boot_reconnect, network_checked, heartbeat_written = -2;
+static void ap_begin(void);
+static void identity_tick(void) {
+  if (identity_ready || seconds() - identity_checked < 5) return;
+  identity_checked = seconds();
+  if (!fixture) {
+    int imported=open_ro("/var/run/ck-identity-ready");
+    if (imported<0) return;
+    close_fd(imported);
+    int generated=open_ro("/var/run/ck-onboarding-ready");
+    if (generated<0) return;
+    close_fd(generated);
+  }
+  char manual[12], text[66]; u8 candidate[32], random[32];
+  int n = read_file("/var/run/matter-manual-code", manual, sizeof(manual));
+  if (n != 11) return;
+  for (int i = 0; i < 11; ++i) if (manual[i] < '0' || manual[i] > '9') return;
+  n = read_file(identity_keypath, text, sizeof(text));
+  if ((n != 64 && n != 65) || unhex(text, candidate, 32)) { zero(text,sizeof(text)); return; }
+  zero(text,sizeof(text));
+  if (random_bytes(random,32) != 32 || selftest()) { zero(candidate,32); zero(random,32); return; }
+  copy(key,candidate,32); zero(candidate,32);
+  copy(kMatterManualCode,manual,11); kMatterManualCode[11]=0;
+  hex(random,32,csrf); zero(random,32); identity_ready=1;
+}
 static int scan_worker = -1, scan_running, scan_started, scan_finished, scan_error;
 static int fixture_scan_error;
 static char scan_json[16384];
@@ -83,6 +112,8 @@ static void status_file(void) {
   }
 }
 static void state(const char *s) {
+  if(equal(s,"online") || equal(s,"setup") || equal(s,"error"))
+    S1(4010,P("/var/run/ck-network-changing"));
   mode = s;
   status_file();
 }
@@ -140,6 +171,8 @@ static void start_worker(const char *op) {
 }
 static void ap_begin(void) {
   close_portal();
+  boot_reconnect = 0;
+  if (!identity_ready) { state("waiting-identity"); return; }
   state("ap-starting");
   if (fixture) {
     state("setup");
@@ -149,7 +182,7 @@ static void ap_begin(void) {
 }
 static void online(void) {
   close_portal();
-  if (fixture) {
+  if (fixture || boot_reconnect) {
     state("online");
   } else {
     state("committing");
@@ -158,10 +191,31 @@ static void online(void) {
 }
 static void tick(void) {
   int now = seconds(), st = 0;
+  if (!fixture && now - heartbeat_written >= 2) {
+    int f = ram_open("/var/run/ck-setup-heartbeat");
+    used=0; number(now); append("\n");
+    if (f >= 0) { write_all(f,report,(int)used); close_fd(f); }
+    heartbeat_written=now;
+  }
+  identity_tick();
+  if (!fixture && identity_ready && !first_setup_handled) {
+    first_setup_handled=1;
+    int flag=open_ro("/var/run/ck-first-setup");
+    if (flag>=0) { close_fd(flag); if (worker<0) ap_begin(); else first_setup_handled=0; }
+    else if (equal(mode,"waiting-identity")) ap_begin();
+  }
   scan_tick();
   char lease[64];
   if (control_fd < 0)
     control_fd = socket_at(2, control_port, 1);
+  if(portal_fd<0) portal_fd=socket_at(2,http_port,1);
+  if(!fixture && worker<0 && !action_time) {
+    int pending=open_ro("/var/run/ck-admin-wifi");
+    if(pending>=0) {
+      close_fd(pending);S1(4010,P("/var/run/ck-admin-wifi"));
+      boot_reconnect=0;close_portal();join_time=now;state("joining");start_worker("join");
+    }
+  }
   if (ram_worker > 0) {
     int r = S3(4007, ram_worker, P(&st), 1);
     if (r == ram_worker) {
@@ -179,13 +233,15 @@ static void tick(void) {
     if (r == worker) {
       worker = -1;
       /* sysconf may replace br0. SO_BINDTODEVICE stores its old ifindex. */
-      if (!equal(mode, "committing")) {
+      if (equal(mode, "ap-starting") || equal(mode,"joining")) {
         close_fd(control_fd);
         control_fd = socket_at(2, control_port, 1);
       }
       if (st) {
         error_code = 2;
-        if (equal(mode, "joining") || equal(mode, "reconnecting"))
+        if (equal(mode,"reconnecting") && boot_reconnect) {
+          network_checked=now;
+        } else if (equal(mode, "joining") || equal(mode, "reconnecting"))
           ap_begin();
         else
           state("error");
@@ -199,14 +255,16 @@ static void tick(void) {
       S3(4007, worker, P(&st), 0);
       worker = -1;
       error_code = 3;
-      if (equal(mode, "joining") || equal(mode, "reconnecting"))
+      if (equal(mode,"reconnecting") && boot_reconnect) {
+        network_checked=now;
+      } else if (equal(mode, "joining") || equal(mode, "reconnecting"))
         ap_begin();
       else
         state("error");
     }
   }
-  if (equal(mode, "setup") && portal_fd < 0) {
-    portal_fd = socket_at(2, http_port, 0);
+  if (equal(mode, "setup") && dns_fd < 0) {
+    if(portal_fd<0)portal_fd = socket_at(2, http_port, 1);
     dns_fd = socket_at(1, dns_port, 0);
     if (portal_fd < 0 || dns_fd < 0) {
       close_portal();
@@ -235,8 +293,16 @@ static void tick(void) {
         online();
     } else if (now - join_time > 120) {
       error_code = 5;
-      ap_begin();
+      if (boot_reconnect) {
+        // A transient outage must not overwrite the saved station SSID/PSK.
+        join_time=now;
+      } else ap_begin();
     }
+  }
+  if (!fixture && boot_reconnect && worker<0 && now-network_checked>=30) {
+    network_checked=now;
+    if (equal(mode,"error")) state("reconnecting");
+    start_worker("resume");
   }
   if (fixture && equal(mode, "joining"))
     online();
@@ -451,6 +517,39 @@ static int proof(const char *scope) {
     return 0;
   nonce_valid = 0;
   return 1;
+}
+static int matter_state(void) {
+  int n=read_file(CK_MATTER_STATE,scratch,512);
+  if (n<=0 || n>=512 || !prefix(scratch,"{\"updated_s\":")) return -1;
+  int stamp=0, at=13;
+  while (at<n && scratch[at]>='0' && scratch[at]<='9') {
+    if (stamp>200000000) return -1;
+    stamp=stamp*10+scratch[at++]-'0';
+  }
+  int now=seconds();
+  return at==13 || scratch[at]!=',' || now<stamp || now-stamp>5 ? -1 : n;
+}
+static void matter_request(int fd, char action) {
+  if (S2(4033,P(CK_PROTOCOL_PENDING),0)==0) {
+    response(fd,"409 Conflict","Protocol switch busy\n",21,0);return;
+  }
+  if ((!fixture && !equal(mode,"online")) || worker>0 || ram_worker>0 || action_time || matter_state()<0) {
+    response(fd,"503 Unavailable","Matter not ready\n",17,0);return;
+  }
+  if (S2(4039,P(CK_MATTER_LOCK),0700)<0) {
+    response(fd,"409 Conflict","Matter operation busy\n",22,0);return;
+  }
+  char command[67];command[0]=action;command[1]=' ';copy(command+2,nonce,64);command[66]='\n';
+  const char *temporary=CK_MATTER_REQUEST ".tmp";
+  int f=S3(4005,P(temporary),0x20301,0600);
+  int ok=f>=0 && write_all(f,command,sizeof(command))==0;
+  if (f>=0) close_fd(f);
+  if (!ok || S2(4038,P(temporary),P(CK_MATTER_REQUEST))<0) {
+    S1(4010,P(temporary));S1(4040,P(CK_MATTER_LOCK));
+    response(fd,"503 Unavailable","Mailbox unavailable\n",20,0);return;
+  }
+  used=0;append("{\"request_id\":\"");append(nonce);append("\",\"result\":\"queued\"}\n");
+  response(fd,"202 Accepted",report,(int)used,0);
 }
 static int make_jail(void) {
   const char *dirs[] = {RAM_JAIL, RAM_JAIL "/dev", 0};
@@ -674,7 +773,22 @@ static void handle_setup(int fd, int portal) {
     response(fd, "400 Bad Request", "Invalid request\n", 16, 0);
     return;
   }
+  if(portal && !equal(mode,"setup")) {
+    if(prefix(request,"GET ")) {
+      u8 address[16];int size=16;
+      if(S3(4172,fd,P(address),P(&size))<0){response(fd,"503 Unavailable","Unavailable\n",12,0);return;}
+      used=0;append("HTTP/1.1 302 Found\r\nLocation: http://");
+      for(int i=4;i<8;i++){if(i>4)append(".");number(address[i]);}
+      append(":18082/\r\nCache-Control: no-store\r\nContent-Length: 0\r\nConnection: close\r\n\r\n");send_all(fd,report,used);
+    }else response(fd,"403 Forbidden","Use management login\n",21,0);
+    return;
+  }
+  if (!identity_ready) {
+    response(fd,"503 Unavailable","Device identity not ready\n",26,0);
+    return;
+  }
   if (!portal) {
+    if(prefix(request,"POST ")) {response(fd,"403 Forbidden","Use management login\n",21,0);return;}
     if (prefix(request, "POST /ram-probe HTTP/")) {
       ram_upload(fd, base);
       return;
@@ -712,6 +826,18 @@ static void handle_setup(int fd, int portal) {
       append("\n");
       response(fd, "200 OK", report, (int)used, 0);
       return;
+    }
+    if (prefix(request,"GET /matter-state HTTP/") && proof("GET /matter-state\n")) {
+      int n=matter_state();
+      if(n<0) response(fd,"503 Unavailable","Matter not ready\n",17,0);
+      else response(fd,"200 OK",scratch,n,0);
+      return;
+    }
+    if (prefix(request,"POST /reset-matter HTTP/") && request[base]==0 && proof("POST /reset-matter\n")) {
+      matter_request(fd,'R');return;
+    }
+    if (prefix(request,"POST /open-commissioning HTTP/") && request[base]==0 && proof("POST /open-commissioning\n")) {
+      matter_request(fd,'O');return;
     }
     if (prefix(request, "POST /enter-setup HTTP/") && request[base] == 0 &&
         proof("POST /enter-setup\n")) {
@@ -757,6 +883,63 @@ static void handle_setup(int fd, int portal) {
     response_typed(fd, "200 OK", portal_scan_script, slen(portal_scan_script),
                    "application/javascript; charset=utf-8"); return;
   }
+  if(prefix(request,"GET /password.js HTTP/")) {
+    response_typed(fd,"200 OK",ck_password_script,slen(ck_password_script),"application/javascript; charset=utf-8");return;
+  }
+  if(prefix(request,"GET /admin/status HTTP/")) {
+    char value[2];int n=read_file("/var/run/ck-admin-state",value,sizeof(value));
+    int ok=open_ro("/var/run/ck-admin-enroll-ok");if(ok>=0)close_fd(ok);
+    const char *body=n!=1 || (value[0]!='0' && value[0]!='1')?"{\"ready\":false}":
+      value[0]=='0'?"{\"ready\":true,\"configured\":false,\"wifi_allowed\":true}":
+      ok>=0?"{\"ready\":true,\"configured\":true,\"wifi_allowed\":true}":"{\"ready\":true,\"configured\":true,\"wifi_allowed\":false}";
+    response_typed(fd,"200 OK",body,slen(body),"application/json");return;
+  }
+  if(prefix(request,"POST /admin/enroll HTTP/")) {
+    const char *body=request+base;
+    if(!origin_ok() || !form_type() || content_len!=202 || slen(body)!=202 || !prefix(body,"token=") ||
+       !prefix(body+70,"&credential=") || worker>0 || action_time) {
+      response(fd,"400 Bad Request","Invalid enrollment\n",19,0);return;
+    }
+    int diff=0;for(int i=0;i<64;i++)diff|=(u8)body[6+i]^(u8)csrf[i];
+    u8 credential[60];
+    if(diff || unhex(body+82,credential,60) || !prefix((char *)credential,"CKAUTH1\n") ||
+       credential[8] || credential[9]!=9 || credential[10]!=0x27 || credential[11]!=0xc0) {
+      response(fd,"403 Forbidden","Invalid enrollment\n",19,0);return;
+    }
+    int out=ram_open("/var/run/ck-admin-enroll");int error=out<0 || write_all(out,credential,60);
+    close_fd(out);zero(credential,60);
+    if(error){response(fd,"503 Unavailable","Storage unavailable\n",20,0);return;}
+    int child=S0(4002);
+    if(!child){for(int i=3;i<128;i++)close_fd(i);char *args[]={"/bin/ck-updater","--enroll-admin",0},*env[]={0};S3(4011,P(args[0]),P(args),P(env));S1(4001,127);for(;;){}}
+    int status=0,done=0,until=seconds()+10;
+    while(child>0 && seconds()<until) {
+      int r=S3(4007,child,P(&status),1);if(r==child){done=1;break;}
+      struct {int seconds,nanos;} pause={0,100000000};S2(4166,P(&pause),0);
+    }
+    if(!done && child>0){S2(4037,child,9);S3(4007,child,P(&status),0);}
+    S1(4010,P("/var/run/ck-admin-enroll"));
+    const char *result=done && !status?"{\"configured\":true}":"{\"error\":\"enrollment\"}";
+    response_typed(fd,done&&!status?"200 OK":"409 Conflict",result,slen(result),"application/json");return;
+  }
+  if (prefix(request, "POST /management-key HTTP/")) {
+    response(fd,"403 Forbidden","Use management password\n",24,0);return;
+    const char *body = request + base;
+    int diff = 0;
+    if (!origin_ok() || !form_type() || content_len != 70 || slen(body) != 70 ||
+        !prefix(body,"token=") || !equal(mode,"setup") || action_time || worker > 0) {
+      response(fd,"403 Forbidden","Setup page required\n",20,0); return;
+    }
+    for (int i=0;i<64;++i) diff |= (u8)body[6+i] ^ (u8)csrf[i];
+    if (diff) { response(fd,"403 Forbidden","Expired setup page\n",19,0); return; }
+    char secret[65]; hex(key,32,secret);
+    used=0;
+    append("{\"format\":\"commandkit-management-v1\",\"diag_key\":\"");
+    append(secret); append("\"}\n");
+    zero(secret,sizeof(secret));
+    response_typed(fd,"200 OK",report,(int)used,"application/json; charset=utf-8");
+    zero(report,used); used=0;
+    return;
+  }
   if (prefix(request, "POST /wifi-scan HTTP/")) {
     const char *body = request + base;
     if (!origin_ok() || !form_type()) {
@@ -787,6 +970,9 @@ static void handle_setup(int fd, int portal) {
     return;
   }
   if (prefix(request, "POST /wifi HTTP/")) {
+    int enrolled=open_ro("/var/run/ck-admin-enroll-ok");
+    if(enrolled<0){response(fd,"403 Forbidden","Set management password first\n",30,0);return;}
+    close_fd(enrolled);
     if (!origin_ok() || !form_type()) {
       response(fd, "403 Forbidden", "請重新開啟設定頁再試一次。", slen("請重新開啟設定頁再試一次。"), 0);
       return;
@@ -814,7 +1000,7 @@ static void handle_setup(int fd, int portal) {
     state("join-queued");
     action_time = seconds() + 3;
     used = 0; append(p); append(kMatterManualCode);
-    append("</code><p>開發版配對資料只存在 RAM；斷電後需重新配對。</p></main>");
+    append("</code><p>配對資料已保存，管理頁可使用剛設定的密碼登入。</p></main>");
     response(fd, "202 Accepted", report, (int)used, 1);
     return;
   }
@@ -860,8 +1046,16 @@ int diag_main(int argc, char **argv) {
   if (argc != 3 && argc != 6)
     return 2;
   fixture = argc == 6;
+  if (!fixture) {
+    int owner=S3(4005,P("/var/lock/ck-setup-owner.lock"),0x102,0600);
+    if (owner<0 || S2(4143,owner,6)<0) return 76; /* LOCK_EX|LOCK_NB */
+    if (S3(4055,owner,2,1)<0) return 76; /* FD_CLOEXEC for backend children */
+    int pidfile=ram_open("/var/run/ck-setup.pid");
+    used=0; number(S0(4020)); append("\n");
+    if (pidfile>=0) { write_all(pidfile,report,(int)used); close_fd(pidfile); }
+  }
   if (fixture) fixture_scan_error = equal(argv[4], "scan-error");
-  const char *keypath = fixture ? argv[5] : argv[2];
+  identity_keypath = fixture ? argv[5] : argv[2];
   if (!fixture && !equal(argv[1], "--serve"))
     return 2;
   if (fixture && !equal(argv[1], "--fixture"))
@@ -896,28 +1090,16 @@ int diag_main(int argc, char **argv) {
     number(http_port);
     copy(host_allowed, report, used + 1);
   }
-  if (read_file("/var/run/matter-manual-code", kMatterManualCode, sizeof(kMatterManualCode)) != 11)
-    return 11;
-  for (int i = 0; i < 11; ++i)
-    if (kMatterManualCode[i] < '0' || kMatterManualCode[i] > '9') return 11;
-  kMatterManualCode[11] = 0;
-  char k[66];
-  int n = read_file(keypath, k, sizeof(k));
-  if ((n != 64 && n != 65) || unhex(k, key, 32))
-    return 3;
-  zero(k, sizeof(k));
-  u8 b[32];
-  if (random_bytes(b, 32) != 32 || selftest())
-    return 4;
-  hex(b, 32, csrf);
-  zero(b, 32);
+  // Identity is retried independently; it never gates station DHCP.
+  identity_tick();
+  int n;
   if (fixture) {
     control_port = 0;
     for (const char *p = argv[3]; *p >= '0' && *p <= '9'; p++)
       control_port = control_port * 10 + *p - '0';
   }
   control_fd = socket_at(2, control_port, 1);
-  if (control_fd < 0)
+  if (fixture && control_fd < 0)
     return 5;
   if (fixture)
     state("setup");
@@ -925,11 +1107,15 @@ int diag_main(int argc, char **argv) {
     char configured[32];
     n = read_file("/var/run/ck-setup-boot", configured, 31);
     if (n > 0 && prefix(configured, "configured")) {
+      boot_reconnect=1;
+      network_checked=seconds();
       join_time = seconds();
       state("reconnecting");
       start_worker("resume");
-    } else
+    } else {
+      first_setup_handled=identity_ready;
       ap_begin();
+    }
   }
   for (;;) {
     tick();

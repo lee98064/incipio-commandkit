@@ -6,6 +6,8 @@ import subprocess
 import re
 import tempfile
 import unittest
+import time
+import signal
 
 ROOT = Path(__file__).resolve().parents[1]
 SOURCE = ROOT / 'firmware/matter/src'
@@ -34,20 +36,21 @@ class StartupRecovery(unittest.TestCase):
         environment = {**os.environ, 'PATH': str(self.work / 'bin') + os.pathsep + os.environ['PATH']}
         return subprocess.run(['sh', str(script)], capture_output=True, timeout=5, env=environment)
 
-    def test_setup_uses_interface_present_on_original_hardware(self):
-        # Captured original /proc/net/dev has wlan0, with no wl0 interface.
-        interfaces = self.work / 'interfaces'
-        (interfaces / 'wlan0').mkdir(parents=True)
+    def test_setup_starts_with_missing_identity_and_stale_pending(self):
+        (self.work/'var/run/ck-identity-pending').touch()
         self.executable('sleep', 'exit 0\n')
-        self.executable('matterd-test',
-                        'test "$1" = --init-identity || exit 2\n'
-                        'test -d "' + str(interfaces) + '/$2" || exit 5\n')
-        self.executable('ck-wificfg', 'echo configured=0\n')
-        self.executable('ck-setupd', 'echo setup_started\n')
+        self.executable('ck-boot-guard', 'case "$1" in --mib) echo configured=1 ;; --setup) echo setup_started ;; *) exit 9 ;; esac\n')
         result = self.run_script('setup/ck-setup-device-start')
-        self.assertEqual(result.returncode, 0)
-        self.assertIn(b'setup_started', result.stdout)
-        self.assertEqual((self.work / 'var/run/ck-setup-boot').read_text(), 'unconfigured')
+        self.assertEqual(result.returncode, 1)  # PID1 respawns the supervisor.
+        self.assertIn('setup_started', (self.work/'var/log/ck-setupd.log').read_text())
+        self.assertEqual((self.work / 'var/run/ck-setup-boot').read_text(), 'configured')
+
+    def test_failed_mib_read_preserves_station_mode(self):
+        self.executable('sleep','exit 0\n')
+        self.executable('ck-boot-guard','case "$1" in --mib) exit 9 ;; --setup) echo setup_started ;; esac\n')
+        result=self.run_script('setup/ck-setup-device-start')
+        self.assertIn('setup_started',(self.work/'var/log/ck-setupd.log').read_text())
+        self.assertEqual((self.work/'var/run/ck-setup-boot').read_text(),'configured')
 
     def test_failed_import_keeps_bootstrap_for_setup_and_diagnostics(self):
         self.executable('ck-updater', 'echo import_failed\nexit 1\n')
@@ -66,8 +69,65 @@ class StartupRecovery(unittest.TestCase):
             self.assertEqual(output.stat().st_mode & 0o777, 0o600)
         self.assertFalse((self.work / 'var/run/ck-update-healthy').exists())
 
+    def test_first_generated_identity_forces_setup_even_with_old_wifi(self):
+        (self.work/'var/run/ck-first-setup').touch()
+        self.executable('sleep','exit 0\n')
+        self.executable('ck-boot-guard','case "$1" in --mib) exit 9 ;; --setup) echo setup_started ;; esac\n')
+        result=self.run_script('setup/ck-setup-device-start')
+        self.assertEqual(result.returncode,1)
+        self.assertIn('setup_started',(self.work/'var/log/ck-setupd.log').read_text())
+        self.assertEqual((self.work/'var/run/ck-setup-boot').read_text(),'unconfigured')
+
+    def test_public_entropy_wait_does_not_block_vendor_startup(self):
+        (self.work/'etc/ck-identity-policy').write_text('auto-v1\n')
+        ready=self.work/'entropy-ready'
+        self.executable('ck-updater',
+            'case "$1" in --import) exit 75 ;; --import-wait)\n'
+            'while [ ! -f "'+str(ready)+'" ]; do /bin/sleep 0.1; done ;; esac\nexit 0\n')
+        self.executable('ck-updated','exit 0\n')
+        text=(SOURCE/'update/ck-ota-start').read_text()
+        text=re.sub(r'/(?:bin|var|etc)/',lambda m:str(self.work)+m[0],text)
+        script=self.work/'startup.sh';script.write_text(text)
+        with (self.work/'output.log').open('wb') as log:
+            process=subprocess.Popen(['sh',str(script)],stdout=log,stderr=log,start_new_session=True)
+            try:
+                self.assertEqual(process.wait(timeout=2),0)
+                until=time.monotonic()+2
+                pending=self.work/'var/run/ck-identity-pending'
+                while not pending.exists() and time.monotonic()<until:time.sleep(.01)
+                self.assertTrue(pending.exists())
+                self.assertFalse((self.work/'var/run/ck-identity-ready').exists())
+                ready.touch();until=time.monotonic()+3
+                while not (self.work/'var/run/ck-identity-ready').exists() and time.monotonic()<until:time.sleep(.02)
+                self.assertTrue((self.work/'var/run/ck-identity-ready').exists())
+                self.assertFalse(pending.exists())
+            finally:
+                try:os.killpg(process.pid,signal.SIGTERM)
+                except ProcessLookupError:pass
+
+    def test_pid1_identity_supervisor_retries_without_rekeying(self):
+        state=self.work/'var/lib/ck-state';state.mkdir(parents=True)
+        key=state/'device.key';original=os.urandom(32);key.write_bytes(original)
+        self.executable('sleep','/bin/sleep .02\n')
+        attempt=self.work/'attempt'
+        self.executable('ck-boot-guard',
+            'case "$1" in --import)\n'
+            'if [ ! -f "'+str(attempt)+'" ]; then touch "'+str(attempt)+'"; exit 124; fi ;;\n'
+            '--boot) echo booted >> "'+str(self.work/'boots')+'" ;; esac\nexit 0\n')
+        self.executable('ck-updated','exit 0\n')
+        self.executable('ck-updater','exit 0\n')
+        self.executable('sleep','exit 0\n')
+        for _ in range(2):
+            result=self.run_script('update/ck-identity-start')
+            self.assertEqual(result.returncode,0)
+        self.assertEqual(key.read_bytes(),original)
+        self.assertEqual((self.work/'boots').read_text().splitlines(),['booted'])
+        self.assertFalse((self.work/'var/run/ck-identity-pending').exists())
+        self.assertEqual((self.work/'var/run/ck-identity-state').read_text(),'phase=ready\n')
+
     def relay_script(self, rescue=False, conflict=False):
-        self.executable('pidof', 'echo homekitserver\n' if conflict else 'exit 1\n')
+        self.executable('ps', 'echo homekitserver\n' if conflict else 'exit 0\n')
+        self.executable('grep','exec /usr/bin/grep "$@"\n')
         calls = self.work / 'calls'
         self.executable('matter-diag',
                         'if [ "$1" = --log ]; then exec cat; fi\n'

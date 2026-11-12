@@ -1,0 +1,15 @@
+{
+  "status": "pass",
+  "physical_device_access": false,
+  "accepted_known_wrapper_marks": 3,
+  "rejected_code_header_padding_bank2_or_invalid_mark": 11,
+  "legacy_kernel_sha256": "f081b4e0aafad65b071bcff0e0ca475fe2aa6ead608f5c7afe3a731a378b8ae8",
+  "factory_kernel_sha256": "6c72f554c78d0e71e9dfbd1c1b466eef4700f965b8a21e6958567750be933308",
+  "input_preserved": true,
+  "checks": [
+    "same strict kernel alternative as production OTA verifier",
+    "only bank mark normalized; full code/padding/checksum hashed",
+    "Bank 2 identity retained",
+    "mutated code rejected even with repaired checksum"
+  ]
+}

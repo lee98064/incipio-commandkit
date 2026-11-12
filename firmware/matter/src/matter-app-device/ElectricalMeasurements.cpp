@@ -15,7 +15,7 @@ ElectricalMeasurements::PowerCluster::PowerCluster(ElectricalMeasurements & owne
 
 ElectricalMeasurements::ElectricalMeasurements(TimerDelegate & timer) :
     mEnergyCluster({1,BitMask<EEM::Feature>(EEM::Feature::kImportedEnergy,EEM::Feature::kCumulativeEnergy),
-        {},mEnergyAccuracy,*this,timer}) {
+        EEM::ElectricalEnergyMeasurementCluster::OptionalAttributesSet().Set<EEM::Attributes::CumulativeEnergyReset::Id>(),mEnergyAccuracy,*this,timer}) {
     // Nominal vendor bounds; no unverified calibration or accuracy percentage.
     const int64_t limits[] = {300000, 300000, 15000, 2000000};
     for (unsigned i=0; i<4; ++i) { mRanges[i].rangeMin=0; mRanges[i].rangeMax=limits[i]; }
@@ -93,4 +93,12 @@ CHIP_ERROR ElectricalMeasurements::SaveEnergy(bool force) {
     if(mSavedMwh==mCounter.TotalMwh() && mSavedRemainder==mCounter.Remainder()) return CHIP_NO_ERROR;
     if(mPersistent && ck_energy_save(mCounter.TotalMwh(),mCounter.Remainder())) return CHIP_ERROR_PERSISTED_STORAGE_FAILED;
     mSavedMwh=mCounter.TotalMwh();mSavedRemainder=mCounter.Remainder();return CHIP_NO_ERROR;
+}
+CHIP_ERROR ElectricalMeasurements::ResetEnergy() {
+    if(!mEnergyReady || (mPersistent && ck_energy_reset())) return CHIP_ERROR_PERSISTED_STORAGE_FAILED;
+    mCounter.Restore(0,0);mSavedMwh=0;mSavedRemainder=0;mFirstEnergyReport=true;mNextPublish=0;
+    mLastSaveAttempt=incipio::McuController::Now();
+    EEM::Structs::CumulativeEnergyResetStruct::Type reset;
+    reset.importedResetSystime.SetValue(chip::app::DataModel::MakeNullable(mLastSaveAttempt));
+    return mEnergyCluster.SetCumulativeEnergyReset(chip::app::DataModel::MakeNullable(reset));
 }

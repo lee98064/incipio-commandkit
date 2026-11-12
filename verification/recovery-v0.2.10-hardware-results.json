@@ -1,0 +1,31 @@
+{
+  "status": "write_verified_not_boot_tested",
+  "version": "0.2.10-preview",
+  "software_version": 12,
+  "physical_device_access": true,
+  "write_range": [
+    1245184,
+    3932160
+  ],
+  "full_readback_matches_target": true,
+  "two_prewrite_backups_identical": true,
+  "protected_regions_unchanged": {
+    "bootloader_mib_mac": true,
+    "bank1_kernel": true,
+    "journal_pairing_keys_energy": true,
+    "homekit_pairings": true,
+    "homekit_pin_and_factory_tail": true,
+    "bank2": true,
+    "factory_calibration": true
+  },
+  "journal_entries_unchanged": true,
+  "kwh_pages_unchanged": true,
+  "existing_device_identity_reused": true,
+  "reset_performed": false,
+  "boot_test": "pending",
+  "notes": [
+    "Raw images, credential values and per-device hashes retained only in private session",
+    "First boot will adopt the older OTA pending version; ordinary health confirmation still required",
+    "First password setup requires entering Wi-Fi again; original HomeKit/MFi identity and pairing data retained"
+  ]
+}

@@ -57,6 +57,13 @@ int main(int argc, char **argv) {
     printf("mode=%d\nconfigured=%d\nencryption=%d\npsk_empty=%d\n", mode, c, encryption, psk[0] == 0);
     return 0;
   }
+  if (argc == 2 && strcmp(argv[1], "unconfigure") == 0) {
+    integer(688,0);text(1,"");text(30,"");integer(25,0);integer(36,0);
+    if(failures || !apmib_update(4)) return 5;
+    int configured=1;char check_ssid[33]={0},check_psk[65]={0};
+    if(!apmib_get(688,&configured) || !apmib_get(1,check_ssid) || !apmib_get(30,check_psk)) return 5;
+    return configured || check_ssid[0] || check_psk[0] ? 5 : 0;
+  }
   if (argc == 2 && strcmp(argv[1], "commit") == 0) {
     int configured = 0;
     if (!apmib_get(688, &configured))

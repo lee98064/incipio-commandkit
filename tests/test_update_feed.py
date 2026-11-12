@@ -9,6 +9,7 @@ from types import SimpleNamespace
 from unittest.mock import patch
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'tools'))
 import setup_github_updates as setup
+from ota import validate_catalog_upgrade
 
 class PagesEnvironment(unittest.TestCase):
     def configure(self,policy,rules,missing=False):
@@ -42,5 +43,16 @@ class PagesEnvironment(unittest.TestCase):
         calls=self.configure(None,[],missing=True)
         posts=[json.loads(k['input']) for a,k in calls if a[:3]==['api','--method','POST']]
         self.assertEqual(posts,[{'name':'main','type':'branch'},{'name':'v*','type':'tag'}])
+
+class CatalogUpgrade(unittest.TestCase):
+    def catalog(self,**versions):return {'updates':[{'variant':v,'software_version':n} for v,n in versions.items()]}
+    def test_legacy_diagnostic_can_retire_while_matter_advances(self):
+        validate_catalog_upgrade(self.catalog(matter=5,**{'exec-test':5}),self.catalog(matter=13))
+    def test_supported_channel_cannot_disappear_or_downgrade(self):
+        for incoming in [self.catalog(matter=4),self.catalog(**{'exec-test':13}),self.catalog()]:
+            with self.assertRaises(ValueError):validate_catalog_upgrade(self.catalog(matter=5),incoming)
+        with self.assertRaises(ValueError):validate_catalog_upgrade(self.catalog(matter=5,other=5),self.catalog(matter=13))
+    def test_retained_diagnostic_cannot_downgrade(self):
+        with self.assertRaises(ValueError):validate_catalog_upgrade(self.catalog(matter=5,**{'exec-test':5}),self.catalog(matter=13,**{'exec-test':4}))
 
 if __name__=='__main__':unittest.main(verbosity=2)

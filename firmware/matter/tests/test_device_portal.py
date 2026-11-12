@@ -9,6 +9,7 @@ def call(port,method,path,body=None,headers=None):
 def main():
     parser=argparse.ArgumentParser();parser.add_argument('--output-tag',choices=['softap-device-code'],default='softap-device-code');options=parser.parse_args();ART=OUT/'artifacts'/options.output_tag;EV=OUT/'evidence'/options.output_tag
     name='incipio-softap-http-test';checks=[]
+    ram=OUT/'private/device-test-A';(ram/'ck-admin-state').write_text('0');(ram/'ck-admin-enroll-ok').unlink(missing_ok=True)
     p=subprocess.Popen(['docker','run','--rm','--name',name,'-p','127.0.0.1:18082:18082',
         '-p','127.0.0.1:18083:18083/udp','-p','127.0.0.1:18084:18084','-v',f'{OUT}:/work:ro',
         '-v',f'{OUT}/private/device-test-A:/var/run',
@@ -32,10 +33,29 @@ def main():
         assert s==302 and hs['Location']=='http://127.0.0.1:18082/';checks.append('captive HTTP probe redirect')
         assert call(18084,'POST','/enter-setup')[0]==403;checks.append('unauthenticated setup rejected')
         key=bytes.fromhex((OUT/'private/diag.key').read_text().strip())
+        download_headers={'Content-Type':'application/x-www-form-urlencoded'}
+        assert b'id="admin-password"' in page and b'download-management-key' not in page
+        assert call(18082,'POST','/management-key','token='+token,download_headers)[0]==403
+        assert key.hex().encode() not in page
+        state=json.loads(call(18082,'GET','/admin/status')[1]);assert state['ready'] and not state['configured']
+        valid_wifi=urllib.parse.urlencode({'ssid':'Lab Network','password':'ExamplePass42','security':'wpa2','token':token})
+        assert call(18082,'POST','/wifi',valid_wifi,download_headers)[0]==403
+        credential=(b'CKAUTH1\n'+struct.pack('>I',600000)+bytes(range(16))+bytes(range(32))).hex()
+        assert call(18082,'POST','/admin/enroll','token='+'0'*64+'&credential='+credential,download_headers)[0]==403
+        # This qemu-user portal has no journal/backend helper. Actual enrollment
+        # commits are covered by test_updates; the portal must not claim success.
+        assert call(18082,'POST','/admin/enroll','token='+token+'&credential='+credential,download_headers)[0]==409
+        assert not (ram/'ck-admin-enroll').exists()
+        (ram/'ck-admin-state').write_text('1');(ram/'ck-admin-enroll-ok').write_text('1')
+        checks.append('password inputs replace key export; valid setup token required; enrollment failure never permits Wi-Fi; journal success is a separate fixture')
         def proof(scope):
             _,nonce,_=call(18084,'GET','/challenge');return nonce.decode()+':'+hmac.new(key,scope.encode()+nonce,hashlib.sha256).hexdigest()
         header={'X-Setup-Proof':proof('GET /state\n')};s,b,_=call(18084,'GET','/state',headers=header)
         assert s==200 and b'state=setup' in b;assert call(18084,'GET','/state',headers=header)[0]==403;checks.append('HMAC state and replay rejection')
+        for action in ['reset-matter','open-commissioning','enter-setup','ram-probe']:
+            assert call(18084,'POST','/'+action,headers={'X-Setup-Proof':proof('POST /'+action+'\n')})[0]==403
+        assert not (ram/'ck-matter-request').exists()
+        checks.append('legacy diagnostic HMAC cannot bypass password login for mutations')
         qname=b''.join(bytes([len(x)])+x.encode() for x in 'captive.apple.com'.split('.'))+b'\0'
         sock=socket.socket(socket.AF_INET,socket.SOCK_DGRAM);sock.settimeout(3)
         for ty in [1,28]:
@@ -94,7 +114,7 @@ def main():
         if options.output_tag in ('softap-device-code',):
             assert manual in confirmation and b"src='/matter-qr'" in confirmation
             checks.append('Wi-Fi submission confirmation retains same manual code and QR')
-        assert post(v)==409;time.sleep(4)
+        assert post(v)==403;time.sleep(4)
         s,b,_=call(18084,'GET','/state',headers={'X-Setup-Proof':proof('GET /state\n')})
         assert s==200 and b'state=online' in b;checks.append('duplicate guard and fixture transition')
         r={'status':'pass','checks':checks,'binary_sha256':hashlib.sha256((ART/'ck-setupd').read_bytes()).hexdigest(),

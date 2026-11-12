@@ -24,7 +24,6 @@ private:
     void Worker();
     bool Open();
     bool Send(const McuTx & tx);
-    void Gpio(const char * command);
-    void Report(uint64_t now, const RelaySnapshot & state, bool led);
+    void Report(uint64_t now, const RelaySnapshot & state);
 };
 } // namespace incipio

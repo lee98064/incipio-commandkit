@@ -1,0 +1,18 @@
+{
+  "status": "published_feed_verified",
+  "version": "0.2.11-preview",
+  "software_version": 13,
+  "source_commit": "376b9eb61e644558266e274edc3c66603eabe1e0",
+  "release_url": "https://github.com/lee98064/incipio-commandkit/releases/tag/v0.2.11-preview",
+  "feed_url": "https://lee98064.github.io/incipio-commandkit/updates/index.json",
+  "ota_url": "https://lee98064.github.io/incipio-commandkit/updates/matter.ota",
+  "ota_sha256": "0f1c58cc8620fa5f0626570957cf2f4a28f05a3dade7e790b7f538b48588f194",
+  "zip_sha256": "96e66b940b4bc661bd12902a39d51f588794b97771b0d797219e3c5c6314b68d",
+  "feed_cors": "*",
+  "ota_cors": "*",
+  "pages_workflow": "https://github.com/lee98064/incipio-commandkit/actions/runs/39460447519",
+  "pages_conclusion": "success",
+  "real_outlet_installation": "user will install using existing OTA; not performed by agent",
+  "github_native_test_conclusion": "success",
+  "duplicate_rebuild": "cancel requested after verified artifacts were published; no second release needed"
+}

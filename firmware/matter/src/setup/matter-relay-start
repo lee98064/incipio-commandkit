@@ -1,6 +1,6 @@
 #!/bin/sh
 # Firmware starts only this MCU owner; the V2 executable is retained for recovery.
-if [ -n "$(/bin/pidof homekitserver 2>/dev/null)" ]; then
+if /bin/ps | /bin/grep -q '[h]omekitserver'; then
     echo 'MCU_OWNER_CONFLICT: HomeKit is running; Matter relay not started' > /var/log/matter-test.log
     exit 1
 fi
@@ -12,6 +12,6 @@ fi
     # Keep one MCU owner even when persistent identity or Matter initialization
     # fails. This mode needs no pairing identity, Flash writes, or networking.
     echo 'MCU_ONLY: network application unavailable; physical button remains active'
-    touch /var/run/ck-mcu-only
+    : > /var/run/ck-mcu-only
     exec /bin/matter-diag --run-hardware
 ) 2>&1 | /bin/matter-diag --log

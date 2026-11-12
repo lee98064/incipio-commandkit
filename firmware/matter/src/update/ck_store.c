@@ -1,15 +1,27 @@
 #define _GNU_SOURCE
 #include "ck_store.h"
 #include "ck_common.h"
+#include "ck_identity_init.h"
+#include "ck_matter_control.h"
+#include <errno.h>
 #include <fcntl.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
+#include <sys/stat.h>
+#ifndef CK_TESTING
+#include <sys/sysmacros.h>
+#endif
 #define HEADER 64u
 #define PAYLOAD_MAX (CK_SLOT_SIZE - HEADER)
 static uint8_t snapshots[2][CK_SLOT_SIZE];
 static uint8_t work[CK_SLOT_SIZE];
+static int auto_policy(void) {
+  char policy[8];
+  return !ck_exact_file(ck_path("/etc/ck-identity-policy"), policy, sizeof(policy)) &&
+         !memcmp(policy, "auto-v1\n", sizeof(policy));
+}
 static int erased(const uint8_t *p, size_t n) {
   while (n--)
     if (*p++ != 255)
@@ -42,12 +54,17 @@ static int valid(const uint8_t *p) {
   }
   return at == n;
 }
+static int initial_marker(const uint8_t *p) {
+  return !memcmp(p, CK_INIT_MARKER, CK_INIT_MARKER_SIZE) &&
+         erased(p + CK_INIT_MARKER_SIZE, CK_SLOT_SIZE - CK_INIT_MARKER_SIZE);
+}
 static int load(struct ck_flash *f, int *active, uint64_t *seq, unsigned *n) {
   if (ck_flash_read(f, CK_JOURNAL_OFFSET, snapshots, sizeof(snapshots)))
     return -1;
   int a = valid(snapshots[0]), b = valid(snapshots[1]);
   if (!a && !b) {
-    if (!erased(snapshots[0], sizeof(snapshots))) {
+    if (!(auto_policy() && initial_marker(snapshots[1])) &&
+        !erased(snapshots[0], sizeof(snapshots))) {
       uint8_t bootstrap[65];
       /* An interrupted very first import has no previous snapshot. Recover
        * only our own first-generation header with an erased second slot and
@@ -128,8 +145,8 @@ static int save(struct ck_flash *f, int active, uint64_t seq, unsigned n) {
     return -1;
   return 0;
 }
-int ck_store_get(const char *key, void *value, size_t *size) {
-  int lock = ck_lock(), result = -1, active;
+static int get_value(const char *key,void *value,size_t *size,int nonblocking) {
+  int lock = nonblocking ? ck_try_lock() : ck_lock(), result = -1, active;
   unsigned n, at, v;
   uint64_t seq;
   struct ck_flash f;
@@ -161,6 +178,8 @@ done:
   ck_unlock(lock);
   return result;
 }
+int ck_store_get(const char *key,void *value,size_t *size) { return get_value(key,value,size,0); }
+int ck_store_try_get(const char *key,void *value,size_t *size) { return get_value(key,value,size,1); }
 static int change(const char *key, const void *value, size_t size, int remove) {
   size_t k = strlen(key);
   if (!k || k > 96 || size > 65535 || (!value && size))
@@ -215,6 +234,150 @@ int ck_store_set(const char *k, const void *v, size_t n) {
   return change(k, v, n, 0);
 }
 int ck_store_delete(const char *k) { return change(k, NULL, 0, 1); }
+int ck_store_factory_clear(void) {
+  int lock=ck_lock(),result=-1,active; unsigned n,out=0; uint64_t seq; struct ck_flash f;
+  if(lock<0) return -1;
+  if(ck_flash_open(&f,1,1)) goto done;
+  if(load(&f,&active,&seq,&n) || active<0) goto closed;
+  for(unsigned at=0;at<n;) {
+    unsigned k=work[HEADER+at],v=(unsigned)work[HEADER+at+2]<<8|work[HEADER+at+3],size=4+k+v;
+    const uint8_t *key=work+HEADER+at+4;
+    int keep=(k>=9 && !memcmp(key,"identity/",9) && !(k==18 && !memcmp(key,"identity/onboarded",18))) ||
+             (k>=4 && !memcmp(key,"ota/",4));
+    if(keep) { memmove(work+HEADER+out,work+HEADER+at,size);out+=size; }
+    at+=size;
+  }
+  const char *key="config/needs-setup";unsigned k=(unsigned)strlen(key);
+  if(out+5+k>CK_STORE_PAYLOAD_MAX) goto closed;
+  work[HEADER+out]=k;work[HEADER+out+1]=0;work[HEADER+out+2]=0;work[HEADER+out+3]=1;
+  memcpy(work+HEADER+out+4,key,k);work[HEADER+out+4+k]=1;
+  result=save(&f,active,seq,out+5+k);
+closed:close(f.fd);
+done:ck_unlock(lock);return result;
+}
+int ck_store_reset_matter(const char request_id[65]) {
+  if (!request_id || strlen(request_id) != 64) return -1;
+  for (unsigned i = 0; i < 64; ++i)
+    if (!((request_id[i] >= '0' && request_id[i] <= '9') ||
+          (request_id[i] >= 'a' && request_id[i] <= 'f'))) return -1;
+  int lock = ck_lock(), result = -1, active;
+  unsigned n, out = 0;
+  uint64_t seq;
+  struct ck_flash f;
+  if (lock < 0) return -1;
+  if (ck_flash_open(&f, 1, 1)) goto done;
+  if (load(&f, &active, &seq, &n) || active < 0) goto closed;
+  for (unsigned at = 0; at < n;) {
+    unsigned k = work[HEADER+at], v = (unsigned)work[HEADER+at+2] << 8 | work[HEADER+at+3];
+    unsigned size = 4+k+v;
+    const uint8_t *key = work+HEADER+at+4;
+    int remove = (k >= 7 && !memcmp(key,"matter/",7)) ||
+        (k == 17 && !memcmp(key,"platform/chip_kvs",17)) ||
+        (k == sizeof(CK_MATTER_RESET_KEY)-1 && !memcmp(key,CK_MATTER_RESET_KEY,k));
+    if (!remove) { memmove(work+HEADER+out,work+HEADER+at,size); out += size; }
+    at += size;
+  }
+  const unsigned k = sizeof(CK_MATTER_RESET_KEY)-1;
+  if (out+4+k+64 > CK_STORE_PAYLOAD_MAX) goto closed;
+  work[HEADER+out] = k; work[HEADER+out+1] = 0;
+  work[HEADER+out+2] = 0; work[HEADER+out+3] = 64;
+  memcpy(work+HEADER+out+4,CK_MATTER_RESET_KEY,k);
+  memcpy(work+HEADER+out+4+k,request_id,64);
+  result = save(&f,active,seq,out+4+k+64);
+closed:
+  close(f.fd);
+done:
+  ck_unlock(lock);
+  return result;
+}
+static void wipe(void *p, size_t n) {
+  volatile uint8_t *v = p;
+  while (n--) *v++ = 0;
+}
+static int entropy(uint8_t seed[32], int wait) {
+  const char *path = "/dev/random";
+#ifdef CK_TESTING
+  const char *fixture = getenv("CK_TEST_SEED_FILE");
+  if (fixture) path = fixture;
+#endif
+  int fd = open(path, O_RDONLY | O_NONBLOCK | O_NOFOLLOW | O_CLOEXEC);
+  struct stat st;
+  if (fd < 0) return -1;
+  if (fstat(fd, &st)
+#ifndef CK_TESTING
+      || !S_ISCHR(st.st_mode) || major(st.st_rdev) != 1 || minor(st.st_rdev) != 8
+#else
+      || (fixture ? !S_ISREG(st.st_mode) : !S_ISCHR(st.st_mode))
+#endif
+      ) { close(fd); return -1; }
+  size_t n = 0;
+  while (n < 32) {
+    ssize_t got = read(fd, seed + n, 32 - n);
+    if (got > 0) { n += (size_t)got; continue; }
+    if (got < 0 && errno == EINTR) continue;
+    if (got < 0 && errno != EAGAIN) { close(fd); wipe(seed,32); return -1; }
+    if (!wait) { close(fd); wipe(seed,32); return CK_ENTROPY_PENDING; }
+    /* Keep partial credited entropy in this process's RAM, without holding
+     * up rcS, networking or the independent MCU worker. No weak fallback. */
+    usleep(250000);
+  }
+  close(fd);
+  return 0;
+}
+static unsigned append_entry(unsigned n, const char *key, const void *value, unsigned size) {
+  unsigned k = (unsigned)strlen(key);
+  work[HEADER+n] = (uint8_t)k; work[HEADER+n+1] = 0;
+  work[HEADER+n+2] = (uint8_t)(size >> 8); work[HEADER+n+3] = (uint8_t)size;
+  memcpy(work+HEADER+n+4,key,k); memcpy(work+HEADER+n+4+k,value,size);
+  return n+4+k+size;
+}
+static int initialize_auto(int wait) {
+  struct ck_flash f;
+  int lock = ck_lock(), result = -1, active;
+  uint64_t seq;
+  unsigned n;
+  uint8_t seed[32] = {0}, device[32], diag[32], trusted[32], flag = 1;
+  char diag_text[65];
+  if (lock < 0) return -1;
+  if (ck_flash_open(&f,1,1)) goto done;
+  if (load(&f,&active,&seq,&n)) goto closed;
+  if (active < 0) {
+    /* Only the public first-install container can authorize formatting a
+     * new identity. Unknown journal bytes and erased OTA state are refused. */
+    if (!initial_marker(snapshots[1]) ||
+        ck_exact_file(ck_path("/etc/ck-update.pub"),trusted,32)) goto closed;
+    result = entropy(seed,wait);
+    if (result) goto closed;
+    ck_hmac(seed,"commandkit/device/v1",20,device);
+    ck_hmac(seed,"commandkit/diagnostics/v1",25,diag);
+    ck_hex(diag,32,diag_text); diag_text[64] = '\n';
+    n = append_entry(0,"identity/device",device,32);
+    n = append_entry(n,"identity/diag",diag_text,65);
+    n = append_entry(n,"identity/update",trusted,32);
+    n = append_entry(n,"identity/auto",&flag,1);
+    result = save(&f,-1,0,n);
+    if (result) goto closed;
+  }
+  /* Retire the initialization permission before exporting any credential.
+   * A later corrupt journal must fail closed instead of changing identity. */
+  if (initial_marker(snapshots[1])) {
+    uint8_t zero[8] = {0}, check[8];
+#ifdef CK_TESTING
+    if (getenv("CK_FAIL_INIT_RETIRE")) { result = -1; goto closed; }
+#endif
+    if (ck_flash_write(&f,CK_JOURNAL_OFFSET+CK_SLOT_SIZE,zero,8) || ck_flash_sync(&f) ||
+        ck_flash_read(&f,CK_JOURNAL_OFFSET+CK_SLOT_SIZE,check,8) ||
+        !ck_equal(zero,check,8)) { result = -1; goto closed; }
+  }
+  result = 0;
+closed:
+  close(f.fd);
+done:
+  wipe(seed,sizeof(seed)); wipe(device,sizeof(device)); wipe(diag,sizeof(diag));
+  wipe(diag_text,sizeof(diag_text));
+  ck_unlock(lock);
+  return result;
+}
 static int migrate(const char *name, const char *source, const char *dest,
                    size_t expected) {
   uint8_t b[128];
@@ -237,12 +400,17 @@ static int migrate(const char *name, const char *source, const char *dest,
   memset(b, 0, sizeof(b));
   return r;
 }
-int ck_store_import(void) {
+static int import_identity(int wait) {
   uint8_t meta[12];
   if (ck_exact_file(ck_path("/etc/ck-update.meta"), meta, 12) ||
       ck_be32(meta) != 0x434b0004)
     return -1;
   unsigned variant = ck_be32(meta + 4);
+  if (variant == 1 && auto_policy() &&
+      access(ck_path("/etc/matter-device.key"),F_OK) != 0) {
+    int result = initialize_auto(wait);
+    if (result) return result;
+  }
   if (variant == 1) {
     if (migrate("identity/device", "/etc/matter-device.key",
                 "/var/lib/ck-state/device.key", 32))
@@ -263,6 +431,39 @@ int ck_store_import(void) {
       ck_exact_file(ck_path("/etc/ck-update.pub"), current, 32) ||
       !ck_equal(trusted, current, 32))
     return -1;
+  uint8_t flag;
+  size_t size = 1;
+  if(!access(ck_path("/etc/ck-admin-policy"),F_OK)) {
+    uint8_t admin[60];size_t length=sizeof(admin);
+    int admin_state=ck_store_get("admin/credential",admin,&length);
+    if(admin_state==1 || !ck_store_get("config/needs-setup",&flag,&size)) {
+      if(ck_atomic(ck_path("/var/run/ck-first-setup"),"1",1,0600)) return -1;
+    } else if(admin_state) return -1;
+    memset(admin,0,sizeof(admin));
+  }
+  size=1;
+  if (!ck_store_get("identity/auto",&flag,&size) && size == 1 && flag == 1) {
+    size = 1;
+    int r = ck_store_get("identity/onboarded",&flag,&size);
+    if (r == 1) {
+      if (ck_atomic(ck_path("/var/run/ck-first-setup"),"1",1,0600)) return -1;
+    } else if (r || size != 1 || flag != 1) return -1;
+  }
+  return 0;
+}
+int ck_store_import(void) { return import_identity(0); }
+int ck_store_import_wait(void) { return import_identity(1); }
+int ck_store_onboarded(void) {
+  if(ck_store_delete("config/needs-setup")) return -1;
+  unlink(ck_path("/var/run/ck-first-setup"));
+  unlink(ck_path("/var/run/ck-admin-enroll-ok"));
+  uint8_t flag;
+  size_t size = 1;
+  int r = ck_store_get("identity/auto",&flag,&size);
+  if (r == 1) return 0;
+  if (r || size != 1 || flag != 1) return -1;
+  if (ck_store_set("identity/onboarded",&flag,1)) return -1;
+  unlink(ck_path("/var/run/ck-first-setup"));
   return 0;
 }
 uint32_t ck_store_floor(void) {
@@ -293,6 +494,25 @@ int ck_store_boot(void) {
     return 0;
   if (r || n != 4)
     return -1;
+  uint8_t meta[12];
+  if (ck_exact_file(ck_path("/etc/ck-update.meta"), meta, sizeof(meta)) ||
+      ck_be32(meta) != 0x434b0004 ||
+      (ck_be32(meta + 4) != 1 && ck_be32(meta + 4) != 2))
+    return -1;
+  uint32_t running = ck_be32(meta + 8);
+  if (running > ck_be32(b)) {
+    /* A region-only programmer recovery preserves an older pending OTA.
+     * Adopt the newer running image, keeping its usual health confirmation.
+     * Delete attempts first: interruption before updating pending retries
+     * this branch, rather than inheriting an exhausted old retry count. */
+    uint32_t floor = ck_store_floor();
+    if (floor == UINT32_MAX || running < floor ||
+        ck_store_delete("ota/attempts"))
+      return -1;
+    ck_put32(b, running);
+    if (ck_store_set("ota/pending", b, sizeof(b)))
+      return -1;
+  }
   n = 4;
   uint32_t count = 0;
   r = ck_store_get("ota/attempts", b, &n);
