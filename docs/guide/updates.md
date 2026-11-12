@@ -1,5 +1,7 @@
 # 安裝更新
 
+v0.3.1-preview（software version 15）在管理後台總覽頁新增開關按鈕，管理員登入後即可開關插座（限 Matter 模式），收到 MCU 確認才算完成；HomeKit 模式維持原狀。
+
 v0.3.0-preview（software version 14）開啟管理頁即自動檢查更新，登入後可下載安裝；分步顯示下載、驗證、安裝與重新啟動。新版管理介面與三步驟設定精靈沿用既有簽章及資料保留範圍。
 
 v0.2.9-preview（software version 11）改為[密碼管理後台](admin-backend.md)，HomeKit／Matter 兩種模式共用管理入口。訪客能看狀態，更新、切換協議及重置必須登入。實體長按完整恢復出廠，會清除 Wi-Fi、管理密碼、兩套配對與 kWh。**從沒有管理密碼的舊版首次升級，會進入設定熱點，需建立密碼並重新輸入 Wi-Fi**；已有密碼後的更新會保留資料。本版只產生 HomeKit／Matter 共用的 `matter` 附件，不發行尚未遷移密碼初設的 `exec-test`。

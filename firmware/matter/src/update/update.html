@@ -42,10 +42,17 @@ main{min-width:0}.view{animation:rise .35s ease both}@keyframes rise{from{opacit
 /* Hero instrument */
 .hero{position:relative;overflow:hidden;color:#e6f5f7;border-radius:22px;padding:22px 24px 24px;margin-bottom:18px;background:radial-gradient(120% 140% at 0% 0%,var(--hero-1),var(--hero-2) 48%,var(--hero-3));box-shadow:0 24px 48px -28px #0a1a27cc,inset 0 0 0 1px #ffffff12}
 .hero:after{content:"";position:absolute;inset:auto -80px -120px auto;width:340px;height:340px;border-radius:50%;background:radial-gradient(closest-side,#2ec5cf33,transparent);pointer-events:none}
-.hero-top{display:flex;justify-content:space-between;align-items:center;gap:12px;font-size:13px;color:#a9c8d0}
+.hero-top{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:10px 12px;font-size:13px;color:#a9c8d0}#meter-state{white-space:nowrap}
 .relay{display:inline-flex;align-items:center;gap:8px;height:30px;padding:0 12px;border-radius:99px;background:#ffffff14;color:#c4d6dd;font-weight:600;font-size:13px}
 .relay i{width:8px;height:8px;border-radius:50%;background:#6c8592}
 .relay[data-on=true]{background:#7ef0d824;color:#8af3dc}.relay[data-on=true] i{background:#7ef0d8;box-shadow:0 0 10px #7ef0d8}
+.hero-actions{display:flex;align-items:center;justify-content:flex-end;flex-wrap:wrap;gap:8px}
+.power{position:relative;display:inline-flex;align-items:center;gap:7px;height:34px;padding:0 14px;border-radius:99px;border:1px solid #ffffff30;background:#ffffff12;color:#e6f5f7;font:650 13.5px/1 inherit;cursor:pointer;transition:background .15s,transform .12s,box-shadow .15s}
+.power svg{width:16px;height:16px}.power:hover{background:#ffffff22}.power:active{transform:scale(.97)}
+.power[data-state=off]{background:#7ef0d8;border-color:transparent;color:#06302f;box-shadow:0 0 18px #7ef0d855}
+.power:disabled{opacity:.55;cursor:not-allowed;transform:none;box-shadow:none}
+.power.loading{color:transparent}.power.loading svg{opacity:0}.power.loading:after{content:"";position:absolute;left:50%;top:50%;width:16px;height:16px;margin:-8px 0 0 -8px;border-radius:50%;border:2px solid #ffffff55;border-top-color:#fff;animation:spin .8s linear infinite}
+.power.loading:disabled{opacity:1}
 .hero-body{display:grid;grid-template-columns:240px minmax(0,1fr);gap:30px;align-items:center;margin-top:8px}
 .gauge{position:relative;width:240px;aspect-ratio:1}.gauge svg{width:100%;height:100%;transform:rotate(135deg)}
 .g-track,.g-value{fill:none;stroke-width:12;stroke-linecap:round}.g-track{stroke:#ffffff14;stroke-dasharray:395.84 527.79}
@@ -242,7 +249,7 @@ footer{font-size:12px;color:var(--ink-3);padding:6px 2px 0}
 <section id="view-overview" class="view">
 <div class="head"><div><h1>狀態總覽</h1><p id="overview-sub">即時電力與裝置狀態</p></div></div>
 <section class="hero" aria-label="即時電力量測">
-<div class="hero-top"><span id="meter-state" role="status" aria-live="polite">正在讀取量測…</span><span id="relay" class="relay"><i></i><span id="relay-text">插座狀態未知</span></span></div>
+<div class="hero-top"><span id="meter-state" role="status" aria-live="polite">正在讀取量測…</span><div class="hero-actions"><span id="relay" class="relay"><i></i><span id="relay-text">插座狀態未知</span></span><button id="relay-toggle" class="power" type="button" disabled><svg class="i"><use href="#i-power"/></svg><span id="relay-toggle-text">開關插座</span></button></div></div>
 <div class="hero-body"><div class="gauge"><svg viewBox="0 0 200 200" aria-hidden="true"><defs><linearGradient id="g-arc" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#1aa6b8"/><stop offset="1" stop-color="#8af3dc"/></linearGradient></defs><circle class="g-track" cx="100" cy="100" r="84"/><circle id="gauge-arc" class="g-value" cx="100" cy="100" r="84"/></svg>
 <div class="gauge-read"><small>即時功率</small><strong id="power">—</strong><span>W</span></div><div class="gauge-scale" aria-hidden="true"><span>0</span><span>2 kW</span></div></div>
 <div class="trend"><div class="trend-head"><span>近 2 分鐘功率走勢</span><span id="trend-range"></span></div>

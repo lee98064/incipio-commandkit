@@ -39,6 +39,7 @@ class Proxy(socketserver.BaseRequestHandler):
 class TCP(socketserver.ThreadingTCPServer):allow_reuse_address=True;daemon_threads=True
 proxy=TCP((socket.gethostbyname(socket.gethostname()),18983),Proxy)
 threading.Thread(target=proxy.serve_forever,daemon=True).start()
+relay_on=True;receipt={'request_id':'','result':'idle','action':'none'}
 try:
  print('ADMIN_FIXTURE_READY port=18983; synthetic credentials and NOR only',flush=True)
  while True:
@@ -54,9 +55,18 @@ try:
   if led:
    now=int(time.monotonic()*1000);mode=(fixture.work/'var/run/ck-protocol-active').read_text()
    (fixture.work/('var/run/ck-led-'+mode+'.bin')).write_bytes(b'CKLEDHW1'+struct.pack('>QQQQIIII',now,now,now,0,6000,31,now//5000,0))
-  if (fixture.work/'var/run/ck-protocol-active').read_text()=='matter':fixture.meter_snapshot()
+  request=fixture.work/'var/run/ck-matter-request'
+  if request.exists():
+   text=request.read_text()
+   if len(text)==67 and text[0] in '10':
+    # Simulate matterd's ControlFinish after the MCU confirms a web relay command.
+    relay_on=text[0]=='1';receipt={'request_id':text[2:66],'result':'complete','action':'relay-on' if relay_on else 'relay-off'}
+    request.unlink()
+    try:(fixture.work/'var/run/ck-matter-request.lock').rmdir()
+    except FileNotFoundError:pass
+  if (fixture.work/'var/run/ck-protocol-active').read_text()=='matter':fixture.meter_snapshot(flags=63 if relay_on else 31)
   else:(fixture.work/'var/run/ck-meter.bin').unlink(missing_ok=True)
-  (fixture.work/'var/run/ck-matter-state.json').write_text(json.dumps({'updated_s':int(time.monotonic()),'fabrics':1,'window_open':False,'result':'idle','request_id':''},separators=(',',':')))
+  (fixture.work/'var/run/ck-matter-state.json').write_text(json.dumps({'updated_s':int(time.monotonic()),'fabrics':1,'window_open':False,**receipt},separators=(',',':')))
   time.sleep(1)
 finally:
  if led:led.terminate();led.wait()

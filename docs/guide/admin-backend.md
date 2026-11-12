@@ -19,6 +19,7 @@ HomeKit 使用原廠標籤上的配對碼。Matter 使用首次設定產生的�
 
 | 操作 | 行為 |
 |---|---|
+| 開關插座 | 總覽頁電力卡右上角的按鈕；僅 Matter 模式、管理員登入後可用，關閉前會確認，收到 MCU 確認才算完成；HomeKit 模式按鈕停用 |
 | 協議切換 | Matter／HomeKit 單選，保存後重啟；管理網址保持相同，DHCP 換 IP 時使用新位址 |
 | Wi-Fi | 輸入新的名稱與密碼，重新連線；HomeKit 首次配網完成會重啟，使原廠服務讀取新狀態 |
 | 開啟 Matter 配對視窗 | 保留已完成配對，清理未完成流程並重新開啟約 15 分鐘 |
@@ -41,6 +42,8 @@ HomeKit 模式仍由原廠程式獨占 MCU，**自訂網頁的 V／A／W 與 kWh
 公開 GET 為 `/`、`/password.js`、`/status`、`/measurements`、`/protocol`、`/auth/session`、`/auth/challenge`。`POST /auth/login` 完成驗證。其他 POST（包含 `/upload`、`/apply`）都需有效 session 與 `X-CK-CSRF`。`GET /admin/state` 及 `/admin/onboarding` 需登入。舊診斷 HMAC 不能繞過密碼修改設定；舊金鑰檔匯出已停用。
 
 管理服務由 PID1 獨立監督，不等待身分匯入、Matter／HomeKit 或配對完成。Flash 忙碌時公開頁仍可回應，管理操作拒絕而不降級為免登入。OTA、協議交接、Wi-Fi 改動與重置互斥。
+
+`POST /admin/relay-on`、`POST /admin/relay-off` 不接受 body，需 session 與 `X-CK-CSRF`。僅 Matter 模式可用：HomeKit 回覆 409 `protocol`，控制器未就緒回覆 503 `protocol_not_ready`，其他操作進行中回覆 409 `busy`。接受後回覆 202 與 `request_id`；由 `/admin/state` 的 `matter` 查詢同一 ID、`relay-on`／`relay-off` action 與結果。MCU 確認為 `complete`；忙碌、失敗或逾時為 `relay-busy`、`relay-failed`、`relay-timeout`，接受請求不等於開關成功。
 
 完整恢復出廠先保存 durable intent，重啟後依序清除 HomeKit pairing、Wi-Fi、電量，最後原子清除設定 journal；每一步失敗都保留 intent，下次開機繼續。重置完成前不啟動另一個協議。這是可重試的邏輯清除，並非全片安全抹除。
 

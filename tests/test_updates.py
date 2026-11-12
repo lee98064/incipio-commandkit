@@ -640,6 +640,55 @@ class Updates(unittest.TestCase):
         self.assertEqual((self.work/'var/run/ck-matter-request').read_text(),'E '+request+'\n')
         self.assertEqual(self.request('POST','/protocol','homekit')[0],409)
         self.assertEqual(self.energy(),(0,1234567,0))
+    def test_relay_requires_session_csrf_and_empty_body(self):
+        self.start_server()
+        for path in ('/admin/relay-on','/admin/relay-off'):
+            self.assertEqual(self.request('POST',path,authenticated=False)[0],401)
+            self.assertEqual(self.request('POST',path,headers={'X-CK-CSRF':'0'*64})[0],401)
+            self.assertEqual(self.request('POST',path,headers={'X-CK-CSRF':''})[0],401)
+            self.assertEqual(self.request('POST',path,b'1')[0],400)
+        self.assertFalse((self.work/'var/run/ck-matter-request').exists())
+        self.assertFalse((self.work/'var/run/ck-matter-request.lock').exists())
+    def test_relay_rejects_homekit_and_missing_or_stale_matter_owner(self):
+        active=self.work/'var/run/ck-protocol-active';state=self.work/'var/run/ck-matter-state.json'
+        active.write_text('homekit');self.start_server()
+        for path in ('/admin/relay-on','/admin/relay-off'):
+            code,body=self.request('POST',path);self.assertEqual(code,409)
+            self.assertEqual(json.loads(body),{'error':'protocol'})
+        active.write_text('matter')
+        for stamp in (None,time.monotonic_ns()//1000000000-10):
+            if stamp is not None:state.write_text(json.dumps({'updated_s':stamp},separators=(',',':')))
+            for path in ('/admin/relay-on','/admin/relay-off'):
+                code,body=self.request('POST',path);self.assertEqual(code,503)
+                self.assertEqual(json.loads(body),{'error':'protocol_not_ready'})
+                self.assertFalse((self.work/'var/run/ck-matter-request').exists())
+                self.assertFalse((self.work/'var/run/ck-matter-request.lock').exists())
+    def test_relay_queues_exact_request_and_excludes_other_operations(self):
+        (self.work/'var/run/ck-protocol-active').write_text('matter');self.start_server()
+        request=self.work/'var/run/ck-matter-request';lock=self.work/'var/run/ck-matter-request.lock'
+        for action in ('1','0'):
+            (self.work/'var/run/ck-matter-state.json').write_text(json.dumps({'updated_s':time.monotonic_ns()//1000000000},separators=(',',':')))
+            code,body=self.request('POST','/admin/relay-'+('on' if action=='1' else 'off'));self.assertEqual(code,202)
+            accepted=json.loads(body);self.assertEqual(accepted['result'],'queued')
+            self.assertRegex(accepted['request_id'],r'^[0-9a-f]{64}$')
+            expected=(action+' '+accepted['request_id']+'\n').encode()
+            self.assertEqual(request.read_bytes(),expected);self.assertTrue(lock.is_dir())
+            for path,body in [('/admin/relay-on',None),('/admin/relay-off',None),('/admin/energy-reset',None),('/protocol','homekit')]:
+                self.assertEqual(self.request('POST',path,body)[0],409)
+                self.assertEqual(request.read_bytes(),expected)
+            request.unlink();lock.rmdir()
+    def test_relay_refuses_operation_lock_ota_and_protocol_handoff(self):
+        (self.work/'var/run/ck-protocol-active').write_text('matter');self.start_server()
+        for name in ('ck-matter-request.lock','ck-ota/queued','ck-protocol-pending','ck-network-changing','ck-factory-pending'):
+            busy=self.work/'var/run'/name
+            if name.endswith('.lock'):busy.mkdir()
+            else:busy.write_text('1')
+            for path in ('/admin/relay-on','/admin/relay-off'):
+                code,body=self.request('POST',path);self.assertEqual(code,409)
+                self.assertEqual(json.loads(body),{'error':'busy'})
+                self.assertFalse((self.work/'var/run/ck-matter-request').exists())
+            if busy.is_dir():busy.rmdir()
+            else:busy.unlink()
     def test_factory_clear_preserves_only_hardware_identity_and_ota_trust(self):
         kept={k:self.get(k) for k in ['identity/device','identity/diag','identity/update']}
         self.assertEqual(self.put('ota/floor',b'\0\0\0\x0b'),0);kept['ota/floor']=(0,b'\0\0\0\x0b')

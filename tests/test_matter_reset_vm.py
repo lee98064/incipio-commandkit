@@ -11,8 +11,10 @@ import socket
 import struct
 import subprocess
 import sys
+import tempfile
 import threading
 import time
+import traceback
 
 ROOT=Path(__file__).resolve().parents[1]
 WORK=ROOT/'firmware/matter'
@@ -24,13 +26,25 @@ from setup_control import control
 def main():
     name='incipio-matter-reset-vm'
     deps=Path(os.environ['CK_SDK_DIR'])
-    private=ROOT/'private'/('matter-reset-vm-'+str(int(time.time())))
-    private.mkdir(mode=0o700)
+    private=Path(tempfile.mkdtemp(prefix='ck-matter-reset-vm-'))
+    # Generate disposable keys and identity in this fixture, never use private/.
+    for name,data in [('device-identity.key',os.urandom(32)),('diag.key',os.urandom(32).hex().encode()+b'\n')]:
+        (private/name).write_bytes(data);(private/name).chmod(0o600)
+    subprocess.run(['docker','run','--rm','-e','CK_UPDATE_TEST=1','-e','CK_VM_FIXTURE_DIR=/fixture',
+        '-v',str(WORK)+':/work','-v',str(ROOT)+':/repo:ro','-v',str(private)+':/fixture',
+        '-v',str(deps)+':/work/deps:ro','incipio-public-build:v0.1.0-preview',
+        'python3','/work/tools/build_matter_device_fixture.py'],check=True)
+    identity=private/'identity';identity.mkdir()
+    subprocess.run(['docker','run','--rm','--mac-address','52:54:00:12:34:56',
+        '-v',str(WORK)+':/work:ro','-v',str(private/'device-identity.key')+':/etc/matter-device.key:ro',
+        '-v',str(identity)+':/var/run','incipio-public-build:v0.1.0-preview','qemu-mips',
+        '/work/artifacts/update-matter-test/matterd-test','--init-identity','eth0'],check=True,stdout=subprocess.DEVNULL)
     console=private/'console.txt'
     binary=Path(json.loads((WORK/'evidence/chip-tool-macos/build.json').read_text())['binary'])
-    pin=struct.unpack_from('>I',(WORK/'private/device-test-VM/matter-device-identity').read_bytes(),12)[0]
+    pin=struct.unpack_from('>I',(identity/'matter-device-identity').read_bytes(),12)[0]
     report={'status':'failed','environment':'actual MIPS SDK, 64 MiB Malta VM, daemon limited to 8 MiB AS, serial MCU and NOR file fixtures',
-            'real_outlet':False,'binary_sha256':hashlib.sha256((WORK/'artifacts/update-matter-test/matterd-test').read_bytes()).hexdigest(),'checks':[]}
+            'real_outlet':False,'binary_sha256':hashlib.sha256((WORK/'artifacts/update-matter-test/matterd-test').read_bytes()).hexdigest(),
+            'logs':str(private),'relay_receipts':[],'checks':[]}
     args=['docker','run','-i','--rm','--name',name,'-p','127.0.0.1:55640:55640/udp',
           '-p','127.0.0.1:15551:15551','-p','127.0.0.1:18184:18184','-p','127.0.0.1:18185:18185',
           '-p','127.0.0.1:18186:18186','-v',str(WORK)+':/work:ro','-v',str(deps)+':/work/deps:ro',
@@ -80,7 +94,8 @@ def main():
         client.request('GET',path,headers={'Host':'127.0.0.1:18083'})
         response=client.getresponse();data=response.read();client.close();assert response.status==200;return data
     def operate(action):
-        path={'reset-matter':'/admin/pairing-reset','open-commissioning':'/admin/open-commissioning','energy-reset':'/admin/energy-reset'}[action]
+        path={'reset-matter':'/admin/pairing-reset','open-commissioning':'/admin/open-commissioning','energy-reset':'/admin/energy-reset',
+              'relay-on':'/admin/relay-on','relay-off':'/admin/relay-off'}[action]
         code,body,_=request('POST',path,b'');assert code==202,(code,body)
         accepted=json.loads(body)
         def completed():
@@ -114,6 +129,46 @@ def main():
             wait(login);first=wait(status);assert first['fabrics']==0 and first['window_open']
             qr=hashlib.sha256(web('/matter-qr',18186)).hexdigest()
             pair('first-pair');assert wait(lambda:status()['fabrics']==1)
+            wait(lambda:json.loads(web())['relay_on'] is False)
+            for on in (True,False):
+                start=len(mcu.raw_frames);action='relay-on' if on else 'relay-off'
+                receipt=operate(action);assert receipt['action']==action,receipt
+                report['relay_receipts'].append(receipt)
+                expected=bytes.fromhex('ffa100e04c8196c1c1'+('31' if on else '30')+'1b000055')
+                assert [f for f in mcu.raw_frames[start:] if f[1]==0xa1]==[expected]
+                wait(lambda:json.loads(web())['relay_on'] is on)
+                text=tool('web-'+action+'-attribute',['onoff','read','on-off','12344321','1'])
+                assert re.search(r'OnOff:\s*'+('TRUE' if on else 'FALSE')+r'\b',text),text[-1500:]
+            report['checks'].append('real authenticated HTTP relay-on/off reaches exact 14-byte MCU frame, matching complete receipt, /measurements and Matter OnOff attribute')
+            # Keep one web command pending: no confirmation means no success.
+            mcu.drop=True;start=len(mcu.raw_frames)
+            code,body,_=request('POST','/admin/relay-on',b'');assert code==202,(code,body)
+            failed_id=json.loads(body)['request_id']
+            wait(lambda:any(f[1]==0xa1 for f in mcu.raw_frames[start:]))
+            code,body,_=request('POST','/admin/relay-off',b'');assert code==409,(code,body)
+            tool('matter-busy-during-web',['onoff','off','12344321','1'],expected=1)
+            def failed():
+                state=status()
+                return state if state['request_id']==failed_id and state['result'] in ('relay-failed','relay-timeout') else None
+            receipt=wait(failed,10);assert receipt['action']=='relay-on'
+            report['relay_receipts'].append(receipt)
+            assert [f for f in mcu.raw_frames[start:] if f[1]==0xa1]==[bytes.fromhex('ffa100e04c8196c1c1311b000055')]
+            wait(lambda:json.loads(web())['relay_on'] is None)
+            mcu.drop=False;operate('relay-off');wait(lambda:json.loads(web())['relay_on'] is False)
+            # A Matter command already owns the engine: the web receipt is busy.
+            mcu.drop=True;start=len(mcu.raw_frames);pending_error=[]
+            def pending_matter():
+                try:tool('web-busy-during-matter',['onoff','on','12344321','1'],expected=1)
+                except Exception as error:pending_error.append(error)
+            pending=threading.Thread(target=pending_matter);pending.start()
+            wait(lambda:any(f[1]==0xa1 for f in mcu.raw_frames[start:]))
+            code,body,_=request('POST','/admin/relay-off',b'');assert code==202,(code,body)
+            busy_id=json.loads(body)['request_id']
+            wait(lambda:(lambda s:s['request_id']==busy_id and s['result']=='relay-busy' and s['action']=='relay-off')(status()),10)
+            pending.join(timeout=20);assert not pending.is_alive() and not pending_error,pending_error
+            assert [f for f in mcu.raw_frames[start:] if f[1]==0xa1]==[bytes.fromhex('ffa100e04c8196c1c1311b000055')]
+            mcu.drop=False;operate('relay-off');wait(lambda:json.loads(web())['relay_on'] is False)
+            report['checks'].append('non-confirming MCU returns '+receipt['result']+' with relay unknown; operation lock and shared engine exclude web/Matter commands in both directions; lock releases for recovery')
             opened=operate('open-commissioning')
             assert opened['fabrics']==1 and opened['window_open'] and opened['window_seconds']>850
             tool('existing-fabric-retained',['onoff','off','12344321','1'])
@@ -152,7 +207,7 @@ def main():
             assert not mcu.bad
             report['checks'].append('reset-arm frame alone keeps pairing; confirmed physical long press commits durable factory intent and shuts down protocol owner')
             report['status']='pass'
-        except Exception as error:report['failure']=str(error)
+        except Exception as error:report['failure']=str(error);traceback.print_exc()
         finally:
             stop.set();mcu.done=True
             subprocess.run(['docker','stop','-t','1',name],stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL)

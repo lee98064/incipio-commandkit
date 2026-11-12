@@ -114,6 +114,11 @@ static void admin_action(int fd,const char *path,const char *body,unsigned lengt
     }
     operation_end(lock);json(fd,r==-2?400:r?503:200,r?"{\"error\":\"led_settings\"}":"{\"result\":\"complete\"}");return;
   }
+  if(!strcmp(path,"/admin/relay-on") || !strcmp(path,"/admin/relay-off")) {
+    if(strcmp(ck_protocol_active(),"matter")){operation_end(lock);json(fd,409,"{\"error\":\"protocol\"}");return;}
+    if(!matter_ready()){operation_end(lock);json(fd,503,"{\"error\":\"protocol_not_ready\"}");return;}
+    matter_queue(fd,!strcmp(path,"/admin/relay-on")?'1':'0',lock);return;
+  }
   if(!strcmp(path,"/admin/energy-reset")) {
     if(!strcmp(ck_protocol_active(),"matter")) {
       if(!matter_ready()){operation_end(lock);json(fd,503,"{\"error\":\"protocol_not_ready\"}");return;}
