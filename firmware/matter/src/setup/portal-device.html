@@ -1,4 +1,98 @@
-<!doctype html><html lang="zh-Hant"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>設定 CommandKit</title><style>
-*{box-sizing:border-box}body{margin:0;background:#f3f1eb;color:#17352c;font:16px/1.6 system-ui,-apple-system,sans-serif}main{max-width:480px;margin:auto;padding:42px 24px}.mark{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:#557367}.dot{display:inline-block;width:10px;height:10px;background:#247b52;border-radius:50%;margin-right:8px}h1{font-size:34px;line-height:1.15;margin:18px 0 14px;font-weight:650;letter-spacing:-.04em}p{color:#557367}.step{border-top:1px solid #d3d9cc;padding-top:16px;margin-top:26px;font-size:13px}form{margin-top:26px}label{display:block;font-weight:600;margin:18px 0 6px}input,select,button{width:100%;font:inherit;border-radius:10px;padding:12px 14px}input,select{background:#fff;border:1px solid #b8c7bc;color:#17352c}input:focus,select:focus{outline:2px solid #247b52;outline-offset:2px}button{border:0;background:#173f30;color:white;font-weight:600;margin-top:28px;cursor:pointer}.note{font-size:13px;margin-top:20px}a{color:#1c6340}small{color:#557367}.pairing{margin-top:30px;padding:22px;background:white;border:1px solid #d3d9cc;border-radius:14px}.pairing h2{margin:0;font-size:22px}.pairing img{display:block;width:220px;max-width:100%;height:auto;margin:16px auto}.pairing code{display:block;text-align:center;font:600 24px/1.6 ui-monospace,monospace;letter-spacing:.1em;color:#17352c;overflow-wrap:anywhere}footer{margin-top:36px;font-size:12px;color:#789083}
-.network-heading{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:24px}.network-heading label{margin:0}.secondary{width:auto;margin:0;padding:8px 12px;background:transparent;border:1px solid #b8c7bc;color:#173f30;font-size:13px}.scan-status{font-size:13px;margin:8px 0 16px;min-height:42px}details{margin:16px 0;padding:12px 0;border-top:1px solid #d3d9cc;border-bottom:1px solid #d3d9cc}summary{color:#1c6340;cursor:pointer;font-size:14px}.password-toggle{display:flex;align-items:center;gap:8px;font-size:14px;font-weight:400}.password-toggle input{width:18px;height:18px;padding:0;border-radius:3px}button:disabled{opacity:.55;cursor:wait}[hidden]{display:none!important}button:focus-visible,summary:focus-visible{outline:2px solid #247b52;outline-offset:3px}
-</style><main><div class="mark"><span class="dot"></span>CommandKit · 設定</div><h1>讓插座連上<br>家中的 Wi-Fi。</h1><p>選擇家中的 2.4 GHz Wi-Fi，再輸入密碼。連線完成後，手機需要切回同一個家中網路，才能接續 Matter 配對。</p><div class="step">01　設定 Wi-Fi　→　02　加入家庭</div><form id="wifi-form" action="/wifi" method="post" accept-charset="UTF-8"><input type="hidden" name="token" value="{{TOKEN}}"><div class="network-heading"><label for="network">附近的 Wi-Fi</label><button id="scan-again" class="secondary" type="button">重新掃描</button></div><select id="network" disabled><option>正在尋找附近的網路…</option></select><p id="scan-status" class="scan-status" role="status" aria-live="polite">正在尋找附近的 2.4 GHz Wi-Fi…</p><details id="manual-network" open><summary>手動輸入／隱藏網路</summary><label for="ssid">Wi-Fi 名稱</label><input id="ssid" name="ssid" maxlength="32" required autocomplete="off" autocapitalize="none" spellcheck="false" placeholder="網路名稱，需與路由器相同"><label for="security">網路安全性</label><select id="security" name="security"><option value="wpa2">WPA2 個人網路</option><option value="open">開放網路</option></select></details><div id="password-area"><label for="password">Wi-Fi 密碼</label><input id="password" name="password" type="password" maxlength="64" minlength="8" autocomplete="new-password" autocapitalize="none" spellcheck="false" placeholder="至少 8 個字元"><label class="password-toggle"><input id="show-password" type="checkbox">顯示密碼</label></div><small>支援 2.4 GHz WPA2 個人網路與開放網路。</small><section id="admin-setup" class="pairing"><h2>設定管理密碼</h2><p>之後登入插座後台、切換協議及重設設定時使用，與 Wi-Fi 密碼分開。</p><label for="admin-password">管理密碼</label><input id="admin-password" type="password" minlength="8" maxlength="128" autocomplete="new-password" required><label for="admin-confirm">再次輸入管理密碼</label><input id="admin-confirm" type="password" minlength="8" maxlength="128" autocomplete="new-password" required><small>至少 8 個字元。忘記密碼時，實體長按會恢復出廠並清除設定與用電紀錄。</small></section><p id="admin-setup-status" role="status" aria-live="polite">正在讀取管理設定…</p><button id="save" type="submit">儲存並連線</button><noscript><p class="note">請啟用 JavaScript，以設定管理密碼並連線 Wi-Fi。</p></noscript></form><p class="note">插座的設定熱點不需要密碼，暫時沒有網際網路是正常的。請保持連線，直到送出設定。</p><section class="pairing" aria-labelledby="matter-title"><h2 id="matter-title">Matter 配對</h2><p>先保存 QR Code 或設定碼。Wi-Fi 設定完成後，手機切回同一個網路，再用 Apple 家庭或 Home Assistant 加入插座。</p><img src="/matter-qr" width="220" height="220" alt="Matter 配對 QR Code"><label for="matter-manual">Matter 設定碼</label><code id="matter-manual">{{MATTER_MANUAL}}</code><small>此設定碼屬於這台插座，重開機後維持相同。請保存設定碼或 QR Code。請不要使用插座原本的 HomeKit 碼。配對資料會保存在插座，重開機與 OTA 更新後沿用。</small></section><section class="pairing"><h2>HomeKit／Matter 切換</h2><p>完成 Wi-Fi 設定後，可在插座管理面板選擇協議。一次只啟用一種，切換時重新啟動。</p><a id="protocol-management" href="#" hidden>開啟插座管理面板</a></section><footer>本機設定 · 不需要雲端帳號<br>開發測試版 · 依所選的 HomeKit 或 Matter 協議控制插座。</footer></main><script src="/password.js"></script><script src="/setup.js" defer></script></html>
+<!doctype html><html lang="zh-Hant"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="color-scheme" content="light dark"><title>設定 CommandKit</title><style>
+:root{--bg:#eef2f5;--glow:#d6eef0;--surface:#fff;--surface-2:#f4f7f9;--ink:#0f2233;--ink-2:#4b5f70;--ink-3:#7a8c9b;--line:#dde5eb;--line-2:#c5d1da;--accent:#087e8b;--accent-ink:#fff;--accent-2:#06646e;--accent-soft:#e1f2f3;--ok:#16835a;--ok-soft:#e3f4ec;--warn:#9a5b00;--warn-soft:#fdf1dc;--danger:#b8372b;--hero-1:#14506a;--hero-3:#0a1a27;--shadow:0 1px 2px #0f22330a,0 12px 32px -18px #0f223347;
+  font:16px/1.6 -apple-system,BlinkMacSystemFont,"SF Pro Text","PingFang TC","Noto Sans TC","Microsoft JhengHei","Segoe UI",system-ui,sans-serif;color:var(--ink);background:var(--bg);-webkit-text-size-adjust:100%}
+@media(prefers-color-scheme:dark){:root{--bg:#0a131b;--glow:#0f2b33;--surface:#101c26;--surface-2:#162532;--ink:#e5eef4;--ink-2:#a2b4c2;--ink-3:#6f8597;--line:#1f303d;--line-2:#2b4050;--accent:#2ec5cf;--accent-ink:#04252a;--accent-2:#5fd6de;--accent-soft:#0f3940;--ok:#4fd39a;--ok-soft:#10352a;--warn:#f2ad4b;--warn-soft:#3a2a10;--danger:#ff7a6b;--shadow:0 1px 2px #0006,0 12px 32px -18px #000c}}
+*{box-sizing:border-box}[hidden]{display:none!important}
+body{margin:0;min-height:100vh;background:radial-gradient(900px 480px at 50% -18%,var(--glow),transparent 70%),var(--bg)}
+main{max-width:520px;margin:0 auto;padding:max(22px,env(safe-area-inset-top)) 18px 40px}
+svg.i{width:20px;height:20px;flex:none;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+button,input,select{font:inherit;color:inherit}:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.top{display:flex;align-items:center;gap:11px;margin-bottom:22px}.logo{width:38px;height:38px;border-radius:12px;display:grid;place-items:center;background:linear-gradient(145deg,var(--hero-1),var(--hero-3));color:#7ef0d8}
+.top b{display:block;font-size:16px}.top small{display:block;font-size:12px;color:var(--ink-3);letter-spacing:.03em}
+.progress{list-style:none;display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:0;margin:0 0 22px}
+.progress li{font-size:12.5px;color:var(--ink-3);padding-top:10px;border-top:3px solid var(--line);transition:color .2s,border-color .2s}
+.progress li b{display:block;font-size:11px;letter-spacing:.08em;font-weight:700}
+.progress li.on{color:var(--ink);border-color:var(--accent)}.progress li.done{color:var(--ink-2);border-color:var(--ok)}
+h1{font-size:30px;line-height:1.2;font-weight:700;letter-spacing:-.03em;margin:0 0 10px}
+.lead{color:var(--ink-2);margin:0 0 20px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:18px;box-shadow:var(--shadow);margin-bottom:16px}
+.row{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.label{font-size:14px;font-weight:650}
+.ghost{display:inline-flex;align-items:center;gap:6px;min-height:36px;padding:0 12px;border-radius:10px;border:1px solid var(--line);background:var(--surface-2);font-size:13.5px;font-weight:600;cursor:pointer}
+.ghost:disabled{opacity:.5;cursor:wait}.ghost svg{width:16px;height:16px}
+.scan-status{font-size:13.5px;color:var(--ink-2);margin:8px 0 12px;min-height:22px}
+.networks{display:grid;gap:8px;max-height:360px;overflow:auto;margin:0 -4px;padding:2px 4px}
+.net{display:flex;align-items:center;gap:12px;width:100%;min-height:54px;padding:10px 14px;border-radius:14px;border:1px solid var(--line);background:var(--surface);text-align:left;cursor:pointer;transition:border-color .15s,box-shadow .15s}
+.net:hover{border-color:var(--line-2)}.net[aria-checked=true]{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+.net:disabled{opacity:.5;cursor:not-allowed}
+.net .ssid{flex:1;min-width:0;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.net small{font-size:12.5px;color:var(--ink-3);white-space:nowrap}
+.net .lock{width:16px;height:16px;color:var(--ink-3)}
+.bars{display:inline-flex;align-items:flex-end;gap:2px;height:16px;flex:none}.bars i{width:4px;border-radius:2px;background:var(--line-2)}
+.bars i:nth-child(1){height:6px}.bars i:nth-child(2){height:11px}.bars i:nth-child(3){height:16px}
+.bars[data-level="1"] i:nth-child(1),.bars[data-level="2"] i:nth-child(-n+2),.bars[data-level="3"] i{background:var(--accent)}
+.skeleton{height:54px;border-radius:14px;background:linear-gradient(90deg,var(--surface-2),var(--line),var(--surface-2));background-size:200% 100%;animation:shimmer 1.4s infinite}
+@keyframes shimmer{to{background-position:-200% 0}}
+details{margin-top:12px;border-top:1px solid var(--line);padding-top:4px}
+summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;padding:10px 0;font-size:14px;font-weight:600;color:var(--accent-2)}
+summary::-webkit-details-marker{display:none}summary:after{content:"";width:7px;height:7px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(45deg);transition:transform .2s;margin-right:4px}
+details[open] summary:after{transform:rotate(-135deg)}
+label.f{display:block;font-size:14px;font-weight:650;margin:14px 0 6px}
+input:not([type=checkbox]),select{width:100%;min-height:50px;padding:11px 14px;border-radius:13px;border:1px solid var(--line-2);background:var(--surface);color:var(--ink);transition:border-color .15s,box-shadow .15s}
+input:focus,select:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 4px var(--accent-soft)}
+.pw{position:relative}.pw input{padding-right:52px}.eye{position:absolute;right:5px;top:50%;transform:translateY(-50%);width:42px;height:42px;border:0;border-radius:10px;background:none;color:var(--ink-3);display:grid;place-items:center;cursor:pointer}
+.hint{font-size:12.5px;color:var(--ink-3);margin:7px 0 0}
+.btn{position:relative;display:flex;align-items:center;justify-content:center;gap:8px;width:100%;min-height:52px;margin-top:20px;border:0;border-radius:14px;background:var(--accent);color:var(--accent-ink);font-weight:700;font-size:16px;cursor:pointer;transition:transform .12s,filter .15s}
+.btn:active{transform:scale(.99)}.btn:disabled{opacity:.5;cursor:not-allowed}.btn.loading{color:transparent}.btn.loading:disabled{opacity:1}
+.btn.loading:after{content:"";position:absolute;width:20px;height:20px;border-radius:50%;border:2px solid #ffffff66;border-top-color:#fff;animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(1turn)}}
+.back{display:inline-flex;align-items:center;gap:4px;margin-top:12px;border:0;background:none;color:var(--ink-2);font-size:14px;cursor:pointer;padding:6px 2px}
+.status{font-size:13.5px;color:var(--ink-2);margin:12px 0 0;min-height:20px}.status[data-tone=error]{color:var(--danger)}
+.note{display:flex;gap:10px;align-items:flex-start;font-size:13.5px;color:var(--ink-2);padding:13px 14px;border-radius:14px;background:var(--surface-2);margin:0 0 16px}.note svg{color:var(--accent);margin-top:1px}
+.note.warn{background:var(--warn-soft);color:var(--warn)}.note.warn svg{color:var(--warn)}
+.chosen{display:flex;align-items:center;gap:10px;padding:12px 14px;border-radius:14px;background:var(--accent-soft);color:var(--accent-2);font-weight:600;font-size:14px;margin-bottom:4px}
+.done-mark{width:64px;height:64px;border-radius:20px;display:grid;place-items:center;background:var(--ok-soft);color:var(--ok);margin:4px 0 16px}.done-mark svg{width:32px;height:32px;stroke-width:2.4}
+ol.todo{margin:0;padding:0;list-style:none;counter-reset:t}ol.todo li{position:relative;padding:0 0 14px 40px;font-size:14.5px;color:var(--ink-2)}
+ol.todo li:before{counter-increment:t;content:counter(t);position:absolute;left:0;top:0;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;background:var(--accent-soft);color:var(--accent-2);font-size:13px;font-weight:700}
+ol.todo b{color:var(--ink)}
+.qr{display:grid;justify-items:center;text-align:center;padding:20px 18px}.qr img{width:200px;height:200px;padding:10px;border-radius:14px;background:#fff}
+.qr small{display:block;color:var(--ink-3);font-size:12.5px;margin-top:12px}
+.qr code{display:block;font:600 26px/1.4 "SF Mono",ui-monospace,Menlo,Consolas,monospace;letter-spacing:.06em;margin-top:2px;overflow-wrap:anywhere}
+footer{font-size:12px;color:var(--ink-3);text-align:center;margin-top:26px;line-height:1.8}
+a{color:var(--accent-2)}
+.panel{animation:rise .3s ease both}@keyframes rise{from{opacity:0;transform:translateY(6px)}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+<symbol id="i-outlet" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="5"/><path d="M9.5 9v3M14.5 9v3M10 15.5h4"/></symbol>
+<symbol id="i-refresh" viewBox="0 0 24 24"><path d="M20 12a8 8 0 1 1-2.4-5.7"/><path d="M20 4v4.5h-4.5"/></symbol>
+<symbol id="i-lock" viewBox="0 0 24 24"><rect x="4.5" y="10.5" width="15" height="10" rx="2.5"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"/></symbol>
+<symbol id="i-eye" viewBox="0 0 24 24"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12Z"/><circle cx="12" cy="12" r="3"/></symbol>
+<symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v5.5M12 7.5v.1"/></symbol>
+<symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></symbol>
+<symbol id="i-wifi" viewBox="0 0 24 24"><path d="M2.5 9a14 14 0 0 1 19 0M5.5 12.5a9.5 9.5 0 0 1 13 0M8.8 16a5 5 0 0 1 6.4 0"/><path d="M12 19.5v.1"/></symbol>
+<symbol id="i-back" viewBox="0 0 24 24"><path d="m15 5.5-6.5 6.5 6.5 6.5"/></symbol>
+</svg>
+<main><div class="top"><div class="logo"><svg class="i"><use href="#i-outlet"/></svg></div><div><b>CommandKit 設定</b><small>CMNDKT-004 智慧插座 · 本機設定</small></div></div>
+<ol class="progress" aria-label="設定步驟"><li id="p1" class="on"><b>步驟 1</b>連上 Wi-Fi</li><li id="p2"><b>步驟 2</b>管理密碼</li><li id="p3"><b>步驟 3</b>加入家庭</li></ol>
+<form id="wifi-form" action="/wifi" method="post" accept-charset="UTF-8"><input type="hidden" name="token" value="{{TOKEN}}">
+<section class="panel" id="step-1"><h1>讓插座連上<br>家中的 Wi-Fi</h1><p class="lead">選擇家中的 2.4 GHz Wi-Fi 並輸入密碼。設定熱點暫時沒有網際網路是正常的，請保持連線。</p>
+<div class="card"><div class="row"><span class="label">附近的 Wi-Fi</span><button id="scan-again" class="ghost" type="button"><svg class="i"><use href="#i-refresh"/></svg>重新掃描</button></div>
+<p id="scan-status" class="scan-status" role="status" aria-live="polite">正在尋找附近的 2.4 GHz Wi-Fi…</p>
+<div id="network" class="networks" role="radiogroup" aria-label="附近的 Wi-Fi"><div class="skeleton"></div><div class="skeleton"></div><div class="skeleton"></div></div>
+<details id="manual-network"><summary>手動輸入或隱藏網路</summary><label class="f" for="ssid">Wi-Fi 名稱</label><input id="ssid" name="ssid" maxlength="32" required autocomplete="off" autocapitalize="none" spellcheck="false" placeholder="需與路由器上的名稱相同">
+<label class="f" for="security">網路安全性</label><select id="security" name="security"><option value="wpa2">WPA2 個人網路</option><option value="open">開放網路（不需密碼）</option></select></details></div>
+<div class="card" id="password-area"><label class="f" for="password" style="margin-top:0">Wi-Fi 密碼</label><div class="pw"><input id="password" name="password" type="password" maxlength="64" minlength="8" autocomplete="new-password" autocapitalize="none" spellcheck="false" placeholder="至少 8 個字元"><button class="eye" type="button" data-for="password" aria-label="顯示密碼"><svg class="i"><use href="#i-eye"/></svg></button></div><p class="hint">支援 2.4 GHz WPA2 個人網路與開放網路。</p></div>
+<button id="next" class="btn" type="button" disabled>下一步：建立管理密碼</button></section>
+<section class="panel" id="step-2" hidden><h1>建立管理密碼</h1><p class="lead">之後登入插座管理後台、切換協議與更新韌體時使用，與 Wi-Fi 密碼分開。</p>
+<div class="chosen"><svg class="i"><use href="#i-wifi"/></svg><span id="chosen-ssid">—</span></div>
+<div class="card" id="admin-setup"><label class="f" for="admin-password" style="margin-top:0">管理密碼</label><div class="pw"><input id="admin-password" type="password" minlength="8" maxlength="128" autocomplete="new-password" required><button class="eye" type="button" data-for="admin-password" aria-label="顯示密碼"><svg class="i"><use href="#i-eye"/></svg></button></div>
+<label class="f" for="admin-confirm">再次輸入管理密碼</label><input id="admin-confirm" type="password" minlength="8" maxlength="128" autocomplete="new-password" required>
+<p class="hint">至少 8 個字元。忘記時只能實體長按恢復出廠，會清除設定與用電紀錄。</p></div>
+<button id="save" class="btn" type="submit">儲存並連線</button><button class="back" type="button" id="back"><svg class="i"><use href="#i-back"/></svg>返回修改 Wi-Fi</button></section>
+<p id="admin-setup-status" class="status" role="status" aria-live="polite">正在讀取管理設定…</p>
+<noscript><p class="note warn">請啟用 JavaScript，以設定管理密碼並連線 Wi-Fi。</p></noscript></form>
+<section class="panel" id="step-3" hidden><div class="done-mark"><svg class="i"><use href="#i-check"/></svg></div><h1>設定已送出</h1><p class="lead">插座正在連上<b id="done-ssid"></b>，設定熱點會暫時關閉。</p>
+<div class="card"><ol class="todo"><li><b>手機切回家中 Wi-Fi。</b>若設定熱點再次出現，代表尚未連上，請重新連接 CommandKit-Setup 並檢查密碼。</li><li><b>加入家庭。</b>用 Apple 家庭、Google Home 或 Home Assistant 選擇「加入配件」，掃描下方 QR Code 或輸入設定碼。</li><li><b>管理插座。</b>在路由器的裝置清單找到插座 IP，用瀏覽器開啟 http://插座IP:18082/，以剛建立的管理密碼登入。</li></ol></div></section>
+<section class="card qr" id="pairing" aria-labelledby="matter-title"><b id="matter-title">Matter 配對碼</b><img src="/matter-qr" width="200" height="200" alt="Matter 配對 QR Code"><small>Matter 設定碼</small><code id="matter-manual">{{MATTER_MANUAL}}</code><small>這組碼屬於這台插座，重開機與更新後都相同，請先拍照保存。請不要使用插座原本的 HomeKit 碼；若之後改用 HomeKit，可在管理後台切換。</small></section>
+<p class="note" id="protocol-note" hidden><svg class="i"><use href="#i-info"/></svg><span>Wi-Fi 已設定完成。請<a id="protocol-management" href="#">開啟插座管理後台</a>，登入後再修改 Wi-Fi 或切換 HomeKit／Matter。</span></p>
+<footer>本機設定，不需要雲端帳號<br>開發測試版 · 依所選的 HomeKit 或 Matter 協議控制插座</footer></main><script src="/password.js"></script><script src="/setup.js" defer></script></html>

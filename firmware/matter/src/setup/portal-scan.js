@@ -1,94 +1,125 @@
 'use strict';
 (function () {
-  var protocolPanel = document.getElementById('protocol-management');
-  if (protocolPanel) { protocolPanel.href = 'http://' + location.hostname + ':18082/'; protocolPanel.hidden = false; }
-  var form = document.getElementById('wifi-form');
-  var list = document.getElementById('network');
-  var manual = document.getElementById('manual-network');
-  var ssid = document.getElementById('ssid');
-  var security = document.getElementById('security');
-  var password = document.getElementById('password');
-  var passwordArea = document.getElementById('password-area');
-  var status = document.getElementById('scan-status');
-  var retry = document.getElementById('scan-again');
-  var save = document.getElementById('save');
-  var networks = [], scanning = false;
-  var adminState=null,setting=false;
-  var adminMessage=document.getElementById('admin-setup-status');
-  async function adminStatus(){try{
-    var response=await fetch('/admin/status',{cache:'no-store'});adminState=await response.json();
-    if(!adminState.ready){setTimeout(adminStatus,1500);return;}
-    document.getElementById('admin-setup').hidden=adminState.configured;
-    document.getElementById('admin-password').required=!adminState.configured;
-    document.getElementById('admin-confirm').required=!adminState.configured;
-    adminMessage.textContent=adminState.configured?'管理密碼已設定。':'請建立管理密碼，不需要下載金鑰檔案。';
-    if(!adminState.wifi_allowed){form.hidden=true;adminMessage.textContent='請開啟管理面板，登入後修改 Wi-Fi。';}
-  }catch{adminMessage.textContent='管理服務尚未就緒，正在重試…';setTimeout(adminStatus,1500);}}
-  adminStatus();
-  form.addEventListener('submit',async function(event){
-    event.preventDefault();if(setting)return;
-    try{
-      if(!adminState?.ready)throw Error('請稍候管理服務準備完成');
-      setting=true;save.disabled=true;
-      if(!adminState.configured){
-        var password=document.getElementById('admin-password').value;
-        if(password!==document.getElementById('admin-confirm').value)throw Error('兩次管理密碼不相同');
-        adminMessage.textContent='正在保護管理密碼，請稍候…';
-        var salt=CKPassword.salt(),key=await CKPassword.derive(password,salt);
-        document.getElementById('admin-password').value='';document.getElementById('admin-confirm').value='';password='';
-        var enroll=await fetch('/admin/enroll',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:'token='+form.elements.token.value+'&credential='+CKPassword.record(salt,key)});key='';
-        if(!enroll.ok)throw Error('管理密碼未保存，請重新開啟設定頁再試');
-        adminState.configured=true;
+  function $(id) { return document.getElementById(id); }
+  var form = $('wifi-form'), list = $('network'), manual = $('manual-network'), ssid = $('ssid'), security = $('security');
+  var password = $('password'), passwordArea = $('password-area'), status = $('scan-status'), retry = $('scan-again');
+  var next = $('next'), save = $('save'), adminMessage = $('admin-setup-status');
+  var networks = [], scanning = false, adminState = null, setting = false, chosen = -1;
+  form.noValidate = true;
+  $('protocol-management').href = 'http://' + location.hostname + ':18082/';
+  var code = $('matter-manual'), raw = code.textContent.trim();
+  if (/^\d{11}$/.test(raw)) code.textContent = raw.slice(0, 4) + '-' + raw.slice(4, 7) + '-' + raw.slice(7);
+
+  function step(n) {
+    [1, 2, 3].forEach(function (i) {
+      $('step-' + i).hidden = i !== n;
+      $('p' + i).className = i === n ? 'on' : i < n ? 'done' : '';
+    });
+    adminMessage.hidden = n === 3;
+    window.scrollTo(0, 0);
+  }
+  function say(text, error) { adminMessage.textContent = text; adminMessage.dataset.tone = error ? 'error' : ''; }
+  function wifiReady() {
+    var open = security.value === 'open', name = ssid.value;
+    return name.length > 0 && new TextEncoder().encode(name).length <= 32 && (open || password.value.length >= 8);
+  }
+  function refreshButtons() {
+    next.disabled = setting || !wifiReady() || !adminState || !adminState.ready;
+    next.textContent = adminState && adminState.configured ? '儲存並連線' : '下一步：建立管理密碼';
+  }
+  async function adminStatus() {
+    try {
+      var response = await fetch('/admin/status', {cache: 'no-store'});
+      adminState = await response.json();
+      if (!adminState.ready) { setTimeout(adminStatus, 1500); return; }
+      $('admin-setup').hidden = adminState.configured;
+      say(adminState.configured ? '管理密碼已設定，送出後直接連線。' : '');
+      if (!adminState.wifi_allowed) {
+        form.hidden = true; $('protocol-note').hidden = false;
+        $('p1').className = $('p2').className = 'done'; $('p3').className = 'on';
       }
-      adminMessage.textContent='密碼已保存，正在連線…';HTMLFormElement.prototype.submit.call(form);
-    }catch(error){adminMessage.textContent=error.message;setting=false;save.disabled=false;}
+      refreshButtons();
+    } catch (error) { say('管理服務尚未就緒，正在重試…'); setTimeout(adminStatus, 1500); }
+  }
+  async function connect() {
+    if (setting) return;
+    try {
+      if (!adminState || !adminState.ready) throw Error('請稍候管理服務準備完成');
+      if (!wifiReady()) { step(1); throw Error('請確認 Wi-Fi 名稱與密碼'); }
+      setting = true; save.disabled = next.disabled = true; save.classList.add('loading'); next.classList.add('loading');
+      if (!adminState.configured) {
+        var admin = $('admin-password').value;
+        if (admin.length < 8) throw Error('管理密碼至少需要 8 個字元');
+        if (admin !== $('admin-confirm').value) throw Error('兩次管理密碼不相同');
+        say('正在保護管理密碼，約需數秒…');
+        var salt = CKPassword.salt(), key = await CKPassword.derive(admin, salt);
+        $('admin-password').value = ''; $('admin-confirm').value = ''; admin = '';
+        var enroll = await fetch('/admin/enroll', {method: 'POST', headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+          body: 'token=' + form.elements.token.value + '&credential=' + CKPassword.record(salt, key)});
+        key = '';
+        if (!enroll.ok) throw Error('管理密碼未保存，請重新開啟設定頁再試');
+        adminState.configured = true;
+      }
+      say('密碼已保存，正在送出 Wi-Fi 設定…');
+      var body = new URLSearchParams({token: form.elements.token.value, ssid: ssid.value, security: security.value,
+        password: security.value === 'open' ? '' : password.value});
+      var reply = await fetch('/wifi', {method: 'POST', credentials: 'same-origin', cache: 'no-store',
+        headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'}, body: body.toString()});
+      if (!reply.ok) {
+        var text = (await reply.text()).trim();
+        throw Error(reply.status === 409 ? '插座正在處理其他操作，請稍候再試' : text || '設定未送出，請重新開啟設定頁');
+      }
+      password.value = ''; $('done-ssid').textContent = '「' + ssid.value + '」'; step(3);
+    } catch (error) {
+      say(error.message, true); setting = false; save.disabled = false; refreshButtons();
+    } finally { save.classList.remove('loading'); next.classList.remove('loading'); }
+  }
+  form.addEventListener('submit', function (event) { event.preventDefault(); connect(); });
+  next.addEventListener('click', function () {
+    if (!wifiReady()) return;
+    if (adminState && adminState.configured) { connect(); return; }
+    $('chosen-ssid').textContent = ssid.value; say(''); step(2); $('admin-password').focus();
   });
+  $('back').addEventListener('click', function () { say(''); step(1); });
+
   function passwordMode() {
     var open = security.value === 'open';
-    password.required = !open;
-    password.minLength = open ? 0 : 8;
-    passwordArea.hidden = open;
-    if (open) password.value = '';
+    password.required = !open; password.minLength = open ? 0 : 8;
+    passwordArea.hidden = open; if (open) password.value = '';
+    refreshButtons();
   }
-  function choose() {
-    if (list.value === 'manual') {
-      manual.open = true;
-      ssid.value = '';
-      security.value = 'wpa2';
-      save.disabled = scanning;
-      ssid.focus();
-    } else if (list.value !== '') {
-      var item = networks[Number(list.value)];
-      if (!item || item.security === 'unsupported') return;
-      ssid.value = item.ssid;
-      security.value = item.security;
-      manual.open = false;
-      save.disabled = scanning;
-      if (item.security !== 'open') password.focus();
-    } else save.disabled = true;
+  function select(index) {
+    var item = networks[index];
+    if (!item || item.security === 'unsupported') return;
+    chosen = index;
+    Array.prototype.forEach.call(list.children, function (row) { row.setAttribute('aria-checked', String(Number(row.dataset.index) === index)); });
+    ssid.value = item.ssid; security.value = item.security; manual.open = false;
     passwordMode();
+    if (item.security !== 'open') password.focus();
   }
-  function option(text, value, disabled) {
-    var item = document.createElement('option');
-    item.textContent = text; item.value = value; item.disabled = !!disabled;
-    list.appendChild(item);
+  function row(item, index) {
+    var button = document.createElement('button'), bars = document.createElement('span'), name = document.createElement('span'), meta = document.createElement('small');
+    button.type = 'button'; button.className = 'net'; button.dataset.index = String(index);
+    button.setAttribute('role', 'radio'); button.setAttribute('aria-checked', 'false');
+    bars.className = 'bars'; bars.dataset.level = item.signal >= 70 ? '3' : item.signal >= 40 ? '2' : '1';
+    for (var i = 0; i < 3; i++) bars.appendChild(document.createElement('i'));
+    name.className = 'ssid'; name.textContent = item.ssid;
+    meta.textContent = item.security === 'open' ? '免密碼' : item.security === 'unsupported' ? '不支援此加密方式' :
+      item.signal >= 70 ? '訊號良好' : item.signal >= 40 ? '訊號普通' : '訊號較弱';
+    button.appendChild(bars); button.appendChild(name); button.appendChild(meta);
+    if (item.security === 'wpa2') {
+      var svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg'), use = document.createElementNS('http://www.w3.org/2000/svg', 'use');
+      svg.setAttribute('class', 'i lock'); svg.setAttribute('aria-hidden', 'true'); use.setAttribute('href', '#i-lock'); svg.appendChild(use); button.appendChild(svg);
+    }
+    button.disabled = item.security === 'unsupported';
+    button.addEventListener('click', function () { select(index); });
+    return button;
   }
   function show(items) {
-    networks = items;
-    list.textContent = '';
-    option('請選擇家中的 Wi-Fi', '');
-    items.forEach(function (item, index) {
-      var signal = item.signal >= 70 ? '訊號良好' : item.signal >= 40 ? '訊號普通' : '訊號較弱';
-      var suffix = item.security === 'open' ? '免密碼' : item.security === 'unsupported' ? '不支援此加密方式' : signal;
-      option(item.ssid + ' · ' + suffix, String(index), item.security === 'unsupported');
-    });
-    option('手動輸入／隱藏網路', 'manual');
-    list.disabled = false;
-    list.required = true;
-    save.disabled = true;
-    if (!items.some(function (item) { return item.security !== 'unsupported'; })) {
-      list.value = 'manual'; choose();
-    }
+    networks = items; chosen = -1; list.textContent = '';
+    items.forEach(function (item, index) { list.appendChild(row(item, index)); });
+    if (!items.some(function (item) { return item.security !== 'unsupported'; })) { manual.open = true; }
+    refreshButtons();
   }
   function request(fresh) {
     var controller = new AbortController();
@@ -105,8 +136,7 @@
   }
   function scan() {
     if (scanning) return;
-    scanning = true;
-    retry.disabled = true; save.disabled = true;
+    scanning = true; retry.disabled = true;
     status.textContent = '正在尋找附近的 2.4 GHz Wi-Fi…';
     var tries = 0;
     function poll(fresh) {
@@ -117,7 +147,7 @@
         scanning = false; retry.disabled = false;
         if (result.status !== 'ready' || !Array.isArray(result.networks)) throw new Error('scan failed');
         show(result.networks);
-        status.textContent = result.networks.length ? '選擇網路，再輸入密碼即可。' : '沒有找到網路。可重新掃描，或手動輸入名稱。';
+        status.textContent = result.networks.length ? '找到 ' + result.networks.length + ' 個網路，點選家中的 Wi-Fi。' : '沒有找到網路。可重新掃描，或手動輸入名稱。';
       }).catch(function () {
         scanning = false; retry.disabled = false;
         show([]);
@@ -126,12 +156,20 @@
     }
     poll(true);
   }
-  list.addEventListener('change', choose);
   security.addEventListener('change', passwordMode);
-  ssid.addEventListener('input', function () { list.value = 'manual'; save.disabled = scanning; });
-  retry.addEventListener('click', scan);
-  document.getElementById('show-password').addEventListener('change', function (event) {
-    password.type = event.target.checked ? 'text' : 'password';
+  ssid.addEventListener('input', function () {
+    chosen = -1;
+    Array.prototype.forEach.call(list.children, function (item) { if (item.dataset.index) item.setAttribute('aria-checked', 'false'); });
+    refreshButtons();
   });
-  passwordMode(); manual.open = false; scan();
+  password.addEventListener('input', refreshButtons);
+  manual.addEventListener('toggle', function () { if (manual.open) ssid.focus(); refreshButtons(); });
+  retry.addEventListener('click', scan);
+  Array.prototype.forEach.call(document.querySelectorAll('.eye'), function (button) {
+    button.addEventListener('click', function () {
+      var input = $(button.dataset.for), reveal = input.type === 'password';
+      input.type = reveal ? 'text' : 'password'; button.setAttribute('aria-label', reveal ? '隱藏密碼' : '顯示密碼');
+    });
+  });
+  adminStatus(); passwordMode(); manual.open = false; scan();
 }());

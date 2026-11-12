@@ -1,36 +1,332 @@
 <!doctype html>
-<html lang="zh-Hant"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<html lang="zh-Hant"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="color-scheme" content="light dark"><meta name="theme-color" content="#0f2233">
 <title>CommandKit 插座管理</title>
 <style>
-:root{font:15px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#17324d;background:#f2f5f7;color-scheme:light;--line:#d7e0e6;--muted:#647789;--teal:#087e8b}*{box-sizing:border-box}[hidden]{display:none!important}body{margin:0}header{background:#17324d;color:#fff;padding:20px max(22px,calc((100vw - 1120px)/2));display:flex;align-items:center;justify-content:space-between;gap:16px}.brand{font:700 17px/1.4 ui-monospace,monospace;letter-spacing:.06em}.model{font-size:11px;letter-spacing:.1em;opacity:.65;margin-top:3px}.account{display:flex;align-items:center;gap:12px;font-size:13px}.shell{max-width:1164px;margin:0 auto;display:grid;grid-template-columns:170px 1fr;gap:28px;padding:30px 22px}nav{display:flex;flex-direction:column;gap:5px}nav button{text-align:left;background:transparent;color:#647789;border-radius:6px;padding:12px 14px;border:0;font-size:14px}nav button[aria-current=page]{color:#17324d;background:#dce9ed;font-weight:700}.sidebar-note{font:11px/1.8 ui-monospace,monospace;color:#647789;padding:14px}.heading{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:0 0 20px}h1{font-size:27px;font-weight:650;letter-spacing:-.04em;margin:0}h2{font-size:17px;margin:0 0 12px}h3{font-size:14px;margin:0 0 8px}.live{display:flex;align-items:center;gap:7px;font-size:12px;color:#647789}.led{height:7px;width:7px;border-radius:50%;background:#8b9ca6}.live[data-state=live] .led{background:#087e8b;box-shadow:0 0 0 4px #087e8b14}.panel{background:#fff;border:1px solid var(--line);border-radius:10px;padding:22px;margin-bottom:20px}.meter-head{display:flex;justify-content:space-between;gap:12px;font-size:13px;color:var(--muted);padding-bottom:15px;border-bottom:1px solid var(--line)}dl{margin:0;display:grid;grid-template-columns:1fr 1fr}.meter{padding:26px 18px 24px 0;min-width:0}.meter:nth-child(2n){padding-left:24px;border-left:1px solid var(--line)}.meter:nth-child(-n+2){border-bottom:1px solid var(--line)}dt{font-size:13px;color:var(--muted);margin-bottom:12px}dd{margin:0;display:flex;align-items:baseline;flex-wrap:wrap;gap:8px}.reading{font:500 clamp(26px,4.5vw,42px)/1.2 "SFMono-Regular",Consolas,monospace;letter-spacing:-.06em;color:var(--teal);font-variant-numeric:tabular-nums;overflow-wrap:anywhere}#energy{font-size:clamp(22px,3.5vw,33px)}.unit{font-size:13px;color:var(--muted)}.meter-note{color:var(--muted);font-size:11px;margin:8px 0 0}.meter-foot{border-top:1px solid var(--line);padding-top:14px;display:flex;justify-content:space-between;gap:10px;font-size:12px;color:var(--muted)}.device-facts{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}.device-facts small{display:block;color:var(--muted);font-size:12px}.device-facts strong{font:500 14px/1.8 ui-monospace,monospace;overflow-wrap:anywhere}.quiet{color:var(--muted);font-size:13px}p{margin:8px 0 14px}button{font:inherit;font-size:14px;font-weight:600;line-height:1.5;cursor:pointer;border:1px solid transparent;border-radius:6px;padding:10px 16px;background:#087e8b;color:#fff;margin:4px 6px 4px 0}button.secondary{background:#edf3f6;color:#17324d;border-color:#d7e0e6}button.ghost{background:transparent;border-color:#ffffff50;color:#fff}button.danger{background:#fff3eb;border-color:#e7c5af;color:#925224}button:disabled{opacity:.5;cursor:wait}:focus-visible{outline:3px solid #087e8b;outline-offset:3px}label{display:block;font-size:13px;font-weight:600;margin-top:12px}input,select{font:inherit;border:1px solid #bfccd5;border-radius:6px;padding:11px 12px;width:100%;max-width:100%;background:#fff;color:#17324d;margin-top:6px}input[type=file]{font-size:13px}fieldset{border:1px solid var(--line);border-radius:7px;margin:0 0 14px;padding:5px 16px 16px}fieldset label{display:flex;align-items:center;gap:9px;font-size:14px}fieldset input{width:auto;margin:0;accent-color:#087e8b}.form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}.actions{margin-top:16px}.notice{padding:13px 16px;border-left:3px solid #087e8b;background:#e5f0f2;font-size:13px;margin-bottom:20px;white-space:pre-wrap}.login{max-width:460px;margin:0 0 20px}#login-note,#protocol-message,#settings-message,#message{white-space:pre-wrap;font-size:13px;color:#647789}.section-head{display:flex;justify-content:space-between;gap:15px}.tag{font:11px/1.8 ui-monospace,monospace;color:#647789}.divider{margin:22px 0;border:0;border-top:1px solid var(--line)}summary{cursor:pointer;font-size:14px;font-weight:600}details[open] summary{margin-bottom:12px}#matter-code{font:500 22px/1.8 ui-monospace,monospace;letter-spacing:.1em}dialog{max-width:440px;width:calc(100% - 36px);border:1px solid var(--line);border-radius:10px;padding:25px;color:#17324d}dialog::backdrop{background:#17324d70}footer{font-size:11px;color:var(--muted);padding:8px 0 24px}@media(max-width:680px){header{padding:17px 18px}.shell{display:block;padding:16px}nav{flex-direction:row;margin-bottom:20px}.sidebar-note{display:none}.panel{padding:18px}.device-facts{grid-template-columns:1fr 1fr}.form-row{grid-template-columns:1fr}.account span{display:none}.meter:nth-child(2n){padding-left:16px}h1{font-size:24px}.meter-foot{flex-wrap:wrap}.reading{font-size:34px}}
-#settings-message:empty{display:none}</style>
-<header><div><div class="brand">COMMANDKIT</div><div class="model">CMNDKT-004 / SMART OUTLET</div></div><div class="account"><span id="account-state">訪客檢視</span><button class="ghost" id="login-open">管理員登入</button><button class="ghost" id="logout" hidden>登出</button></div></header>
-<div class="shell"><aside><nav aria-label="管理導覽"><button id="nav-overview" aria-current="page">狀態總覽</button><button id="nav-settings" hidden>管理設定</button></nav><div class="sidebar-note">本機管理<br>不需要雲端帳號</div></aside><main>
-<section class="panel login" id="login-panel" hidden><h2>管理員登入</h2><p class="quiet">輸入初始設定時建立的管理密碼。</p><form id="login-form"><label for="login-password">管理密碼</label><input id="login-password" type="password" autocomplete="current-password" required minlength="8" maxlength="128"><div class="actions"><button id="login-submit" type="submit">登入</button><button class="secondary" id="login-cancel" type="button">取消</button></div></form><p id="login-note" role="status" aria-live="polite"></p></section>
-<div id="setup-notice" class="notice" hidden>尚未設定管理密碼。請連接插座設定熱點，開啟 http://192.168.1.254/ 完成初始設定。</div>
-<p id="settings-message" class="notice" role="status" aria-live="polite"></p><section id="overview"><div class="heading"><h1>狀態總覽</h1><div id="live-state" class="live"><span class="led"></span><span>正在連線</span></div></div>
-<div class="panel monitor" aria-label="即時電力量測"><div class="meter-head"><span id="meter-state" role="status" aria-live="polite">正在讀取量測…</span><span id="relay">—</span></div><dl>
-<div class="meter"><dt>電壓</dt><dd><strong id="voltage" class="reading">—</strong><span class="unit">V</span></dd><p class="meter-note">交流有效值</p></div>
-<div class="meter"><dt>電流</dt><dd><strong id="current-amps" class="reading">—</strong><span class="unit">A</span></dd><p class="meter-note">交流有效值</p></div>
-<div class="meter"><dt>即時功率</dt><dd><strong id="power" class="reading">—</strong><span class="unit">W</span></dd><p class="meter-note">目前消耗的功率</p></div>
-<div class="meter"><dt>累積用電</dt><dd><strong id="energy" class="reading">—</strong><span class="unit">kWh</span></dd><p class="meter-note">功率估算 · 約 30 秒保存</p></div></dl><div class="meter-foot"><span id="meter-updated">等待量測資料</span><span>每 2 秒更新</span></div></div>
-<div class="panel"><h2>裝置資訊</h2><div class="device-facts"><div><small>韌體版本</small><strong id="current">—</strong></div><div><small>目前協議</small><strong id="active-protocol">—</strong></div><div><small>網路位址</small><strong id="device-address">—</strong></div></div><p id="guest-note" class="quiet">登入後可變更設定、更新韌體與重設累積用電。</p></div></section>
-<section id="settings" hidden><div class="heading"><h1>管理設定</h1><span class="tag">ADMINISTRATOR</span></div>
-<div class="panel" id="protocol-panel"><div class="section-head"><h2>智慧家庭協議</h2><span id="protocol-status" class="tag"></span></div><fieldset><legend>一次只啟用一種協議</legend><label><input type="radio" name="protocol" value="matter" checked> Matter</label><label><input type="radio" name="protocol" value="homekit"> HomeKit</label></fieldset><p class="quiet">切換會重新啟動，保留 Wi-Fi、配對、管理密碼與累積用電。管理後台在兩種模式都能使用。</p><p class="quiet">HomeKit 使用插座原廠配對碼；目前此模式暫停自訂網頁量測與 kWh 累計。</p><button id="protocol-save">儲存並重新啟動</button><p id="protocol-message" role="status" aria-live="polite"></p></div>
-<div class="panel"><h2>Wi-Fi 連線</h2><p class="quiet">支援 2.4 GHz WPA2 個人網路。儲存後可能更換 IP，請讓手機與插座使用同一網路。</p><form id="wifi-settings"><div class="form-row"><div><label for="wifi-ssid">Wi-Fi 名稱</label><input id="wifi-ssid" maxlength="32" autocomplete="off" required></div><div><label for="wifi-password">Wi-Fi 密碼</label><input id="wifi-password" type="password" minlength="8" maxlength="64" autocomplete="new-password" required></div></div><button type="submit">儲存並重新連線</button></form></div>
-<div class="panel" id="led-panel"><div class="section-head"><h2>指示燈</h2><span class="tag">HOMEKIT / MATTER</span></div>
-<p id="led-status" class="notice" role="status" aria-live="polite">正在讀取燈號狀態…</p>
-<form id="led-settings"><label for="led-mode">平常燈號</label><select id="led-mode"><option value="smart">智慧狀態（建議）</option><option value="relay">跟隨開關</option><option value="inverse">反向指示</option><option value="load">耗電指示</option><option value="on">恆亮</option><option value="off">恆滅</option></select><p id="led-description" class="quiet">正常時跟隨開關，設定、連線或配對時提供提示。</p>
-<fieldset><legend>夜間熄燈</legend><label><input type="checkbox" id="led-schedule">每天固定時段熄燈</label><div class="form-row"><div><label for="led-start">開始時間</label><input type="time" id="led-start" value="23:00" required></div><div><label for="led-end">結束時間</label><input type="time" id="led-end" value="07:00" required></div></div><p class="quiet">可跨午夜。夜間保留目前模式允許的設定、異常及尋找提示。</p></fieldset>
-<details><summary>排程時間與校時</summary><div class="form-row"><div><label for="led-offset">UTC 時差（小時）</label><input type="number" id="led-offset" value="8" min="-12" max="14" step="0.25" required><p class="quiet">台灣為 +8；使用夏令時間的地區請自行調整。</p></div><div><label for="led-ntp">時間伺服器</label><input id="led-ntp" value="pool.ntp.org" maxlength="127" autocomplete="off" required><p class="quiet">可填入區網 NTP 伺服器的名稱或 IPv4 位址。</p></div></div><p id="led-clock" class="quiet">排程等待校時</p><button id="led-phone-time" type="button" class="secondary">使用此手機時間校準</button><p class="quiet">每次斷電重開後需重新校時。成功校準後，即使暫時離線也能繼續執行排程。</p></details>
-<div class="actions"><button id="led-save" type="submit">儲存燈號設定</button><button id="led-find" type="button" class="secondary">尋找插座 · 閃燈 15 秒</button></div></form>
-<details><summary>燈號說明</summary><p class="quiet">等待設定：每半秒亮滅<br>連接 Wi-Fi：每兩秒短閃一次<br>可配對：每兩秒短閃兩次<br>服務或通訊異常：每三秒短閃三次<br>尋找插座：每四分之一秒亮滅</p></details></div>
-<div class="panel"><h2>家庭配對</h2><p id="pairing-state" class="quiet">正在讀取配對狀態…</p><div id="matter-onboarding"><code id="matter-code">—</code><p class="quiet">在支援 Matter 的家庭系統輸入此設定碼。</p></div><button id="commissioning-open" class="secondary">重新開啟 Matter 配對視窗</button><button id="pairing-reset" class="danger">清除目前協議的配對</button><p class="quiet">清除配對保留 Wi-Fi、管理密碼及累積用電。</p></div>
-<div class="panel"><h2>韌體更新</h2><p class="quiet">驗證簽章後安裝；保留設定與配對，更新時請保持供電。</p><button id="check" class="secondary">檢查新版本</button><button id="online" hidden>下載並更新</button><hr class="divider"><label for="package">手動選擇 .ota 更新包</label><input type="file" id="package" accept=".ota"><button id="manual">驗證並更新</button><p id="message" role="status" aria-live="polite">尚未檢查線上版本。</p></div>
-<div class="panel"><h2>管理密碼</h2><form id="password-settings"><div class="form-row"><div><label for="new-password">新管理密碼</label><input id="new-password" type="password" minlength="8" maxlength="128" autocomplete="new-password" required></div><div><label for="confirm-password">再次輸入新密碼</label><input id="confirm-password" type="password" minlength="8" maxlength="128" autocomplete="new-password" required></div></div><button type="submit">變更密碼</button></form></div>
-<div class="panel"><h2>重設與維護</h2><p class="quiet">累積用電清零會立即保存，之後重新累計。恢復出廠會清除管理密碼、Wi-Fi、兩套配對與用電紀錄，重新開啟設定熱點。</p><button id="energy-reset" class="danger">累積用電歸零</button><button id="reboot" class="secondary">重新啟動</button><button id="factory-reset" class="danger">恢復出廠設定</button></div></section>
-<footer>CMNDKT-004 · 讀值無效或連線中斷時顯示「—」。實體長按至重啟，可恢復出廠設定。</footer>
-</main></div><dialog id="confirm-box"><h2 id="confirm-title">確認操作</h2><p id="confirm-text"></p><button id="confirm-yes" class="danger">確認</button><button id="confirm-no" class="secondary">取消</button></dialog>
+:root{--bg:#eef2f5;--bg-glow:#d9eef0;--surface:#fff;--surface-2:#f4f7f9;--ink:#0f2233;--ink-2:#4b5f70;--ink-3:#7a8c9b;--line:#dde5eb;--line-2:#c5d1da;--accent:#087e8b;--accent-ink:#fff;--accent-2:#06646e;--accent-soft:#e1f2f3;--ok:#16835a;--ok-soft:#e3f4ec;--warn:#9a5b00;--warn-soft:#fdf1dc;--danger:#b8372b;--danger-soft:#fcebe8;--shadow:0 1px 2px #0f22330a,0 10px 30px -18px #0f223340;--hero-1:#14506a;--hero-2:#0f2a3d;--hero-3:#0a1a27;--radius:16px;--tab-h:64px;
+  font:15px/1.6 -apple-system,BlinkMacSystemFont,"SF Pro Text","PingFang TC","Noto Sans TC","Microsoft JhengHei","Segoe UI",system-ui,sans-serif;color:var(--ink);background:var(--bg);-webkit-text-size-adjust:100%}
+@media(prefers-color-scheme:dark){:root{--bg:#0a131b;--bg-glow:#0f2b33;--surface:#101c26;--surface-2:#162532;--ink:#e5eef4;--ink-2:#a2b4c2;--ink-3:#6f8597;--line:#1f303d;--line-2:#2b4050;--accent:#2ec5cf;--accent-ink:#04252a;--accent-2:#5fd6de;--accent-soft:#0f3940;--ok:#4fd39a;--ok-soft:#10352a;--warn:#f2ad4b;--warn-soft:#3a2a10;--danger:#ff7a6b;--danger-soft:#3d1916;--shadow:0 1px 2px #0006,0 12px 32px -18px #000c;--hero-1:#155a72;--hero-2:#0f2d40;--hero-3:#0b1d2a}}
+*{box-sizing:border-box}[hidden]{display:none!important}
+body{margin:0;min-height:100vh;background:radial-gradient(1100px 520px at 12% -12%,var(--bg-glow),transparent 70%),var(--bg);background-attachment:fixed}
+svg.i{width:20px;height:20px;flex:none;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+button,input,select{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+h1,h2,h3{margin:0;letter-spacing:-.01em}h1{font-size:26px;font-weight:650;letter-spacing:-.03em}h2{font-size:17px;font-weight:650}h3{font-size:15px;font-weight:650}
+p{margin:6px 0 12px}small,.muted{color:var(--ink-2)}code,.mono{font-family:"SF Mono",ui-monospace,Menlo,Consolas,monospace}
+.bar{position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px max(18px,env(safe-area-inset-left));padding-top:max(12px,env(safe-area-inset-top));background:color-mix(in srgb,var(--bg) 78%,transparent);backdrop-filter:saturate(1.6) blur(14px);-webkit-backdrop-filter:saturate(1.6) blur(14px);border-bottom:1px solid color-mix(in srgb,var(--line) 70%,transparent)}
+.brand{display:flex;align-items:center;gap:11px;min-width:0}.brand b{display:block;font-size:16px;letter-spacing:-.01em}.brand small{display:block;font-size:11.5px;letter-spacing:.04em;color:var(--ink-3);white-space:nowrap}
+.logo{width:36px;height:36px;border-radius:11px;display:grid;place-items:center;background:linear-gradient(145deg,var(--hero-1),var(--hero-3));color:#7ef0d8;box-shadow:inset 0 0 0 1px #ffffff1a}
+.bar-end{display:flex;align-items:center;gap:8px}
+.pill{display:inline-flex;align-items:center;gap:7px;height:30px;padding:0 11px;border-radius:99px;font-size:12.5px;color:var(--ink-2);background:var(--surface);border:1px solid var(--line);white-space:nowrap}
+.pill i{width:8px;height:8px;border-radius:50%;background:var(--ink-3)}
+.pill[data-state=live] i{background:var(--ok);box-shadow:0 0 0 0 color-mix(in srgb,var(--ok) 50%,transparent);animation:ping 2s infinite}
+.pill[data-state=waiting] i{background:var(--warn)}.pill[data-state=offline] i{background:var(--danger)}
+@keyframes ping{70%{box-shadow:0 0 0 7px transparent}100%{box-shadow:0 0 0 0 transparent}}
+.account{display:flex;align-items:center;gap:4px;font-size:13px;color:var(--ink-2)}
+.chip{display:inline-flex;align-items:center;gap:6px;height:30px;padding:0 10px;border-radius:99px;background:var(--accent-soft);color:var(--accent-2);font-size:12.5px;font-weight:600}
+.layout{max-width:1180px;margin:0 auto;display:grid;grid-template-columns:200px minmax(0,1fr);gap:32px;padding:26px 24px 40px}
+.tabs{position:sticky;top:84px;align-self:start;display:flex;flex-direction:column;gap:4px}
+.tabs button{position:relative;display:flex;align-items:center;gap:12px;width:100%;padding:11px 14px;border:0;border-radius:12px;background:none;color:var(--ink-2);font-size:14.5px;cursor:pointer;text-align:left}
+.tabs button:hover{background:color-mix(in srgb,var(--surface) 70%,transparent);color:var(--ink)}
+.tabs button[aria-current=page]{background:var(--surface);color:var(--ink);font-weight:650;box-shadow:var(--shadow)}
+.tabs button[aria-current=page] svg{color:var(--accent)}
+.tabs .lock{display:none;width:14px;height:14px;margin-left:auto;opacity:.6}body:not(.is-admin) [data-admin] .lock{display:block}
+.tabs .dot{position:absolute;top:9px;left:30px;width:8px;height:8px;border-radius:50%;background:var(--danger);box-shadow:0 0 0 2px var(--bg)}
+.rail-note{margin:18px 14px 0;font-size:12px;line-height:1.7;color:var(--ink-3)}
+main{min-width:0}.view{animation:rise .35s ease both}@keyframes rise{from{opacity:0;transform:translateY(6px)}}
+.head{display:flex;align-items:flex-end;justify-content:space-between;gap:14px;margin:4px 0 18px}.head p{margin:4px 0 0;color:var(--ink-2);font-size:14px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:22px;margin-bottom:18px;box-shadow:var(--shadow)}
+.card-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:6px}
+.card-head h2{display:flex;align-items:center;gap:9px}.card-head h2 svg{color:var(--accent)}
+.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}.grid2>.card{margin:0}
+.stack{display:grid;gap:18px;margin-bottom:18px}
+/* Hero instrument */
+.hero{position:relative;overflow:hidden;color:#e6f5f7;border-radius:22px;padding:22px 24px 24px;margin-bottom:18px;background:radial-gradient(120% 140% at 0% 0%,var(--hero-1),var(--hero-2) 48%,var(--hero-3));box-shadow:0 24px 48px -28px #0a1a27cc,inset 0 0 0 1px #ffffff12}
+.hero:after{content:"";position:absolute;inset:auto -80px -120px auto;width:340px;height:340px;border-radius:50%;background:radial-gradient(closest-side,#2ec5cf33,transparent);pointer-events:none}
+.hero-top{display:flex;justify-content:space-between;align-items:center;gap:12px;font-size:13px;color:#a9c8d0}
+.relay{display:inline-flex;align-items:center;gap:8px;height:30px;padding:0 12px;border-radius:99px;background:#ffffff14;color:#c4d6dd;font-weight:600;font-size:13px}
+.relay i{width:8px;height:8px;border-radius:50%;background:#6c8592}
+.relay[data-on=true]{background:#7ef0d824;color:#8af3dc}.relay[data-on=true] i{background:#7ef0d8;box-shadow:0 0 10px #7ef0d8}
+.hero-body{display:grid;grid-template-columns:240px minmax(0,1fr);gap:30px;align-items:center;margin-top:8px}
+.gauge{position:relative;width:240px;aspect-ratio:1}.gauge svg{width:100%;height:100%;transform:rotate(135deg)}
+.g-track,.g-value{fill:none;stroke-width:12;stroke-linecap:round}.g-track{stroke:#ffffff14;stroke-dasharray:395.84 527.79}
+.g-value{stroke:url(#g-arc);stroke-dasharray:0 527.79;transition:stroke-dasharray .8s cubic-bezier(.2,.8,.2,1);filter:drop-shadow(0 0 6px #2ec5cf88)}
+.g-tick{stroke:#ffffff30;stroke-width:2}
+.gauge-read{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+.gauge-read small{color:#9dbcc5;font-size:12.5px;letter-spacing:.06em}
+.gauge-read strong{font-size:48px;line-height:1.1;font-weight:300;letter-spacing:-.04em;font-variant-numeric:tabular-nums;color:#fff}
+.gauge-read span{font-size:13px;color:#9dbcc5;letter-spacing:.08em}
+.gauge-scale{position:absolute;left:0;right:0;bottom:6px;display:flex;justify-content:space-between;padding:0 30px;font-size:11px;color:#7fa1ab}
+.trend-head{display:flex;justify-content:space-between;gap:10px;font-size:13px;color:#a9c8d0}
+.trend svg{display:block;width:100%;height:120px;margin:10px 0 6px;overflow:visible}
+#trend-line{fill:none;stroke:#5fe3d3;stroke-width:2;vector-effect:non-scaling-stroke;stroke-linejoin:round}#trend-area{fill:url(#g-area)}
+.trend-grid line{stroke:#ffffff12;vector-effect:non-scaling-stroke}
+.trend-empty{fill:#9dbcc5;font-size:13px}
+.trend-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;border-top:1px solid #ffffff14;padding-top:14px}
+.trend-stats small{display:block;color:#8fb0b9;font-size:12px}.trend-stats b{font-weight:500;font-size:17px;font-variant-numeric:tabular-nums}
+.tiles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-bottom:10px}
+.tile{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:18px 18px 16px;box-shadow:var(--shadow);min-width:0}
+.tile small{display:flex;align-items:center;gap:7px;font-size:13px}.tile small svg{width:16px;height:16px;color:var(--accent)}
+.tile p{display:flex;align-items:baseline;gap:6px;margin:10px 0 2px;min-width:0}
+.tile strong{font-size:30px;line-height:1.15;font-weight:400;letter-spacing:-.035em;font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
+.tile p>span{color:var(--ink-3);font-size:13px}.tile em{font-style:normal;font-size:12px;color:var(--ink-3)}
+#energy-fine{font-size:.55em;color:var(--ink-3);letter-spacing:0}
+.meter-foot{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;font-size:12.5px;color:var(--ink-3);margin:0 2px 22px}
+.facts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:4px 18px;margin-top:10px}
+.facts div{padding:10px 0;min-width:0}.facts small{display:block;font-size:12.5px;color:var(--ink-3)}.facts strong{display:block;font-weight:550;font-size:15px;overflow-wrap:anywhere}
+.status-chip{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:600;padding:3px 10px;border-radius:99px;background:var(--surface-2);color:var(--ink-2);margin-top:2px}
+.status-chip[data-tone=ok]{background:var(--ok-soft);color:var(--ok)}.status-chip[data-tone=new]{background:var(--accent-soft);color:var(--accent-2)}.status-chip[data-tone=warn]{background:var(--warn-soft);color:var(--warn)}
+.banner{display:flex;align-items:center;gap:14px;width:100%;padding:14px 16px;margin-bottom:18px;border-radius:var(--radius);border:1px solid color-mix(in srgb,var(--accent) 35%,var(--line));background:linear-gradient(90deg,var(--accent-soft),var(--surface));color:var(--ink);text-align:left;cursor:pointer}
+.banner .bi{width:38px;height:38px;border-radius:12px;display:grid;place-items:center;background:var(--accent);color:var(--accent-ink);flex:none}
+.banner b{display:block}.banner small{display:block}.banner .go{margin-left:auto;color:var(--accent-2)}
+.notice{display:flex;gap:12px;align-items:flex-start;padding:14px 16px;border-radius:14px;background:var(--surface-2);color:var(--ink-2);font-size:13.5px;margin:0 0 16px}
+.notice svg{color:var(--accent);margin-top:1px}.notice.warn{background:var(--warn-soft);color:var(--warn)}.notice.warn svg{color:var(--warn)}
+.notice b{color:var(--ink)}.notice.warn b{color:inherit}
+/* Controls */
+.btn{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:0 18px;border-radius:12px;border:1px solid transparent;background:var(--accent);color:var(--accent-ink);font-weight:650;font-size:14.5px;cursor:pointer;transition:transform .12s,filter .15s,background .15s;white-space:nowrap}
+.btn:hover{filter:brightness(1.06)}.btn:active{transform:scale(.98)}
+.btn.secondary{background:var(--surface-2);border-color:var(--line);color:var(--ink)}
+.btn.danger{background:var(--danger-soft);color:var(--danger);border-color:color-mix(in srgb,var(--danger) 25%,transparent)}
+.btn.solid-danger{background:var(--danger);color:#fff}
+.btn.ghost{background:none;border-color:var(--line);color:var(--ink)}
+.btn.small{min-height:36px;padding:0 12px;font-size:13.5px;border-radius:10px}
+.btn:disabled{opacity:.5;cursor:not-allowed;transform:none}.btn.loading:disabled{opacity:1}
+.btn.loading{color:transparent!important}.btn.loading:after{content:"";position:absolute;width:18px;height:18px;border-radius:50%;border:2px solid var(--ink-3);border-top-color:var(--accent);animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(1turn)}}
+.icon-btn{display:inline-grid;place-items:center;width:36px;height:36px;border-radius:10px;border:0;background:none;color:var(--ink-2);cursor:pointer}.icon-btn:hover{background:var(--surface-2);color:var(--ink)}
+.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+label.field{display:block;font-size:13.5px;font-weight:600;margin:14px 0 6px}
+input:not([type=radio]):not([type=checkbox]):not([type=file]),select{width:100%;min-height:46px;padding:10px 13px;border-radius:12px;border:1px solid var(--line-2);background:var(--surface);color:var(--ink);transition:border-color .15s,box-shadow .15s}
+input:focus,select:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 4px var(--accent-soft)}
+.pw{position:relative}.pw input{padding-right:48px!important}.pw button{position:absolute;right:4px;top:50%;transform:translateY(-50%)}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:0 16px}
+.hint{font-size:12.5px;color:var(--ink-3);margin:6px 0 0}
+.switch{appearance:none;-webkit-appearance:none;position:relative;width:46px;height:28px;border-radius:99px;background:var(--line-2);cursor:pointer;flex:none;transition:background .2s;margin:0}
+.switch:after{content:"";position:absolute;top:3px;left:3px;width:22px;height:22px;border-radius:50%;background:#fff;box-shadow:0 1px 3px #0003;transition:transform .2s}
+.switch:checked{background:var(--accent)}.switch:checked:after{transform:translateX(18px)}
+.toggle-row{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:4px 0}
+.toggle-row b{display:block;font-size:14.5px}.toggle-row small{display:block;font-size:12.5px}
+.segmented{display:inline-grid;grid-auto-flow:column;grid-auto-columns:1fr;gap:4px;padding:4px;border-radius:14px;background:var(--surface-2);border:1px solid var(--line);margin:8px 0 10px;min-width:280px}
+.segmented label{position:relative;cursor:pointer}.segmented input{position:absolute;opacity:0;pointer-events:none}
+.segmented span{display:flex;align-items:center;justify-content:center;gap:8px;min-height:40px;padding:0 16px;border-radius:10px;font-weight:600;color:var(--ink-2);transition:background .15s}
+.segmented input:checked+span{background:var(--surface);color:var(--ink);box-shadow:var(--shadow)}.segmented input:focus-visible+span{outline:3px solid var(--accent)}
+details.more{border-top:1px solid var(--line);margin-top:18px;padding-top:4px}
+details.more summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;padding:12px 0;font-weight:600;font-size:14px}
+details.more summary::-webkit-details-marker{display:none}details.more summary:after{content:"";width:8px;height:8px;border-right:2px solid var(--ink-3);border-bottom:2px solid var(--ink-3);transform:rotate(45deg);transition:transform .2s;margin-right:4px}
+details.more[open] summary:after{transform:rotate(-135deg)}
+/* LED */
+.led-status{display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:14px;background:var(--surface-2);font-size:14px;margin:8px 0 6px}
+.led-status small{display:block;font-size:12.5px}
+.modes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:10px}
+.mode{position:relative;display:block;padding:14px 14px 13px;border-radius:14px;border:1px solid var(--line);background:var(--surface);cursor:pointer;transition:border-color .15s,box-shadow .15s}
+.mode:hover{border-color:var(--line-2)}.mode input{position:absolute;opacity:0;pointer-events:none}
+.mode:has(input:checked){border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}.mode:has(input:focus-visible){outline:3px solid var(--accent);outline-offset:2px}
+.mode b{display:block;font-size:14.5px;margin-top:10px}.mode small{display:block;font-size:12.5px;line-height:1.5;margin-top:2px}
+.mode .tag{position:absolute;top:12px;right:12px;font-size:11px;font-weight:650;color:var(--accent-2);background:var(--accent-soft);padding:1px 7px;border-radius:99px}
+.lamp{display:block;width:14px;height:14px;border-radius:50%;background:var(--line-2);box-shadow:inset 0 0 0 1px #0000001a}
+.lamp.lit,.lamp[data-anim=smart],.lamp[data-anim=relay],.lamp[data-anim=inverse],.lamp[data-anim=load],.lamp[data-anim=on]{--on:#38d9b9}
+.lamp[data-anim]{animation:var(--a) infinite}
+.lamp.lit,.lamp[data-anim=on]{background:var(--on);box-shadow:0 0 0 3px #38d9b92e,0 0 12px #38d9b9b3}
+.lamp[data-anim=smart]{--a:breathe 3.2s ease-in-out}.lamp[data-anim=relay]{--a:follow 4s steps(1)}.lamp[data-anim=inverse]{--a:follow 4s steps(1) -2s}.lamp[data-anim=load]{--a:follow .9s steps(1)}
+@keyframes breathe{0%,100%{background:var(--on);box-shadow:0 0 0 3px #38d9b92e,0 0 12px #38d9b9b3}50%{background:color-mix(in srgb,var(--on) 55%,var(--line-2));box-shadow:0 0 0 0 transparent}}
+@keyframes follow{0%{background:var(--on);box-shadow:0 0 0 3px #38d9b92e,0 0 12px #38d9b9b3}50%{background:var(--line-2);box-shadow:inset 0 0 0 1px #0000001a}}
+.timeline{position:relative;height:30px;margin:16px 0 4px;border-radius:9px;background:linear-gradient(90deg,#f6d36533,#ffd38a55 50%,#f6d36533);overflow:hidden;border:1px solid var(--line)}
+.timeline .night{position:absolute;top:0;bottom:0;background:linear-gradient(180deg,#1d3557,#0f2233);opacity:.9}
+.timeline .now{position:absolute;top:-2px;bottom:-2px;width:2px;background:var(--danger);border-radius:2px}
+.timeline-scale{display:flex;justify-content:space-between;font-size:11px;color:var(--ink-3);font-variant-numeric:tabular-nums}
+.legend{display:grid;grid-template-columns:auto 1fr;gap:9px 12px;align-items:center;font-size:13px;color:var(--ink-2);margin:4px 0 6px}
+.legend .lamp{--on:#38d9b9}
+.l-setup{--a:follow 1s steps(1)}.l-join{--a:short1 2s}.l-pair{--a:short2 2s}.l-error{--a:short3 3s}.l-find{--a:follow .5s steps(1)}
+@keyframes short1{0%,8%{background:var(--on)}9%,100%{background:var(--line-2)}}
+@keyframes short2{0%,8%,16%,24%{background:var(--on)}9%,15%,25%,100%{background:var(--line-2)}}
+@keyframes short3{0%,6%,12%,18%,24%,30%{background:var(--on)}7%,11%,19%,23%,31%,100%{background:var(--line-2)}}
+/* Pairing */
+.code-box{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:16px 18px;border-radius:14px;background:var(--surface-2);border:1px dashed var(--line-2);margin:12px 0 4px}
+#matter-code{font-size:26px;font-weight:600;letter-spacing:.08em;font-variant-numeric:tabular-nums}
+.state-line{display:flex;align-items:center;gap:8px;font-size:14px;color:var(--ink-2)}
+.state-line i{width:8px;height:8px;border-radius:50%;background:var(--ink-3)}.state-line[data-tone=ok] i{background:var(--ok)}.state-line[data-tone=open] i{background:var(--accent);box-shadow:0 0 0 4px var(--accent-soft)}
+/* Update */
+.version-big{font-size:30px;font-weight:600;letter-spacing:-.03em;margin:4px 0 2px}
+.update-state{display:flex;align-items:center;gap:14px;padding:16px;border-radius:14px;background:var(--surface-2);margin:12px 0 4px}
+.update-state .ui{width:42px;height:42px;border-radius:13px;display:grid;place-items:center;flex:none;background:var(--surface);color:var(--ink-2);border:1px solid var(--line)}
+.update-state[data-tone=ok] .ui{background:var(--ok-soft);color:var(--ok);border-color:transparent}
+.update-state[data-tone=new]{background:linear-gradient(90deg,var(--accent-soft),var(--surface-2))}.update-state[data-tone=new] .ui{background:var(--accent);color:var(--accent-ink);border-color:transparent}
+.update-state[data-tone=warn] .ui{background:var(--warn-soft);color:var(--warn);border-color:transparent}
+.update-state[data-tone=busy] .ui svg{animation:spin 1.2s linear infinite}
+.update-state b{display:block;font-size:15px}.update-state small{display:block;font-size:13px}
+.drop{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;text-align:center;padding:24px 16px;border-radius:14px;border:1.5px dashed var(--line-2);background:var(--surface-2);cursor:pointer;margin-top:12px;transition:border-color .15s,background .15s}
+.drop:hover,.drop.over{border-color:var(--accent);background:var(--accent-soft)}.drop svg{width:28px;height:28px;color:var(--accent)}
+.drop b{font-size:14.5px;overflow-wrap:anywhere}.drop small{font-size:12.5px}.drop input{position:absolute;width:1px;height:1px;opacity:0}
+.steps{list-style:none;display:grid;grid-template-columns:repeat(5,1fr);gap:6px;padding:0;margin:18px 0 6px;counter-reset:s}
+.steps li{position:relative;padding-top:30px;text-align:center;font-size:12.5px;color:var(--ink-3)}
+.steps li:before{counter-increment:s;content:counter(s);position:absolute;top:0;left:50%;transform:translateX(-50%);width:24px;height:24px;border-radius:50%;display:grid;place-items:center;font-size:12px;font-weight:700;background:var(--surface-2);border:1px solid var(--line-2);color:var(--ink-3);z-index:1}
+.steps li:after{content:"";position:absolute;top:11px;left:calc(50% + 14px);right:calc(-50% + 14px);height:2px;background:var(--line)}.steps li:last-child:after{display:none}
+.steps li[data-state=done]{color:var(--ink-2)}.steps li[data-state=done]:before{content:"✓";background:var(--ok);border-color:var(--ok);color:#fff}.steps li[data-state=done]:after{background:var(--ok)}
+.steps li[data-state=active]{color:var(--ink);font-weight:650}.steps li[data-state=active]:before{background:var(--accent);border-color:var(--accent);color:var(--accent-ink);box-shadow:0 0 0 5px var(--accent-soft)}
+.steps li[data-state=skip]{opacity:.45}
+#install-note{font-size:13.5px;color:var(--ink-2);text-align:center;margin:8px 0 0}
+.danger-zone{border-color:color-mix(in srgb,var(--danger) 30%,var(--line))}.danger-zone .card-head h2 svg{color:var(--danger)}
+.row-action{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 0;border-top:1px solid var(--line)}
+.row-action:first-of-type{border-top:0}.row-action b{display:block;font-size:14.5px}.row-action small{display:block;font-size:13px}
+/* Dialogs & toast */
+dialog{width:min(440px,calc(100% - 32px));border:1px solid var(--line);border-radius:22px;padding:26px;background:var(--surface);color:var(--ink);box-shadow:0 30px 80px -20px #0a1a2799}
+dialog[open]{animation:pop .22s cubic-bezier(.2,.9,.3,1.2)}@keyframes pop{from{opacity:0;transform:translateY(10px) scale(.97)}}
+dialog::backdrop{background:#08131c8c;backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)}
+.dlg-icon{width:46px;height:46px;border-radius:14px;display:grid;place-items:center;background:var(--accent-soft);color:var(--accent);margin-bottom:14px}
+.dlg-icon.danger{background:var(--danger-soft);color:var(--danger)}
+dialog h2{font-size:19px}dialog p{color:var(--ink-2);font-size:14px}
+.dlg-actions{display:flex;justify-content:flex-end;gap:10px;margin-top:20px}
+#login-note{min-height:22px;font-size:13px;color:var(--ink-2);margin:10px 0 0}#login-note[data-tone=error]{color:var(--danger)}
+.toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom));transform:translateX(-50%);z-index:50;display:flex;align-items:flex-start;gap:10px;max-width:min(520px,calc(100% - 32px));padding:12px 16px;border-radius:14px;background:#0f2233;color:#eef6f8;font-size:14px;box-shadow:0 18px 40px -12px #0a1a27b3;animation:pop .25s ease}
+.toast svg{margin-top:1px;color:#7ef0d8}.toast[data-kind=error] svg{color:#ff9b8f}.toast[data-kind=success] svg{color:#7ef0d8}
+@media(prefers-color-scheme:dark){.toast{background:#e5eef4;color:#0f2233}.toast svg{color:var(--accent-ink)}.toast[data-kind=error] svg{color:#b8372b}}
+footer{font-size:12px;color:var(--ink-3);padding:6px 2px 0}
+@media(max-width:899px){
+  .layout{display:block;padding:18px 16px calc(var(--tab-h) + 32px + env(safe-area-inset-bottom))}
+  .tabs{position:fixed;top:auto;left:0;right:0;bottom:0;z-index:30;flex-direction:row;gap:0;padding:6px 6px calc(6px + env(safe-area-inset-bottom));background:color-mix(in srgb,var(--surface) 86%,transparent);backdrop-filter:saturate(1.6) blur(16px);-webkit-backdrop-filter:saturate(1.6) blur(16px);border-top:1px solid var(--line)}
+  .tabs button{flex:1;flex-direction:column;gap:3px;padding:7px 2px;font-size:11.5px;text-align:center;border-radius:12px}
+  .tabs button[aria-current=page]{background:none;box-shadow:none;color:var(--accent)}
+  .tabs .lock{position:absolute;top:5px;right:calc(50% - 20px);margin:0;width:12px;height:12px}.tabs .dot{left:calc(50% + 6px);top:6px}
+  .rail-note{display:none}.toast{bottom:calc(var(--tab-h) + 18px + env(safe-area-inset-bottom))}
+  .hero{padding:18px 18px 20px}.hero-body{grid-template-columns:1fr;gap:14px}.gauge{width:min(250px,78vw);margin:0 auto}
+  .tiles{grid-template-columns:1fr 1fr}.tiles .tile:last-child{grid-column:1/-1}
+  .facts{grid-template-columns:1fr 1fr}.grid2{grid-template-columns:1fr}.modes{grid-template-columns:1fr 1fr}
+  h1{font-size:23px}.card{padding:18px}.brand small{display:none}#login-open span{display:none}#login-open{padding:0 11px}
+}
+@media(max-width:520px){.form-row{grid-template-columns:1fr}.segmented{display:grid;min-width:0}.steps li{font-size:11px}.account span{display:none}.pill{padding:0 9px}.pill span{display:none}.pill i{margin:0}}
+@media(prefers-color-scheme:dark){.timeline{background:linear-gradient(90deg,#f6d36512,#ffd38a2b 50%,#f6d36512)}.timeline .night{background:linear-gradient(180deg,#2a4a7a,#16264a)}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition:none!important}}
+</style>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+<symbol id="i-home" viewBox="0 0 24 24"><path d="M3.5 10.5 12 4l8.5 6.5"/><path d="M5.5 9v10.5h13V9"/><path d="M10 19.5v-5h4v5"/></symbol>
+<symbol id="i-led" viewBox="0 0 24 24"><path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 0 0-3.6 10.8c.7.5 1.1 1.3 1.1 2.2h5c0-.9.4-1.7 1.1-2.2A6 6 0 0 0 12 3Z"/></symbol>
+<symbol id="i-link" viewBox="0 0 24 24"><path d="M10 14a4.5 4.5 0 0 0 6.4 0l3-3a4.5 4.5 0 0 0-6.4-6.4l-1 1"/><path d="M14 10a4.5 4.5 0 0 0-6.4 0l-3 3a4.5 4.5 0 0 0 6.4 6.4l1-1"/></symbol>
+<symbol id="i-update" viewBox="0 0 24 24"><path d="M20 12a8 8 0 1 1-2.4-5.7"/><path d="M20 4v4.5h-4.5"/><path d="M12 8v4.5l3 1.5"/></symbol>
+<symbol id="i-gear" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.6 1.6 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.6 1.6 0 0 0-1.8-.3 1.6 1.6 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.6 1.6 0 0 0-1-1.5 1.6 1.6 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.6 1.6 0 0 0 .3-1.8 1.6 1.6 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.6 1.6 0 0 0 1.5-1 1.6 1.6 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.6 1.6 0 0 0 1.8.3H9a1.6 1.6 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.6 1.6 0 0 0 1 1.5 1.6 1.6 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.6 1.6 0 0 0-.3 1.8V9a1.6 1.6 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.6 1.6 0 0 0-1.5 1Z"/></symbol>
+<symbol id="i-lock" viewBox="0 0 24 24"><rect x="4.5" y="10.5" width="15" height="10" rx="2.5"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"/></symbol>
+<symbol id="i-logout" viewBox="0 0 24 24"><path d="M14 4h4.5A1.5 1.5 0 0 1 20 5.5v13a1.5 1.5 0 0 1-1.5 1.5H14"/><path d="M10 16.5 5.5 12 10 7.5M5.5 12H15"/></symbol>
+<symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 2.5 4.5 13.5H12l-1 8 8.5-11H12l1-8Z"/></symbol>
+<symbol id="i-wave" viewBox="0 0 24 24"><path d="M2.5 12c2-5 4-5 6 0s4 5 6 0 4-5 6.5 0"/></symbol>
+<symbol id="i-meter" viewBox="0 0 24 24"><path d="M4 18a8 8 0 1 1 16 0"/><path d="m12 18 3.5-5.5"/></symbol>
+<symbol id="i-copy" viewBox="0 0 24 24"><rect x="8.5" y="8.5" width="11" height="11" rx="2.5"/><path d="M15.5 8.5v-2A2 2 0 0 0 13.5 4.5h-7a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h2"/></symbol>
+<symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></symbol>
+<symbol id="i-alert" viewBox="0 0 24 24"><path d="M12 3.5 2.5 20h19L12 3.5Z"/><path d="M12 10v4.5M12 17.5v.1"/></symbol>
+<symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v5.5M12 7.5v.1"/></symbol>
+<symbol id="i-wifi" viewBox="0 0 24 24"><path d="M2.5 9a14 14 0 0 1 19 0M5.5 12.5a9.5 9.5 0 0 1 13 0M8.8 16a5 5 0 0 1 6.4 0"/><path d="M12 19.5v.1"/></symbol>
+<symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3.5"/><path d="M12 1.5v3M12 19.5v3M1.5 12h3M19.5 12h3"/></symbol>
+<symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></symbol>
+<symbol id="i-upload" viewBox="0 0 24 24"><path d="M12 15.5V4M7.5 8.5 12 4l4.5 4.5"/><path d="M4 15v3.5A1.5 1.5 0 0 0 5.5 20h13a1.5 1.5 0 0 0 1.5-1.5V15"/></symbol>
+<symbol id="i-download" viewBox="0 0 24 24"><path d="M12 4v11.5M7.5 11 12 15.5l4.5-4.5"/><path d="M4 15v3.5A1.5 1.5 0 0 0 5.5 20h13a1.5 1.5 0 0 0 1.5-1.5V15"/></symbol>
+<symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3 4.5 6v6c0 4.5 3.2 7.8 7.5 9 4.3-1.2 7.5-4.5 7.5-9V6L12 3Z"/><path d="m9 12 2 2 4-4"/></symbol>
+<symbol id="i-key" viewBox="0 0 24 24"><circle cx="8" cy="15" r="4"/><path d="m11 12 8.5-8.5M16 7l2.5 2.5M14 9l2 2"/></symbol>
+<symbol id="i-power" viewBox="0 0 24 24"><path d="M12 3v8"/><path d="M6.4 6.6a8 8 0 1 0 11.2 0"/></symbol>
+<symbol id="i-eye" viewBox="0 0 24 24"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12Z"/><circle cx="12" cy="12" r="3"/></symbol>
+<symbol id="i-chev" viewBox="0 0 24 24"><path d="m9 5.5 6.5 6.5L9 18.5"/></symbol>
+<symbol id="i-outlet" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="5"/><path d="M9.5 9v3M14.5 9v3M10 15.5h4"/></symbol>
+</svg>
+<header class="bar"><div class="brand"><div class="logo"><svg class="i"><use href="#i-outlet"/></svg></div><div><b>CommandKit</b><small>CMNDKT-004 智慧插座 · 本機管理</small></div></div>
+<div class="bar-end"><span id="live-state" class="pill" data-state="waiting"><i></i><span>正在連線</span></span>
+<button class="btn ghost small" id="login-open"><svg class="i"><use href="#i-lock"/></svg><span>管理員登入</span></button>
+<div class="account" id="account" hidden><span class="chip"><svg class="i" style="width:15px;height:15px"><use href="#i-shield"/></svg><span id="account-state">管理員</span></span><button class="icon-btn" id="logout" title="登出" aria-label="登出"><svg class="i"><use href="#i-logout"/></svg></button></div></div></header>
+<div class="layout">
+<nav class="tabs" aria-label="管理導覽">
+<button data-view="overview" aria-current="page"><svg class="i"><use href="#i-home"/></svg><span>總覽</span></button>
+<button data-view="led" data-admin><svg class="i"><use href="#i-led"/></svg><span>燈號</span><svg class="i lock"><use href="#i-lock"/></svg></button>
+<button data-view="pairing" data-admin><svg class="i"><use href="#i-link"/></svg><span>配對</span><svg class="i lock"><use href="#i-lock"/></svg></button>
+<button data-view="update" data-admin><svg class="i"><use href="#i-update"/></svg><span>更新</span><svg class="i lock"><use href="#i-lock"/></svg><i class="dot" id="update-dot" hidden></i></button>
+<button data-view="system" data-admin><svg class="i"><use href="#i-gear"/></svg><span>系統</span><svg class="i lock"><use href="#i-lock"/></svg></button>
+<p class="rail-note">本機管理，不需要雲端帳號。<br>讀值無效或連線中斷時顯示「—」。</p></nav>
+<main id="main">
+<div id="setup-notice" class="notice warn" hidden><svg class="i"><use href="#i-alert"/></svg><div><b>尚未設定管理密碼</b><br>請連接插座的 CommandKit-Setup 設定熱點，開啟 http://192.168.1.254/ 完成初始設定。</div></div>
+<button id="update-banner" class="banner" hidden><span class="bi"><svg class="i"><use href="#i-download"/></svg></span><span><b id="banner-title">有新版本可安裝</b><small id="banner-text">登入後即可更新</small></span><svg class="i go"><use href="#i-chev"/></svg></button>
+
+<section id="view-overview" class="view">
+<div class="head"><div><h1>狀態總覽</h1><p id="overview-sub">即時電力與裝置狀態</p></div></div>
+<section class="hero" aria-label="即時電力量測">
+<div class="hero-top"><span id="meter-state" role="status" aria-live="polite">正在讀取量測…</span><span id="relay" class="relay"><i></i><span id="relay-text">插座狀態未知</span></span></div>
+<div class="hero-body"><div class="gauge"><svg viewBox="0 0 200 200" aria-hidden="true"><defs><linearGradient id="g-arc" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#1aa6b8"/><stop offset="1" stop-color="#8af3dc"/></linearGradient></defs><circle class="g-track" cx="100" cy="100" r="84"/><circle id="gauge-arc" class="g-value" cx="100" cy="100" r="84"/></svg>
+<div class="gauge-read"><small>即時功率</small><strong id="power">—</strong><span>W</span></div><div class="gauge-scale" aria-hidden="true"><span>0</span><span>2 kW</span></div></div>
+<div class="trend"><div class="trend-head"><span>近 2 分鐘功率走勢</span><span id="trend-range"></span></div>
+<svg viewBox="0 0 300 120" preserveAspectRatio="none" role="img" aria-label="近 2 分鐘功率走勢"><defs><linearGradient id="g-area" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5fe3d3" stop-opacity=".38"/><stop offset="1" stop-color="#5fe3d3" stop-opacity="0"/></linearGradient></defs><g class="trend-grid"><line x1="0" x2="300" y1="30" y2="30"/><line x1="0" x2="300" y1="60" y2="60"/><line x1="0" x2="300" y1="90" y2="90"/></g><path id="trend-area"/><path id="trend-line"/><text id="trend-empty" class="trend-empty" x="150" y="64" text-anchor="middle">收集讀值中…</text></svg>
+<div class="trend-stats"><div><small>平均</small><b id="trend-avg">—</b></div><div><small>最高</small><b id="trend-max">—</b></div><div><small>最低</small><b id="trend-min">—</b></div></div></div></div></section>
+<div class="tiles"><article class="tile"><small><svg class="i"><use href="#i-wave"/></svg>電壓</small><p><strong id="voltage">—</strong><span>V</span></p><em>交流有效值</em></article>
+<article class="tile"><small><svg class="i"><use href="#i-meter"/></svg>電流</small><p><strong id="current-amps">—</strong><span>A</span></p><em>交流有效值</em></article>
+<article class="tile"><small><svg class="i"><use href="#i-bolt"/></svg>累積用電</small><p><strong><span id="energy">—</span><span id="energy-fine"></span></strong><span>kWh</span></p><em>功率估算 · 約 30 秒保存一次</em></article></div>
+<p class="meter-foot"><span id="meter-updated">等待量測資料</span><span>每 2 秒更新</span></p>
+<div class="card"><div class="card-head"><h2><svg class="i"><use href="#i-outlet"/></svg>裝置資訊</h2></div>
+<div class="facts"><div><small>韌體版本</small><strong id="current">—</strong></div><div><small>目前協議</small><strong id="active-protocol">—</strong></div><div><small>網路位址</small><strong id="device-address" class="mono">—</strong></div><div><small>線上更新</small><span id="update-chip" class="status-chip">尚未檢查</span></div></div>
+<div id="guest-note" class="notice" style="margin:14px 0 0"><svg class="i"><use href="#i-lock"/></svg><div>訪客可以查看狀態。<b>登入後</b>可調整燈號、配對、更新韌體與重設設定。</div></div></div>
+</section>
+
+<section id="view-led" class="view admin-view" hidden>
+<div class="head"><div><h1>指示燈</h1><p>HomeKit 與 Matter 共用同一組燈號設定</p></div></div>
+<form id="led-settings"><div class="card"><div class="card-head"><h2><svg class="i"><use href="#i-led"/></svg>平常燈號</h2></div>
+<div class="led-status"><span id="led-lamp" class="lamp"></span><div><span id="led-status" role="status" aria-live="polite">正在讀取燈號狀態…</span><small id="led-clock">排程等待校時</small></div></div>
+<div class="modes" role="radiogroup" aria-label="平常燈號">
+<label class="mode"><input type="radio" name="led-mode" value="smart"><span class="lamp" data-anim="smart"></span><span class="tag">建議</span><b>智慧狀態</b><small>正常時跟隨開關，設定、連線或配對時提示</small></label>
+<label class="mode"><input type="radio" name="led-mode" value="relay"><span class="lamp" data-anim="relay"></span><b>跟隨開關</b><small>插座開啟時亮，關閉時滅</small></label>
+<label class="mode"><input type="radio" name="led-mode" value="inverse"><span class="lamp" data-anim="inverse"></span><b>反向指示</b><small>插座關閉時亮，方便在暗處找到</small></label>
+<label class="mode"><input type="radio" name="led-mode" value="load"><span class="lamp" data-anim="load"></span><b>耗電指示</b><small>連續兩次達 5 W 開始閃爍，低於 2 W 停止</small></label>
+<label class="mode"><input type="radio" name="led-mode" value="on"><span class="lamp" data-anim="on"></span><b>恆亮</b><small>持續亮燈，夜間排程可暫時熄燈</small></label>
+<label class="mode"><input type="radio" name="led-mode" value="off"><span class="lamp" data-anim="off"></span><b>恆滅</b><small>平常熄燈；設定、配對、異常或尋找時仍亮</small></label></div></div>
+<div class="card"><div class="card-head"><h2><svg class="i"><use href="#i-clock"/></svg>夜間熄燈</h2></div>
+<div class="toggle-row"><label for="led-schedule"><b>每天固定時段熄燈</b><small>可跨午夜；夜間仍保留設定、異常及尋找提示</small></label><input type="checkbox" class="switch" id="led-schedule"></div>
+<div class="timeline" id="led-timeline" aria-hidden="true"><span class="night" id="night-a"></span><span class="night" id="night-b"></span><span class="now" id="night-now" hidden></span></div>
+<div class="timeline-scale" aria-hidden="true"><span>00:00</span><span>06:00</span><span>12:00</span><span>18:00</span><span>24:00</span></div>
+<div class="form-row"><div><label class="field" for="led-start">開始時間</label><input type="time" id="led-start" value="23:00" required></div><div><label class="field" for="led-end">結束時間</label><input type="time" id="led-end" value="07:00" required></div></div>
+<details class="more"><summary>時區與校時</summary><div class="form-row"><div><label class="field" for="led-offset">UTC 時差（小時）</label><input type="number" id="led-offset" value="8" min="-12" max="14" step="0.25" required><p class="hint">台灣為 +8；使用夏令時間的地區請自行調整。</p></div><div><label class="field" for="led-ntp">時間伺服器</label><input id="led-ntp" value="pool.ntp.org" maxlength="127" autocomplete="off" spellcheck="false" required><p class="hint">可填區網 NTP 伺服器的名稱或 IPv4 位址。</p></div></div>
+<div class="actions"><button id="led-phone-time" type="button" class="btn secondary small"><svg class="i"><use href="#i-clock"/></svg>使用此手機時間校準</button></div><p class="hint">每次斷電重開後需重新校時；校準成功後即使暫時離線，排程也會繼續。</p></details>
+<details class="more"><summary>燈號代表什麼？</summary><div class="legend"><span class="lamp l-setup" data-anim></span><span>每半秒亮滅：等待設定</span><span class="lamp l-join" data-anim></span><span>每兩秒短閃一次：正在連接 Wi-Fi</span><span class="lamp l-pair" data-anim></span><span>每兩秒短閃兩次：可以配對</span><span class="lamp l-error" data-anim></span><span>每三秒短閃三次：服務或通訊異常</span><span class="lamp l-find" data-anim></span><span>每四分之一秒亮滅：尋找插座</span></div></details>
+<div class="actions"><button id="led-save" type="submit" class="btn"><svg class="i"><use href="#i-check"/></svg>儲存燈號設定</button><button id="led-find" type="button" class="btn secondary"><svg class="i"><use href="#i-target"/></svg>尋找插座 · 閃燈 15 秒</button></div></div></form>
+</section>
+
+<section id="view-pairing" class="view admin-view" hidden>
+<div class="head"><div><h1>智慧家庭與配對</h1><p>一次啟用一種協議，管理後台兩種模式都能使用</p></div></div>
+<div class="card"><div class="card-head"><h2><svg class="i"><use href="#i-link"/></svg>智慧家庭協議</h2><span id="protocol-status" class="status-chip"></span></div>
+<div class="segmented" role="radiogroup" aria-label="智慧家庭協議"><label><input type="radio" name="protocol" value="matter" checked><span>Matter</span></label><label><input type="radio" name="protocol" value="homekit"><span>HomeKit</span></label></div>
+<p class="muted" style="font-size:13.5px">切換會重新啟動，保留 Wi-Fi、配對、管理密碼與累積用電。HomeKit 使用插座原廠配對碼；此模式暫停自訂網頁即時量測與 kWh 累計。</p>
+<div class="actions"><button id="protocol-save" class="btn"><svg class="i"><use href="#i-power"/></svg>儲存並重新啟動</button></div></div>
+<div class="card"><div class="card-head"><h2><svg class="i"><use href="#i-key"/></svg>家庭配對</h2></div>
+<p id="pairing-state" class="state-line"><i></i><span id="pairing-text">正在讀取配對狀態…</span></p>
+<div id="matter-onboarding"><div class="code-box"><div><small>Matter 設定碼</small><br><code id="matter-code">—</code></div><button type="button" id="code-copy" class="btn secondary small"><svg class="i"><use href="#i-copy"/></svg>複製</button></div><p class="hint">在 Apple 家庭、Google Home 或 Home Assistant 選擇「加入配件」，輸入此設定碼。</p></div>
+<div class="actions"><button id="commissioning-open" class="btn secondary"><svg class="i"><use href="#i-update"/></svg>重新開啟 Matter 配對視窗</button><button id="pairing-reset" class="btn danger">清除目前協議的配對</button></div><p class="hint">清除配對會保留 Wi-Fi、管理密碼及累積用電。</p></div>
+</section>
+
+<section id="view-update" class="view admin-view" hidden>
+<div class="head"><div><h1>韌體更新</h1><p>驗證簽章後安裝；保留設定與配對</p></div></div>
+<div class="grid2" style="margin-bottom:18px"><div class="card"><small>目前版本</small><div class="version-big mono" id="version-big">—</div><span id="health-chip" class="status-chip">—</span></div>
+<div class="card"><div class="card-head"><h2><svg class="i"><use href="#i-download"/></svg>線上更新</h2><button id="check" class="btn ghost small"><svg class="i"><use href="#i-update"/></svg>檢查新版本</button></div>
+<div class="update-state" id="update-state"><span class="ui"><svg class="i" id="update-icon"><use href="#i-update"/></svg></span><div><b id="update-title">尚未檢查線上版本</b><small id="message" role="status" aria-live="polite">開啟頁面時會自動檢查一次</small></div></div>
+<div class="actions"><button id="online" class="btn" hidden><svg class="i"><use href="#i-download"/></svg><span id="online-label">下載並更新</span></button></div></div></div>
+<div class="card"><div class="card-head"><h2><svg class="i"><use href="#i-upload"/></svg>手動更新</h2></div><p class="muted" style="font-size:13.5px">沒有網際網路時，可先在電腦下載 Release 的 matter.ota，再從這裡上傳。</p>
+<label class="drop" id="drop" for="package"><svg class="i"><use href="#i-upload"/></svg><b id="package-name">點選或拖放 .ota 更新包</b><small id="package-info">只接受本專案簽章的 matter.ota</small><input type="file" id="package" accept=".ota"></label>
+<div class="actions"><button id="manual" class="btn"><svg class="i"><use href="#i-shield"/></svg>驗證並更新</button></div></div>
+<div class="card" id="install-card" hidden><div class="card-head"><h2><svg class="i"><use href="#i-shield"/></svg>正在更新</h2></div>
+<ol class="steps" id="install-steps"><li data-step="download">下載</li><li data-step="upload">上傳驗證</li><li data-step="apply">安裝</li><li data-step="reboot">重新啟動</li><li data-step="done">完成</li></ol><p id="install-note">請保持插座供電，不要關閉此頁。</p></div>
+</section>
+
+<section id="view-system" class="view admin-view" hidden>
+<div class="head"><div><h1>系統</h1><p>網路、密碼與維護</p></div></div>
+<div class="grid2"><div class="card"><div class="card-head"><h2><svg class="i"><use href="#i-wifi"/></svg>Wi-Fi 連線</h2></div><p class="muted" style="font-size:13.5px">支援 2.4 GHz WPA2 個人網路。儲存後插座可能換 IP，請讓手機與插座使用同一網路。</p>
+<form id="wifi-settings"><label class="field" for="wifi-ssid">Wi-Fi 名稱</label><input id="wifi-ssid" maxlength="32" autocomplete="off" autocapitalize="none" spellcheck="false" required>
+<label class="field" for="wifi-password">Wi-Fi 密碼</label><div class="pw"><input id="wifi-password" type="password" minlength="8" maxlength="64" autocomplete="new-password" required><button type="button" class="icon-btn pw-toggle" data-for="wifi-password" aria-label="顯示密碼"><svg class="i"><use href="#i-eye"/></svg></button></div>
+<div class="actions"><button type="submit" class="btn">儲存並重新連線</button></div></form></div>
+<div class="card"><div class="card-head"><h2><svg class="i"><use href="#i-key"/></svg>管理密碼</h2></div><p class="muted" style="font-size:13.5px">變更後需要用新密碼重新登入。至少 8 個字元。</p>
+<form id="password-settings"><label class="field" for="new-password">新管理密碼</label><div class="pw"><input id="new-password" type="password" minlength="8" maxlength="128" autocomplete="new-password" required><button type="button" class="icon-btn pw-toggle" data-for="new-password" aria-label="顯示密碼"><svg class="i"><use href="#i-eye"/></svg></button></div>
+<label class="field" for="confirm-password">再次輸入新密碼</label><input id="confirm-password" type="password" minlength="8" maxlength="128" autocomplete="new-password" required>
+<div class="actions"><button type="submit" class="btn">變更密碼</button></div></form></div></div>
+<div class="card" style="margin-top:18px"><div class="card-head"><h2><svg class="i"><use href="#i-power"/></svg>維護</h2></div>
+<div class="row-action"><div><b>重新啟動插座</b><small>不清除任何設定，約一分鐘後恢復連線</small></div><button id="reboot" class="btn secondary">重新啟動</button></div></div>
+<div class="card danger-zone"><div class="card-head"><h2><svg class="i"><use href="#i-alert"/></svg>危險區</h2></div>
+<div class="row-action"><div><b>累積用電歸零</b><small>立即保存，之後從零重新累計，無法復原</small></div><button id="energy-reset" class="btn danger">歸零</button></div>
+<div class="row-action"><div><b>恢復出廠設定</b><small>清除管理密碼、Wi-Fi、兩套配對與用電紀錄，重新開啟設定熱點</small></div><button id="factory-reset" class="btn danger">恢復出廠</button></div></div>
+</section>
+<footer>CMNDKT-004 · 實體長按按鈕直到重新啟動，也可以恢復出廠設定。</footer>
+</main></div>
+<dialog id="login-box" aria-labelledby="login-title"><form id="login-form"><div class="dlg-icon"><svg class="i"><use href="#i-lock"/></svg></div><h2 id="login-title">管理員登入</h2><p>輸入初始設定時建立的管理密碼。</p>
+<label class="field" for="login-password">管理密碼</label><div class="pw"><input id="login-password" type="password" autocomplete="current-password" required minlength="8" maxlength="128"><button type="button" class="icon-btn pw-toggle" data-for="login-password" aria-label="顯示密碼"><svg class="i"><use href="#i-eye"/></svg></button></div>
+<p id="login-note" role="status" aria-live="polite"></p><div class="dlg-actions"><button class="btn secondary" id="login-cancel" type="button">取消</button><button class="btn" id="login-submit" type="submit">登入</button></div></form></dialog>
+<dialog id="confirm-box" aria-labelledby="confirm-title"><div class="dlg-icon danger"><svg class="i"><use href="#i-alert"/></svg></div><h2 id="confirm-title">確認操作</h2><p id="confirm-text"></p><div class="dlg-actions"><button id="confirm-no" class="btn secondary">取消</button><button id="confirm-yes" class="btn solid-danger">確認</button></div></dialog>
+<div id="toast" class="toast" role="status" aria-live="polite" hidden><svg class="i"><use id="toast-icon" href="#i-info"/></svg><span id="toast-text"></span></div>
 <script src="/password.js"></script><script>const CK_CATALOG_URL = {{CATALOG_URL}};
 {{SCRIPT}}
 </script></html>
